@@ -1,0 +1,4 @@
+C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDeDatos\bin\Debug\CapaDeDatos.dll
+C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDeDatos\bin\Debug\CapaDeDatos.pdb
+C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDeDatos\obj\Debug\CapaDeDatos.dll
+C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDeDatos\obj\Debug\CapaDeDatos.pdb
