@@ -1,2 +1,0 @@
-# SMC
-Sistema Medicion Calidad
