@@ -33,6 +33,20 @@ namespace Project.CapaDeNegocios
             bd.Close();
         }
 
+        public void eliminarAlumnoPA(string rut_alumno)
+        {
+            CapaDeDatos.DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "eliminarAlumno";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+            bd.execute();
+            bd.Close();
+        }
+
+
         /*public List<Alumno> buscarAlumno(string nombreAlumno)
         {
             CapaDeDatos.DataBase bd = new DataBase();
@@ -61,15 +75,13 @@ namespace Project.CapaDeNegocios
             CapaDeDatos.DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            //string sqlSearch = "select rut_alumno as Rut, id_escuela as Escuela, nombre_alumno as Nombre, fecha_nacimiento_alumno as Fecha_Nacimiento, sexo_alumno as Sexo, promocion_alumno as Promocion, beneficio_alumno as Beneficio  from Alumno";
-            string sqlSearch = "select nombre_alumno from alumno";
+            string sqlSearch = "select nombre_alumno, rut_alumno, id_escuela, promocion_alumno from alumno";
             bd.CreateCommand(sqlSearch);
             List<Alumno> lalumno = new List<Alumno>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
-                Alumno a = new Alumno(result.GetString(0));
-                //Alumno a = new Alumno(result.GetString(0), result.GetInt32(1), result.GetString(2), result.GetDateTime(3), result.GetBoolean(4), result.GetInt32(5), result.GetBoolean(6));
+                Alumno a = new Alumno(result.GetString(0),result.GetString(1),result.GetInt32(2),result.GetInt32(3));
                 lalumno.Add(a);
             }
             result.Close();

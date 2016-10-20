@@ -7,3 +7,12 @@ C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaL
 C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDeDatos.pdb
 C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDePresentacion\obj\Debug\CapaDePresentacion.dll
 C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDePresentacion\obj\Debug\CapaDePresentacion.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDePresentacion.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDePresentacion.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDeDatos.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaLogica.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDeDatos.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaLogica.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Debug\CapaDePresentacion.csprojResolveAssemblyReference.cache
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Debug\CapaDePresentacion.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Debug\CapaDePresentacion.pdb

@@ -5,3 +5,10 @@ C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaLogica\bin\Debug\CapaDeD
 C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaLogica\bin\Debug\CapaDeDatos.pdb
 C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaLogica\obj\Debug\CapaLogica.dll
 C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaLogica\obj\Debug\CapaLogica.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\bin\Debug\CapaLogica.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\bin\Debug\CapaLogica.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\bin\Debug\CapaDeDatos.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\bin\Debug\CapaDeDatos.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\obj\Debug\CapaDeNegocios.csprojResolveAssemblyReference.cache
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\obj\Debug\CapaLogica.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\obj\Debug\CapaLogica.pdb

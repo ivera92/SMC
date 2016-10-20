@@ -18,20 +18,12 @@ namespace Project
         int promocion_alumno;
         bool beneficio_alumno;
 
-        public Alumno(string nombre_alumno)
-        {
-            this.nombre_alumno = nombre_alumno;
-        }
-
-        public Alumno(string rut_alumno, int id_escuela, string nombre_alumno, DateTime fecha_nacimiento_alumno, bool sexo_alumno, int promocion_alumno, bool beneficio_alumno)
+        public Alumno(string nombre_alumno, string rut_alumno, int id_escuela, int promocion_alumno)
         {
             this.rut_alumno = rut_alumno;
             this.id_escuela = id_escuela;
             this.nombre_alumno = nombre_alumno;
-            this.fecha_nacimiento_alumno = fecha_nacimiento_alumno;
-            this.sexo_alumno = sexo_alumno;
             this.promocion_alumno = promocion_alumno;
-            this.beneficio_alumno = beneficio_alumno;
         }
 
         public Alumno(string rut_alumno, int id_escuela, string nombre_alumno, DateTime fecha_nacimiento_alumno, string direccion_alumno, int telefono_alumno, string nacionalidad_alumno, bool sexo_alumno, string correo_alumno, int promocion_alumno, bool beneficio_alumno)
