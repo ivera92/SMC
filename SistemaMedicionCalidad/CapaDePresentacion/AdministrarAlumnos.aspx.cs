@@ -13,8 +13,15 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CatalogEscuela cescuela = new CatalogEscuela();
+            List<Project.CapaDeNegocios.Escuela> escuelas = cescuela.getEscuela();
+
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.escuela.DataTextField = "Nombre_escuela";
+                this.escuela.DataValueField = "Id_escuela";
+                this.escuela.DataSource = escuelas;
+                this.divEditar.Visible = false;
                 this.mostrar();
             }
         }
@@ -58,12 +65,68 @@ namespace CapaDePresentacion
 
         protected void rowEditingEvent(object sender, GridViewEditEventArgs e)
         {
-
+            string rut_alumno = HttpUtility.HtmlDecode((string)this.GridView1.Rows[e.NewEditIndex].Cells[2].Text);
+            this.escuela.SelectedIndex = 0;
+            CatalogAlumno ca = new CatalogAlumno();
+            Alumno a = ca.buscarAlumnoPorRut(rut_alumno);
+            Escuela es = ca.buscarEscuela(rut_alumno);
+            this.escuela.SelectedIndex = es.Id_escuela-1;
+            this.nombre.Text = a.Nombre_alumno;
+            this.rut.Text = a.Rut_alumno;
+            this.fechaDeNacimiento.Text = a.Fecha_nacimiento_alumno+"";
+            this.direccion.Text = a.Direccion_alumno;
+            this.telefono.Text = a.Telefono_alumno+"";
+            this.nacionalidad.Text = a.Nacionalidad_alumno;
+            this.correo.Text = a.Correo_alumno;
+            this.promocion.Text = a.Promocion_alumno + "";
+            if (a.Beneficio_alumno == true)
+            {
+                this.beneficio.SelectedIndex = 0;
+            }
+            else
+                this.beneficio.SelectedIndex = 1;
+            if (a.Sexo_alumno == true)
+            {
+                this.sexo.SelectedIndex = 0;
+            }
+            else
+                this.sexo.SelectedIndex = 1;
+            this.divMostrar.Visible = false;
+            this.divEditar.Visible = true;
         }
 
-        protected void rowUpdatingEvent(object sender, GridViewUpdateEventArgs e)
+        protected void btnbuscar_Click(object sender, EventArgs e)
         {
+            this.GridView1.Visible = true;
+            CatalogAlumno alumno = new CatalogAlumno();
+            List<Alumno> listAlumno = new List<Alumno>();
+            listAlumno = alumno.buscarAlumno(this.tbxbuscar.Text);
 
+            this.GridView1.DataSource = listAlumno;
+            this.DataBind();
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            CatalogAlumno alumno = new CatalogAlumno();
+            bool sexo, beneficio;
+            Project.CapaDeNegocios.Escuela es = new Project.CapaDeNegocios.Escuela(int.Parse(this.escuela.SelectedValue), this.escuela.Items[this.escuela.SelectedIndex].Text);
+            if (this.sexo.Text == "Masculino")
+            {
+                sexo = true;
+            }
+            else
+                sexo = false;
+
+            if (this.beneficio.Text == "Si")
+            {
+                beneficio = true;
+            }
+            else
+                beneficio = false;
+
+            Alumno a = new Alumno(this.rut.Text, es.Id_escuela, this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
+            alumno.editarAlumnoPA(a);
         }
     }
 }

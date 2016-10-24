@@ -8,7 +8,7 @@ namespace Project
     public class Alumno
     {
         string rut_alumno;
-        int id_escuela;
+        int id_escuela_alumno;
         string nombre_alumno;
         DateTime fecha_nacimiento_alumno;
         string direccion_alumno;
@@ -18,18 +18,21 @@ namespace Project
         int promocion_alumno;
         bool beneficio_alumno;
 
-        public Alumno(string nombre_alumno, string rut_alumno, int id_escuela, int promocion_alumno)
+        public Alumno()
+        {
+        }
+        public Alumno(string nombre_alumno, string rut_alumno, int id_escuela_alumno, int promocion_alumno)
         {
             this.rut_alumno = rut_alumno;
-            this.id_escuela = id_escuela;
+            this.id_escuela_alumno = id_escuela_alumno;
             this.nombre_alumno = nombre_alumno;
             this.promocion_alumno = promocion_alumno;
         }
 
-        public Alumno(string rut_alumno, int id_escuela, string nombre_alumno, DateTime fecha_nacimiento_alumno, string direccion_alumno, int telefono_alumno, string nacionalidad_alumno, bool sexo_alumno, string correo_alumno, int promocion_alumno, bool beneficio_alumno)
+        public Alumno(string rut_alumno, int id_escuela_alumno, string nombre_alumno, DateTime fecha_nacimiento_alumno, string direccion_alumno, int telefono_alumno, string nacionalidad_alumno, bool sexo_alumno, string correo_alumno, int promocion_alumno, bool beneficio_alumno)
         {
             this.rut_alumno = rut_alumno;
-            this.id_escuela = id_escuela;
+            this.id_escuela_alumno = id_escuela_alumno;
             this.nombre_alumno = nombre_alumno;
             this.fecha_nacimiento_alumno = fecha_nacimiento_alumno;
             this.direccion_alumno = direccion_alumno;
@@ -47,10 +50,10 @@ namespace Project
             set { rut_alumno = value; }
         }
         
-        public int Id_escuela
+        public int Id_escuela_alumno
         {
-            get { return id_escuela; }
-            set { id_escuela = value; }
+            get { return id_escuela_alumno; }
+            set { id_escuela_alumno = value; }
         }
         
         public string Nombre_alumno

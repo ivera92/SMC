@@ -78,7 +78,7 @@
         <asp:Label ID="Label3" runat="server" Text="Ejemplo: 18205857-2"></asp:Label>
                 </td>
                 <td class="style3">
-        <asp:DropDownList ID="escuela" runat="server" Width="162px">
+        <asp:DropDownList ID="escuela" runat="server" Width="162px" >
         </asp:DropDownList>
                 </td>
             </tr>
