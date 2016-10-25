@@ -56,9 +56,10 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="AdministrarAlumnos.aspx" />
-    <Content Include="Alumnos.aspx" />
+    <Content Include="AdministrarEscuelas.aspx" />
     <Content Include="CrearAlumno.aspx" />
     <Content Include="CrearDocente.aspx" />
+    <Content Include="CrearEscuela.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -118,12 +119,12 @@
     <Compile Include="AdministrarAlumnos.aspx.designer.cs">
       <DependentUpon>AdministrarAlumnos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Alumnos.aspx.cs">
-      <DependentUpon>Alumnos.aspx</DependentUpon>
+    <Compile Include="AdministrarEscuelas.aspx.cs">
+      <DependentUpon>AdministrarEscuelas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Alumnos.aspx.designer.cs">
-      <DependentUpon>Alumnos.aspx</DependentUpon>
+    <Compile Include="AdministrarEscuelas.aspx.designer.cs">
+      <DependentUpon>AdministrarEscuelas.aspx</DependentUpon>
     </Compile>
     <Compile Include="CrearAlumno.aspx.cs">
       <DependentUpon>CrearAlumno.aspx</DependentUpon>
@@ -138,6 +139,13 @@
     </Compile>
     <Compile Include="CrearDocente.aspx.designer.cs">
       <DependentUpon>CrearDocente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearEscuela.aspx.cs">
+      <DependentUpon>CrearEscuela.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearEscuela.aspx.designer.cs">
+      <DependentUpon>CrearEscuela.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

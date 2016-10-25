@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alumno.cs" />
+    <Compile Include="Asignatura.cs" />
     <Compile Include="CatalogAlumno.cs" />
+    <Compile Include="CatalogAsignatura.cs" />
     <Compile Include="CatalogDocente.cs" />
     <Compile Include="CatalogEscuela.cs" />
     <Compile Include="CatalogProfesion.cs" />

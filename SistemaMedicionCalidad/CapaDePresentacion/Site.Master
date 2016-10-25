@@ -35,6 +35,7 @@
                         <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
                         <asp:MenuItem NavigateUrl="~/CrearAlumno.aspx" Text="Alumno"/>
                         <asp:MenuItem NavigateUrl="~/CrearDocente.aspx" Text="Docente"/>
+                        <asp:MenuItem NavigateUrl="~/CrearEscuela.aspx" Text="Escuela"/>
                     </Items>
                 </asp:Menu>
             </div>

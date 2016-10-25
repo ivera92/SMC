@@ -10,6 +10,11 @@ namespace Project.CapaDeNegocios
         int id_escuela;
         string nombre_escuela;
 
+        public Escuela(string nombre_escuela)
+        {
+            this.nombre_escuela = nombre_escuela;
+        }
+
         public Escuela(int id_escuela, string nombre_escuela)
         {
             this.id_escuela = id_escuela;

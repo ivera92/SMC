@@ -8,12 +8,19 @@ using Project.CapaDeNegocios;
 
 namespace CapaDePresentacion
 {
-    public partial class Alumnos : System.Web.UI.Page
+    public partial class CrearEscuela : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btbCrear_Click(object sender, EventArgs e)
+        {
             CatalogEscuela cescuela = new CatalogEscuela();
-            List<Project.CapaDeNegocios.Escuela> escuelas = cescuela.getEscuela();
+            Escuela es= new Escuela (this.tbxEscuela.Text);
+
+            cescuela.agregarEscuelaPA(es);
         }
     }
 }
