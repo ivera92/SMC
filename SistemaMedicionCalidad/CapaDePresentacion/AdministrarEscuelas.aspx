@@ -1,26 +1,17 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdministrarEscuelas.aspx.cs" Inherits="CapaDePresentacion.AdministrarEscuelas" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-    <style type="text/css">
-        .style1
-        {
-            width: 235px;
-        }
-        .style2
-        {
-            width: 256px;
-        }
-    </style>
+    
 </asp:Content>
-<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <h2> Administrar Escuelas</h2>
+<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    
     <div id="tablaAdministrar" runat="server">
     <table id="tadministrar">
     <tr>
     <td>
         &nbsp;</td>
     <td>
-        &nbsp;</td>
+        <h2> Administrar Escuelas</h2></td>
     <td>
         &nbsp;</td>
     <td>
@@ -48,7 +39,7 @@
         </asp:Menu>
         </td>
     <td>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" 
+        <asp:GridView class="table table-striped" ID="GridView1" runat="server" AutoGenerateColumns="false" 
             onrowdeleting="rowDeleting" onrowediting="rowEditing">
             <Columns>
             <asp:CommandField ButtonType="Link" ShowDeleteButton="true" ShowEditButton="true" />
@@ -78,27 +69,33 @@
     <div id="tablaEditar" runat="server">
     <table id="teditar">
     <tr>
-    <td class="style1">
-    </td>
-    <td class="style2">
-        <asp:Label ID="Label1" runat="server" Text="Nombre de Escuela"></asp:Label>
-        </td>
-    <td>
-        &nbsp;</td>
+    <td></td>
+    <td><h2>Editar Escuela</h2></td>
+    <td></td>
     </tr>
 
     <tr>
-    <td class="style1">
-        &nbsp;</td>
-    <td class="style2">
-        <asp:TextBox ID="tbxEscuela" runat="server" Width="231px"></asp:TextBox>
-    </td>
-    <td>
-        &nbsp;</td>
+    <td></td>
+    <td></td>
+    <td></td>
     </tr>
 
     <tr>
-    <td class="style1">
+    <td></td>
+    <td><label for="lbl2">Nombre</label></td>
+    <td></td>
+    </tr>
+
+    <tr>
+    <td></td>
+    <td>
+        <asp:TextBox ID="tbxEscuela" class="form-control" runat="server"></asp:TextBox>
+    </td>
+    <td></td>
+    </tr>
+
+    <tr>
+    <td>
         <asp:Menu ID="Menu2" runat="server">
             <Items>
                 <asp:MenuItem NavigateUrl="~/CrearEscuela.aspx" Text="Crear Escuela" 
@@ -108,23 +105,19 @@
             </Items>
         </asp:Menu>
         </td>
-    <td class="style2">
-        <asp:Label ID="Label2" runat="server" Text="ID"></asp:Label>
-        </td>
+    <td><label for="lbl2">ID</label></td>
     <td>
-        <asp:Button ID="btbGuardar" runat="server" Text="Guardar" 
+        <asp:Button ID="btbGuardar" class="btn btn-primary" runat="server" Text="Guardar" 
             onclick="btbGuardar_Click"  />
         </td>
     </tr>
 
     <tr>
-    <td class="style1">
-        &nbsp;</td>
-    <td class="style2">
-        <asp:TextBox ID="txbid" runat="server" ReadOnly="True"></asp:TextBox>
-        </td>
+    <td></td>
     <td>
-        &nbsp;</td>
+        <asp:TextBox ID="txbid" class="form-control" runat="server" ReadOnly="True"></asp:TextBox>
+        </td>
+    <td></td>
     </tr>
 
     </table>

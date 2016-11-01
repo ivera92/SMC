@@ -8,12 +8,20 @@
         }
     </style>
 </asp:Content>
-<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <h2>
-        Crear Escuela
-    </h2>
+<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    
     <div>
     <table>
+    <tr>
+    <td>
+        &nbsp;</td>
+    <td><h2>
+        Crear Escuela
+    </h2></td>
+    <td>
+        &nbsp;</td>
+    </tr>
+
     <tr>
     <td>
     </td>
@@ -26,9 +34,7 @@
     <tr>
     <td>
         &nbsp;</td>
-    <td class="style2">
-        <asp:Label ID="Label1" runat="server" Text="Nombre de Escuela"></asp:Label>
-    </td>
+    <td><label for="lbl2">Nombre</label></td>
     <td>
         &nbsp;</td>
     </tr>
@@ -45,7 +51,7 @@
         </asp:Menu>
         </td>
     <td class="style2">
-        <asp:TextBox ID="tbxEscuela" runat="server" Width="231px"></asp:TextBox>
+        <asp:TextBox ID="tbxEscuela" class="form-control" runat="server" Width="231px"></asp:TextBox>
         </td>
     <td>
         &nbsp;</td>
@@ -55,7 +61,7 @@
     <td>
         &nbsp;</td>
     <td class="style2">
-        <asp:Button ID="btbCrear" runat="server" Text="Crear" 
+        <asp:Button ID="btbCrear" class="btn btn-primary" runat="server" Text="Crear" 
             onclick="btbCrear_Click" />
         </td>
     <td>

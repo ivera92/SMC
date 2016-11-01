@@ -4,65 +4,48 @@
     <style type="text/css">
         .style2
         {
-            width: 200px;
-        }
-        .style3
-        {
-            width: 556px;
+            width: 232px;
         }
         .style4
         {
-        width: 1733px;
-    }
+            width: 524px
+        }
         .style5
-    {
-        width: 631px;
-    }
+        {
+            width: 115px;
+        }
     </style>
-</asp:Content>
-<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-<h2>
-        Crear Alumnos
-    </h2>
-    <div>
-    
-    <table style="width:100%;">
+    </asp:Content>
+<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+
+        <table class="form-group">
             <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
                 <td class="style2">
-                    &nbsp;</td>
-                <td class="style5">
-                    &nbsp;</td>
-                <td class="style4">
-                    &nbsp;</td>
-                <td class="style3">
-                    &nbsp;</td>
+                    <h1>
+                        Crear Alumno
+                    </h1>
+                </td>
+                <td></td>
+                <td class="style5">&nbsp;</td>
+                <td class="style4"></td>
             </tr>
             <tr>
-                <td class="style2">
-                    &nbsp;</td>
-                <td class="style5">
-                    &nbsp;</td>
-                <td class="style4">
-                    &nbsp;</td>
-                <td class="style3">
-                    &nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="style2">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="style5">&nbsp;</td>
+                <td class="style4">&nbsp;</td>
             </tr>
             <tr>
-                <td class="style2">
-                    &nbsp;</td>
-                <td class="style5">
-        <asp:Label ID="Label5" runat="server" Text="Nombre"></asp:Label>
-                </td>
-                <td class="style4">
-        <asp:Label ID="Label2" runat="server" Text="Rut"></asp:Label>
-                </td>
-                <td class="style3">
-        <asp:Label ID="Label4" runat="server" Text="Escuela"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="style2">
-                    <asp:Menu ID="Menu1" runat="server">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    <asp:Menu ID="Menu2" runat="server">
                         <Items>
                             <asp:MenuItem Text="Crear Alumno" NavigateUrl="~/CrearAlumno.aspx" Value="Crear Alumno"></asp:MenuItem>
                             <asp:MenuItem Text="Administrar Alumnos" NavigateUrl="~/AdministrarAlumnos.aspx" Value="Administrar Alumnos">
@@ -70,164 +53,127 @@
                         </Items>
                     </asp:Menu>
                 </td>
-                <td class="style5">
-                    <asp:TextBox ID="nombre" runat="server" Width="180px"></asp:TextBox>
+                <td class="style2">
+                <label for="lbl1">Nombre</label>
                 </td>
+                <td><label for="lbl2">Rut (Ejemplo: 18205857-2)</label></td>
+                <td class="style5">&nbsp;</td>
                 <td class="style4">
-        <asp:TextBox ID="rut" runat="server" Width="85px"></asp:TextBox>
-        <asp:Label ID="Label3" runat="server" Text="Ejemplo: 18205857-2"></asp:Label>
+                    <label for="lbl1">Escuela</label></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td class="style2">
+                    <asp:TextBox ID="nombre" class="form-control" runat="server"></asp:TextBox>
                 </td>
-                <td class="style3">
-        <asp:DropDownList ID="escuela" runat="server" Width="162px" >
-        </asp:DropDownList>
+                <td>
+                    <asp:TextBox ID="rut" class="form-control" runat="server"></asp:TextBox>
+                </td>
+                <td class="style5">
+                    &nbsp;</td>
+                <td class="style4">
+                    <asp:DropDownList ID="escuela" runat="server" class="dropdown">
+                    </asp:DropDownList>
                 </td>
             </tr>
             <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td class="style2">
-                    &nbsp;</td>
+                <label for="lbl1">Fecha de nacimiento (Ejemplo: 20/11/1992)</label></td>
+                <td>
+                    <label for="lbl1">Direccion</label></td>
                 <td class="style5">
                     &nbsp;</td>
                 <td class="style4">
-                    &nbsp;</td>
-                <td class="style3">
-                    &nbsp;</td>
+                <label for="lbl1">Telefono</label></td>
             </tr>
             <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td class="style2">
-                    &nbsp;</td>
-                <td class="style5">
-        <asp:Label ID="Label6" runat="server" Text="Fecha de Nacimiento"></asp:Label>
-                    <br />
-                    <asp:Label ID="Label14" runat="server" Text="Ejemplo: 20/11/1992"></asp:Label>
+                    <asp:TextBox ID="fechaDeNacimiento" class="form-control" runat="server"></asp:TextBox>
                 </td>
-                <td class="style4">
-        <asp:Label ID="Label7" runat="server" Text="Direccion"></asp:Label>
+                    <td>
+                    <asp:TextBox ID="direccion" class="form-control" runat="server"></asp:TextBox>
                 </td>
-                <td class="style3">
-        <asp:Label ID="Label8" runat="server" Text="Telefono"></asp:Label>
-                </td>
+                    <td class="style5">
+                        &nbsp;</td>
+                    <td class="style4">
+                    <asp:TextBox ID="telefono" class="form-control" runat="server"></asp:TextBox>
+                    </td>
             </tr>
             <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
                 <td class="style2">
-                    &nbsp;</td>
+                <label for="lbl1">Nacionalidad</label></td>
+                <td>
+                <label for="lbl1">Correo</label></td>
                 <td class="style5">
-        <asp:TextBox ID="fechaDeNacimiento" runat="server" Width="180px"></asp:TextBox>
-                </td>
+                    &nbsp;</td>
                 <td class="style4">
-                    <asp:TextBox ID="direccion" runat="server" Width="157px"></asp:TextBox>
-                </td>
-                <td class="style3">
-        <asp:TextBox ID="telefono" runat="server" Width="85px"></asp:TextBox>
-                </td>
+                <label for="lbl1">Promocion</label></td>
             </tr>
             <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
                 <td class="style2">
-                    &nbsp;</td>
+                    <asp:TextBox ID="nacionalidad" class="form-control" runat="server" ></asp:TextBox>
+                </td>
+                <td>
+                    <asp:TextBox ID="correo" class="form-control" runat="server"></asp:TextBox>
+                </td>
                 <td class="style5">
                     &nbsp;</td>
                 <td class="style4">
-                    &nbsp;</td>
-                <td class="style3">
-                    &nbsp;</td>
+                <asp:TextBox ID="promocion" class="form-control" runat="server"></asp:TextBox>
+                </td>
+                
             </tr>
             <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
                 <td class="style2">
-                    &nbsp;</td>
+                <label for="lbl1">Sexo</label></td>
+                <td>
+                    
+                    <label for="lbl1">Beneficio</label></td>
                 <td class="style5">
-        <asp:Label ID="Label9" runat="server" Text="Nacionalidad"></asp:Label>
-                </td>
-                <td class="style4">
-        <asp:Label ID="Label11" runat="server" Text="Correo"></asp:Label>
-                </td>
-                <td class="style3">
-        <asp:Label ID="Label12" runat="server" Text="Promocion"></asp:Label>
-                </td>
+                    
+                    &nbsp;</td>
+                <td class="style4"></td>
             </tr>
+
             <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
                 <td class="style2">
-                    &nbsp;</td>
-                <td class="style5">
-        <asp:TextBox ID="nacionalidad" runat="server" Width="100px"></asp:TextBox>
+                    <asp:RadioButtonList ID="sexo" runat="server">
+                        <asp:ListItem Selected="True" Value="Masculino"></asp:ListItem>
+                        <asp:ListItem Value="Femenino"></asp:ListItem>
+                    </asp:RadioButtonList>
                 </td>
-                <td class="style4">
-        <asp:TextBox ID="correo" runat="server"></asp:TextBox>
-                </td>
-                <td class="style3">
-                    <asp:TextBox ID="promocion" runat="server" Width="70px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="style2">
-                    &nbsp;</td>
-                <td class="style5">
-                    &nbsp;</td>
-                <td class="style4">
-                    &nbsp;</td>
-                <td class="style3">
-                    &nbsp;</td>
-            </tr>
-            <tr>
-                <td class="style2">
-                    &nbsp;</td>
-                <td class="style5">
-        <asp:Label ID="Label10" runat="server" Text="Sexo"></asp:Label>
-                </td>
-                <td class="style4">
-        <asp:Label ID="Label13" runat="server" Text="Beneficio"></asp:Label>
-                </td>
-                <td class="style3">
-                    &nbsp;</td>
-            </tr>
-            <tr>
-                <td class="style2">
-                    &nbsp;</td>
-                <td class="style5">
-        <asp:RadioButtonList ID="sexo" runat="server">
-            <asp:ListItem Selected="True" Value="Masculino"></asp:ListItem>
-            <asp:ListItem Value="Femenino"></asp:ListItem>
-        </asp:RadioButtonList>
-                </td>
-                <td class="style4">
+                <td>
                     <asp:RadioButtonList ID="beneficio" runat="server">
-            <asp:ListItem Value="Si"></asp:ListItem>
-            <asp:ListItem Selected="True" Value="No"></asp:ListItem>
-        </asp:RadioButtonList>
+                        <asp:ListItem Value="Si"></asp:ListItem>
+                        <asp:ListItem Selected="True" Value="No"></asp:ListItem>
+                    </asp:RadioButtonList>
                 </td>
-                <td class="style3">
-                    <asp:Button ID="btnCrear" runat="server" Text="Crear" Height="39px" 
-                        Width="86px" onclick="btnCrear_Click" />
-                </td>
-            </tr>
-            <tr>
-                <td class="style2">
-                    &nbsp;</td>
                 <td class="style5">
                     &nbsp;</td>
                 <td class="style4">
-                    &nbsp;</td>
-                <td class="style3">
-                    &nbsp;</td>
-            </tr>
-            <tr>
-                <td class="style2">
-                    </td>
-                <td class="style5">
-                    </td>
-                <td class="style4">
+                    <asp:Button ID="btnCrear" class="btn btn-primary" runat="server" onclick="btnCrear_Click" 
+                        Text="Crear"/>
                 </td>
-                <td class="style7">
-                    </td>
             </tr>
-            <tr>
-                <td class="style2">
-                    &nbsp;</td>
-                <td class="style5">
-                    &nbsp;</td>
-                <td class="style4">
-                    &nbsp;</td>
-                <td class="style7">
-                    &nbsp;</td>
-            </tr>
-        </table>            
-    </div>
+        </table>    
     </asp:Content>

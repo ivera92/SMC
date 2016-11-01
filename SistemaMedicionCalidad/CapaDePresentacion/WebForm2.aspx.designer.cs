@@ -10,33 +10,51 @@
 namespace CapaDePresentacion {
     
     
-    public partial class CrearEscuela {
+    public partial class WebForm2 {
         
         /// <summary>
-        /// Menu1 control.
+        /// lblInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu Menu1;
+        protected global::System.Web.UI.WebControls.Label lblInfo;
         
         /// <summary>
-        /// tbxEscuela control.
+        /// lblTotalClientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxEscuela;
+        protected global::System.Web.UI.WebControls.Label lblTotalClientes;
         
         /// <summary>
-        /// btbCrear control.
+        /// GridView_Clientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btbCrear;
+        protected global::System.Web.UI.WebControls.GridView GridView_Clientes;
+        
+        /// <summary>
+        /// SqlDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        
+        /// <summary>
+        /// btnQuitarSeleccionados control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnQuitarSeleccionados;
     }
 }
