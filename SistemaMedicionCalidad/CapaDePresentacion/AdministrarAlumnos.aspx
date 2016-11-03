@@ -1,12 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="AdministrarAlumnos.aspx.cs" Inherits="CapaDePresentacion.AdministrarAlumnos" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-    <style type="text/css">
-        .style1
-        {
-            width: 74px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     
@@ -14,36 +8,44 @@
     <div id='divMostrar' runat='server'>
     <table class=  "form-group"id="tablaMostrar">
                 <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
                 <td>
-                    <h1>Administrar Alumnos</h1>
+                    <h2>Administrar Alumnos</h2>
                 </td>
-                <td></td>
                 </tr>
 
                 <tr>
-                <td></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
                 <td></td>
                 </tr>
 
                 <tr>              
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
                 <td class="form-inline">
                     <asp:TextBox class="form-control" ID="tbxbuscar" runat="server" Width="172px"></asp:TextBox>
                     <asp:Button class="btn btn-primary" ID="btnbuscar" runat="server" Text="Buscar" 
                         onclick="btnbuscar_Click" />
                 </td>
+                </tr>
+
+                <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
                 <td></td>
                 </tr>
 
                 <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-
-                <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
                 <td>
                     <asp:Menu ID="Menu1" runat="server">
                         <Items>
@@ -65,7 +67,6 @@
                     </Columns>
                     </asp:GridView>
                 </td>
-                <td></td>
                 </tr>
     </table>
     </div>
@@ -77,10 +78,10 @@
                 <td>&nbsp;</td>
                 <td></td>
                 <td>
-                    <h1>Editar Alumno</h1>
+                    <h2>Editar Alumno</h2>
                 </td>
                 <td></td>
-                <td class="style1">&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
             </tr>
             <tr>
@@ -89,7 +90,7 @@
                 <td>&nbsp;</td>
                 <td></td>
                 <td></td>
-                <td class="style1">&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
             </tr>
             <tr>
@@ -108,7 +109,7 @@
                 </td>
                 <td><label for="lbl2">Nombre</label></td>
                 <td><label for="lbl2">Rut (Ejemplo: 18205857-2)</label></td>
-                <td class="style1">&nbsp;</td>
+                <td>&nbsp;</td>
                 <td><label for="lbl2">Escuela</label></td>
             </tr>
             <tr>
@@ -124,12 +125,28 @@
                 <td>
         <asp:TextBox ID="rut" class="form-control" runat="server" ReadOnly="True"></asp:TextBox>
                 </td>
-                <td class="style1">
+                <td>
                     &nbsp;</td>
-                <td class="style4">
+                <td>
         <asp:DropDownList EnableViewState = "true" class="dropdown" ID="escuela" runat="server" Width="177px">
         </asp:DropDownList>
                 </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
@@ -137,7 +154,7 @@
                 <td></td>
                 <td><label for="lbl2">Fecha de nacimiento (Ejemplo: 20/11/1992)</label></td>
                 <td><label for="lbl2">Direccion</label></td>
-                <td class="style1">&nbsp;</td>
+                <td>&nbsp;</td>
                 <td><label for="lbl2">Telefono</label></td>
             </tr>
             <tr>
@@ -150,8 +167,7 @@
                 <td>
                     <asp:TextBox ID="direccion" class="form-control" runat="server"></asp:TextBox>
                 </td>
-                <td class="style1">
-                    &nbsp;</td>
+                <td></td>
                 <td>
         <asp:TextBox ID="telefono" class="form-control" runat="server"></asp:TextBox>
                 </td>
@@ -159,42 +175,70 @@
             <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
                 <td><label for="lbl2">Nacionalidad</label></td>
                 <td><label for="lbl2">Correo</label></td>
-                <td class="style1">&nbsp;</td>
+                <td>&nbsp;</td>
                 <td><label for="lbl2">Promocion</label></td>
             </tr>
             <tr>
-                <td class="style2">
+                <td>
                     &nbsp;</td>
-                <td class="style2">
+                <td>
                     &nbsp;</td>
-                <td class="style2">
+                <td>
                     &nbsp;</td>
-                <td class="style5">
+                <td>
         <asp:TextBox ID="nacionalidad" class="form-control" runat="server"></asp:TextBox>
                 </td>
-                <td class="style4">
+                <td>
         <asp:TextBox ID="correo" class="form-control" runat="server"></asp:TextBox>
                 </td>
-                <td class="style1">
+                <td>
                     &nbsp;</td>
-                <td class="style3">
+                <td>
                     <asp:TextBox ID="promocion" class="form-control" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td>
                     &nbsp;</td>
-                <td class="style2">
+                <td>
                     &nbsp;</td>
-                <td class="style2">
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
                     &nbsp;</td>
                 <td><label for="lbl2">Sexo</label></td>
                 <td><label for="lbl2">Beneficio</label></td>
-                <td class="style5">&nbsp;</td>
-                <td class="style4">
+                <td">&nbsp;</td>
+                <td>
                     &nbsp;</td>
             </tr>
 
@@ -202,7 +246,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="style2">
+                <td>
         <asp:RadioButtonList ID="sexo" runat="server">
             <asp:ListItem Value="Masculino"></asp:ListItem>
             <asp:ListItem Value="Femenino"></asp:ListItem>
@@ -214,10 +258,11 @@
             <asp:ListItem Value="No"></asp:ListItem>
         </asp:RadioButtonList>
                 </td>
-                <td class="style5">
+                <td>
                     &nbsp;</td>
-                <td class="style4">
+                <td>
                     <asp:Button ID="btnGuardar" class="btn btn-primary" runat="server" Text="Guardar" onclick="btnGuardar_Click"/>
+                    <asp:Button ID="btnCancelar" class="btn btn-primary" runat="server" Text="Cancelar" />
                 </td>
             </tr>
             </table>  

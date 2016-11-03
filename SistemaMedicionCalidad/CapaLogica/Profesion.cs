@@ -10,6 +10,11 @@ namespace Project.CapaDeNegocios
         int id_profesion;
         string nombre_profesion;
 
+        public Profesion(string nombre_profesion)
+        {
+            this.nombre_profesion = nombre_profesion;
+        }
+
         public Profesion(int id_profesion, string nombre_profesion)
         {
             this.id_profesion = id_profesion;

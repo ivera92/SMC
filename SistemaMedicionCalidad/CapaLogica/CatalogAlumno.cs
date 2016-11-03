@@ -12,7 +12,7 @@ namespace Project.CapaDeNegocios
     {
         public void agregarAlumnoPA(Alumno a)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "insAlumnos";
@@ -35,7 +35,7 @@ namespace Project.CapaDeNegocios
 
         public void editarAlumnoPA(Alumno a)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "editarAlumnos";
@@ -58,7 +58,7 @@ namespace Project.CapaDeNegocios
 
         public Escuela buscarEscuela(string rutAlumno)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect(); //método conectar
             if (rutAlumno == null)
                 rutAlumno = "";
@@ -74,7 +74,7 @@ namespace Project.CapaDeNegocios
 
         public void eliminarAlumnoPA(string rut_alumno)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "eliminarAlumno";

@@ -8,7 +8,7 @@ namespace Project
     public class Docente
     {
         string rut_docente;
-        int id_profesion;
+        int id_profesion_docente;
         string nombre_docente;
         DateTime fecha_nacimiento_docente;
         string direccion_docente;
@@ -18,10 +18,17 @@ namespace Project
         string correo_docente;
         bool disponibilidad_docente;
 
-        public Docente(string rut_docente, int id_profesion, string nombre_docente, DateTime fecha_nacimiento_docente, string direccion_docente, int telefono_docente, string nacionalidad_docente, bool sexo_docente, string correo_docente, bool disponibilidad_docente)
+        public Docente(string nombre_docente, string rut_docente, int id_profesion_docente)
+        {
+            this.nombre_docente = nombre_docente;
+            this.rut_docente = rut_docente;
+            this.id_profesion_docente = id_profesion_docente;
+        }
+
+        public Docente(string rut_docente, int id_profesion_docente, string nombre_docente, DateTime fecha_nacimiento_docente, string direccion_docente, int telefono_docente, string nacionalidad_docente, bool sexo_docente, string correo_docente, bool disponibilidad_docente)
         {
             this.rut_docente = rut_docente;
-            this.id_profesion = id_profesion;
+            this.id_profesion_docente = id_profesion_docente;
             this.nombre_docente = nombre_docente;
             this.fecha_nacimiento_docente = fecha_nacimiento_docente;
             this.direccion_docente = direccion_docente;
@@ -38,10 +45,10 @@ namespace Project
             set { rut_docente = value; }
         }
         
-        public int Id_profesion
+        public int Id_profesion_docente
         {
-            get { return id_profesion; }
-            set { id_profesion = value; }
+            get { return id_profesion_docente; }
+            set { id_profesion_docente = value; }
         }
         
         public string Nombre_docente

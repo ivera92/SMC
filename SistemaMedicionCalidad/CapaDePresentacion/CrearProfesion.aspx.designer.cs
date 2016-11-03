@@ -10,33 +10,24 @@
 namespace CapaDePresentacion {
     
     
-    public partial class Login {
+    public partial class CrearProfesion {
         
         /// <summary>
-        /// txtRut control.
+        /// tbxProfesion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRut;
+        protected global::System.Web.UI.WebControls.TextBox tbxProfesion;
         
         /// <summary>
-        /// txtclave control.
+        /// btnCrear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclave;
-        
-        /// <summary>
-        /// btnIngresar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresar;
+        protected global::System.Web.UI.WebControls.Button btnCrear;
     }
 }

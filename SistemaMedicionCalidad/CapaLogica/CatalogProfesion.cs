@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Common;
+using System.Data;
+using Project.CapaDeDatos;
 
 namespace Project.CapaDeNegocios
 {
@@ -27,6 +29,19 @@ namespace Project.CapaDeNegocios
             bd.Close();
 
             return profesiones;
+        }
+
+        public void agregarProfesionPA(Profesion p)
+        {
+            DataBase bd= new DataBase();
+            bd.connect();
+
+            string sql = "insProfesion";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_profesion", DbType.String, p.Nombre_profesion);
+            bd.execute();
+            bd.Close();
         }
     }
 }

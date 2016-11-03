@@ -1,16 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="CrearDocente.aspx.cs" Inherits="CapaDePresentacion.CrearDocente" %>
 
     <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-        <style type="text/css">
-            .style1
-            {
-                width: 312px
-            }
-            .style2
-            {
-                width: 221px;
-            }
-        </style>
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div>
@@ -21,7 +11,7 @@
                 <td>&nbsp;</td>
                 <td></td>
                 <td>
-                    <h1>Crear Docente</h1>
+                    <h2>Crear Docente</h2>
                 </td>
                 <td></td>
                 <td>
@@ -52,9 +42,9 @@
                 <td>
                 <label form="label1">Nombre</label></td>
                 <td>
-                    <label form="label1">Rut</label></td>
+                    <label form="label1">Rut (Ejemplo: 18205857-2)</label></td>
                 <td>
-                <label form="label1">Fecha de nacimiento</label></td>
+                <label form="label1">Fecha de nacimiento (Ejemplo: 20/11/1992)</label></td>
             </tr>
 
             <tr>

@@ -45,12 +45,11 @@ namespace CapaDePresentacion
 
         protected void rowEditingEvent(object sender, GridViewEditEventArgs e)
         {
+            this.divMostrar.Visible = false;
             string rut_alumno = HttpUtility.HtmlDecode((string)this.GridView1.Rows[e.NewEditIndex].Cells[2].Text);
-            this.escuela.SelectedIndex = 0;
             CatalogAlumno ca = new CatalogAlumno();
             Alumno a = ca.buscarAlumnoPorRut(rut_alumno);
-            Escuela es = ca.buscarEscuela(rut_alumno);
-            this.escuela.SelectedIndex = es.Id_escuela-1;
+            this.escuela.SelectedIndex = a.Id_escuela_alumno-1;
             this.nombre.Text = a.Nombre_alumno;
             this.rut.Text = a.Rut_alumno;
             this.fechaDeNacimiento.Text = a.Fecha_nacimiento_alumno+"";
@@ -71,7 +70,6 @@ namespace CapaDePresentacion
             }
             else
                 this.sexo.SelectedIndex = 1;
-            this.divMostrar.Visible = false;
             this.divEditar.Visible = true;
         }
 
@@ -88,9 +86,8 @@ namespace CapaDePresentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            CatalogAlumno alumno = new CatalogAlumno();
+            CatalogAlumno calumno = new CatalogAlumno();
             bool sexo, beneficio;
-            Project.CapaDeNegocios.Escuela es = new Project.CapaDeNegocios.Escuela(int.Parse(this.escuela.SelectedValue), this.escuela.Items[this.escuela.SelectedIndex].Text);
             if (this.sexo.Text == "Masculino")
             {
                 sexo = true;
@@ -105,8 +102,8 @@ namespace CapaDePresentacion
             else
                 beneficio = false;
 
-            Alumno a = new Alumno(this.rut.Text, es.Id_escuela, this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
-            alumno.editarAlumnoPA(a);
+            Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue), this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
+            calumno.editarAlumnoPA(a);
         }
     }
 }
