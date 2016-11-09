@@ -22,7 +22,7 @@ namespace CapaDePresentacion
                 this.escuela.DataValueField = "Id_escuela";
                 this.escuela.DataSource = escuelas;
 
-                this.DataBind();                
+                this.DataBind();//enlaza los datos a un dropdownlist                
             }
         }
 
@@ -32,7 +32,7 @@ namespace CapaDePresentacion
         {
             CatalogAlumno alumno = new CatalogAlumno();
             bool sexo, beneficio;
-            Project.CapaDeNegocios.Escuela es = new Project.CapaDeNegocios.Escuela(int.Parse(this.escuela.SelectedValue),this.escuela.Items[this.escuela.SelectedIndex].Text);
+            Escuela es = new Escuela(int.Parse(this.escuela.SelectedValue),this.escuela.Items[this.escuela.SelectedIndex].Text);
             if (this.sexo.Text == "Masculino")
             {
                 sexo = true;

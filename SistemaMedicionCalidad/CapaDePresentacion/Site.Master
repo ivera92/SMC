@@ -11,42 +11,30 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="Form1" runat="server">
-    <div class="page">
-        <div class="header">
-            <div class="row">   
-                  <div>
-                    <div class="panel-heading"><img alt="hola" height="70" src="imagenes/imagen.png" /></div>
-                    <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li><a href="#" >Home</a></li>
+<form runat="server">
+<div class="page">
+    <div class="header">
+      <nav class="navbar navbar-default">
+        <div class="clear hideSkiplink"><img alt="hola" height="70" src="imagenes/imagen.png" /></div>
+          
+          <div id="Div1" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="Administrador.aspx">Administrar</a></li>
                 <li><a href="CrearAlumno.aspx">Alumno</a></li>
                 <li><a href="CrearDocente.aspx">Docente</a></li>
                 <li><a href="CrearEscuela.aspx">Escuela</a></li>
                 <li><a href="CrearProfesion.aspx">Profesion</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-                      
-                    </div>     
-        </div>
-
-        </div>
-        </div>
+                
+    <asp:Button ID="btnSalir" class="btn  text-right rigth" runat="server" onclick="btnSalir_Click" 
+    Text="Salir" />
+            </ul>
+          </div><!--/.nav-collapse -->
+        </nav>
+        </div> <!-- /container -->
         <div class="main">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"/>
         </div>
+    </div>
     </form>
      
 </body>

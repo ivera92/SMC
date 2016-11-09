@@ -12,7 +12,7 @@ namespace Project
     {
         public void agregarDocentePA(Docente d)
         {
-            CapaDeDatos.DataBase bd = new CapaDeDatos.DataBase();
+            DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "insDocentes";

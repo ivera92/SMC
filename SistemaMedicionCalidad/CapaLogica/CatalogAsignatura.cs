@@ -11,7 +11,7 @@ namespace Project
     {
         public void agregarAsignaturaPA(Asignatura a)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "insAsignatura";

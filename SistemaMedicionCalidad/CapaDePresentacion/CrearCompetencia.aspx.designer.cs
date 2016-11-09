@@ -10,42 +10,42 @@
 namespace CapaDePresentacion {
     
     
-    public partial class SiteMaster {
+    public partial class CrearCompetencia {
         
         /// <summary>
-        /// Head1 control.
+        /// txtNombreCompetencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreCompetencia;
         
         /// <summary>
-        /// HeadContent control.
+        /// tipoCompetencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+        protected global::System.Web.UI.WebControls.RadioButtonList tipoCompetencia;
         
         /// <summary>
-        /// btnSalir control.
+        /// descripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSalir;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea descripcion;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// brnCrear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Button brnCrear;
     }
 }

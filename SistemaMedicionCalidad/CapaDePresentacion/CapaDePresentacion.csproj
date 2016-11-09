@@ -56,14 +56,20 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Administrador.aspx" />
     <Content Include="AdministrarAlumnos.aspx" />
     <Content Include="AdministrarDocentes.aspx" />
     <Content Include="AdministrarEscuelas.aspx" />
     <Content Include="CrearAlumno.aspx" />
+    <Content Include="CrearCompetencia.aspx" />
     <Content Include="CrearDocente.aspx" />
     <Content Include="CrearEscuela.aspx" />
     <Content Include="CrearProfesion.aspx" />
+    <Content Include="imagenes\alumno.jpg" />
+    <Content Include="imagenes\escuela.jpg" />
     <Content Include="imagenes\imagen.png" />
+    <Content Include="imagenes\profesion.jpg" />
+    <Content Include="imagenes\profesor.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -85,8 +91,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="WebForm1.aspx" />
-    <Content Include="WebForm2.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -124,6 +128,13 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Administrador.aspx.cs">
+      <DependentUpon>Administrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador.aspx.designer.cs">
+      <DependentUpon>Administrador.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdministrarAlumnos.aspx.cs">
       <DependentUpon>AdministrarAlumnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -151,6 +162,13 @@
     </Compile>
     <Compile Include="CrearAlumno.aspx.designer.cs">
       <DependentUpon>CrearAlumno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearCompetencia.aspx.cs">
+      <DependentUpon>CrearCompetencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearCompetencia.aspx.designer.cs">
+      <DependentUpon>CrearCompetencia.aspx</DependentUpon>
     </Compile>
     <Compile Include="CrearDocente.aspx.cs">
       <DependentUpon>CrearDocente.aspx</DependentUpon>
@@ -197,20 +215,6 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

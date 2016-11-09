@@ -30,7 +30,7 @@ namespace CapaDePresentacion
         {
             CatalogDocente cdocente = new CatalogDocente();
             bool sexo, disponibilidad;
-            Project.CapaDeNegocios.Profesion p = new Project.CapaDeNegocios.Profesion(int.Parse(this.profesion.SelectedValue), this.profesion.Items[this.profesion.SelectedIndex].Text);
+            Profesion p = new Profesion(int.Parse(this.profesion.SelectedValue), this.profesion.Items[this.profesion.SelectedIndex].Text);
             if (this.sexo.Text == "Masculino")
             {
                 sexo = true;

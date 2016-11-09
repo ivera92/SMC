@@ -44,9 +44,12 @@
     <Compile Include="Asignatura.cs" />
     <Compile Include="CatalogAlumno.cs" />
     <Compile Include="CatalogAsignatura.cs" />
+    <Compile Include="CatalogCompetencia.cs" />
     <Compile Include="CatalogDocente.cs" />
     <Compile Include="CatalogEscuela.cs" />
     <Compile Include="CatalogProfesion.cs" />
+    <Compile Include="CatalogUsuario.cs" />
+    <Compile Include="Competencia.cs" />
     <Compile Include="Docente.cs" />
     <Compile Include="Escuela.cs" />
     <Compile Include="Profesion.cs" />
