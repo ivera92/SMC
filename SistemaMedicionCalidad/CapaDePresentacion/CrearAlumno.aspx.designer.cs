@@ -31,15 +31,6 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox rut;
         
         /// <summary>
-        /// escuela control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList escuela;
-        
-        /// <summary>
         /// fechaDeNacimiento control.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox direccion;
+        
+        /// <summary>
+        /// correo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox correo;
         
         /// <summary>
         /// telefono control.
@@ -76,13 +76,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox nacionalidad;
         
         /// <summary>
-        /// correo control.
+        /// escuela control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox correo;
+        protected global::System.Web.UI.WebControls.DropDownList escuela;
         
         /// <summary>
         /// promocion control.

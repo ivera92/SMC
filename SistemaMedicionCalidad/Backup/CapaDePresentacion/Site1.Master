@@ -1,0 +1,124 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="CapaDePresentacion.Site1" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - Sistema de Reclamos</title>
+
+    <script src="Scripts/jquery-1.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <link rel="stylesheet" href="Styles/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/bootstrap-theme.min.css">
+</head>
+<body>
+    <form runat="server" id="GlobalForm">
+
+        <section>
+            <div class="jumbotron">
+                <div class="container redesSociales">
+                    <a href="http://www.facebook.com"><i class="fa fa-facebook-square fa-3x"></i></a>
+                    <a href="http://www.twitter.com/Reclamos0nlinE"><i class="fa fa-twitter fa-3x"></i></a>
+                </div>
+                <div class="container section-padding1">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h1 class="titulo">Sistema de Reclamos</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <header>
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-navegacion" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="menu-navegacion">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orden por tipo de reclamo <span class="caret"></span></a>
+                                <ul class="dropdown-menu" style="min-width: 211px;">
+
+                                    <asp:Repeater ID="rptTipos" runat="server">
+                                        <HeaderTemplate>  
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <li><a id="MenuOrdenTipos" runat="server" href='<%# Eval("ID_TIPO","~/InicioPorOrden.aspx?Tipo={0}") %>'><%# Eval("NOMBRE_TIPO") %></a></li>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                        </FooterTemplate>
+                                    </asp:Repeater>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a runat="server" href="~/Inicio.aspx" id="MenuInicio">Inicio</a></li>
+                            <li><a runat="server" href="AdministrarAlumnos.aspx" id="MenuReclamo">Alumno</a></li>
+                            <li><a runat="server" id="MenuAcerca" href="#" onclick="acerca();return false;">Acerca de Nosotros</a></li>
+                            <li class="dropdown">
+                                <a href="#" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="MenuAdmin">Administración <span class="caret"></span></a>
+                                <ul class="dropdown-menu" style="min-width: 137px;">
+                                    <li><a runat="server" href="CrearAlumno.aspx" id="MenuAdminPerfil">Perfil</a></li>
+                                    <li><a runat="server" href="AdministrarAlumnos.aspx" id="MenuAdminUsuarios">Administrar</a></li>
+                                    <li><a runat="server" href="CrearAlumno.aspx" id="MenuAdminReclamos">Crear</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+
+        <div id="body">
+            <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder1" />
+            </section>
+        </div>
+
+        <footer class="container">
+            <hr>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <span class="copyright">&copy; 2016 - Sistema de Reclamos</span>
+                </div>
+                <div class="col-sm-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Política de privacidad</a></li>
+                        <li>|</li>
+                        <li><a href="#">Condiciones de servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+    </form>
+
+    <script src="Scripts/jquery-1.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+    </script>
+
+</body>
+</html>

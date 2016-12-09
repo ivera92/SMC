@@ -16,3 +16,4 @@ C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\C
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Debug\CapaDePresentacion.csprojResolveAssemblyReference.cache
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Debug\CapaDePresentacion.dll
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Debug\CapaDePresentacion.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDePresentacion.dll.config

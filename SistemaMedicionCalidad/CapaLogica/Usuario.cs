@@ -8,15 +8,15 @@ namespace Project
     public class Usuario
     {
         string rut_usuario;
-        int id_tipo_usuario;
+        int id_tipo_usuario_usuario;
         string nombre_usuario;
         string contrasena;
         
 
-        public Usuario(string rut_usuario, int id_tipo_usuario, string nombre_usuario, string contrasena)
+        public Usuario(string rut_usuario, int id_tipo_usuario_usuario, string nombre_usuario, string contrasena)
         {
             this.rut_usuario = rut_usuario;
-            this.id_tipo_usuario = id_tipo_usuario;
+            this.id_tipo_usuario_usuario = id_tipo_usuario_usuario;
             this.nombre_usuario = nombre_usuario;
             this.contrasena = contrasena;  
         }
@@ -27,10 +27,10 @@ namespace Project
             set { rut_usuario = value; }
         }
 
-        public int Id_tipo_usuario
+        public int Id_tipo_usuario_usuario
         {
-            get { return id_tipo_usuario; }
-            set { id_tipo_usuario = value; }
+            get { return id_tipo_usuario_usuario; }
+            set { id_tipo_usuario_usuario = value; }
         }
 
         public string Nombre_usuario

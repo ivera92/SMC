@@ -12,6 +12,13 @@ namespace Project
         bool tipo_competencia;
         string descripcion_competencia;
 
+        public Competencia(string nombre_competencia, bool tipo_competencia, int id_competencia)
+        {
+            this.nombre_competencia = nombre_competencia;
+            this.tipo_competencia = tipo_competencia;
+            this.id_competencia = id_competencia;
+        }
+
         public Competencia(string nombre_competencia, bool tipo_competencia, string descripcion_competencia)
         {
             this.nombre_competencia = nombre_competencia;

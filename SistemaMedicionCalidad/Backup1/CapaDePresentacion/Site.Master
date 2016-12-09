@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CapaDePresentacion.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - Sistema Medicion Calidad</title>
+
+    <script src="Scripts/jquery-1.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js" ></script>
+     
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link href="Styles/bootstrap.min.css" rel="stylesheet"/>
+    <link href="Styles/bootstrap-theme.css" rel="stylesheet"/>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<form runat="server">
+    <div class="container">
+
+        <header>
+        <img alt="hola" height="70" src="imagenes/imagen.png" />
+          <nav class="navbar navbar-default">
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="Administrador.aspx">Administrar</a>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Alumno</a>
+                    <ul>
+                        <li><a href="CrearAlumno.aspx">Crear Alumno</a></li>
+                        <li><a href="AdministrarAlumnos.aspx">Administrar Alumnos</a></li>
+                    </ul>
+                    </li>
+                <li><a href="CrearCompetencia.aspx">Competencia</a></li>
+                <li><a href="CrearDocente.aspx">Docente</a></li>
+                <li><a href="CrearEscuela.aspx">Escuela</a></li>
+                <li><a href="CrearProfesion.aspx">Profesion</a></li>
+            </ul>
+
+            <ul class="navbar-right">
+                <li><asp:Button ID="btnSalir" class="btn" runat="server" onclick="btnSalir_Click" 
+                Text="Salir" /></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+          </nav>
+
+        <div class="container-fluid">
+        <div class="row">
+  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns are always 50% wide, on mobile and desktop -->
+<div class="row">
+  <div class="col-xs-6">.col-xs-6</div>
+  <div class="col-xs-6">.col-xs-6</div>
+</div>
+</div>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>  
+        </header>
+    </div>
+        
+</form>
+    <script>
+        $(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+    </script>
+    <script src="~/Scripts/jquery-1.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js" ></script>
+    <link href="Styles/bootstrap.min.css" rel="stylesheet"/>
+    <link href="Styles/bootstrap-theme.css" rel="stylesheet"/>
+</body>
+</html>

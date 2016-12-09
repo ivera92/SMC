@@ -2,3 +2,8 @@ C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDeDatos\bin\Debug\CapaDe
 C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDeDatos\bin\Debug\CapaDeDatos.pdb
 C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDeDatos\obj\Debug\CapaDeDatos.dll
 C:\Users\Iván\Desktop\Tesis\SistemaMedicionCalidad\CapaDeDatos\obj\Debug\CapaDeDatos.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\bin\Debug\CapaDeDatos.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\bin\Debug\CapaDeDatos.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\obj\Debug\CapaDeDatos.csprojResolveAssemblyReference.cache
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\obj\Debug\CapaDeDatos.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\obj\Debug\CapaDeDatos.pdb

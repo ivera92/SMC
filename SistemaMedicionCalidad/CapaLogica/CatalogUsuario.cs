@@ -12,8 +12,8 @@ namespace Project
     {
         public static bool Autenticar(string rut_usuario, string contrasena)
         {
-            //consulta a la base de datos
-            string sql = @"SELECT COUNT(*) FROM Usuario WHERE rut_usuario = @rut_usuario AND contrasena_usuario = @contrasena_usuario";
+        //consulta a la base de datos
+        string sql = @"SELECT COUNT(*) FROM Usuario WHERE rut_usuario = @rut_usuario AND contrasena_usuario = @contrasena_usuario";
         //cadena conexion
 
         DataBase bd=new DataBase();
@@ -25,6 +25,7 @@ namespace Project
         DbDataReader result = bd.Query();//disponible resultado
         result.Read();
         int count = result.GetInt32(0);
+        //int id_tipo_usuario_usuario = result.GetInt32(1);
      
         if (count == 0)
             return false;
