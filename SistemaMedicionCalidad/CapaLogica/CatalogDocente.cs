@@ -32,17 +32,17 @@ namespace Project
             bd.Close();
         }
 
-        public List<Docente> buscarDocentePA(string buscar)
+        public List<Docente> buscarDocentePA(string rut)
         {
-            CapaDeDatos.DataBase bd = new CapaDeDatos.DataBase();
+            DataBase bd = new DataBase();
             bd.connect();
 
-            if (buscar == null)
-                buscar = "";
+            if (rut == null)
+                rut = "";
 
-            string sql = "buscarDocente";
-            bd.CreateCommandSP(sql);
-            bd.createParameter("@buscar", DbType.String, buscar);
+            string sql = "select * from docente where rut_docente='" + rut + "'";
+            bd.CreateCommand(sql);
+            bd.createParameter("@rut", DbType.String, rut);
             
             List<Docente> ldocente = new List<Docente>();
             DbDataReader result = bd.Query();

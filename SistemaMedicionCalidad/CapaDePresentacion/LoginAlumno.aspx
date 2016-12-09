@@ -5,7 +5,6 @@
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
     <title><%: Page.Title %> - Sistema Medicion Calidad</title>
 
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
@@ -45,7 +44,6 @@
             <div class="col-sm-4 col-sm-offset-4"><asp:Button ID="btnIngresar" runat="server" class="btn btn-primary btn-block" onclick="btnIngresar_Click" Text="Ingresar" /></></div>
         </div>
         <br />
-
         </div>
     </form>
 </body>

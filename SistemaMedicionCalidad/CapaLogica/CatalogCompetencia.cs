@@ -10,7 +10,6 @@ namespace Project
 {
     public class CatalogCompetencia
     {
-
         public void agregarCompetenciaPA(Competencia c)
         {
             DataBase bd = new DataBase();
@@ -40,18 +39,15 @@ namespace Project
             bd.Close();
         }
 
-        public void editarCompetencia(int accion, Competencia c)
+        public void editarCompetencia(Competencia c)
         {
             DataBase bd = new DataBase();
             bd.connect();
 
-            accion = 3;
-
-            string sql = "competenciaPA";
+            string sql = "editarCompetencia";
 
             bd.CreateCommandSP(sql);
-
-            bd.createParameter("@accion", DbType.Int32, accion);
+            
             bd.createParameter("@id_competencia", DbType.Int32, c.Id_competencia);
             bd.createParameter("@nombre_competencia", DbType.String, c.Nombre_competencia);
             bd.createParameter("@tipo_competencia", DbType.Boolean, c.Tipo_competencia);
@@ -80,6 +76,24 @@ namespace Project
             bd.Close();
 
             return lcompetencia;
+        }
+        public Competencia buscarID(int id_competencia)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "select * from competencia where id_competencia='" + id_competencia + "'";
+            bd.CreateCommand(sqlSearch);
+            List<Competencia> lc = new List<Competencia>();
+            DbDataReader result = bd.Query();
+            while (result.Read())
+            {
+                Competencia c = new Competencia(result.GetInt32(0), result.GetString(1), result.GetBoolean(2), result.GetString(3));
+                lc.Add(c);
+            }
+            result.Close();
+            bd.Close();
+            return lc.First();
         }
     }
 }

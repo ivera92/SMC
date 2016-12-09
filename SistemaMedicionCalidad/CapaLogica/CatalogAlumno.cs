@@ -128,7 +128,7 @@ namespace Project.CapaDeNegocios
 
         public Alumno buscarAlumnoPorRut(string rut)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "select * from alumno where rut_alumno='"+rut+"'";

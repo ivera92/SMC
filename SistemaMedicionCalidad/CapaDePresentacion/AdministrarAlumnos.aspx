@@ -41,8 +41,9 @@
 
     <div id='divEditar' runat='server'>
         <h2>
-                        Crear Alumno
+                        Editar Alumno
         </h2>
+        <br />
 
         <div class="row">
             <div class="col-sm-6"><label for="lbl1">Nombre</label></div>
@@ -51,7 +52,7 @@
               
         <div class="row">
             <div class="col-sm-6"><asp:TextBox class="form-control" ID="nombre" runat="server"></asp:TextBox></div>
-            <div class="col-sm-6"><asp:TextBox ID="rut" class="form-control" runat="server"></asp:TextBox></div>
+            <div class="col-sm-6"><asp:TextBox ID="rut" class="form-control" runat="server" ReadOnly="True"></asp:TextBox></div>
         </div>
         <br />
 
@@ -95,7 +96,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-6"><asp:TextBox ID="promocion" class="form-control" runat="server"></asp:TextBox></asp:TextBox></div>
+            <div class="col-sm-6"><asp:TextBox ID="promocion" class="form-control" runat="server"></asp:TextBox></div>
             <div class="col-sm-2">
                 <asp:RadioButtonList ID="sexo" runat="server">
                         <asp:ListItem Selected="True" Value="Masculino"></asp:ListItem>

@@ -2,11 +2,10 @@
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
+
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">           
    
-        <h2>
-                        Crear Alumno
-        </h2>
+        <h2>Crear Alumno</h2>
         <br />
         <div class="row">
             <div class="col-sm-6"><label for="lbl1">Nombre</label></div>
