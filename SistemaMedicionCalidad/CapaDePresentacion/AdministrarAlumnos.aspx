@@ -6,10 +6,10 @@
     
 
     <div id='divMostrar' runat='server'>
-        <h2>
-            Administrar Alumnos
-        </h2>
+
+        <h2>Administrar Alumnos</h2>
         <br />
+
         <div class="row">
             <div class="col-sm-4">
                 <asp:TextBox class="form-control" ID="tbxbuscar" runat="server"></asp:TextBox>  
@@ -21,22 +21,21 @@
         </div>
         <br />
 
-                    <div class ="row">
-                        <div class="col-sm-8">
-                            <asp:GridView class="table table-striped" ID="GridView1" runat="server" AutoGenerateColumns="False" 
-                             onrowdeleting="rowDeletingEvent" onrowediting="rowEditingEvent">
-                                <Columns>
-                                    <asp:CommandField ButtonType="Link" ShowEditButton="true"  ShowDeleteButton="true" />
-                                    <asp:BoundField DataField="Nombre_Alumno" HeaderText="Nombre" />
-                                    <asp:BoundField DataField="Rut_Alumno" HeaderText="Rut" />
-                                    <asp:BoundField DataField="Id_Escuela_Alumno" HeaderText="Escuela" />
-                                    <asp:BoundField DataField="Promocion_Alumno" HeaderText="Promocion" />
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                        
-                    </div>
+    <div class ="row">
+        <div class="col-sm-8">
+            <asp:GridView class="table table-striped" ID="GridView1" runat="server" AutoGenerateColumns="False" 
+            onrowdeleting="rowDeletingEvent" onrowediting="rowEditingEvent">
+            <Columns>
+            <asp:CommandField ButtonType="Link" ShowEditButton="true"  ShowDeleteButton="true" />
+            <asp:BoundField DataField="Nombre_Alumno" HeaderText="Nombre" />
+            <asp:BoundField DataField="Rut_Alumno" HeaderText="Rut" />
+            <asp:BoundField DataField="Id_Escuela_Alumno" HeaderText="Escuela" />
+            <asp:BoundField DataField="Promocion_Alumno" HeaderText="Promocion" />
+            </Columns>
+            </asp:GridView>
+        </div>         
     </div>
+</div>
 
 
     <div id='divEditar' runat='server'>

@@ -72,6 +72,7 @@
     <Content Include="AdministrarCompetencias.aspx" />
     <Content Include="AdministrarDocentes.aspx" />
     <Content Include="AdministrarEscuelas.aspx" />
+    <Content Include="AdministrarProfesiones.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -85,8 +86,10 @@
     <Content Include="imagenes\alumno.jpg" />
     <Content Include="imagenes\escuela.jpg" />
     <Content Include="imagenes\imagen.png" />
+    <Content Include="imagenes\imagen2.jpg" />
     <Content Include="imagenes\login.jpg" />
     <Content Include="imagenes\login.png" />
+    <Content Include="imagenes\logo.jpg" />
     <Content Include="imagenes\profesion.jpg" />
     <Content Include="imagenes\profesor.jpg" />
     <Content Include="LoginAlumno.aspx" />
@@ -197,6 +200,13 @@
     </Compile>
     <Compile Include="AdministrarEscuelas.aspx.designer.cs">
       <DependentUpon>AdministrarEscuelas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdministrarProfesiones.aspx.cs">
+      <DependentUpon>AdministrarProfesiones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarProfesiones.aspx.designer.cs">
+      <DependentUpon>AdministrarProfesiones.aspx</DependentUpon>
     </Compile>
     <Compile Include="CrearAlumno.aspx.cs">
       <DependentUpon>CrearAlumno.aspx</DependentUpon>

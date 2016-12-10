@@ -21,6 +21,7 @@ namespace CapaDePresentacion
 
         public void mostrar()
         {
+            this.txtid.Visible = false;
             this.GridView1.Visible = true;
             CatalogEscuela cescuela = new CatalogEscuela();
             List<Escuela> listaEscuelas = new List<Escuela>();
@@ -42,15 +43,15 @@ namespace CapaDePresentacion
             CatalogEscuela cescuela= new CatalogEscuela();
             Escuela escuela = cescuela.buscarUnaEscuela(int.Parse(id_escuela));
             this.tbxEscuela.Text = escuela.Nombre_escuela;
-            this.txbid.Text = escuela.Id_escuela+"";
+            this.txtid.Text = escuela.Id_escuela+"";
             this.tablaAdministrar.Visible = false;
             this.tablaEditar.Visible = true;
         }
 
-        protected void btbGuardar_Click(object sender, EventArgs e)
+        protected void btnGuardar_Click(object sender, EventArgs e)
         {
             CatalogEscuela cescuela = new CatalogEscuela();
-            Escuela es = new Escuela(int.Parse(this.txbid.Text), this.tbxEscuela.Text);
+            Escuela es = new Escuela(int.Parse(this.txtid.Text), this.tbxEscuela.Text);
             cescuela.editarEscuelaPA(es);
         }
     }

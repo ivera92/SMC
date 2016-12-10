@@ -20,7 +20,7 @@
                 </Columns>
             </asp:GridView>
         </div>
-        <asp:TextBox runat="server" ID="txtCompetencia"></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtCompetencia"></asp:TextBox>
     </div>
 </div>
 

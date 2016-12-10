@@ -12,7 +12,7 @@ namespace Project.CapaDeNegocios
     {
         public List<Escuela> getEscuela()
         {
-            CapaDeDatos.DataBase bd = new CapaDeDatos.DataBase();
+            DataBase bd = new DataBase();
             bd.connect(); //método conectar
             List<Escuela> escuelas = new List<Escuela>();
             string sql = "select * from Escuela"; //comando sql
@@ -33,7 +33,7 @@ namespace Project.CapaDeNegocios
 
         public List<Escuela> buscarEscuela(string buscar)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             if (buscar == null)
@@ -54,7 +54,7 @@ namespace Project.CapaDeNegocios
         }
         public List<Escuela> mostrarEscuelas()
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "select id_escuela, nombre_escuela from escuela";
@@ -73,7 +73,7 @@ namespace Project.CapaDeNegocios
 
         public Escuela buscarUnaEscuela(int id_escuela)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "select * from escuela where id_escuela='" + id_escuela + "'";
@@ -92,7 +92,7 @@ namespace Project.CapaDeNegocios
 
         public void eliminarEscuelaPA(int id_escuela)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "eliminarEscuela";
@@ -105,7 +105,7 @@ namespace Project.CapaDeNegocios
 
         public void agregarEscuelaPA(Escuela e)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "insEscuela";
@@ -119,7 +119,7 @@ namespace Project.CapaDeNegocios
 
         public void editarEscuelaPA(Escuela e)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "editarEscuelas";

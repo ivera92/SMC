@@ -10,16 +10,16 @@
 namespace CapaDePresentacion {
     
     
-    public partial class AdministrarEscuelas {
+    public partial class AdministrarProfesiones {
         
         /// <summary>
-        /// tablaAdministrar control.
+        /// administrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tablaAdministrar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl administrar;
         
         /// <summary>
         /// GridView1 control.
@@ -40,22 +40,22 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtid;
         
         /// <summary>
-        /// tablaEditar control.
+        /// editar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tablaEditar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editar;
         
         /// <summary>
-        /// tbxEscuela control.
+        /// tbxProfesion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxEscuela;
+        protected global::System.Web.UI.WebControls.TextBox tbxProfesion;
         
         /// <summary>
         /// btnGuardar control.

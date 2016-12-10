@@ -10,9 +10,9 @@ namespace Project.CapaDeNegocios
 {
     public class CatalogProfesion
     {
-        public List<Profesion> getProfesion()
+        public List<Profesion> mostrarProfesiones()
         {
-            CapaDeDatos.DataBase bd = new CapaDeDatos.DataBase();
+            DataBase bd = new DataBase();
             bd.connect(); //método conectar
             List<Profesion> profesiones = new List<Profesion>();
             string sql = "select * from Profesion"; //comando sql
@@ -39,6 +39,51 @@ namespace Project.CapaDeNegocios
             string sql = "insProfesion";
 
             bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_profesion", DbType.String, p.Nombre_profesion);
+            bd.execute();
+            bd.Close();
+        }
+
+        public void eliminarProfesionPA(int id_profesion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "eliminarProfesion";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_profesion", DbType.Int32, id_profesion);
+            bd.execute();
+            bd.Close();
+        }
+        public Profesion buscarUnaProfesion(int id_profesion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "select * from profesion where id_profesion='" + id_profesion + "'";
+            bd.CreateCommand(sqlSearch);
+            List<Profesion> lp = new List<Profesion>();
+            DbDataReader result = bd.Query();//disponible resultado
+            while (result.Read())
+            {
+                Profesion p = new Profesion(result.GetInt32(0), result.GetString(1));
+                lp.Add(p);
+            }
+            result.Close();
+            bd.Close();
+            return lp.First();
+        }
+
+        public void editarProfesion(Profesion p)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "editarProfesion";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_profesion", DbType.Int32, p.Id_profesion);
             bd.createParameter("@nombre_profesion", DbType.String, p.Nombre_profesion);
             bd.execute();
             bd.Close();

@@ -14,7 +14,7 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogProfesion cprofesion = new CatalogProfesion();
-            List<Project.CapaDeNegocios.Profesion> profesiones = cprofesion.getProfesion();
+            List<Profesion> profesiones = cprofesion.mostrarProfesiones();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
