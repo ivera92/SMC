@@ -9,7 +9,7 @@
 
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
-    <script src="Scripts/jquery-1.4.1.min.js"></script>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
      
     <meta name="viewport" content="width=device-width, initial-scale=1" />

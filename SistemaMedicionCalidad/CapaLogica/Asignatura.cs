@@ -14,6 +14,16 @@ namespace Project
         int ano_asignatura;
         bool duracion_asignatura;
 
+
+        public Asignatura(int id_escuela_asignatura, string rut_docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
+        {
+            this.id_escuela_asignatura = id_escuela_asignatura;
+            this.rut_docente_asignatura = rut_docente_asignatura;
+            this.nombre_asignatura = nombre_asignatura;
+            this.ano_asignatura = ano_asignatura;
+            this.duracion_asignatura = duracion_asignatura;
+        }
+
         public Asignatura(int id_asignatura, int id_escuela_asignatura, string rut_docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
         {
             this.id_asignatura = id_asignatura;

@@ -69,6 +69,7 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Administrador.aspx" />
     <Content Include="AdministrarAlumnos.aspx" />
+    <Content Include="AdministrarAsignaturas.aspx" />
     <Content Include="AdministrarCompetencias.aspx" />
     <Content Include="AdministrarDocentes.aspx" />
     <Content Include="AdministrarEscuelas.aspx" />
@@ -78,6 +79,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="CrearAlumno.aspx" />
+    <Content Include="CrearAsignatura.aspx" />
     <Content Include="CrearCompetencia.aspx" />
     <Content Include="CrearDocente.aspx" />
     <Content Include="CrearEscuela.aspx" />
@@ -180,6 +182,13 @@
     <Compile Include="AdministrarAlumnos.aspx.designer.cs">
       <DependentUpon>AdministrarAlumnos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdministrarAsignaturas.aspx.cs">
+      <DependentUpon>AdministrarAsignaturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarAsignaturas.aspx.designer.cs">
+      <DependentUpon>AdministrarAsignaturas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdministrarCompetencias.aspx.cs">
       <DependentUpon>AdministrarCompetencias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,6 +223,13 @@
     </Compile>
     <Compile Include="CrearAlumno.aspx.designer.cs">
       <DependentUpon>CrearAlumno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearAsignatura.aspx.cs">
+      <DependentUpon>CrearAsignatura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearAsignatura.aspx.designer.cs">
+      <DependentUpon>CrearAsignatura.aspx</DependentUpon>
     </Compile>
     <Compile Include="CrearCompetencia.aspx.cs">
       <DependentUpon>CrearCompetencia.aspx</DependentUpon>

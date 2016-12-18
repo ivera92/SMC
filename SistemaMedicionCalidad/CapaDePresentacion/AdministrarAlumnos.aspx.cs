@@ -14,7 +14,7 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogEscuela cescuela = new CatalogEscuela();
-            List<Escuela> escuelas = cescuela.getEscuela();
+            List<Escuela> escuelas = cescuela.mostrarEscuelas();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {

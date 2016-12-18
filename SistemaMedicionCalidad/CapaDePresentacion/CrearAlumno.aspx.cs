@@ -14,10 +14,11 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogEscuela cescuela = new CatalogEscuela();
-            List<Project.CapaDeNegocios.Escuela> escuelas = cescuela.getEscuela();
+            List<Escuela> escuelas = cescuela.mostrarEscuelas();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.creado.Visible = false;
                 this.escuela.DataTextField = "Nombre_escuela";
                 this.escuela.DataValueField = "Id_escuela";
                 this.escuela.DataSource = escuelas;
@@ -32,7 +33,6 @@ namespace CapaDePresentacion
         {
             CatalogAlumno alumno = new CatalogAlumno();
             bool sexo, beneficio;
-            Escuela es = new Escuela(int.Parse(this.escuela.SelectedValue),this.escuela.Items[this.escuela.SelectedIndex].Text);
             if (this.sexo.Text == "Masculino")
             {
                 sexo = true;
@@ -47,8 +47,10 @@ namespace CapaDePresentacion
             else
                 beneficio = false;
 
-            Alumno a = new Alumno(this.rut.Text, es.Id_escuela, this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text),this.direccion.Text,int.Parse(this.telefono.Text),this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
+            Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue), this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text),this.direccion.Text,int.Parse(this.telefono.Text),this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
             alumno.agregarAlumnoPA(a);
+            this.crear.Visible = false;
+            this.creado.Visible = true;
         }
     }
 }

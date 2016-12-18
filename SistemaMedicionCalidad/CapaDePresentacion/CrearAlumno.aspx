@@ -3,8 +3,9 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 
-<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">           
-   
+<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">  
+    <h1 id="creado" class="text-center" runat="server">Alumno creado satisfactoriamente</h1>         
+   <div id="crear" runat="server">
         <h2>Crear Alumno</h2>
         <br />
         <div class="row">
@@ -58,7 +59,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-6"><asp:TextBox ID="promocion" class="form-control" runat="server"></asp:TextBox></asp:TextBox></div>
+            <div class="col-sm-6"><asp:TextBox ID="promocion" class="form-control" runat="server"></asp:TextBox></div>
             <div class="col-sm-2">
                 <asp:RadioButtonList ID="sexo" runat="server">
                         <asp:ListItem Selected="True" Value="Masculino"></asp:ListItem>
@@ -75,4 +76,5 @@
                 <asp:Button ID="btnCrear" class="btn btn-primary btn-block btn-lg" runat="server" onclick="btnCrear_Click" Text="Crear"/>
             </div>        
         </div>
-    </asp:Content>
+    </div>
+</asp:Content>
