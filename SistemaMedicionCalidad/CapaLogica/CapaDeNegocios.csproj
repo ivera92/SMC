@@ -48,6 +48,7 @@
     <Compile Include="CatalogDocente.cs" />
     <Compile Include="CatalogEscuela.cs" />
     <Compile Include="CatalogProfesion.cs" />
+    <Compile Include="CatalogTipoUsuario.cs" />
     <Compile Include="CatalogUsuario.cs" />
     <Compile Include="Competencia.cs" />
     <Compile Include="Docente.cs" />

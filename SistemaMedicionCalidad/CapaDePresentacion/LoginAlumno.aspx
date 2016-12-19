@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginAlumno.aspx.cs" Inherits="CapaDePresentacion.LoginAlumno" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="LoginAlumno.aspx.cs" Inherits="CapaDePresentacion.LoginAlumno" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -37,6 +37,15 @@
 
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4"><asp:TextBox class="form-control" ID="txtclave" runat="server" TextMode="Password"></asp:TextBox></div>
+        </div>
+        <br />
+
+        <div class="text-center">
+            <label>Tipo de Usuario</label>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4"><asp:DropDownList ID="ddTipoUsuario" runat="server" class="form-control"></asp:DropDownList></div>
         </div>
         <br />
 
