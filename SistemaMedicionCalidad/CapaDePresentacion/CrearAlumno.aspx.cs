@@ -44,7 +44,7 @@ namespace CapaDePresentacion
             else
                 beneficio = false;
 
-            Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue), this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text),this.direccion.Text,int.Parse(this.telefono.Text),this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
+            Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue),this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text),this.direccion.Text,int.Parse(this.telefono.Text),this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
             alumno.agregarAlumnoPA(a);
             this.crear.Visible = false;
             this.creado.Visible = true;

@@ -27,7 +27,12 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-4"><asp:TextBox class="form-control" ID="txtRut" runat="server" ></asp:TextBox></div>
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <asp:TextBox class="form-control" ID="txtRut" runat="server" ></asp:TextBox>
+                </div>
+            </div>
         </div>
         <br />
 
@@ -36,7 +41,12 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-4"><asp:TextBox class="form-control" ID="txtclave" runat="server" TextMode="Password"></asp:TextBox></div>
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <asp:TextBox class="form-control" ID="txtclave" runat="server" TextMode="Password"></asp:TextBox>
+                </div>
+            </div>
         </div>
         <br />
 
