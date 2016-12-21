@@ -13,6 +13,24 @@ namespace CapaDePresentacion {
     public partial class CrearProfesion {
         
         /// <summary>
+        /// creado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl creado;
+        
+        /// <summary>
+        /// crear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl crear;
+        
+        /// <summary>
         /// tbxProfesion control.
         /// </summary>
         /// <remarks>

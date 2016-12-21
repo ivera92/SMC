@@ -4,6 +4,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <h1 id="guardado" class="text-center" runat="server">Cambios guardados satisfactoriamente</h1>  
     <div id="administrar" runat="server">
     <h2> Administrar Asignaturas</h2>
     <br />
@@ -37,10 +38,10 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <asp:TextBox ID="txtNombre" runat="server" class="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtNombre" runat="server" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre" required></asp:TextBox>
             </div>
             <div class="col-sm-6">
-                <asp:TextBox ID="txtAno" runat="server" class="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtAno" runat="server" class="form-control" placeHolder="Ingrese año" type="number" min="2010" required></asp:TextBox>
             </div>
         </div>
         <br />

@@ -13,6 +13,7 @@ namespace CapaDePresentacion
         {
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.guardado.Visible = false;
                 this.txtCompetencia.Visible = false;
                 this.editar.Visible = false;
                 this.mostrar();
@@ -69,6 +70,8 @@ namespace CapaDePresentacion
             }
             Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, tipo, this.descripcion.InnerText);
             cc.editarCompetencia(c);
+            this.editar.Visible = false;
+            this.guardado.Visible = true;
         }
     }
 }

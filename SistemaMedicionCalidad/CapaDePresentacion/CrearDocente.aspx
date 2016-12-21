@@ -4,28 +4,29 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-  
+    <h1 id="creado" class="text-center" runat="server">Docente creado satisfactoriamente</h1>  
+    <div id="crear" runat="server">
     <h2>Crear Docente</h2>
     <br />
 
     <div class="row">
         <div class="col-sm-6"><label>Nombre</label></div>
-        <div class="col-sm-6"><label>Rut (Ejemplo: 18205857-2)</label></div>
+        <div class="col-sm-6"><label>Rut</label></div>
     </div>
 
     <div class="row">
-        <div class="col-sm-6"><asp:TextBox ID="nombre" class="form-control" runat="server"></asp:TextBox></div>
-        <div class="col-sm-6"><asp:TextBox ID="rut" class="form-control" runat="server"></asp:TextBox></div>
+        <div class="col-sm-6"><asp:TextBox ID="nombre" class="form-control" runat="server" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" placeHolder="Ingrese su nombre" required></asp:TextBox></div>
+        <div class="col-sm-6"><asp:TextBox ID="rut" class="form-control" runat="server" placeHolder="Ejemplo: 18205857-2" required></asp:TextBox></div>
     </div>
     <br />
 
     <div class="row">
-        <div class="col-sm-6"><label>Fecha de nacimiento (Ejemplo: 20/11/1992)</label></div>
+        <div class="col-sm-6"><label>Fecha de nacimiento</label></div>
         <div class="col-sm-6"><label>Profesion</label></div>
     </div>
 
     <div class="row">
-        <div class="col-sm-6"><asp:TextBox ID="fechaDeNacimiento" class="form-control" runat="server"></asp:TextBox></div>
+        <div class="col-sm-6"><asp:TextBox ID="fechaDeNacimiento" class="form-control" runat="server" type="date" format="data-fv-date-format" required></asp:TextBox></div>
         <div class="col-sm-6"><asp:DropDownList ID="profesion" runat="server" class="form-control"></asp:DropDownList></div>
     </div>
     <br />
@@ -36,8 +37,8 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6"><asp:TextBox ID="direccion" class="form-control" runat="server"></asp:TextBox></div>
-        <div class="col-sm-6"><asp:TextBox ID="telefono" class="form-control" runat="server"></asp:TextBox></div>
+        <div class="col-sm-6"><asp:TextBox ID="direccion" class="form-control" runat="server" placeHolder="Ingrese su dirección" required></asp:TextBox></div>
+        <div class="col-sm-6"><asp:TextBox ID="telefono" class="form-control" runat="server" type="number" placeHolder="Ingrese su telefono" min="940000000" max="9999999999" required></asp:TextBox></div>
     </div>
     <br />
 
@@ -47,8 +48,8 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6"><asp:TextBox ID="correo" class="form-control" runat="server"></asp:TextBox></div>
-        <div class="col-sm-6"><asp:TextBox ID="nacionalidad" class="form-control" runat="server"></asp:TextBox></div>
+        <div class="col-sm-6"><asp:TextBox ID="correo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" required></asp:TextBox></div>
+        <div class="col-sm-6"><asp:TextBox ID="nacionalidad" class="form-control" runat="server" pattern="^[a-zA-Z]*$" placeHolder="Ingrese su nacionalidad" required></asp:TextBox></div>
     </div>
     <br />
 
@@ -72,4 +73,5 @@
         </div>
         <div class="col-sm-2"><asp:Button ID="btnCrear" class="btn btn-primary btn-lg btn-block" runat="server" Text="Crear" onclick="btnCrear_Click" /></div>
     </div>          
+        </div>
 </asp:Content>

@@ -12,7 +12,10 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!Page.IsPostBack)
+            {
+                this.creado.Visible = false;
+            }
         }
 
         protected void btbCrear_Click(object sender, EventArgs e)
@@ -21,6 +24,8 @@ namespace CapaDePresentacion
             Escuela es= new Escuela (this.tbxEscuela.Text);
 
             cescuela.agregarEscuelaPA(es);
+            this.crear.Visible = false;
+            this.creado.Visible = true;
         }
     }
 }

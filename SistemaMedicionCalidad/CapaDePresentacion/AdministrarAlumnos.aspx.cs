@@ -18,6 +18,7 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.guardado.Visible = false;
                 this.escuela.DataTextField = "Nombre_escuela";
                 this.escuela.DataValueField = "Id_escuela";
                 this.escuela.DataSource = escuelas;
@@ -52,7 +53,7 @@ namespace CapaDePresentacion
             this.escuela.SelectedIndex = a.Id_escuela_alumno-1;
             this.nombre.Text = a.Nombre_alumno;
             this.rut.Text = a.Rut_alumno;
-            this.fechaDeNacimiento.Text = a.Fecha_nacimiento_alumno+"";
+            this.fechaDeNacimiento.Text = a.Fecha_nacimiento_alumno.ToString("d");
             this.direccion.Text = a.Direccion_alumno;
             this.telefono.Text = a.Telefono_alumno+"";
             this.nacionalidad.Text = a.Nacionalidad_alumno;
@@ -104,6 +105,8 @@ namespace CapaDePresentacion
 
             Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue), this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
             calumno.editarAlumnoPA(a);
+            this.divEditar.Visible = false;
+            this.guardado.Visible = true;
         }
     }
 }

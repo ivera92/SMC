@@ -18,6 +18,7 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.creado.Visible = false;
                 this.profesion.DataTextField = "Nombre_profesion";
                 this.profesion.DataValueField = "Id_profesion";
                 this.profesion.DataSource = profesiones;
@@ -47,6 +48,8 @@ namespace CapaDePresentacion
 
             Docente d = new Docente(this.rut.Text, p.Id_profesion, this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), this.nacionalidad.Text, sexo, this.correo.Text, disponibilidad);
             cdocente.agregarDocentePA(d);
+            this.crear.Visible = false;
+            this.creado.Visible = true;
         }
 
     }

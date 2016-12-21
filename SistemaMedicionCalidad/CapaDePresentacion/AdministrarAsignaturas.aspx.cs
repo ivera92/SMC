@@ -19,6 +19,7 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.guardado.Visible = false;
                 this.ddEscuela.DataTextField = "Nombre_escuela";
                 this.ddEscuela.DataValueField = "Id_escuela";
                 this.ddEscuela.DataSource = escuelas;
@@ -87,6 +88,8 @@ namespace CapaDePresentacion
 
             Asignatura a = new Asignatura(int.Parse(this.txtID.Text), int.Parse(this.ddEscuela.SelectedValue), this.ddDocente.SelectedValue, this.txtNombre.Text, int.Parse(this.txtAno.Text), duracion);
             ca.editarAsignaturaPA(a);
+            this.editar.Visible = false;
+            this.guardado.Visible = true;
         }
     }
 }

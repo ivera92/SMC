@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <h1 id="guardado" class="text-center" runat="server">Cambios guardados satisfactoriamente</h1>  
     <div id="administrar" runat="server">
 
         <h2>Administrar Profesiones</h2>
@@ -28,7 +29,7 @@
     <label>Nombre</label>
 
     <div class="row">
-        <div class="col-sm-4"><asp:TextBox ID="tbxProfesion" class="form-control" runat="server"></asp:TextBox></div>
+        <div class="col-sm-4"><asp:TextBox ID="tbxProfesion" class="form-control" runat="server" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre" required></asp:TextBox></div>
         <div class="col-sm-2"><asp:Button ID="btnGuardar" class="btn btn-primary btn-block" runat="server" Text="Guardar" OnClick="btnGuardar_Click"/></div>
     </div>
     </div>

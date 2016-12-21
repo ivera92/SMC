@@ -18,6 +18,7 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.guardado.Visible = false;
                 this.profesion.DataTextField = "Nombre_profesion";
                 this.profesion.DataValueField = "Id_profesion";
                 this.profesion.DataSource = profesiones;
@@ -50,7 +51,7 @@ namespace CapaDePresentacion
             }
             else
                 this.disponibilidad.SelectedIndex = 1;
-            this.fechaDeNacimiento.Text = d.Fecha_nacimiento_docente+"";
+            this.fechaDeNacimiento.Text = d.Fecha_nacimiento_docente.ToString("d");
             this.nacionalidad.Text = d.Nacionalidad_docente;
             this.nombre.Text = d.Nombre_docente;
             this.profesion.SelectedIndex = d.Id_profesion_docente-1;
@@ -104,6 +105,8 @@ namespace CapaDePresentacion
 
             Docente d = new Docente(this.rut.Text, int.Parse(this.profesion.SelectedValue), this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), this.nacionalidad.Text, sexo, this.correo.Text, disponibilidad);
             cdocente.editarDocentePA(d);
+            this.tablaEditar.Visible = false;
+            this.guardado.Visible = true;
         }
     }
 }

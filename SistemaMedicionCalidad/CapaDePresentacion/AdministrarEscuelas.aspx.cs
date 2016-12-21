@@ -14,6 +14,7 @@ namespace CapaDePresentacion
         {
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.guardado.Visible = false;
                 this.tablaEditar.Visible = false;
                 this.mostrar();
             }
@@ -53,6 +54,8 @@ namespace CapaDePresentacion
             CatalogEscuela cescuela = new CatalogEscuela();
             Escuela es = new Escuela(int.Parse(this.txtid.Text), this.tbxEscuela.Text);
             cescuela.editarEscuelaPA(es);
+            this.tablaEditar.Visible = false;
+            this.guardado.Visible = true;
         }
     }
 }

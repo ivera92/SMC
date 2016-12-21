@@ -3,7 +3,9 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    <h1 id="creado" class="text-center" runat="server">Competencia creada satisfactoriamente</h1>  
 
+    <div id="crear" runat="server">
     <h2>Crear Competencia</h2>
     <br />
 
@@ -21,7 +23,7 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <asp:TextBox runat="server" ID="txtNombreCompetencia" class="form-control"></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtNombreCompetencia" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre" required></asp:TextBox>
         </div>
         <div class="col-sm-2">
             <asp:RadioButtonList ID="tipoCompetencia" runat="server">
@@ -36,4 +38,5 @@
             <asp:Button  ID="brnCrear" class="btn btn-primary btn-block btn-lg" runat="server" Text="Crear" onclick="brnCrear_Click"/>
         </div>
     </div>     
+        </div>
 </asp:Content>

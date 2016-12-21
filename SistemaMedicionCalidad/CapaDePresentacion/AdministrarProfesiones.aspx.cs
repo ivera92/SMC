@@ -14,6 +14,7 @@ namespace CapaDePresentacion
         {
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.guardado.Visible = false;
                 this.editar.Visible = false;
                 this.mostrar();
             }
@@ -52,6 +53,8 @@ namespace CapaDePresentacion
             CatalogProfesion cp = new CatalogProfesion();
             Profesion p = new Profesion(int.Parse(this.txtid.Text) ,this.tbxProfesion.Text);
             cp.editarProfesion(p);
+            this.editar.Visible = false;
+            this.guardado.Visible = true;
         }
     }
 }

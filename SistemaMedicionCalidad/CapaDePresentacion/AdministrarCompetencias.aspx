@@ -3,8 +3,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h1 id="guardado" class="text-center" runat="server">Cambios guardados satisfactoriamente</h1>  
 
-<div id="divMostrar" runat="server">
+    <div id="divMostrar" runat="server">
 
     <h2>Administrar Competencias</h2>
     <br />
@@ -42,7 +43,7 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <asp:TextBox runat="server" ID="txtNombreCompetencia" class="form-control"></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtNombreCompetencia" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre" required></asp:TextBox>
         </div>
         <div class="col-sm-2">
             <asp:RadioButtonList ID="tipoCompetencia" runat="server">

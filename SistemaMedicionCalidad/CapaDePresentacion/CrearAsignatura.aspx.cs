@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Project;
 using Project.CapaDeNegocios;
 
@@ -20,6 +17,7 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.creado.Visible = false;
                 this.ddEscuela.DataTextField = "Nombre_escuela";
                 this.ddEscuela.DataValueField = "Id_escuela";
                 this.ddEscuela.DataSource = escuelas;
@@ -45,6 +43,8 @@ namespace CapaDePresentacion
 
             Asignatura a = new Asignatura(int.Parse(this.ddEscuela.SelectedValue), this.ddDocente.SelectedValue, this.txtNombre.Text, int.Parse(this.txtAno.Text), duracion);
             ca.agregarAsignaturaPA(a);
+            this.crear.Visible = false;
+            this.creado.Visible = true;
         }
     }
 }

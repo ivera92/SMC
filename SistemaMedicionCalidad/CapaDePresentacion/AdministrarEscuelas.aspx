@@ -5,6 +5,7 @@
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     
+    <h1 id="guardado" class="text-center" runat="server">Cambios guardados satisfactoriamente</h1>  
     <div id="tablaAdministrar" runat="server">
 
         <h2> Administrar Escuelas</h2>
@@ -33,7 +34,7 @@
         <div class="col-sm-4"><label>Nombre</label></div>
     </div>
     <div class="row">
-        <div class="col-sm-4"><asp:TextBox ID="tbxEscuela" class="form-control" runat="server"></asp:TextBox></div>
+        <div class="col-sm-4"><asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre" required></asp:TextBox></div>
         <div class="col-sm-2"><asp:Button ID="btnGuardar" class="btn btn-primary btn-block" runat="server" Text="Guardar" OnClick="btnGuardar_Click"/></div>
     </div>
     </div>
