@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Project.CapaDeDatos;
 using System.Data.Common;
 using System.Data;
@@ -87,7 +85,7 @@ namespace Project.CapaDeNegocios
         
         public List<Alumno> mostrarAlumnos()
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "select nombre_alumno, rut_alumno, id_escuela_alumno, promocion_alumno from alumno";
@@ -106,7 +104,7 @@ namespace Project.CapaDeNegocios
 
         public List<Alumno> buscarAlumno(string buscar)
         {
-            CapaDeDatos.DataBase bd = new DataBase();
+            DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             if (buscar == null)

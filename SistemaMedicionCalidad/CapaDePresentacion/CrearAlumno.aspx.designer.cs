@@ -13,15 +13,6 @@ namespace CapaDePresentacion {
     public partial class CrearAlumno {
         
         /// <summary>
-        /// creado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl creado;
-        
-        /// <summary>
         /// crear control.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,15 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox rut;
+        
+        /// <summary>
+        /// cv_rut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_rut;
         
         /// <summary>
         /// fechaDeNacimiento control.

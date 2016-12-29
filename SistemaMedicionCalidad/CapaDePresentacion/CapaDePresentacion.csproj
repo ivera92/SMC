@@ -83,6 +83,7 @@
     <Content Include="CrearCompetencia.aspx" />
     <Content Include="CrearDocente.aspx" />
     <Content Include="CrearEscuela.aspx" />
+    <Content Include="CrearPregunta.aspx" />
     <Content Include="CrearProfesion.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="imagenes\alumno.jpg" />
@@ -251,6 +252,13 @@
     </Compile>
     <Compile Include="CrearEscuela.aspx.designer.cs">
       <DependentUpon>CrearEscuela.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearPregunta.aspx.cs">
+      <DependentUpon>CrearPregunta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearPregunta.aspx.designer.cs">
+      <DependentUpon>CrearPregunta.aspx</DependentUpon>
     </Compile>
     <Compile Include="CrearProfesion.aspx.cs">
       <DependentUpon>CrearProfesion.aspx</DependentUpon>

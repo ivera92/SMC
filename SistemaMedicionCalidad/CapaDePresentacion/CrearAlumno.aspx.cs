@@ -15,7 +15,6 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.creado.Visible = false;
                 this.escuela.DataTextField = "Nombre_escuela";
                 this.escuela.DataValueField = "Id_escuela";
                 this.escuela.DataSource = escuelas;
@@ -46,8 +45,7 @@ namespace CapaDePresentacion
 
             Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue),this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text),this.direccion.Text,int.Parse(this.telefono.Text),this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
             alumno.agregarAlumnoPA(a);
-            this.crear.Visible = false;
-            this.creado.Visible = true;
+            Response.Write("<script>window.alert('Alumno creado satisfactoriamente');</script>");
         }
     }
 }
