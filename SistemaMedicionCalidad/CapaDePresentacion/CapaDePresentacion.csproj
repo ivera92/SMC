@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -73,6 +77,7 @@
     <Content Include="AdministrarCompetencias.aspx" />
     <Content Include="AdministrarDocentes.aspx" />
     <Content Include="AdministrarEscuelas.aspx" />
+    <Content Include="AdministrarPreguntas.aspx" />
     <Content Include="AdministrarProfesiones.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -85,6 +90,7 @@
     <Content Include="CrearEscuela.aspx" />
     <Content Include="CrearPregunta.aspx" />
     <Content Include="CrearProfesion.aspx" />
+    <Content Include="Evaluacion.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="imagenes\alumno.jpg" />
     <Content Include="imagenes\escuela.jpg" />
@@ -211,6 +217,13 @@
     <Compile Include="AdministrarEscuelas.aspx.designer.cs">
       <DependentUpon>AdministrarEscuelas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdministrarPreguntas.aspx.cs">
+      <DependentUpon>AdministrarPreguntas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarPreguntas.aspx.designer.cs">
+      <DependentUpon>AdministrarPreguntas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdministrarProfesiones.aspx.cs">
       <DependentUpon>AdministrarProfesiones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -273,6 +286,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluacion.aspx.cs">
+      <DependentUpon>Evaluacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluacion.aspx.designer.cs">
+      <DependentUpon>Evaluacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

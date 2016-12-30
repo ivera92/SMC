@@ -42,6 +42,7 @@ namespace CapaDePresentacion
             string rut_alumno = HttpUtility.HtmlDecode((string)this.GridView1.Rows[e.RowIndex].Cells[2].Text);
             CatalogAlumno calumno = new CatalogAlumno();
             calumno.eliminarAlumnoPA(rut_alumno);
+            Response.Redirect("AdministrarAlumnos.aspx");
         }
 
         protected void rowEditingEvent(object sender, GridViewEditEventArgs e)

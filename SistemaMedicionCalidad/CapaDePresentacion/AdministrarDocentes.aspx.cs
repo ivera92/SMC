@@ -34,6 +34,7 @@ namespace CapaDePresentacion
             string rut_docente = HttpUtility.HtmlDecode((string)this.Gridview1.Rows[e.RowIndex].Cells[2].Text);
             CatalogDocente cdocente = new CatalogDocente();
             cdocente.eliminarDocentePA(rut_docente);
+            Response.Redirect("AdministrarDocentes.aspx");
         }
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)

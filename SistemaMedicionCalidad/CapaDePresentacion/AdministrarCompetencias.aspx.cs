@@ -34,6 +34,7 @@ namespace CapaDePresentacion
             string id_competencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.RowIndex].Cells[3].Text);
             CatalogCompetencia cc = new CatalogCompetencia();
             cc.eliminarCompetencia(int.Parse(id_competencia));
+            Response.Redirect("AdministrarAsignaturas.aspx");
         }
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)

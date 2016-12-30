@@ -47,6 +47,7 @@
     <Compile Include="CatalogCompetencia.cs" />
     <Compile Include="CatalogDocente.cs" />
     <Compile Include="CatalogEscuela.cs" />
+    <Compile Include="CatalogEvaluacion.cs" />
     <Compile Include="CatalogPregunta.cs" />
     <Compile Include="CatalogProfesion.cs" />
     <Compile Include="CatalogTipoUsuario.cs" />
@@ -54,9 +55,11 @@
     <Compile Include="Competencia.cs" />
     <Compile Include="Docente.cs" />
     <Compile Include="Escuela.cs" />
+    <Compile Include="Evaluacion.cs" />
     <Compile Include="Pregunta.cs" />
     <Compile Include="Profesion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Respuesta.cs" />
     <Compile Include="Tipo_Pregunta.cs" />
     <Compile Include="Tipo_Usuario.cs" />
     <Compile Include="Usuario.cs" />

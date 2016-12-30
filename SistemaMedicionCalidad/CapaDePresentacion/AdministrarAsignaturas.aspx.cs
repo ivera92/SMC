@@ -39,6 +39,7 @@ namespace CapaDePresentacion
             string id_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.RowIndex].Cells[1].Text);
             CatalogAsignatura ca = new CatalogAsignatura();
             ca.eliminarAsignatura(int.Parse(id_asignatura));
+            Response.Redirect("AdministrarAsignaturas.aspx");
         }
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)

@@ -35,6 +35,7 @@ namespace CapaDePresentacion
             int id_profesion = int.Parse(HttpUtility.HtmlDecode((string)(this.GridView1.Rows[e.RowIndex].Cells[2].Text)));
             CatalogProfesion cp = new CatalogProfesion();
             cp.eliminarProfesionPA(id_profesion);
+            Response.Redirect("AdministrarProfesiones.aspx");
         }
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)

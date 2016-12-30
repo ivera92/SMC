@@ -7,7 +7,7 @@
     <br />
 
     <label>Pregunta</label>
-    <asp:TextBox class="form-control" runat="server" ID="txtPregunta" required></asp:TextBox>
+    <asp:TextBox class="form-control" runat="server" ID="txtPregunta" placeHolder="Ingrese pregunta" required></asp:TextBox>
     <br />
     
     <div class="row">

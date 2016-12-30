@@ -57,5 +57,42 @@ namespace Project
             bd.Close();
             return ltp;
         }
+
+        public Pregunta buscarUnaPregunta(int id_pregunta)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "select * from pregunta where id_pregunta='" + id_pregunta + "'";
+            bd.CreateCommand(sql);
+
+            List<Pregunta> lp = new List<Pregunta>();
+            DbDataReader result = bd.Query();
+            while(result.Read())
+            {
+                Pregunta p = new Pregunta(result.GetInt32(0), result.GetInt32(1), result.GetInt32(2), result.GetString(3));
+                lp.Add(p);
+            }
+            return lp.First();
+        }
+
+        public List<Pregunta> mostrarPreguntas()
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "select * from pregunta";
+            bd.CreateCommand(sqlSearch);
+            List<Pregunta> lp = new List<Pregunta>();
+            DbDataReader result = bd.Query();//disponible resultado
+            while (result.Read())
+            {
+                Pregunta p = new Pregunta(result.GetInt32(0), result.GetInt32(1), result.GetInt32(2), result.GetString(3));
+                lp.Add(p);
+            }
+            result.Close();
+            bd.Close();
+            return lp;
+        }
     }
 }

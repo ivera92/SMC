@@ -19,6 +19,14 @@ namespace Project
             this.nombre_pregunta = nombre_pregunta;
         }
 
+        public Pregunta(int id_pregunta, int id_competencia_pregunta, int id_tipo_pregunta_pregunta, string nombre_pregunta)
+        {
+            this.id_pregunta = id_pregunta;
+            this.id_competencia_pregunta = id_competencia_pregunta;
+            this.id_tipo_pregunta_pregunta = id_tipo_pregunta_pregunta;
+            this.nombre_pregunta = nombre_pregunta;
+        }
+
         public int Id_pregunta
         {
             get{ return id_pregunta; }

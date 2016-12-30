@@ -11,6 +11,26 @@
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+    function validar_rut(source, arguments) {
+        var rut = arguments.Value; suma = 0; mul = 2; i = 0;
+
+        for (i = rut.length - 3; i >= 0; i--) {
+            suma = suma + parseInt(rut.charAt(i)) * mul;
+            mul = mul == 7 ? 2 : mul + 1;
+        }
+
+        var dvr = '' + (11 - suma % 11);
+        if (dvr == '10') dvr = 'K'; else if (dvr == '11') dvr = '0';
+
+        if (rut.charAt(rut.length - 2) != "-" || rut.charAt(rut.length - 1).toUpperCase() != dvr)
+            arguments.IsValid = false;
+        else
+            arguments.IsValid = true;
+    }
+</script>
      
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
@@ -28,10 +48,8 @@
 
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
-                <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <asp:TextBox class="form-control" ID="txtRut" runat="server" ></asp:TextBox>
-                </div>
+                <asp:TextBox class="form-control" ID="rut" runat="server" placeHolder="Ejemplo: 18205857-2" required></asp:TextBox>
+                    <asp:CustomValidator id="cv_rut" runat="server" Font-Italic="True" ForeColor=" " ControlToValidate="rut" Display="Dynamic" ErrorMessage="El rut no es valido" ClientValidationFunction="validar_rut" />
             </div>
         </div>
         <br />
@@ -42,10 +60,7 @@
 
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <asp:TextBox class="form-control" ID="txtclave" runat="server" TextMode="Password"></asp:TextBox>
-                </div>
+                    <asp:TextBox class="form-control" ID="txtclave" runat="server" TextMode="Password" placeHolder="Ingrese contraseña" required></asp:TextBox>
             </div>
         </div>
         <br />

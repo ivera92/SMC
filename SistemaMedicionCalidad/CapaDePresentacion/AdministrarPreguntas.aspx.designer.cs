@@ -10,60 +10,78 @@
 namespace CapaDePresentacion {
     
     
-    public partial class LoginAlumno {
+    public partial class AdministrarPreguntas {
         
         /// <summary>
-        /// form1 control.
+        /// administrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl administrar;
         
         /// <summary>
-        /// rut control.
+        /// gvPreguntas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rut;
+        protected global::System.Web.UI.WebControls.GridView gvPreguntas;
         
         /// <summary>
-        /// cv_rut control.
+        /// txtid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cv_rut;
+        protected global::System.Web.UI.WebControls.TextBox txtid;
         
         /// <summary>
-        /// txtclave control.
+        /// editar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclave;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editar;
         
         /// <summary>
-        /// ddTipoUsuario control.
+        /// txtPregunta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddTipoUsuario;
+        protected global::System.Web.UI.WebControls.TextBox txtPregunta;
         
         /// <summary>
-        /// btnIngresar control.
+        /// ddCompetencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresar;
+        protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
+        
+        /// <summary>
+        /// ddTipoPregunta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddTipoPregunta;
+        
+        /// <summary>
+        /// btnGuardar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
     }
 }

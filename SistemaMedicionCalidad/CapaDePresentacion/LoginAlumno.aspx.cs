@@ -24,9 +24,9 @@ namespace CapaDePresentacion
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (CatalogUsuario.Autenticar(txtRut.Text, txtclave.Text, (this.ddTipoUsuario.SelectedIndex)+1))
+            if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, (this.ddTipoUsuario.SelectedIndex)+1))
             {
-                FormsAuthentication.RedirectFromLoginPage(txtRut.Text, true);
+                FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
                 Response.Redirect("Administrador.aspx");
                 //Response.Write("Bienvenido");
             }

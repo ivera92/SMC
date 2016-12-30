@@ -36,6 +36,7 @@ namespace CapaDePresentacion
             int id_escuela = int.Parse(HttpUtility.HtmlDecode((string)(this.GridView1.Rows[e.RowIndex].Cells[2].Text)));
             CatalogEscuela cescuela = new CatalogEscuela();
             cescuela.eliminarEscuelaPA(id_escuela);
+            Response.Redirect("AdministrarEscuelas.aspx");
         }
         
         protected void rowEditing(object sender, GridViewEditEventArgs e)
