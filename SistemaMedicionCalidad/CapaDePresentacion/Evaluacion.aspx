@@ -2,18 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <h2>Evaluacion</h2>
     <br />
-
+    
     <div class="row">
         <div class="col-sm-4">
             <label>Asignatura</label>
         </div>
         <div class="col-sm-6">
             <label>Nombre Evaluacion</label>
-        </div>
-        <div class="col-sm-2">
-            <label>Fecha</label>
         </div>
     </div>
     <div class="row">
@@ -22,25 +20,37 @@
         </div>
         <div class="col-sm-6">
             <asp:TextBox runat="server" ID="txtNombre" class="form-control" required></asp:TextBox>
-        </div>        
+        </div>   
         <div class="col-sm-2">
-            <label runat="server" id="fecha"></label>
+            <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary btn-block" Text="Buscar" OnClick="btnBuscar_Click"/>
         </div>
     </div>
     <br />
 
+    
     <div class="row">
-        <div class="col-sm-6">    
+        <div class="col-sm-5">    
             <label id="nombreAlumno" runat="server">Nombre:</label>
         </div>
-        <div class="col-sm-3">    
+        <div class="col-sm-2">
+            <label>Fecha</label>
+        </div>
+        <div class="col-sm-2">    
             <label id="puntaje" runat="server">Puntaje:</label>
         </div>
         <div class="col-sm-3">    
             <label id="nota" runat="server">Nota:</label>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-sm-offset-5">
+            <label runat="server" id="fecha"></label>
+        </div>
+    </div>
     <br />
+
+    <asp:Panel ID="Panel1" runat="server"></asp:Panel>
 
     <div class="row">
         <div class="col-sm-2">    

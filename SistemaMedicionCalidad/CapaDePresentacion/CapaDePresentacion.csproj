@@ -79,6 +79,7 @@
     <Content Include="AdministrarEscuelas.aspx" />
     <Content Include="AdministrarPreguntas.aspx" />
     <Content Include="AdministrarProfesiones.aspx" />
+    <Content Include="CambiarClave.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -230,6 +231,13 @@
     </Compile>
     <Compile Include="AdministrarProfesiones.aspx.designer.cs">
       <DependentUpon>AdministrarProfesiones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarClave.aspx.cs">
+      <DependentUpon>CambiarClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CambiarClave.aspx.designer.cs">
+      <DependentUpon>CambiarClave.aspx</DependentUpon>
     </Compile>
     <Compile Include="CrearAlumno.aspx.cs">
       <DependentUpon>CrearAlumno.aspx</DependentUpon>
