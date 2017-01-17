@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
 using System.IO;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Project;
 using Project.CapaDeDatos;
+using iTextSharp.tool.xml;
+using iTextSharp.tool.xml.html;
+using iTextSharp.tool.xml.parser;
+using iTextSharp.tool.xml.pipeline.html;
+using iTextSharp.tool.xml.pipeline.css;
+using iTextSharp.tool.xml.pipeline.end;
+using System.Web;
 
 namespace CapaDePresentacion
 {
@@ -32,11 +37,22 @@ namespace CapaDePresentacion
 
         protected void btnCrear_Click1(object sender, EventArgs e)
         {
+            /*
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;" + "filename=sample.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            Panel1.RenderControl(hw);
+            StringReader sr = new StringReader(sw.ToString());
             // Creamos el documento con el tamaño de página tradicional
             Document pdfDoc = new Document(PageSize.LETTER);
+            XMLWorker htmlparser = new XMLWorker(pdfDoc);
             // Indicamos donde vamos a guardar el documento
             PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
             pdfDoc.Open();
+            htmlparser.Parse(sr);
 
             // Creamos la imagen y le ajustamos el tamaño
             iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance("C:/Users/Iván/Desktop/Tesis/SMC/SistemaMedicionCalidad/CapaDePresentacion/imagenes/logo.jpg");
@@ -58,17 +74,44 @@ namespace CapaDePresentacion
             Paragraph p2 = new Paragraph(this.fecha.InnerText + "");
             p2.Alignment = Element.ALIGN_RIGHT;
             pdfDoc.Add(p2);
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-            Panel1.RenderControl(hw);
+            StringWriter sww = new StringWriter();
+            HtmlTextWriter hww = new HtmlTextWriter(sww);
+            Panel1.RenderControl(hww);
 
             pdfDoc.Close();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;" +
-                                           "filename=sample.pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Write(pdfDoc);
-            Response.End();
+            Response.End();*/
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            StringReader sr;
+            string fileName = "C://Users//Iván//Downloads//ejemplo2.pdf";
+
+            var doc = new Document(PageSize.LETTER);
+            var pdf = fileName;
+
+
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(pdf, FileMode.Create));
+
+            doc.Open();
+
+            HtmlPipelineContext htmlContext = new HtmlPipelineContext(null);
+            htmlContext.SetTagFactory(Tags.GetHtmlTagProcessorFactory());
+            ICSSResolver cssResolver = XMLWorkerHelper.GetInstance().GetDefaultCssResolver(false);
+
+            cssResolver.AddCssFile(Server.MapPath("Content/bootstrap.min.css"), true);
+            cssResolver.AddCssFile(Server.MapPath("Content/bootstrap-theme.min.css"), true);
+            IPipeline pipeline = new CssResolverPipeline(cssResolver, new HtmlPipeline(htmlContext, new PdfWriterPipeline(doc, writer)));
+
+            XMLWorker worker = new XMLWorker(pipeline, true);
+            XMLParser xmlParse = new XMLParser(true, worker);
+
+            Panel1.RenderControl(htw);
+            sr = new StringReader(sw.ToString());
+            xmlParse.Parse(sr);
+            xmlParse.Flush();
+            doc.Close();
         }
 
         public void crearRadioButtons()

@@ -57,6 +57,19 @@ namespace Project
             bd.Close();
             return ltp;
         }
+        public int ultimaPregunta()
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "SELECT TOP 1 * FROM pregunta ORDER BY id_pregunta DESC ";
+            bd.CreateCommand(sql);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int id = result.GetInt32(0);
+            result.Close();
+            bd.Close();
+            return id;
+        }
 
         public Pregunta buscarUnaPregunta(int id_pregunta)
         {

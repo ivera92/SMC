@@ -50,7 +50,9 @@
     </div>
     <br />
 
-    <asp:Panel ID="Panel1" runat="server"></asp:Panel>
+    <asp:Panel ID="Panel1" runat="server">  
+            <asp:Button runat="server" ID="j" class="btn btn-primary btn-block" Text="Crear"/>
+    </asp:Panel>
 
     <div class="row">
         <div class="col-sm-2">    

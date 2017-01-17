@@ -85,6 +85,15 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
+        /// j control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button j;
+        
+        /// <summary>
         /// btnCrear control.
         /// </summary>
         /// <remarks>

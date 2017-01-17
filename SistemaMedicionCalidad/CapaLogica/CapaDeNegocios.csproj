@@ -50,6 +50,7 @@
     <Compile Include="CatalogEvaluacion.cs" />
     <Compile Include="CatalogPregunta.cs" />
     <Compile Include="CatalogProfesion.cs" />
+    <Compile Include="CatalogRespuesta.cs" />
     <Compile Include="CatalogTipoUsuario.cs" />
     <Compile Include="CatalogUsuario.cs" />
     <Compile Include="Competencia.cs" />

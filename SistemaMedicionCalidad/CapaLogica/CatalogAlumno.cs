@@ -54,22 +54,6 @@ namespace Project.CapaDeNegocios
             bd.Close();
         }
 
-        public Escuela buscarEscuela(string rutAlumno)
-        {
-            DataBase bd = new DataBase();
-            bd.connect(); //método conectar
-            if (rutAlumno == null)
-                rutAlumno = "";
-
-            string sqlBuscar = "select id_escuela, nombre_escuela from escuela inner join alumno on escuela.id_escuela=alumno.id_escuela_alumno where alumno.rut_alumno='" + rutAlumno + "'";
-            bd.CreateCommand(sqlBuscar);
-            DbDataReader result = bd.Query();//disponible resultado
-            result.Read();
-            Escuela escuelas = new Escuela(result.GetInt32(0),result.GetString(1));
-            result.Close();
-            return escuelas;
-        }
-
         public void eliminarAlumnoPA(string rut_alumno)
         {
             DataBase bd = new DataBase();
@@ -88,8 +72,8 @@ namespace Project.CapaDeNegocios
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "select nombre_alumno, rut_alumno, id_escuela_alumno, promocion_alumno from alumno";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "mostrarAlumnos";
+            bd.CreateCommandSP(sqlSearch);
             List<Alumno> lalumno = new List<Alumno>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
@@ -110,8 +94,9 @@ namespace Project.CapaDeNegocios
             if (buscar == null)
                 buscar = "";
 
-            string sqlSearch = "select * from alumno where nombre_alumno like '" + buscar + "%' or rut_alumno like '"+ buscar + "%' or id_escuela_alumno like '" + buscar +"%' or promocion_alumno like '"+ buscar +"%'or promocion_alumno like '"+ buscar +"%'";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "mostrarAlumnosBusqueda";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@buscar", DbType.String, buscar);
             List<Alumno> alumno = new List<Alumno>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
@@ -129,18 +114,16 @@ namespace Project.CapaDeNegocios
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "select * from alumno where rut_alumno='"+rut+"'";
-            bd.CreateCommand(sqlSearch);
-            List<Alumno> lalumno = new List<Alumno>();
+            string sqlSearch = "buscarAlumnoPorRut";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@rut", DbType.String, rut);
             DbDataReader result = bd.Query();//disponible resultado
-            while (result.Read())
-            { 
-                Alumno a = new Alumno(result.GetString(0), result.GetInt32(1), result.GetString(2), result.GetDateTime(3), result.GetString(4), result.GetInt32(5), result.GetString(6), result.GetBoolean(7), result.GetString(8), result.GetInt32(9), result.GetBoolean(10));
-                lalumno.Add(a);
-            }
+            result.Read();
+            Alumno a = new Alumno(result.GetString(0), result.GetInt32(1), result.GetString(2), result.GetDateTime(3), result.GetString(4), result.GetInt32(5), result.GetString(6), result.GetBoolean(7), result.GetString(8), result.GetInt32(9), result.GetBoolean(10));
+            
             result.Close();
             bd.Close();
-            return lalumno.First();
+            return a;
         }
     }
 }
