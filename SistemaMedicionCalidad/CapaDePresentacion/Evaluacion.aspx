@@ -50,8 +50,7 @@
     </div>
     <br />
 
-    <asp:Panel ID="Panel1" runat="server">  
-            <asp:Button runat="server" ID="j" class="btn btn-primary btn-block" Text="Crear"/>
+    <asp:Panel ID="Panel1" runat="server" EnableViewState="false">  
     </asp:Panel>
 
     <div class="row">
