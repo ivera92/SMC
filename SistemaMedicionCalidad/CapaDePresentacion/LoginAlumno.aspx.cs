@@ -28,6 +28,7 @@ namespace CapaDePresentacion
             {
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
                 Response.Redirect("Administrador.aspx");
+                
                 //Response.Write("Bienvenido");
             }
             else

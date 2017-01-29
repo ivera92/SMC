@@ -32,20 +32,11 @@
         <div class="col-sm-5">    
             <label id="nombreAlumno" runat="server">Nombre:</label>
         </div>
-        <div class="col-sm-2">
-            <label>Fecha</label>
-        </div>
         <div class="col-sm-2">    
-            <label id="puntaje" runat="server">Puntaje:</label>
+            <label id="rut" runat="server">Rut:</label>
         </div>
-        <div class="col-sm-3">    
-            <label id="nota" runat="server">Nota:</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-offset-5">
-            <label runat="server" id="fecha"></label>
+        <div class="col-sm-2">
+            <label id="fecha" runat="server">Fecha:</label>
         </div>
     </div>
     <br />

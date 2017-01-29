@@ -18,13 +18,9 @@ namespace CapaDePresentacion
                 this.escuela.DataTextField = "Nombre_escuela";
                 this.escuela.DataValueField = "Id_escuela";
                 this.escuela.DataSource = escuelas;
-
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
         }
-
-        
-
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             CatalogAlumno alumno = new CatalogAlumno();

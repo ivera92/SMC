@@ -1,38 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Project;
 using Project.CapaDeDatos;
-using iTextSharp.tool.xml;
-using iTextSharp.tool.xml.html;
-using iTextSharp.tool.xml.parser;
-using iTextSharp.tool.xml.pipeline.html;
-using iTextSharp.tool.xml.pipeline.css;
-using iTextSharp.tool.xml.pipeline.end;
 using System.Web;
-using iTextSharp.text.html.simpleparser;
 
 namespace CapaDePresentacion
 {
     public partial class Evaluacion : System.Web.UI.Page
     {
-        private List<string> llabel, ltextbox;
         protected void Page_Load(object sender, EventArgs e)
         {
-            llabel = new List<string>();
-            ltextbox = new List<string>();
-
             CatalogAsignatura ca = new CatalogAsignatura();
             List<Asignatura> la = ca.mostrarAsignaturas();
 
             if (!Page.IsPostBack)
             {
-                this.fecha.InnerText = DateTime.Now.ToString("dd/MM/yyyy");
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
                 this.ddAsignatura.DataValueField = "Id_asignatura";
                 this.ddAsignatura.DataSource = la;
@@ -72,18 +59,16 @@ namespace CapaDePresentacion
 
             // Insertamos la imagen en el documento
             pdfDoc.Add(imagen);
-            Paragraph p = new Paragraph(this.txtNombre.Text);
-            pdfDoc.Add(Chunk.NEWLINE);
-            p.Add(this.ddAsignatura.SelectedValue);
-            p.Alignment = Element.ALIGN_CENTER;
-            pdfDoc.Add(Chunk.NEWLINE);
-            pdfDoc.Add(p);
-            pdfDoc.Add(Chunk.NEWLINE);
-            pdfDoc.Add(new Paragraph(this.nombreAlumno.InnerText));
-            pdfDoc.Add(Chunk.NEWLINE);
-            Paragraph p2 = new Paragraph(this.fecha.InnerText + "");
-            p2.Alignment = Element.ALIGN_RIGHT;
+
+
+            Paragraph p2 = new Paragraph(this.txtNombre.Text+" - "+ this.ddAsignatura.SelectedItem.Text+"\n");
+            p2.Alignment = Element.ALIGN_CENTER;
             pdfDoc.Add(p2);
+            Paragraph p = new Paragraph(this.nombreAlumno.InnerText+"\n");
+            p.Add(this.rut.InnerText + "\n");
+            p.Add(this.fecha.InnerText + "\n");
+            pdfDoc.Add(p);
+
 
             int numPregunta = 1;
             while (result.Read())
@@ -94,43 +79,43 @@ namespace CapaDePresentacion
                 //Si es la primera pregunta
                 if (pVez == 0)
                 {
+                    pp.Add(new Paragraph(" "));
                     pVez++;
-                    pp.Add(numPregunta+"");
-                    pp.Add(l.Text);
-                    pdfDoc.Add(Chunk.NEWLINE);
+                    pp.Add(numPregunta+" ");
+                    pp.Add(l.Text+"\n");
+                    s = l.Text;
+                    pp.Add(new Paragraph(" "));
+                    numPregunta = numPregunta + 1;
                 }
                 //Si cambio la pregunta
-                if (s != l.Text)
+                else if (s != l.Text)
                 {
-                    l.Text = result.GetString(2);
-                    pp.Add(numPregunta + "");
-                    pp.Add(l.Text);
-                    pdfDoc.Add(Chunk.NEWLINE);
+                    pp.Add(new Paragraph(" "));
+                    pp.Add(numPregunta + " ");
+                    pp.Add(l.Text+"\n");
+                    pp.Add(new Paragraph(" "));
+                    numPregunta = numPregunta + 1;
                 }
                 if (result.GetString(0) == "Seleccion multiple")
                 {
-                    pp.Add(result.GetString(1));
+                    pp.Add("O "+result.GetString(1));
                 }
 
                 else if (result.GetString(0) == "Casillas de verificacion")
                 {
-                    pp.Add(result.GetString(1));
-                    pdfDoc.Add(Chunk.NEWLINE);
+                    pp.Add("[] "+result.GetString(1)+"\n");
                     while (result.GetString(0) == "Casillas de verificacion" && result.Read())
-                    {
-                        pp.Add(result.GetString(1));
-                        pdfDoc.Add(Chunk.NEWLINE);
+                    {                    
+                        pp.Add("[] "+result.GetString(1)+"\n");
                     }
                 }
-                pdfDoc.Add(Chunk.NEWLINE);
                 pdfDoc.Add(pp);
                 s = l.Text;
-                numPregunta=numPregunta+1;
-
             }
+
             pdfDoc.Close();
-           Response.Write(pdfDoc);
-           Response.End();
+            Response.Write(pdfDoc);
+            Response.End();
         }
 
         protected void btnCrear_Click1(object sender, EventArgs e)
@@ -159,6 +144,8 @@ namespace CapaDePresentacion
                     pVez++;
                     this.Panel1.Controls.Add(l);
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
+                    s = l.Text;
+                    
                 }
                 //Si cambio la pregunta
                 if (s!= l.Text)

@@ -81,7 +81,6 @@ namespace CapaDePresentacion
                 }
                 i++;
             }
-
             Response.Write("<script>window.alert('Pregunta creada satisfactoriamente');</script>");
         }
         public void agregarControles(TextBox txt, CheckBox cb)

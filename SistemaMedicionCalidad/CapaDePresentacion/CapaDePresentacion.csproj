@@ -338,6 +338,13 @@
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SiteDocente.Master.cs">
+      <DependentUpon>SiteDocente.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteDocente.Master.designer.cs">
+      <DependentUpon>SiteDocente.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -358,6 +365,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="SiteDocente.Master" />
     <None Include="Styles\bootstrap-theme.css.map" />
     <None Include="Styles\bootstrap-theme.min.css.map" />
     <None Include="Styles\bootstrap.css.map" />

@@ -3,7 +3,6 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <h1 id="creado" class="text-center" runat="server">Competencia creada satisfactoriamente</h1>  
 
     <div id="crear" runat="server">
     <h2>Crear Competencia</h2>

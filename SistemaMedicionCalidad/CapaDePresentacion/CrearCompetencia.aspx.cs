@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Project;
 
 namespace CapaDePresentacion
@@ -12,10 +7,6 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
-            {
-                this.creado.Visible = false;
-            }
         }
 
         protected void brnCrear_Click(object sender, EventArgs e)
@@ -30,8 +21,7 @@ namespace CapaDePresentacion
                 tipo_competencia = false;
             Competencia c = new Competencia(this.txtNombreCompetencia.Text, tipo_competencia, this.descripcion.InnerText);
             ccompetencia.agregarCompetenciaPA(c);
-            this.crear.Visible = false;
-            this.creado.Visible = true;
+            Response.Write("<script>window.alert('Competencia creada satisfactoriamente');</script>");
         }
     }
 }

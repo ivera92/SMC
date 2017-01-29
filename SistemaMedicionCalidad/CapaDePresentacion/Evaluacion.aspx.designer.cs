@@ -49,22 +49,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl nombreAlumno;
         
         /// <summary>
-        /// puntaje control.
+        /// rut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl puntaje;
-        
-        /// <summary>
-        /// nota control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nota;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rut;
         
         /// <summary>
         /// fecha control.

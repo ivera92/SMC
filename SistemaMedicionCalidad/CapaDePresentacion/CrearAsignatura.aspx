@@ -2,7 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 id="creado" class="text-center" runat="server">Asignatura creada satisfactoriamente</h1>  
 
     <div id="crear" runat="server">
     <h2>Crear Asignatura</h2>

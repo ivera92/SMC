@@ -25,7 +25,6 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <h1 id="creado" class="text-center" runat="server">Docente creado satisfactoriamente</h1>  
     <div id="crear" runat="server">
     <h2>Crear Docente</h2>
     <br />
