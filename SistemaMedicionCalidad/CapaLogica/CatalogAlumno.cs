@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Project.CapaDeDatos;
 using System.Data.Common;
 using System.Data;
@@ -8,7 +7,7 @@ namespace Project.CapaDeNegocios
 {
     public class CatalogAlumno
     {
-        public void agregarAlumnoPA(Alumno a)
+        public void agregarAlumno(Alumno a)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -18,11 +17,11 @@ namespace Project.CapaDeNegocios
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut_alumno", DbType.String, a.Rut_alumno);
             bd.createParameter("@id_escuela_alumno", DbType.Int32, a.Id_escuela_alumno);
+            bd.createParameter("@id_pais_alumno", DbType.Int32, a.Id_pais_alumno);
             bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_alumno);
             bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_alumno);
             bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_alumno);
             bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_alumno);
-            bd.createParameter("@nacionalidad_alumno", DbType.String, a.Nacionalidad_alumno);
             bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_alumno);
             bd.createParameter("@correo_alumno", DbType.String, a.Correo_alumno);
             bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
@@ -45,7 +44,7 @@ namespace Project.CapaDeNegocios
             bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_alumno);
             bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_alumno);
             bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_alumno);
-            bd.createParameter("@nacionalidad_alumno", DbType.String, a.Nacionalidad_alumno);
+            bd.createParameter("@nacionalidad_alumno", DbType.Int32, a.Id_pais_alumno);
             bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_alumno);
             bd.createParameter("@correo_alumno", DbType.String, a.Correo_alumno);
             bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
@@ -76,9 +75,16 @@ namespace Project.CapaDeNegocios
             bd.CreateCommandSP(sqlSearch);
             List<Alumno> lalumno = new List<Alumno>();
             DbDataReader result = bd.Query();//disponible resultado
+            CatalogEscuela ce = new CatalogEscuela();
             while (result.Read())
             {
-                Alumno a = new Alumno(result.GetString(0),result.GetString(1),result.GetInt32(2),result.GetInt32(3));
+
+                Alumno a = new Alumno();
+                Escuela e = ce.buscarUnaEscuela(result.GetInt32(2));
+                a.Nombre_alumno = result.GetString(0);
+                a.Rut_alumno = result.GetString(1);
+                a.Id_escuela_alumno = result.GetInt32(2);
+                a.Promocion_alumno = result.GetInt32(3);
                 lalumno.Add(a);
             }
             result.Close();
@@ -101,7 +107,7 @@ namespace Project.CapaDeNegocios
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
-                Alumno a = new Alumno(result.GetString(0), result.GetInt32(1), result.GetString(2), result.GetDateTime(3), result.GetString(4), result.GetInt32(5), result.GetString(6), result.GetBoolean(7), result.GetString(8), result.GetInt32(9), result.GetBoolean(10));
+                Alumno a = new Alumno(result.GetString(0), result.GetInt32(1), result.GetInt32(2), result.GetString(3), result.GetDateTime(4), result.GetString(5), result.GetInt32(6), result.GetBoolean(7), result.GetString(8), result.GetInt32(9), result.GetBoolean(10));
                 alumno.Add(a);
             }
             result.Close();
@@ -119,7 +125,7 @@ namespace Project.CapaDeNegocios
             bd.createParameter("@rut", DbType.String, rut);
             DbDataReader result = bd.Query();//disponible resultado
             result.Read();
-            Alumno a = new Alumno(result.GetString(0), result.GetInt32(1), result.GetString(2), result.GetDateTime(3), result.GetString(4), result.GetInt32(5), result.GetString(6), result.GetBoolean(7), result.GetString(8), result.GetInt32(9), result.GetBoolean(10));
+            Alumno a = new Alumno(result.GetString(0), result.GetInt32(1), result.GetInt32(2), result.GetString(3), result.GetDateTime(4), result.GetString(5), result.GetInt32(6), result.GetBoolean(7), result.GetString(8), result.GetInt32(9), result.GetBoolean(10));
             
             result.Close();
             bd.Close();

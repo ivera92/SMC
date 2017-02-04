@@ -16,11 +16,19 @@ namespace CapaDePresentacion
             CatalogProfesion cprofesion = new CatalogProfesion();
             List<Profesion> profesiones = cprofesion.mostrarProfesiones();
 
+            CatalogPais cpais = new CatalogPais();
+            List<Pais> lpais = cpais.mostrarPaises();
+
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.profesion.DataTextField = "Nombre_profesion";
                 this.profesion.DataValueField = "Id_profesion";
                 this.profesion.DataSource = profesiones;
+
+                this.ddPais.DataTextField = "Nombre_pais";
+                this.ddPais.DataValueField = "Id_pais";
+                this.ddPais.DataSource = lpais;
+                    
                 this.DataBind();
             }
         }
@@ -29,7 +37,6 @@ namespace CapaDePresentacion
         {
             CatalogDocente cdocente = new CatalogDocente();
             bool sexo, disponibilidad;
-            Profesion p = new Profesion(int.Parse(this.profesion.SelectedValue), this.profesion.Items[this.profesion.SelectedIndex].Text);
             if (this.sexo.Text == "Masculino")
             {
                 sexo = true;
@@ -44,9 +51,31 @@ namespace CapaDePresentacion
             else
                 disponibilidad = true;
 
-            Docente d = new Docente(this.rut.Text, p.Id_profesion, this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), this.nacionalidad.Text, sexo, this.correo.Text, disponibilidad);
-            cdocente.agregarDocentePA(d);
-            Response.Write("<script>window.alert('Docente creada satisfactoriamente');</script>");
+            
+            Docente d = new Docente();
+            Profesion p = new Profesion();
+            Pais pa = new Pais();
+            d.Profesion_docente = p;
+            d.Pais_docente = pa;
+            d.Rut_docente = this.rut.Text;
+            d.Profesion_docente.Id_profesion = int.Parse(this.profesion.SelectedValue);
+            d.Pais_docente.Id_pais = int.Parse(this.ddPais.SelectedValue);
+            d.Nombre_docente = this.nombre.Text;
+            d.Fecha_nacimiento_docente = DateTime.Parse(this.fechaDeNacimiento.Text);
+            d.Direccion_docente = this.direccion.Text;
+            d.Telefono_docente = int.Parse(this.telefono.Text);
+            d.Sexo_docente = sexo;
+            d.Correo_docente = this.correo.Text;
+            d.Disponibilidad_docente = disponibilidad;
+            try
+            {
+                cdocente.agregarDocentePA(d);
+                Response.Write("<script>window.alert('Docente creada satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
+            }
         }
     }
 }

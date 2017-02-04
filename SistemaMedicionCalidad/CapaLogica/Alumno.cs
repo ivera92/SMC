@@ -10,23 +10,25 @@ namespace Project
         DateTime fecha_nacimiento_alumno;
         string direccion_alumno;
         int telefono_alumno;
-        string nacionalidad_alumno;
+        int id_pais_alumno;
         bool sexo_alumno;
         int promocion_alumno;
         bool beneficio_alumno;
 
+        string nombre_escuela;
+
         public Alumno()
         {
         }
-        public Alumno(string nombre_alumno, string rut_alumno, int id_escuela_alumno, int promocion_alumno)
+        public Alumno(string nombre_alumno, string rut_alumno, string nombre_escuela, int promocion_alumno)
         {
             this.rut_alumno = rut_alumno;
-            this.id_escuela_alumno = id_escuela_alumno;
+            this.nombre_escuela = nombre_escuela;
             this.nombre_alumno = nombre_alumno;
             this.promocion_alumno = promocion_alumno;
         }
 
-        public Alumno(string rut_alumno, int id_escuela_alumno, string nombre_alumno, DateTime fecha_nacimiento_alumno, string direccion_alumno, int telefono_alumno, string nacionalidad_alumno, bool sexo_alumno, string correo_alumno, int promocion_alumno, bool beneficio_alumno)
+        public Alumno(string rut_alumno, int id_escuela_alumno, int id_pais_alumno, string nombre_alumno, DateTime fecha_nacimiento_alumno, string direccion_alumno, int telefono_alumno, bool sexo_alumno, string correo_alumno, int promocion_alumno, bool beneficio_alumno)
         {
             this.rut_alumno = rut_alumno;
             this.id_escuela_alumno = id_escuela_alumno;
@@ -34,7 +36,7 @@ namespace Project
             this.fecha_nacimiento_alumno = fecha_nacimiento_alumno;
             this.direccion_alumno = direccion_alumno;
             this.telefono_alumno = telefono_alumno;
-            this.nacionalidad_alumno = nacionalidad_alumno;
+            this.id_pais_alumno = id_pais_alumno;
             this.sexo_alumno = sexo_alumno;
             this.correo_alumno = correo_alumno;
             this.promocion_alumno = promocion_alumno;
@@ -76,12 +78,7 @@ namespace Project
             get { return telefono_alumno; }
             set { telefono_alumno = value; }
         }
-
-        public string Nacionalidad_alumno
-        {
-            get { return nacionalidad_alumno; }
-            set { nacionalidad_alumno = value; }
-        }   
+        
 
         public bool Sexo_alumno
         {
@@ -106,6 +103,12 @@ namespace Project
         {
             get { return beneficio_alumno; }
             set { beneficio_alumno = value; }
+        }
+
+        public int Id_pais_alumno
+        {
+            get { return id_pais_alumno; }
+            set { id_pais_alumno = value; }
         }
     }
 }

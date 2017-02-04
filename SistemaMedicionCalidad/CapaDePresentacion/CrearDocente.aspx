@@ -35,10 +35,18 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6"><asp:TextBox ID="nombre" class="form-control" runat="server" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" placeHolder="Ingrese su nombre" required></asp:TextBox></div>
+        <div class="col-sm-6"><asp:TextBox ID="nombre" class="form-control" runat="server" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" placeHolder="Ingrese su nombre" required
+                oninvalid="setCustomValidity('La primera letra del nombre y apellido deben ir en mayuscula')"
+                oninput="setCustomValidity('')"></asp:TextBox></div>
         <div class="col-sm-6"><asp:TextBox ID="rut" class="form-control" runat="server" placeHolder="Ejemplo: 18205857-2" required></asp:TextBox></div>
-        <asp:CustomValidator id="cv_rut" runat="server" CssClass="rojo_fuerte_2" Font-Italic="True" ForeColor=" " ControlToValidate="rut" Display="Dynamic" ErrorMessage="El rut no es valido" ClientValidationFunction="validar_rut" />
-    </div>
+     </div>
+     <div class="row">
+           <div class="col-sm-offset-7">
+                <asp:CustomValidator ID="CustomValidator1" runat="server" 
+            ClientValidationFunction="validar_rut" ControlToValidate="rut" 
+            Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True"></asp:CustomValidator>
+           </div>
+       </div>
     <br />
 
     <div class="row">
@@ -70,7 +78,7 @@
 
     <div class="row">
         <div class="col-sm-6"><asp:TextBox ID="correo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" required></asp:TextBox></div>
-        <div class="col-sm-6"><asp:TextBox ID="nacionalidad" class="form-control" runat="server" pattern="^[a-zA-Z]*$" placeHolder="Ingrese su nacionalidad" required></asp:TextBox></div>
+        <div class="col-sm-6"><asp:DropDownList ID="ddPais" runat="server" class="form-control"></asp:DropDownList></div>
     </div>
     <br />
 

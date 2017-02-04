@@ -56,7 +56,7 @@ namespace CapaDePresentacion
             this.fechaDeNacimiento.Text = a.Fecha_nacimiento_alumno.ToString("d");
             this.direccion.Text = a.Direccion_alumno;
             this.telefono.Text = a.Telefono_alumno+"";
-            this.nacionalidad.Text = a.Nacionalidad_alumno;
+            this.pais.SelectedIndex = a.Id_pais_alumno;
             this.correo.Text = a.Correo_alumno;
             this.promocion.Text = a.Promocion_alumno + "";
             if (a.Beneficio_alumno == true)
@@ -103,7 +103,7 @@ namespace CapaDePresentacion
             else
                 beneficio = false;
 
-            Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue), this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), this.nacionalidad.Text, sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
+            Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue), this.pais.SelectedIndex, this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
             calumno.editarAlumnoPA(a);
             this.divEditar.Visible = false;
             this.guardado.Visible = true;

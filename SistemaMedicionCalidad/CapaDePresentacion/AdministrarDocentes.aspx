@@ -30,7 +30,7 @@
                         <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" />
                         <asp:BoundField DataField="Nombre_Docente" HeaderText="Nombre" />
                         <asp:BoundField DataField="Rut_Docente" HeaderText="Rut" />
-                        <asp:BoundField DataField="Id_Profesion_Docente" HeaderText="Profesion" />
+                        <asp:BoundField DataField="Profesion_Docente.Nombre_profesion" HeaderText="Profesion" />
                     </Columns>
                 </asp:GridView>
             </div>
@@ -81,7 +81,7 @@
 
     <div class="row">
         <div class="col-sm-6"><asp:TextBox ID="correo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" required></asp:TextBox></div>
-        <div class="col-sm-6"><asp:TextBox ID="nacionalidad" class="form-control" runat="server" pattern="^[a-zA-Z]*$" placeHolder="Ingrese su nacionalidad" required></asp:TextBox></div>
+        <div class="col-sm-6"><asp:DropDownList ID="ddPais" runat="server" class="form-control"></asp:DropDownList></div>
     </div>
     <br />
 

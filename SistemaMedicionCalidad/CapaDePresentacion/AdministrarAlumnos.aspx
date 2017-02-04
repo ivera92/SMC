@@ -82,7 +82,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-6"><asp:TextBox ID="nacionalidad" class="form-control" runat="server" pattern="^[a-zA-Z]*$" placeHolder="Ingrese su nacionalidad" required></asp:TextBox></div>
+            <div class="col-sm-6"><asp:DropDownList ID="pais" runat="server" class="form-control"></asp:DropDownList></div>
             <div class="col-sm-6"><asp:DropDownList ID="escuela" runat="server" class="form-control"></asp:DropDownList></div>
         </div>
         <br />

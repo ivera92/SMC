@@ -1,39 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Project.CapaDeNegocios;
 
 namespace Project
 {
     public class Docente
     {
         string rut_docente;
-        int id_profesion_docente;
+        Profesion profesion_docente;
         string nombre_docente;
         DateTime fecha_nacimiento_docente;
         string direccion_docente;
         int telefono_docente;
-        string nacionalidad_docente;
+        Pais pais_docente;
         bool sexo_docente;
         string correo_docente;
         bool disponibilidad_docente;
 
-        public Docente(string nombre_docente, string rut_docente, int id_profesion_docente)
+        public Docente()
+        {
+
+        }
+        public Docente(string nombre_docente, string rut_docente, Profesion profesion_docente)
         {
             this.nombre_docente = nombre_docente;
             this.rut_docente = rut_docente;
-            this.id_profesion_docente = id_profesion_docente;
+            this.profesion_docente = profesion_docente;
         }
 
-        public Docente(string rut_docente, int id_profesion_docente, string nombre_docente, DateTime fecha_nacimiento_docente, string direccion_docente, int telefono_docente, string nacionalidad_docente, bool sexo_docente, string correo_docente, bool disponibilidad_docente)
+        public Docente(string rut_docente, Profesion profesion_docente, Pais pais_docente, string nombre_docente, DateTime fecha_nacimiento_docente, string direccion_docente, int telefono_docente, bool sexo_docente, string correo_docente, bool disponibilidad_docente)
         {
             this.rut_docente = rut_docente;
-            this.id_profesion_docente = id_profesion_docente;
+            this.profesion_docente = profesion_docente;
             this.nombre_docente = nombre_docente;
             this.fecha_nacimiento_docente = fecha_nacimiento_docente;
             this.direccion_docente = direccion_docente;
             this.telefono_docente = telefono_docente;
-            this.nacionalidad_docente = nacionalidad_docente;
+            this.pais_docente = pais_docente;
             this.sexo_docente = sexo_docente;
             this.correo_docente = correo_docente;
             this.disponibilidad_docente = disponibilidad_docente;
@@ -45,11 +47,6 @@ namespace Project
             set { rut_docente = value; }
         }
         
-        public int Id_profesion_docente
-        {
-            get { return id_profesion_docente; }
-            set { id_profesion_docente = value; }
-        }
         
         public string Nombre_docente
         {
@@ -75,12 +72,6 @@ namespace Project
             set { telefono_docente = value; }
         }
 
-        public string Nacionalidad_docente
-        {
-            get { return nacionalidad_docente; }
-            set { nacionalidad_docente = value; }
-        }
-
         public bool Sexo_docente
         {
             get { return sexo_docente; }
@@ -97,6 +88,18 @@ namespace Project
         {
             get { return disponibilidad_docente; }
             set { disponibilidad_docente = value; }
+        }
+
+        public Pais Pais_docente
+        {
+            get { return pais_docente; }
+            set { pais_docente = value; }
+        }
+
+        public Profesion Profesion_docente
+        {
+            get { return profesion_docente; }
+            set { profesion_docente = value; }
         }
     }
 }

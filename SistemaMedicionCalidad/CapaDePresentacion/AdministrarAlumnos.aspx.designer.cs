@@ -121,13 +121,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox telefono;
         
         /// <summary>
-        /// nacionalidad control.
+        /// pais control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nacionalidad;
+        protected global::System.Web.UI.WebControls.DropDownList pais;
         
         /// <summary>
         /// escuela control.
