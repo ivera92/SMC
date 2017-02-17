@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Project
 {
     public class Competencia
@@ -11,6 +7,10 @@ namespace Project
         string nombre_competencia;
         bool tipo_competencia;
         string descripcion_competencia;
+
+        public Competencia()
+        {
+        }
         public Competencia(string nombre_competencia, bool tipo_competencia, int id_competencia)
         {
             this.nombre_competencia = nombre_competencia;

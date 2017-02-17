@@ -8,22 +8,25 @@ namespace Project
     public class Pregunta
     {
         int id_pregunta;
-        int id_competencia_pregunta;
-        int id_tipo_pregunta_pregunta;
+        Competencia competencia_pregunta;
+        Tipo_Pregunta tipo_pregunta_pregunta;
         string nombre_pregunta;
 
-        public Pregunta(int id_competencia_pregunta, int id_tipo_pregunta_pregunta, string nombre_pregunta)
+        public Pregunta()
         {
-            this.id_competencia_pregunta = id_competencia_pregunta;
-            this.id_tipo_pregunta_pregunta = id_tipo_pregunta_pregunta;
+        }
+        public Pregunta(Competencia competencia_pregunta, Tipo_Pregunta tipo_pregunta_pregunta, string nombre_pregunta)
+        {
+            this.competencia_pregunta = competencia_pregunta;
+            this.tipo_pregunta_pregunta = tipo_pregunta_pregunta;
             this.nombre_pregunta = nombre_pregunta;
         }
 
-        public Pregunta(int id_pregunta, int id_competencia_pregunta, int id_tipo_pregunta_pregunta, string nombre_pregunta)
+        public Pregunta(int id_pregunta, Competencia competencia_pregunta, Tipo_Pregunta tipo_pregunta_pregunta, string nombre_pregunta)
         {
             this.id_pregunta = id_pregunta;
-            this.id_competencia_pregunta = id_competencia_pregunta;
-            this.id_tipo_pregunta_pregunta = id_tipo_pregunta_pregunta;
+            this.competencia_pregunta = competencia_pregunta;
+            this.tipo_pregunta_pregunta = tipo_pregunta_pregunta;
             this.nombre_pregunta = nombre_pregunta;
         }
 
@@ -33,16 +36,16 @@ namespace Project
             set{ id_pregunta = value; }
         }
 
-        public int Id_competencia_pregunta
+        public Competencia Competencia_pregunta
         {
-            get { return id_competencia_pregunta; }
-            set { id_competencia_pregunta = value; }
+            get { return competencia_pregunta; }
+            set { competencia_pregunta = value; }
         }
 
-        public int Id_tipo_pregunta_pregunta
+        public Tipo_Pregunta Tipo_pregunta_pregunta
         {
-            get { return id_tipo_pregunta_pregunta; }
-            set { id_tipo_pregunta_pregunta = value; }
+            get { return tipo_pregunta_pregunta; }
+            set { tipo_pregunta_pregunta = value; }
         }
 
         public string Nombre_pregunta

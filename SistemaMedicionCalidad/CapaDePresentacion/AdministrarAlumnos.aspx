@@ -4,7 +4,6 @@
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     
-    <h1 id="guardado" class="text-center" runat="server">Cambios guardados satisfactoriamente</h1>  
     <div id='divMostrar' runat='server'>
         <h2>Administrar Alumnos</h2>
         <br />
@@ -28,7 +27,7 @@
             <asp:CommandField ButtonType="Link" ShowEditButton="true"  ShowDeleteButton="true" />
             <asp:BoundField DataField="Nombre_Alumno" HeaderText="Nombre" />
             <asp:BoundField DataField="Rut_Alumno" HeaderText="Rut" />
-            <asp:BoundField DataField="Id_Escuela_Alumno" HeaderText="Escuela" />
+            <asp:BoundField DataField="Escuela_Alumno.Nombre_Escuela" HeaderText="Escuela" />
             <asp:BoundField DataField="Promocion_Alumno" HeaderText="Promocion" />
             </Columns>
             </asp:GridView>

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     01/02/2017 19:52:17                          */
+/* Created on:     06/02/2017 23:59:58                          */
 /*==============================================================*/
 
 
@@ -417,7 +417,7 @@ go
 /* Table: ASIGNATURA                                            */
 /*==============================================================*/
 create table ASIGNATURA (
-   ID_ASIGNATURA        int                  not null,
+   ID_ASIGNATURA        int                  identity,
    ID_ESCUELA_ASIGNATURA int                  not null,
    RUT_DOCENTE_ASIGNATURA varchar(10)          not null,
    NOMBRE_ASIGNATURA    varchar(60)          null,

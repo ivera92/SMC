@@ -71,7 +71,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Evaluacion</a>
                     <ul  class="dropdown-menu" >
-                        <li><a href="Evaluacion.aspx">Crear Evalucion</a></li>
+                        <li><a href="CrearEvaluacion.aspx">Crear Evalucion</a></li>
+                        <li><a href="EvaluacionAlumno.aspx">Evalucion Alumno</a></li>
                     </ul>
                 </li>
 
@@ -80,6 +81,7 @@
                     <ul  class="dropdown-menu" >
                         <li><a href="CrearPregunta.aspx">Crear Pregunta</a></li>
                         <li><a href="AdministrarPreguntas.aspx">Administrar Preguntas</a></li>
+                        <li><a href="AdministrarRespuestas.aspx">Administrar Respuestas</a></li>
                     </ul>
                 </li>
 

@@ -90,6 +90,7 @@
     <Content Include="AdministrarEscuelas.aspx" />
     <Content Include="AdministrarPreguntas.aspx" />
     <Content Include="AdministrarProfesiones.aspx" />
+    <Content Include="AdministrarRespuestas.aspx" />
     <Content Include="CambiarClave.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -102,7 +103,7 @@
     <Content Include="CrearEscuela.aspx" />
     <Content Include="CrearPregunta.aspx" />
     <Content Include="CrearProfesion.aspx" />
-    <Content Include="Evaluacion.aspx" />
+    <Content Include="CrearEvaluacion.aspx" />
     <Content Include="EvaluacionAlumno.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="imagenes\alumno.jpg" />
@@ -244,6 +245,13 @@
     <Compile Include="AdministrarProfesiones.aspx.designer.cs">
       <DependentUpon>AdministrarProfesiones.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdministrarRespuestas.aspx.cs">
+      <DependentUpon>AdministrarRespuestas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarRespuestas.aspx.designer.cs">
+      <DependentUpon>AdministrarRespuestas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CambiarClave.aspx.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,12 +315,12 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Evaluacion.aspx.cs">
-      <DependentUpon>Evaluacion.aspx</DependentUpon>
+    <Compile Include="CrearEvaluacion.aspx.cs">
+      <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Evaluacion.aspx.designer.cs">
-      <DependentUpon>Evaluacion.aspx</DependentUpon>
+    <Compile Include="CrearEvaluacion.aspx.designer.cs">
+      <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="EvaluacionAlumno.aspx.cs">
       <DependentUpon>EvaluacionAlumno.aspx</DependentUpon>

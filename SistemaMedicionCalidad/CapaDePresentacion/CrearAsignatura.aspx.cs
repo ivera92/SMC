@@ -28,6 +28,14 @@ namespace CapaDePresentacion
                 this.DataBind();//enlaza los datos a un dropdownlist   
             }
         }
+        public void resetearValores()
+        {
+            this.ddEscuela.SelectedIndex = 0;
+            this.ddDocente.SelectedIndex = 0;
+            this.txtNombre.Text = "";
+            this.txtAno.Text = "";
+            duracion.SelectedIndex = 0;
+        }
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
@@ -40,9 +48,27 @@ namespace CapaDePresentacion
             else
                 duracion = false;
 
-            Asignatura a = new Asignatura(int.Parse(this.ddEscuela.SelectedValue), this.ddDocente.SelectedValue, this.txtNombre.Text, int.Parse(this.txtAno.Text), duracion);
-            ca.agregarAsignaturaPA(a);
-            Response.Write("<script>window.alert('Asignatura creada satisfactoriamente');</script>");
+            Asignatura a = new Asignatura();
+            Escuela es = new Escuela();
+            Docente d = new Docente();
+            a.Escuela_asignatura = es;
+            a.Docente_asignatura = d;
+
+            a.Escuela_asignatura.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
+            a.Docente_asignatura.Rut_docente = this.ddDocente.SelectedValue;
+            a.Nombre_asignatura = this.txtNombre.Text;
+            a.Ano_asignatura = int.Parse(this.txtAno.Text);
+            a.Duracion_asignatura = duracion;
+            try
+            {
+                ca.agregarAsignaturaPA(a);
+                Response.Write("<script>window.alert('Asignatura creada satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Asignatura no pudo ser creada');</script>");
+            }
+            this.resetearValores();
         }
     }
 }

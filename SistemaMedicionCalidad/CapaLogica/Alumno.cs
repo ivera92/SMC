@@ -1,42 +1,42 @@
 ﻿using System;
+using Project.CapaDeNegocios;
 
 namespace Project
 {
     public class Alumno
     {
         string rut_alumno;
-        int id_escuela_alumno;
+        Escuela escuela_alumno;
+        string correo_alumno;
         string nombre_alumno;
         DateTime fecha_nacimiento_alumno;
         string direccion_alumno;
         int telefono_alumno;
-        int id_pais_alumno;
+        Pais pais_alumno;
         bool sexo_alumno;
         int promocion_alumno;
         bool beneficio_alumno;
 
-        string nombre_escuela;
-
         public Alumno()
         {
         }
-        public Alumno(string nombre_alumno, string rut_alumno, string nombre_escuela, int promocion_alumno)
+        public Alumno(string nombre_alumno, string rut_alumno, Escuela escuela_alumno, int promocion_alumno)
         {
             this.rut_alumno = rut_alumno;
-            this.nombre_escuela = nombre_escuela;
+            this.escuela_alumno = escuela_alumno;
             this.nombre_alumno = nombre_alumno;
             this.promocion_alumno = promocion_alumno;
         }
 
-        public Alumno(string rut_alumno, int id_escuela_alumno, int id_pais_alumno, string nombre_alumno, DateTime fecha_nacimiento_alumno, string direccion_alumno, int telefono_alumno, bool sexo_alumno, string correo_alumno, int promocion_alumno, bool beneficio_alumno)
+        public Alumno(string rut_alumno, Escuela escuela_alumno, Pais pais_alumno, string nombre_alumno, DateTime fecha_nacimiento_alumno, string direccion_alumno, int telefono_alumno, bool sexo_alumno, string correo_alumno, int promocion_alumno, bool beneficio_alumno)
         {
             this.rut_alumno = rut_alumno;
-            this.id_escuela_alumno = id_escuela_alumno;
+            this.escuela_alumno = escuela_alumno;
             this.nombre_alumno = nombre_alumno;
             this.fecha_nacimiento_alumno = fecha_nacimiento_alumno;
             this.direccion_alumno = direccion_alumno;
             this.telefono_alumno = telefono_alumno;
-            this.id_pais_alumno = id_pais_alumno;
+            this.pais_alumno = pais_alumno;
             this.sexo_alumno = sexo_alumno;
             this.correo_alumno = correo_alumno;
             this.promocion_alumno = promocion_alumno;
@@ -47,12 +47,6 @@ namespace Project
         {
             get { return rut_alumno; }
             set { rut_alumno = value; }
-        }
-        
-        public int Id_escuela_alumno
-        {
-            get { return id_escuela_alumno; }
-            set { id_escuela_alumno = value; }
         }
         
         public string Nombre_alumno
@@ -78,14 +72,11 @@ namespace Project
             get { return telefono_alumno; }
             set { telefono_alumno = value; }
         }
-        
-
         public bool Sexo_alumno
         {
             get { return sexo_alumno; }
             set { sexo_alumno = value; }
         }
-        string correo_alumno;
 
         public string Correo_alumno
         {
@@ -105,10 +96,16 @@ namespace Project
             set { beneficio_alumno = value; }
         }
 
-        public int Id_pais_alumno
+        public Escuela Escuela_alumno
         {
-            get { return id_pais_alumno; }
-            set { id_pais_alumno = value; }
+            get { return escuela_alumno; }
+            set { escuela_alumno = value; }
+        }
+
+        public Pais Pais_alumno
+        {
+            get { return pais_alumno; }
+            set { pais_alumno = value; }
         }
     }
 }

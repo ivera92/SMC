@@ -13,8 +13,16 @@ namespace CapaDePresentacion
         {
             CatalogEscuela cescuela = new CatalogEscuela();
             Escuela es= new Escuela (this.tbxEscuela.Text);
-            cescuela.agregarEscuelaPA(es);
-            Response.Write("<script>window.alert('Escuela creada satisfactoriamente');</script>");
+            try
+            {
+                cescuela.agregarEscuelaPA(es);
+                Response.Write("<script>window.alert('Escuela creada satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Escuela no a podido ser registrada');</script>");
+            }
+            this.tbxEscuela.Text = "";
         }
     }
 }

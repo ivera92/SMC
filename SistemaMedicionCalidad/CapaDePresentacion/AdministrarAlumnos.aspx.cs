@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project.CapaDeNegocios;
 using Project;
+using System.Threading;
 
 namespace CapaDePresentacion
 {
@@ -14,13 +15,19 @@ namespace CapaDePresentacion
         {
             CatalogEscuela cescuela = new CatalogEscuela();
             List<Escuela> escuelas = cescuela.mostrarEscuelas();
+            CatalogPais cpais = new CatalogPais();
+            List<Pais> lpais = cpais.mostrarPaises();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.guardado.Visible = false;
                 this.escuela.DataTextField = "Nombre_escuela";
                 this.escuela.DataValueField = "Id_escuela";
                 this.escuela.DataSource = escuelas;
+
+                this.pais.DataTextField = "Nombre_pais";
+                this.pais.DataValueField = "Id_pais";
+                this.pais.DataSource = lpais;
+
                 this.divEditar.Visible = false;
                 this.mostrar();
             }
@@ -40,8 +47,18 @@ namespace CapaDePresentacion
         {
             string rut_alumno = HttpUtility.HtmlDecode((string)this.GridView1.Rows[e.RowIndex].Cells[2].Text);
             CatalogAlumno calumno = new CatalogAlumno();
-            calumno.eliminarAlumnoPA(rut_alumno);
-            Response.Redirect("AdministrarAlumnos.aspx");
+            try
+            {
+                calumno.eliminarAlumnoPA(rut_alumno);
+                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
+                Thread.Sleep(1500);
+                this.mostrar();
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Registro no a podido ser eliminado');</script>");
+            }
+            
         }
 
         protected void rowEditingEvent(object sender, GridViewEditEventArgs e)
@@ -50,13 +67,13 @@ namespace CapaDePresentacion
             string rut_alumno = HttpUtility.HtmlDecode((string)this.GridView1.Rows[e.NewEditIndex].Cells[2].Text);
             CatalogAlumno ca = new CatalogAlumno();
             Alumno a = ca.buscarAlumnoPorRut(rut_alumno);
-            this.escuela.SelectedIndex = a.Id_escuela_alumno-1;
+            this.escuela.SelectedIndex = a.Escuela_alumno.Id_escuela;
             this.nombre.Text = a.Nombre_alumno;
             this.rut.Text = a.Rut_alumno;
             this.fechaDeNacimiento.Text = a.Fecha_nacimiento_alumno.ToString("d");
             this.direccion.Text = a.Direccion_alumno;
             this.telefono.Text = a.Telefono_alumno+"";
-            this.pais.SelectedIndex = a.Id_pais_alumno;
+            this.pais.SelectedIndex = a.Pais_alumno.Id_pais;
             this.correo.Text = a.Correo_alumno;
             this.promocion.Text = a.Promocion_alumno + "";
             if (a.Beneficio_alumno == true)
@@ -103,10 +120,33 @@ namespace CapaDePresentacion
             else
                 beneficio = false;
 
-            Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue), this.pais.SelectedIndex, this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text), this.direccion.Text, int.Parse(this.telefono.Text), sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
-            calumno.editarAlumnoPA(a);
-            this.divEditar.Visible = false;
-            this.guardado.Visible = true;
+            Alumno a = new Alumno();
+            Escuela es = new Escuela();
+            Pais p = new Pais();
+            a.Escuela_alumno = es;
+            a.Pais_alumno = p;
+
+            a.Rut_alumno = this.rut.Text;
+            a.Escuela_alumno.Id_escuela = this.escuela.SelectedIndex;
+            a.Pais_alumno.Id_pais = this.pais.SelectedIndex;
+            a.Nombre_alumno = this.nombre.Text;
+            a.Fecha_nacimiento_alumno = DateTime.Parse(this.fechaDeNacimiento.Text);
+            a.Direccion_alumno = this.direccion.Text;
+            a.Telefono_alumno = int.Parse(this.telefono.Text);
+            a.Sexo_alumno = sexo;
+            a.Correo_alumno = this.correo.Text;
+            a.Promocion_alumno = int.Parse(this.promocion.Text);
+            a.Beneficio_alumno = beneficio;
+            try
+            {
+                calumno.editarAlumnoPA(a);
+                this.divEditar.Visible = false;
+                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
+            }
         }
     }
 }

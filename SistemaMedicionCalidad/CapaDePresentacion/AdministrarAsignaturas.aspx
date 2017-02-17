@@ -4,8 +4,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1 id="guardado" class="text-center" runat="server">Cambios guardados satisfactoriamente</h1>  
-    <div id="administrar" runat="server">
+     <div id="administrar" runat="server">
     <h2> Administrar Asignaturas</h2>
     <br />
 
@@ -16,8 +15,8 @@
                     <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" />
                     <asp:BoundField DataField="Id_Asignatura" HeaderText="ID" />
                     <asp:BoundField DataField="Nombre_Asignatura" HeaderText="Nombre" />
-                    <asp:BoundField DataField="Id_Escuela_Asignatura" HeaderText="Escuela" />
-                    <asp:BoundField DataField="Rut_Docente_Asignatura" HeaderText="Docente"/>
+                    <asp:BoundField DataField="Escuela_Asignatura.Nombre_Escuela" HeaderText="Escuela" />
+                    <asp:BoundField DataField="Docente_Asignatura.Nombre_Docente" HeaderText="Docente"/>
                     <asp:BoundField DataField="Ano_Asignatura" HeaderText="Año" />
                     <asp:BoundField DataField="Duracion_Asignatura" HeaderText="Duracion" />
                 </Columns>

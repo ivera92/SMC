@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -21,8 +22,6 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.guardado.Visible = false;
-
                 this.profesion.DataTextField = "Nombre_profesion";
                 this.profesion.DataValueField = "Id_profesion";
                 this.profesion.DataSource = profesiones;
@@ -42,8 +41,18 @@ namespace CapaDePresentacion
         {
             string rut_docente = HttpUtility.HtmlDecode((string)this.Gridview1.Rows[e.RowIndex].Cells[2].Text);
             CatalogDocente cdocente = new CatalogDocente();
-            cdocente.eliminarDocentePA(rut_docente);
-            Response.Redirect("AdministrarDocentes.aspx");
+            try
+            {
+                cdocente.eliminarDocentePA(rut_docente);
+                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
+                Thread.Sleep(1500);
+                this.mostrar();
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
+            }
+
         }
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)
@@ -130,9 +139,16 @@ namespace CapaDePresentacion
             d.Sexo_docente = sexo;
             d.Correo_docente = this.correo.Text;
             d.Disponibilidad_docente = disponibilidad;
-            cdocente.editarDocentePA(d);
-            this.tablaEditar.Visible = false;
-            this.guardado.Visible = true;
+            try
+            {
+                cdocente.editarDocentePA(d);
+                this.tablaEditar.Visible = false;
+                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
+            }
         }
     }
 }

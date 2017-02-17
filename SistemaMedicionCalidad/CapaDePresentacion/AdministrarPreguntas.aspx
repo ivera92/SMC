@@ -9,9 +9,9 @@
 
     <div class="row">
             <div class="col-sm-8">
-                <asp:GridView class="table table-striped" ID="gvPreguntas" runat="server" AutoGenerateColumns="false" OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                <asp:GridView class="table table-striped" ID="gvPreguntas" runat="server" AutoGenerateColumns="false" OnRowDeleting="rowDeleting">
                     <Columns>
-                    <asp:CommandField ButtonType="Link" ShowDeleteButton="true" ShowEditButton="true" />
+                    <asp:CommandField ButtonType="Link" ShowDeleteButton="true"/>
                     <asp:BoundField DataField="Nombre_pregunta" HeaderText="Nombre" />
                     <asp:BoundField DataField="Id_pregunta" HeaderText="ID" />
                     </Columns>
@@ -45,10 +45,19 @@
         <div class="col-sm-4">
             <asp:DropDownList class="form-control" runat="server" ID="ddTipoPregunta"></asp:DropDownList>
         </div>
-        <div class="col-sm-2">
-            <asp:Button class="btn btn-primary btn-block" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click"/>
-        </div>
+        <br />
     </div>
+
+        <br />
+        <h2>Respuestas</h2>
+        <label class="col-sm-offset-6">Correcta</label>
+        <asp:Panel ID="Panel1" runat="server"></asp:Panel>
+        <br />
+        <div class="row">
+            <div class="col-sm-2">
+            <asp:Button class="btn btn-primary btn-block" runat="server" ID="btnGuardar" Text="Guardar"/>
+            </div>
+        </div>
     </div>
 
 </asp:Content>

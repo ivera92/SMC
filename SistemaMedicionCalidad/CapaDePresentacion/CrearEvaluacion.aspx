@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Evaluacion.aspx.cs" Inherits="CapaDePresentacion.Evaluacion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CrearEvaluacion.aspx.cs" Inherits="CapaDePresentacion.CrearEvaluacion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -26,7 +26,6 @@
         </div>
     </div>
     <br />
-
     
     <div class="row">
         <div class="col-sm-5">    
@@ -37,6 +36,9 @@
         </div>
         <div class="col-sm-2">
             <label id="fecha" runat="server">Fecha:</label>
+        </div>
+        <div class="col-sm-1">
+            <label id="fechaEvaluacion" runat="server">:</label>
         </div>
     </div>
     <br />

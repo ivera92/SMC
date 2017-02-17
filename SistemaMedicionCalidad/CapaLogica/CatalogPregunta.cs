@@ -18,8 +18,8 @@ namespace Project
             string sql = "insPregunta";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_competencia_pregunta", DbType.Int32, p.Id_competencia_pregunta);
-            bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Id_tipo_pregunta_pregunta);
+            bd.createParameter("@id_competencia_pregunta", DbType.Int32, p.Competencia_pregunta.Id_competencia);
+            bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Tipo_pregunta_pregunta.Id_tipo_pregunta);
             bd.createParameter("@nombre_pregunta", DbType.String, p.Nombre_pregunta);
 
             bd.execute();
@@ -83,7 +83,16 @@ namespace Project
             DbDataReader result = bd.Query();
             while(result.Read())
             {
-                Pregunta p = new Pregunta(result.GetInt32(0), result.GetInt32(1), result.GetInt32(2), result.GetString(3));
+                Pregunta p = new Pregunta();
+                Competencia c = new Competencia();
+                Tipo_Pregunta tp = new Tipo_Pregunta();
+                p.Competencia_pregunta = c;
+                p.Tipo_pregunta_pregunta = tp;
+
+                p.Id_pregunta = result.GetInt32(0);
+                p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
+                p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
+                p.Nombre_pregunta = result.GetString(3);
                 lp.Add(p);
             }
             return lp.First();
@@ -100,7 +109,16 @@ namespace Project
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
-                Pregunta p = new Pregunta(result.GetInt32(0), result.GetInt32(1), result.GetInt32(2), result.GetString(3));
+                Pregunta p = new Pregunta();
+                Competencia c = new Competencia();
+                Tipo_Pregunta tp = new Tipo_Pregunta();
+                p.Competencia_pregunta = c;
+                p.Tipo_pregunta_pregunta = tp;
+
+                p.Id_pregunta = result.GetInt32(0);
+                p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
+                p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
+                p.Nombre_pregunta = result.GetString(3);
                 lp.Add(p);
             }
             result.Close();

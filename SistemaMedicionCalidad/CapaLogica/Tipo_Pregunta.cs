@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Project
 {
     public class Tipo_Pregunta
@@ -10,6 +6,9 @@ namespace Project
         int id_tipo_pregunta;
         string nombre_tipo_pregunta;
 
+        public Tipo_Pregunta()
+        {
+        }
         public Tipo_Pregunta(string nombre_tipo_pregunta)
         {
             this.Nombre_tipo_pregunta = nombre_tipo_pregunta;

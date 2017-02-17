@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,7 +14,6 @@ namespace CapaDePresentacion
         {
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.guardado.Visible = false;
                 this.editar.Visible = false;
                 this.mostrar();
             }
@@ -34,8 +33,17 @@ namespace CapaDePresentacion
         {
             int id_profesion = int.Parse(HttpUtility.HtmlDecode((string)(this.GridView1.Rows[e.RowIndex].Cells[2].Text)));
             CatalogProfesion cp = new CatalogProfesion();
-            cp.eliminarProfesionPA(id_profesion);
-            Response.Redirect("AdministrarProfesiones.aspx");
+            try
+            {
+                cp.eliminarProfesionPA(id_profesion);
+                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
+                Thread.Sleep(1500);
+                this.mostrar();
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
+            }
         }
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)
@@ -52,10 +60,17 @@ namespace CapaDePresentacion
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             CatalogProfesion cp = new CatalogProfesion();
-            Profesion p = new Profesion(int.Parse(this.txtid.Text) ,this.tbxProfesion.Text);
-            cp.editarProfesion(p);
-            this.editar.Visible = false;
-            this.guardado.Visible = true;
+            Profesion p = new Profesion(int.Parse(this.txtid.Text), this.tbxProfesion.Text);
+            try
+            {
+                cp.editarProfesion(p);
+                this.editar.Visible = false;
+                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
+            }
         }
     }
 }

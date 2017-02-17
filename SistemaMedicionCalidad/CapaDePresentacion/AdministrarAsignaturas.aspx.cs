@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -19,7 +20,6 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.guardado.Visible = false;
                 this.ddEscuela.DataTextField = "Nombre_escuela";
                 this.ddEscuela.DataValueField = "Id_escuela";
                 this.ddEscuela.DataSource = escuelas;
@@ -38,8 +38,17 @@ namespace CapaDePresentacion
         {
             string id_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.RowIndex].Cells[1].Text);
             CatalogAsignatura ca = new CatalogAsignatura();
-            ca.eliminarAsignatura(int.Parse(id_asignatura));
-            Response.Redirect("AdministrarAsignaturas.aspx");
+            try
+            {
+                ca.eliminarAsignatura(int.Parse(id_asignatura));
+                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
+                Thread.Sleep(1500);
+                this.mostrar();
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
+            }
         }
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)
@@ -50,8 +59,8 @@ namespace CapaDePresentacion
             this.editar.Visible = true;
             CatalogAsignatura ca = new CatalogAsignatura();
             Asignatura a= ca.buscarAsignatura(int.Parse(id_asignatura));
-            this.ddEscuela.SelectedIndex = a.Id_escuela_asignatura-1;
-            this.ddDocente.SelectedValue = a.Rut_docente_asignatura;
+            this.ddEscuela.SelectedIndex = a.Escuela_asignatura.Id_escuela-1;
+            this.ddDocente.SelectedValue = a.Docente_asignatura.Rut_docente;
             this.txtNombre.Text = a.Nombre_asignatura;
             this.txtAno.Text = a.Ano_asignatura +"";
             if (a.Duracion_asignatura == true)
@@ -62,8 +71,6 @@ namespace CapaDePresentacion
             {
                 this.duracion.SelectedIndex = 1;
             }
-
-
         }
 
         public void mostrar()
@@ -87,10 +94,28 @@ namespace CapaDePresentacion
             else
                 duracion = false;
 
-            Asignatura a = new Asignatura(int.Parse(this.txtID.Text), int.Parse(this.ddEscuela.SelectedValue), this.ddDocente.SelectedValue, this.txtNombre.Text, int.Parse(this.txtAno.Text), duracion);
-            ca.editarAsignaturaPA(a);
-            this.editar.Visible = false;
-            this.guardado.Visible = true;
+            Asignatura a = new Asignatura();
+            Escuela es = new Escuela();
+            Docente d = new Docente();
+            a.Escuela_asignatura = es;
+            a.Docente_asignatura = d;
+
+            a.Escuela_asignatura.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
+            a.Docente_asignatura.Rut_docente = this.ddDocente.SelectedValue;
+            a.Nombre_asignatura = this.txtNombre.Text;
+            a.Ano_asignatura = int.Parse(this.txtAno.Text);
+            a.Duracion_asignatura = duracion;
+            a.Id_asignatura = int.Parse(txtID.Text);
+            try
+            {
+                ca.editarAsignaturaPA(a);
+                this.editar.Visible = false;
+                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
+            }     
         }
     }
 }

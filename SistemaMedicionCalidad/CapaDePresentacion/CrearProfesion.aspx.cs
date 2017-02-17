@@ -14,8 +14,15 @@ namespace CapaDePresentacion
             CatalogProfesion cprofesion = new CatalogProfesion();
             Profesion p = new Profesion(this.tbxProfesion.Text);
 
-            cprofesion.agregarProfesionPA(p);
-            Response.Write("<script>window.alert('Profesion creada satisfactoriamente');</script>");
+            try
+            {
+                cprofesion.agregarProfesionPA(p);
+                Response.Write("<script>window.alert('Profesion creada satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Profesion no pudo ser creada');</script>");
+            }
             this.tbxProfesion.Text = "";
         }
     }

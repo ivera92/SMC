@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,7 +15,6 @@ namespace CapaDePresentacion
         {
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.guardado.Visible = false;
                 this.tablaEditar.Visible = false;
                 this.mostrar();
             }
@@ -35,8 +35,18 @@ namespace CapaDePresentacion
         {
             int id_escuela = int.Parse(HttpUtility.HtmlDecode((string)(this.GridView1.Rows[e.RowIndex].Cells[2].Text)));
             CatalogEscuela cescuela = new CatalogEscuela();
-            cescuela.eliminarEscuelaPA(id_escuela);
-            Response.Redirect("AdministrarEscuelas.aspx");
+
+            try
+            {
+                cescuela.eliminarEscuelaPA(id_escuela);
+                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
+                Thread.Sleep(1500);
+                this.mostrar();
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
+            }
         }
         
         protected void rowEditing(object sender, GridViewEditEventArgs e)
@@ -54,9 +64,16 @@ namespace CapaDePresentacion
         {
             CatalogEscuela cescuela = new CatalogEscuela();
             Escuela es = new Escuela(int.Parse(this.txtid.Text), this.tbxEscuela.Text);
-            cescuela.editarEscuelaPA(es);
-            this.tablaEditar.Visible = false;
-            this.guardado.Visible = true;
+            try
+            {
+                cescuela.editarEscuelaPA(es);
+                this.tablaEditar.Visible = false;
+                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
+            }
         }
     }
 }

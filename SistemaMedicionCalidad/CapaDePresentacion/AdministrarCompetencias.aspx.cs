@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,7 +14,6 @@ namespace CapaDePresentacion
         {
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.guardado.Visible = false;
                 this.txtCompetencia.Visible = false;
                 this.editar.Visible = false;
                 this.mostrar();
@@ -33,8 +33,17 @@ namespace CapaDePresentacion
         {
             string id_competencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.RowIndex].Cells[3].Text);
             CatalogCompetencia cc = new CatalogCompetencia();
-            cc.eliminarCompetencia(int.Parse(id_competencia));
-            Response.Redirect("AdministrarAsignaturas.aspx");
+            try
+            {
+                cc.eliminarCompetencia(int.Parse(id_competencia));
+                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
+                Thread.Sleep(1500);
+                this.mostrar();
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
+            }
         }
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)
@@ -70,9 +79,16 @@ namespace CapaDePresentacion
                 tipo = false;
             }
             Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, tipo, this.descripcion.InnerText);
-            cc.editarCompetencia(c);
-            this.editar.Visible = false;
-            this.guardado.Visible = true;
+            try
+            {
+                cc.editarCompetencia(c);
+                this.editar.Visible = false;
+                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
+            }
         }
     }
 }

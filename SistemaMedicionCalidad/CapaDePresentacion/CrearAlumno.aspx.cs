@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web.UI;
 using Project.CapaDeNegocios;
 using Project;
-using System.Threading;
 
 namespace CapaDePresentacion
 {
@@ -13,6 +12,7 @@ namespace CapaDePresentacion
         {
             CatalogEscuela cescuela = new CatalogEscuela();
             List<Escuela> escuelas = cescuela.mostrarEscuelas();
+
             CatalogPais cpais = new CatalogPais();
             List<Pais> lpais = cpais.mostrarPaises();
 
@@ -28,6 +28,20 @@ namespace CapaDePresentacion
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
+        }
+        public void resetearValores()
+        {
+            this.rut.Text="";
+            this.escuela.SelectedIndex=0;
+            this.ddPais.SelectedIndex=0;
+            this.nombre.Text="";
+            this.fechaDeNacimiento.Text="";
+            this.direccion.Text="";
+            this.telefono.Text="";
+            sexo.SelectedIndex=0;
+            this.correo.Text="";
+            this.promocion.Text="";
+            beneficio.SelectedIndex=0;
         }
         protected void btnCrear_Click(object sender, EventArgs e)
         {
@@ -47,7 +61,23 @@ namespace CapaDePresentacion
             else
                 beneficio = false;
 
-            Alumno a = new Alumno(this.rut.Text, int.Parse(this.escuela.SelectedValue), int.Parse(this.ddPais.SelectedValue), this.nombre.Text, DateTime.Parse(this.fechaDeNacimiento.Text),this.direccion.Text,int.Parse(this.telefono.Text), sexo, this.correo.Text, int.Parse(this.promocion.Text), beneficio);
+            Alumno a = new Alumno();
+            Pais p = new Pais();
+            Escuela es = new Escuela();
+            a.Pais_alumno = p;
+            a.Escuela_alumno = es;
+
+            a.Rut_alumno = this.rut.Text;
+            a.Escuela_alumno.Id_escuela = this.escuela.SelectedIndex;
+            a.Pais_alumno.Id_pais = this.ddPais.SelectedIndex;
+            a.Nombre_alumno = this.nombre.Text;
+            a.Fecha_nacimiento_alumno = DateTime.Parse(this.fechaDeNacimiento.Text);
+            a.Direccion_alumno = this.direccion.Text;
+            a.Telefono_alumno = int.Parse(this.telefono.Text);
+            a.Sexo_alumno = sexo;
+            a.Correo_alumno = this.correo.Text;
+            a.Promocion_alumno = int.Parse(this.promocion.Text);
+            a.Beneficio_alumno = beneficio;
             try
             {
                 alumno.agregarAlumno(a);
@@ -57,6 +87,7 @@ namespace CapaDePresentacion
             {
                 Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
             }
+            this.resetearValores();
         }
     }
 }

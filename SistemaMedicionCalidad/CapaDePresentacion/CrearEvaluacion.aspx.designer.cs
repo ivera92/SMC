@@ -10,7 +10,7 @@
 namespace CapaDePresentacion {
     
     
-    public partial class Evaluacion {
+    public partial class CrearEvaluacion {
         
         /// <summary>
         /// ddAsignatura control.
@@ -65,6 +65,15 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl fecha;
+        
+        /// <summary>
+        /// fechaEvaluacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fechaEvaluacion;
         
         /// <summary>
         /// Panel1 control.

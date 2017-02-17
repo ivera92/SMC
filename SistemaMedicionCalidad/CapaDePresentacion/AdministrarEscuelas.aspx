@@ -5,7 +5,6 @@
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     
-    <h1 id="guardado" class="text-center" runat="server">Cambios guardados satisfactoriamente</h1>  
     <div id="tablaAdministrar" runat="server">
 
         <h2> Administrar Escuelas</h2>

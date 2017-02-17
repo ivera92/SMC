@@ -40,6 +40,24 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
+        /// ddAsignatura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddAsignatura;
+        
+        /// <summary>
+        /// btnCargarPreguntas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCargarPreguntas;
+        
+        /// <summary>
         /// lblNombreAlumno control.
         /// </summary>
         /// <remarks>
@@ -47,5 +65,14 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombreAlumno;
+        
+        /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
     }
 }

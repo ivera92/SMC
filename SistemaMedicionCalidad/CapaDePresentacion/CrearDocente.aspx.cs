@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Project;
 using Project.CapaDeNegocios;
 
@@ -32,6 +29,19 @@ namespace CapaDePresentacion
                 this.DataBind();
             }
         }
+        public void resetarValores()
+        {
+            this.rut.Text="";
+            this.profesion.SelectedIndex = 0;
+            this.ddPais.SelectedIndex = 0;
+            this.nombre.Text="";
+            this.fechaDeNacimiento.Text = "";
+            this.direccion.Text = "";
+            this.telefono.Text = "";
+            sexo.SelectedIndex = 0;
+            this.correo.Text = "";
+            disponibilidad.SelectedIndex = 0;
+        }
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
@@ -50,8 +60,7 @@ namespace CapaDePresentacion
             }
             else
                 disponibilidad = true;
-
-            
+        
             Docente d = new Docente();
             Profesion p = new Profesion();
             Pais pa = new Pais();
@@ -70,12 +79,13 @@ namespace CapaDePresentacion
             try
             {
                 cdocente.agregarDocentePA(d);
-                Response.Write("<script>window.alert('Docente creada satisfactoriamente');</script>");
+                Response.Write("<script>window.alert('Docente creado satisfactoriamente');</script>");
             }
             catch
             {
                 Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
             }
+            this.resetarValores();
         }
     }
 }

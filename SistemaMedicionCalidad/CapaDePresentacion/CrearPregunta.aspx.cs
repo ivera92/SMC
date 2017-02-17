@@ -43,7 +43,6 @@ namespace CapaDePresentacion
             }
             catch
             {
-
             }
         }
 
@@ -52,33 +51,37 @@ namespace CapaDePresentacion
             int i = 0;
             CatalogPregunta cp = new CatalogPregunta();
             CatalogRespuesta cr = new CatalogRespuesta();
-            Pregunta p = new Pregunta(int.Parse(this.ddCompetencia.SelectedValue), int.Parse(this.ddTipoPregunta.SelectedValue), this.txtPregunta.Text);
+
+            Pregunta p = new Pregunta();
+            Competencia c = new Competencia();
+            Tipo_Pregunta tp = new Tipo_Pregunta();
+            p.Competencia_pregunta = c;
+            p.Tipo_pregunta_pregunta = tp;
+
+            p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
+            p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
+            p.Nombre_pregunta = this.txtPregunta.Text;
             cp.agregarPregunta(p);
             int id = cp.ultimaPregunta();
+            Pregunta pp = new Pregunta();
 
-            if (cbCorrecta.Checked)
-            {
-                Respuesta r = new Respuesta(id, txtRespuesta.Text, true);
-                cr.agregarRespuesta(r);
-            }
-            else
-            {
-                Respuesta r = new Respuesta(id, txtRespuesta.Text, false);
-                cr.agregarRespuesta(r);
-            }
+            Respuesta r = new Respuesta();
+            r.Pregunta_respuesta = pp;
 
-            while (arrTextBoxs[i]!=null)
+            r.Pregunta_respuesta.Id_pregunta = id;
+            r.Nombre_respuesta = txtRespuesta.Text;
+            r.Correcta_respuesta = cbCorrecta.Checked;
+            cr.agregarRespuesta(r);
+
+            while (arrTextBoxs[i] != null)
             {
-                if (arrCheckBox[i].Checked)
-                {
-                    Respuesta r = new Respuesta(id, arrTextBoxs[i].Text, true);
-                    cr.agregarRespuesta(r);
-                }
-                else
-                {
-                    Respuesta r = new Respuesta(id, arrTextBoxs[i].Text, false);
-                    cr.agregarRespuesta(r);
-                }
+                Respuesta rr = new Respuesta();
+                rr.Pregunta_respuesta = pp;
+
+                rr.Pregunta_respuesta.Id_pregunta = id;
+                rr.Nombre_respuesta = arrTextBoxs[i].Text;
+                rr.Correcta_respuesta = arrCheckBox[i].Checked;
+                cr.agregarRespuesta(rr);
                 i++;
             }
             Response.Write("<script>window.alert('Pregunta creada satisfactoriamente');</script>");

@@ -30,19 +30,28 @@
     <label>Rut Alumno</label>
     <div class="row">
         <div class="col-sm-3">
-            <asp:TextBox ID="txtRut" runat="server" class="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtRut" runat="server" class="form-control" required></asp:TextBox>
             <asp:CustomValidator id="cv_rut" runat="server" ControlToValidate="txtRut" Display="Dynamic" ErrorMessage="El rut no es valido" ClientValidationFunction="validar_rut" />
         </div>
         <div class="col-sm-2">
             <asp:Button ID="btnBuscar" runat="server" class="form-control btn btn-block btn-primary" Text="Buscar" OnClick="btnBuscar_Click"/>
         </div>
+        <div class="col-sm-4">
+            <asp:DropDownList ID="ddAsignatura" class="form-control" runat="server"></asp:DropDownList>
+        </div>
+        <div class="col-sm-2">
+            <asp:Button ID="btnCargarPreguntas" runat="server" class="form-control btn btn-block btn-primary" Text="Cargar" OnClick="btnCargarPreguntas_Click" />
+        </div>
     </div>
     <br />
-
+    
     <div class="row">
         <div class="col-sm-6">
             <label id="lblNombreAlumno" runat="server"></label>
         </div>
     </div>
+    <br />
+
+    <asp:Panel ID="Panel1" runat="server"></asp:Panel>
 
 </asp:Content>

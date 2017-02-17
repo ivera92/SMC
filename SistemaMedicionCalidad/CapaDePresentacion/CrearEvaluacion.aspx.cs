@@ -11,7 +11,7 @@ using System.Web;
 
 namespace CapaDePresentacion
 {
-    public partial class Evaluacion : System.Web.UI.Page
+    public partial class CrearEvaluacion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,6 +20,7 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack)
             {
+                this.fechaEvaluacion.InnerText = DateTime.Today.ToString("d");
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
                 this.ddAsignatura.DataValueField = "Id_asignatura";
                 this.ddAsignatura.DataSource = la;
@@ -27,12 +28,12 @@ namespace CapaDePresentacion
                 this.DataBind();//enlaza los datos a un dropdownlist      
             }
         }
-        public void pdf2()
+        public void pdf()
         {
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta FROM [ASIGNATURA-COMPETENCIA] inner join asignatura on [asignatura-competencia].id_asignatura = asignatura.id_asignatura inner join competencia on [asignatura-competencia].id_competencia = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + this.ddAsignatura.SelectedValue + "'";
+            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta FROM [ASIGNATURA_COMPETENCIA] inner join asignatura on [asignatura_competencia].id_asignatura_ac = asignatura.id_asignatura inner join competencia on [asignatura_competencia].id_competencia_ac = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + this.ddAsignatura.SelectedValue + "'";
 
             bd.CreateCommand(sql);
             DbDataReader result = bd.Query();
@@ -60,7 +61,6 @@ namespace CapaDePresentacion
             // Insertamos la imagen en el documento
             pdfDoc.Add(imagen);
 
-
             Paragraph p2 = new Paragraph(this.txtNombre.Text+" - "+ this.ddAsignatura.SelectedItem.Text+"\n");
             p2.Alignment = Element.ALIGN_CENTER;
             pdfDoc.Add(p2);
@@ -68,7 +68,6 @@ namespace CapaDePresentacion
             p.Add(this.rut.InnerText + "\n");
             p.Add(this.fecha.InnerText + "\n");
             pdfDoc.Add(p);
-
 
             int numPregunta = 1;
             while (result.Read())
@@ -112,7 +111,6 @@ namespace CapaDePresentacion
                 pdfDoc.Add(pp);
                 s = l.Text;
             }
-
             pdfDoc.Close();
             Response.Write(pdfDoc);
             Response.End();
@@ -120,7 +118,25 @@ namespace CapaDePresentacion
 
         protected void btnCrear_Click1(object sender, EventArgs e)
         {
-            this.pdf2();
+            CatalogEvaluacion ce = new CatalogEvaluacion();
+            Evaluacion ev = new Evaluacion();
+            Asignatura a = new Asignatura();
+            ev.Asignatura_evaluacion = a;
+
+            ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
+            ev.Asignatura_evaluacion.Id_asignatura = int.Parse(this.ddAsignatura.SelectedValue);
+            ev.Nombre_evaluacion = this.txtNombre.Text;
+         
+            try
+            {
+                ce.crearEvaluacion(ev);
+                Response.Write("<script>window.alert('Evaluacion creada satisfactoriamente');</script>");
+                this.pdf();
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Evaluacion no pudo ser creada');</script>");
+            }
         }
 
         public void crearRadioButtons()
@@ -128,7 +144,7 @@ namespace CapaDePresentacion
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta FROM [ASIGNATURA-COMPETENCIA] inner join asignatura on [asignatura-competencia].id_asignatura = asignatura.id_asignatura inner join competencia on [asignatura-competencia].id_competencia = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + this.ddAsignatura.SelectedValue+"'";
+            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta FROM [ASIGNATURA_COMPETENCIA] inner join asignatura on [asignatura_competencia].id_asignatura_ac = asignatura.id_asignatura inner join competencia on [asignatura_competencia].id_competencia_ac = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + this.ddAsignatura.SelectedValue+"'";
         
             bd.CreateCommand(sql);
             DbDataReader result = bd.Query();
@@ -144,8 +160,7 @@ namespace CapaDePresentacion
                     pVez++;
                     this.Panel1.Controls.Add(l);
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
-                    s = l.Text;
-                    
+                    s = l.Text;              
                 }
                 //Si cambio la pregunta
                 if (s!= l.Text)
@@ -159,7 +174,6 @@ namespace CapaDePresentacion
                     RadioButton radio = new RadioButton();
                     radio.Text = result.GetString(1);
                     this.Panel1.Controls.Add(radio);
-
                 }
 
                 else if(result.GetString(0) == "Casillas de verificacion")
@@ -176,7 +190,6 @@ namespace CapaDePresentacion
                 this.Panel1.Controls.Add(new LiteralControl("<br/>"));
                 this.Panel1.Controls.Add(new LiteralControl("<br/>"));
                 s = l.Text;
-
             }
             result.Close();
             bd.Close();

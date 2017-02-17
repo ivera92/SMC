@@ -3,7 +3,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 id="guardado" class="text-center" runat="server">Cambios guardados satisfactoriamente</h1>  
 
     <div id="divMostrar" runat="server">
 

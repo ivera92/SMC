@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Project
 {
     public class Respuesta
     {
         int id_respuesta;
-        int id_pregunta_respuesta;
+        Pregunta pregunta_respuesta;
         string nombre_respuesta;
         bool correcta_respuesta;
 
-        public Respuesta (int id_pregunta_respuesta, string nombre_respuesta, bool correcta_respuesta)
+        public Respuesta()
         {
-            this.id_pregunta_respuesta = id_pregunta_respuesta;
+        }
+        public Respuesta (Pregunta pregunta_respuesta, string nombre_respuesta, bool correcta_respuesta)
+        {
+            this.pregunta_respuesta = pregunta_respuesta;
             this.nombre_respuesta = nombre_respuesta;
             this.correcta_respuesta = correcta_respuesta;
         }
@@ -25,10 +24,10 @@ namespace Project
             set { id_respuesta = value; }
         }
 
-        public int Id_pregunta_respuesta
+        public Pregunta Pregunta_respuesta
         {
-            get { return id_pregunta_respuesta; }
-            set { id_pregunta_respuesta = value; }
+            get { return pregunta_respuesta; }
+            set { pregunta_respuesta = value; }
         }
 
         public string Nombre_respuesta
