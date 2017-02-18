@@ -10,7 +10,7 @@
 namespace CapaDePresentacion {
     
     
-    public partial class LoginAlumno {
+    public partial class Login {
         
         /// <summary>
         /// form1 control.
@@ -22,39 +22,30 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// rut control.
+        /// btnAlumno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rut;
+        protected global::System.Web.UI.WebControls.Button btnAlumno;
         
         /// <summary>
-        /// cv_rut control.
+        /// btnDocente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cv_rut;
+        protected global::System.Web.UI.WebControls.Button btnDocente;
         
         /// <summary>
-        /// txtclave control.
+        /// btnAdministrador control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclave;
-        
-        /// <summary>
-        /// btnIngresar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresar;
+        protected global::System.Web.UI.WebControls.Button btnAdministrador;
     }
 }

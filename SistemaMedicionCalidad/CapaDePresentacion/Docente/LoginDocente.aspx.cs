@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.UI;
-using Project;
+using System.Linq;
+using System.Web;
 using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Project;
 
 namespace CapaDePresentacion
 {
-    public partial class LoginAlumno : System.Web.UI.Page
+    public partial class LoginDocente : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, 1))
+            if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, 2))
             {
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
-                Response.Redirect("Administrador.aspx");
-                
+                Response.Redirect("~/Docente/InicioDocente.aspx");
+
                 //Response.Write("Bienvenido");
             }
             else

@@ -1,18 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="LoginAlumno.aspx.cs" Inherits="CapaDePresentacion.LoginAlumno" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginAdministrador.aspx.cs" Inherits="CapaDePresentacion.LoginAdministrador" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><%: Page.Title %> - Sistema Medicion Calidad</title>
 
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
-    <script src="Scripts/jquery-1.9.1.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
+    <script type="../text/javascript">
 
     function validar_rut(source, arguments) {
         var rut = arguments.Value; suma = 0; mul = 2; i = 0;
@@ -39,7 +39,7 @@
     <div class="container">
 
         <br />
-        <h2 class="text-center">Iniciar sesión Alumno</h2>
+        <h2 class="text-center">Iniciar sesión Administrador</h2>
         <br />
 
         <div class="text-center">

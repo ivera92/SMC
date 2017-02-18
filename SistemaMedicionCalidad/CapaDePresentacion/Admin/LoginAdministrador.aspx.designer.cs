@@ -10,7 +10,7 @@
 namespace CapaDePresentacion {
     
     
-    public partial class LoginAlumno {
+    public partial class LoginAdministrador {
         
         /// <summary>
         /// form1 control.
