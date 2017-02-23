@@ -979,7 +979,8 @@ jQuery.extend({
 		return ret.concat.apply( [], ret );
 	},
 
-	// A global GUID counter for objects
+	// A global GUID 
+er for objects
 	guid: 1,
 
 	proxy: function( fn, proxy, thisObject ) {

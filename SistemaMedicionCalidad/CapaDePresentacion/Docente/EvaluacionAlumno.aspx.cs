@@ -11,6 +11,11 @@ namespace CapaDePresentacion
 {
     public partial class EvaluacionAlumno : System.Web.UI.Page
     {
+        //private static List<RadioButtonList> lRbl;
+        //private static List<CheckBoxList> lCbl;
+        private static RadioButtonList[] aRbl;
+        private static CheckBoxList[] aCbl;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogAsignatura ca = new CatalogAsignatura();
@@ -71,24 +76,52 @@ namespace CapaDePresentacion
             DbDataReader result = bd.Query();
             string s = "";
             
-            string[] letras = { "A) ", "B) ", "C) ", "D) ", "F) " };
+            //string[] letras = { "A) ", "B) ", "C) ", "D) ", "F) " };
             int numPregunta = 1;
             int i = 0;
+            int a = 0;
+            int b = 0;
+
+            //lRbl = new List<RadioButtonList>();
+            //lCbl = new List<CheckBoxList>();
+            aCbl = new CheckBoxList[30];
+            aRbl = new RadioButtonList[30];
+
             RadioButtonList rbl = new RadioButtonList();
+            CheckBoxList cbxl = new CheckBoxList();
 
             while (result.Read())
             {
                 Label pregunta = new Label();
                 pregunta.Text = result.GetString(2);
-                Label l2 = new Label();
-                l2.Text = numPregunta + ") " + result.GetString(2);
 
                 if (s != pregunta.Text)
                 {
+                    Label l2 = new Label();
+                    l2.Text = numPregunta + ") " + result.GetString(2);
+
+                    if (rbl.Items.Count > 0)
+                    {
+                        //lRbl.Add(rbl);
+                        aRbl[a] = rbl;
+                        a = a + 1;
+                    }
+                    else if (cbxl.Items.Count > 0)
+                    {
+                        //lCbl.Add(cbxl);
+                        aCbl[b] = cbxl;
+                        b = b + 1;
+                    }
+
                     if (result.GetString(0) == "Seleccion multiple")
                     {
                         rbl = new RadioButtonList();
                     }
+                    else if(result.GetString(0) == "Casillas de verificacion")
+                    {
+                        cbxl = new CheckBoxList();
+                    }
+                    
                     i = 0;
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
                     this.Panel1.Controls.Add(l2);
@@ -98,17 +131,15 @@ namespace CapaDePresentacion
                 }
                 if (result.GetString(0) == "Seleccion multiple" && s == pregunta.Text)
                 {
-                    rbl.Items.Add(letras[i] + " " + result.GetString(1));
+                    rbl.Items.Add(result.GetString(1));
                     this.Panel1.Controls.Add(rbl);
-                    s = result.GetString(2);
                     i = i + 1;
                 }
 
                 else if (result.GetString(0) == "Casillas de verificacion" && s == pregunta.Text)
                 {
-                    CheckBox cbx = new CheckBox();
-                    cbx.Text = letras[i] + " " + result.GetString(1);
-                    this.Panel1.Controls.Add(cbx);
+                    cbxl.Items.Add(result.GetString(1));
+                    this.Panel1.Controls.Add(cbxl);
                     i = i + 1;               
                 }
             }
@@ -120,7 +151,61 @@ namespace CapaDePresentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            int i = 0;
+            int j = 0;
+            Evaluacion ev = new Evaluacion();
+            Pregunta p = new Pregunta();
+            Respuesta r = new Respuesta();
+            Alumno a = new Alumno();
 
+            CatalogHPA cHPA = new CatalogHPA();
+
+            while (i<aRbl.Length)
+            {
+                foreach (ListItem li in aRbl[i].Items)
+                {
+                    var text = li.Text;
+
+                    if (li.Selected == true)
+                    {
+                        HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
+                        hpa.Evaluacion_hpa = ev;
+                        hpa.Pregunta_hpa = p;
+                        hpa.Respuesta_hpa = r;
+                        hpa.Alumno_hpa = a;
+
+                        hpa.Evaluacion_hpa.Id_evaluacion = 5;
+                        hpa.Pregunta_hpa.Id_pregunta = cHPA.buscarIDPregunta(text);
+                        hpa.Respuesta_hpa.Id_respuesta = cHPA.buscarIDRespuesta(text);
+                        hpa.Alumno_hpa.Rut_alumno = txtRut.Text;
+                        cHPA.agregarHPA(hpa);
+                    }
+                    i = i + 1;
+                }
+            }
+            while (j < aCbl.Length)
+            {
+                foreach (ListItem li in aCbl[j].Items)
+                {
+                    var text = li.Text;
+
+                    if (li.Selected == true)
+                    {
+                        HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
+                        hpa.Evaluacion_hpa = ev;
+                        hpa.Pregunta_hpa = p;
+                        hpa.Respuesta_hpa = r;
+                        hpa.Alumno_hpa = a;
+
+                        hpa.Evaluacion_hpa.Id_evaluacion = 5;
+                        hpa.Pregunta_hpa.Id_pregunta = cHPA.buscarIDPregunta(text);
+                        hpa.Respuesta_hpa.Id_respuesta = cHPA.buscarIDRespuesta(text);
+                        hpa.Alumno_hpa.Rut_alumno = txtRut.Text;
+                        cHPA.agregarHPA(hpa);
+                    }
+                    j = j + 1;
+                }
+            }
         }
     }
 }

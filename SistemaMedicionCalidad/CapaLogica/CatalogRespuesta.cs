@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Project.CapaDeDatos;
 using System.Data.Common;
 using System.Data;
 using Project.CapaDeDatos;

@@ -49,7 +49,9 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
                 <asp:TextBox class="form-control" ID="rut" runat="server" placeHolder="Ejemplo: 18205857-2" required></asp:TextBox>
-                    <asp:CustomValidator id="cv_rut" runat="server" Font-Italic="True" ForeColor=" " ControlToValidate="rut" Display="Dynamic" ErrorMessage="El rut no es valido" ClientValidationFunction="validar_rut" />
+                    <asp:CustomValidator ID="CustomValidator1" runat="server" 
+            ClientValidationFunction="validar_rut" ControlToValidate="rut" 
+            Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True"></asp:CustomValidator>
             </div>
         </div>
         <br />

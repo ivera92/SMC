@@ -17,7 +17,7 @@ namespace CapaDePresentacion
             if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, 1))
             {
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
-                Response.Redirect("Administrador.aspx");
+                Response.Redirect("CambiarClave.aspx");
                 
                 //Response.Write("Bienvenido");
             }

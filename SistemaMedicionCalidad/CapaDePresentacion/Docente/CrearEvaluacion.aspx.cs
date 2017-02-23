@@ -155,17 +155,27 @@ namespace CapaDePresentacion
             int i = 0;
 
             RadioButtonList rbl = new RadioButtonList();
+            CheckBoxList cbxl = new CheckBoxList();
 
             while (result.Read())
             {
                 Label pregunta = new Label();
                 pregunta.Text = result.GetString(2);
-                Label l2 = new Label();
-                l2.Text = numPregunta + ") " + result.GetString(2);
-
+                
                 if (s != pregunta.Text)
                 {
-                    rbl = new RadioButtonList();
+                    Label l2 = new Label();
+                    l2.Text = numPregunta + ") " + result.GetString(2);
+
+                    if (result.GetString(0) == "Seleccion multiple")
+                    {
+                        rbl = new RadioButtonList();
+                    }
+                    else if (result.GetString(0) == "Casillas de verificacion")
+                    {
+                        cbxl = new CheckBoxList();
+                    }
+
                     i = 0;
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
                     this.Panel1.Controls.Add(l2);
@@ -183,9 +193,9 @@ namespace CapaDePresentacion
 
                 else if (result.GetString(0) == "Casillas de verificacion" && s == pregunta.Text)
                 {
-                    CheckBox cbx = new CheckBox();
-                    cbx.Text = letras[i] + " " + result.GetString(1);
-                    this.Panel1.Controls.Add(cbx);
+                    
+                    cbxl.Items.Add(letras[i] + " " + result.GetString(1));
+                    this.Panel1.Controls.Add(cbxl);
                     i = i + 1;
                 }
             }

@@ -12,7 +12,7 @@
     <script src="../Scripts/jquery-1.9.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
 
-    <script type="../text/javascript">
+    <script type="text/javascript">
 
     function validar_rut(source, arguments) {
         var rut = arguments.Value; suma = 0; mul = 2; i = 0;
@@ -49,8 +49,10 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
                 <asp:TextBox class="form-control" ID="rut" runat="server" placeHolder="Ejemplo: 18205857-2" required></asp:TextBox>
-                    <asp:CustomValidator id="cv_rut" runat="server" Font-Italic="True" ForeColor=" " ControlToValidate="rut" Display="Dynamic" ErrorMessage="El rut no es valido" ClientValidationFunction="validar_rut" />
-            </div>
+                    <asp:CustomValidator ID="CustomValidator1" runat="server" 
+            ClientValidationFunction="validar_rut" ControlToValidate="rut" 
+            Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True"></asp:CustomValidator>
+                 </div>
         </div>
         <br />
 
