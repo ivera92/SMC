@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using Project.CapaDeDatos;
 
@@ -52,6 +53,38 @@ namespace Project
             result.Close();
             bd.Close();
             return id;
+        }
+
+        public int[] resultadoPreguntas(string rut, int id_competencia)
+        {
+            int[] arrResultados = new int[2];
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarRespuestasCompetencia";
+
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@rut_alumno", DbType.String, rut);
+            bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
+            DbDataReader result = bd.Query();//disponible resultado
+            int correctas = 0;
+            int incorrectas = 0;
+            while (result.Read())
+            {
+                if (result.GetBoolean(1) == true)
+                {
+                    correctas = correctas + 1;
+                }
+                else
+                {
+                    incorrectas = incorrectas + 1;
+                }
+            }
+            result.Close();
+            bd.Close();
+            arrResultados[0] = correctas;
+            arrResultados[1] = incorrectas;
+            return arrResultados;
         }
     }
 }

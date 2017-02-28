@@ -61,7 +61,7 @@ namespace CapaDePresentacion
             string rut_docente = HttpUtility.HtmlDecode((string)this.Gridview1.Rows[e.NewEditIndex].Cells[2].Text);
             this.profesion.SelectedIndex = 0;
             CatalogDocente cdocente = new CatalogDocente();
-            Docente d = cdocente.buscarDocentePA(rut_docente).First();
+            Docente d = cdocente.buscarDocentePA(rut_docente);
             
             this.correo.Text = d.Correo_docente;
             this.direccion.Text = d.Direccion_docente;
@@ -98,7 +98,7 @@ namespace CapaDePresentacion
         {
             this.Gridview1.Visible = true;
             CatalogDocente cdocente = new CatalogDocente();
-            List<Docente> ldocente = new List<Docente>();
+            Docente ldocente = new Docente();
             ldocente = cdocente.buscarDocentePA(this.tbxbuscar.Text);
             this.Gridview1.DataSource = ldocente;
             this.DataBind();

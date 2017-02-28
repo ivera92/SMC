@@ -63,16 +63,12 @@ namespace Project.CapaDeNegocios
 
             string sqlSearch = "select * from profesion where id_profesion='" + id_profesion + "'";
             bd.CreateCommand(sqlSearch);
-            List<Profesion> lp = new List<Profesion>();
             DbDataReader result = bd.Query();//disponible resultado
-            while (result.Read())
-            {
-                Profesion p = new Profesion(result.GetInt32(0), result.GetString(1));
-                lp.Add(p);
-            }
+            result.Read();
+            Profesion p = new Profesion(result.GetInt32(0), result.GetString(1));
             result.Close();
             bd.Close();
-            return lp.First();
+            return p;
         }
 
         public void editarProfesion(Profesion p)

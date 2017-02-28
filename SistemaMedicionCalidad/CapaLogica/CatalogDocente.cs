@@ -30,7 +30,7 @@ namespace Project
             bd.Close();
         }
 
-        public List<Docente> buscarDocentePA(string rut)
+        public Docente buscarDocentePA(string rut)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -41,32 +41,29 @@ namespace Project
             string sql = "select * from docente where rut_docente='" + rut + "'";
             bd.CreateCommand(sql);
             bd.createParameter("@rut", DbType.String, rut);
-            
-            List<Docente> ldocente = new List<Docente>();
+
             Profesion p = new Profesion();
             Pais pa = new Pais();
             DbDataReader result = bd.Query();
-            while (result.Read())
-            {
+            result.Read();
 
-                Docente d = new Docente();
-                d.Profesion_docente = p;
-                d.Pais_docente = pa;
-                d.Rut_docente = result.GetString(0);
-                d.Profesion_docente.Id_profesion = result.GetInt32(1);
-                d.Pais_docente.Id_pais = result.GetInt32(2);
-                d.Nombre_docente = result.GetString(3);
-                d.Fecha_nacimiento_docente = result.GetDateTime(4);
-                d.Direccion_docente= result.GetString(5);
-                d.Telefono_docente = result.GetInt32(6);
-                d.Sexo_docente = result.GetBoolean(7);
-                d.Correo_docente = result.GetString(8);
-                d.Disponibilidad_docente= result.GetBoolean(9);
-                ldocente.Add(d);
-            }
+            Docente d = new Docente();
+            d.Profesion_docente = p;
+            d.Pais_docente = pa;
+            d.Rut_docente = result.GetString(0);
+            d.Profesion_docente.Id_profesion = result.GetInt32(1);
+            d.Pais_docente.Id_pais = result.GetInt32(2);
+            d.Nombre_docente = result.GetString(3);
+            d.Fecha_nacimiento_docente = result.GetDateTime(4);
+            d.Direccion_docente = result.GetString(5);
+            d.Telefono_docente = result.GetInt32(6);
+            d.Sexo_docente = result.GetBoolean(7);
+            d.Correo_docente = result.GetString(8);
+            d.Disponibilidad_docente = result.GetBoolean(9);
+
             result.Close();
             bd.Close();
-            return ldocente;
+            return d;
         }
 
         public List<Docente> mostrarDocentesPA()

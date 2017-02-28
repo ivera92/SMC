@@ -79,23 +79,20 @@ namespace Project
             string sql = "select * from pregunta where id_pregunta='" + id_pregunta + "'";
             bd.CreateCommand(sql);
 
-            List<Pregunta> lp = new List<Pregunta>();
             DbDataReader result = bd.Query();
-            while(result.Read())
-            {
-                Pregunta p = new Pregunta();
-                Competencia c = new Competencia();
-                Tipo_Pregunta tp = new Tipo_Pregunta();
-                p.Competencia_pregunta = c;
-                p.Tipo_pregunta_pregunta = tp;
+            result.Read();
+            Pregunta p = new Pregunta();
+            Competencia c = new Competencia();
+            Tipo_Pregunta tp = new Tipo_Pregunta();
+            p.Competencia_pregunta = c;
+            p.Tipo_pregunta_pregunta = tp;
 
-                p.Id_pregunta = result.GetInt32(0);
-                p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
-                p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
-                p.Nombre_pregunta = result.GetString(3);
-                lp.Add(p);
-            }
-            return lp.First();
+            p.Id_pregunta = result.GetInt32(0);
+            p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
+            p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
+            p.Nombre_pregunta = result.GetString(3);
+
+            return p;
         }
 
         public List<Pregunta> mostrarPreguntas()

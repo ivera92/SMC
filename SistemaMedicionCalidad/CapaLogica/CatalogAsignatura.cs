@@ -65,27 +65,24 @@ namespace Project
 
             string sql = "select * from asignatura where id_asignatura='" + id_asignatura + "'";
             bd.CreateCommand(sql);
-            List<Asignatura> la = new List<Asignatura>();
             DbDataReader result = bd.Query();
-            while (result.Read())
-            {
-                Asignatura a = new Asignatura();
-                Escuela es = new Escuela();
-                Docente d = new Docente();
-                a.Escuela_asignatura = es;
-                a.Docente_asignatura = d;
+            result.Read();
 
-                a.Id_asignatura = result.GetInt32(0);
-                a.Escuela_asignatura.Id_escuela = result.GetInt32(1);
-                a.Docente_asignatura.Rut_docente = result.GetString(2);
-                a.Nombre_asignatura = result.GetString(3);
-                a.Ano_asignatura = result.GetInt32(4);
-                a.Duracion_asignatura = result.GetBoolean(5);
-                la.Add(a);
-            }
+            Asignatura a = new Asignatura();
+            Escuela es = new Escuela();
+            Docente d = new Docente();
+            a.Escuela_asignatura = es;
+            a.Docente_asignatura = d;
+
+            a.Id_asignatura = result.GetInt32(0);
+            a.Escuela_asignatura.Id_escuela = result.GetInt32(1);
+            a.Docente_asignatura.Rut_docente = result.GetString(2);
+            a.Nombre_asignatura = result.GetString(3);
+            a.Ano_asignatura = result.GetInt32(4);
+            a.Duracion_asignatura = result.GetBoolean(5);
             result.Close();
             bd.Close();
-            return la.First();
+            return a;
         }
 
         public List<Asignatura> mostrarAsignaturas()
@@ -109,7 +106,7 @@ namespace Project
                 a.Escuela_asignatura = es;
                 a.Docente_asignatura = d;
                 es = ce.buscarUnaEscuela(result.GetInt32(1));
-                d = cd.buscarDocentePA(result.GetString(2)).First();
+                d = cd.buscarDocentePA(result.GetString(2));
                 
                 a.Id_asignatura = result.GetInt32(0);
                 a.Escuela_asignatura.Nombre_escuela = es.Nombre_escuela;

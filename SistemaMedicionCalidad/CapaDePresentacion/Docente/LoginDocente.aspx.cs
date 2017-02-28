@@ -20,10 +20,9 @@ namespace CapaDePresentacion
         {
             if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, 2))
             {
+                Session["rutDocente"] = rut.Text;
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
                 Response.Redirect("~/Docente/InicioDocente.aspx");
-
-                //Response.Write("Bienvenido");
             }
             else
                 Response.Write("<script>window.alert('Error al Ingresar los datos');</script>");

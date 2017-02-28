@@ -55,16 +55,12 @@ namespace Project.CapaDeNegocios
 
             string sqlSearch = "select * from escuela where id_escuela='" + id_escuela + "'";
             bd.CreateCommand(sqlSearch);
-            List<Escuela> lescuela = new List<Escuela>();
             DbDataReader result = bd.Query();//disponible resultado
-            while (result.Read())
-            {
-                Escuela es = new Escuela(result.GetInt32(0),result.GetString(1));
-                lescuela.Add(es);
-            }
+            result.Read();
+            Escuela es = new Escuela(result.GetInt32(0), result.GetString(1));
             result.Close();
             bd.Close();
-            return lescuela.First();
+            return es;
         }
 
         public void eliminarEscuelaPA(int id_escuela)

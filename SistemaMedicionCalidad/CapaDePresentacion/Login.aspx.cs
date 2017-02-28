@@ -16,7 +16,7 @@ namespace CapaDePresentacion
 
         protected void btnAlumno_Click(object sender, EventArgs e)
         {
-            Response.Redirect("LoginAlumno.aspx");
+            Response.Redirect("~/Alum/LoginAlumno.aspx");
         }
 
         protected void btnDocente_Click(object sender, EventArgs e)

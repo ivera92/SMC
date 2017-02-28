@@ -13,16 +13,14 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, 3))
             {
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
-                Response.Redirect("AdministrarAsignaturas.aspx");
-
-                //Response.Write("Bienvenido");
+                Response.Redirect("CambiarClave.aspx?Rut=" + this.rut.Text);
             }
             else
                 Response.Write("<script>window.alert('Error al Ingresar los datos');</script>");

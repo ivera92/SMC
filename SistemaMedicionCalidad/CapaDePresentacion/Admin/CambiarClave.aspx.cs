@@ -11,7 +11,12 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string rut = Request.QueryString["Rut"];
+            lblRut.InnerText = rut;
+        }
 
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
         }
     }
 }

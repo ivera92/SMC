@@ -26,5 +26,21 @@ namespace Project
 
             return lpais;
         }
+
+        public Pais buscarUnPais(int id_pais)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "select nombre_pais from pais where id_pais='" + id_pais + "'";
+            bd.CreateCommand(sqlSearch);
+            DbDataReader result = bd.Query();//disponible resultado
+            result.Read();
+            Pais p = new Pais(result.GetString(0));
+
+            result.Close();
+            bd.Close();
+            return p;
+        }
     }
 }

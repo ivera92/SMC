@@ -16,10 +16,9 @@ namespace CapaDePresentacion
         {
             if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, 1))
             {
+                Session["rutAlumno"] = rut.Text;
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
-                Response.Redirect("CambiarClave.aspx");
-                
-                //Response.Write("Bienvenido");
+                Response.Redirect("Principal.aspx");
             }
             else
                 Response.Write("<script>window.alert('Error al Ingresar los datos');</script>");

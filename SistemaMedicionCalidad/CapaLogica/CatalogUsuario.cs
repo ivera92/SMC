@@ -28,5 +28,27 @@ namespace Project
         else
             return true;
         }
+        public int cambiarClave(string rut, string clave, string claveNueva)
+        {
+            int filasAfectadas = 0;
+            //consulta a la base de datos
+            string sql = "editarClaveUsuario";
+
+            //cadena conexion
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_usuario", DbType.String, rut);
+            bd.createParameter("@contrasena_actual", DbType.String, clave);
+            bd.createParameter("@contrasena_nueva", DbType.String, claveNueva);
+            DbDataReader result = bd.Query();//disponible resultado
+            
+            result.Read();
+            filasAfectadas = result.GetInt32(0);
+            result.Close();
+            bd.Close();
+            return filasAfectadas;
+        }
     }
 }
