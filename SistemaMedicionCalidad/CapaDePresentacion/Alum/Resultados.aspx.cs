@@ -25,14 +25,16 @@ namespace CapaDePresentacion.Alum
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
         }
-        /*public void graficar()
+        public void graficar()
         {
             string rut = Session["rutAlumno"].ToString();
             string[] series = { "Correctas", "Incorrectas" };
             CatalogHPA chpa = new CatalogHPA();
 
+            
             int[] arrResultados = chpa.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
-
+            List<string> ls = series.ToList();
+            List<Int32> li = arrResultados.ToList();
             this.Chart1.Series.Clear();
 
             // Set palette
@@ -42,12 +44,13 @@ namespace CapaDePresentacion.Alum
             this.Chart1.Titles.Add(ddCompetencia.Text);
 
             // Add series.
-            for (int i = 0; i < series.Length; i++)
+            /*for (int i = 0; i < series.Length; i++)
             {
                 Series Serie2 = this.Chart1.Series.Add(series[i]);
                 Serie2.Points.Add(arrResultados[i]);
-            }
-        }*/
+            }*/
+            Chart1.Series[0].Points.DataBindXY(ls, li);
+        }
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {

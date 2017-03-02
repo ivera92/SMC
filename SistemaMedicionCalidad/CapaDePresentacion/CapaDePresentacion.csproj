@@ -86,6 +86,7 @@
     <Content Include="Alum\CambiarClave.aspx" />
     <Content Include="Alum\Principal.aspx" />
     <Content Include="Alum\Resultados.aspx" />
+    <Content Include="CheqLogin.aspx" />
     <Content Include="Docente\AdministrarAlumnos.aspx" />
     <Content Include="Admin\AdministrarAsignaturas.aspx" />
     <Content Include="Admin\AdministrarCompetencias.aspx" />
@@ -95,10 +96,10 @@
     <Content Include="Admin\AdministrarProfesiones.aspx" />
     <Content Include="Docente\AdministrarRespuestas.aspx" />
     <Content Include="Admin\CambiarClave.aspx" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Docente\Content\bootstrap-theme.css" />
+    <Content Include="Docente\Content\bootstrap-theme.min.css" />
+    <Content Include="Docente\Content\bootstrap.css" />
+    <Content Include="Docente\Content\bootstrap.min.css" />
     <Content Include="Docente\CrearAlumno.aspx" />
     <Content Include="Admin\CrearAsignatura.aspx" />
     <Content Include="Admin\CrearCompetencia.aspx" />
@@ -108,7 +109,6 @@
     <Content Include="Admin\CrearProfesion.aspx" />
     <Content Include="Docente\CrearEvaluacion.aspx" />
     <Content Include="Docente\EvaluacionAlumno.aspx" />
-    <Content Include="Login.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="imagenes\alumno.jpg" />
     <Content Include="imagenes\escuela.jpg" />
@@ -120,18 +120,16 @@
     <Content Include="imagenes\profesion.jpg" />
     <Content Include="imagenes\profesor.jpg" />
     <Content Include="Docente\InicioDocente.aspx" />
-    <Content Include="Admin\LoginAdministrador.aspx" />
-    <Content Include="Alum\LoginAlumno.aspx" />
     <Content Include="Docente\LoginDocente.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Docente\Content\bootstrap.min.css.map" />
+    <Content Include="Docente\Content\bootstrap.css.map" />
+    <Content Include="Docente\Content\bootstrap-theme.min.css.map" />
+    <Content Include="Docente\Content\bootstrap-theme.css.map" />
     <Content Include="Alum\SiteAlumno.Master" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -224,6 +222,13 @@
     </Compile>
     <Compile Include="Alum\SiteAlumno.Master.designer.cs">
       <DependentUpon>SiteAlumno.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CheqLogin.aspx.cs">
+      <DependentUpon>CheqLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheqLogin.aspx.designer.cs">
+      <DependentUpon>CheqLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Docente\AdministrarAlumnos.aspx.cs">
       <DependentUpon>AdministrarAlumnos.aspx</DependentUpon>
@@ -358,13 +363,6 @@
     <Compile Include="Docente\EvaluacionAlumno.aspx.designer.cs">
       <DependentUpon>EvaluacionAlumno.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -374,20 +372,6 @@
     </Compile>
     <Compile Include="Docente\InicioDocente.aspx.designer.cs">
       <DependentUpon>InicioDocente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\LoginAdministrador.aspx.cs">
-      <DependentUpon>LoginAdministrador.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\LoginAdministrador.aspx.designer.cs">
-      <DependentUpon>LoginAdministrador.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Alum\LoginAlumno.aspx.cs">
-      <DependentUpon>LoginAlumno.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Alum\LoginAlumno.aspx.designer.cs">
-      <DependentUpon>LoginAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Docente\LoginDocente.aspx.cs">
       <DependentUpon>LoginDocente.aspx</DependentUpon>

@@ -12,13 +12,42 @@ namespace CapaDePresentacion.Alum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string alumno, docente, admin;
+            try
+            {
+                admin = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                admin = "";
+            }
+            try
+            {
+                alumno = Session["rutAlumno"].ToString();
+            }
+            catch
+            {
+                alumno = "";
+            }
+            try
+            {
+                docente = Session["rutDocente"].ToString();
+            }
+            catch
+            {
+                docente = "";
+            }
+            
+            if(admin!="" || docente!="")
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
         }
 
         protected void btnSalir_Click(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../CheqLogin.aspx");
         }
     }
 }

@@ -10,7 +10,7 @@
 namespace CapaDePresentacion {
     
     
-    public partial class LoginAlumno {
+    public partial class CheqLogin {
         
         /// <summary>
         /// form1 control.
@@ -47,6 +47,15 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtclave;
+        
+        /// <summary>
+        /// ddTipoUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddTipoUsuario;
         
         /// <summary>
         /// btnIngresar control.

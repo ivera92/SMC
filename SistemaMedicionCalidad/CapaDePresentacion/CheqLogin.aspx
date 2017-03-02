@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="LoginAlumno.aspx.cs" Inherits="CapaDePresentacion.LoginAlumno" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CheqLogin.aspx.cs" Inherits="CapaDePresentacion.CheqLogin" %>
 
 <html>
 <head runat="server">
@@ -39,7 +37,7 @@
     <div class="container">
 
         <br />
-        <h2 class="text-center">Iniciar sesión Alumno</h2>
+        <h2 class="text-center">Iniciar sesión</h2>
         <br />
 
         <div class="text-center">
@@ -67,11 +65,23 @@
         </div>
         <br />
 
+        <div class="text-center">
+            <label>Tipo de usuario</label>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4"><asp:DropDownList ID="ddTipoUsuario" runat="server" class="form-control"></asp:DropDownList></div>
+        </div>
+        <br />
+
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4"><asp:Button ID="btnIngresar" runat="server" class="btn btn-primary btn-block" onclick="btnIngresar_Click" Text="Ingresar" /></></div>
         </div>
         <br />
+
+        
+
         </div>
     </form>
 </body>
 </html>
+

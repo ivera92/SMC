@@ -24,7 +24,7 @@
         <img src="../imagenes/logo.jpg" align="left" class="img-responsive" alt="" />
         <img src="../imagenes/imagen2.jpg" class="center-block img-responsive" alt="Responsive image"/>
           <nav class="navbar navbar-default">
-          <div class="navbar-collapse collapse">
+          <div class="navbar-collapse collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
                 
                 <li class="dropdown">
@@ -54,8 +54,7 @@
             </ul>
 
             <ul class="navbar-right">
-                <li><asp:Button ID="btnSalir" class="btn" runat="server" onclick="btnSalir_Click" 
-                Text="Salir" /></li>
+                <li><asp:Button ID="btnSalir" class="btn" runat="server" onclick="btnSalir_Click" Text="Salir" /></li>
             </ul>
           </div><!--/.nav-collapse -->
           </nav>

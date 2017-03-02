@@ -11,7 +11,16 @@
     </div>
     <div class="row">
         <div class="col-sm-offset-1 col-sm-6">
-            <asp:Panel ID="Panel1" runat="server"></asp:Panel>
+            <asp:Panel ID="Panel1" runat="server">
+                <asp:Chart ID="Chart1" runat="server">
+                    <Series>
+                        <asp:Series Name="Series1" ChartType="Pie"></asp:Series>
+                    </Series>
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+                    </ChartAreas>
+                </asp:Chart>
+            </asp:Panel>
          </div>
         <div class="col-sm-offset-1 col-sm-2">
             <asp:Button id="btnGraficar" runat="server" Text="Graficar" CssClass="btn btn-block btn-primary" OnClick="btnGraficar_Click"/>
