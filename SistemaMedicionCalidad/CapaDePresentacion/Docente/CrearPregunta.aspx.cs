@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
@@ -20,6 +22,9 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.VoF.Visible = false;
+                this.AltOCas.Visible = false;
+                this.btnCrear.Visible = false;
                 arrTextBoxs = new TextBox[1000];
                 arrCheckBox = new CheckBox[1000];
                 contadorControles = 0;
@@ -36,7 +41,7 @@ namespace CapaDePresentacion
             }
             try
             {
-                for(int i=0 ; i < contadorControles ; i++)
+                for (int i = 0; i < contadorControles; i++)
                 {
                     agregarControles(arrTextBoxs[i], arrCheckBox[i]);
                 }
@@ -60,29 +65,49 @@ namespace CapaDePresentacion
 
             p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
             p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
-            p.Nombre_pregunta = this.txtPregunta.Text;
+            p.Nombre_pregunta = this.txtAPregunta.InnerText;
             cp.agregarPregunta(p);
             int id = cp.ultimaPregunta();
             Pregunta pp = new Pregunta();
-
-            Respuesta r = new Respuesta();
-            r.Pregunta_respuesta = pp;
-
-            r.Pregunta_respuesta.Id_pregunta = id;
-            r.Nombre_respuesta = txtRespuesta.Text;
-            r.Correcta_respuesta = cbCorrecta.Checked;
-            cr.agregarRespuesta(r);
-
-            while (arrTextBoxs[i] != null)
+            if (int.Parse(ddCompetencia.SelectedValue) == 3)
             {
-                Respuesta rr = new Respuesta();
-                rr.Pregunta_respuesta = pp;
+                Respuesta rV = new Respuesta();
+                rV.Pregunta_respuesta = pp;
 
-                rr.Pregunta_respuesta.Id_pregunta = id;
-                rr.Nombre_respuesta = arrTextBoxs[i].Text;
-                rr.Correcta_respuesta = arrCheckBox[i].Checked;
-                cr.agregarRespuesta(rr);
-                i++;
+                rV.Pregunta_respuesta.Id_pregunta = id;
+                rV.Nombre_respuesta = lblV.InnerText;
+                rV.Correcta_respuesta = cbV.Checked;
+                cr.agregarRespuesta(rV);
+
+                Respuesta rF = new Respuesta();
+                rF.Pregunta_respuesta = pp;
+
+                rF.Pregunta_respuesta.Id_pregunta = id;
+                rF.Nombre_respuesta = lblV.InnerText;
+                rF.Correcta_respuesta = cbV.Checked;
+                cr.agregarRespuesta(rV);
+            }
+            else
+            {
+                Respuesta r = new Respuesta();
+                r.Pregunta_respuesta = pp;
+
+                r.Pregunta_respuesta.Id_pregunta = id;
+                r.Nombre_respuesta = txtRespuesta.Text;
+                r.Correcta_respuesta = cbCorrecta.Checked;
+                cr.agregarRespuesta(r);
+
+                while (arrTextBoxs[i] != null)
+                {
+                    Respuesta rr = new Respuesta();
+                    rr.Pregunta_respuesta = pp;
+
+                    rr.Pregunta_respuesta.Id_pregunta = id;
+                    rr.Nombre_respuesta = arrTextBoxs[i].Text;
+                    rr.Correcta_respuesta = arrCheckBox[i].Checked;
+                    cr.agregarRespuesta(rr);
+                    i++;
+                }
             }
             Response.Write("<script>window.alert('Pregunta creada satisfactoriamente');</script>");
         }
@@ -91,7 +116,7 @@ namespace CapaDePresentacion
             Panel p1 = new Panel();
             Panel p2 = new Panel();
             Panel p3 = new Panel();
-            p3.CssClass = "row";            
+            p3.CssClass = "row";
             p1.CssClass = "col-sm-6";
             p2.CssClass = "col-sm-1";
             p1.Controls.Add(txt);
@@ -118,6 +143,83 @@ namespace CapaDePresentacion
         protected void btnMas_Click(object sender, EventArgs e)
         {
             this.crearRespuestas();
+        }
+
+        protected void btnImagen_Click(object sender, EventArgs e)
+        {
+            /**FileInfo file = new FileInfo(file1);
+            Response.AddHeader("Content-Disposition", "attachment;filename=\"" + "Filename" + ".ext" + "\"");
+            Response.AddHeader("Content-Length", file.Length.ToString());
+            Response.ContentType = file.Extension.ToLower();
+            Response.WriteFile(file.FullName);
+            Response.End();**/
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+        }
+
+        protected void ddTipoPregunta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(int.Parse(ddTipoPregunta.SelectedValue) == 1 || int.Parse(ddTipoPregunta.SelectedValue) == 2)
+            {
+                this.btnCrear.Visible = true;
+                this.VoF.Visible = false;
+                this.AltOCas.Visible = true;
+            }
+            else if (int.Parse(ddTipoPregunta.SelectedValue) == 3)
+            {
+                this.btnCrear.Visible = true;
+                this.AltOCas.Visible = false;
+                this.VoF.Visible = true;
+            }
+        }
+
+        public void GuardarArchivo(HttpPostedFile file)
+        {
+            // Se carga la ruta física de la carpeta temp del sitio
+            string ruta = Server.MapPath("~/temp");
+
+            // Si el directorio no existe, crearlo
+            if (!Directory.Exists(ruta))
+                Directory.CreateDirectory(ruta);
+
+            string archivo = String.Format("{0}\\{1}", ruta, file.FileName);
+
+            // Verificar que el archivo no exista
+            if (File.Exists(archivo))
+                MensajeError(String.Format(
+                  "Ya existe una imagen con nombre\"{0}\".", file.FileName));
+            else
+            {
+                file.SaveAs(archivo);
+            }
+        }        
+        protected void cargarImagenes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FileUpload1.HasFile)
+                {
+                    // Se verifica que la extensión sea de un formato válido
+                    string ext = FileUpload1.PostedFile.FileName;
+                    ext = ext.Substring(ext.LastIndexOf(".") + 1).ToLower();
+                    string[] formatos =
+                      new string[] { "jpg", "jpeg", "bmp", "png", "gif" };
+                    if (Array.IndexOf(formatos, ext) < 0)
+                        MensajeError("Formato de imagen inválido.");
+                    else if (disco.Checked)
+                        GuardarArchivo(FileUpload1.PostedFile);
+                    else
+                        GuardarBD(FileUpload1.PostedFile);
+                }
+                else
+                    MensajeError("Seleccione un archivo del disco duro.");
+            }
+            catch (Exception ex)
+            {
+                MensajeError(ex.Message);
+            }
         }
     }
 }

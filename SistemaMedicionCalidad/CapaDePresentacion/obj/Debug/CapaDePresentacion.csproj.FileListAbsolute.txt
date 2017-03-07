@@ -19,7 +19,6 @@ C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\D
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDePresentacion.dll.config
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\itextsharp.dll
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\itextsharp.xml
-C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\itextsharp.xmlworker.dll
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\Spire.License.dll
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\Spire.Pdf.dll
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\Microsoft.mshtml.dll

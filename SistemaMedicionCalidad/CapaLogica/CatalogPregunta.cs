@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
+using System.Web;
 using Project.CapaDeDatos;
 
 namespace Project
@@ -121,6 +122,36 @@ namespace Project
             result.Close();
             bd.Close();
             return lp;
+        }
+        private static void GuardarBD(HttpPostedFile file)
+        {
+            // Nombre de la imagen
+            string nombre = file.FileName.Substring(
+              0, file.FileName.LastIndexOf("."));
+            // Extensión del archivo
+            string ext = nombre.Substring(nombre.LastIndexOf(".") + 1);
+            // Tipo de contenido
+            string contentType = file.ContentType;
+            // Imagen convertida a arreglo de bytes
+            byte[] imagen = new byte[file.InputStream.Length];
+            file.InputStream.Read(imagen, 0, imagen.Length);
+
+            // Se insertan los valores en la base de datos
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+            try
+            {
+                bd.connect();
+                string sql = "insPregunta";
+                bd.CreateCommandSP(sql);
+                bd.createParameter("@id_competencia_pregunta", DbType.Int32, p.Competencia_pregunta.Id_competencia);
+                bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Tipo_pregunta_pregunta.Id_tipo_pregunta);
+                bd.createParameter("@nombre_pregunta", DbType.String, p.Nombre_pregunta);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

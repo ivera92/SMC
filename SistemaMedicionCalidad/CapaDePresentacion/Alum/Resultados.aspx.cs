@@ -13,11 +13,23 @@ namespace CapaDePresentacion.Alum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CatalogAsignatura ca = new CatalogAsignatura();
+            List<Asignatura> la = ca.mostrarAsignaturas();
+            CatalogEvaluacion ce = new CatalogEvaluacion();
+            List<Evaluacion> le = ce.mostrarEvaluaciones();
             CatalogCompetencia cc = new CatalogCompetencia();
             List<Competencia> lc = cc.mostrarCompetencias();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.ddAsignatura.DataTextField = "Nombre_asignatura";
+                this.ddAsignatura.DataValueField = "Id_asignatura";
+                this.ddAsignatura.DataSource = la;
+
+                this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
+                this.ddEvaluacion.DataValueField = "Id_evaluacion";
+                this.ddEvaluacion.DataSource = le;
+
                 this.ddCompetencia.DataTextField = "Nombre_competencia";
                 this.ddCompetencia.DataValueField = "Id_competencia";
                 this.ddCompetencia.DataSource = lc;

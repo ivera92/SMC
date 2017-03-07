@@ -4,7 +4,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h2 class="text-center">Resultados</h2>
+    <br />
+
     <div class="row">
+        <div class="col-sm-4">
+            <asp:DropDownList CssClass="form-control" ID="ddAsignatura" runat="server" AppendDataBoundItems="true">
+                <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
+            </asp:DropDownList>
+        </div>
+        <div class="col-sm-4">
+            <asp:DropDownList CssClass="form-control" ID="ddEvaluacion" runat="server"></asp:DropDownList>
+        </div>
         <div class="col-sm-4">
             <asp:DropDownList CssClass="form-control" ID="ddCompetencia" runat="server"></asp:DropDownList>
         </div>

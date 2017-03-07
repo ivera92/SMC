@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using Project.CapaDeDatos;
@@ -23,6 +24,29 @@ namespace Project
             bd.createParameter("@fecha_evaluacion", DbType.Date, e.Fecha_evaluacion);
             bd.execute();
             bd.Close();
+        }
+
+        public List<Evaluacion> mostrarEvaluaciones()
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarEvaluaciones";
+
+            bd.CreateCommandSP(sql);
+            List<Evaluacion> le = new List<Evaluacion>();
+            DbDataReader result = bd.Query();
+            CatalogEvaluacion ce = new CatalogEvaluacion();
+
+            while (result.Read())
+            {
+                Evaluacion e = new Evaluacion(result.GetInt32(0), result.GetString(1));
+                le.Add(e);
+            }
+            result.Close();
+            bd.Close();
+
+            return le;
         }
     }
 }

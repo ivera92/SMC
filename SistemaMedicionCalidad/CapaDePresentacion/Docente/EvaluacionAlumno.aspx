@@ -30,7 +30,7 @@
     <label>Rut Alumno</label>
     <div class="row">
         <div class="col-sm-3">
-            <asp:TextBox ID="txtRut" runat="server" class="form-control" required></asp:TextBox>
+            <asp:TextBox ID="txtRut" runat="server" class="form-control"></asp:TextBox>
             <asp:CustomValidator id="cv_rut" runat="server" ControlToValidate="txtRut" Display="Dynamic" ErrorMessage="El rut no es valido" ClientValidationFunction="validar_rut" />
         </div>
         <div class="col-sm-2">
