@@ -16,8 +16,9 @@
 
     <div class="row">
         <div class="col-sm-offset-4">
-            <asp:FileUpload ID="FileUpload1" runat="server" onchange="showimagepreview(this)" />
-            <asp:Button id="btnBuscar" runat="server" Text="..." OnClick="btnBuscar_Click"/>
+            <asp:FileUpload enabled="true" id="fileImagen" runat="server"></asp:FileUpload>
+            <asp:Button id="btnGuardarFile" runat="server" text="Cargar Imagen" OnClick="btnGuardarFile_Click"></asp:Button>
+            <asp:label id="lblMensaje" runat="server" text="ejemplo carga de imagenes"></asp:label>
             <br />
         </div>
     </div>

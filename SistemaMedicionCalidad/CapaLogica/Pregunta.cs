@@ -11,15 +11,17 @@ namespace Project
         Competencia competencia_pregunta;
         Tipo_Pregunta tipo_pregunta_pregunta;
         string nombre_pregunta;
+        string imagen_pregunta;
 
         public Pregunta()
         {
         }
-        public Pregunta(Competencia competencia_pregunta, Tipo_Pregunta tipo_pregunta_pregunta, string nombre_pregunta)
+        public Pregunta(Competencia competencia_pregunta, Tipo_Pregunta tipo_pregunta_pregunta, string nombre_pregunta, string imagen_pregunta)
         {
             this.competencia_pregunta = competencia_pregunta;
             this.tipo_pregunta_pregunta = tipo_pregunta_pregunta;
             this.nombre_pregunta = nombre_pregunta;
+            this.imagen_pregunta = imagen_pregunta;
         }
 
         public Pregunta(int id_pregunta, Competencia competencia_pregunta, Tipo_Pregunta tipo_pregunta_pregunta, string nombre_pregunta)
@@ -52,6 +54,12 @@ namespace Project
         {
             get { return nombre_pregunta; }
             set { nombre_pregunta = value; }
+        }
+
+        public string Imagen_pregunta
+        {
+            get { return imagen_pregunta; }
+            set { imagen_pregunta = value; }
         }
     }
 }
