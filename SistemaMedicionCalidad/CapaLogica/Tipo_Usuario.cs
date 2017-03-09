@@ -1,10 +1,9 @@
-﻿
-namespace Project
+﻿namespace Project
 {
     public class Tipo_Usuario
     {
-        int id_tipo_usuario;
-        string nombre_tipo_usuario;
+        private int id_tipo_usuario;
+        private string nombre_tipo_usuario;
 
         public Tipo_Usuario(int id_tipo_usuario, string nombre_tipo_usuario)
         {

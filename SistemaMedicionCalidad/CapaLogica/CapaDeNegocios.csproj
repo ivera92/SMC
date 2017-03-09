@@ -64,6 +64,7 @@
     <Compile Include="Evaluacion.cs" />
     <Compile Include="HistoricoPruebaAlumno.cs" />
     <Compile Include="Pais.cs" />
+    <Compile Include="Persona.cs" />
     <Compile Include="Pregunta.cs" />
     <Compile Include="Profesion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

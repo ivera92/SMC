@@ -14,7 +14,7 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogTipoUsuario ctu = new CatalogTipoUsuario();
-            List<Tipo_Usuario> ltp = ctu.mostrarTiposU();
+            List<Tipo_Usuario> ltp = ctu.listarTiposUsuario();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddTipoUsuario.DataTextField = "Nombre_tipo_usuario";

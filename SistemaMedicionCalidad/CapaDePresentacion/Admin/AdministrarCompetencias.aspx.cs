@@ -25,7 +25,7 @@ namespace CapaDePresentacion
             this.gvCompetencias.Visible = true;
             CatalogCompetencia ccompentecia = new CatalogCompetencia();
             List<Competencia> lcompetencias = new List<Competencia>();
-            lcompetencias =ccompentecia.mostrarCompetencias();
+            lcompetencias =ccompentecia.listarCompetencias();
             this.gvCompetencias.DataSource = lcompetencias;
             this.DataBind();
         }
@@ -51,7 +51,7 @@ namespace CapaDePresentacion
             this.divMostrar.Visible = false;
             string idCompetencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.NewEditIndex].Cells[3].Text);
             CatalogCompetencia cc = new CatalogCompetencia();
-            Competencia c = cc.buscarID(int.Parse(idCompetencia));
+            Competencia c = cc.buscarUnaCompetencia(int.Parse(idCompetencia));
             this.txtCompetencia.Text = c.Id_competencia + "";
             this.txtNombreCompetencia.Text = c.Nombre_competencia;
             this.descripcion.InnerText = c.Descripcion_competencia;
@@ -81,7 +81,7 @@ namespace CapaDePresentacion
             Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, tipo, this.descripcion.InnerText);
             try
             {
-                cc.editarCompetencia(c);
+                cc.actualizarCompetencia(c);
                 this.editar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

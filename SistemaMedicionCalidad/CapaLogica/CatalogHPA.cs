@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Common;
 using Project.CapaDeDatos;
 
@@ -7,7 +6,8 @@ namespace Project
 {
     public class CatalogHPA
     {
-        public void agregarHPA(HistoricoPruebaAlumno hpa)
+        //Inserta un registo en la tabla Historico Prueba Alumno de la base de datos
+        public void insertarHPA(HistoricoPruebaAlumno hpa)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -19,11 +19,12 @@ namespace Project
             bd.createParameter("@id_evaluacion_hpa", DbType.Int32, hpa.Evaluacion_hpa.Id_evaluacion);
             bd.createParameter("@id_respuesta_hpa", DbType.Int32, hpa.Respuesta_hpa.Id_respuesta);
             bd.createParameter("@id_pregunta_hpa", DbType.Int32, hpa.Pregunta_hpa.Id_pregunta);
-            bd.createParameter("@rut_alumno_hpa", DbType.String, hpa.Alumno_hpa.Rut_alumno);
+            bd.createParameter("@rut_alumno_hpa", DbType.String, hpa.Alumno_hpa.Rut_persona);
             bd.execute();
             bd.Close();
         }
 
+        //Devuelve el ID de la pregunta respondida
         public int buscarIDPregunta(string respuesta)
         {
             DataBase bd = new DataBase();
@@ -40,6 +41,7 @@ namespace Project
             return id;
         }
 
+        //Devuelve el ID de la respuesta
         public int buscarIDRespuesta(string respuesta)
         {
             DataBase bd = new DataBase();
@@ -55,6 +57,8 @@ namespace Project
             return id;
         }
 
+        //Devuelve un arreglo de tamaño 2 con la cantidad de respuestas correctas e incorrectas de cierta competencia 
+        //y de determinado alumno
         public int[] resultadoPreguntas(string rut, int id_competencia)
         {
             int[] arrResultados = new int[2];

@@ -6,7 +6,8 @@ namespace Project
 {
     public class CatalogTipoUsuario
     {
-        public List<Tipo_Usuario> mostrarTiposU()
+        //Lista los tipos de usuario existentes en la base de datos
+        public List<Tipo_Usuario> listarTiposUsuario()
         {
             DataBase db = new DataBase();
             db.connect();
@@ -15,14 +16,14 @@ namespace Project
             db.CreateCommand(sql);
 
             DbDataReader result = db.Query();
-            List<Tipo_Usuario> ltp = new List<Tipo_Usuario>();
+            List<Tipo_Usuario> lTiposUsuario = new List<Tipo_Usuario>();
             while(result.Read())
             {
                 Tipo_Usuario tp = new Tipo_Usuario(result.GetInt32(0), result.GetString(1));
-                ltp.Add(tp);
+                lTiposUsuario.Add(tp);
                 
             }
-            return ltp;
+            return lTiposUsuario;
         }
     }
 }

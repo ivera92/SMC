@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Data.Common;
 using System.Data;
 using Project.CapaDeDatos;
@@ -10,11 +7,12 @@ namespace Project.CapaDeNegocios
 {
     public class CatalogProfesion
     {
-        public List<Profesion> mostrarProfesiones()
+        //Lista las profesiones existentes en la base de datos
+        public List<Profesion> listarProfesiones()
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
-            List<Profesion> profesiones = new List<Profesion>();
+            List<Profesion> lProfesiones = new List<Profesion>();
             string sql = "select * from Profesion"; //comando sql
             bd.CreateCommand(sql);
 
@@ -23,15 +21,16 @@ namespace Project.CapaDeNegocios
             while (result.Read())
             {
                 Profesion p = new Profesion(result.GetInt32(0), result.GetString(1));
-                profesiones.Add(p);
+                lProfesiones.Add(p);
             }
             result.Close();
             bd.Close();
 
-            return profesiones;
+            return lProfesiones;
         }
 
-        public void agregarProfesionPA(Profesion p)
+        //Inserta una profesion en la base de datos
+        public void insertarProfesion(Profesion p)
         {
             DataBase bd= new DataBase();
             bd.connect();
@@ -44,7 +43,8 @@ namespace Project.CapaDeNegocios
             bd.Close();
         }
 
-        public void eliminarProfesionPA(int id_profesion)
+        //Elimina una profesion existente en la base de datos acorde a su ID
+        public void eliminarProfesion(int id_profesion)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -56,6 +56,7 @@ namespace Project.CapaDeNegocios
             bd.execute();
             bd.Close();
         }
+        //Devuelve una profesion acorde a su ID existente en la base de datos
         public Profesion buscarUnaProfesion(int id_profesion)
         {
             DataBase bd = new DataBase();
@@ -71,7 +72,8 @@ namespace Project.CapaDeNegocios
             return p;
         }
 
-        public void editarProfesion(Profesion p)
+        //Actualiza una profesion existente en la base de datos
+        public void actualizarProfesion(Profesion p)
         {
             DataBase bd = new DataBase();
             bd.connect();

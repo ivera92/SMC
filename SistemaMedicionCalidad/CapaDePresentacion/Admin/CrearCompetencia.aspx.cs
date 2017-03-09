@@ -27,7 +27,7 @@ namespace CapaDePresentacion
             Competencia c = new Competencia(this.txtNombreCompetencia.Text, tipo_competencia, this.descripcion.InnerText);
             try
             {
-                ccompetencia.agregarCompetenciaPA(c);
+                ccompetencia.insertarCompetencia(c);
                 Response.Write("<script>window.alert('Competencia creada satisfactoriamente');</script>");
             }
             catch

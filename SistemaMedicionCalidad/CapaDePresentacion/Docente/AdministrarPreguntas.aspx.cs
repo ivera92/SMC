@@ -13,9 +13,9 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogPregunta cp = new CatalogPregunta();
-            List<Tipo_Pregunta> ltp = cp.mostrarTiposPregunta();
+            List<Tipo_Pregunta> ltp = cp.listarTiposPregunta();
             CatalogCompetencia cc = new CatalogCompetencia();
-            List<Competencia> lc = cc.mostrarCompetencias();
+            List<Competencia> lc = cc.listarCompetencias();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -39,7 +39,7 @@ namespace CapaDePresentacion
             this.txtid.Visible = false;
             this.gvPreguntas.Visible = true;
             CatalogPregunta cp = new CatalogPregunta();
-            List<Pregunta> lp = cp.mostrarPreguntas(); 
+            List<Pregunta> lp = cp.listarPreguntas(); 
             this.gvPreguntas.DataSource = lp;
             this.DataBind();
         }

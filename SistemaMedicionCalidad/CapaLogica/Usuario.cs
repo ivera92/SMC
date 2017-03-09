@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Project
+﻿namespace Project
 {
     public class Usuario
     {
-        string rut_usuario;
-        Tipo_Usuario tipo_usuario_usuario;
-        string nombre_usuario;
-        string contrasena;
-        
+        private string rut_usuario;
+        private Tipo_Usuario tipo_usuario_usuario;
+        private string nombre_usuario;
+        private string contrasena;
 
         public Usuario(string rut_usuario, Tipo_Usuario tipo_usuario_usuario, string nombre_usuario, string contrasena)
         {

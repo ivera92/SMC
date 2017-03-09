@@ -14,11 +14,11 @@ namespace CapaDePresentacion.Alum
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogAsignatura ca = new CatalogAsignatura();
-            List<Asignatura> la = ca.mostrarAsignaturas();
+            List<Asignatura> la = ca.listarAsignaturas();
             CatalogEvaluacion ce = new CatalogEvaluacion();
-            List<Evaluacion> le = ce.mostrarEvaluaciones();
+            List<Evaluacion> le = ce.listarEvaluaciones();
             CatalogCompetencia cc = new CatalogCompetencia();
-            List<Competencia> lc = cc.mostrarCompetencias();
+            List<Competencia> lc = cc.listarCompetencias();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {

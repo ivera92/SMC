@@ -14,9 +14,9 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogEscuela cescuela = new CatalogEscuela();
-            List<Escuela> escuelas = cescuela.mostrarEscuelas();
+            List<Escuela> escuelas = cescuela.listarEscuelas();
             CatalogPais cpais = new CatalogPais();
-            List<Pais> lpais = cpais.mostrarPaises();
+            List<Pais> lpais = cpais.listarPaises();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -38,7 +38,7 @@ namespace CapaDePresentacion
             this.GridView1.Visible = true;
             CatalogAlumno calumno = new CatalogAlumno();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            listaAlumnos = calumno.mostrarAlumnos();
+            listaAlumnos = calumno.listarAlumnos();
             this.GridView1.DataSource = listaAlumnos;
             this.DataBind();
         }
@@ -49,7 +49,7 @@ namespace CapaDePresentacion
             CatalogAlumno calumno = new CatalogAlumno();
             try
             {
-                calumno.eliminarAlumnoPA(rut_alumno);
+                calumno.eliminarAlumno(rut_alumno);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -68,13 +68,13 @@ namespace CapaDePresentacion
             CatalogAlumno ca = new CatalogAlumno();
             Alumno a = ca.buscarAlumnoPorRut(rut_alumno);
             this.escuela.SelectedIndex = a.Escuela_alumno.Id_escuela;
-            this.nombre.Text = a.Nombre_alumno;
-            this.rut.Text = a.Rut_alumno;
-            this.fechaDeNacimiento.Text = a.Fecha_nacimiento_alumno.ToString("d");
-            this.direccion.Text = a.Direccion_alumno;
-            this.telefono.Text = a.Telefono_alumno+"";
-            this.pais.SelectedIndex = a.Pais_alumno.Id_pais;
-            this.correo.Text = a.Correo_alumno;
+            this.nombre.Text = a.Nombre_persona;
+            this.rut.Text = a.Rut_persona;
+            this.fechaDeNacimiento.Text = a.Fecha_nacimiento_persona.ToString("d");
+            this.direccion.Text = a.Direccion_persona;
+            this.telefono.Text = a.Telefono_persona+"";
+            this.pais.SelectedIndex = a.Pais_persona.Id_pais;
+            this.correo.Text = a.Correo_persona;
             this.promocion.Text = a.Promocion_alumno + "";
             if (a.Beneficio_alumno == true)
             {
@@ -82,7 +82,7 @@ namespace CapaDePresentacion
             }
             else
                 this.beneficio.SelectedIndex = 1;
-            if (a.Sexo_alumno == true)
+            if (a.Sexo_persona == true)
             {
                 this.sexo.SelectedIndex = 0;
             }
@@ -124,22 +124,22 @@ namespace CapaDePresentacion
             Escuela es = new Escuela();
             Pais p = new Pais();
             a.Escuela_alumno = es;
-            a.Pais_alumno = p;
+            a.Pais_persona = p;
 
-            a.Rut_alumno = this.rut.Text;
+            a.Rut_persona = this.rut.Text;
             a.Escuela_alumno.Id_escuela = this.escuela.SelectedIndex;
-            a.Pais_alumno.Id_pais = this.pais.SelectedIndex;
-            a.Nombre_alumno = this.nombre.Text;
-            a.Fecha_nacimiento_alumno = DateTime.Parse(this.fechaDeNacimiento.Text);
-            a.Direccion_alumno = this.direccion.Text;
-            a.Telefono_alumno = int.Parse(this.telefono.Text);
-            a.Sexo_alumno = sexo;
-            a.Correo_alumno = this.correo.Text;
+            a.Pais_persona.Id_pais = this.pais.SelectedIndex;
+            a.Nombre_persona = this.nombre.Text;
+            a.Fecha_nacimiento_persona = DateTime.Parse(this.fechaDeNacimiento.Text);
+            a.Direccion_persona = this.direccion.Text;
+            a.Telefono_persona = int.Parse(this.telefono.Text);
+            a.Sexo_persona = sexo;
+            a.Correo_persona = this.correo.Text;
             a.Promocion_alumno = int.Parse(this.promocion.Text);
             a.Beneficio_alumno = beneficio;
             try
             {
-                calumno.editarAlumnoPA(a);
+                calumno.actualizarAlumno(a);
                 this.divEditar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

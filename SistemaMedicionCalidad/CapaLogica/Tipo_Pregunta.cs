@@ -1,14 +1,14 @@
-﻿
-namespace Project
+﻿namespace Project
 {
     public class Tipo_Pregunta
     {
-        int id_tipo_pregunta;
-        string nombre_tipo_pregunta;
+        private int id_tipo_pregunta;
+        private string nombre_tipo_pregunta;
 
         public Tipo_Pregunta()
         {
         }
+
         public Tipo_Pregunta(string nombre_tipo_pregunta)
         {
             this.Nombre_tipo_pregunta = nombre_tipo_pregunta;

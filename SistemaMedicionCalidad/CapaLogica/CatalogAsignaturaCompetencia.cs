@@ -10,7 +10,7 @@ namespace Project
     public class CatalogAsignaturaCompetencia
     {
         //Asocia una Competencia con una Asignatura, ambas previamente creadas
-        public void agregarAC(Asignatura_Competencia ac)
+        public void insertarAC(Asignatura_Competencia ac)
         {
             DataBase bd = new DataBase();
             bd.connect();

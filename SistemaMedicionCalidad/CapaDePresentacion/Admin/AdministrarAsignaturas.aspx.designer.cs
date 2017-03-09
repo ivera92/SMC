@@ -13,13 +13,13 @@ namespace CapaDePresentacion {
     public partial class AdministrarAsignaturas {
         
         /// <summary>
-        /// administrar control.
+        /// divAdministrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl administrar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAdministrar;
         
         /// <summary>
         /// gvAsignatura control.
@@ -40,13 +40,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtID;
         
         /// <summary>
-        /// editar control.
+        /// divEditar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEditar;
         
         /// <summary>
         /// txtNombre control.
@@ -85,13 +85,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddDocente;
         
         /// <summary>
-        /// duracion control.
+        /// rbDuracion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList duracion;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbDuracion;
         
         /// <summary>
         /// btnGuardar control.

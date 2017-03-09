@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Project.CapaDeNegocios
+﻿namespace Project.CapaDeNegocios
 {
     public class Profesion
     {
-        int id_profesion;
-        string nombre_profesion;
+        private int id_profesion;
+        private string nombre_profesion;
 
         public Profesion()
         {

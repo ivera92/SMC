@@ -8,7 +8,8 @@ namespace Project
 {
     public class CatalogDocente
     {
-        public void agregarDocentePA(Docente d)
+        //Inserta un docente a la base de datos
+        public void insertarDocente(Docente d)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -16,21 +17,22 @@ namespace Project
             string sql = "insDocentes";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_docente", DbType.String, d.Rut_docente);
+            bd.createParameter("@rut_docente", DbType.String, d.Rut_persona);
             bd.createParameter("@id_profesion_docente", DbType.Int32, d.Profesion_docente.Id_profesion);
-            bd.createParameter("@nombre_docente", DbType.String, d.Nombre_docente);
-            bd.createParameter("@fecha_nacimiento_docente", DbType.Date, d.Fecha_nacimiento_docente);
-            bd.createParameter("@direccion_docente", DbType.String, d.Direccion_docente);
-            bd.createParameter("@telefono_docente", DbType.Int32, d.Telefono_docente);
-            bd.createParameter("@id_pais_docente", DbType.Int32, d.Pais_docente.Id_pais);
-            bd.createParameter("@sexo_docente", DbType.Boolean, d.Sexo_docente);
-            bd.createParameter("@correo_docente", DbType.String, d.Correo_docente);
+            bd.createParameter("@nombre_docente", DbType.String, d.Nombre_persona);
+            bd.createParameter("@fecha_nacimiento_docente", DbType.Date, d.Fecha_nacimiento_persona);
+            bd.createParameter("@direccion_docente", DbType.String, d.Direccion_persona);
+            bd.createParameter("@telefono_docente", DbType.Int32, d.Telefono_persona);
+            bd.createParameter("@id_pais_docente", DbType.Int32, d.Pais_persona.Id_pais);
+            bd.createParameter("@sexo_docente", DbType.Boolean, d.Sexo_persona);
+            bd.createParameter("@correo_docente", DbType.String, d.Correo_persona);
             bd.createParameter("@disponibilidad_docente", DbType.Boolean, d.Disponibilidad_docente);
             bd.execute();
             bd.Close();
         }
 
-        public Docente buscarDocentePA(string rut)
+        //Devuelve un docente acorde al RUT
+        public Docente buscarUnDocente(string rut)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -49,16 +51,16 @@ namespace Project
 
             Docente d = new Docente();
             d.Profesion_docente = p;
-            d.Pais_docente = pa;
-            d.Rut_docente = result.GetString(0);
+            d.Pais_persona = pa;
+            d.Rut_persona = result.GetString(0);
             d.Profesion_docente.Id_profesion = result.GetInt32(1);
-            d.Pais_docente.Id_pais = result.GetInt32(2);
-            d.Nombre_docente = result.GetString(3);
-            d.Fecha_nacimiento_docente = result.GetDateTime(4);
-            d.Direccion_docente = result.GetString(5);
-            d.Telefono_docente = result.GetInt32(6);
-            d.Sexo_docente = result.GetBoolean(7);
-            d.Correo_docente = result.GetString(8);
+            d.Pais_persona.Id_pais = result.GetInt32(2);
+            d.Nombre_persona = result.GetString(3);
+            d.Fecha_nacimiento_persona = result.GetDateTime(4);
+            d.Direccion_persona = result.GetString(5);
+            d.Telefono_persona = result.GetInt32(6);
+            d.Sexo_persona = result.GetBoolean(7);
+            d.Correo_persona = result.GetString(8);
             d.Disponibilidad_docente = result.GetBoolean(9);
 
             result.Close();
@@ -66,7 +68,8 @@ namespace Project
             return d;
         }
 
-        public List<Docente> mostrarDocentesPA()
+        //Lista todos los docentes existentes en la base de datos
+        public List<Docente> listarDocentes()
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
@@ -74,27 +77,28 @@ namespace Project
             string sql = "mostrarDocentes";
             bd.CreateCommandSP(sql);
 
-            List<Docente> ldocente = new List<Docente>();
+            List<Docente> lDocentes = new List<Docente>();
             DbDataReader result = bd.Query();
-            CatalogProfesion cp = new CatalogProfesion();
+            CatalogProfesion cProfesion = new CatalogProfesion();
             Profesion p = new Profesion();
             
             while (result.Read())
             {
                 Docente d = new Docente();
                 d.Profesion_docente = p;
-                p =cp.buscarUnaProfesion(result.GetInt32(2));
-                d.Nombre_docente = result.GetString(0);
-                d.Rut_docente = result.GetString(1);
+                p =cProfesion.buscarUnaProfesion(result.GetInt32(2));
+                d.Nombre_persona = result.GetString(0);
+                d.Rut_persona = result.GetString(1);
                 d.Profesion_docente.Nombre_profesion = p.Nombre_profesion;
-                ldocente.Add(d);
+                lDocentes.Add(d);
             }
             result.Close();
             bd.Close();
-            return ldocente;
+            return lDocentes;
         }
 
-        public void eliminarDocentePA(string rut_docente)
+        //Elimina un docente existente en la base de datos
+        public void eliminarDocente(string rut_docente)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -107,7 +111,8 @@ namespace Project
             bd.Close();
         }
 
-        public void editarDocentePA(Docente d)
+        //Actualiza un docente existente en la base de datos
+        public void actualizarDocente(Docente d)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -115,15 +120,15 @@ namespace Project
             string sql = "editarDocente";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_docente", DbType.String, d.Rut_docente);
+            bd.createParameter("@rut_docente", DbType.String, d.Rut_persona);
             bd.createParameter("@id_profesion_docente", DbType.Int32, d.Profesion_docente.Id_profesion);
-            bd.createParameter("@nombre_docente", DbType.String, d.Nombre_docente);
-            bd.createParameter("@fecha_nacimiento_docente", DbType.Date, d.Fecha_nacimiento_docente);
-            bd.createParameter("@direccion_docente", DbType.String, d.Direccion_docente);
-            bd.createParameter("@telefono_docente", DbType.Int32, d.Telefono_docente);
-            bd.createParameter("@id_pais_docente", DbType.Int32, d.Pais_docente.Id_pais);
-            bd.createParameter("@sexo_docente", DbType.Boolean, d.Sexo_docente);
-            bd.createParameter("@correo_docente", DbType.String, d.Correo_docente);
+            bd.createParameter("@nombre_docente", DbType.String, d.Nombre_persona);
+            bd.createParameter("@fecha_nacimiento_docente", DbType.Date, d.Fecha_nacimiento_persona);
+            bd.createParameter("@direccion_docente", DbType.String, d.Direccion_persona);
+            bd.createParameter("@telefono_docente", DbType.Int32, d.Telefono_persona);
+            bd.createParameter("@id_pais_docente", DbType.Int32, d.Pais_persona.Id_pais);
+            bd.createParameter("@sexo_docente", DbType.Boolean, d.Sexo_persona);
+            bd.createParameter("@correo_docente", DbType.String, d.Correo_persona);
             bd.createParameter("@disponibilidad_docente", DbType.Boolean, d.Disponibilidad_docente);
             bd.execute();
             bd.Close();

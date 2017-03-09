@@ -17,9 +17,9 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogPregunta cp = new CatalogPregunta();
-            List<Tipo_Pregunta> ltp = cp.mostrarTiposPregunta();
+            List<Tipo_Pregunta> ltp = cp.listarTiposPregunta();
             CatalogCompetencia cc = new CatalogCompetencia();
-            List<Competencia> lc = cc.mostrarCompetencias();
+            List<Competencia> lc = cc.listarCompetencias();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -55,6 +55,7 @@ namespace CapaDePresentacion
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
+            this.subirImagen();
             int i = 0;
             CatalogPregunta cp = new CatalogPregunta();
             CatalogRespuesta cr = new CatalogRespuesta();
@@ -71,7 +72,7 @@ namespace CapaDePresentacion
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
                 p.Nombre_pregunta = this.txtAPregunta.InnerText;
                 p.Imagen_pregunta = ruta;            
-                cp.agregarPregunta(p);
+                cp.insertarPregunta(p);
                 Response.Write("<script>window.alert('Pregunta creada satisfactoriamente');</script>");
             }
             catch
@@ -101,8 +102,8 @@ namespace CapaDePresentacion
                     rF.Nombre_respuesta = lblF.InnerText;
                     rF.Correcta_respuesta = cbF.Checked;
 
-                    cr.agregarRespuesta(rV);
-                    cr.agregarRespuesta(rF);
+                    cr.insertarRespuesta(rV);
+                    cr.insertarRespuesta(rF);
                 }
                 else
                 {
@@ -112,7 +113,7 @@ namespace CapaDePresentacion
                     r.Pregunta_respuesta.Id_pregunta = id;
                     r.Nombre_respuesta = txtRespuesta.Text;
                     r.Correcta_respuesta = cbCorrecta.Checked;
-                    cr.agregarRespuesta(r);
+                    cr.insertarRespuesta(r);
 
                     while (arrTextBoxs[i] != null)
                     {
@@ -122,7 +123,7 @@ namespace CapaDePresentacion
                         rr.Pregunta_respuesta.Id_pregunta = id;
                         rr.Nombre_respuesta = arrTextBoxs[i].Text;
                         rr.Correcta_respuesta = arrCheckBox[i].Checked;
-                        cr.agregarRespuesta(rr);
+                        cr.insertarRespuesta(rr);
                         i++;
                     }
                 }
@@ -182,8 +183,7 @@ namespace CapaDePresentacion
                 this.VoF.Visible = true;
             }
         }
-
-        protected void btnGuardarFile_Click(object sender, EventArgs e)
+        public void subirImagen()
         {
             if (fileImagen.HasFile)
             {
@@ -191,8 +191,6 @@ namespace CapaDePresentacion
                 string nombreArchivo = fileImagen.FileName;
                 ruta = "~/Docente/ImagenesPreguntas/" + nombreArchivo;
                 fileImagen.SaveAs(Server.MapPath(ruta));
-
-                lblMensaje.Text = "Se guardó la imagen";
             }
         }
     }

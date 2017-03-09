@@ -7,7 +7,8 @@ namespace Project.CapaDeNegocios
 {
     public class CatalogAlumno
     {
-        public void agregarAlumno(Alumno a)
+        //Inserta un alumno a la base de datos
+        public void insertarAlumno(Alumno a)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -15,44 +16,46 @@ namespace Project.CapaDeNegocios
             string sql = "insAlumnos";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_alumno", DbType.String, a.Rut_alumno);
+            bd.createParameter("@rut_alumno", DbType.String, a.Rut_persona);
             bd.createParameter("@id_escuela_alumno", DbType.Int32, a.Escuela_alumno.Id_escuela);
-            bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_alumno.Id_pais);
-            bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_alumno);
-            bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_alumno);
-            bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_alumno);
-            bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_alumno);
-            bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_alumno);
-            bd.createParameter("@correo_alumno", DbType.String, a.Correo_alumno);
+            bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_persona.Id_pais);
+            bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_persona);
+            bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_persona);
+            bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_persona);
+            bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_persona);
+            bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_persona);
+            bd.createParameter("@correo_alumno", DbType.String, a.Correo_persona);
             bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
             bd.createParameter("@beneficio_alumno", DbType.Boolean, a.Beneficio_alumno);
             bd.execute();
             bd.Close();
         }
 
-        public void editarAlumnoPA(Alumno a)
+        //Actualiza un alumno de la base de datos
+        public void actualizarAlumno(Alumno a)
         {
             DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "editarAlumnos";
             bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_alumno", DbType.String, a.Rut_alumno);
+            bd.createParameter("@rut_alumno", DbType.String, a.Rut_persona);
             bd.createParameter("@id_escuela_alumno", DbType.Int32, a.Escuela_alumno.Id_escuela);
-            bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_alumno);
-            bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_alumno);
-            bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_alumno);
-            bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_alumno);
-            bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_alumno.Id_pais);
-            bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_alumno);
-            bd.createParameter("@correo_alumno", DbType.String, a.Correo_alumno);
+            bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_persona);
+            bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_persona);
+            bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_persona);
+            bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_persona);
+            bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_persona.Id_pais);
+            bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_persona);
+            bd.createParameter("@correo_alumno", DbType.String, a.Correo_persona);
             bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
             bd.createParameter("@beneficio_alumno", DbType.Boolean, a.Beneficio_alumno);
             bd.execute();
             bd.Close();
         }
 
-        public void eliminarAlumnoPA(string rut_alumno)
+        //Elimina un alumno de la base de datos
+        public void eliminarAlumno(string rut_alumno)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -65,34 +68,36 @@ namespace Project.CapaDeNegocios
             bd.Close();
         }
         
-        public List<Alumno> mostrarAlumnos()
+        //Lista los alumnos existentes en la base de datos
+        public List<Alumno> listarAlumnos()
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "mostrarAlumnos";
             bd.CreateCommandSP(sqlSearch);
-            List<Alumno> lalumno = new List<Alumno>();
+            List<Alumno> lAlumnos = new List<Alumno>();
             DbDataReader result = bd.Query();//disponible resultado
-            CatalogEscuela ce = new CatalogEscuela();
+            CatalogEscuela cEscuela = new CatalogEscuela();
             Escuela es = new Escuela();
             while (result.Read())
             {
                 Alumno a = new Alumno();
                 a.Escuela_alumno = es;
-                es = ce.buscarUnaEscuela(result.GetInt32(2)+1);
+                es = cEscuela.buscarUnaEscuela(result.GetInt32(2)+1);
                               
-                a.Nombre_alumno = result.GetString(0);
-                a.Rut_alumno = result.GetString(1);
+                a.Nombre_persona = result.GetString(0);
+                a.Rut_persona = result.GetString(1);
                 a.Escuela_alumno.Nombre_escuela = es.Nombre_escuela;
                 a.Promocion_alumno = result.GetInt32(3);
-                lalumno.Add(a);
+                lAlumnos.Add(a);
             }
             result.Close();
             bd.Close();
-            return lalumno;
+            return lAlumnos;
         }
 
+        //Lista alumnos de la base de datos acorde a busqueda
         public List<Alumno> buscarAlumno(string buscar)
         {
             DataBase bd = new DataBase();
@@ -104,34 +109,35 @@ namespace Project.CapaDeNegocios
             string sqlSearch = "mostrarAlumnosBusqueda";
             bd.CreateCommandSP(sqlSearch);
             bd.createParameter("@buscar", DbType.String, buscar);
-            List<Alumno> alumno = new List<Alumno>();
+            List<Alumno> lAlumnos = new List<Alumno>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
                 Alumno a = new Alumno();
                 Pais p = new Pais();
                 Escuela es = new Escuela();
-                a.Pais_alumno = p;
+                a.Pais_persona = p;
                 a.Escuela_alumno = es;
 
-                a.Rut_alumno = result.GetString(0);
+                a.Rut_persona = result.GetString(0);
                 a.Escuela_alumno.Id_escuela = result.GetInt32(1);
-                a.Pais_alumno.Id_pais = result.GetInt32(2);
-                a.Nombre_alumno = result.GetString(3);
-                a.Fecha_nacimiento_alumno = result.GetDateTime(4);
-                a.Direccion_alumno = result.GetString(5);
-                a.Telefono_alumno = result.GetInt32(6);
-                a.Sexo_alumno = result.GetBoolean(7);
-                a.Correo_alumno = result.GetString(8);
+                a.Pais_persona.Id_pais = result.GetInt32(2);
+                a.Nombre_persona = result.GetString(3);
+                a.Fecha_nacimiento_persona = result.GetDateTime(4);
+                a.Direccion_persona = result.GetString(5);
+                a.Telefono_persona = result.GetInt32(6);
+                a.Sexo_persona = result.GetBoolean(7);
+                a.Correo_persona = result.GetString(8);
                 a.Promocion_alumno = result.GetInt32(9);
                 a.Beneficio_alumno = result.GetBoolean(10);
-                alumno.Add(a);
+                lAlumnos.Add(a);
             }
             result.Close();
             bd.Close();
-            return alumno;
+            return lAlumnos;
         }
 
+        //Busca un alumno por su rut
         public Alumno buscarAlumnoPorRut(string rut)
         {
             DataBase bd = new DataBase();
@@ -145,18 +151,18 @@ namespace Project.CapaDeNegocios
             Alumno a = new Alumno();
             Pais p = new Pais();
             Escuela es = new Escuela();
-            a.Pais_alumno = p;
+            a.Pais_persona = p;
             a.Escuela_alumno = es;
 
-            a.Rut_alumno = result.GetString(0);
+            a.Rut_persona = result.GetString(0);
             a.Escuela_alumno.Id_escuela = result.GetInt32(1);
-            a.Pais_alumno.Id_pais = result.GetInt32(2);
-            a.Nombre_alumno = result.GetString(3);
-            a.Fecha_nacimiento_alumno = result.GetDateTime(4);
-            a.Direccion_alumno = result.GetString(5);
-            a.Telefono_alumno = result.GetInt32(6);
-            a.Sexo_alumno = result.GetBoolean(7);
-            a.Correo_alumno = result.GetString(8);
+            a.Pais_persona.Id_pais = result.GetInt32(2);
+            a.Nombre_persona = result.GetString(3);
+            a.Fecha_nacimiento_persona = result.GetDateTime(4);
+            a.Direccion_persona = result.GetString(5);
+            a.Telefono_persona = result.GetInt32(6);
+            a.Sexo_persona = result.GetBoolean(7);
+            a.Correo_persona = result.GetString(8);
             a.Promocion_alumno = result.GetInt32(9);
             a.Beneficio_alumno = result.GetBoolean(10);
             result.Close();

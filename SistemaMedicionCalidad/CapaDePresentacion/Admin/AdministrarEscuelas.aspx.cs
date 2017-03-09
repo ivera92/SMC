@@ -26,7 +26,7 @@ namespace CapaDePresentacion
             this.GridView1.Visible = true;
             CatalogEscuela cescuela = new CatalogEscuela();
             List<Escuela> listaEscuelas = new List<Escuela>();
-            listaEscuelas = cescuela.mostrarEscuelas();
+            listaEscuelas = cescuela.listarEscuelas();
             this.GridView1.DataSource = listaEscuelas;
             this.DataBind();
         }
@@ -38,7 +38,7 @@ namespace CapaDePresentacion
 
             try
             {
-                cescuela.eliminarEscuelaPA(id_escuela);
+                cescuela.eliminarEscuela(id_escuela);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -66,7 +66,7 @@ namespace CapaDePresentacion
             Escuela es = new Escuela(int.Parse(this.txtid.Text), this.tbxEscuela.Text);
             try
             {
-                cescuela.editarEscuelaPA(es);
+                cescuela.actualizarEscuela(es);
                 this.tablaEditar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

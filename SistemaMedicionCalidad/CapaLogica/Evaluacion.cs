@@ -4,19 +4,21 @@ namespace Project
 {
     public class Evaluacion
     {
-        int id_evaluacion;
-        Asignatura asignatura_evaluacion;
-        string nombre_evaluacion;
-        DateTime fecha_evaluacion;
+        private int id_evaluacion;
+        private Asignatura asignatura_evaluacion;
+        private string nombre_evaluacion;
+        private DateTime fecha_evaluacion;
 
         public Evaluacion()
         {
         }
+
         public Evaluacion(int id_evaluacion, string nombre_evaluacion)
         {
             this.id_evaluacion = id_evaluacion;
             this.nombre_evaluacion = nombre_evaluacion;
         }
+
         public Evaluacion(Asignatura asignatura_evaluacion, string nombre_evaluacion, DateTime fecha_evaluacion)
         {
             this.asignatura_evaluacion = asignatura_evaluacion;

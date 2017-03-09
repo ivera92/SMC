@@ -6,6 +6,8 @@ namespace Project
 {
     public class CatalogUsuario
     {
+        //Verifica la existencia del usuario, su contraseña, y si coincide con el tipo de usuario seleccionado
+        //1 en caso de coincidir los datos, 0 caso contrario
         public static bool Autenticar(string rut_usuario, string contrasena, int id_tipo_usuario)
         {
         //consulta a la base de datos
@@ -28,7 +30,8 @@ namespace Project
         else
             return true;
         }
-        public int cambiarClave(string rut, string clave, string claveNueva)
+        //Cambia la clave de un usuario (actualiza la columna contraseña)
+        public int actualizarClave(string rut, string clave, string claveNueva)
         {
             int filasAfectadas = 0;
             //consulta a la base de datos

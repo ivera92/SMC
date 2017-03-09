@@ -11,9 +11,9 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogEscuela cescuela = new CatalogEscuela();
-            List<Escuela> escuelas = cescuela.mostrarEscuelas();
+            List<Escuela> escuelas = cescuela.listarEscuelas();
             CatalogDocente cdocente = new CatalogDocente();
-            List<Docente> ldocentes = cdocente.mostrarDocentesPA();
+            List<Docente> ldocentes = cdocente.listarDocentes();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -21,8 +21,8 @@ namespace CapaDePresentacion
                 this.ddEscuela.DataValueField = "Id_escuela";
                 this.ddEscuela.DataSource = escuelas;
 
-                this.ddDocente.DataTextField = "Nombre_docente";
-                this.ddDocente.DataValueField = "Rut_Docente";
+                this.ddDocente.DataTextField = "Nombre_persona";
+                this.ddDocente.DataValueField = "Rut_persona";
                 this.ddDocente.DataSource = ldocentes;
 
                 this.DataBind();//enlaza los datos a un dropdownlist   
@@ -55,13 +55,13 @@ namespace CapaDePresentacion
             a.Docente_asignatura = d;
 
             a.Escuela_asignatura.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
-            a.Docente_asignatura.Rut_docente = this.ddDocente.SelectedValue;
+            a.Docente_asignatura.Rut_persona = this.ddDocente.SelectedValue;
             a.Nombre_asignatura = this.txtNombre.Text;
             a.Ano_asignatura = int.Parse(this.txtAno.Text);
             a.Duracion_asignatura = duracion;
             try
             {
-                ca.agregarAsignaturaPA(a);
+                ca.insertarAsignatura(a);
                 Response.Write("<script>window.alert('Asignatura creada satisfactoriamente');</script>");
             }
             catch

@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Linq;
-using System.Text;
 using Project.CapaDeDatos;
 
 namespace Project
 {
     public class CatalogEvaluacion
     {
-        public void crearEvaluacion(Evaluacion e)
+        //Inseta una evaluacion en la base de datos
+        public void insertarEvaluacion(Evaluacion e)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -26,7 +24,8 @@ namespace Project
             bd.Close();
         }
 
-        public List<Evaluacion> mostrarEvaluaciones()
+        //Lista las evaluaciones existentes en la base de datos
+        public List<Evaluacion> listarEvaluaciones()
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -34,19 +33,19 @@ namespace Project
             string sql = "mostrarEvaluaciones";
 
             bd.CreateCommandSP(sql);
-            List<Evaluacion> le = new List<Evaluacion>();
+            List<Evaluacion> lEvaluaciones = new List<Evaluacion>();
             DbDataReader result = bd.Query();
-            CatalogEvaluacion ce = new CatalogEvaluacion();
+            CatalogEvaluacion cEvaluaciones = new CatalogEvaluacion();
 
             while (result.Read())
             {
                 Evaluacion e = new Evaluacion(result.GetInt32(0), result.GetString(1));
-                le.Add(e);
+                lEvaluaciones.Add(e);
             }
             result.Close();
             bd.Close();
 
-            return le;
+            return lEvaluaciones;
         }
     }
 }

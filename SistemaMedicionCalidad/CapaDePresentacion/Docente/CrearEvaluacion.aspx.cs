@@ -16,7 +16,7 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogAsignatura ca = new CatalogAsignatura();
-            List<Asignatura> la = ca.mostrarAsignaturas();
+            List<Asignatura> la = ca.listarAsignaturas();
 
             if (!Page.IsPostBack)
             {
@@ -129,7 +129,7 @@ namespace CapaDePresentacion
          
             try
             {
-                ce.crearEvaluacion(ev);
+                ce.insertarEvaluacion(ev);
                 Response.Write("<script>window.alert('Evaluacion creada satisfactoriamente');</script>");
                 this.pdf();
             }

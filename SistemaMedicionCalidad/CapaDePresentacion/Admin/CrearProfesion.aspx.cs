@@ -16,7 +16,7 @@ namespace CapaDePresentacion
 
             try
             {
-                cprofesion.agregarProfesionPA(p);
+                cprofesion.insertarProfesion(p);
                 Response.Write("<script>window.alert('Profesion creada satisfactoriamente');</script>");
             }
             catch

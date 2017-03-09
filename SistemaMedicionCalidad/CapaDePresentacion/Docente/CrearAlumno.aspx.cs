@@ -11,10 +11,10 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogEscuela cescuela = new CatalogEscuela();
-            List<Escuela> escuelas = cescuela.mostrarEscuelas();
+            List<Escuela> escuelas = cescuela.listarEscuelas();
 
             CatalogPais cpais = new CatalogPais();
-            List<Pais> lpais = cpais.mostrarPaises();
+            List<Pais> lpais = cpais.listarPaises();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -64,23 +64,23 @@ namespace CapaDePresentacion
             Alumno a = new Alumno();
             Pais p = new Pais();
             Escuela es = new Escuela();
-            a.Pais_alumno = p;
+            a.Pais_persona = p;
             a.Escuela_alumno = es;
 
-            a.Rut_alumno = this.rut.Text;
+            a.Rut_persona = this.rut.Text;
             a.Escuela_alumno.Id_escuela = this.escuela.SelectedIndex;
-            a.Pais_alumno.Id_pais = this.ddPais.SelectedIndex;
-            a.Nombre_alumno = this.nombre.Text;
-            a.Fecha_nacimiento_alumno = DateTime.Parse(this.fechaDeNacimiento.Text);
-            a.Direccion_alumno = this.direccion.Text;
-            a.Telefono_alumno = int.Parse(this.telefono.Text);
-            a.Sexo_alumno = sexo;
-            a.Correo_alumno = this.correo.Text;
+            a.Pais_persona.Id_pais = this.ddPais.SelectedIndex;
+            a.Nombre_persona = this.nombre.Text;
+            a.Fecha_nacimiento_persona = DateTime.Parse(this.fechaDeNacimiento.Text);
+            a.Direccion_persona = this.direccion.Text;
+            a.Telefono_persona = int.Parse(this.telefono.Text);
+            a.Sexo_persona = sexo;
+            a.Correo_persona = this.correo.Text;
             a.Promocion_alumno = int.Parse(this.promocion.Text);
             a.Beneficio_alumno = beneficio;
             try
             {
-                alumno.agregarAlumno(a);
+                alumno.insertarAlumno(a);
                 Response.Write("<script>window.alert('Alumno creado satisfactoriamente');</script>");
             }
             catch

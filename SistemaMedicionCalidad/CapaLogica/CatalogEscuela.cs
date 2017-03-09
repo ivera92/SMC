@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Data.Common;
 using Project.CapaDeDatos;
 using System.Data;
@@ -8,6 +7,7 @@ namespace Project.CapaDeNegocios
 {
     public class CatalogEscuela
     { 
+        //Lista las escuelas existentes en la base de datos que cumplan el criterio de busqueda
         public List<Escuela> buscarEscuela(string buscar)
         {
             DataBase bd = new DataBase();
@@ -18,36 +18,38 @@ namespace Project.CapaDeNegocios
 
             string sqlSearch = "select * from escuela where nombre_escuela like '" + buscar + "%' or id_escuela like '" + buscar + "%'";
             bd.CreateCommand(sqlSearch);
-            List<Escuela> lescuela = new List<Escuela>();
+            List<Escuela> lEscuelas = new List<Escuela>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
                 Escuela e = new Escuela(result.GetInt32(0), result.GetString(1));
-                lescuela.Add(e);
+                lEscuelas.Add(e);
             }
             result.Close();
             bd.Close();
-            return lescuela;
+            return lEscuelas;
         }
-        public List<Escuela> mostrarEscuelas()
+        //Lista todas las escuelas existentes en la base de datos
+        public List<Escuela> listarEscuelas()
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "select id_escuela, nombre_escuela from escuela";
             bd.CreateCommand(sqlSearch);
-            List<Escuela> lescuela = new List<Escuela>();
+            List<Escuela> lEscuelas = new List<Escuela>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
                 Escuela es = new Escuela(result.GetInt32(0),result.GetString(1));
-                lescuela.Add(es);
+                lEscuelas.Add(es);
             }
             result.Close();
             bd.Close();
-            return lescuela;
+            return lEscuelas;
         }
 
+        //Devuelve una esculela acorde a su ID
         public Escuela buscarUnaEscuela(int id_escuela)
         {
             DataBase bd = new DataBase();
@@ -63,7 +65,8 @@ namespace Project.CapaDeNegocios
             return es;
         }
 
-        public void eliminarEscuelaPA(int id_escuela)
+        //Elimina una Escuela existente en la base de datos acorde a su ID
+        public void eliminarEscuela(int id_escuela)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -76,7 +79,8 @@ namespace Project.CapaDeNegocios
             bd.Close();
         }
 
-        public void agregarEscuelaPA(Escuela e)
+        //Inserta una escuela en la base de datos
+        public void insertarEscuela(Escuela e)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -90,7 +94,8 @@ namespace Project.CapaDeNegocios
             bd.Close();
         }
 
-        public void editarEscuelaPA(Escuela e)
+        //Actualiza una escuela existente en la base de datos
+        public void actualizarEscuela(Escuela e)
         {
             DataBase bd = new DataBase();
             bd.connect();

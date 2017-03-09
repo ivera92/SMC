@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Web;
 using Project.CapaDeDatos;
 
 namespace Project
 {
     public class CatalogPregunta
     {
-        public void agregarPregunta(Pregunta p)
+        //Inserta una pregunta en la base de datos
+        public void insertarPregunta(Pregunta p)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -29,6 +25,7 @@ namespace Project
             bd.Close();
         }
 
+        //Elimina una pregunta existete en la base de datos acorde a su ID
         public void eliminarPregunta(int id_pregunta)
         {
             DataBase bd = new DataBase();
@@ -42,24 +39,26 @@ namespace Project
             bd.Close();
         }
 
-        public List<Tipo_Pregunta> mostrarTiposPregunta()
+        //Lista los Tipos de Preguntas
+        public List<Tipo_Pregunta> listarTiposPregunta()
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "select * from tipo_pregunta";
             bd.CreateCommand(sqlSearch);
-            List<Tipo_Pregunta> ltp = new List<Tipo_Pregunta>();
+            List<Tipo_Pregunta> lTiposPregunta = new List<Tipo_Pregunta>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
                 Tipo_Pregunta tp = new Tipo_Pregunta(result.GetInt32(0), result.GetString(1));
-                ltp.Add(tp);
+                lTiposPregunta.Add(tp);
             }
             result.Close();
             bd.Close();
-            return ltp;
+            return lTiposPregunta;
         }
+        //Devuelve la ultima pregunta ingresada en la base de datos
         public int ultimaPregunta()
         {
             DataBase bd = new DataBase();
@@ -74,6 +73,7 @@ namespace Project
             return id;
         }
 
+        //Devuelve una pregunta acorde a su ID
         public Pregunta buscarUnaPregunta(int id_pregunta)
         {
             DataBase bd = new DataBase();
@@ -98,14 +98,15 @@ namespace Project
             return p;
         }
 
-        public List<Pregunta> mostrarPreguntas()
+        //Lista todas las preguntas existentes en la base de datos
+        public List<Pregunta> listarPreguntas()
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "select * from pregunta";
             bd.CreateCommand(sqlSearch);
-            List<Pregunta> lp = new List<Pregunta>();
+            List<Pregunta> lPreguntas = new List<Pregunta>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
@@ -119,11 +120,11 @@ namespace Project
                 p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
                 p.Nombre_pregunta = result.GetString(3);
-                lp.Add(p);
+                lPreguntas.Add(p);
             }
             result.Close();
             bd.Close();
-            return lp;
+            return lPreguntas;
         }
     }
 }

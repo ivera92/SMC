@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Project
+﻿namespace Project
 {
     public class Pregunta
     {
-        int id_pregunta;
-        Competencia competencia_pregunta;
-        Tipo_Pregunta tipo_pregunta_pregunta;
-        string nombre_pregunta;
-        string imagen_pregunta;
+        private int id_pregunta;
+        private Competencia competencia_pregunta;
+        private Tipo_Pregunta tipo_pregunta_pregunta;
+        private string nombre_pregunta;
+        private string imagen_pregunta;
 
         public Pregunta()
         {
         }
+
         public Pregunta(Competencia competencia_pregunta, Tipo_Pregunta tipo_pregunta_pregunta, string nombre_pregunta, string imagen_pregunta)
         {
             this.competencia_pregunta = competencia_pregunta;

@@ -24,7 +24,7 @@ namespace CapaDePresentacion.Alum
             {
                 try
                 {
-                    filasAfectadas = cu.cambiarClave(rut, this.pwActual.Text, this.pwNueva1.Text);
+                    filasAfectadas = cu.actualizarClave(rut, this.pwActual.Text, this.pwNueva1.Text);
                     if (filasAfectadas == 1)
                     {
                         Response.Write("<script>window.alert('Contraseña cambiada correctamente');</script>");

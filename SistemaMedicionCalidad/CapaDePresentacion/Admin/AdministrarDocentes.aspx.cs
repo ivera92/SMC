@@ -15,10 +15,10 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogProfesion cprofesion = new CatalogProfesion();
-            List<Profesion> profesiones = cprofesion.mostrarProfesiones();
+            List<Profesion> profesiones = cprofesion.listarProfesiones();
 
             CatalogPais cpais = new CatalogPais();
-            List<Pais> lpais = cpais.mostrarPaises();
+            List<Pais> lpais = cpais.listarPaises();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -43,7 +43,7 @@ namespace CapaDePresentacion
             CatalogDocente cdocente = new CatalogDocente();
             try
             {
-                cdocente.eliminarDocentePA(rut_docente);
+                cdocente.eliminarDocente(rut_docente);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -61,28 +61,28 @@ namespace CapaDePresentacion
             string rut_docente = HttpUtility.HtmlDecode((string)this.Gridview1.Rows[e.NewEditIndex].Cells[2].Text);
             this.profesion.SelectedIndex = 0;
             CatalogDocente cdocente = new CatalogDocente();
-            Docente d = cdocente.buscarDocentePA(rut_docente);
+            Docente d = cdocente.buscarUnDocente(rut_docente);
             
-            this.correo.Text = d.Correo_docente;
-            this.direccion.Text = d.Direccion_docente;
+            this.correo.Text = d.Correo_persona;
+            this.direccion.Text = d.Direccion_persona;
             if (d.Disponibilidad_docente == true)
             {
                 this.disponibilidad.SelectedIndex = 0;
             }
             else
                 this.disponibilidad.SelectedIndex = 1;
-            this.fechaDeNacimiento.Text = d.Fecha_nacimiento_docente.ToString("d");
-            this.ddPais.SelectedValue = d.Pais_docente.Id_pais+"";
-            this.nombre.Text = d.Nombre_docente;
+            this.fechaDeNacimiento.Text = d.Fecha_nacimiento_persona.ToString("d");
+            this.ddPais.SelectedValue = d.Pais_persona.Id_pais+"";
+            this.nombre.Text = d.Nombre_persona;
             this.profesion.SelectedValue = d.Profesion_docente.Id_profesion+"";
-            this.rut.Text = d.Rut_docente + "";
-            if (d.Sexo_docente == true)
+            this.rut.Text = d.Rut_persona + "";
+            if (d.Sexo_persona == true)
             {
                 this.sexo.SelectedIndex = 0;
             }
             else
                 this.sexo.SelectedIndex = 1;
-            this.telefono.Text = d.Telefono_docente+"";
+            this.telefono.Text = d.Telefono_persona+"";
             this.tablaEditar.Visible = true;
         }
         public void mostrar()
@@ -90,7 +90,7 @@ namespace CapaDePresentacion
             this.Gridview1.Visible=true;
             CatalogDocente cdocente = new CatalogDocente();
             List<Docente> ldocente = new List<Docente>();
-            ldocente = cdocente.mostrarDocentesPA();
+            ldocente = cdocente.listarDocentes();
             this.Gridview1.DataSource = ldocente;
             this.DataBind();
         }
@@ -99,7 +99,7 @@ namespace CapaDePresentacion
             this.Gridview1.Visible = true;
             CatalogDocente cdocente = new CatalogDocente();
             Docente ldocente = new Docente();
-            ldocente = cdocente.buscarDocentePA(this.tbxbuscar.Text);
+            ldocente = cdocente.buscarUnDocente(this.tbxbuscar.Text);
             this.Gridview1.DataSource = ldocente;
             this.DataBind();
 
@@ -127,21 +127,21 @@ namespace CapaDePresentacion
             Profesion p = new Profesion();
             Pais pa = new Pais();
             d.Profesion_docente = p;
-            d.Pais_docente = pa;
+            d.Pais_persona = pa;
 
-            d.Rut_docente = this.rut.Text;
+            d.Rut_persona = this.rut.Text;
             d.Profesion_docente.Id_profesion = int.Parse(this.profesion.SelectedValue);
-            d.Pais_docente.Id_pais = int.Parse(this.ddPais.SelectedValue);
-            d.Nombre_docente = this.nombre.Text;
-            d.Fecha_nacimiento_docente = DateTime.Parse(this.fechaDeNacimiento.Text);
-            d.Direccion_docente = this.direccion.Text;
-            d.Telefono_docente = int.Parse(this.telefono.Text);
-            d.Sexo_docente = sexo;
-            d.Correo_docente = this.correo.Text;
+            d.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
+            d.Nombre_persona = this.nombre.Text;
+            d.Fecha_nacimiento_persona = DateTime.Parse(this.fechaDeNacimiento.Text);
+            d.Direccion_persona = this.direccion.Text;
+            d.Telefono_persona = int.Parse(this.telefono.Text);
+            d.Sexo_persona = sexo;
+            d.Correo_persona = this.correo.Text;
             d.Disponibilidad_docente = disponibilidad;
             try
             {
-                cdocente.editarDocentePA(d);
+                cdocente.actualizarDocente(d);
                 this.tablaEditar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

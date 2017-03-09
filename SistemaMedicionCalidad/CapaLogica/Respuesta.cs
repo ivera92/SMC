@@ -1,16 +1,16 @@
-﻿
-namespace Project
+﻿namespace Project
 {
     public class Respuesta
     {
-        int id_respuesta;
-        Pregunta pregunta_respuesta;
-        string nombre_respuesta;
-        bool correcta_respuesta;
+        private int id_respuesta;
+        private Pregunta pregunta_respuesta;
+        private string nombre_respuesta;
+        private bool correcta_respuesta;
 
         public Respuesta()
         {
         }
+
         public Respuesta (Pregunta pregunta_respuesta, string nombre_respuesta, bool correcta_respuesta)
         {
             this.pregunta_respuesta = pregunta_respuesta;

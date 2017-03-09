@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Project.CapaDeDatos;
 using System.Data;
 using System.Data.Common;
@@ -8,7 +7,8 @@ namespace Project
 {
     public class CatalogCompetencia
     {
-        public void agregarCompetenciaPA(Competencia c)
+        //Inserta una competencia en la base de datos
+        public void insertarCompetencia(Competencia c)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -23,10 +23,12 @@ namespace Project
             bd.Close();
         }
 
+        //Elimina una competencia existente en la base de datos acorde a su ID
         public void eliminarCompetencia(int id_competencia)
         {
             DataBase bd = new DataBase();
             bd.connect();
+
 
             string sql = "eliminarCompetencia";
 
@@ -37,7 +39,8 @@ namespace Project
             bd.Close();
         }
 
-        public void editarCompetencia(Competencia c)
+        //Actualiza una competencia existente en la base de datos
+        public void actualizarCompetencia(Competencia c)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -54,7 +57,8 @@ namespace Project
             bd.Close();
         }
 
-        public List<Competencia> mostrarCompetencias()
+        //Lista todas las competencias existentes en la base de datos
+        public List<Competencia> listarCompetencias()
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -75,7 +79,9 @@ namespace Project
 
             return lcompetencia;
         }
-        public Competencia buscarID(int id_competencia)
+
+        //Devuelve una competencia acorde a su ID
+        public Competencia buscarUnaCompetencia(int id_competencia)
         {
             DataBase bd = new DataBase();
             bd.connect();

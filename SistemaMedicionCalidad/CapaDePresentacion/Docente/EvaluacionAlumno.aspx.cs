@@ -21,7 +21,7 @@ namespace CapaDePresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             CatalogAsignatura ca = new CatalogAsignatura();
-            List<Asignatura> la = ca.mostrarAsignaturas();
+            List<Asignatura> la = ca.listarAsignaturas();
             rbl = new RadioButtonList();
             rblVF = new RadioButtonList();
             cbxl = new CheckBoxList();
@@ -96,8 +96,8 @@ namespace CapaDePresentacion
                     hpa.Evaluacion_hpa.Id_evaluacion = 5;
                     hpa.Pregunta_hpa.Id_pregunta = cHPA.buscarIDPregunta(text);
                     hpa.Respuesta_hpa.Id_respuesta = cHPA.buscarIDRespuesta(text);
-                    hpa.Alumno_hpa.Rut_alumno = txtRut.Text;
-                    cHPA.agregarHPA(hpa);
+                    hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                    cHPA.insertarHPA(hpa);
                 }
                 i = i + 1;
             }
@@ -118,8 +118,8 @@ namespace CapaDePresentacion
                     hpa.Evaluacion_hpa.Id_evaluacion = 5;
                     hpa.Pregunta_hpa.Id_pregunta = cHPA.buscarIDPregunta(text);
                     hpa.Respuesta_hpa.Id_respuesta = cHPA.buscarIDRespuesta(text);
-                    hpa.Alumno_hpa.Rut_alumno = txtRut.Text;
-                    cHPA.agregarHPA(hpa);
+                    hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                    cHPA.insertarHPA(hpa);
                 }
                 j = j + 1;
             }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Project
+﻿namespace Project
 {
     public class Pais
     {
@@ -13,10 +8,12 @@ namespace Project
         public Pais()
         {
         }
+
         public Pais (string nombre_pais)
         {
             this.nombre_pais = nombre_pais;
         }
+
         public Pais(int id_pais, string nombre_pais)
         {
             this.nombre_pais = nombre_pais;

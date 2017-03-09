@@ -4,16 +4,18 @@ namespace Project
 {
     public class Asignatura
     {
-        int id_asignatura;
-        Escuela escuela_asignatura;
-        Docente docente_asignatura;
-        string nombre_asignatura;
-        int ano_asignatura;
-        bool duracion_asignatura;
+        private int id_asignatura;
+        private Escuela escuela_asignatura;
+        private Docente docente_asignatura;
+        private string nombre_asignatura;
+        private int ano_asignatura;
+        private bool duracion_asignatura;
 
+        //Constructor predeterminado
         public Asignatura()
         {
         }
+
         public Asignatura(Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
         {
             this.escuela_asignatura = escuela_asignatura;
@@ -38,6 +40,7 @@ namespace Project
             get { return id_asignatura; }
             set { id_asignatura = value; }
         }
+
         public string Nombre_asignatura
         {
             get { return nombre_asignatura; }

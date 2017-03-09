@@ -13,22 +13,22 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogEscuela cescuela = new CatalogEscuela();
-            List<Escuela> escuelas = cescuela.mostrarEscuelas();
-            CatalogDocente cdocente = new CatalogDocente();
-            List<Docente> ldocentes = cdocente.mostrarDocentesPA();
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            List<Escuela> lEscuelas = cEscuela.listarEscuelas();//lista escuelas existentes
+            CatalogDocente cDocente = new CatalogDocente();
+            List<Docente> lDocentes = cDocente.listarDocentes();//lista docentes existentes
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddEscuela.DataTextField = "Nombre_escuela";
                 this.ddEscuela.DataValueField = "Id_escuela";
-                this.ddEscuela.DataSource = escuelas;
+                this.ddEscuela.DataSource = lEscuelas;
 
-                this.ddDocente.DataTextField = "Nombre_docente";
-                this.ddDocente.DataValueField = "Rut_Docente";
-                this.ddDocente.DataSource = ldocentes;
+                this.ddDocente.DataTextField = "Nombre_Persona";
+                this.ddDocente.DataValueField = "Rut_Persona";
+                this.ddDocente.DataSource = lDocentes;
 
-                this.editar.Visible = false;
+                this.divEditar.Visible = false;
                 this.txtID.Visible = false;
                 this.mostrar();
             }
@@ -36,10 +36,10 @@ namespace CapaDePresentacion
 
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string id_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.RowIndex].Cells[1].Text);
             CatalogAsignatura ca = new CatalogAsignatura();
             try
             {
+                string id_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.RowIndex].Cells[1].Text);
                 ca.eliminarAsignatura(int.Parse(id_asignatura));
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
@@ -53,24 +53,20 @@ namespace CapaDePresentacion
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
-            this.administrar.Visible = false;
+            this.divAdministrar.Visible = false;
             string id_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.NewEditIndex].Cells[1].Text);
             this.txtID.Text = id_asignatura;
-            this.editar.Visible = true;
+            this.divEditar.Visible = true;
             CatalogAsignatura ca = new CatalogAsignatura();
-            Asignatura a= ca.buscarAsignatura(int.Parse(id_asignatura));
-            this.ddEscuela.SelectedIndex = a.Escuela_asignatura.Id_escuela-1;
-            this.ddDocente.SelectedValue = a.Docente_asignatura.Rut_docente;
+            Asignatura a = ca.buscarAsignatura(int.Parse(id_asignatura));
+            this.ddEscuela.SelectedValue = a.Escuela_asignatura.Id_escuela + "";
+            this.ddDocente.SelectedValue = a.Docente_asignatura.Rut_persona;
             this.txtNombre.Text = a.Nombre_asignatura;
-            this.txtAno.Text = a.Ano_asignatura +"";
+            this.txtAno.Text = a.Ano_asignatura + "";
             if (a.Duracion_asignatura == true)
-            {
-                this.duracion.SelectedIndex = 0;
-            }
+                this.rbDuracion.SelectedIndex = 0;
             else
-            {
-                this.duracion.SelectedIndex = 1;
-            }
+                this.rbDuracion.SelectedIndex = 1;
         }
 
         public void mostrar()
@@ -78,7 +74,7 @@ namespace CapaDePresentacion
             this.gvAsignatura.Visible = true;
             CatalogAsignatura ca = new CatalogAsignatura();
             List<Asignatura> la = new List<Asignatura>();
-            la= ca.mostrarAsignaturas();
+            la= ca.listarAsignaturas();
             this.gvAsignatura.DataSource = la;
             this.DataBind();
         }
@@ -87,10 +83,8 @@ namespace CapaDePresentacion
         {
             CatalogAsignatura ca = new CatalogAsignatura();
             bool duracion;
-            if (this.duracion.Text == "Semestral")
-            {
+            if (this.rbDuracion.Text == "Semestral")
                 duracion = true;
-            }
             else
                 duracion = false;
 
@@ -101,15 +95,15 @@ namespace CapaDePresentacion
             a.Docente_asignatura = d;
 
             a.Escuela_asignatura.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
-            a.Docente_asignatura.Rut_docente = this.ddDocente.SelectedValue;
+            a.Docente_asignatura.Rut_persona = this.ddDocente.SelectedValue;
             a.Nombre_asignatura = this.txtNombre.Text;
             a.Ano_asignatura = int.Parse(this.txtAno.Text);
             a.Duracion_asignatura = duracion;
             a.Id_asignatura = int.Parse(txtID.Text);
             try
             {
-                ca.editarAsignaturaPA(a);
-                this.editar.Visible = false;
+                ca.actualizarAsignatura(a);
+                this.divEditar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }
             catch

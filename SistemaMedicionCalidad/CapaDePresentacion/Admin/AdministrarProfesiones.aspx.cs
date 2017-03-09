@@ -24,7 +24,7 @@ namespace CapaDePresentacion
             this.GridView1.Visible = true;
             CatalogProfesion cp = new CatalogProfesion();
             List<Profesion> lp = new List<Profesion>();
-            lp = cp.mostrarProfesiones();
+            lp = cp.listarProfesiones();
             this.GridView1.DataSource = lp;
             this.DataBind();
         }
@@ -35,7 +35,7 @@ namespace CapaDePresentacion
             CatalogProfesion cp = new CatalogProfesion();
             try
             {
-                cp.eliminarProfesionPA(id_profesion);
+                cp.eliminarProfesion(id_profesion);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -63,7 +63,7 @@ namespace CapaDePresentacion
             Profesion p = new Profesion(int.Parse(this.txtid.Text), this.tbxProfesion.Text);
             try
             {
-                cp.editarProfesion(p);
+                cp.actualizarProfesion(p);
                 this.editar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

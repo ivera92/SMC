@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Project.CapaDeNegocios
+﻿namespace Project.CapaDeNegocios
 {
     public class Escuela
     {
-        int id_escuela;
-        string nombre_escuela;
+        private int id_escuela;
+        private string nombre_escuela;
 
         public Escuela()
         {
         }
+
         public Escuela(string nombre_escuela)
         {
             this.nombre_escuela = nombre_escuela;

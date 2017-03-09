@@ -17,8 +17,6 @@
     <div class="row">
         <div class="col-sm-offset-4">
             <asp:FileUpload enabled="true" id="fileImagen" runat="server"></asp:FileUpload>
-            <asp:Button id="btnGuardarFile" runat="server" text="Cargar Imagen" OnClick="btnGuardarFile_Click"></asp:Button>
-            <asp:label id="lblMensaje" runat="server" text="ejemplo carga de imagenes"></asp:label>
             <br />
         </div>
     </div>
@@ -38,7 +36,9 @@
 
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-            <asp:DropDownList class="form-control" runat="server" ID="ddCompetencia"></asp:DropDownList>
+            <asp:DropDownList class="form-control" runat="server" ID="ddCompetencia" AppendDataBoundItems="true">
+                <asp:ListItem Value="0"><--Seleccione una competencia--></asp:ListItem>
+            </asp:DropDownList>
         </div>
     </div>
     <br />
@@ -51,7 +51,9 @@
 
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-            <asp:DropDownList class="form-control" AutoPostBack = true runat="server" ID="ddTipoPregunta" OnSelectedIndexChanged="ddTipoPregunta_SelectedIndexChanged"></asp:DropDownList>
+            <asp:DropDownList class="form-control" AutoPostBack = true AppendDataBoundItems="true" runat="server" ID="ddTipoPregunta" OnSelectedIndexChanged="ddTipoPregunta_SelectedIndexChanged">
+                <asp:ListItem Value="0"><--Seleccione el tipo de pregunta--></asp:ListItem>
+            </asp:DropDownList>
         </div>
     </div>
     <br />

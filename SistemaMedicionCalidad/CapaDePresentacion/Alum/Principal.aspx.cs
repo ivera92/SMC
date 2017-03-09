@@ -16,15 +16,15 @@ namespace CapaDePresentacion.Alum
             CatalogEscuela ce = new CatalogEscuela();
             Escuela es = ce.buscarUnaEscuela((a.Escuela_alumno.Id_escuela)+1);
             CatalogPais cp = new CatalogPais();
-            Pais p = cp.buscarUnPais(a.Pais_alumno.Id_pais + 1);
+            Pais p = cp.buscarUnPais(a.Pais_persona.Id_pais + 1);
             
-            nombreAlumno.InnerText = a.Nombre_alumno;
+            nombreAlumno.InnerText = a.Nombre_persona;
             nombreEscuela.InnerText = es.Nombre_escuela;
             nacionalidad.InnerText = p.Nombre_pais;
-            fechaNacimiento.InnerText = a.Fecha_nacimiento_alumno.Date.ToString("dd/M/yyyy");
-            direccion.InnerText = a.Direccion_alumno;
-            telefono.InnerText = a.Telefono_alumno+"";
-            correo.InnerText = a.Correo_alumno;
+            fechaNacimiento.InnerText = a.Fecha_nacimiento_persona.Date.ToString("dd/M/yyyy");
+            direccion.InnerText = a.Direccion_persona;
+            telefono.InnerText = a.Telefono_persona+"";
+            correo.InnerText = a.Correo_persona;
             promocion.InnerText = a.Promocion_alumno+"";
 
             

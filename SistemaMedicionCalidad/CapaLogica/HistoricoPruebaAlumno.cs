@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Project
+﻿namespace Project
 {
     public class HistoricoPruebaAlumno
     {
-        int id_hpa;
-        Evaluacion evaluacion_hpa;
-        Respuesta respuesta_hpa;
-        Pregunta pregunta_hpa;
-        Alumno alumno_hpa;
+        private int id_hpa;
+        private Evaluacion evaluacion_hpa;
+        private Respuesta respuesta_hpa;
+        private Pregunta pregunta_hpa;
+        private Alumno alumno_hpa;
 
         public HistoricoPruebaAlumno()
         {

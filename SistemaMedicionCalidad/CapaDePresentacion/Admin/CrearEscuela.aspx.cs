@@ -15,7 +15,7 @@ namespace CapaDePresentacion
             Escuela es= new Escuela (this.tbxEscuela.Text);
             try
             {
-                cescuela.agregarEscuelaPA(es);
+                cescuela.insertarEscuela(es);
                 Response.Write("<script>window.alert('Escuela creada satisfactoriamente');</script>");
             }
             catch

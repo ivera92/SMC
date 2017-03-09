@@ -27,8 +27,8 @@
                 onrowediting="rowEditing">
                     <Columns>
                         <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" />
-                        <asp:BoundField DataField="Nombre_Docente" HeaderText="Nombre" />
-                        <asp:BoundField DataField="Rut_Docente" HeaderText="Rut" />
+                        <asp:BoundField DataField="Nombre_Persona" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
                         <asp:BoundField DataField="Profesion_Docente.Nombre_profesion" HeaderText="Profesion" />
                     </Columns>
                 </asp:GridView>

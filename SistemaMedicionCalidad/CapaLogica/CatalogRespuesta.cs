@@ -7,7 +7,8 @@ namespace Project
 {
     public class CatalogRespuesta
     {
-        public void agregarRespuesta(Respuesta r)
+        //Inserta una respuesta a la base de datos
+        public void insertarRespuesta(Respuesta r)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -21,7 +22,8 @@ namespace Project
             bd.execute();
             bd.Close();
         }
-        public List<Respuesta> mostrarRespuestas(int id_pregunta)
+        //Devuelve las respuestas asociadas a una pregunta mediante su ID
+        public List<Respuesta> listarRespuestasPregunta(int id_pregunta)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -30,7 +32,7 @@ namespace Project
             bd.CreateCommandSP(sql);
 
             bd.createParameter("@id_pregunta_respuesta", DbType.Int32, id_pregunta);
-            List<Respuesta> lrespuestas = new List<Respuesta>();
+            List<Respuesta> lRespuestasPregunta = new List<Respuesta>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
@@ -38,12 +40,13 @@ namespace Project
                 r.Id_respuesta = result.GetInt32(0);
                 r.Nombre_respuesta = result.GetString(1);
                 r.Correcta_respuesta = result.GetBoolean(2);
-                lrespuestas.Add(r);
+                lRespuestasPregunta.Add(r);
             }
-            return lrespuestas;
+            return lRespuestasPregunta;
         }
 
-        public List<Respuesta> mostrarTodasRespuestas()
+        //Lista todas las respuestas existentes en la base de datos
+        public List<Respuesta> listarRespuestas()
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -51,25 +54,26 @@ namespace Project
             string sql = "mostrarTodasRespuestas";
             bd.CreateCommandSP(sql);
 
-            List<Respuesta> lrespuestas = new List<Respuesta>();
+            List<Respuesta> lRespuestas = new List<Respuesta>();
             DbDataReader result = bd.Query();//disponible resultado
-            CatalogPregunta cp = new CatalogPregunta();
+            CatalogPregunta cPregunta = new CatalogPregunta();
             Pregunta p = new Pregunta();
             while (result.Read())
             {
                 Respuesta r = new Respuesta();
                 r.Pregunta_respuesta = p;
-                p=cp.buscarUnaPregunta(result.GetInt32(3));
+                p=cPregunta.buscarUnaPregunta(result.GetInt32(3));
 
                 r.Pregunta_respuesta.Nombre_pregunta = p.Nombre_pregunta;             
                 r.Id_respuesta = result.GetInt32(0);
                 r.Nombre_respuesta = result.GetString(1);
                 r.Correcta_respuesta = result.GetBoolean(2);
 
-                lrespuestas.Add(r);
+                lRespuestas.Add(r);
             }
-            return lrespuestas;
+            return lRespuestas;
         }
+        //Elimina una sola respuesta de una pregunta acorde a su ID
         public void eliminarRespuesta(int id_respuesta)
         {
             DataBase bd = new DataBase();
@@ -83,6 +87,7 @@ namespace Project
             bd.Close();
         }
 
+        //Elimina todas las respuestas asociadas a una pregunta acorde a su ID
         public void eliminarRespuestas(int id_pregunta)
         {
             DataBase bd = new DataBase();

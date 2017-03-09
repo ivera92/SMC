@@ -48,7 +48,7 @@ namespace CapaDePresentacion
             this.gvRespuestas.Visible = true;
             CatalogRespuesta cr = new CatalogRespuesta();
             List<Respuesta> lr = new List<Respuesta>();
-            lr = cr.mostrarTodasRespuestas();
+            lr = cr.listarRespuestas();
             this.gvRespuestas.DataSource = lr;
             this.DataBind();
         }
