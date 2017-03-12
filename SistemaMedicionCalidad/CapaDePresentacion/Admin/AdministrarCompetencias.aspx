@@ -6,10 +6,10 @@
 
     <div id="divMostrar" runat="server">
 
-    <h2>Administrar Competencias</h2>
+    <h2 class="text-center">Administrar Competencias</h2>
     <br />
     <div class ="row">
-        <div class="col-sm-8">
+        <div class="col-sm-offset-2 col-sm-8">
             <asp:GridView class="table table-striped" ID="gvCompetencias" runat="server" AutoGenerateColumns="false" 
                 onrowdeleting="rowDeleting" onrowediting="rowEditing">
                 <Columns>
@@ -24,39 +24,43 @@
     </div>
 </div>
 
-<div id="editar" runat="server">
-    <h2>Editar Competencia</h2>
+<div id="divEditar" runat="server">
+    <h2 class="text-center">Actualizar Competencia</h2>
     <br />
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-offset-3 col-sm-1">
             <label>Nombre</label>
         </div>
-        <div class="col-sm-2">
-            <label>Tipo</label>
-        </div>
-        <div class="col-sm-6">
-            <label>Descripcion</label>
+        <div class="col-sm-5">
+            <asp:TextBox runat="server" ID="txtNombreCompetencia" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre" ></asp:TextBox>
         </div>
     </div>
+    <br />
 
     <div class="row">
-        <div class="col-sm-4">
-            <asp:TextBox runat="server" ID="txtNombreCompetencia" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre" required></asp:TextBox>
+        <div class="col-sm-offset-3 col-sm-1">
+            <label>Descripcion</label>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-5">
+            <textarea class="form-control" id="descripcion" runat="server" rows="5"></textarea>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-1">
+            <label>Tipo</label>
+        </div>
+        <div class="col-sm-3">
             <asp:RadioButtonList ID="tipoCompetencia" runat="server">
             <asp:ListItem Selected="True" Value="Generica"></asp:ListItem>
             <asp:ListItem Value="Especifica"></asp:ListItem>
             </asp:RadioButtonList>
         </div>
-        <div class="col-sm-4">
-            <textarea id="descripcion" runat="server" cols="20" rows="2"></textarea>
-        </div>
         <div class="col-sm-2">
             <asp:Button  ID="btnGuardar" class="btn btn-primary btn-block" runat="server" Text="Guardar" OnClick="btnGuardar_Click"/>
         </div>
-    </div>     
-</div>
-
+    </div>
+    </div>
 </asp:Content>

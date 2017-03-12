@@ -11,11 +11,11 @@ namespace CapaDePresentacion
 
         protected void btbCrear_Click(object sender, EventArgs e)
         {
-            CatalogEscuela cescuela = new CatalogEscuela();
+            CatalogEscuela cEscuela = new CatalogEscuela();
             Escuela es= new Escuela (this.tbxEscuela.Text);
             try
             {
-                cescuela.insertarEscuela(es);
+                cEscuela.insertarEscuela(es);
                 Response.Write("<script>window.alert('Escuela creada satisfactoriamente');</script>");
             }
             catch

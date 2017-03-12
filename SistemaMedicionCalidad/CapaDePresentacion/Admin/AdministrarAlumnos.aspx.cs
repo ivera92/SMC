@@ -13,20 +13,20 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogEscuela cescuela = new CatalogEscuela();
-            List<Escuela> escuelas = cescuela.listarEscuelas();
-            CatalogPais cpais = new CatalogPais();
-            List<Pais> lpais = cpais.listarPaises();
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            List<Escuela> lEscuelas = cEscuela.listarEscuelas();
+            CatalogPais cPais = new CatalogPais();
+            List<Pais> lPaises = cPais.listarPaises();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.escuela.DataTextField = "Nombre_escuela";
                 this.escuela.DataValueField = "Id_escuela";
-                this.escuela.DataSource = escuelas;
+                this.escuela.DataSource = lEscuelas;
 
                 this.pais.DataTextField = "Nombre_pais";
                 this.pais.DataValueField = "Id_pais";
-                this.pais.DataSource = lpais;
+                this.pais.DataSource = lPaises;
 
                 this.divEditar.Visible = false;
                 this.mostrar();
@@ -36,20 +36,20 @@ namespace CapaDePresentacion
         public void mostrar()
         {
             this.GridView1.Visible = true;
-            CatalogAlumno calumno = new CatalogAlumno();
-            List<Alumno> listaAlumnos = new List<Alumno>();
-            listaAlumnos = calumno.listarAlumnos();
-            this.GridView1.DataSource = listaAlumnos;
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            List<Alumno> lAlumno = new List<Alumno>();
+            lAlumno = cAlumno.listarAlumnos();
+            this.GridView1.DataSource = lAlumno;
             this.DataBind();
         }
 
         protected void rowDeletingEvent(object sender, GridViewDeleteEventArgs e)
         {
             string rut_alumno = HttpUtility.HtmlDecode((string)this.GridView1.Rows[e.RowIndex].Cells[2].Text);
-            CatalogAlumno calumno = new CatalogAlumno();
+            CatalogAlumno cAlumno = new CatalogAlumno();
             try
             {
-                calumno.eliminarAlumno(rut_alumno);
+                cAlumno.eliminarAlumno(rut_alumno);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -65,8 +65,8 @@ namespace CapaDePresentacion
         {
             this.divMostrar.Visible = false;
             string rut_alumno = HttpUtility.HtmlDecode((string)this.GridView1.Rows[e.NewEditIndex].Cells[2].Text);
-            CatalogAlumno ca = new CatalogAlumno();
-            Alumno a = ca.buscarAlumnoPorRut(rut_alumno);
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            Alumno a = cAlumno.buscarAlumnoPorRut(rut_alumno);
             this.escuela.SelectedIndex = a.Escuela_alumno.Id_escuela;
             this.nombre.Text = a.Nombre_persona;
             this.rut.Text = a.Rut_persona;
@@ -76,47 +76,42 @@ namespace CapaDePresentacion
             this.pais.SelectedIndex = a.Pais_persona.Id_pais;
             this.correo.Text = a.Correo_persona;
             this.promocion.Text = a.Promocion_alumno + "";
+
             if (a.Beneficio_alumno == true)
-            {
                 this.beneficio.SelectedIndex = 0;
-            }
             else
                 this.beneficio.SelectedIndex = 1;
+
             if (a.Sexo_persona == true)
-            {
                 this.sexo.SelectedIndex = 0;
-            }
             else
                 this.sexo.SelectedIndex = 1;
+
             this.divEditar.Visible = true;
         }
 
         protected void btnbuscar_Click(object sender, EventArgs e)
         {
             this.GridView1.Visible = true;
-            CatalogAlumno alumno = new CatalogAlumno();
-            List<Alumno> listAlumno = new List<Alumno>();
-            listAlumno = alumno.buscarAlumno(this.tbxbuscar.Text);
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            List<Alumno> lAlumno = cAlumno.buscarAlumno(this.tbxbuscar.Text);
 
-            this.GridView1.DataSource = listAlumno;
+            this.GridView1.DataSource = lAlumno;
             this.DataBind();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            CatalogAlumno calumno = new CatalogAlumno();
+            CatalogAlumno cAlumno = new CatalogAlumno();
             bool sexo, beneficio;
+
             if (this.sexo.Text == "Masculino")
-            {
                 sexo = true;
-            }
             else
                 sexo = false;
 
             if (this.beneficio.Text == "Si")
-            {
                 beneficio = true;
-            }
             else
                 beneficio = false;
 
@@ -139,7 +134,7 @@ namespace CapaDePresentacion
             a.Beneficio_alumno = beneficio;
             try
             {
-                calumno.actualizarAlumno(a);
+                cAlumno.actualizarAlumno(a);
                 this.divEditar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

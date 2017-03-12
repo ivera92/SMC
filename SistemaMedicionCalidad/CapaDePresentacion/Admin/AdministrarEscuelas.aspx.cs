@@ -19,26 +19,25 @@ namespace CapaDePresentacion
                 this.mostrar();
             }
         }
-
+        //Lista las esculeas existentes
         public void mostrar()
         {
             this.txtid.Visible = false;
-            this.GridView1.Visible = true;
-            CatalogEscuela cescuela = new CatalogEscuela();
-            List<Escuela> listaEscuelas = new List<Escuela>();
-            listaEscuelas = cescuela.listarEscuelas();
-            this.GridView1.DataSource = listaEscuelas;
+            this.gvEscuelas.Visible = true;
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            List<Escuela> lEscuelas = cEscuela.listarEscuelas();
+            this.gvEscuelas.DataSource = lEscuelas;
             this.DataBind();
         }
-
+        //Elimina la fila seleccionada
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int id_escuela = int.Parse(HttpUtility.HtmlDecode((string)(this.GridView1.Rows[e.RowIndex].Cells[2].Text)));
-            CatalogEscuela cescuela = new CatalogEscuela();
+            int id_escuela = int.Parse(HttpUtility.HtmlDecode((string)(this.gvEscuelas.Rows[e.RowIndex].Cells[2].Text)));
+            CatalogEscuela cEscuela = new CatalogEscuela();
 
             try
             {
-                cescuela.eliminarEscuela(id_escuela);
+                cEscuela.eliminarEscuela(id_escuela);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -48,25 +47,25 @@ namespace CapaDePresentacion
                 Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
             }
         }
-        
+        //Carga los datos de la fila a actualizar
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
-            string id_escuela = HttpUtility.HtmlDecode((string)this.GridView1.Rows[e.NewEditIndex].Cells[2].Text);
-            CatalogEscuela cescuela= new CatalogEscuela();
-            Escuela escuela = cescuela.buscarUnaEscuela(int.Parse(id_escuela));
+            string id_escuela = HttpUtility.HtmlDecode((string)this.gvEscuelas.Rows[e.NewEditIndex].Cells[2].Text);
+            CatalogEscuela cEscuela= new CatalogEscuela();
+            Escuela escuela = cEscuela.buscarUnaEscuela(int.Parse(id_escuela));
             this.tbxEscuela.Text = escuela.Nombre_escuela;
             this.txtid.Text = escuela.Id_escuela+"";
             this.tablaAdministrar.Visible = false;
             this.tablaEditar.Visible = true;
         }
-
+        //Guarda los cambios realizados
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            CatalogEscuela cescuela = new CatalogEscuela();
+            CatalogEscuela cEscuela = new CatalogEscuela();
             Escuela es = new Escuela(int.Parse(this.txtid.Text), this.tbxEscuela.Text);
             try
             {
-                cescuela.actualizarEscuela(es);
+                cEscuela.actualizarEscuela(es);
                 this.tablaEditar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

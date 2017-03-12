@@ -4,27 +4,27 @@ using System.Web.UI;
 using Project.CapaDeNegocios;
 using Project;
 
-namespace CapaDePresentacion
+namespace CapaDePresentacion.Doc
 {
     public partial class CrearAlumno : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogEscuela cescuela = new CatalogEscuela();
-            List<Escuela> escuelas = cescuela.listarEscuelas();
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            List<Escuela> lEscuelas = cEscuela.listarEscuelas();
 
-            CatalogPais cpais = new CatalogPais();
-            List<Pais> lpais = cpais.listarPaises();
+            CatalogPais cPais = new CatalogPais();
+            List<Pais> lPaises = cPais.listarPaises();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.escuela.DataTextField = "Nombre_escuela";
                 this.escuela.DataValueField = "Id_escuela";
-                this.escuela.DataSource = escuelas;
+                this.escuela.DataSource = lEscuelas;
 
                 this.ddPais.DataTextField = "Nombre_pais";
                 this.ddPais.DataValueField = "Id_pais";
-                this.ddPais.DataSource = lpais;
+                this.ddPais.DataSource = lPaises;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
@@ -45,19 +45,16 @@ namespace CapaDePresentacion
         }
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            CatalogAlumno alumno = new CatalogAlumno();
+            CatalogAlumno cAlumno = new CatalogAlumno();
             bool sexo, beneficio;
+
             if (this.sexo.Text == "Masculino")
-            {
                 sexo = true;
-            }
             else
                 sexo = false;
 
             if (this.beneficio.Text == "Si")
-            {
                 beneficio = true;
-            }
             else
                 beneficio = false;
 
@@ -80,7 +77,7 @@ namespace CapaDePresentacion
             a.Beneficio_alumno = beneficio;
             try
             {
-                alumno.insertarAlumno(a);
+                cAlumno.insertarAlumno(a);
                 Response.Write("<script>window.alert('Alumno creado satisfactoriamente');</script>");
             }
             catch

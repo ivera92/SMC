@@ -16,18 +16,17 @@ namespace CapaDePresentacion
         }
         protected void brnCrear_Click(object sender, EventArgs e)
         {
-            CatalogCompetencia ccompetencia = new CatalogCompetencia();
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
             bool tipo_competencia;
             if (this.tipoCompetencia.Text == "Generica")
-            {
                 tipo_competencia = true;
-            }
             else
                 tipo_competencia = false;
+
             Competencia c = new Competencia(this.txtNombreCompetencia.Text, tipo_competencia, this.descripcion.InnerText);
             try
             {
-                ccompetencia.insertarCompetencia(c);
+                cCompetencia.insertarCompetencia(c);
                 Response.Write("<script>window.alert('Competencia creada satisfactoriamente');</script>");
             }
             catch

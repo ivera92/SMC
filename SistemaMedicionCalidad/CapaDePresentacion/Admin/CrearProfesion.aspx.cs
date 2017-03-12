@@ -11,12 +11,12 @@ namespace CapaDePresentacion
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            CatalogProfesion cprofesion = new CatalogProfesion();
+            CatalogProfesion cProfesion = new CatalogProfesion();
             Profesion p = new Profesion(this.tbxProfesion.Text);
 
             try
             {
-                cprofesion.insertarProfesion(p);
+                cProfesion.insertarProfesion(p);
                 Response.Write("<script>window.alert('Profesion creada satisfactoriamente');</script>");
             }
             catch

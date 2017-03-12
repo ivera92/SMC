@@ -40,13 +40,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtCompetencia;
         
         /// <summary>
-        /// editar control.
+        /// divEditar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEditar;
         
         /// <summary>
         /// txtNombreCompetencia control.
@@ -58,15 +58,6 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtNombreCompetencia;
         
         /// <summary>
-        /// tipoCompetencia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList tipoCompetencia;
-        
-        /// <summary>
         /// descripcion control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea descripcion;
+        
+        /// <summary>
+        /// tipoCompetencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList tipoCompetencia;
         
         /// <summary>
         /// btnGuardar control.

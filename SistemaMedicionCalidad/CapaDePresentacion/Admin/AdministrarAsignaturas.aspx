@@ -1,15 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="AdministrarAsignaturas.aspx.cs" Inherits="CapaDePresentacion.AdministrarAsignaturas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="AdministrarAsignaturas.aspx.cs" Inherits="CapaDePresentacion.Admin.AdministrarAsignaturas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
      <div id="divAdministrar" runat="server">
-    <h2> Administrar Asignaturas</h2>
+    <h2 class="text-center"> Administrar Asignaturas</h2>
     <br />
 
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-offset-2 col-sm-8">
             <asp:GridView class="table table-striped" id="gvAsignatura" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
                 <Columns>
                     <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" />
@@ -27,7 +27,7 @@
     </div>
 
     <div id="divEditar" runat="server">
-        <h2>Editar Asignatura</h2>
+        <h2 class="text-center">Actualizar Asignatura</h2>
         <br />
 
     <div class="row">

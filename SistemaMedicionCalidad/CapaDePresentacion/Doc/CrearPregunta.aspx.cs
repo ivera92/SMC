@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
 
-namespace CapaDePresentacion
+namespace CapaDePresentacion.Doc
 {
     public partial class CrearPregunta : System.Web.UI.Page
     {
@@ -185,12 +185,20 @@ namespace CapaDePresentacion
         }
         public void subirImagen()
         {
-            if (fileImagen.HasFile)
+            /*if (fileImagen.HasFile)
             {
                 //si hay una archivo.
                 string nombreArchivo = fileImagen.FileName;
                 ruta = "~/Docente/ImagenesPreguntas/" + nombreArchivo;
                 fileImagen.SaveAs(Server.MapPath(ruta));
+            }*/
+            if (fileImagen.PostedFile.ContentLength > 0)
+            {
+                string archivo = Server.MapPath(String.Format("/ImagenesPreguntas/{0}",Path.GetFileName(fileImagen.PostedFile.FileName)));
+                if (File.Exists(archivo)) File.Delete(archivo);
+                fileImagen.PostedFile.SaveAs(archivo);
+                ClientScript.RegisterStartupScript(this.GetType(), "Mensaje",
+                    "alert('La imagen fue grabada en el servidor');", true);
             }
         }
     }

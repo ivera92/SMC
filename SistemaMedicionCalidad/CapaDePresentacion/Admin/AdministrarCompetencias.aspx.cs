@@ -15,27 +15,28 @@ namespace CapaDePresentacion
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.txtCompetencia.Visible = false;
-                this.editar.Visible = false;
+                this.divEditar.Visible = false;
                 this.mostrar();
             }            
         }
+        //Carga los datos en el Gridview
         public void mostrar()
         {
             this.txtCompetencia.Visible = false;
             this.gvCompetencias.Visible = true;
-            CatalogCompetencia ccompentecia = new CatalogCompetencia();
-            List<Competencia> lcompetencias = new List<Competencia>();
-            lcompetencias =ccompentecia.listarCompetencias();
-            this.gvCompetencias.DataSource = lcompetencias;
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            List<Competencia> lCompetencias = cCompetencia.listarCompetencias();
+            this.gvCompetencias.DataSource = lCompetencias;
             this.DataBind();
         }
+        //Elimina una competencia por su ID
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string id_competencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.RowIndex].Cells[3].Text);
-            CatalogCompetencia cc = new CatalogCompetencia();
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
             try
             {
-                cc.eliminarCompetencia(int.Parse(id_competencia));
+                string id_competencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.RowIndex].Cells[3].Text);
+                cCompetencia.eliminarCompetencia(int.Parse(id_competencia));
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -45,44 +46,40 @@ namespace CapaDePresentacion
                 Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
             }
         }
-
+        //Carga los valores de la competencia a editar
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
             this.divMostrar.Visible = false;
             string idCompetencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.NewEditIndex].Cells[3].Text);
-            CatalogCompetencia cc = new CatalogCompetencia();
-            Competencia c = cc.buscarUnaCompetencia(int.Parse(idCompetencia));
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            Competencia c = cCompetencia.buscarUnaCompetencia(int.Parse(idCompetencia));
             this.txtCompetencia.Text = c.Id_competencia + "";
             this.txtNombreCompetencia.Text = c.Nombre_competencia;
             this.descripcion.InnerText = c.Descripcion_competencia;
-            if(c.Tipo_competencia==true)
-            {
-                this.tipoCompetencia.SelectedIndex = 0;
-            }
-            else
-            {
-                this.tipoCompetencia.SelectedIndex = 1;
-            }
-            this.editar.Visible = true;
-        }
 
+            if(c.Tipo_competencia==true)
+                this.tipoCompetencia.SelectedIndex = 0;
+            else
+                this.tipoCompetencia.SelectedIndex = 1;
+
+            this.divEditar.Visible = true;
+        }
+        
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            CatalogCompetencia cc = new CatalogCompetencia();
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
             bool tipo;
+
             if (this.tipoCompetencia.Text == "Generica")
-            {
                 tipo = true;
-            }
             else
-            {
                 tipo = false;
-            }
+
             Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, tipo, this.descripcion.InnerText);
             try
             {
-                cc.actualizarCompetencia(c);
-                this.editar.Visible = false;
+                cCompetencia.actualizarCompetencia(c);
+                this.divEditar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }
             catch

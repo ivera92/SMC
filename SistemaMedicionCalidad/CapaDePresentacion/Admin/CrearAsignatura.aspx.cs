@@ -10,20 +10,20 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogEscuela cescuela = new CatalogEscuela();
-            List<Escuela> escuelas = cescuela.listarEscuelas();
-            CatalogDocente cdocente = new CatalogDocente();
-            List<Docente> ldocentes = cdocente.listarDocentes();
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            List<Escuela> lEscuelas = cEscuela.listarEscuelas();
+            CatalogDocente cDocente = new CatalogDocente();
+            List<Docente> lDocentes = cDocente.listarDocentes();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddEscuela.DataTextField = "Nombre_escuela";
                 this.ddEscuela.DataValueField = "Id_escuela";
-                this.ddEscuela.DataSource = escuelas;
+                this.ddEscuela.DataSource = lEscuelas;
 
                 this.ddDocente.DataTextField = "Nombre_persona";
                 this.ddDocente.DataValueField = "Rut_persona";
-                this.ddDocente.DataSource = ldocentes;
+                this.ddDocente.DataSource = lDocentes;
 
                 this.DataBind();//enlaza los datos a un dropdownlist   
             }
@@ -39,12 +39,10 @@ namespace CapaDePresentacion
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            CatalogAsignatura ca = new CatalogAsignatura();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
             bool duracion;
             if (this.duracion.Text == "Semestral")
-            {
                 duracion = true;
-            }
             else
                 duracion = false;
 
@@ -61,7 +59,7 @@ namespace CapaDePresentacion
             a.Duracion_asignatura = duracion;
             try
             {
-                ca.insertarAsignatura(a);
+                cAsignatura.insertarAsignatura(a);
                 Response.Write("<script>window.alert('Asignatura creada satisfactoriamente');</script>");
             }
             catch

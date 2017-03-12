@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDePresentacion {
+namespace CapaDePresentacion.Doc {
     
     
     public partial class CrearPregunta {
@@ -20,6 +20,15 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtAPregunta;
+        
+        /// <summary>
+        /// imgFoto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgFoto;
         
         /// <summary>
         /// fileImagen control.

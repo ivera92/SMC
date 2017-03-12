@@ -10,21 +10,21 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogProfesion cprofesion = new CatalogProfesion();
-            List<Profesion> profesiones = cprofesion.listarProfesiones();
+            CatalogProfesion cProfesion = new CatalogProfesion();
+            List<Profesion> lProfesiones = cProfesion.listarProfesiones();
 
-            CatalogPais cpais = new CatalogPais();
-            List<Pais> lpais = cpais.listarPaises();
+            CatalogPais cPais = new CatalogPais();
+            List<Pais> lPaises = cPais.listarPaises();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.profesion.DataTextField = "Nombre_profesion";
                 this.profesion.DataValueField = "Id_profesion";
-                this.profesion.DataSource = profesiones;
+                this.profesion.DataSource = lProfesiones;
 
                 this.ddPais.DataTextField = "Nombre_pais";
                 this.ddPais.DataValueField = "Id_pais";
-                this.ddPais.DataSource = lpais;
+                this.ddPais.DataSource = lPaises;
                     
                 this.DataBind();
             }
@@ -45,19 +45,15 @@ namespace CapaDePresentacion
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            CatalogDocente cdocente = new CatalogDocente();
+            CatalogDocente cDocente = new CatalogDocente();
             bool sexo, disponibilidad;
             if (this.sexo.Text == "Masculino")
-            {
                 sexo = true;
-            }
             else
                 sexo = false;
 
             if (this.disponibilidad.Text == "Part-Time")
-            {
                 disponibilidad = true;
-            }
             else
                 disponibilidad = true;
         
@@ -78,7 +74,7 @@ namespace CapaDePresentacion
             d.Disponibilidad_docente = disponibilidad;
             try
             {
-                cdocente.insertarDocente(d);
+                cDocente.insertarDocente(d);
                 Response.Write("<script>window.alert('Docente creado satisfactoriamente');</script>");
             }
             catch

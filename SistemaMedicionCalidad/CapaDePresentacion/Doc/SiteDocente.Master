@@ -31,7 +31,6 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Alumno</a>
                     <ul  class="dropdown-menu" >
                         <li><a href="CrearAlumno.aspx">Crear Alumno</a></li>
-                        <li><a href="AdministrarAlumnos.aspx">Administrar Alumnos</a></li>
                     </ul>
                 </li>
 
@@ -47,8 +46,6 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pregunta</a>
                     <ul  class="dropdown-menu" >
                         <li><a href="CrearPregunta.aspx">Crear Pregunta</a></li>
-                        <li><a href="AdministrarPreguntas.aspx">Administrar Preguntas</a></li>
-                        <li><a href="AdministrarRespuestas.aspx">Administrar Respuestas</a></li>
                     </ul>
                 </li>
             </ul>

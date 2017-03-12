@@ -10,70 +10,70 @@
 namespace CapaDePresentacion {
     
     
-    public partial class CrearEvaluacion {
+    public partial class AdministrarPreguntas {
         
         /// <summary>
-        /// ddAsignatura control.
+        /// administrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddAsignatura;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl administrar;
         
         /// <summary>
-        /// txtNombre control.
+        /// gvPreguntas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.GridView gvPreguntas;
         
         /// <summary>
-        /// btnBuscar control.
+        /// txtid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.WebControls.TextBox txtid;
         
         /// <summary>
-        /// nombreAlumno control.
+        /// editar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nombreAlumno;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editar;
         
         /// <summary>
-        /// rut control.
+        /// txtAPregunta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rut;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtAPregunta;
         
         /// <summary>
-        /// fecha control.
+        /// ddCompetencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fecha;
+        protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
         
         /// <summary>
-        /// fechaEvaluacion control.
+        /// ddTipoPregunta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fechaEvaluacion;
+        protected global::System.Web.UI.WebControls.DropDownList ddTipoPregunta;
         
         /// <summary>
         /// Panel1 control.
@@ -85,12 +85,12 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// btnCrear control.
+        /// btnGuardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCrear;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
     }
 }

@@ -9,21 +9,21 @@ using Project;
 using Project.CapaDeDatos;
 using System.Web;
 
-namespace CapaDePresentacion
+namespace CapaDePresentacion.Doc
 {
     public partial class CrearEvaluacion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogAsignatura ca = new CatalogAsignatura();
-            List<Asignatura> la = ca.listarAsignaturas();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
 
             if (!Page.IsPostBack)
             {
                 this.fechaEvaluacion.InnerText = DateTime.Today.ToString("d");
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
                 this.ddAsignatura.DataValueField = "Id_asignatura";
-                this.ddAsignatura.DataSource = la;
+                this.ddAsignatura.DataSource = lAsignatura;
 
                 this.DataBind();//enlaza los datos a un dropdownlist      
             }
@@ -37,7 +37,6 @@ namespace CapaDePresentacion
 
             bd.CreateCommand(sql);
             DbDataReader result = bd.Query();
-            int pVez = 0;
             string s = "";
             
             Response.ContentType = "application/pdf";
@@ -75,19 +74,9 @@ namespace CapaDePresentacion
                 Paragraph pp = new Paragraph();
                 Label l = new Label();
                 l.Text = result.GetString(2);
-                //Si es la primera pregunta
-                if (pVez == 0)
-                {
-                    pp.Add(new Paragraph(" "));
-                    pVez++;
-                    pp.Add(numPregunta+" ");
-                    pp.Add(l.Text+"\n");
-                    s = l.Text;
-                    pp.Add(new Paragraph(" "));
-                    numPregunta = numPregunta + 1;
-                }
+
                 //Si cambio la pregunta
-                else if (s != l.Text)
+                if (s != l.Text)
                 {
                     pp.Add(new Paragraph(" "));
                     pp.Add(numPregunta + " ");
@@ -97,16 +86,13 @@ namespace CapaDePresentacion
                 }
                 if (result.GetString(0) == "Seleccion multiple")
                 {
-                    pp.Add("O "+result.GetString(1));
+                    pp.Add("O " + result.GetString(1));
                 }
 
                 else if (result.GetString(0) == "Casillas de verificacion")
                 {
-                    pp.Add("[] "+result.GetString(1)+"\n");
-                    while (result.GetString(0) == "Casillas de verificacion" && result.Read())
-                    {                    
-                        pp.Add("[] "+result.GetString(1)+"\n");
-                    }
+                    pp.Add("[] " + result.GetString(1) + "\n");
+
                 }
                 pdfDoc.Add(pp);
                 s = l.Text;

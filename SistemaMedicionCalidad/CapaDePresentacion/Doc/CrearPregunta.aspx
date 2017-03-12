@@ -1,5 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteDocente.Master" AutoEventWireup="true" CodeBehind="CrearPregunta.aspx.cs" Inherits="CapaDePresentacion.CrearPregunta" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteDocente.Master" AutoEventWireup="true" CodeBehind="CrearPregunta.aspx.cs" Inherits="CapaDePresentacion.Doc.CrearPregunta" %>
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="HeadContent" >
+    <script src="../Scripts/imagen.js"></script>
+    <script>cargarScriptPagina();</script>
 </asp:Content>
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" >
 
@@ -15,6 +17,12 @@
     <br />
 
     <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <asp:Image ID="imgFoto" runat="server" />
+        </div>
+    </div>
+    
+        <div class="row">
         <div class="col-sm-offset-4">
             <asp:FileUpload enabled="true" id="fileImagen" runat="server"></asp:FileUpload>
             <br />

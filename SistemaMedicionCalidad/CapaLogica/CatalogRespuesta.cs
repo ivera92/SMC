@@ -37,9 +37,13 @@ namespace Project
             while (result.Read())
             {
                 Respuesta r = new Respuesta();
+                Pregunta p = new Pregunta();
+                r.Pregunta_respuesta = p;
+
                 r.Id_respuesta = result.GetInt32(0);
-                r.Nombre_respuesta = result.GetString(1);
-                r.Correcta_respuesta = result.GetBoolean(2);
+                r.Pregunta_respuesta.Id_pregunta = result.GetInt32(1);
+                r.Nombre_respuesta = result.GetString(2);
+                r.Correcta_respuesta = result.GetBoolean(3);
                 lRespuestasPregunta.Add(r);
             }
             return lRespuestasPregunta;

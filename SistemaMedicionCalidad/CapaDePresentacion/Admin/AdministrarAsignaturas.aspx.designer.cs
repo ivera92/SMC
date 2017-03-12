@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDePresentacion {
+namespace CapaDePresentacion.Admin {
     
     
     public partial class AdministrarAsignaturas {

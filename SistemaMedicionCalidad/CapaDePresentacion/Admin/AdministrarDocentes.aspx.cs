@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
@@ -8,27 +7,27 @@ using System.Web.UI.WebControls;
 using Project;
 using Project.CapaDeNegocios;
 
-namespace CapaDePresentacion
+namespace CapaDePresentacion.Doc
 {
     public partial class AdministrarDocentes : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogProfesion cprofesion = new CatalogProfesion();
-            List<Profesion> profesiones = cprofesion.listarProfesiones();
+            CatalogProfesion cProfesion = new CatalogProfesion();
+            List<Profesion> lProfesiones = cProfesion.listarProfesiones();
 
-            CatalogPais cpais = new CatalogPais();
-            List<Pais> lpais = cpais.listarPaises();
+            CatalogPais cPais = new CatalogPais();
+            List<Pais> lPaises = cPais.listarPaises();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.profesion.DataTextField = "Nombre_profesion";
-                this.profesion.DataValueField = "Id_profesion";
-                this.profesion.DataSource = profesiones;
+                this.ddProfesion.DataTextField = "Nombre_profesion";
+                this.ddProfesion.DataValueField = "Id_profesion";
+                this.ddProfesion.DataSource = lProfesiones;
 
                 this.ddPais.DataTextField = "Nombre_pais";
                 this.ddPais.DataValueField = "Id_pais";
-                this.ddPais.DataSource = lpais;
+                this.ddPais.DataSource = lPaises;
 
                 this.tablaEditar.Visible = false;
 
@@ -36,14 +35,14 @@ namespace CapaDePresentacion
                 this.DataBind();
             }
         }
-
+        //Elimina la fila seleccionada
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string rut_docente = HttpUtility.HtmlDecode((string)this.Gridview1.Rows[e.RowIndex].Cells[2].Text);
-            CatalogDocente cdocente = new CatalogDocente();
+            string rut_docente = HttpUtility.HtmlDecode((string)this.gvDocentes.Rows[e.RowIndex].Cells[2].Text);
+            CatalogDocente cDocente = new CatalogDocente();
             try
             {
-                cdocente.eliminarDocente(rut_docente);
+                cDocente.eliminarDocente(rut_docente);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -54,72 +53,59 @@ namespace CapaDePresentacion
             }
 
         }
-
+        //Carga los datos de la fila a actualizar
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
             this.tablaAdministrar.Visible = false;
-            string rut_docente = HttpUtility.HtmlDecode((string)this.Gridview1.Rows[e.NewEditIndex].Cells[2].Text);
-            this.profesion.SelectedIndex = 0;
-            CatalogDocente cdocente = new CatalogDocente();
-            Docente d = cdocente.buscarUnDocente(rut_docente);
+            string rut_docente = HttpUtility.HtmlDecode((string)this.gvDocentes.Rows[e.NewEditIndex].Cells[2].Text);
+            this.ddProfesion.SelectedIndex = 0;
+            CatalogDocente cDocente = new CatalogDocente();
+            Docente d = cDocente.buscarUnDocente(rut_docente);
             
-            this.correo.Text = d.Correo_persona;
-            this.direccion.Text = d.Direccion_persona;
+            this.txtCorreo.Text = d.Correo_persona;
+            this.txtDireccion.Text = d.Direccion_persona;
+
             if (d.Disponibilidad_docente == true)
-            {
-                this.disponibilidad.SelectedIndex = 0;
-            }
+                this.rbDisponibilidad.SelectedIndex = 0;
             else
-                this.disponibilidad.SelectedIndex = 1;
-            this.fechaDeNacimiento.Text = d.Fecha_nacimiento_persona.ToString("d");
+                this.rbDisponibilidad.SelectedIndex = 1;
+
+            this.txtFechaDeNacimiento.Text = d.Fecha_nacimiento_persona.ToString("d");
             this.ddPais.SelectedValue = d.Pais_persona.Id_pais+"";
-            this.nombre.Text = d.Nombre_persona;
-            this.profesion.SelectedValue = d.Profesion_docente.Id_profesion+"";
-            this.rut.Text = d.Rut_persona + "";
+            this.txtNombre.Text = d.Nombre_persona;
+            this.ddProfesion.SelectedValue = d.Profesion_docente.Id_profesion+"";
+            this.txtRut.Text = d.Rut_persona + "";
+
             if (d.Sexo_persona == true)
-            {
-                this.sexo.SelectedIndex = 0;
-            }
+                this.rbSexo.SelectedIndex = 0;
             else
-                this.sexo.SelectedIndex = 1;
-            this.telefono.Text = d.Telefono_persona+"";
+                this.rbSexo.SelectedIndex = 1;
+
+            this.txtTelefono.Text = d.Telefono_persona+"";
             this.tablaEditar.Visible = true;
         }
+        //Carga los docentes existente en el gridview
         public void mostrar()
         {
-            this.Gridview1.Visible=true;
-            CatalogDocente cdocente = new CatalogDocente();
-            List<Docente> ldocente = new List<Docente>();
-            ldocente = cdocente.listarDocentes();
-            this.Gridview1.DataSource = ldocente;
+            this.gvDocentes.Visible=true;
+            CatalogDocente cDocente = new CatalogDocente();
+            List<Docente> lDocentes = cDocente.listarDocentes();
+            this.gvDocentes.DataSource = lDocentes;
             this.DataBind();
         }
-        protected void btnbuscar_Click(object sender, EventArgs e)
-        {
-            this.Gridview1.Visible = true;
-            CatalogDocente cdocente = new CatalogDocente();
-            Docente ldocente = new Docente();
-            ldocente = cdocente.buscarUnDocente(this.tbxbuscar.Text);
-            this.Gridview1.DataSource = ldocente;
-            this.DataBind();
-
-        }
-
+        //Guarda los datos actualizados
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            CatalogDocente cdocente = new CatalogDocente();
+            CatalogDocente cDocente = new CatalogDocente();
             bool sexo, disponibilidad;
-            if (this.sexo.Text == "Masculino")
-            {
+
+            if (this.rbSexo.Text == "Masculino")
                 sexo = true;
-            }
             else
                 sexo = false;
 
-            if (this.disponibilidad.Text == "Part-Time")
-            {
+            if (this.rbDisponibilidad.Text == "Part-Time")
                 disponibilidad = true;
-            }
             else
                 disponibilidad = false;
 
@@ -129,19 +115,19 @@ namespace CapaDePresentacion
             d.Profesion_docente = p;
             d.Pais_persona = pa;
 
-            d.Rut_persona = this.rut.Text;
-            d.Profesion_docente.Id_profesion = int.Parse(this.profesion.SelectedValue);
+            d.Rut_persona = this.txtRut.Text;
+            d.Profesion_docente.Id_profesion = int.Parse(this.ddProfesion.SelectedValue);
             d.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
-            d.Nombre_persona = this.nombre.Text;
-            d.Fecha_nacimiento_persona = DateTime.Parse(this.fechaDeNacimiento.Text);
-            d.Direccion_persona = this.direccion.Text;
-            d.Telefono_persona = int.Parse(this.telefono.Text);
+            d.Nombre_persona = this.txtNombre.Text;
+            d.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
+            d.Direccion_persona = this.txtDireccion.Text;
+            d.Telefono_persona = int.Parse(this.txtTelefono.Text);
             d.Sexo_persona = sexo;
-            d.Correo_persona = this.correo.Text;
+            d.Correo_persona = this.txtCorreo.Text;
             d.Disponibilidad_docente = disponibilidad;
             try
             {
-                cdocente.actualizarDocente(d);
+                cDocente.actualizarDocente(d);
                 this.tablaEditar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

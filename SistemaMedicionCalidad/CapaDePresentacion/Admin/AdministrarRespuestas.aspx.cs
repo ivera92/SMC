@@ -23,11 +23,11 @@ namespace CapaDePresentacion
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int id_respuesta = int.Parse(HttpUtility.HtmlDecode((string)(this.gvRespuestas.Rows[e.RowIndex].Cells[1].Text)));
-            CatalogRespuesta cr = new CatalogRespuesta();
+            CatalogRespuesta cRespuesta = new CatalogRespuesta();
 
             try
             {
-                cr.eliminarRespuesta(id_respuesta);
+                cRespuesta.eliminarRespuesta(id_respuesta);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -46,10 +46,9 @@ namespace CapaDePresentacion
         {
             this.txtid.Visible = false;
             this.gvRespuestas.Visible = true;
-            CatalogRespuesta cr = new CatalogRespuesta();
-            List<Respuesta> lr = new List<Respuesta>();
-            lr = cr.listarRespuestas();
-            this.gvRespuestas.DataSource = lr;
+            CatalogRespuesta cRespuesta = new CatalogRespuesta();
+            List<Respuesta> lRespuestas =  cRespuesta.listarRespuestas();
+            this.gvRespuestas.DataSource = lRespuestas;
             this.DataBind();
         }
     }

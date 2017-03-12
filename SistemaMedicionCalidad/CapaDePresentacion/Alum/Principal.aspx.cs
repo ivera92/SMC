@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Reflection.Emit;
-using System.Web.UI.WebControls;
 using Project;
 using Project.CapaDeNegocios;
 
@@ -11,12 +9,12 @@ namespace CapaDePresentacion.Alum
         protected void Page_Load(object sender, EventArgs e)
         {
             string rut = Session["rutAlumno"].ToString();
-            CatalogAlumno ca = new CatalogAlumno();
-            Alumno a = ca.buscarAlumnoPorRut(rut);
-            CatalogEscuela ce = new CatalogEscuela();
-            Escuela es = ce.buscarUnaEscuela((a.Escuela_alumno.Id_escuela)+1);
-            CatalogPais cp = new CatalogPais();
-            Pais p = cp.buscarUnPais(a.Pais_persona.Id_pais + 1);
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            Alumno a = cAlumno.buscarAlumnoPorRut(rut);
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            Escuela es = cEscuela.buscarUnaEscuela((a.Escuela_alumno.Id_escuela)+1);
+            CatalogPais cPais = new CatalogPais();
+            Pais p = cPais.buscarUnPais(a.Pais_persona.Id_pais + 1);
             
             nombreAlumno.InnerText = a.Nombre_persona;
             nombreEscuela.InnerText = es.Nombre_escuela;
@@ -26,8 +24,6 @@ namespace CapaDePresentacion.Alum
             telefono.InnerText = a.Telefono_persona+"";
             correo.InnerText = a.Correo_persona;
             promocion.InnerText = a.Promocion_alumno+"";
-
-            
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CapaDePresentacion
+namespace CapaDePresentacion.Doc
 {
     public partial class InicioDocente : System.Web.UI.Page
     {

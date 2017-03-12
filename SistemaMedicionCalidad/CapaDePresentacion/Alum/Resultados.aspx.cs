@@ -13,26 +13,26 @@ namespace CapaDePresentacion.Alum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogAsignatura ca = new CatalogAsignatura();
-            List<Asignatura> la = ca.listarAsignaturas();
-            CatalogEvaluacion ce = new CatalogEvaluacion();
-            List<Evaluacion> le = ce.listarEvaluaciones();
-            CatalogCompetencia cc = new CatalogCompetencia();
-            List<Competencia> lc = cc.listarCompetencias();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            List<Evaluacion> lEvaluacion = cEvaluacion.listarEvaluaciones();
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            List<Competencia> lCompetencia = cCompetencia.listarCompetencias();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
                 this.ddAsignatura.DataValueField = "Id_asignatura";
-                this.ddAsignatura.DataSource = la;
+                this.ddAsignatura.DataSource = lAsignatura;
 
                 this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
                 this.ddEvaluacion.DataValueField = "Id_evaluacion";
-                this.ddEvaluacion.DataSource = le;
+                this.ddEvaluacion.DataSource = lEvaluacion;
 
                 this.ddCompetencia.DataTextField = "Nombre_competencia";
                 this.ddCompetencia.DataValueField = "Id_competencia";
-                this.ddCompetencia.DataSource = lc;
+                this.ddCompetencia.DataSource = lCompetencia;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
@@ -41,10 +41,10 @@ namespace CapaDePresentacion.Alum
         {
             string rut = Session["rutAlumno"].ToString();
             string[] series = { "Correctas", "Incorrectas" };
-            CatalogHPA chpa = new CatalogHPA();
+            CatalogHPA cHPA = new CatalogHPA();
 
             
-            int[] arrResultados = chpa.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
+            int[] arrResultados = cHPA.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
             List<string> ls = series.ToList();
             List<Int32> li = arrResultados.ToList();
             this.Chart1.Series.Clear();
@@ -72,9 +72,9 @@ namespace CapaDePresentacion.Alum
         {
             string rut = Session["rutAlumno"].ToString();
             string[] series = { "Correctas", "Incorrectas" };
-            CatalogHPA chpa = new CatalogHPA();
+            CatalogHPA cHPA = new CatalogHPA();
 
-            int[] arrResultados = chpa.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
+            int[] arrResultados = cHPA.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
 
             Chart pieChart = new Chart();
 

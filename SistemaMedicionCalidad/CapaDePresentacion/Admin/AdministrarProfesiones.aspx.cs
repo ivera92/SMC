@@ -22,20 +22,20 @@ namespace CapaDePresentacion
         {
             this.txtid.Visible = false;
             this.GridView1.Visible = true;
-            CatalogProfesion cp = new CatalogProfesion();
-            List<Profesion> lp = new List<Profesion>();
-            lp = cp.listarProfesiones();
-            this.GridView1.DataSource = lp;
+            CatalogProfesion cProfesion = new CatalogProfesion();
+            List<Profesion> lProfesiones = new List<Profesion>();
+            lProfesiones = cProfesion.listarProfesiones();
+            this.GridView1.DataSource = lProfesiones;
             this.DataBind();
         }
 
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int id_profesion = int.Parse(HttpUtility.HtmlDecode((string)(this.GridView1.Rows[e.RowIndex].Cells[2].Text)));
-            CatalogProfesion cp = new CatalogProfesion();
+            CatalogProfesion cProfesion = new CatalogProfesion();
             try
             {
-                cp.eliminarProfesion(id_profesion);
+                cProfesion.eliminarProfesion(id_profesion);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -49,8 +49,8 @@ namespace CapaDePresentacion
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
             int id_profesion = int.Parse(HttpUtility.HtmlDecode((string)(this.GridView1.Rows[e.NewEditIndex].Cells[2].Text)));
-            CatalogProfesion cp = new CatalogProfesion();
-            Profesion p = cp.buscarUnaProfesion(id_profesion);
+            CatalogProfesion cProfesion = new CatalogProfesion();
+            Profesion p = cProfesion.buscarUnaProfesion(id_profesion);
             this.tbxProfesion.Text = p.Nombre_profesion;
             this.txtid.Text = p.Id_profesion + "";
             this.editar.Visible = true;
@@ -59,11 +59,11 @@ namespace CapaDePresentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            CatalogProfesion cp = new CatalogProfesion();
+            CatalogProfesion cProfesion = new CatalogProfesion();
             Profesion p = new Profesion(int.Parse(this.txtid.Text), this.tbxProfesion.Text);
             try
             {
-                cp.actualizarProfesion(p);
+                cProfesion.actualizarProfesion(p);
                 this.editar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

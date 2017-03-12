@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Project;
 using Project.CapaDeDatos;
 
-namespace CapaDePresentacion
+namespace CapaDePresentacion.Doc
 {
     public partial class EvaluacionAlumno : System.Web.UI.Page
     {

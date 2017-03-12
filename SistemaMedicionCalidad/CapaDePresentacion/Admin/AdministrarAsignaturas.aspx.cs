@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Project;
 using Project.CapaDeNegocios;
 
-namespace CapaDePresentacion
+namespace CapaDePresentacion.Admin
 {
     public partial class AdministrarAsignaturas : System.Web.UI.Page
     {
@@ -33,7 +33,7 @@ namespace CapaDePresentacion
                 this.mostrar();
             }
         }
-
+        //Elimina fila seleccionada
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             CatalogAsignatura ca = new CatalogAsignatura();
@@ -50,15 +50,15 @@ namespace CapaDePresentacion
                 Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
             }
         }
-
+        //Carga los valores de la fila seleccionada para posteriormente actualizarlos
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
             this.divAdministrar.Visible = false;
             string id_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.NewEditIndex].Cells[1].Text);
             this.txtID.Text = id_asignatura;
             this.divEditar.Visible = true;
-            CatalogAsignatura ca = new CatalogAsignatura();
-            Asignatura a = ca.buscarAsignatura(int.Parse(id_asignatura));
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            Asignatura a = cAsignatura.buscarAsignatura(int.Parse(id_asignatura));
             this.ddEscuela.SelectedValue = a.Escuela_asignatura.Id_escuela + "";
             this.ddDocente.SelectedValue = a.Docente_asignatura.Rut_persona;
             this.txtNombre.Text = a.Nombre_asignatura;
@@ -68,20 +68,19 @@ namespace CapaDePresentacion
             else
                 this.rbDuracion.SelectedIndex = 1;
         }
-
+        //Lista todas las asignaturas existentes en la base de datos
         public void mostrar()
         {
             this.gvAsignatura.Visible = true;
-            CatalogAsignatura ca = new CatalogAsignatura();
-            List<Asignatura> la = new List<Asignatura>();
-            la= ca.listarAsignaturas();
-            this.gvAsignatura.DataSource = la;
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturas();
+            this.gvAsignatura.DataSource = lAsignaturas;
             this.DataBind();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            CatalogAsignatura ca = new CatalogAsignatura();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
             bool duracion;
             if (this.rbDuracion.Text == "Semestral")
                 duracion = true;
@@ -102,7 +101,7 @@ namespace CapaDePresentacion
             a.Id_asignatura = int.Parse(txtID.Text);
             try
             {
-                ca.actualizarAsignatura(a);
+                cAsignatura.actualizarAsignatura(a);
                 this.divEditar.Visible = false;
                 Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
             }

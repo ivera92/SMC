@@ -88,24 +88,25 @@
     <Content Include="Alum\Principal.aspx" />
     <Content Include="Alum\Resultados.aspx" />
     <Content Include="CheqLogin.aspx" />
-    <Content Include="Docente\AdministrarAlumnos.aspx" />
+    <Content Include="Admin\AdministrarAlumnos.aspx" />
     <Content Include="Admin\AdministrarAsignaturas.aspx" />
     <Content Include="Admin\AdministrarCompetencias.aspx" />
     <Content Include="Admin\AdministrarDocentes.aspx" />
     <Content Include="Admin\AdministrarEscuelas.aspx" />
-    <Content Include="Docente\AdministrarPreguntas.aspx" />
+    <Content Include="Admin\AdministrarPreguntas.aspx" />
     <Content Include="Admin\AdministrarProfesiones.aspx" />
-    <Content Include="Docente\AdministrarRespuestas.aspx" />
+    <Content Include="Admin\AdministrarRespuestas.aspx" />
     <Content Include="Admin\CambiarClave.aspx" />
-    <Content Include="Docente\CrearAlumno.aspx" />
+    <Content Include="Doc\CrearAlumno.aspx" />
     <Content Include="Admin\CrearAsignatura.aspx" />
     <Content Include="Admin\CrearCompetencia.aspx" />
     <Content Include="Admin\CrearDocente.aspx" />
     <Content Include="Admin\CrearEscuela.aspx" />
-    <Content Include="Docente\CrearPregunta.aspx" />
+    <Content Include="Doc\CrearPregunta.aspx" />
     <Content Include="Admin\CrearProfesion.aspx" />
-    <Content Include="Docente\CrearEvaluacion.aspx" />
-    <Content Include="Docente\EvaluacionAlumno.aspx" />
+    <Content Include="Doc\CrearEvaluacion.aspx" />
+    <Content Include="Doc\EvaluacionAlumno.aspx" />
+    <Content Include="Doc\probando.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="imagenes\alumno.jpg" />
     <Content Include="imagenes\escuela.jpg" />
@@ -116,8 +117,8 @@
     <Content Include="imagenes\logo.jpg" />
     <Content Include="imagenes\profesion.jpg" />
     <Content Include="imagenes\profesor.jpg" />
-    <Content Include="Docente\InicioDocente.aspx" />
-    <Content Include="Docente\LoginDocente.aspx" />
+    <Content Include="Doc\InicioDocente.aspx" />
+    <Content Include="Doc\LoginDocente.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -127,6 +128,7 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\imagen.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\npm.js" />
@@ -230,11 +232,11 @@
     <Compile Include="CheqLogin.aspx.designer.cs">
       <DependentUpon>CheqLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Docente\AdministrarAlumnos.aspx.cs">
+    <Compile Include="Admin\AdministrarAlumnos.aspx.cs">
       <DependentUpon>AdministrarAlumnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\AdministrarAlumnos.aspx.designer.cs">
+    <Compile Include="Admin\AdministrarAlumnos.aspx.designer.cs">
       <DependentUpon>AdministrarAlumnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdministrarAsignaturas.aspx.cs">
@@ -265,11 +267,11 @@
     <Compile Include="Admin\AdministrarEscuelas.aspx.designer.cs">
       <DependentUpon>AdministrarEscuelas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Docente\AdministrarPreguntas.aspx.cs">
+    <Compile Include="Admin\AdministrarPreguntas.aspx.cs">
       <DependentUpon>AdministrarPreguntas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\AdministrarPreguntas.aspx.designer.cs">
+    <Compile Include="Admin\AdministrarPreguntas.aspx.designer.cs">
       <DependentUpon>AdministrarPreguntas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdministrarProfesiones.aspx.cs">
@@ -279,11 +281,11 @@
     <Compile Include="Admin\AdministrarProfesiones.aspx.designer.cs">
       <DependentUpon>AdministrarProfesiones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Docente\AdministrarRespuestas.aspx.cs">
+    <Compile Include="Admin\AdministrarRespuestas.aspx.cs">
       <DependentUpon>AdministrarRespuestas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\AdministrarRespuestas.aspx.designer.cs">
+    <Compile Include="Admin\AdministrarRespuestas.aspx.designer.cs">
       <DependentUpon>AdministrarRespuestas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CambiarClave.aspx.cs">
@@ -293,11 +295,11 @@
     <Compile Include="Admin\CambiarClave.aspx.designer.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Docente\CrearAlumno.aspx.cs">
+    <Compile Include="Doc\CrearAlumno.aspx.cs">
       <DependentUpon>CrearAlumno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\CrearAlumno.aspx.designer.cs">
+    <Compile Include="Doc\CrearAlumno.aspx.designer.cs">
       <DependentUpon>CrearAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrearAsignatura.aspx.cs">
@@ -328,11 +330,11 @@
     <Compile Include="Admin\CrearEscuela.aspx.designer.cs">
       <DependentUpon>CrearEscuela.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Docente\CrearPregunta.aspx.cs">
+    <Compile Include="Doc\CrearPregunta.aspx.cs">
       <DependentUpon>CrearPregunta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\CrearPregunta.aspx.designer.cs">
+    <Compile Include="Doc\CrearPregunta.aspx.designer.cs">
       <DependentUpon>CrearPregunta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrearProfesion.aspx.cs">
@@ -349,35 +351,42 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Docente\CrearEvaluacion.aspx.cs">
+    <Compile Include="Doc\CrearEvaluacion.aspx.cs">
       <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\CrearEvaluacion.aspx.designer.cs">
+    <Compile Include="Doc\CrearEvaluacion.aspx.designer.cs">
       <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Docente\EvaluacionAlumno.aspx.cs">
+    <Compile Include="Doc\EvaluacionAlumno.aspx.cs">
       <DependentUpon>EvaluacionAlumno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\EvaluacionAlumno.aspx.designer.cs">
+    <Compile Include="Doc\EvaluacionAlumno.aspx.designer.cs">
       <DependentUpon>EvaluacionAlumno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doc\probando.aspx.cs">
+      <DependentUpon>probando.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doc\probando.aspx.designer.cs">
+      <DependentUpon>probando.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Docente\InicioDocente.aspx.cs">
+    <Compile Include="Doc\InicioDocente.aspx.cs">
       <DependentUpon>InicioDocente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\InicioDocente.aspx.designer.cs">
+    <Compile Include="Doc\InicioDocente.aspx.designer.cs">
       <DependentUpon>InicioDocente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Docente\LoginDocente.aspx.cs">
+    <Compile Include="Doc\LoginDocente.aspx.cs">
       <DependentUpon>LoginDocente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\LoginDocente.aspx.designer.cs">
+    <Compile Include="Doc\LoginDocente.aspx.designer.cs">
       <DependentUpon>LoginDocente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -388,18 +397,18 @@
     <Compile Include="Admin\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Docente\SiteDocente.Master.cs">
+    <Compile Include="Doc\SiteDocente.Master.cs">
       <DependentUpon>SiteDocente.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Docente\SiteDocente.Master.designer.cs">
+    <Compile Include="Doc\SiteDocente.Master.designer.cs">
       <DependentUpon>SiteDocente.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
-    <Folder Include="Docente\ImagenesPreguntas\" />
+    <Folder Include="Doc\ImagenesPreguntas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
@@ -417,7 +426,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Docente\SiteDocente.Master" />
+    <Content Include="Doc\SiteDocente.Master" />
     <None Include="Styles\bootstrap-theme.css.map" />
     <None Include="Styles\bootstrap-theme.min.css.map" />
     <None Include="Styles\bootstrap.css.map" />
