@@ -25,7 +25,7 @@ namespace CapaDePresentacion.Doc
             rbl = new RadioButtonList();
             rblVF = new RadioButtonList();
             cbxl = new CheckBoxList();
-
+            this.crearControles();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
@@ -174,6 +174,7 @@ namespace CapaDePresentacion.Doc
                     else if (result.GetString(0) == "Casillas de verificacion")
                     {
                         cbxl = new CheckBoxList();
+                        
                     }
 
                     i = 0;

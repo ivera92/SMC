@@ -5,6 +5,10 @@
         private int id_tipo_usuario;
         private string nombre_tipo_usuario;
 
+        //Constructor predeterminado
+        public Tipo_Usuario()
+        {
+        }
         public Tipo_Usuario(int id_tipo_usuario, string nombre_tipo_usuario)
         {
             this.id_tipo_usuario = id_tipo_usuario;

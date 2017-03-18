@@ -13,6 +13,7 @@ namespace Project
         private bool sexo_persona;
         private string correo_persona;
 
+        //Constructor predeterminado
         public Persona()
         {
         }

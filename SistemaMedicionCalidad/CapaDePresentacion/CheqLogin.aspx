@@ -77,9 +77,6 @@
             <div class="col-sm-4 col-sm-offset-4"><asp:Button ID="btnIngresar" runat="server" class="btn btn-primary btn-block" onclick="btnIngresar_Click" Text="Ingresar" /></></div>
         </div>
         <br />
-
-        
-
         </div>
     </form>
 </body>

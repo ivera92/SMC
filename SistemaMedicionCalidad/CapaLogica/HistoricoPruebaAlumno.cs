@@ -8,6 +8,7 @@
         private Pregunta pregunta_hpa;
         private Alumno alumno_hpa;
 
+        //Constructor predeterminado
         public HistoricoPruebaAlumno()
         {
         }

@@ -76,6 +76,15 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox rut;
         
         /// <summary>
+        /// CustomValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
+        
+        /// <summary>
         /// fechaDeNacimiento control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox telefono;
         
         /// <summary>
-        /// pais control.
+        /// ddPais control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList pais;
+        protected global::System.Web.UI.WebControls.DropDownList ddPais;
         
         /// <summary>
         /// escuela control.

@@ -52,14 +52,6 @@
       <HintPath>..\..\..\..\itextsharp.xmlworker.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Spire.License, Version=1.3.5.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.PDF.3.8.121\lib\net40\Spire.License.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Spire.Pdf, Version=3.8.121.5040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.PDF.3.8.121\lib\net40\Spire.Pdf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -95,7 +87,6 @@
     <Content Include="Admin\AdministrarEscuelas.aspx" />
     <Content Include="Admin\AdministrarPreguntas.aspx" />
     <Content Include="Admin\AdministrarProfesiones.aspx" />
-    <Content Include="Admin\AdministrarRespuestas.aspx" />
     <Content Include="Admin\CambiarClave.aspx" />
     <Content Include="Doc\CrearAlumno.aspx" />
     <Content Include="Admin\CrearAsignatura.aspx" />
@@ -106,7 +97,6 @@
     <Content Include="Admin\CrearProfesion.aspx" />
     <Content Include="Doc\CrearEvaluacion.aspx" />
     <Content Include="Doc\EvaluacionAlumno.aspx" />
-    <Content Include="Doc\probando.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="imagenes\alumno.jpg" />
     <Content Include="imagenes\escuela.jpg" />
@@ -281,13 +271,6 @@
     <Compile Include="Admin\AdministrarProfesiones.aspx.designer.cs">
       <DependentUpon>AdministrarProfesiones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\AdministrarRespuestas.aspx.cs">
-      <DependentUpon>AdministrarRespuestas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\AdministrarRespuestas.aspx.designer.cs">
-      <DependentUpon>AdministrarRespuestas.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\CambiarClave.aspx.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -364,13 +347,6 @@
     </Compile>
     <Compile Include="Doc\EvaluacionAlumno.aspx.designer.cs">
       <DependentUpon>EvaluacionAlumno.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Doc\probando.aspx.cs">
-      <DependentUpon>probando.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Doc\probando.aspx.designer.cs">
-      <DependentUpon>probando.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

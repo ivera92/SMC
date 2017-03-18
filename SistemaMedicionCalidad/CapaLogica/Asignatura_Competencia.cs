@@ -6,6 +6,7 @@
         private Asignatura asignatura_ac;
         private Competencia competencia_ac;
 
+        //Constructor predeterminado
         public Asignatura_Competencia()
         {
         }

@@ -7,6 +7,10 @@
         private string nombre_usuario;
         private string contrasena;
 
+        //Constructor predeterminado
+        public Usuario()
+        {
+        }
         public Usuario(string rut_usuario, Tipo_Usuario tipo_usuario_usuario, string nombre_usuario, string contrasena)
         {
             this.rut_usuario = rut_usuario;

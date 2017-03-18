@@ -7,6 +7,7 @@
         private bool tipo_competencia;
         private string descripcion_competencia;
 
+        //Constructor predeterminado
         public Competencia()
         {
         }

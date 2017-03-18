@@ -58,6 +58,24 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtAPregunta;
         
         /// <summary>
+        /// fileImagen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileImagen;
+        
+        /// <summary>
+        /// imgFoto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgFoto;
+        
+        /// <summary>
         /// ddCompetencia control.
         /// </summary>
         /// <remarks>

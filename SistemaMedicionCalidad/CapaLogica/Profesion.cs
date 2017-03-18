@@ -5,6 +5,7 @@
         private int id_profesion;
         private string nombre_profesion;
 
+        //Constructor predeterminado
         public Profesion()
         {
         }

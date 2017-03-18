@@ -8,6 +8,7 @@
         private string nombre_pregunta;
         private string imagen_pregunta;
 
+        //Constructor predeterminado
         public Pregunta()
         {
         }

@@ -5,6 +5,7 @@
         private int id_tipo_pregunta;
         private string nombre_tipo_pregunta;
 
+        //Constructor predeterminado
         public Tipo_Pregunta()
         {
         }

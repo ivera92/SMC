@@ -21,17 +21,17 @@ namespace CapaDePresentacion
         public void mostrar()
         {
             this.txtid.Visible = false;
-            this.GridView1.Visible = true;
+            this.gvProfesiones.Visible = true;
             CatalogProfesion cProfesion = new CatalogProfesion();
             List<Profesion> lProfesiones = new List<Profesion>();
             lProfesiones = cProfesion.listarProfesiones();
-            this.GridView1.DataSource = lProfesiones;
+            this.gvProfesiones.DataSource = lProfesiones;
             this.DataBind();
         }
 
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int id_profesion = int.Parse(HttpUtility.HtmlDecode((string)(this.GridView1.Rows[e.RowIndex].Cells[2].Text)));
+            int id_profesion = int.Parse(HttpUtility.HtmlDecode((string)(this.gvProfesiones.Rows[e.RowIndex].Cells[2].Text)));
             CatalogProfesion cProfesion = new CatalogProfesion();
             try
             {
@@ -48,7 +48,7 @@ namespace CapaDePresentacion
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
-            int id_profesion = int.Parse(HttpUtility.HtmlDecode((string)(this.GridView1.Rows[e.NewEditIndex].Cells[2].Text)));
+            int id_profesion = int.Parse(HttpUtility.HtmlDecode((string)(this.gvProfesiones.Rows[e.NewEditIndex].Cells[2].Text)));
             CatalogProfesion cProfesion = new CatalogProfesion();
             Profesion p = cProfesion.buscarUnaProfesion(id_profesion);
             this.tbxProfesion.Text = p.Nombre_profesion;

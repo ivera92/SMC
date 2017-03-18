@@ -7,11 +7,20 @@
         private string nombre_respuesta;
         private bool correcta_respuesta;
 
+        //Constructor predeterminado
         public Respuesta()
         {
         }
 
-        public Respuesta (Pregunta pregunta_respuesta, string nombre_respuesta, bool correcta_respuesta)
+        public Respuesta (int id_respuesta, Pregunta pregunta_respuesta, string nombre_respuesta, bool correcta_respuesta)
+        {
+            this.id_respuesta = id_respuesta;
+            this.pregunta_respuesta = pregunta_respuesta;
+            this.nombre_respuesta = nombre_respuesta;
+            this.correcta_respuesta = correcta_respuesta;
+        }
+
+        public Respuesta(Pregunta pregunta_respuesta, string nombre_respuesta, bool correcta_respuesta)
         {
             this.pregunta_respuesta = pregunta_respuesta;
             this.nombre_respuesta = nombre_respuesta;

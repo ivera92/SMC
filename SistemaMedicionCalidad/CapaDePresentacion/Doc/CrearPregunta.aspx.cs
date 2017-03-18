@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
@@ -16,10 +15,10 @@ namespace CapaDePresentacion.Doc
         private static string ruta;
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogPregunta cp = new CatalogPregunta();
-            List<Tipo_Pregunta> ltp = cp.listarTiposPregunta();
-            CatalogCompetencia cc = new CatalogCompetencia();
-            List<Competencia> lc = cc.listarCompetencias();
+            CatalogPregunta cPregunta = new CatalogPregunta();
+            List<Tipo_Pregunta> lTiposPregunta = cPregunta.listarTiposPregunta();
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            List<Competencia> lCompetencias = cCompetencia.listarCompetencias();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -33,11 +32,11 @@ namespace CapaDePresentacion.Doc
 
                 this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
                 this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";
-                this.ddTipoPregunta.DataSource = ltp;
+                this.ddTipoPregunta.DataSource = lTiposPregunta;
 
                 this.ddCompetencia.DataTextField = "Nombre_competencia";
                 this.ddCompetencia.DataValueField = "Id_competencia";
-                this.ddCompetencia.DataSource = lc;
+                this.ddCompetencia.DataSource = lCompetencias;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
@@ -68,6 +67,7 @@ namespace CapaDePresentacion.Doc
 
             try
             {
+                this.subirImagen();//Guarda la imagen en la carpeta ImagenesPreguntas ubicada en la carpeta Doc
                 p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
                 p.Nombre_pregunta = this.txtAPregunta.InnerText;
@@ -185,13 +185,6 @@ namespace CapaDePresentacion.Doc
         }
         public void subirImagen()
         {
-            /*if (fileImagen.HasFile)
-            {
-                //si hay una archivo.
-                string nombreArchivo = fileImagen.FileName;
-                ruta = "~/Docente/ImagenesPreguntas/" + nombreArchivo;
-                fileImagen.SaveAs(Server.MapPath(ruta));
-            }*/
             if (fileImagen.PostedFile.ContentLength > 0)
             {
                 string archivo = Server.MapPath(String.Format("/ImagenesPreguntas/{0}",Path.GetFileName(fileImagen.PostedFile.FileName)));

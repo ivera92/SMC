@@ -5,6 +5,7 @@
         private string nombre_pais;
         private int id_pais;
 
+        //Constructor predeterminado
         public Pais()
         {
         }

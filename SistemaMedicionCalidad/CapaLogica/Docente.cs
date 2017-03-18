@@ -3,11 +3,13 @@ using Project.CapaDeNegocios;
 
 namespace Project
 {
+    //Clase con Herencia
     public class Docente:Persona
     {
         private Profesion profesion_docente;
         private bool disponibilidad_docente;
 
+        //Constructor predeterminado
         public Docente()
         {
         }

@@ -1,10 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteDocente.Master" AutoEventWireup="true" CodeBehind="CrearPregunta.aspx.cs" Inherits="CapaDePresentacion.Doc.CrearPregunta" %>
-<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="HeadContent" >
-    <script src="../Scripts/imagen.js"></script>
-    <script>cargarScriptPagina();</script>
-</asp:Content>
-<asp:Content runat="server" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" >
 
+<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="HeadContent" >
+
+    <script type="text/javascript">  
+  
+        function showimagepreview(input) {  
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();  
+                reader.onload = function (e) { 
+                    var img = document.getElementById("imgFoto");
+                    img.src = reader.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }  
+        }  
+  
+    </script> 
+</asp:Content>
+
+<asp:Content runat="server" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" >
+        
     <h2 class="text-center">Crear Pregunta</h2>
     <br />
 
@@ -17,15 +32,15 @@
     <br />
 
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-            <asp:Image ID="imgFoto" runat="server" />
+        <div class="col-sm-offset-4 col-sm-4"> 
+            <asp:FileUpload ID="fileImagen" runat="server" onchange="showimagepreview(this)"/>    
         </div>
     </div>
+    <br />
     
-        <div class="row">
-        <div class="col-sm-offset-4">
-            <asp:FileUpload enabled="true" id="fileImagen" runat="server"></asp:FileUpload>
-            <br />
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <img runat="server" alt="" src="s" id="imgFoto" class="img-responsive"/>
         </div>
     </div>
     <br />
@@ -66,24 +81,24 @@
     </div>
     <br />
     
-        <div runat="server" id="AltOCas">
-    <label class="col-sm-offset-7">Correcta</label>
-    <div class="row">
-        <div class="col-sm-offset-3 col-sm-4">
-            <asp:TextBox ID="txtRespuesta" class="form-control" runat="server"></asp:TextBox>
+    <div runat="server" id="AltOCas">
+        <label class="col-sm-offset-7">Correcta</label>
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-4">
+                <asp:TextBox ID="txtRespuesta" class="form-control" runat="server"></asp:TextBox>
+            </div>
+            <div class="col-sm-1">
+                <asp:CheckBox id="cbCorrecta" runat="server"/>
+            </div>
+            <div class="col-sm-1">
+                <asp:Button id="btnMas" runat="server" Text="+" class="btn btn-primary btn-block" OnClick="btnMas_Click"/>
+            </div>
         </div>
-        <div class="col-sm-1">
-            <asp:CheckBox id="cbCorrecta" runat="server"/>
-        </div>
-        <div class="col-sm-1">
-            <asp:Button id="btnMas" runat="server" Text="+" class="btn btn-primary btn-block" OnClick="btnMas_Click"/>
-        </div>
-    </div>
-    <br />
+        <br />
     <asp:Panel ID="Panel1" runat="server"></asp:Panel>
     <br />
-
     </div>
+
         <div runat="server" id="VoF">
             <label class="col-sm-offset-6">Correcta</label>
             <div class="row">
@@ -112,3 +127,4 @@
         </div>
     </div>
 </asp:Content>
+

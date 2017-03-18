@@ -94,7 +94,14 @@ namespace Project
             p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
             p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
             p.Nombre_pregunta = result.GetString(3);
-
+            try
+            {
+                p.Imagen_pregunta = result.GetString(4);
+            }
+            catch
+            {
+                p.Imagen_pregunta = "";
+            }
             return p;
         }
 
@@ -107,6 +114,8 @@ namespace Project
             string sqlSearch = "select * from pregunta";
             bd.CreateCommand(sqlSearch);
             List<Pregunta> lPreguntas = new List<Pregunta>();
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            CatalogPregunta cPregunta = new CatalogPregunta();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
@@ -115,9 +124,10 @@ namespace Project
                 Tipo_Pregunta tp = new Tipo_Pregunta();
                 p.Competencia_pregunta = c;
                 p.Tipo_pregunta_pregunta = tp;
+                c = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
 
                 p.Id_pregunta = result.GetInt32(0);
-                p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
+                p.Competencia_pregunta.Nombre_competencia = c.Nombre_competencia;
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
                 p.Nombre_pregunta = result.GetString(3);
                 lPreguntas.Add(p);
@@ -125,6 +135,22 @@ namespace Project
             result.Close();
             bd.Close();
             return lPreguntas;
+        }
+        //Actualiza una pregunta existente en la base de datos
+        public void actualizarPregunta(Pregunta p)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "actualizarPregunta";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_pregunta", DbType.Int32, p.Id_pregunta);
+            bd.createParameter("@id_competencia_pregunta", DbType.Int32, p.Competencia_pregunta.Id_competencia+1);
+            bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Tipo_pregunta_pregunta.Id_tipo_pregunta+1);
+            bd.createParameter("@nombre_pregunta", DbType.String, p.Nombre_pregunta);
+            bd.execute();
+            bd.Close();
         }
     }
 }

@@ -24,9 +24,9 @@ namespace CapaDePresentacion
                 this.escuela.DataValueField = "Id_escuela";
                 this.escuela.DataSource = lEscuelas;
 
-                this.pais.DataTextField = "Nombre_pais";
-                this.pais.DataValueField = "Id_pais";
-                this.pais.DataSource = lPaises;
+                this.ddPais.DataTextField = "Nombre_pais";
+                this.ddPais.DataValueField = "Id_pais";
+                this.ddPais.DataSource = lPaises;
 
                 this.divEditar.Visible = false;
                 this.mostrar();
@@ -37,8 +37,7 @@ namespace CapaDePresentacion
         {
             this.GridView1.Visible = true;
             CatalogAlumno cAlumno = new CatalogAlumno();
-            List<Alumno> lAlumno = new List<Alumno>();
-            lAlumno = cAlumno.listarAlumnos();
+            List<Alumno> lAlumno = cAlumno.listarAlumnos();
             this.GridView1.DataSource = lAlumno;
             this.DataBind();
         }
@@ -73,7 +72,7 @@ namespace CapaDePresentacion
             this.fechaDeNacimiento.Text = a.Fecha_nacimiento_persona.ToString("d");
             this.direccion.Text = a.Direccion_persona;
             this.telefono.Text = a.Telefono_persona+"";
-            this.pais.SelectedIndex = a.Pais_persona.Id_pais;
+            this.ddPais.SelectedIndex = a.Pais_persona.Id_pais;
             this.correo.Text = a.Correo_persona;
             this.promocion.Text = a.Promocion_alumno + "";
 
@@ -123,7 +122,7 @@ namespace CapaDePresentacion
 
             a.Rut_persona = this.rut.Text;
             a.Escuela_alumno.Id_escuela = this.escuela.SelectedIndex;
-            a.Pais_persona.Id_pais = this.pais.SelectedIndex;
+            a.Pais_persona.Id_pais = this.ddPais.SelectedIndex;
             a.Nombre_persona = this.nombre.Text;
             a.Fecha_nacimiento_persona = DateTime.Parse(this.fechaDeNacimiento.Text);
             a.Direccion_persona = this.direccion.Text;

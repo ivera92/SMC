@@ -5,6 +5,7 @@
         private int id_escuela;
         private string nombre_escuela;
 
+        //Constructor predeterminado
         public Escuela()
         {
         }

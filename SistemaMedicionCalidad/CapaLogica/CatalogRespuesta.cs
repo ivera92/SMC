@@ -104,5 +104,21 @@ namespace Project
             bd.execute();
             bd.Close();
         }
+
+        //Actualiza una respuesta existente en la base de datos
+        public void actualizarRespuesta(Respuesta r)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "editarRespuesta";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_respuesta", DbType.Int32, r.Id_respuesta);
+            bd.createParameter("@nombre_respuesta", DbType.String, r.Nombre_respuesta);
+            bd.createParameter("@correcta_respuesta", DbType.Boolean, r.Correcta_respuesta);
+            bd.execute();
+            bd.Close();
+        }
     }
 }

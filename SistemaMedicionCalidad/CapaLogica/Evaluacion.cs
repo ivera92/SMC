@@ -9,6 +9,7 @@ namespace Project
         private string nombre_evaluacion;
         private DateTime fecha_evaluacion;
 
+        //Constructor predeterminado
         public Evaluacion()
         {
         }
