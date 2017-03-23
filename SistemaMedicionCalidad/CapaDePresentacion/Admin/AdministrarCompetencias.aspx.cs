@@ -55,12 +55,12 @@ namespace CapaDePresentacion
             Competencia c = cCompetencia.buscarUnaCompetencia(int.Parse(idCompetencia));
             this.txtCompetencia.Text = c.Id_competencia + "";
             this.txtNombreCompetencia.Text = c.Nombre_competencia;
-            this.descripcion.InnerText = c.Descripcion_competencia;
+            this.txtADescripcion.InnerText = c.Descripcion_competencia;
 
             if(c.Tipo_competencia==true)
-                this.tipoCompetencia.SelectedIndex = 0;
+                this.rbTipoCompetencia.SelectedIndex = 0;
             else
-                this.tipoCompetencia.SelectedIndex = 1;
+                this.rbTipoCompetencia.SelectedIndex = 1;
 
             this.divEditar.Visible = true;
         }
@@ -70,12 +70,12 @@ namespace CapaDePresentacion
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             bool tipo;
 
-            if (this.tipoCompetencia.Text == "Generica")
+            if (this.rbTipoCompetencia.Text == "Generica")
                 tipo = true;
             else
                 tipo = false;
 
-            Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, tipo, this.descripcion.InnerText);
+            Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, tipo, this.txtADescripcion.InnerText);
             try
             {
                 cCompetencia.actualizarCompetencia(c);

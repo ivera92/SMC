@@ -16,10 +16,12 @@
     </div>
     <div class="row">
         <div class="col-sm-4">
-            <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control"></asp:DropDownList>
+            <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AppendDataBoundItems="true">
+                <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
+            </asp:DropDownList>
         </div>
         <div class="col-sm-6">
-            <asp:TextBox runat="server" ID="txtNombre" class="form-control" required></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtNombre" class="form-control"></asp:TextBox>
         </div>   
         <div class="col-sm-2">
             <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary btn-block" Text="Buscar" OnClick="btnBuscar_Click"/>

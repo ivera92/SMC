@@ -31,15 +31,6 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.CustomValidator cv_rut;
         
         /// <summary>
-        /// btnBuscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
-        
-        /// <summary>
         /// ddAsignatura control.
         /// </summary>
         /// <remarks>
@@ -49,22 +40,13 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.DropDownList ddAsignatura;
         
         /// <summary>
-        /// btnCargarPreguntas control.
+        /// ddEvaluacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCargarPreguntas;
-        
-        /// <summary>
-        /// lblNombreAlumno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombreAlumno;
+        protected global::System.Web.UI.WebControls.DropDownList ddEvaluacion;
         
         /// <summary>
         /// Panel1 control.

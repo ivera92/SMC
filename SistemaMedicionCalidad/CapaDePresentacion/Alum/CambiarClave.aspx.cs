@@ -21,10 +21,10 @@ namespace CapaDePresentacion.Alum
             CatalogUsuario cUsuario = new CatalogUsuario();
             int filasAfectadas = 0;
 
-            if (pwNueva1.Text == pwNueva2.Text)
+            if (txtPwNueva1.Text == txtPwNueva2.Text)
                 try
                 {
-                    filasAfectadas = cUsuario.actualizarClave(rut, this.pwActual.Text, this.pwNueva1.Text);
+                    filasAfectadas = cUsuario.actualizarClave(rut, this.txtPwActual.Text, this.txtPwNueva1.Text);
                     if (filasAfectadas == 1)
                         Response.Write("<script>window.alert('Contraseña cambiada correctamente');</script>");
                 }

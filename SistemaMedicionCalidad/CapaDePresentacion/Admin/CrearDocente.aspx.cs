@@ -18,9 +18,9 @@ namespace CapaDePresentacion
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.profesion.DataTextField = "Nombre_profesion";
-                this.profesion.DataValueField = "Id_profesion";
-                this.profesion.DataSource = lProfesiones;
+                this.ddProfesion.DataTextField = "Nombre_profesion";
+                this.ddProfesion.DataValueField = "Id_profesion";
+                this.ddProfesion.DataSource = lProfesiones;
 
                 this.ddPais.DataTextField = "Nombre_pais";
                 this.ddPais.DataValueField = "Id_pais";
@@ -31,46 +31,46 @@ namespace CapaDePresentacion
         }
         public void resetarValores()
         {
-            this.rut.Text="";
-            this.profesion.SelectedIndex = 0;
+            this.txtRut.Text="";
+            this.ddProfesion.SelectedIndex = 0;
             this.ddPais.SelectedIndex = 0;
-            this.nombre.Text="";
-            this.fechaDeNacimiento.Text = "";
-            this.direccion.Text = "";
-            this.telefono.Text = "";
-            sexo.SelectedIndex = 0;
-            this.correo.Text = "";
-            disponibilidad.SelectedIndex = 0;
+            this.txtNombre.Text="";
+            this.txtFechaDeNacimiento.Text = "";
+            this.txtDireccion.Text = "";
+            this.txtTelefono.Text = "";
+            rbSexo.SelectedIndex = 0;
+            this.txtCorreo.Text = "";
+            rbDisponibilidad.SelectedIndex = 0;
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             CatalogDocente cDocente = new CatalogDocente();
             bool sexo, disponibilidad;
-            if (this.sexo.Text == "Masculino")
+            if (this.rbSexo.Text == "Masculino")
                 sexo = true;
             else
                 sexo = false;
 
-            if (this.disponibilidad.Text == "Part-Time")
+            if (this.rbDisponibilidad.Text == "Part-Time")
                 disponibilidad = true;
             else
-                disponibilidad = true;
+                disponibilidad = false;
         
             Docente d = new Docente();
             Profesion p = new Profesion();
             Pais pa = new Pais();
             d.Profesion_docente = p;
             d.Pais_persona = pa;
-            d.Rut_persona = this.rut.Text;
-            d.Profesion_docente.Id_profesion = int.Parse(this.profesion.SelectedValue);
+            d.Rut_persona = this.txtRut.Text;
+            d.Profesion_docente.Id_profesion = int.Parse(this.ddProfesion.SelectedValue);
             d.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
-            d.Nombre_persona = this.nombre.Text;
-            d.Fecha_nacimiento_persona = DateTime.Parse(this.fechaDeNacimiento.Text);
-            d.Direccion_persona = this.direccion.Text;
-            d.Telefono_persona = int.Parse(this.telefono.Text);
+            d.Nombre_persona = this.txtNombre.Text;
+            d.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
+            d.Direccion_persona = this.txtDireccion.Text;
+            d.Telefono_persona = int.Parse(this.txtTelefono.Text);
             d.Sexo_persona = sexo;
-            d.Correo_persona = this.correo.Text;
+            d.Correo_persona = this.txtCorreo.Text;
             d.Disponibilidad_docente = disponibilidad;
             try
             {

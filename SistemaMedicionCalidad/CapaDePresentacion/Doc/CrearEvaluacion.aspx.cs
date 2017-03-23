@@ -33,7 +33,7 @@ namespace CapaDePresentacion.Doc
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta FROM [ASIGNATURA_COMPETENCIA] inner join asignatura on [asignatura_competencia].id_asignatura_ac = asignatura.id_asignatura inner join competencia on [asignatura_competencia].id_competencia_ac = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + this.ddAsignatura.SelectedValue + "'";
+            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta, imagen_pregunta FROM [ASIGNATURA_COMPETENCIA] inner join asignatura on [asignatura_competencia].id_asignatura_ac = asignatura.id_asignatura inner join competencia on [asignatura_competencia].id_competencia_ac = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + this.ddAsignatura.SelectedValue + "'";
 
             bd.CreateCommand(sql);
             DbDataReader result = bd.Query();
@@ -82,6 +82,28 @@ namespace CapaDePresentacion.Doc
                     pp.Add(numPregunta + " ");
                     pp.Add(l.Text+"\n");
                     pp.Add(new Paragraph(" "));
+
+                    try
+                    {
+                        string ss = result.GetString(3);
+                        if (result.GetString(3) != null && result.GetString(3) != "")
+                        {
+                            // Creamos la imagen y le ajustamos el tamaño
+                            iTextSharp.text.Image imagen2 = iTextSharp.text.Image.GetInstance(result.GetString(3));
+                            imagen2.BorderWidth = 0;
+                            imagen2.Alignment = Element.ALIGN_CENTER;
+                            float percentage2 = 0.0f;
+                            percentage2 = 100 / imagen2.Width;
+                            imagen2.ScalePercent(percentage2 * 75);
+
+                            // Insertamos la imagen en el documento
+                            pdfDoc.Add(imagen2);
+                        }
+                    }
+                    catch
+                    {
+
+                    }
                     numPregunta = numPregunta + 1;
                 }
                 if (result.GetString(0) == "Seleccion multiple")
@@ -112,16 +134,23 @@ namespace CapaDePresentacion.Doc
             ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
             ev.Asignatura_evaluacion.Id_asignatura = int.Parse(this.ddAsignatura.SelectedValue);
             ev.Nombre_evaluacion = this.txtNombre.Text;
-         
+
             try
             {
-                ce.insertarEvaluacion(ev);
-                Response.Write("<script>window.alert('Evaluacion creada satisfactoriamente');</script>");
-                this.pdf();
+                if (ce.verificarExistencia(int.Parse(ddAsignatura.SelectedValue)) > 0)
+                {
+                    Response.Write("<script>window.alert('La evaluacion asociada a esta asignatura ya fue creada anteriormente');</script>");
+                    this.pdf();
+                }
+                else
+                {
+                    ce.insertarEvaluacion(ev);
+                    Response.Write("<script>window.alert('Evaluacion creada satisfactoriamente');</script>");
+                    this.pdf();
+                }
             }
             catch
             {
-                Response.Write("<script>window.alert('Evaluacion no pudo ser creada');</script>");
             }
         }
 
@@ -141,6 +170,7 @@ namespace CapaDePresentacion.Doc
             int i = 0;
 
             RadioButtonList rbl = new RadioButtonList();
+            RadioButtonList rblVF = new RadioButtonList();
             CheckBoxList cbxl = new CheckBoxList();
 
             while (result.Read())
@@ -161,6 +191,10 @@ namespace CapaDePresentacion.Doc
                     {
                         cbxl = new CheckBoxList();
                     }
+                    else if (result.GetString(0) == "Verdadero o falso")
+                    {
+                        rblVF = new RadioButtonList();
+                    }
 
                     i = 0;
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
@@ -173,17 +207,20 @@ namespace CapaDePresentacion.Doc
                 {
                     rbl.Items.Add(letras[i] + " " + result.GetString(1));
                     this.Panel1.Controls.Add(rbl);
-                    s = result.GetString(2);
-                    i = i + 1;
                 }
 
                 else if (result.GetString(0) == "Casillas de verificacion" && s == pregunta.Text)
                 {
-                    
                     cbxl.Items.Add(letras[i] + " " + result.GetString(1));
                     this.Panel1.Controls.Add(cbxl);
-                    i = i + 1;
                 }
+                else if (result.GetString(0) == "Verdadero o falso" && s == pregunta.Text)
+                {
+                    rblVF.Items.Add(letras[i] + " " + result.GetString(1));
+                    this.Panel1.Controls.Add(rblVF);
+                }
+                s = result.GetString(2);
+                i = i + 1;
             }
         }
 

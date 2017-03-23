@@ -35,7 +35,25 @@ namespace CapaDePresentacion.Admin
 
         protected void btnAsociar_Click(object sender, EventArgs e)
         {
+            CatalogAsignaturaCompetencia cAC = new CatalogAsignaturaCompetencia();
+            Asignatura_Competencia aC = new Asignatura_Competencia();
+            Asignatura a = new Asignatura();
+            Competencia c = new Competencia();
+            aC.Asignatura_ac = a;
+            aC.Competencia_ac = c;
 
+
+            aC.Asignatura_ac.Id_asignatura = int.Parse(ddAsignatura.SelectedValue);
+            aC.Competencia_ac.Id_competencia = int.Parse(ddCompetencia.SelectedValue);
+            try
+            {
+                cAC.insertarAC(aC);
+                Response.Write("<script>window.alert('Competencia fue correctamente asociada a asignatura');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Componentes no pudieron ser asociados');</script>");
+            }
         }
     }
 }

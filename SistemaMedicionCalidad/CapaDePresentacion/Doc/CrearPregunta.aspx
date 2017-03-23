@@ -1,21 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteDocente.Master" AutoEventWireup="true" CodeBehind="CrearPregunta.aspx.cs" Inherits="CapaDePresentacion.Doc.CrearPregunta" %>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="HeadContent" >
-
-    <script type="text/javascript">  
-  
-        function showimagepreview(input) {  
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();  
-                reader.onload = function (e) { 
-                    var img = document.getElementById("imgFoto");
-                    img.src = reader.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }  
-        }  
-  
-    </script> 
+    <script src="../Scripts/imagen.js"></script>
 </asp:Content>
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" >
@@ -33,14 +19,14 @@
 
     <div class="row">
         <div class="col-sm-offset-4 col-sm-4"> 
-            <asp:FileUpload ID="fileImagen" runat="server" onchange="showimagepreview(this)"/>    
+            <asp:FileUpload ID="fileImagen" runat="server" onchange="readURL(this);"/>    
         </div>
     </div>
     <br />
     
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-            <img runat="server" alt="" src="s" id="imgFoto" class="img-responsive"/>
+            <img id="blah" src="#" alt="" class="img-responsive"/>
         </div>
     </div>
     <br />
@@ -74,7 +60,7 @@
 
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-            <asp:DropDownList class="form-control" AutoPostBack = true AppendDataBoundItems="true" runat="server" ID="ddTipoPregunta" OnSelectedIndexChanged="ddTipoPregunta_SelectedIndexChanged">
+            <asp:DropDownList class="form-control" AutoPostBack="true" AppendDataBoundItems="true" runat="server" ID="ddTipoPregunta" OnSelectedIndexChanged="ddTipoPregunta_SelectedIndexChanged">
                 <asp:ListItem Value="0"><--Seleccione el tipo de pregunta--></asp:ListItem>
             </asp:DropDownList>
         </div>

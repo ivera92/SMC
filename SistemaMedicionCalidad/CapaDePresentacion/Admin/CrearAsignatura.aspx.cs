@@ -34,14 +34,14 @@ namespace CapaDePresentacion
             this.ddDocente.SelectedIndex = 0;
             this.txtNombre.Text = "";
             this.txtAno.Text = "";
-            duracion.SelectedIndex = 0;
+            rbDuracion.SelectedIndex = 0;
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             bool duracion;
-            if (this.duracion.Text == "Semestral")
+            if (this.rbDuracion.Text == "Semestral")
                 duracion = true;
             else
                 duracion = false;

@@ -23,7 +23,7 @@
             <label>Descripcion</label>
         </div>
         <div class="col-sm-5">
-            <textarea class="form-control" id="descripcion" runat="server" rows="5"></textarea>
+            <textarea class="form-control" id="txtADescripcion" runat="server" rows="5"></textarea>
         </div>
     </div>
     <br />
@@ -33,7 +33,7 @@
             <label>Tipo</label>
         </div>
         <div class="col-sm-3">
-            <asp:RadioButtonList ID="tipoCompetencia" runat="server">
+            <asp:RadioButtonList ID="rbTipoCompetencia" runat="server">
             <asp:ListItem Selected="True" Value="Generica"></asp:ListItem>
             <asp:ListItem Value="Especifica"></asp:ListItem>
             </asp:RadioButtonList>

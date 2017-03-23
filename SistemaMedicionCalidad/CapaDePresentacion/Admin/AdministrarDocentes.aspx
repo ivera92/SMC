@@ -51,7 +51,10 @@
 
     <div class="row">
         <div class="col-sm-offset-3 col-sm-2"><label>Profesion</label></div>
-        <div class="col-sm-4"><asp:DropDownList ID="ddProfesion" runat="server" class="form-control"></asp:DropDownList></div>
+        <div class="col-sm-4">
+            <asp:DropDownList ID="ddProfesion" runat="server" class="form-control">
+            </asp:DropDownList>
+        </div>
     </div>
     <br />
 
@@ -75,7 +78,10 @@
 
     <div class="row">
         <div class="col-sm-offset-3 col-sm-2"><label>Nacionalidad</label></div>
-        <div class="col-sm-4"><asp:DropDownList ID="ddPais" runat="server" class="form-control"></asp:DropDownList></div>
+        <div class="col-sm-4">
+            <asp:DropDownList ID="ddPais" runat="server" class="form-control">
+            </asp:DropDownList>
+        </div>
     </div>
     <br />
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Project;
 
 namespace CapaDePresentacion
 {
@@ -11,12 +12,28 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string rut = Request.QueryString["Rut"];
-            lblRut.InnerText = rut;
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            string rut = Session["rutAdmin"].ToString();
+            CatalogUsuario cUsuario = new CatalogUsuario();
+            int filasAfectadas = 0;
+
+            if (pwNueva1.Text == pwNueva2.Text)
+                try
+                {
+                    filasAfectadas = cUsuario.actualizarClave(rut, this.pwActual.Text, this.pwNueva1.Text);
+                    if (filasAfectadas == 1)
+                        Response.Write("<script>window.alert('Contraseña cambiada correctamente');</script>");
+                }
+                catch
+                {
+                    Response.Write("<script>window.alert('Ingrese la contraseña actual correctamente');</script>");
+                }
+
+            else
+                Response.Write("<script>window.alert('Debe repetir 2 veces la nueva contraseña');</script>");
         }
     }
 }

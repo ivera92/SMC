@@ -26,7 +26,9 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-1"><label>Escuela</label></div>
         <div class="col-sm-5">
-            <asp:DropDownList runat="server" ID="ddEscuela" class="form-control"></asp:DropDownList>
+            <asp:DropDownList runat="server" AppendDataBoundItems="true" ID="ddEscuela" class="form-control">
+                <asp:ListItem Value="0"><--Seleccione una escuela--></asp:ListItem>
+            </asp:DropDownList>
         </div>
     </div>
     <br />
@@ -34,7 +36,9 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-1"><label>Docente</label></div>
         <div class="col-sm-5">
-            <asp:DropDownList runat="server" ID="ddDocente" class="form-control"></asp:DropDownList>
+            <asp:DropDownList runat="server" AppendDataBoundItems="true" ID="ddDocente" class="form-control">
+                <asp:ListItem Value="0"><--Seleccione un docente--></asp:ListItem>
+            </asp:DropDownList>
         </div>
     </div>
     <br />
@@ -42,7 +46,7 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-1"><label>Duracion</label></div>
         <div class="col-sm-3">
-            <asp:RadioButtonList ID="duracion" runat="server">
+            <asp:RadioButtonList ID="rbDuracion" runat="server">
                 <asp:ListItem Selected="True" Value="Semestral"></asp:ListItem>
                 <asp:ListItem Value="Anual"></asp:ListItem>
             </asp:RadioButtonList>

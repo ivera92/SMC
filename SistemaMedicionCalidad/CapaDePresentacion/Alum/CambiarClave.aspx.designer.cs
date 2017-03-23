@@ -13,31 +13,31 @@ namespace CapaDePresentacion.Alum {
     public partial class CambiarClave {
         
         /// <summary>
-        /// pwActual control.
+        /// txtPwActual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pwActual;
+        protected global::System.Web.UI.WebControls.TextBox txtPwActual;
         
         /// <summary>
-        /// pwNueva1 control.
+        /// txtPwNueva1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pwNueva1;
+        protected global::System.Web.UI.WebControls.TextBox txtPwNueva1;
         
         /// <summary>
-        /// pwNueva2 control.
+        /// txtPwNueva2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pwNueva2;
+        protected global::System.Web.UI.WebControls.TextBox txtPwNueva2;
         
         /// <summary>
         /// btnGuardar control.

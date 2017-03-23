@@ -26,11 +26,11 @@ namespace CapaDePresentacion
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             List<Competencia> lCompetencia = cCompetencia.listarCompetencias();
             this.crearControles();
+            this.editar.Visible = false;
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 lRespuestas = new List<Respuesta>();
                 this.imgFoto.Visible = false;
-                this.editar.Visible = true;
                 this.mostrar();
 
                 this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
@@ -149,8 +149,8 @@ namespace CapaDePresentacion
             p.Competencia_pregunta = c;
             p.Tipo_pregunta_pregunta = tp;
 
-            p.Competencia_pregunta.Id_competencia = this.ddCompetencia.SelectedIndex;
-            p.Tipo_pregunta_pregunta.Id_tipo_pregunta = this.ddTipoPregunta.SelectedIndex;
+            p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
+            p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
             p.Nombre_pregunta = this.txtAPregunta.InnerText;
             p.Id_pregunta = id_pregunta;
 

@@ -20,17 +20,22 @@ namespace CapaDePresentacion.Doc
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogAsignatura ca = new CatalogAsignatura();
-            List<Asignatura> la = ca.listarAsignaturas();
-            rbl = new RadioButtonList();
-            rblVF = new RadioButtonList();
-            cbxl = new CheckBoxList();
-            this.crearControles();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturas();
+            
+            try
+            {
+                this.crearControles2();
+            }
+            catch
+            {
+
+            }
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
                 this.ddAsignatura.DataValueField = "Id_asignatura";
-                this.ddAsignatura.DataSource = la;
+                this.ddAsignatura.DataSource = lAsignaturas;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
@@ -55,25 +60,9 @@ namespace CapaDePresentacion.Doc
             }
             return s;
         }
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            string nombre = verificar(txtRut.Text);
-            if (verificar(txtRut.Text) != "")
-            {
-                lblNombreAlumno.Visible = true;
-                lblNombreAlumno.InnerText = "Alumno a evaluar: " + nombre;
-            }
-            else
-            {
-                lblNombreAlumno.Visible = false;
-                Response.Write("<script>window.alert('Alumno no existe');</script>");
-            }
-        }
 
         public void checkearChecked()
         {
-            int i = 0;
-            int j = 0;
             Evaluacion ev = new Evaluacion();
             Pregunta p = new Pregunta();
             Respuesta r = new Respuesta();
@@ -83,48 +72,77 @@ namespace CapaDePresentacion.Doc
 
             foreach (RadioButtonList item in lRbl)
             {
-                string text = item.Text;
-                bool selected = item.Items[i].Selected;
-                if (selected)
+                for (int i = 0; i < item.Items.Count; i++)
                 {
-                    HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
-                    hpa.Evaluacion_hpa = ev;
-                    hpa.Pregunta_hpa = p;
-                    hpa.Respuesta_hpa = r;
-                    hpa.Alumno_hpa = a;
+                    string text = item.Text;
+                    bool selected = item.Items[i].Selected;
 
-                    hpa.Evaluacion_hpa.Id_evaluacion = 5;
-                    hpa.Pregunta_hpa.Id_pregunta = cHPA.buscarIDPregunta(text);
-                    hpa.Respuesta_hpa.Id_respuesta = cHPA.buscarIDRespuesta(text);
-                    hpa.Alumno_hpa.Rut_persona = txtRut.Text;
-                    cHPA.insertarHPA(hpa);
+                    if (selected == true)
+                    {
+                        HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
+                        hpa.Evaluacion_hpa = ev;
+                        hpa.Pregunta_hpa = p;
+                        hpa.Respuesta_hpa = r;
+                        hpa.Alumno_hpa = a;
+
+                        hpa.Evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
+                        hpa.Pregunta_hpa.Id_pregunta = cHPA.buscarIDPregunta(text);
+                        hpa.Respuesta_hpa.Id_respuesta = cHPA.buscarIDRespuesta(text);
+                        hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        cHPA.insertarHPA(hpa);
+                    }
                 }
-                i = i + 1;
             }
 
             foreach (CheckBoxList item in lCbl)
             {
-                string text = item.Text;
-                bool selected = item.Items[j].Selected;
-
-                if (selected)
+                for (int j = 0; j < item.Items.Count; j++)
                 {
-                    HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
-                    hpa.Evaluacion_hpa = ev;
-                    hpa.Pregunta_hpa = p;
-                    hpa.Respuesta_hpa = r;
-                    hpa.Alumno_hpa = a;
+                    string text = item.Text;
+                    bool selected = item.Items[j].Selected;
 
-                    hpa.Evaluacion_hpa.Id_evaluacion = 5;
-                    hpa.Pregunta_hpa.Id_pregunta = cHPA.buscarIDPregunta(text);
-                    hpa.Respuesta_hpa.Id_respuesta = cHPA.buscarIDRespuesta(text);
-                    hpa.Alumno_hpa.Rut_persona = txtRut.Text;
-                    cHPA.insertarHPA(hpa);
+                    if (selected)
+                    {
+                        HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
+                        hpa.Evaluacion_hpa = ev;
+                        hpa.Pregunta_hpa = p;
+                        hpa.Respuesta_hpa = r;
+                        hpa.Alumno_hpa = a;
+
+                        hpa.Evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
+                        hpa.Pregunta_hpa.Id_pregunta = cHPA.buscarIDPregunta(text);
+                        hpa.Respuesta_hpa.Id_respuesta = cHPA.buscarIDRespuesta(text);
+                        hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        cHPA.insertarHPA(hpa);
+                    }
                 }
-                j = j + 1;
+            }
+            foreach (RadioButtonList item in lRblVF)
+            {
+                for (int k = 0; k < item.Items.Count; k++)
+                {
+                    string text = item.Text;
+                    bool selected = item.Items[k].Selected;
+
+                    if (selected)
+                    {
+                        HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
+                        hpa.Evaluacion_hpa = ev;
+                        hpa.Pregunta_hpa = p;
+                        hpa.Respuesta_hpa = r;
+                        hpa.Alumno_hpa = a;
+
+                        hpa.Evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
+                        hpa.Pregunta_hpa.Id_pregunta = cHPA.buscarIDPregunta(text);
+                        hpa.Respuesta_hpa.Id_respuesta = cHPA.buscarIDRespuesta(text);
+                        hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        cHPA.insertarHPA(hpa);
+                    }
+                }
             }
         }
-        public void crearControles()
+
+        public void crearControles2()
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -141,6 +159,10 @@ namespace CapaDePresentacion.Doc
             lRblVF = new List<RadioButtonList>();
             lCbl = new List<CheckBoxList>();
 
+            rbl = new RadioButtonList();
+            rblVF = new RadioButtonList();
+            cbxl = new CheckBoxList();
+            string x = "";
             while (result.Read())
             {
                 Label pregunta = new Label();
@@ -151,17 +173,17 @@ namespace CapaDePresentacion.Doc
                     Label l2 = new Label();
                     l2.Text = numPregunta + ") " + result.GetString(2);
 
-                    if (rbl.Items.Count > 0)
+                    if (rbl.Items.Count > 0 && x=="rbl")
                     {
                         lRbl.Add(rbl);
                         this.Panel1.Controls.Add(rbl);
                     }
-                    else if (cbxl.Items.Count > 0)
+                    else if (cbxl.Items.Count > 0 && x == "cbxl")
                     {
                         lCbl.Add(cbxl);
                         this.Panel1.Controls.Add(cbxl);
                     }
-                    else if(rblVF.Items.Count > 0)
+                    else if (rblVF.Items.Count > 0 && x == "rblVF") 
                     {
                         lRblVF.Add(rblVF);
                         this.Panel1.Controls.Add(rblVF);
@@ -174,7 +196,10 @@ namespace CapaDePresentacion.Doc
                     else if (result.GetString(0) == "Casillas de verificacion")
                     {
                         cbxl = new CheckBoxList();
-                        
+                    }
+                    else if (result.GetString(0) == "Verdadero o falso")
+                    {
+                        rblVF = new RadioButtonList();
                     }
 
                     i = 0;
@@ -187,98 +212,54 @@ namespace CapaDePresentacion.Doc
                 if (result.GetString(0) == "Seleccion multiple" && s == pregunta.Text)
                 {
                     rbl.Items.Add(result.GetString(1));
-                    i = i + 1;
+                    x = "rbl";
                 }
 
                 else if (result.GetString(0) == "Casillas de verificacion" && s == pregunta.Text)
                 {
                     cbxl.Items.Add(result.GetString(1));
-                    i = i + 1;
+                    x = "cbxl";
                 }
-                else if(result.GetString(0) == "Verdadero o falso" && s == pregunta.Text)
+                else if (result.GetString(0) == "Verdadero o falso" && s == pregunta.Text)
                 {
                     rblVF.Items.Add(result.GetString(1));
-                    i = i + 1;
+                    x = "rblVF";
                 }
+                s = result.GetString(2);
+                i = i + 1;
             }
-        }
-
-
-        public void crearControles2()
-        {
-            DataBase bd = new DataBase();
-            bd.connect();
-
-            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta, id_pregunta FROM [ASIGNATURA_COMPETENCIA] inner join asignatura on [asignatura_competencia].id_asignatura_ac = asignatura.id_asignatura inner join competencia on [asignatura_competencia].id_competencia_ac = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + this.ddAsignatura.SelectedValue + "'";
-
-            bd.CreateCommand(sql);
-            DbDataReader result = bd.Query();
-            string s = "";
-            int numPregunta = 1;
-            int i = 0;
-
-            lRbl = new List<RadioButtonList>();
-            lCbl = new List<CheckBoxList>();
-
-            while (result.Read())
+            if (rbl.Items.Count > 0 && x == "rbl")
             {
-                Label pregunta = new Label();
-                pregunta.Text = result.GetString(2);
-
-                if (s != pregunta.Text)
-                {
-                    Label l2 = new Label();
-                    l2.Text = numPregunta + ") " + result.GetString(2);
-
-                    if (rbl.Items.Count > 0)
-                    {
-                        lRbl.Add(rbl);
-                        this.Panel1.Controls.Add(rbl);
-                    }
-                    else if (cbxl.Items.Count > 0)
-                    {
-                        lCbl.Add(cbxl);
-                        this.Panel1.Controls.Add(cbxl);
-                    }
-
-                    if (result.GetString(0) == "Seleccion multiple")
-                    {
-                        rbl = new RadioButtonList();
-                    }
-                    else if (result.GetString(0) == "Casillas de verificacion")
-                    {
-                        cbxl = new CheckBoxList();
-                    }
-                    
-                    i = 0;
-                    this.Panel1.Controls.Add(new LiteralControl("<br/>"));
-                    this.Panel1.Controls.Add(l2);
-                    this.Panel1.Controls.Add(new LiteralControl("<br/>"));
-                    numPregunta = numPregunta + 1;
-                    s = pregunta.Text;
-                }
-                if (result.GetString(0) == "Seleccion multiple" && s == pregunta.Text)
-                {
-                    rbl.Items.Add(result.GetString(1));
-                    i = i + 1;
-                }
-
-                else if (result.GetString(0) == "Casillas de verificacion" && s == pregunta.Text)
-                {
-                    cbxl.Items.Add(result.GetString(1));
-                    i = i + 1;
-                }
+                lRbl.Add(rbl);
+                this.Panel1.Controls.Add(rbl);
             }
-        }
-
-        protected void btnCargarPreguntas_Click(object sender, EventArgs e)
-        {
-            this.crearControles();
+            else if (cbxl.Items.Count > 0 && x == "cbxl")
+            {
+                lCbl.Add(cbxl);
+                this.Panel1.Controls.Add(cbxl);
+            }
+            else if (rblVF.Items.Count > 0 && x == "rblVF")
+            {
+                lRblVF.Add(rblVF);
+                this.Panel1.Controls.Add(rblVF);
+            }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             this.checkearChecked();
+            Panel1.Visible = false;
+        }
+
+        protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(int.Parse(ddAsignatura.SelectedValue));
+            this.ddEvaluacion.Items.Clear();
+            this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
+            this.ddEvaluacion.DataValueField = "Id_evaluacion";
+            this.ddEvaluacion.DataSource = lEvaluaciones;
+            this.DataBind();//enlaza los datos a un dropdownlist    
         }
     }
 }

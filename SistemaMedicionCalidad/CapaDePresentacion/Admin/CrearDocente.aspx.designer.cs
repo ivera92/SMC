@@ -22,22 +22,22 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl crear;
         
         /// <summary>
-        /// nombre control.
+        /// txtNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nombre;
+        protected global::System.Web.UI.WebControls.TextBox txtNombre;
         
         /// <summary>
-        /// rut control.
+        /// txtRut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rut;
+        protected global::System.Web.UI.WebControls.TextBox txtRut;
         
         /// <summary>
         /// CustomValidator1 control.
@@ -49,49 +49,49 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
         
         /// <summary>
-        /// fechaDeNacimiento control.
+        /// txtFechaDeNacimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fechaDeNacimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaDeNacimiento;
         
         /// <summary>
-        /// profesion control.
+        /// ddProfesion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList profesion;
+        protected global::System.Web.UI.WebControls.DropDownList ddProfesion;
         
         /// <summary>
-        /// direccion control.
+        /// txtDireccion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox direccion;
+        protected global::System.Web.UI.WebControls.TextBox txtDireccion;
         
         /// <summary>
-        /// telefono control.
+        /// txtTelefono control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox telefono;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
         
         /// <summary>
-        /// correo control.
+        /// txtCorreo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox correo;
+        protected global::System.Web.UI.WebControls.TextBox txtCorreo;
         
         /// <summary>
         /// ddPais control.
@@ -103,22 +103,22 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddPais;
         
         /// <summary>
-        /// disponibilidad control.
+        /// rbDisponibilidad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList disponibilidad;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbDisponibilidad;
         
         /// <summary>
-        /// sexo control.
+        /// rbSexo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList sexo;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbSexo;
         
         /// <summary>
         /// btnCrear control.

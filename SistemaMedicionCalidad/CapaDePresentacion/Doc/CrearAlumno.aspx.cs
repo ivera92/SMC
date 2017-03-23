@@ -18,9 +18,9 @@ namespace CapaDePresentacion.Doc
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.escuela.DataTextField = "Nombre_escuela";
-                this.escuela.DataValueField = "Id_escuela";
-                this.escuela.DataSource = lEscuelas;
+                this.ddEscuela.DataTextField = "Nombre_escuela";
+                this.ddEscuela.DataValueField = "Id_escuela";
+                this.ddEscuela.DataSource = lEscuelas;
 
                 this.ddPais.DataTextField = "Nombre_pais";
                 this.ddPais.DataValueField = "Id_pais";
@@ -31,29 +31,29 @@ namespace CapaDePresentacion.Doc
         }
         public void resetearValores()
         {
-            this.rut.Text="";
-            this.escuela.SelectedIndex=0;
+            this.txtRut.Text="";
+            this.ddEscuela.SelectedIndex=0;
             this.ddPais.SelectedIndex=0;
-            this.nombre.Text="";
-            this.fechaDeNacimiento.Text="";
-            this.direccion.Text="";
-            this.telefono.Text="";
-            sexo.SelectedIndex=0;
-            this.correo.Text="";
-            this.promocion.Text="";
-            beneficio.SelectedIndex=0;
+            this.txtNombre.Text="";
+            this.txtFechaDeNacimiento.Text="";
+            this.txtDireccion.Text="";
+            this.txtTelefono.Text="";
+            rbSexo.SelectedIndex=0;
+            this.txtCorreo.Text="";
+            this.txtPromocion.Text="";
+            rbBeneficio.SelectedIndex=0;
         }
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
             bool sexo, beneficio;
 
-            if (this.sexo.Text == "Masculino")
+            if (this.rbSexo.Text == "Masculino")
                 sexo = true;
             else
                 sexo = false;
 
-            if (this.beneficio.Text == "Si")
+            if (this.rbBeneficio.Text == "Si")
                 beneficio = true;
             else
                 beneficio = false;
@@ -64,16 +64,16 @@ namespace CapaDePresentacion.Doc
             a.Pais_persona = p;
             a.Escuela_alumno = es;
 
-            a.Rut_persona = this.rut.Text;
-            a.Escuela_alumno.Id_escuela = this.escuela.SelectedIndex;
-            a.Pais_persona.Id_pais = this.ddPais.SelectedIndex;
-            a.Nombre_persona = this.nombre.Text;
-            a.Fecha_nacimiento_persona = DateTime.Parse(this.fechaDeNacimiento.Text);
-            a.Direccion_persona = this.direccion.Text;
-            a.Telefono_persona = int.Parse(this.telefono.Text);
+            a.Rut_persona = this.txtRut.Text;
+            a.Escuela_alumno.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
+            a.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
+            a.Nombre_persona = this.txtNombre.Text;
+            a.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
+            a.Direccion_persona = this.txtDireccion.Text;
+            a.Telefono_persona = int.Parse(this.txtTelefono.Text);
             a.Sexo_persona = sexo;
-            a.Correo_persona = this.correo.Text;
-            a.Promocion_alumno = int.Parse(this.promocion.Text);
+            a.Correo_persona = this.txtCorreo.Text;
+            a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
             a.Beneficio_alumno = beneficio;
             try
             {

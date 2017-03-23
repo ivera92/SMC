@@ -6,6 +6,9 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
+using System.Net.Mail;
+using System.Text;
+using System.Net;
 
 namespace CapaDePresentacion
 {
@@ -28,9 +31,7 @@ namespace CapaDePresentacion
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            int tipoUsuario = ddTipoUsuario.SelectedIndex + 1;
-            //try
-            //{
+            int tipoUsuario = int.Parse(ddTipoUsuario.SelectedValue);
             if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, tipoUsuario))
             {
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
@@ -53,12 +54,39 @@ namespace CapaDePresentacion
             else
             {
                 Response.Write("<script>window.alert('Error al Ingresar los datos');</script>");
-                //}
             }
         }
-        //catch
-        //{
 
-        //}
+        public void recuperarContrasena()
+        {
+            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            msg.To.Add("ivan_cs@live.cl");
+            msg.From = new MailAddress("ivera@ic.uach.cl", "Administrador" , System.Text.Encoding.UTF8);
+            msg.Subject = "Recuperar contraseña";
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            msg.Body = "Su contraseña actual es: ";
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.IsBodyHtml = false;
+
+            //Aquí es donde se hace lo especial
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential("ivera@ic.uach.cl", "colocolo1");
+            client.Port = 465;
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true; //Esto es para que vaya a través de SSL que es obligatorio con GMail
+            //try
+            //{
+                client.Send(msg);
+            //}
+            //catch
+            //{
+            //    Response.Write("<script>window.alert('No se pudo recuperar la contraseña');</script>");
+            //}
+        }
+
+        protected void recuperar_Click(object sender, EventArgs e)
+        {
+            this.recuperarContrasena();
+        }
     }
 }

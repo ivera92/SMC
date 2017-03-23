@@ -21,7 +21,7 @@
 
     <div class ="row">
         <div class="col-sm-offset-2 col-sm-8">
-            <asp:GridView class="table table-striped" ID="GridView1" runat="server" AutoGenerateColumns="False" 
+            <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" 
             onrowdeleting="rowDeletingEvent" onrowediting="rowEditingEvent">
             <Columns>
             <asp:CommandField ButtonType="Link" ShowEditButton="true"  ShowDeleteButton="true" />
@@ -40,80 +40,127 @@
         <h2 class="text-center">Actualizar Alumno</h2>
         <br />
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl1">Nombre</label></div>
-            <div class="col-sm-4"><asp:TextBox ID="nombre" runat="server" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$"  placeHolder="Ingrese su nombre" class="form-control"  
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl1">Nombre
+                </label>
+            </div>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$"  placeHolder="Ingrese su nombre" class="form-control"  
                 oninvalid="setCustomValidity('La primera letra del nombre y apellido deben ir en mayuscula')"
-                oninput="setCustomValidity('')" ></asp:TextBox></div>          
+                oninput="setCustomValidity('')" >
+                </asp:TextBox>
+            </div>          
         </div>
-       <br />
+        <br />
               
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl2">Rut </label></div>
-            <div class="col-sm-4"><asp:TextBox ID="rut" class="form-control" runat="server" placeHolder="Ejemplo: 18205857-2" ReadOnly="true"></asp:TextBox></div>
-        </div>
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl2">Rut 
+                </label>
+            </div>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtRut" class="form-control" runat="server" placeHolder="Ejemplo: 18205857-2" ReadOnly="true">
+                </asp:TextBox>
+            </div>
+       </div>
        <br />
 
        <div class="row">
            <div class="col-sm-offset-7">
                 <asp:CustomValidator ID="CustomValidator1" runat="server" 
             ClientValidationFunction="validar_rut" ControlToValidate="rut" 
-            Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True"></asp:CustomValidator>
+            Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True">
+                </asp:CustomValidator>
            </div>
        </div>
         
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl1">Fecha de nacimiento</label></div>
-            <div class="col-sm-4"><asp:TextBox ID="fechaDeNacimiento" class="form-control" runat="server"></asp:TextBox></div>
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl1">Fecha de nacimiento</label>
+            </div>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtFechaDeNacimiento" class="form-control" runat="server"></asp:TextBox>
+            </div>
         </div>
        <br />
 
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl1">Direccion</label></div>
-            <div class="col-sm-4"><asp:TextBox ID="direccion" class="form-control" runat="server" placeHolder="Ingrese su dirección"></asp:TextBox></div>       
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl1">Direccion</label>
+            </div>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtDireccion" class="form-control" runat="server" placeHolder="Ingrese su dirección"></asp:TextBox>
+            </div>       
         </div>
         <br />
 
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl1">Correo</label></div>
-            <div class="col-sm-4"><asp:TextBox ID="correo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" ></asp:TextBox></div>            
-        </div>
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl1">Correo</label>
+            </div>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtCorreo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" ></asp:TextBox>
+            </div>            
+       </div>
        <br />
 
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl1">Telefono</label></div>
-            <div class="col-sm-4"><asp:TextBox ID="telefono" class="form-control" runat="server" type="number" placeHolder="Ingrese su telefono" min="940000000" max="9999999999"></asp:TextBox></div>
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl1">Telefono</label>
+            </div>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtTelefono" class="form-control" runat="server" type="number" placeHolder="Ingrese su telefono" min="940000000" max="9999999999"></asp:TextBox>
+            </div>
         </div>
         <br />
 
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl9">Nacionalidad</label></div>
-            <div class="col-sm-4"><asp:DropDownList ID="ddPais" runat="server" class="form-control"></asp:DropDownList></div>    
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl9">Nacionalidad</label>
+            </div>
+            <div class="col-sm-4">
+                <asp:DropDownList ID="ddPais" runat="server" class="form-control">
+                </asp:DropDownList>
+            </div>    
         </div>
        <br />
 
         <div class="row">  
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl10">Escuela</label></div>                     
-            <div class="col-sm-4"><asp:DropDownList ID="escuela" runat="server" class="form-control"></asp:DropDownList></div>
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl10">Escuela</label>
+            </div>                     
+            <div class="col-sm-4">
+                <asp:DropDownList ID="ddEscuela" runat="server" class="form-control">
+                </asp:DropDownList>
+            </div>
         </div>
         <br />
 
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl1">Año ingreso</label></div>
-            <div class="col-sm-4"><asp:TextBox ID="promocion" class="form-control" runat="server" placeHolder="Ingrese año ingreso" type="number" min="2010"></asp:TextBox></div> 
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl1">Año ingreso</label>
+            </div>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtPromocion" class="form-control" runat="server" placeHolder="Ingrese año ingreso" type="number" min="2010"></asp:TextBox>
+            </div> 
         </div>
        <br />
 
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-2"><label for="lbl10">Sexo</label></div>
+            <div class="col-sm-offset-3 col-sm-2">
+                <label for="lbl10">Sexo</label>
+            </div>
             <div class="col-sm-2">
-                <asp:RadioButtonList ID="sexo" runat="server">
+                <asp:RadioButtonList ID="rbSexo" runat="server">
                         <asp:ListItem Selected="True" Value="Masculino"></asp:ListItem>
                         <asp:ListItem Value="Femenino"></asp:ListItem>
                 </asp:RadioButtonList>
             </div>   
-            <div class="col-sm-1"><label for="lbl1">Beneficio</label></div>
             <div class="col-sm-1">
-                <asp:RadioButtonList ID="beneficio" runat="server">
+                <label for="lbl1">Beneficio</label>
+            </div>
+            <div class="col-sm-1">
+                <asp:RadioButtonList ID="rbBeneficio" runat="server">
                         <asp:ListItem Value="Si"></asp:ListItem>
                         <asp:ListItem Selected="True" Value="No"></asp:ListItem>
                     </asp:RadioButtonList>

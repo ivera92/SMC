@@ -31,22 +31,22 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtNombreCompetencia;
         
         /// <summary>
-        /// descripcion control.
+        /// txtADescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea descripcion;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtADescripcion;
         
         /// <summary>
-        /// tipoCompetencia control.
+        /// rbTipoCompetencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList tipoCompetencia;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbTipoCompetencia;
         
         /// <summary>
         /// brnCrear control.
