@@ -57,7 +57,9 @@
             </div>
         </div>
         <br />
-        <asp:LinkButton ID="recuperar" runat="server" OnClick="recuperar_Click">Recuperar Contraseña</asp:LinkButton>
+
+        <asp:LinkButton CssClass="col-sm-offset-4" ID="recuperar" runat="server" OnClick="recuperar_Click">Recuperar Contraseña</asp:LinkButton>
+        <br />
 
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4"><asp:Button ID="btnIngresar" runat="server" class="btn btn-primary btn-block" onclick="btnIngresar_Click" Text="Ingresar" /></></div>

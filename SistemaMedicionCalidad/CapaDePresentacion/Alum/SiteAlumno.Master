@@ -45,8 +45,7 @@
             </ul>
 
             <ul class="navbar-right">
-                <li><asp:Button ID="btnSalir" class="btn" runat="server" onclick="btnSalir_Click" 
-                Text="Salir" /></li>
+                <asp:Button ID="btnSalir" type="submit" class="btn btn-link btn-logout" runat="server" onclick="btnSalir_Click" Text="Salir" />
             </ul>
           </div><!--/.nav-collapse -->
           </nav>

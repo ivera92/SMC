@@ -26,7 +26,7 @@
      <div class="row">
            <div class="col-sm-offset-7">
                 <asp:CustomValidator ID="CustomValidator1" runat="server" 
-            ClientValidationFunction="validar_rut" ControlToValidate="rut" 
+            ClientValidationFunction="validar_rut" ControlToValidate="txtRut" 
             Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True"></asp:CustomValidator>
            </div>
        </div>

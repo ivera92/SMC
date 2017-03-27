@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <div runat="server" id="divEvaluar">
     <h1 class="text-center">Evaluacion Alumno</h1>
     <br />
 
@@ -42,6 +43,13 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
             <asp:Button ID="btnGuardar" runat="server" class="btn btn-block btn-primary" Text="Guardar" OnClick="btnGuardar_Click" />
+        </div>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-4">
+            <asp:Button runat="server" CssClass="btn btn-block btn-primary" ID="btnSiguiente" Text="Seguir evalaluando" OnClick="btnSiguiente_Click"/>
         </div>
     </div>
 </asp:Content>

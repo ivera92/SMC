@@ -8,21 +8,6 @@
 
     <div class="row">
         <div class="col-sm-offset-4 col-sm-2">
-            <label>Asignatura</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
-            <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddAsignatura" runat="server">
-                <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
-            </asp:DropDownList>
-        </div>
-    </div>
-    <br />
-
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-2">
             <label>Competencia</label>
         </div>
     </div>
@@ -31,6 +16,21 @@
         <div class="col-sm-offset-4 col-sm-4">
             <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddCompetencia" runat="server">
                 <asp:ListItem Value="0"><--Seleccione una competencia--></asp:ListItem>
+            </asp:DropDownList>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-2">
+            <label>Asignatura</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-4">
+            <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddAsignatura" runat="server">
+                <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
             </asp:DropDownList>
         </div>
     </div>

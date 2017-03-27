@@ -76,6 +76,16 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Admin\AsociarAC.aspx" />
+    <Content Include="Admin\ImagenesAdmin\imgAlumno.jpeg" />
+    <Content Include="Admin\ImagenesAdmin\imgAsignatura.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgAsociar.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgClave.png" />
+    <Content Include="Admin\ImagenesAdmin\imgCompetencia.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgDocente.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgEscuela.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgPregunta.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgProfesion.jpg" />
+    <Content Include="Admin\InicioAdmin.aspx" />
     <Content Include="Alum\CambiarClave.aspx" />
     <Content Include="Alum\Principal.aspx" />
     <Content Include="Alum\Resultados.aspx" />
@@ -88,12 +98,12 @@
     <Content Include="Admin\AdministrarPreguntas.aspx" />
     <Content Include="Admin\AdministrarProfesiones.aspx" />
     <Content Include="Admin\CambiarClave.aspx" />
-    <Content Include="Doc\CrearAlumno.aspx" />
+    <Content Include="Admin\CrearAlumno.aspx" />
     <Content Include="Admin\CrearAsignatura.aspx" />
     <Content Include="Admin\CrearCompetencia.aspx" />
     <Content Include="Admin\CrearDocente.aspx" />
     <Content Include="Admin\CrearEscuela.aspx" />
-    <Content Include="Doc\CrearPregunta.aspx" />
+    <Content Include="Admin\CrearPregunta.aspx" />
     <Content Include="Admin\CrearProfesion.aspx" />
     <Content Include="Doc\CrearEvaluacion.aspx" />
     <Content Include="Doc\EvaluacionAlumno.aspx" />
@@ -187,6 +197,13 @@
     <Compile Include="Admin\AsociarAC.aspx.designer.cs">
       <DependentUpon>AsociarAC.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\InicioAdmin.aspx.cs">
+      <DependentUpon>InicioAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InicioAdmin.aspx.designer.cs">
+      <DependentUpon>InicioAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Alum\CambiarClave.aspx.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -278,11 +295,11 @@
     <Compile Include="Admin\CambiarClave.aspx.designer.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Doc\CrearAlumno.aspx.cs">
+    <Compile Include="Admin\CrearAlumno.aspx.cs">
       <DependentUpon>CrearAlumno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Doc\CrearAlumno.aspx.designer.cs">
+    <Compile Include="Admin\CrearAlumno.aspx.designer.cs">
       <DependentUpon>CrearAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrearAsignatura.aspx.cs">
@@ -313,11 +330,11 @@
     <Compile Include="Admin\CrearEscuela.aspx.designer.cs">
       <DependentUpon>CrearEscuela.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Doc\CrearPregunta.aspx.cs">
+    <Compile Include="Admin\CrearPregunta.aspx.cs">
       <DependentUpon>CrearPregunta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Doc\CrearPregunta.aspx.designer.cs">
+    <Compile Include="Admin\CrearPregunta.aspx.designer.cs">
       <DependentUpon>CrearPregunta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrearProfesion.aspx.cs">

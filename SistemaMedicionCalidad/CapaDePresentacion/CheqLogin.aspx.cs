@@ -43,12 +43,12 @@ namespace CapaDePresentacion
                 else if (tipoUsuario == 2)
                 {
                     Session["rutDocente"] = rut.Text;
-                    Response.Redirect("~/Doc/CrearAlumnos.aspx");
+                    Response.Redirect("~/Doc/CrearEvaluacion.aspx");
                 }
                 else
                 {
                     Session["rutAdmin"] = rut.Text;
-                    Response.Redirect("~/Admin/AdministrarAsignaturas.aspx");
+                    Response.Redirect("~/Admin/InicioAdmin.aspx");
                 }
             }
             else

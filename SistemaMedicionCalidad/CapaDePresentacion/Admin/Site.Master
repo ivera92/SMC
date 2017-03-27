@@ -23,11 +23,19 @@
     <div class="container">
         <img src="../imagenes/logo.jpg" align="left" class="img-responsive" alt="" />
         <img src="../imagenes/imagen2.jpg" class="center-block img-responsive" alt="Responsive image"/>
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default bg-default">
             <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="Administrador.aspx">Administrar</a>
+                <li><a href="InicioAdmin.aspx">Administrar</a>
                 
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Alumno</a>
+                    <ul  class="dropdown-menu" >
+                        <li><a href="CrearAlumno.aspx">Crear Alumno</a></li>
+                        <li><a href="AdministrarAlumnos.aspx">Administrar Alumnos</a></li>
+                    </ul>
+                </li>
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Asignatura</a>
                     <ul  class="dropdown-menu" >
@@ -35,6 +43,8 @@
                         <li><a href="AdministrarAsignaturas.aspx">Administrar Asignaturas</a></li>
                     </ul>
                 </li>
+
+                <li><a href="AsociarAC.aspx">Asociar Competencia</a>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Competencia</a>
@@ -61,17 +71,31 @@
                 </li>
 
                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pregunta</a>
+                    <ul  class="dropdown-menu" >
+                        <li><a href="CrearPregunta.aspx">Crear Pregunta</a></li>
+                        <li><a href="AdministrarPreguntas.aspx">Administrar Preguntas</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profesion</a>
                     <ul  class="dropdown-menu" >
                         <li><a href="CrearProfesion.aspx">Crear Profesion</a></li>
                         <li><a href="AdministrarProfesiones.aspx">Administrar Profesiones</a></li>
                     </ul>
                 </li>
+
+                <li class="dropdown">
+                    <a href="#" class="navbar-right dropdown-toggle" data-toggle="dropdown">Contraseña</a>
+                    <ul  class="dropdown-menu" >
+                        <li><a href="CambiarClave.aspx">Cambiar Contraseña</a></li>
+                    </ul>
+                </li>
             </ul>
 
             <ul class="navbar-right">
-                <li><asp:Button ID="btnSalir" class="btn" runat="server" onclick="btnSalir_Click" 
-                Text="Salir" /></li>
+                <asp:Button ID="btnSalir" type="submit" class="btn btn-link btn-logout" runat="server" onclick="btnSalir_Click" Text="Salir" />
             </ul>
           </div><!--/.nav-collapse -->
           </nav>
