@@ -3,17 +3,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h2 class="text-center">Asociando Competencia a Asignatura</h2>
+    <h2 class="text-center">Asociar competencia a asignatura</h2>
     <br />
 
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-2">
-            <label>Competencia</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
+        <label class="col-sm-offset-3 col-sm-2">Competencia</label>  
+        <div class="col-sm-4">
             <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddCompetencia" runat="server">
                 <asp:ListItem Value="0"><--Seleccione una competencia--></asp:ListItem>
             </asp:DropDownList>
@@ -22,13 +17,8 @@
     <br />
 
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-2">
-            <label>Asignatura</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
+        <label class="col-sm-offset-3 col-sm-2">Asignatura</label>
+        <div class="col-sm-4">
             <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddAsignatura" runat="server">
                 <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
             </asp:DropDownList>
@@ -37,7 +27,7 @@
     <br />
 
     <div class="row">
-        <div class="col-sm-offset-6 col-sm-2">
+        <div class="col-sm-offset-5 col-sm-2">
             <asp:Button CssClass="btn btn-block btn-primary" runat="server" ID="btnAsociar" Text="Asociar" OnClick="btnAsociar_Click" />
         </div>
     </div>

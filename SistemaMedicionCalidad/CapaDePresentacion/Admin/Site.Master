@@ -23,17 +23,27 @@
     <div class="container">
         <img src="../imagenes/logo.jpg" align="left" class="img-responsive" alt="" />
         <img src="../imagenes/imagen2.jpg" class="center-block img-responsive" alt="Responsive image"/>
-            <nav class="navbar navbar-default bg-default">
-            <div class="navbar-collapse collapse">
+
+
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="InicioAdmin.aspx">Administrar</a>
+        </div>
+        <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="InicioAdmin.aspx">Administrar</a>
-                
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Alumno</a>
-                    <ul  class="dropdown-menu" >
-                        <li><a href="CrearAlumno.aspx">Crear Alumno</a></li>
-                        <li><a href="AdministrarAlumnos.aspx">Administrar Alumnos</a></li>
-                    </ul>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Alumno</a>
+                <ul  class="dropdown-menu" >
+                    <li><a href="CrearAlumno.aspx">Crear Alumno</a></li>
+                    <li><a href="AdministrarAlumnos.aspx">Administrar Alumnos</a></li>
+                </ul>
                 </li>
 
                 <li class="dropdown">
@@ -92,14 +102,13 @@
                         <li><a href="CambiarClave.aspx">Cambiar Contraseña</a></li>
                     </ul>
                 </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+                <li><a href="Logout.aspx">Cerrar Sesion</a></li>
             </ul>
-
-            <ul class="navbar-right">
-                <asp:Button ID="btnSalir" type="submit" class="btn btn-link btn-logout" runat="server" onclick="btnSalir_Click" Text="Salir" />
-            </ul>
-          </div><!--/.nav-collapse -->
-          </nav>
-
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>  
     </div>

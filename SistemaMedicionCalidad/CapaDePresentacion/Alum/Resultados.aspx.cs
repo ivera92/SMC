@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
@@ -15,24 +15,13 @@ namespace CapaDePresentacion.Alum
         {
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
-            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Evaluacion> lEvaluacion = cEvaluacion.listarEvaluaciones();
-            CatalogCompetencia cCompetencia = new CatalogCompetencia();
-            List<Competencia> lCompetencia = cCompetencia.listarCompetencias();
+            
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
                 this.ddAsignatura.DataValueField = "Id_asignatura";
-                this.ddAsignatura.DataSource = lAsignatura;
-
-                this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
-                this.ddEvaluacion.DataValueField = "Id_evaluacion";
-                this.ddEvaluacion.DataSource = lEvaluacion;
-
-                this.ddCompetencia.DataTextField = "Nombre_competencia";
-                this.ddCompetencia.DataValueField = "Id_competencia";
-                this.ddCompetencia.DataSource = lCompetencia;
+                this.ddAsignatura.DataSource = lAsignatura;                
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
@@ -42,31 +31,43 @@ namespace CapaDePresentacion.Alum
             string rut = Session["rutAlumno"].ToString();
             string[] series = { "Correctas", "Incorrectas" };
             CatalogHPA cHPA = new CatalogHPA();
-
-            
-            int[] arrResultados = cHPA.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
-            List<string> ls = series.ToList();
-            List<Int32> li = arrResultados.ToList();
-            this.Chart1.Series.Clear();
-
-            // Set palette
-            this.Chart1.Palette = ChartColorPalette.EarthTones;
-
-            // Set title
-            this.Chart1.Titles.Add(ddCompetencia.Text);
-
-            // Add series.
-            /*for (int i = 0; i < series.Length; i++)
+            int[] arrResultados = new int[2];
+            if (ddCompetencia.SelectedValue == "0")
             {
-                Series Serie2 = this.Chart1.Series.Add(series[i]);
-                Serie2.Points.Add(arrResultados[i]);
-            }*/
-            Chart1.Series[0].Points.DataBindXY(ls, li);
+                arrResultados = cHPA.resultadoPreguntasE(rut, int.Parse(ddEvaluacion.SelectedValue));
+            }
+            else
+            {
+                arrResultados = cHPA.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
+            }
+
+            chartEvaluacion.Series.Clear();
+            chartEvaluacion.Palette = ChartColorPalette.Fire;
+            chartEvaluacion.BackColor = Color.LightYellow;
+            chartEvaluacion.Titles.Add(ddCompetencia.SelectedItem.ToString());
+            chartEvaluacion.ChartAreas[0].BackColor = Color.Transparent;
+            Series series1 = new Series
+            {
+                Name = "series1",
+                IsVisibleInLegend = true,
+                Color = Color.Green,
+                ChartType = SeriesChartType.Pie
+            };
+            chartEvaluacion.Series.Add(series1);
+            series1.Points.Add(arrResultados[0]);
+            series1.Points.Add(arrResultados[1]);
+            var p1 = series1.Points[0];
+            p1.AxisLabel = series[0];
+            p1.LegendText = "Hiren Khirsaria";
+            var p2 = series1.Points[1];
+            p2.AxisLabel = series[1];
+            p2.LegendText = "ABC XYZ";
+            Panel1.Controls.Add(chartEvaluacion);
         }
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
-            this.chart();
+            this.graficar();
         }
         public void chart()
         {
@@ -111,6 +112,30 @@ namespace CapaDePresentacion.Alum
                 s1.Points.Add(arrResultados[i]);
             }
             this.Panel1.Controls.Add(pieChart);
+        }
+
+        protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(int.Parse(ddAsignatura.SelectedValue));
+
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            List<Competencia> lCompetencia = cCompetencia.listarCompetenciasAsignatura(int.Parse(ddAsignatura.SelectedValue));
+
+            this.ddEvaluacion.Items.Clear();
+            this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
+            this.ddEvaluacion.DataValueField = "Id_evaluacion";
+            this.ddEvaluacion.DataSource = lEvaluaciones;
+
+            this.ddCompetencia.Items.Clear();
+
+            if (lCompetencia.Count > 0)
+                this.ddCompetencia.Items.Add(new ListItem("Todas las Competencias", "0"));
+
+            this.ddCompetencia.DataTextField = "Nombre_competencia";
+            this.ddCompetencia.DataValueField = "Id_competencia";
+            this.ddCompetencia.DataSource = lCompetencia;
+            this.DataBind();//enlaza los datos a un dropdownlist    
         }
     }
 }

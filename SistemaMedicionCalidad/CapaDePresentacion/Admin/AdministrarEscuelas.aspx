@@ -30,11 +30,14 @@
     <br />
 
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-4"><label>Nombre</label></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-offset-3  col-sm-4"><asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre" required></asp:TextBox></div>
-        <div class="col-sm-2"><asp:Button ID="btnGuardar" class="btn btn-primary btn-block" runat="server" Text="Guardar" OnClick="btnGuardar_Click"/></div>
+        <label class="col-sm-offset-2 col-sm-1">Nombre</label>
+        <div class="col-sm-5">
+            <asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre">
+            </asp:TextBox>
+        </div>
+        <div class="col-sm-2">
+            <asp:Button ID="btnGuardar" class="btn btn-primary btn-block" runat="server" Text="Guardar" OnClick="btnGuardar_Click"/>
+        </div>
     </div>
     </div>
 </asp:Content>

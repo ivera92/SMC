@@ -23,10 +23,19 @@
     <div class="container">
         <img src="../imagenes/logo.jpg" align="left" class="img-responsive" alt="" />
         <img src="../imagenes/imagen2.jpg" class="center-block img-responsive" alt="Responsive image"/>
-          <nav class="navbar navbar-default">
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav" id="menu">
-                
+
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Personal</a>
                     <ul  class="dropdown-menu" >
@@ -39,22 +48,26 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Evaluacion</a>
                     <ul  class="dropdown-menu" >
                         <li><a href="Resultados.aspx"> Resultado Evaluacion</a></li>
-                        <li><a href="EvaluacionAlumno.aspx">Evalucion Alumno</a></li>
                     </ul>
                 </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+                <li><a href="Logout.aspx">Cerrar Sesion</a></li>
             </ul>
-
-            <ul class="navbar-right">
-                <asp:Button ID="btnSalir" type="submit" class="btn btn-link btn-logout" runat="server" onclick="btnSalir_Click" Text="Salir" />
-            </ul>
-          </div><!--/.nav-collapse -->
-          </nav>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>  
     </div>
-        
+        <asp:Label class="center-block" runat="server" Text="Sistema Desarrollado por Iván Vera" Visible="false"></asp:Label>
 </form>
+    <footer>
+        <div class='define text-center'>
+            <br />
+            <p>Sistema Desarrollado por Iván Vera</p>
+        </div>
+    </footer>
 </body>
 </html>
-

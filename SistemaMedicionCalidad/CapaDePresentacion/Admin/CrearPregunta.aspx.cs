@@ -9,8 +9,10 @@ namespace CapaDePresentacion.Doc
 {
     public partial class CrearPregunta : System.Web.UI.Page
     {
-        private static TextBox[] arrTextBoxs;
-        private static CheckBox[] arrCheckBox;
+        private static List<TextBox> lTxbRespuestas;
+        private static List<CheckBox> lCbRespuestas;
+        private static TextBox txt;
+        private static CheckBox cb;
         private static int contadorControles;
         private static string ruta;
         protected void Page_Load(object sender, EventArgs e)
@@ -19,15 +21,13 @@ namespace CapaDePresentacion.Doc
             List<Tipo_Pregunta> lTiposPregunta = cPregunta.listarTiposPregunta();
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             List<Competencia> lCompetencias = cCompetencia.listarCompetencias();
-
+            this.crearRespuestas();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 ruta = "";
                 this.VoF.Visible = false;
                 this.AltOCas.Visible = false;
                 this.btnCrear.Visible = false;
-                arrTextBoxs = new TextBox[1000];
-                arrCheckBox = new CheckBox[1000];
                 contadorControles = 0;
 
                 this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
@@ -44,7 +44,7 @@ namespace CapaDePresentacion.Doc
             {
                 for (int i = 0; i < contadorControles; i++)
                 {
-                    agregarControles(arrTextBoxs[i], arrCheckBox[i]);
+                    agregarControles(lTxbRespuestas[i], lCbRespuestas[i]);
                 }
             }
             catch
@@ -107,27 +107,19 @@ namespace CapaDePresentacion.Doc
                 }
                 else
                 {
-                    Respuesta r = new Respuesta();
-                    r.Pregunta_respuesta = pp;
-
-                    r.Pregunta_respuesta.Id_pregunta = id;
-                    r.Nombre_respuesta = txtRespuesta.Text;
-                    r.Correcta_respuesta = cbCorrecta.Checked;
-                    cr.insertarRespuesta(r);
-
-                    while (arrTextBoxs[i] != null)
+                    while (lTxbRespuestas[i] != null)
                     {
                         Respuesta rr = new Respuesta();
                         rr.Pregunta_respuesta = pp;
 
                         rr.Pregunta_respuesta.Id_pregunta = id;
-                        rr.Nombre_respuesta = arrTextBoxs[i].Text;
-                        rr.Correcta_respuesta = arrCheckBox[i].Checked;
+                        rr.Nombre_respuesta = lTxbRespuestas[i].Text;
+                        rr.Correcta_respuesta = lCbRespuestas[i].Checked;
                         cr.insertarRespuesta(rr);
                         i++;
                     }
+                    Response.Write("<script>window.alert('Respuestas creadas satisfactoriamente');</script>");
                 }
-                Response.Write("<script>window.alert('Respuestas creadas satisfactoriamente');</script>");
             }
             catch
             {
@@ -140,7 +132,7 @@ namespace CapaDePresentacion.Doc
             Panel p2 = new Panel();
             Panel p3 = new Panel();
             p3.CssClass = "row";
-            p1.CssClass = "col-sm-offset-3 col-sm-4";
+            p1.CssClass = "col-sm-offset-3 col-sm-5";
             p2.CssClass = "col-sm-1";
             p1.Controls.Add(txt);
             p2.Controls.Add(cb);
@@ -152,15 +144,18 @@ namespace CapaDePresentacion.Doc
 
         public void crearRespuestas()
         {
-            int numeroRegistro = contadorControles;
-            TextBox txt = new TextBox();
-            CheckBox cb = new CheckBox();
-            txt.CssClass = "form-control";
-            arrTextBoxs[numeroRegistro] = txt;
-            arrCheckBox[numeroRegistro] = cb;
+            lTxbRespuestas = new List<TextBox>();
+            lCbRespuestas = new List<CheckBox>();
+            for (int i = 0; i < 5; i++)
+            {
+                txt = new TextBox();
+                cb = new CheckBox();
+                txt.CssClass = "form-control";
+                lTxbRespuestas.Add(txt);
+                lCbRespuestas.Add(cb);
 
-            agregarControles(txt, cb);
-            contadorControles++;
+                agregarControles(txt, cb);
+            }
         }
 
         protected void btnMas_Click(object sender, EventArgs e)
@@ -185,14 +180,15 @@ namespace CapaDePresentacion.Doc
         }
         public void subirImagen()
         {
-            if (fileImagen.PostedFile.ContentLength > 0)
+            string sExt = Path.GetExtension(fileImagen.FileName);
+            try
             {
-                string archivo = Server.MapPath(String.Format("/ImagenesPreguntas/{0}",Path.GetFileName(fileImagen.PostedFile.FileName)));
-                if (File.Exists(archivo)) File.Delete(archivo);
-                fileImagen.PostedFile.SaveAs(archivo);
+                ruta = "ImagenesPreguntas/" + fileImagen.FileName + sExt;
+                fileImagen.SaveAs(Server.MapPath(ruta));
                 ClientScript.RegisterStartupScript(this.GetType(), "Mensaje",
                     "alert('La imagen fue grabada en el servidor');", true);
             }
+            catch { };
         }
     }
 }

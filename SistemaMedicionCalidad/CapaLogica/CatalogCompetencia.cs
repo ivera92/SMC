@@ -80,6 +80,30 @@ namespace Project
             return lcompetencia;
         }
 
+        //Lista las competencias asociadas a una asignatura existentes en la base de datos
+        public List<Competencia> listarCompetenciasAsignatura(int id_asignatura_ac)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarCompetenciasAsignatura";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_asignatura_ac", DbType.Int32, id_asignatura_ac);
+            List<Competencia> lCompetencias = new List<Competencia>();
+            DbDataReader result = bd.Query();
+
+            while (result.Read())
+            {
+                Competencia c = new Competencia(result.GetInt32(0), result.GetString(1));
+                lCompetencias.Add(c);
+            }
+            result.Close();
+            bd.Close();
+
+            return lCompetencias;
+        }
+
         //Devuelve una competencia acorde a su ID
         public Competencia buscarUnaCompetencia(int id_competencia)
         {

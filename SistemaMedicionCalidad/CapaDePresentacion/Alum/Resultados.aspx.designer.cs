@@ -40,6 +40,15 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
         
         /// <summary>
+        /// btnGraficar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGraficar;
+        
+        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>
@@ -49,21 +58,12 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// Chart1 control.
+        /// chartEvaluacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
-        
-        /// <summary>
-        /// btnGraficar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGraficar;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chartEvaluacion;
     }
 }

@@ -121,8 +121,8 @@ namespace CapaDePresentacion
             a.Pais_persona = p;
 
             a.Rut_persona = this.txtRut.Text;
-            a.Escuela_alumno.Id_escuela = this.ddEscuela.SelectedIndex;
-            a.Pais_persona.Id_pais = this.ddPais.SelectedIndex;
+            a.Escuela_alumno.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
+            a.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
             a.Nombre_persona = this.txtNombre.Text;
             a.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
             a.Direccion_persona = this.txtDireccion.Text;

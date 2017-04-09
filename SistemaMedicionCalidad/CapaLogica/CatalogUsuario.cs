@@ -1,6 +1,8 @@
 ﻿using Project.CapaDeDatos;
 using System.Data;
 using System.Data.Common;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Project
 {
@@ -30,6 +32,45 @@ namespace Project
         else
             return true;
         }
+
+        public string verificarRut(string rut_usuario)
+        {
+            string s = "";
+            string sql = @"SELECT correo_usuario FROM Usuario WHERE rut_usuario = @rut_usuario";
+            //cadena conexion
+
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            bd.CreateCommand(sql);
+            bd.createParameter("@rut_usuario", DbType.String, rut_usuario);
+            DbDataReader result = bd.Query();//disponible resultado
+            result.Read();
+            s = result.GetString(0);
+            return s;
+        }
+
+        public string encriptar(string clave)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            //Calcula el hash de los bytes de texto
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(clave));
+
+            //Obtiene el resultado del hash después de calcularlo
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //Cambia en 2 dígitos hexadecimales
+                //para cada byte
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
+        }
+
         //Cambia la clave de un usuario (actualiza la columna contraseña)
         public int actualizarClave(string rut, string clave, string claveNueva)
         {

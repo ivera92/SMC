@@ -3,53 +3,46 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h2>Evaluacion</h2>
+    <h2 class="text-center">Crear Evaluacion</h2>
     <br />
     
+    <label class="col-sm-offset-3">Asignatura</label>
+
     <div class="row">
-        <div class="col-sm-4">
-            <label>Asignatura</label>
-        </div>
-        <div class="col-sm-6">
-            <label>Nombre Evaluacion</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-offset-3 col-sm-6">
             <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AppendDataBoundItems="true">
                 <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
             </asp:DropDownList>
         </div>
-        <div class="col-sm-6">
+    </div>
+    <br />
+    
+    <label class="col-sm-offset-3">Nombre Evaluacion</label>
+
+    <div class="row">    
+        <div class="col-sm-offset-3 col-sm-6">
             <asp:TextBox runat="server" ID="txtNombre" class="form-control"></asp:TextBox>
         </div>   
-        <div class="col-sm-2">
-            <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary btn-block" Text="Buscar" OnClick="btnBuscar_Click"/>
-        </div>
     </div>
     <br />
     
     <div class="row">
         <div class="col-sm-5">    
-            <label id="nombreAlumno" runat="server">Nombre:</label>
+            <label id="nombreAlumno" runat="server" visible="false">Nombre:</label>
         </div>
         <div class="col-sm-2">    
-            <label id="rut" runat="server">Rut:</label>
+            <label id="rut" runat="server" visible="false">Rut:</label>
         </div>
         <div class="col-sm-2">
-            <label id="fecha" runat="server">Fecha:</label>
+            <label id="fecha" runat="server" visible="false">Fecha:</label>
         </div>
         <div class="col-sm-1">
-            <label id="fechaEvaluacion" runat="server">:</label>
+            <label id="fechaEvaluacion" runat="server" visible="false">:</label>
         </div>
     </div>
-    <br />
-
-    <asp:Panel ID="Panel1" runat="server" EnableViewState="false">  
-    </asp:Panel>
 
     <div class="row">
-        <div class="col-sm-2">    
+        <div class="col-sm-offset-3 col-sm-6">    
             <asp:Button runat="server" ID="btnCrear" class="btn btn-primary btn-block" Text="Crear" OnClick="btnCrear_Click1"/>
         </div>
     </div>

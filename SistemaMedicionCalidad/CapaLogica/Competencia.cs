@@ -11,7 +11,12 @@
         public Competencia()
         {
         }
-
+        
+        public Competencia(int id_competencia, string nombre_competencia)
+        {
+            this.id_competencia = id_competencia;
+            this.nombre_competencia = nombre_competencia;
+        }
         public Competencia(string nombre_competencia, bool tipo_competencia, int id_competencia)
         {
             this.nombre_competencia = nombre_competencia;

@@ -38,10 +38,5 @@ namespace CapaDePresentacion
                 Response.Redirect("../CheqLogin.aspx");
             }
         }
-        protected void btnSalir_Click(object sender, EventArgs e)
-        {
-            FormsAuthentication.SignOut();
-            Response.Redirect("../CheqLogin.aspx"); 
-        }
     }
 }

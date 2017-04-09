@@ -17,9 +17,9 @@ namespace CapaDePresentacion.Alum
             CatalogAlumno cAlumno = new CatalogAlumno();
             Alumno a = cAlumno.buscarAlumnoPorRut(rut);
             CatalogEscuela cEscuela = new CatalogEscuela();
-            Escuela es = cEscuela.buscarUnaEscuela((a.Escuela_alumno.Id_escuela) + 1);
+            Escuela es = cEscuela.buscarUnaEscuela(a.Escuela_alumno.Id_escuela);
             CatalogPais cPais = new CatalogPais();
-            Pais p = cPais.buscarUnPais(a.Pais_persona.Id_pais + 1);
+            Pais p = cPais.buscarUnPais(a.Pais_persona.Id_pais);
 
             nombreAlumno.InnerText = a.Nombre_persona;
             nombreEscuela.InnerText = es.Nombre_escuela;

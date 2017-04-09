@@ -64,15 +64,6 @@
             </div>
        </div>
        <br />
-
-       <div class="row">
-           <div class="col-sm-offset-7">
-                <asp:CustomValidator ID="CustomValidator1" runat="server" 
-            ClientValidationFunction="validar_rut" ControlToValidate="rut" 
-            Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True">
-                </asp:CustomValidator>
-           </div>
-       </div>
         
         <div class="row">
             <div class="col-sm-offset-3 col-sm-2">

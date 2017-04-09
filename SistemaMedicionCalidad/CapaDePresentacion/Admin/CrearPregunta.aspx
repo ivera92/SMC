@@ -9,34 +9,6 @@
     <h2 class="text-center">Crear Pregunta</h2>
     <br />
 
-    <label class="col-sm-offset-3">Pregunta</label>
-    <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-            <textarea class="form-control" id="txtAPregunta" runat="server" rows="3"></textarea>
-        </div>
-    </div>
-    <br />
-
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-4"> 
-            <asp:FileUpload ID="fileImagen" runat="server" onchange="readURL(this);"/>    
-        </div>
-    </div>
-    <br />
-    
-    <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-            <img id="blah" src="#" alt="" class="img-responsive"/>
-        </div>
-    </div>
-    <br />
-
-    <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-            <asp:Panel ID="Panel2" runat="server"></asp:Panel>
-        </div>
-    </div>
-        
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
             <label>Competencia</label>
@@ -66,20 +38,46 @@
         </div>
     </div>
     <br />
+
+    <label class="col-sm-offset-3">Pregunta</label>
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <textarea class="form-control" id="txtAPregunta" runat="server" rows="3"></textarea>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-4"> 
+            <asp:FileUpload ID="fileImagen" runat="server" onchange="readURL(this);"/>    
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+            ErrorMessage="Tipo de archivo no permitido" oninvalid="setCustomValidity('Solo se permiten imagenes')" ControlToValidate="fileImagen" 
+            ValidationExpression= "(.*).(.jpg|.JPG|.gif|.GIF|.jpeg|.JPEG|.bmp|.BMP|.png|.PNG)$">
+            </asp:RegularExpressionValidator>
+            <br />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+            ControlToValidate="fileImagen" ErrorMessage="Debe seleccionar una imagen">
+            </asp:RequiredFieldValidator>
+            
+        </div>
+    </div>
+    <br />
+    
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <img id="blah" src="#" alt="" class="img-responsive"/>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <asp:Panel ID="Panel2" runat="server"></asp:Panel>
+        </div>
+    </div>
     
     <div runat="server" id="AltOCas">
-        <label class="col-sm-offset-7">Correcta</label>
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-4">
-                <asp:TextBox ID="txtRespuesta" class="form-control" runat="server"></asp:TextBox>
-            </div>
-            <div class="col-sm-1">
-                <asp:CheckBox id="cbCorrecta" runat="server"/>
-            </div>
-            <div class="col-sm-1">
-                <asp:Button id="btnMas" runat="server" Text="+" class="btn btn-primary btn-block" OnClick="btnMas_Click"/>
-            </div>
-        </div>
+        <label class="col-sm-offset-8">Correcta</label>
         <br />
     <asp:Panel ID="Panel1" runat="server"></asp:Panel>
     <br />

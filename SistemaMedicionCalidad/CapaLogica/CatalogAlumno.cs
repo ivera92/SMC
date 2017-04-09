@@ -2,6 +2,10 @@
 using Project.CapaDeDatos;
 using System.Data.Common;
 using System.Data;
+using System;
+using System.Security.Cryptography;
+using System.IO;
+using System.Text;
 
 namespace Project.CapaDeNegocios
 {
@@ -168,6 +172,27 @@ namespace Project.CapaDeNegocios
             result.Close();
             bd.Close();
             return a;
+        }
+
+        public string encriptar(string clave)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            //Calcula el hash de los bytes de texto
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(clave));
+
+            //Obtiene el resultado del hash después de calcularlo
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //Cambia en 2 dígitos hexadecimales
+                //para cada byte
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
         }
     }
 }

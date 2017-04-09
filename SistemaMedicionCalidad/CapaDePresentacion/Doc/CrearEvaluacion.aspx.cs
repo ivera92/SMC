@@ -33,7 +33,7 @@ namespace CapaDePresentacion.Doc
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta, imagen_pregunta FROM [ASIGNATURA_COMPETENCIA] inner join asignatura on [asignatura_competencia].id_asignatura_ac = asignatura.id_asignatura inner join competencia on [asignatura_competencia].id_competencia_ac = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + this.ddAsignatura.SelectedValue + "' order by nombre_tipo_pregunta";
+            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta, imagen_pregunta, id_pregunta FROM [ASIGNATURA_COMPETENCIA] inner join asignatura on [asignatura_competencia].id_asignatura_ac = asignatura.id_asignatura inner join competencia on [asignatura_competencia].id_competencia_ac = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + int.Parse(this.ddAsignatura.SelectedValue) + "' order by nombre_tipo_pregunta";
 
             bd.CreateCommand(sql);
             DbDataReader result = bd.Query();
@@ -89,11 +89,11 @@ namespace CapaDePresentacion.Doc
                         if (result.GetString(3) != null && result.GetString(3) != "")
                         {
                             // Creamos la imagen y le ajustamos el tamaño
-                            iTextSharp.text.Image imagen2 = iTextSharp.text.Image.GetInstance(result.GetString(3));
+                            iTextSharp.text.Image imagen2 = iTextSharp.text.Image.GetInstance("C:/Users/Iván/Desktop/Tesis/SMC/SistemaMedicionCalidad/CapaDePresentacion/Admin/" + result.GetString(3));
                             imagen2.BorderWidth = 0;
                             imagen2.Alignment = Element.ALIGN_CENTER;
                             float percentage2 = 0.0f;
-                            percentage2 = 100 / imagen2.Width;
+                            percentage2 = 250 / imagen2.Width;
                             imagen2.ScalePercent(percentage2 * 75);
 
                             // Insertamos la imagen en el documento
@@ -154,7 +154,7 @@ namespace CapaDePresentacion.Doc
             }
         }
 
-        public void crearControles()
+        /*public void crearControles()
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -222,11 +222,11 @@ namespace CapaDePresentacion.Doc
                 s = result.GetString(2);
                 i = i + 1;
             }
-        }
+        }*/
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
+        /*protected void btnBuscar_Click(object sender, EventArgs e)
         {
             this.crearControles();
-        }
+        }*/
     }
 }

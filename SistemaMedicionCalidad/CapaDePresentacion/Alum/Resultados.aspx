@@ -6,37 +6,55 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 class="text-center">Resultados</h2>
     <br />
-
+    <label class="col-sm-offset-4">Asignatura</label>
     <div class="row">
-        <div class="col-sm-4">
-            <asp:DropDownList CssClass="form-control" ID="ddAsignatura" runat="server" AppendDataBoundItems="true">
+        <div class="col-sm-offset-4 col-sm-4">
+            <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="ddAsignatura" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
                 <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
             </asp:DropDownList>
         </div>
-        <div class="col-sm-4">
-            <asp:DropDownList CssClass="form-control" ID="ddEvaluacion" runat="server"></asp:DropDownList>
-        </div>
-        <div class="col-sm-4">
-            <asp:DropDownList CssClass="form-control" ID="ddCompetencia" runat="server"></asp:DropDownList>
+    </div>
+    <br />
+
+    <label class="col-sm-offset-4">Evaluacion</label>
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-4">
+            <asp:DropDownList CssClass="form-control" AutoPostBack="true" AppendDataBoundItems="true" ID="ddEvaluacion" runat="server">
+                <asp:ListItem Value="0"><--Seleccione una evaluacion--></asp:ListItem>
+            </asp:DropDownList>
         </div>
     </div>
+    <br />
+
+    <label class="col-sm-offset-4">Competencia</label>
     <div class="row">
-        <div class="col-sm-offset-1 col-sm-6">
-            <asp:Panel ID="Panel1" runat="server">
-                <asp:Chart ID="Chart1" runat="server">
-                    <Series>
-                        <asp:Series Name="Series1" ChartType="Pie"></asp:Series>
-                    </Series>
-                    <ChartAreas>
-                        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-                    </ChartAreas>
-                </asp:Chart>
-            </asp:Panel>
-         </div>
-        <div class="col-sm-offset-1 col-sm-2">
+        <div class="col-sm-offset-4 col-sm-4">
+            <asp:DropDownList CssClass="form-control" AutoPostBack="true" AppendDataBoundItems="true" ID="ddCompetencia" runat="server">
+                <asp:ListItem Value="0"><--Seleccione una competencia--></asp:ListItem>
+            </asp:DropDownList>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-4">
             <asp:Button id="btnGraficar" runat="server" Text="Graficar" CssClass="btn btn-block btn-primary" OnClick="btnGraficar_Click"/>
         </div>
     </div>
+    <br />
+
+    <asp:Panel runat="server" ID="Panel1">
+        <asp:Chart ID="chartEvaluacion" runat="server" CssClass="col-sm-offset-4 center-block">
+            <Series>
+                <asp:Series Name="Series1" ChartType="Pie"></asp:Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+        </asp:Chart>
+    </asp:Panel>
+    <br />
+
+    
     
 </asp:Content>
 

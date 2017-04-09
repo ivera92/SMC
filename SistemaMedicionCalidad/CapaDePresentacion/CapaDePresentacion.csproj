@@ -86,7 +86,9 @@
     <Content Include="Admin\ImagenesAdmin\imgPregunta.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgProfesion.jpg" />
     <Content Include="Admin\InicioAdmin.aspx" />
+    <Content Include="Admin\Logout.aspx" />
     <Content Include="Alum\CambiarClave.aspx" />
+    <Content Include="Alum\Logout.aspx" />
     <Content Include="Alum\Principal.aspx" />
     <Content Include="Alum\Resultados.aspx" />
     <Content Include="CheqLogin.aspx" />
@@ -107,6 +109,7 @@
     <Content Include="Admin\CrearProfesion.aspx" />
     <Content Include="Doc\CrearEvaluacion.aspx" />
     <Content Include="Doc\EvaluacionAlumno.aspx" />
+    <Content Include="Doc\Logout.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="imagenes\alumno.jpg" />
     <Content Include="imagenes\escuela.jpg" />
@@ -118,7 +121,6 @@
     <Content Include="imagenes\profesion.jpg" />
     <Content Include="imagenes\profesor.jpg" />
     <Content Include="Doc\InicioDocente.aspx" />
-    <Content Include="Doc\LoginDocente.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -204,12 +206,26 @@
     <Compile Include="Admin\InicioAdmin.aspx.designer.cs">
       <DependentUpon>InicioAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Alum\CambiarClave.aspx.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Alum\CambiarClave.aspx.designer.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Alum\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alum\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Alum\Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
@@ -365,6 +381,13 @@
     <Compile Include="Doc\EvaluacionAlumno.aspx.designer.cs">
       <DependentUpon>EvaluacionAlumno.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Doc\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doc\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -374,13 +397,6 @@
     </Compile>
     <Compile Include="Doc\InicioDocente.aspx.designer.cs">
       <DependentUpon>InicioDocente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Doc\LoginDocente.aspx.cs">
-      <DependentUpon>LoginDocente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Doc\LoginDocente.aspx.designer.cs">
-      <DependentUpon>LoginDocente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Admin\Site.Master.cs">
@@ -399,9 +415,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\ImagenesPreguntas\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
-    <Folder Include="Doc\ImagenesPreguntas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

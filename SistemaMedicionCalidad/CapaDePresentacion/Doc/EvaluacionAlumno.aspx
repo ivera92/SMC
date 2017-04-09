@@ -14,10 +14,9 @@
             <asp:TextBox ID="txtRut" runat="server" class="form-control"></asp:TextBox>
         </div>
     </div>
-    <br />
 
-    <asp:CustomValidator CssClass="col-sm-offset-3" id="cv_rut" runat="server" ControlToValidate="txtRut" Display="Dynamic" ErrorMessage="El rut no es valido" ClientValidationFunction="validar_rut" />
-        
+    <asp:CustomValidator CssClass="col-sm-offset-3" id="cv_rut" runat="server" ControlToValidate="txtRut" Display="Dynamic" ErrorMessage="RUT no valido" ClientValidationFunction="validar_rut" />
+    <br />    
     <label class="col-sm-offset-3">Asignatura</label>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">

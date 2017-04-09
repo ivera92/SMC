@@ -16,6 +16,8 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.divRut.Visible = false;
+            this.divCorreo.Visible = false;
             CatalogTipoUsuario ctu = new CatalogTipoUsuario();
             List<Tipo_Usuario> ltp = ctu.listarTiposUsuario();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
@@ -59,9 +61,9 @@ namespace CapaDePresentacion
 
         public void recuperarContrasena()
         {
-            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            MailMessage msg = new MailMessage();
             msg.To.Add("ivan_cs@live.cl");
-            msg.From = new MailAddress("ivera@ic.uach.cl", "Administrador" , System.Text.Encoding.UTF8);
+            msg.From = new MailAddress("soporte.smcfe@gmail.com", "Administrador", Encoding.UTF8);
             msg.Subject = "Recuperar contraseña";
             msg.SubjectEncoding = System.Text.Encoding.UTF8;
             msg.Body = "Su contraseña actual es: ";
@@ -70,23 +72,44 @@ namespace CapaDePresentacion
 
             //Aquí es donde se hace lo especial
             SmtpClient client = new SmtpClient();
-            client.Credentials = new System.Net.NetworkCredential("ivera@ic.uach.cl", "colocolo1");
-            client.Port = 465;
+            client.Credentials = new System.Net.NetworkCredential("soporte.smcfe@gmail.com", "soporte_smcfe");
+            client.Port = 587;
             client.Host = "smtp.gmail.com";
             client.EnableSsl = true; //Esto es para que vaya a través de SSL que es obligatorio con GMail
-            //try
-            //{
-                client.Send(msg);
-            //}
-            //catch
-            //{
-            //    Response.Write("<script>window.alert('No se pudo recuperar la contraseña');</script>");
-            //}
+            client.Send(msg);
         }
 
         protected void recuperar_Click(object sender, EventArgs e)
         {
-            this.recuperarContrasena();
+            this.divLogin.Visible = false;
+            this.divRut.Visible = true;
+        }
+
+        protected void btnVerificarRut_Click(object sender, EventArgs e)
+        {
+            CatalogUsuario cUsuario = new CatalogUsuario();
+            string correo = cUsuario.verificarRut(this.rutRC.Text);
+            this.lblCorreo.InnerText = correo;
+            this.divRut.Visible = false;
+            this.divCorreo.Visible = true;
+        }
+
+        protected void btnEnviarC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.recuperarContrasena();
+                Response.Write("<script>window.alert('Correo enviado correctamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('No se pudo recuperar la contraseña');</script>");
+            }
+        }
+
+        protected void btnNoEnviar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CheqLogin.aspx");
         }
     }
 }
