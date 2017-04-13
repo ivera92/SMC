@@ -51,6 +51,18 @@
                 <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
             </ChartAreas>
         </asp:Chart>
+
+        <asp:Chart ID="chartColumna" runat="server">
+            <Series>
+                <asp:Series Name="Correctas" Color="Blue"></asp:Series>
+                <asp:Series ChartArea="ChartArea1" Color="Red" Name="Incorrectas">
+                </asp:Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+        </asp:Chart>
+
     </asp:Panel>
     <br />
 

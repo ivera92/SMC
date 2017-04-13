@@ -88,7 +88,7 @@ namespace Project.CapaDeNegocios
             {
                 Alumno a = new Alumno();
                 a.Escuela_alumno = es;
-                es = cEscuela.buscarUnaEscuela(result.GetInt32(2)+1);
+                es = cEscuela.buscarUnaEscuela(result.GetInt32(2));
                               
                 a.Nombre_persona = result.GetString(0);
                 a.Rut_persona = result.GetString(1);
@@ -117,23 +117,19 @@ namespace Project.CapaDeNegocios
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
+                CatalogEscuela cEscuela = new CatalogEscuela();
                 Alumno a = new Alumno();
                 Pais p = new Pais();
                 Escuela es = new Escuela();
-                a.Pais_persona = p;
-                a.Escuela_alumno = es;
 
-                a.Rut_persona = result.GetString(0);
-                a.Escuela_alumno.Id_escuela = result.GetInt32(1);
-                a.Pais_persona.Id_pais = result.GetInt32(2);
+                a.Escuela_alumno = es;
+                es = cEscuela.buscarUnaEscuela(result.GetInt32(1));
+
                 a.Nombre_persona = result.GetString(3);
-                a.Fecha_nacimiento_persona = result.GetDateTime(4);
-                a.Direccion_persona = result.GetString(5);
-                a.Telefono_persona = result.GetInt32(6);
-                a.Sexo_persona = result.GetBoolean(7);
-                a.Correo_persona = result.GetString(8);
+                a.Rut_persona = result.GetString(0);
+                a.Escuela_alumno.Nombre_escuela = es.Nombre_escuela;
                 a.Promocion_alumno = result.GetInt32(9);
-                a.Beneficio_alumno = result.GetBoolean(10);
+                lAlumnos.Add(a);
                 lAlumnos.Add(a);
             }
             result.Close();
@@ -172,6 +168,23 @@ namespace Project.CapaDeNegocios
             result.Close();
             bd.Close();
             return a;
+        }
+        public List<int> listarPromociones()
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "select distinct promocion_alumno from alumno order by promocion_alumno asc";
+            bd.CreateCommand(sqlSearch);
+            DbDataReader result = bd.Query();//disponible resultado
+            List<int> lPromociones = new List<int>();
+            while (result.Read())
+            {
+                lPromociones.Add(result.GetInt32(0));
+            }
+            result.Close();
+            bd.Close();
+            return lPromociones;
         }
 
         public string encriptar(string clave)

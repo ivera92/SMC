@@ -8,6 +8,7 @@ using iTextSharp.text.pdf;
 using Project;
 using Project.CapaDeDatos;
 using System.Web;
+using System.Data;
 
 namespace CapaDePresentacion.Doc
 {
@@ -33,9 +34,9 @@ namespace CapaDePresentacion.Doc
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta, imagen_pregunta, id_pregunta FROM [ASIGNATURA_COMPETENCIA] inner join asignatura on [asignatura_competencia].id_asignatura_ac = asignatura.id_asignatura inner join competencia on [asignatura_competencia].id_competencia_ac = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + int.Parse(this.ddAsignatura.SelectedValue) + "' order by nombre_tipo_pregunta";
-
-            bd.CreateCommand(sql);
+            string sql = "mostrarPYREvaluaciones";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_asignatura_evaluacion", DbType.Int32, int.Parse(ddAsignatura.SelectedValue));
             DbDataReader result = bd.Query();
             string s = "";
             
@@ -92,12 +93,14 @@ namespace CapaDePresentacion.Doc
                             iTextSharp.text.Image imagen2 = iTextSharp.text.Image.GetInstance("C:/Users/Iván/Desktop/Tesis/SMC/SistemaMedicionCalidad/CapaDePresentacion/Admin/" + result.GetString(3));
                             imagen2.BorderWidth = 0;
                             imagen2.Alignment = Element.ALIGN_CENTER;
-                            float percentage2 = 0.0f;
-                            percentage2 = 250 / imagen2.Width;
-                            imagen2.ScalePercent(percentage2 * 75);
+                            imagen2.ScaleAbsolute(200f, 200f);
+                            /*float percentage2 = 0.0f;
+                            percentage2 = 100 / imagen2.Width;
+                            imagen2.ScalePercent(percentage2 * 75);*/
 
                             // Insertamos la imagen en el documento
-                            pdfDoc.Add(imagen2);
+                            pp.Add(imagen2);
+                            
                         }
                     }
                     catch
@@ -115,6 +118,10 @@ namespace CapaDePresentacion.Doc
                 {
                     pp.Add("[] " + result.GetString(1) + "\n");
 
+                }
+                else if (result.GetString(0) == "Verdadero o falso")
+                {
+                    pp.Add("O " + result.GetString(1));
                 }
                 pdfDoc.Add(pp);
                 s = l.Text;

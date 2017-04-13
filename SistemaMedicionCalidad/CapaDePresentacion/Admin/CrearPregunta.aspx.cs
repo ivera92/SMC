@@ -28,6 +28,7 @@ namespace CapaDePresentacion.Doc
                 this.VoF.Visible = false;
                 this.AltOCas.Visible = false;
                 this.btnCrear.Visible = false;
+                this.btnSeguir.Visible = false;
                 contadorControles = 0;
 
                 this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
@@ -54,7 +55,8 @@ namespace CapaDePresentacion.Doc
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            this.subirImagen();
+            this.divCrear.Visible = false;
+            this.btnSeguir.Visible = true;
             int i = 0;
             CatalogPregunta cp = new CatalogPregunta();
             CatalogRespuesta cr = new CatalogRespuesta();
@@ -118,12 +120,11 @@ namespace CapaDePresentacion.Doc
                         cr.insertarRespuesta(rr);
                         i++;
                     }
-                    Response.Write("<script>window.alert('Respuestas creadas satisfactoriamente');</script>");
                 }
+                Response.Write("<script>window.alert('Respuestas creadas satisfactoriamente');</script>");
             }
             catch
             {
-                Response.Write("<script>window.alert('Respuestas no pudieron ser creadas');</script>");
             }
         }
         public void agregarControles(TextBox txt, CheckBox cb)
@@ -181,14 +182,22 @@ namespace CapaDePresentacion.Doc
         public void subirImagen()
         {
             string sExt = Path.GetExtension(fileImagen.FileName);
-            try
+            if (sExt != null || sExt != "")
             {
-                ruta = "ImagenesPreguntas/" + fileImagen.FileName + sExt;
-                fileImagen.SaveAs(Server.MapPath(ruta));
-                ClientScript.RegisterStartupScript(this.GetType(), "Mensaje",
-                    "alert('La imagen fue grabada en el servidor');", true);
+                try
+                {
+                    ruta = "ImagenesPreguntas/" + fileImagen.FileName + sExt;
+                    fileImagen.SaveAs(Server.MapPath(ruta));
+                    ClientScript.RegisterStartupScript(this.GetType(), "Mensaje",
+                        "alert('La imagen fue grabada en el servidor');", true);
+                }
+                catch { };
             }
-            catch { };
+        }
+
+        protected void btnSeguir_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CrearPregunta.aspx");
         }
     }
 }

@@ -46,17 +46,6 @@ namespace CapaDePresentacion.Doc
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
-            bool sexo, beneficio;
-
-            if (this.rbSexo.Text == "Masculino")
-                sexo = true;
-            else
-                sexo = false;
-
-            if (this.rbBeneficio.Text == "Si")
-                beneficio = true;
-            else
-                beneficio = false;
 
             Alumno a = new Alumno();
             Pais p = new Pais();
@@ -71,10 +60,10 @@ namespace CapaDePresentacion.Doc
             a.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
             a.Direccion_persona = this.txtDireccion.Text;
             a.Telefono_persona = int.Parse(this.txtTelefono.Text);
-            a.Sexo_persona = sexo;
+            a.Sexo_persona = bool.Parse(this.rbSexo.SelectedValue);
             a.Correo_persona = this.txtCorreo.Text;
             a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
-            a.Beneficio_alumno = beneficio;
+            a.Beneficio_alumno = bool.Parse(this.rbBeneficio.SelectedValue);
             try
             {
                 cAlumno.insertarAlumno(a);

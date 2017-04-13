@@ -65,9 +65,25 @@ namespace CapaDePresentacion.Alum
             Panel1.Controls.Add(chartEvaluacion);
         }
 
+        public void graficarColumna()
+        {
+            this.chartColumna.Series["Correctas"].Points.AddXY("Max", 33);
+            this.chartColumna.Series["Incorrectas"].Points.AddXY("Max", 65);
+
+            this.chartColumna.Series["Correctas"].Points.AddXY("Pedro", 82);
+            this.chartColumna.Series["Incorrectas"].Points.AddXY("Pedro", 23);
+
+            this.chartColumna.Series["Correctas"].Points.AddXY("Juan", 100);
+            this.chartColumna.Series["Incorrectas"].Points.AddXY("Juan", 13);
+
+            this.chartColumna.Series["Correctas"].Points.AddXY("Diego", 43);
+            this.chartColumna.Series["Incorrectas"].Points.AddXY("Diego", 25);
+        }
+
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
             this.graficar();
+            this.graficarColumna();
         }
         public void chart()
         {

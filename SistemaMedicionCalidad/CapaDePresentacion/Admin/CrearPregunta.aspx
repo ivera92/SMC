@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" >
-        
+    <div id="divCrear" runat="server">
     <h2 class="text-center">Crear Pregunta</h2>
     <br />
 
@@ -55,9 +55,6 @@
             ValidationExpression= "(.*).(.jpg|.JPG|.gif|.GIF|.jpeg|.JPEG|.bmp|.BMP|.png|.PNG)$">
             </asp:RegularExpressionValidator>
             <br />
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-            ControlToValidate="fileImagen" ErrorMessage="Debe seleccionar una imagen">
-            </asp:RequiredFieldValidator>
             
         </div>
     </div>
@@ -108,6 +105,14 @@
      <div class="row">
         <div class="col-sm-offset-7 col-sm-2">
             <asp:Button class="btn btn-primary btn-block" runat="server" ID="btnCrear" Text="Crear" OnClick="btnCrear_Click" />
+        </div>
+    </div>
+    </div>
+    <div id="divSeguir" class="row">
+        <br />
+        <br />
+        <div class="col-sm-offset-4 col-sm-4">
+            <asp:Button CssClass="form-control btn btn-block btn-success" ID="btnSeguir" runat="server" Text="Seguir creando" OnClick="btnSeguir_Click" />
         </div>
     </div>
 </asp:Content>
