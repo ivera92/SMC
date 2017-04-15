@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Site.Master" AutoEventWireup="true" CodeBehind="InicioAdmin.aspx.cs" Inherits="CapaDePresentacion.Admin.InicioAdmin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteAdmin.Master" AutoEventWireup="true" CodeBehind="InicioAdmin.aspx.cs" Inherits="CapaDePresentacion.Admin.InicioAdmin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 class="text-center">Administrar</h2>
     <br />
-    <table class="col-sm-offset-1 col-sm-10 table-bordered">
+    <table class="col-sm-offset-2 col-sm-10 table-bordered">
         <tr>
         <!-- On rows -->
             <td>

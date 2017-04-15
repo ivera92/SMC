@@ -128,7 +128,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Alum\SiteAlumno.Master" />
+    <Content Include="Admin\SiteAdmin.Master" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="probando.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\imagen.js" />
@@ -220,6 +222,13 @@
     </Compile>
     <Compile Include="Admin\ResultadosEvaluaciones.aspx.designer.cs">
       <DependentUpon>ResultadosEvaluaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SiteAdmin.Master.cs">
+      <DependentUpon>SiteAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SiteAdmin.Master.designer.cs">
+      <DependentUpon>SiteAdmin.Master</DependentUpon>
     </Compile>
     <Compile Include="Alum\CambiarClave.aspx.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
@@ -405,6 +414,13 @@
     </Compile>
     <Compile Include="Doc\InicioDocente.aspx.designer.cs">
       <DependentUpon>InicioDocente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="probando.aspx.cs">
+      <DependentUpon>probando.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="probando.aspx.designer.cs">
+      <DependentUpon>probando.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Admin\Site.Master.cs">

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using Project;
+using Project.CapaDeDatos;
 
 namespace CapaDePresentacion.Alum
 {
@@ -67,67 +69,50 @@ namespace CapaDePresentacion.Alum
 
         public void graficarColumna()
         {
-            this.chartColumna.Series["Correctas"].Points.AddXY("Max", 33);
-            this.chartColumna.Series["Incorrectas"].Points.AddXY("Max", 65);
+            string rut = Session["rutAlumno"].ToString();
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
 
-            this.chartColumna.Series["Correctas"].Points.AddXY("Pedro", 82);
-            this.chartColumna.Series["Incorrectas"].Points.AddXY("Pedro", 23);
+            string sqlSearch = "SELECT CORRECTA_RESPUESTA, count(id_competencia) as cantidad, NOMBRE_COMPETENCIA FROM COMPETENCIA INNER JOIN PREGUNTA ON ID_COMPETENCIA = ID_COMPETENCIA_PREGUNTA INNER JOIN HISTORICO_PRUEBA_ALUMNO ON ID_PREGUNTA = ID_PREGUNTA_HPA INNER JOIN RESPUESTA ON ID_PREGUNTA = ID_PREGUNTA_RESPUESTA AND ID_RESPUESTA_HPA = ID_RESPUESTA where rut_alumno_hpa='" + rut + "' group by id_competencia, correcta_respuesta, nombre_competencia"; 
+            bd.CreateCommand(sqlSearch);
+            DbDataReader result = bd.Query();//disponible resultado
+            while (result.Read())
+            {
+                if (result.GetBoolean(0) == false)
+                {
+                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                }
+                else if (result.GetBoolean(0) == true)
+                {
+                    this.chartColumna.Series["Correctas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                }
+            }
+            /*
+            // Create a new legend called "Legend2".
+            chartColumna.Legends.Add(new Legend("Incorrectas"));
+            chartColumna.Legends.Add(new Legend("Correctas"));
 
-            this.chartColumna.Series["Correctas"].Points.AddXY("Juan", 100);
-            this.chartColumna.Series["Incorrectas"].Points.AddXY("Juan", 13);
+            // Assign the legend to Series1.
+            chartColumna.Series["Incorrectas"].Legend = "Incorrectas";
+            chartColumna.Series["Incorrectas"].IsVisibleInLegend = true;
 
-            this.chartColumna.Series["Correctas"].Points.AddXY("Diego", 43);
-            this.chartColumna.Series["Incorrectas"].Points.AddXY("Diego", 25);
+            chartColumna.Series["Correctas"].Legend = "Correctas";
+            chartColumna.Series["Correctas"].IsVisibleInLegend = true;*/
+            result.Close();
+            bd.Close();
         }
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
-            this.graficar();
-            this.graficarColumna();
-        }
-        public void chart()
-        {
-            string rut = Session["rutAlumno"].ToString();
-            string[] series = { "Correctas", "Incorrectas" };
-            CatalogHPA cHPA = new CatalogHPA();
-
-            int[] arrResultados = cHPA.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
-
-            Chart pieChart = new Chart();
-
-            ChartArea area = new ChartArea("PierChartArea");
-            pieChart.ChartAreas.Add(area);
-
-            pieChart.Series.Clear();
-            pieChart.Palette = ChartColorPalette.EarthTones;
-            pieChart.BackColor = System.Drawing.Color.LightBlue;
-            pieChart.Titles.Add(ddCompetencia.DataTextField);
-            pieChart.ChartAreas[0].BackColor = System.Drawing.Color.Transparent;
-
-            Legend l = new Legend()
+            if (ddCompetencia.SelectedValue == "0")
             {
-                BackColor = System.Drawing.Color.Transparent,
-                ForeColor = System.Drawing.Color.Black,
-                Title = "Resultados"
-            };
-
-            pieChart.Legends.Add(l);
-
-            Series s1 = new Series()
-            {
-                Name = "s1",
-                IsVisibleInLegend = true,
-                Color = System.Drawing.Color.Transparent,
-                ChartType = SeriesChartType.Pie
-            };
-
-            pieChart.Series.Add(s1);
-
-            for (int i = 0; i < arrResultados.Length; i++)
-            {
-                s1.Points.Add(arrResultados[i]);
+                this.graficar();
+                this.graficarColumna();
             }
-            this.Panel1.Controls.Add(pieChart);
+            else
+            {
+                this.graficar();
+            }
         }
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)

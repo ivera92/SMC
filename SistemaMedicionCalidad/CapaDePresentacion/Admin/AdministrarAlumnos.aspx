@@ -1,15 +1,17 @@
-﻿<%@ Page Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="AdministrarAlumnos.aspx.cs" Inherits="CapaDePresentacion.AdministrarAlumnos" %>
+﻿<%@ Page Language="C#" MasterPageFile="SiteAdmin.Master" AutoEventWireup="true" CodeBehind="AdministrarAlumnos.aspx.cs" Inherits="CapaDePresentacion.AdministrarAlumnos" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     
     <div id='divMostrar' runat='server'>
+        <br />
+        <br />
         <h2 class="text-center">Administrar Alumnos</h2>
         <br />
 
         <div class="row">
-            <div class="col-sm-offset-2 col-sm-6">
+            <div class="col-sm-offset-3 col-sm-6">
                 <asp:TextBox class="form-control" ID="tbxbuscar" runat="server"></asp:TextBox>  
             </div>
             <div class="col-sm-2">
@@ -20,7 +22,7 @@
         <br />
 
     <div class ="row">
-        <div class="col-sm-offset-2 col-sm-8">
+        <div class="col-sm-offset-3 col-sm-9">
             <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" 
             onrowdeleting="rowDeletingEvent" onrowediting="rowEditingEvent">
             <Columns>
@@ -37,6 +39,8 @@
 
 
     <div id='divEditar' runat='server'>
+        <br />
+        <br />
         <h2 class="text-center">Actualizar Alumno</h2>
         <br />
         <div class="row">

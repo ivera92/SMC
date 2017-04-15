@@ -52,7 +52,7 @@
             </ChartAreas>
         </asp:Chart>
 
-        <asp:Chart ID="chartColumna" runat="server">
+        <asp:Chart ID="chartColumna" runat="server" CssClass="center-block">
             <Series>
                 <asp:Series Name="Correctas" Color="Blue"></asp:Series>
                 <asp:Series ChartArea="ChartArea1" Color="Red" Name="Incorrectas">
