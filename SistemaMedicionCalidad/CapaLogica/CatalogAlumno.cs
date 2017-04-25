@@ -19,8 +19,12 @@ namespace Project.CapaDeNegocios
 
             string sql = "insAlumnos";
 
+            CatalogUsuario cUsuario = new CatalogUsuario();
+            string contraseña = cUsuario.encriptar(a.Rut_persona);
+
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut_alumno", DbType.String, a.Rut_persona);
+            bd.createParameter("@contraseña_usuario", DbType.String, contraseña);
             bd.createParameter("@id_escuela_alumno", DbType.Int32, a.Escuela_alumno.Id_escuela);
             bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_persona.Id_pais);
             bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_persona);
@@ -185,27 +189,6 @@ namespace Project.CapaDeNegocios
             result.Close();
             bd.Close();
             return lPromociones;
-        }
-
-        public string encriptar(string clave)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-
-            //Calcula el hash de los bytes de texto
-            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(clave));
-
-            //Obtiene el resultado del hash después de calcularlo
-            byte[] result = md5.Hash;
-
-            StringBuilder strBuilder = new StringBuilder();
-            for (int i = 0; i < result.Length; i++)
-            {
-                //Cambia en 2 dígitos hexadecimales
-                //para cada byte
-                strBuilder.Append(result[i].ToString("x2"));
-            }
-
-            return strBuilder.ToString();
         }
     }
 }

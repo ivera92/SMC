@@ -58,42 +58,6 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddDocente;
         
         /// <summary>
-        /// divBeneficioA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBeneficioA;
-        
-        /// <summary>
-        /// ddBeneficioA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddBeneficioA;
-        
-        /// <summary>
-        /// divEdad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEdad;
-        
-        /// <summary>
-        /// ddEdad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddEdad;
-        
-        /// <summary>
         /// divEscuela control.
         /// </summary>
         /// <remarks>

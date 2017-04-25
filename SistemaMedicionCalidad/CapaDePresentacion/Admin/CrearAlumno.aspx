@@ -86,14 +86,14 @@
         <div class="row">
             <div class="col-sm-offset-3 col-sm-2"><label for="lbl10">Sexo</label></div>
             <div class="col-sm-2">
-                <asp:RadioButtonList ID="rbSexo" runat="server" required>
+                <asp:RadioButtonList ID="rbSexo" runat="server">
                     <asp:ListItem Value="0">Masculino</asp:ListItem>
                     <asp:ListItem Value="1">Femenino</asp:ListItem>
                 </asp:RadioButtonList>
             </div>   
             <div class="col-sm-1"><label for="lbl1">Beneficio</label></div>
             <div class="col-sm-1">
-                <asp:RadioButtonList ID="rbBeneficio" runat="server" required>                        
+                <asp:RadioButtonList ID="rbBeneficio" runat="server">                        
                     <asp:ListItem Value="0">Si</asp:ListItem>
                     <asp:ListItem Value="1">No</asp:ListItem>
                 </asp:RadioButtonList>

@@ -13,15 +13,6 @@ namespace CapaDePresentacion {
     public partial class CheqLogin {
         
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// divLogin control.
         /// </summary>
         /// <remarks>
@@ -67,15 +58,6 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddTipoUsuario;
         
         /// <summary>
-        /// recuperar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton recuperar;
-        
-        /// <summary>
         /// btnIngresar control.
         /// </summary>
         /// <remarks>
@@ -83,6 +65,15 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnIngresar;
+        
+        /// <summary>
+        /// recuperar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton recuperar;
         
         /// <summary>
         /// divRut control.

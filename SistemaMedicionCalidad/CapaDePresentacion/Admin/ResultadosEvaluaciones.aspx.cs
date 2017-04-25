@@ -24,8 +24,6 @@ namespace CapaDePresentacion.Admin
         {
             divAlumno.Visible = false;
             divDocente.Visible = false;
-            divBeneficioA.Visible = false;
-            divEdad.Visible = false;
             divEscuela.Visible = false;
             divPais.Visible = false;
             divPromocion.Visible = false;
@@ -34,8 +32,6 @@ namespace CapaDePresentacion.Admin
         }
         public void ocultarFitros()
         {
-            divBeneficioA.Visible = false;
-            divEdad.Visible = false;
             divEscuela.Visible = false;
             divPais.Visible = false;
             divPromocion.Visible = false;
@@ -64,14 +60,6 @@ namespace CapaDePresentacion.Admin
             }
             else if (ddAlumno.SelectedValue == "2")
             {
-                divBeneficioA.Visible = true;
-            }
-            else if (ddAlumno.SelectedValue == "3")
-            {
-                divEdad.Visible = true;
-            }
-            else if (ddAlumno.SelectedValue == "4")
-            {
                 CatalogEscuela cEscuela = new CatalogEscuela();
                 List<Escuela> lEscuelas = cEscuela.listarEscuelas();
                 this.ddEscuela.DataTextField = "Nombre_escuela";
@@ -81,7 +69,7 @@ namespace CapaDePresentacion.Admin
 
                 divEscuela.Visible = true;
             }
-            else if (ddAlumno.SelectedValue == "5")
+            else if (ddAlumno.SelectedValue == "3")
             {
                 CatalogPais cPais = new CatalogPais();
                 List<Pais> lPaises = cPais.listarPaises();
@@ -92,7 +80,7 @@ namespace CapaDePresentacion.Admin
 
                 divPais.Visible = true;
             }
-            else if (ddAlumno.SelectedValue == "6")
+            else if (ddAlumno.SelectedValue == "4")
             {
                 CatalogAlumno cAlumno = new CatalogAlumno();
                 List<int> lPromociones = cAlumno.listarPromociones();
@@ -102,20 +90,16 @@ namespace CapaDePresentacion.Admin
                 }
                 divPromocion.Visible = true;
             }
-            else if (ddAlumno.SelectedValue == "7")
+            else if (ddAlumno.SelectedValue == "5")
             {
                 divRut.Visible = true;
             }
-            else if (ddAlumno.SelectedValue == "8")
+            else if (ddAlumno.SelectedValue == "6")
             {
                 divSexo.Visible = true;
             }
         }
-
-        protected void ddBeneficioA_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            sql = "SELECT ID_RESPUESTA_HPA, CORRECTA_RESPUESTA, RUT_ALUMNO_HPA, BENEFICIO_ALUMNO FROM ALUMNO INNER JOIN HISTORICO_PRUEBA_ALUMNO ON RUT_ALUMNO = RUT_ALUMNO_HPA INNER JOIN RESPUESTA ON ID_RESPUESTA_HPA = ID_RESPUESTA where beneficio_alumno='" + int.Parse(ddBeneficioA.SelectedValue) + "'";
-        }
+        
 
         protected void ddEdad_SelectedIndexChanged(object sender, EventArgs e)
         {

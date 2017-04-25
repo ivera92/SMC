@@ -24,13 +24,11 @@
             <asp:DropDownList ID="ddAlumno" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAlumno_SelectedIndexChanged">
                 <asp:ListItem Value="0"><--Seleccione filtro--></asp:ListItem>
                 <asp:ListItem Value="1">Todos los alumnos</asp:ListItem>
-                <asp:ListItem Value="2">Beneficio</asp:ListItem>
-                <asp:ListItem Value="3">Edad</asp:ListItem>
-                <asp:ListItem Value="4">Escuela</asp:ListItem>
-                <asp:ListItem Value="5">Pais</asp:ListItem>
-                <asp:ListItem Value="6">Promocion</asp:ListItem>
-                <asp:ListItem Value="7">Rut</asp:ListItem>
-                <asp:ListItem Value="8">Sexo</asp:ListItem>
+                <asp:ListItem Value="2">Escuela</asp:ListItem>
+                <asp:ListItem Value="3">Pais</asp:ListItem>
+                <asp:ListItem Value="4">Promocion</asp:ListItem>
+                <asp:ListItem Value="5">Rut</asp:ListItem>
+                <asp:ListItem Value="6">Sexo</asp:ListItem>
             </asp:DropDownList>
         </div>
     </div>
@@ -49,41 +47,6 @@
         </div>
     </div>
     <br />
-
-    <div runat="server" id="divBeneficioA" class="row">
-        <label class="col-sm-offset-4">Beneficio</label>
-        <div class="col-sm-offset-4 col-sm-4">
-            <asp:DropDownList ID="ddBeneficioA" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddBeneficioA_SelectedIndexChanged">
-                <asp:ListItem Value="0"><--Seleccione si tiene beneficio--></asp:ListItem>
-                <asp:ListItem Value="1">Si</asp:ListItem>
-                <asp:ListItem Value="2">No</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-    </div>
-
-    <div runat="server" id="divEdad" class="row">
-        <label class="col-sm-offset-4">Edad</label>
-        <div class="col-sm-offset-4 col-sm-4">
-            <asp:DropDownList ID="ddEdad" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddEdad_SelectedIndexChanged">
-                <asp:ListItem Value="0"><--Seleccione edad--></asp:ListItem>
-                <asp:ListItem Value="1">17</asp:ListItem>
-                <asp:ListItem Value="2">18</asp:ListItem>
-                <asp:ListItem Value="3">19</asp:ListItem>
-                <asp:ListItem Value="4">20</asp:ListItem>
-                <asp:ListItem Value="5">21</asp:ListItem>
-                <asp:ListItem Value="6">22</asp:ListItem>
-                <asp:ListItem Value="7">23</asp:ListItem>
-                <asp:ListItem Value="8">24</asp:ListItem>
-                <asp:ListItem Value="9">25</asp:ListItem>
-                <asp:ListItem Value="10">26</asp:ListItem>
-                <asp:ListItem Value="11">27</asp:ListItem>
-                <asp:ListItem Value="12">28</asp:ListItem>
-                <asp:ListItem Value="13">29</asp:ListItem>
-                <asp:ListItem Value="14">30</asp:ListItem>
-                <asp:ListItem Value="15">mas de 30</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-    </div>
 
     <div runat="server" id="divEscuela" class="row">
         <label class="col-sm-offset-4">Escuela</label>

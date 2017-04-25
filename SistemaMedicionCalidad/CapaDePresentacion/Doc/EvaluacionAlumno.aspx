@@ -8,40 +8,42 @@
     <h1 class="text-center">Evaluacion Alumno</h1>
     <br />
 
-    <label class="col-sm-offset-3">Rut Alumno</label>
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-            <asp:TextBox ID="txtRut" runat="server" class="form-control"></asp:TextBox>
+        <div class="col-sm-offset-1 col-sm-3">
+        <label>Rut Alumno</label>
+            <div>
+                <asp:TextBox ID="txtRut" runat="server" class="form-control"></asp:TextBox>
+            </div>
         </div>
-    </div>
-
-    <asp:CustomValidator CssClass="col-sm-offset-3" id="cv_rut" runat="server" ControlToValidate="txtRut" Display="Dynamic" ErrorMessage="RUT no valido" ClientValidationFunction="validar_rut" />
-    <br />    
-    <label class="col-sm-offset-3">Asignatura</label>
-    <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-            <asp:DropDownList ID="ddAsignatura" class="form-control" runat="server" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
+        <asp:CustomValidator id="cv_rut" runat="server" ControlToValidate="txtRut" Display="Dynamic" ErrorMessage="RUT no valido" ClientValidationFunction="validar_rut" />
+        <div class="col-sm-4">
+            <label>Asignatura</label>
+            <div>
+                <asp:DropDownList ID="ddAsignatura" class="form-control" runat="server" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
                 <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
             </asp:DropDownList>
+            </div>
         </div>
-    </div>
-    <br />
-    
-    <label class="col-sm-offset-3">Evaluacion</label>
-    <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
+
+        <div class="col-sm-3">
+            <label>Evaluacion</label>
+            <div>
             <asp:DropDownList ID="ddEvaluacion" CssClass="form-control" AppendDataBoundItems="true" runat="server">
                 <asp:ListItem Value="0"><--Seleccione una evaluacion--></asp:ListItem>
             </asp:DropDownList>
         </div>
+        </div>
     </div>
     <br />
 
+    <div runat="server" id="divPreguntas" style="border: solid 2px #ccc ; background-color:white" class="col-sm-offset-1 col-sm-10">
     <asp:Panel ID="Panel1" runat="server"></asp:Panel>
-    <br />
+        <br />
+    </div>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
             <asp:Button ID="btnGuardar" runat="server" class="btn btn-block btn-primary" Text="Guardar" OnClick="btnGuardar_Click" />
+            <br />
         </div>
     </div>
     </div>

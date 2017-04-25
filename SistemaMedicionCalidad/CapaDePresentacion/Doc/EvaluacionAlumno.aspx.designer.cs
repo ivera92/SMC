@@ -58,6 +58,15 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.DropDownList ddEvaluacion;
         
         /// <summary>
+        /// divPreguntas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPreguntas;
+        
+        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>

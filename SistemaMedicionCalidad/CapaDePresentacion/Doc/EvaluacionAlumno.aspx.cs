@@ -26,6 +26,8 @@ namespace CapaDePresentacion.Doc
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturas();
             btnSiguiente.Visible = false;
+            btnGuardar.Visible = false;
+            divPreguntas.Visible = false;
             
             try
             {
@@ -156,9 +158,9 @@ namespace CapaDePresentacion.Doc
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "SELECT nombre_tipo_pregunta, NOMBRE_RESPUESTA, nombre_pregunta, id_pregunta, id_respuesta FROM [ASIGNATURA_COMPETENCIA] inner join asignatura on [asignatura_competencia].id_asignatura_ac = asignatura.id_asignatura inner join competencia on [asignatura_competencia].id_competencia_ac = competencia.id_competencia inner join pregunta on competencia.id_competencia = pregunta.id_competencia_pregunta inner join tipo_pregunta on pregunta.id_tipo_pregunta_pregunta = tipo_pregunta.id_tipo_pregunta inner join respuesta on id_pregunta_respuesta=id_pregunta where asignatura.id_asignatura ='" + this.ddAsignatura.SelectedValue + "' order by nombre_tipo_pregunta";
-
-            bd.CreateCommand(sql);
+            string sql = "mostrarPreguntasEvaluacionAsignatura";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_asignatura", DbType.Int32, int.Parse(this.ddAsignatura.SelectedValue));
             DbDataReader result = bd.Query();
             string s = "";
             int numPregunta = 1;
@@ -281,6 +283,8 @@ namespace CapaDePresentacion.Doc
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnGuardar.Visible = true;
+            divPreguntas.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(int.Parse(ddAsignatura.SelectedValue));
             this.ddEvaluacion.Items.Clear();

@@ -10,6 +10,6 @@
 namespace CapaDePresentacion {
     
     
-    public partial class probando {
+    public partial class Inicio {
     }
 }

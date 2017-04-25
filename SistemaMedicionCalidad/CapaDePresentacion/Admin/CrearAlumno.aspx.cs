@@ -52,6 +52,17 @@ namespace CapaDePresentacion.Doc
             Escuela es = new Escuela();
             a.Pais_persona = p;
             a.Escuela_alumno = es;
+            bool sexo;
+            bool beneficio;
+            if (rbSexo.SelectedIndex == 0)
+                sexo = true;
+            else
+                sexo = false;
+
+            if (rbBeneficio.SelectedIndex == 0)
+                beneficio = true;
+            else
+                beneficio = false;
 
             a.Rut_persona = this.txtRut.Text;
             a.Escuela_alumno.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
@@ -60,10 +71,11 @@ namespace CapaDePresentacion.Doc
             a.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
             a.Direccion_persona = this.txtDireccion.Text;
             a.Telefono_persona = int.Parse(this.txtTelefono.Text);
-            a.Sexo_persona = bool.Parse(this.rbSexo.SelectedValue);
             a.Correo_persona = this.txtCorreo.Text;
             a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
-            a.Beneficio_alumno = bool.Parse(this.rbBeneficio.SelectedValue);
+
+            a.Sexo_persona = sexo;
+            a.Beneficio_alumno = beneficio;
             try
             {
                 cAlumno.insertarAlumno(a);

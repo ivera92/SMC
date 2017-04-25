@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Drawing;
-using System.Linq;
 using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
@@ -87,7 +86,7 @@ namespace CapaDePresentacion.Alum
                     this.chartColumna.Series["Correctas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
                 }
             }
-            /*
+            
             // Create a new legend called "Legend2".
             chartColumna.Legends.Add(new Legend("Incorrectas"));
             chartColumna.Legends.Add(new Legend("Correctas"));
@@ -97,21 +96,26 @@ namespace CapaDePresentacion.Alum
             chartColumna.Series["Incorrectas"].IsVisibleInLegend = true;
 
             chartColumna.Series["Correctas"].Legend = "Correctas";
-            chartColumna.Series["Correctas"].IsVisibleInLegend = true;*/
+            chartColumna.Series["Correctas"].IsVisibleInLegend = true;
             result.Close();
             bd.Close();
         }
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
-            if (ddCompetencia.SelectedValue == "0")
+            try
             {
-                this.graficar();
-                this.graficarColumna();
-            }
-            else
+                if (ddCompetencia.SelectedValue == "0")
+                {
+                    this.graficar();
+                    this.graficarColumna();
+                }
+                else
+                {
+                    this.graficar();
+                }
+            }catch
             {
-                this.graficar();
             }
         }
 

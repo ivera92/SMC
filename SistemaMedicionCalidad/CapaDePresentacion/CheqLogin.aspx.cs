@@ -32,9 +32,11 @@ namespace CapaDePresentacion
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            CatalogUsuario cUsuario = new CatalogUsuario();
             Session.Clear();
             int tipoUsuario = int.Parse(ddTipoUsuario.SelectedValue);
-            if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, tipoUsuario))
+            string s = cUsuario.encriptar(txtclave.Text);
+            if (CatalogUsuario.Autenticar(rut.Text, s, tipoUsuario))
             {
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
                 if (tipoUsuario == 1)
@@ -61,12 +63,17 @@ namespace CapaDePresentacion
 
         public void recuperarContrasena()
         {
+            Random r = new Random();
+            int pwTemp=r.Next(1000, 9999);
+            CatalogUsuario cUsuario = new CatalogUsuario();
+            string pwTempS = cUsuario.encriptar(pwTemp + "");
+            cUsuario.recuperarClave(this.rutRC.Text, pwTempS);
             MailMessage msg = new MailMessage();
-            msg.To.Add("ivan_cs@live.cl");
+            msg.To.Add(lblCorreo.InnerText);
             msg.From = new MailAddress("soporte.smcfe@gmail.com", "Administrador", Encoding.UTF8);
             msg.Subject = "Recuperar contraseña";
             msg.SubjectEncoding = System.Text.Encoding.UTF8;
-            msg.Body = "Su contraseña actual es: ";
+            msg.Body = "Su contraseña actual es: "+ pwTemp;
             msg.BodyEncoding = System.Text.Encoding.UTF8;
             msg.IsBodyHtml = false;
 

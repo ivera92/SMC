@@ -1,33 +1,31 @@
-ï»¿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CheqLogin.aspx.cs" Inherits="CapaDePresentacion.CheqLogin" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CheqLogin.aspx.cs" Inherits="CapaDePresentacion.CheqLogin" %>
 
 <html>
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><%: Page.Title %> - Sistema Medicion Calidad</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="../Scripts/jquery-1.9.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="Scripts/rut.js"></script>
-     
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <title>Universidad Austral de Chile</title>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div class="container" id="divLogin" runat="server">
-
-        <br />
-        <h2 class="text-center">Iniciar sesiÃ³n</h2>
-        <br />
-
-        <div class="text-center">
-            <label>Rut</label>
+    <br />
+    <form runat="server">
+        <div id="divLogin" class="col-sm-offset-4 col-sm-4" runat="server" style="border: solid 2px #ccc">
+        <div>
+            <br />
+            <h2 class="text-center">Iniciar sesión</h2>
+            <br />
         </div>
 
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-                <asp:TextBox class="form-control" ID="rut" runat="server" placeHolder="Ejemplo: 18205857-2"></asp:TextBox>
+            <div class="col-sm-offset-1 col-sm-10">
+                <asp:TextBox class="form-control text-center" ID="rut" runat="server" placeHolder="Rut, ejemplo: 18205857-2"></asp:TextBox>
                     <asp:CustomValidator ID="CustomValidator1" runat="server" 
             ClientValidationFunction="validar_rut" ControlToValidate="rut" 
             Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True"></asp:CustomValidator>
@@ -35,47 +33,44 @@
         </div>
         <br />
 
-        <div class="text-center">
-            <label>ContraseÃ±a</label>
-        </div>
-
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-                    <asp:TextBox class="form-control" ID="txtclave" runat="server" TextMode="Password" placeHolder="Ingrese contraseÃ±a"></asp:TextBox>
+            <div class="col-sm-offset-1 col-sm-10">
+                    <asp:TextBox class="form-control text-center" ID="txtclave" runat="server" TextMode="Password" placeHolder="Contraseña"></asp:TextBox>
             </div>
         </div>
         <br />
 
-        <div class="text-center">
-            <label>Tipo de usuario</label>
-        </div>
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">
+            <div class="col-sm-offset-1 col-sm-10 tex">
                 <asp:DropDownList ID="ddTipoUsuario" runat="server" class="form-control" AppendDataBoundItems="true">
                     <asp:ListItem Value="0"><--Seleccione un tipo de usuario--></asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
         <br />
+
         
-
-        <asp:LinkButton CssClass="col-sm-offset-4" ID="recuperar" runat="server" OnClick="recuperar_Click">Recuperar ContraseÃ±a</asp:LinkButton>
-        <br />
-
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-4"><asp:Button ID="btnIngresar" runat="server" class="btn btn-primary btn-block" onclick="btnIngresar_Click" Text="Ingresar" /></div>
-        </div>
-        </div>
-
-        <div class="container"  id="divRut" runat="server">
-            <br />
-            <br />
-            <h2 class="text-center">Recuperar tu contraseÃ±a</h2>
-            <br />
-            <label class="col-sm-offset-4">Rut</label>
+        <div>
             <div class="row">
-                <div class="col-sm-offset-4 col-sm-4">
-                    <asp:TextBox class="form-control" ID="rutRC" runat="server" placeHolder="Ejemplo: 18205857-2"></asp:TextBox>
+            <div class="col-sm-offset-1 col-sm-5">
+                <asp:Button ID="btnIngresar" runat="server" class="btn btn-default btn-block" onclick="btnIngresar_Click" Text="Ingresar" />
+            </div>
+                <asp:LinkButton ID="recuperar" runat="server" OnClick="recuperar_Click">¿Olvidaste tu contraseña?</asp:LinkButton>
+        
+        </div>
+            <br />
+        </div>
+        </div>
+
+
+        <div class="col-sm-offset-4 col-sm-4" id="divRut" runat="server" style="border: solid 2px #ccc">
+            <br />
+            <br />
+            <h2 class="text-center">Recuperar tu contraseña</h2>
+            <br />
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <asp:TextBox class="form-control" ID="rutRC" runat="server" placeHolder="Rut, ejemplo: 18205857-2"></asp:TextBox>
                         <asp:CustomValidator ID="CustomValidator2" runat="server" ClientValidationFunction="validar_rut" 
                             ControlToValidate="rutRC" Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True">
                         </asp:CustomValidator>
@@ -84,16 +79,16 @@
             <br />
 
             <div class="row">
-                <div class="col-sm-offset-5 col-sm-2">
+                <div class="col-sm-offset-4 col-sm-4">
                     <asp:Button ID="btnVerificarRut" Text="Verificar" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnVerificarRut_Click" />
                 </div>
             </div>
+            <br />
         </div>
 
-        <div class="container text-center" id="divCorreo" runat="server">
+        <div class="text-center col-sm-offset-4 col-sm-4" id="divCorreo" runat="server" style="border: solid 2px #ccc">
             <br />
-            <br />
-            <h2 class="text-center">Recuperar tu contraseÃ±a</h2>
+            <h2 class="text-center">Recuperar tu contraseña</h2>
             <br />
 
             <label>La cuenta asociada al rut es la siguiente:</label>
@@ -103,15 +98,16 @@
             <label>Desea enviar un correo para verificar su clave?</label>
             <br />
             <div class="row">
-                <div class="col-sm-offset-5 col-sm-1">
+                <div class="col-sm-offset-4 col-sm-2">
                     <asp:Button ID="btnEnviarC" runat="server" CssClass="btn btn-success btn-block" OnClick="btnEnviarC_Click" Text="Si" />
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <asp:Button ID="btnNoEnviar" runat="server" CssClass="btn btn-danger btn-block" Text="No" OnClick="btnNoEnviar_Click" />
                 </div>
             </div>
-        </div>
-    </form>
+            <br />
+            </div>
+        </form>
 </body>
 </html>
 
