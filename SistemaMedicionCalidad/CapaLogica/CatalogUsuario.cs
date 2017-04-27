@@ -3,8 +3,8 @@ using System.Data;
 using System.Data.Common;
 using System.Security.Cryptography;
 using System.Text;
-using System.IO;
 using System;
+using System.Net.Mail;
 
 namespace Project
 {
@@ -15,17 +15,19 @@ namespace Project
         //1 en caso de coincidir los datos, 0 caso contrario
         public static bool Autenticar(string rut_usuario, string contrasena, int id_tipo_usuario)
         {
+            
             //consulta a la base de datos
-            string sql = @"SELECT COUNT(*) FROM Usuario WHERE rut_usuario = @rut_usuario AND contrasena_usuario = @contrasena_usuario AND id_tipo_usuario_usuario=@id_tipo_usuario";
+            string sql = "autentificarUsuario";
             //cadena conexion
 
             DataBase bd = new DataBase();
             bd.connect();
+            string s = encriptar(contrasena);
 
-            bd.CreateCommand(sql);
-            bd.createParameter("@id_tipo_usuario", DbType.Int32, id_tipo_usuario);
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_tipo_usuario_usuario", DbType.Int32, id_tipo_usuario);
             bd.createParameter("@rut_usuario", DbType.String, rut_usuario);
-            bd.createParameter("@contrasena_usuario", DbType.String, contrasena);
+            bd.createParameter("@contraseña_usuario", DbType.String, s);
             DbDataReader result = bd.Query();//disponible resultado
             result.Read();
             int count = result.GetInt32(0);
@@ -53,7 +55,7 @@ namespace Project
             return s;
         }
 
-        public string encriptar(string clave)
+        public static string encriptar(string clave)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
 
@@ -135,8 +137,12 @@ namespace Project
         }
 
         //Obtiene la clave asociada a un rut
-        public void recuperarClave(string rut, string claveNueva)
+        public int reestablecerClave(string rut)
         {
+            Random r = new Random();
+            int pwTemp = r.Next(100000, 999999);
+            string pwTempS = encriptar(pwTemp + "");
+
             int filasAfectadas = 0;
             //consulta a la base de datos
             string sql = "recuperarClaveUsuario";
@@ -147,13 +153,36 @@ namespace Project
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut_usuario", DbType.String, rut);
-            bd.createParameter("@contrasena_nueva", DbType.String, claveNueva);
+            bd.createParameter("@contrasena_nueva", DbType.String, pwTempS);
             DbDataReader result = bd.Query();//disponible resultado
 
             result.Read();
             filasAfectadas = result.GetInt32(0);
             result.Close();
             bd.Close();
+            return pwTemp;
+        }
+
+        public void  recuperarContrasena(string rut, string correo)
+        {
+            CatalogUsuario cUsuario = new CatalogUsuario();
+            int pw = cUsuario.reestablecerClave(rut);
+            MailMessage msg = new MailMessage();
+            msg.To.Add(correo);
+            msg.From = new MailAddress("soporte.smcfe@gmail.com", "Administrador", Encoding.UTF8);
+            msg.Subject = "Recuperar contraseña";
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            msg.Body = "Su contraseña actual es: " + pw;
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.IsBodyHtml = false;
+
+            //Aquí es donde se hace lo especial
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential("soporte.smcfe@gmail.com", "soporte_smcfe");
+            client.Port = 587;
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true; //Esto es para que vaya a través de SSL que es obligatorio con GMail
+            client.Send(msg);
         }
     }
 }

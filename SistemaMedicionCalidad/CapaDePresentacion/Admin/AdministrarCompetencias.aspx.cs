@@ -57,10 +57,12 @@ namespace CapaDePresentacion
             this.txtNombreCompetencia.Text = c.Nombre_competencia;
             this.txtADescripcion.InnerText = c.Descripcion_competencia;
 
-            if(c.Tipo_competencia==true)
-                this.rbTipoCompetencia.SelectedIndex = 0;
-            else
+            if(int.Parse(rbTipoCompetencia.SelectedValue)==1)
                 this.rbTipoCompetencia.SelectedIndex = 1;
+            else if(int.Parse(rbTipoCompetencia.SelectedValue)==2)
+                this.rbTipoCompetencia.SelectedIndex = 2;
+            else
+                this.rbTipoCompetencia.SelectedIndex = 3;
 
             this.divEditar.Visible = true;
         }
@@ -68,14 +70,8 @@ namespace CapaDePresentacion
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
-            bool tipo;
 
-            if (this.rbTipoCompetencia.Text == "Generica")
-                tipo = true;
-            else
-                tipo = false;
-
-            Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, tipo, this.txtADescripcion.InnerText);
+            Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, int.Parse(rbTipoCompetencia.SelectedValue), this.txtADescripcion.InnerText);
             try
             {
                 cCompetencia.actualizarCompetencia(c);

@@ -10,6 +10,7 @@ namespace CapaDePresentacion.Doc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             CatalogEscuela cEscuela = new CatalogEscuela();
             List<Escuela> lEscuelas = cEscuela.listarEscuelas();
 

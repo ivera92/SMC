@@ -45,41 +45,42 @@ namespace CapaDePresentacion
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            CatalogDocente cDocente = new CatalogDocente();
-            bool sexo, disponibilidad;
-            if (this.rbSexo.Text == "Masculino")
-                sexo = true;
-            else
-                sexo = false;
-
-            if (this.rbDisponibilidad.Text == "Part-Time")
-                disponibilidad = true;
-            else
-                disponibilidad = false;
-        
-            Docente d = new Docente();
-            Profesion p = new Profesion();
-            Pais pa = new Pais();
-            d.Profesion_docente = p;
-            d.Pais_persona = pa;
-            d.Rut_persona = this.txtRut.Text;
-            d.Profesion_docente.Id_profesion = int.Parse(this.ddProfesion.SelectedValue);
-            d.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
-            d.Nombre_persona = this.txtNombre.Text;
-            d.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
-            d.Direccion_persona = this.txtDireccion.Text;
-            d.Telefono_persona = int.Parse(this.txtTelefono.Text);
-            d.Sexo_persona = sexo;
-            d.Correo_persona = this.txtCorreo.Text;
-            d.Disponibilidad_docente = disponibilidad;
             try
             {
+                CatalogDocente cDocente = new CatalogDocente();
+                bool sexo, disponibilidad;
+                if (this.rbSexo.Text == "Masculino")
+                    sexo = true;
+                else
+                    sexo = false;
+
+                if (this.rbDisponibilidad.Text == "Part-Time")
+                    disponibilidad = true;
+                else
+                    disponibilidad = false;
+
+                Docente d = new Docente();
+                Profesion p = new Profesion();
+                Pais pa = new Pais();
+                d.Profesion_docente = p;
+                d.Pais_persona = pa;
+                d.Rut_persona = this.txtRut.Text;
+                d.Profesion_docente.Id_profesion = int.Parse(this.ddProfesion.SelectedValue);
+                d.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
+                d.Nombre_persona = this.txtNombre.Text;
+                d.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
+                d.Direccion_persona = this.txtDireccion.Text;
+                d.Telefono_persona = int.Parse(this.txtTelefono.Text);
+                d.Sexo_persona = sexo;
+                d.Correo_persona = this.txtCorreo.Text;
+                d.Disponibilidad_docente = disponibilidad;
+
                 cDocente.insertarDocente(d);
                 Response.Write("<script>window.alert('Docente creado satisfactoriamente');</script>");
             }
             catch
             {
-                Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
+                Response.Write("<script>window.alert('Docente no pudo ser creado o ya existe');</script>");
             }
             this.resetarValores();
         }

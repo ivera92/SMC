@@ -10,28 +10,24 @@
         <h2 class="text-center">Administrar Alumnos</h2>
         <br />
 
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <asp:TextBox class="form-control" ID="tbxbuscar" runat="server"></asp:TextBox>  
-            </div>
-            <div class="col-sm-2">
-                <asp:Button class="btn btn-primary btn-block" ID="btnbuscar" runat="server" Text="Buscar" 
-                onclick="btnbuscar_Click" />
-            </div>
-        </div>
-        <br />
-
     <div class ="row">
-        <div class="col-sm-offset-3 col-sm-9">
-            <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" 
-            onrowdeleting="rowDeletingEvent" onrowediting="rowEditingEvent">
-            <Columns>
-            <asp:CommandField ButtonType="Link" ShowEditButton="true"  ShowDeleteButton="true" />
-            <asp:BoundField DataField="Nombre_Persona" HeaderText="Nombre" />
-            <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
-            <asp:BoundField DataField="Escuela_Alumno.Nombre_Escuela" HeaderText="Escuela" />
-            <asp:BoundField DataField="Promocion_Alumno" HeaderText="Promocion" />
-            </Columns>
+        <div class="col-sm-12">
+            <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" onrowdeleting="rowDeletingEvent"
+                 onrowediting="rowEditingEvent" PageSize="10" AllowPaging="True" OnPageIndexChanging="Grid_PageIndexChanging" OnSelectedIndexChanging="Grid_SelectedIndexChanging" BackColor="White">
+                <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                <EmptyDataRowStyle forecolor="Red" CssClass="table table-bordered" />
+                <emptydatatemplate>
+                    ¡No existen alumnos!
+                </emptydatatemplate>
+
+                <Columns>
+                    <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true"/>
+                    <asp:BoundField DataField="Nombre_Persona" HeaderText="Nombre" />
+                    <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
+                    <asp:BoundField DataField="Escuela_Alumno.Nombre_Escuela" HeaderText="Escuela" />
+                    <asp:BoundField DataField="Promocion_Alumno" HeaderText="Promocion" />
+                </Columns>
+                <PagerStyle HorizontalAlign = "Right" CssClass = "GridPager" />
             </asp:GridView>
         </div>         
     </div>
@@ -136,7 +132,7 @@
                 <label for="lbl1">Año ingreso</label>
             </div>
             <div class="col-sm-4">
-                <asp:TextBox ID="txtPromocion" class="form-control" runat="server" placeHolder="Ingrese año ingreso" type="number" min="2010"></asp:TextBox>
+                <asp:TextBox ID="txtPromocion" class="form-control" runat="server" placeHolder="Ingrese año ingreso" type="number" min="2007" max="2017"></asp:TextBox>
             </div> 
         </div>
        <br />
@@ -164,9 +160,10 @@
        <br />
 
        <div class="row">
-            <div class="col-sm-offset-7 col-sm-2">
-                <asp:Button ID="btnEditar" class="btn btn-primary btn-block btn-lg" runat="server" onclick="btnGuardar_Click" Text="Guardar"/>  
+            <div class="col-sm-offset-5 col-sm-4">
+                <asp:Button ID="btnEditar" class="btn btn-primary btn-block" runat="server" onclick="btnGuardar_Click" Text="Guardar"/>  
             </div> 
+           <br />
        </div>
        </div>
                 

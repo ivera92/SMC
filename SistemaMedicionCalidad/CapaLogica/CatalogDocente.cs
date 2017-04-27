@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Security.Cryptography;
+using System.Text;
 using Project.CapaDeDatos;
 using Project.CapaDeNegocios;
 
@@ -15,8 +17,9 @@ namespace Project
             bd.connect();
 
             string sql = "insDocentes";
-
+            string contrasenaEn = encriptar(d.Rut_persona);
             bd.CreateCommandSP(sql);
+            bd.createParameter("@contraseña_usuario", DbType.String, contrasenaEn);
             bd.createParameter("@rut_docente", DbType.String, d.Rut_persona);
             bd.createParameter("@id_profesion_docente", DbType.Int32, d.Profesion_docente.Id_profesion);
             bd.createParameter("@nombre_docente", DbType.String, d.Nombre_persona);
@@ -132,6 +135,27 @@ namespace Project
             bd.createParameter("@disponibilidad_docente", DbType.Boolean, d.Disponibilidad_docente);
             bd.execute();
             bd.Close();
+        }
+
+        public static string encriptar(string clave)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            //Calcula el hash de los bytes de texto
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(clave));
+
+            //Obtiene el resultado del hash después de calcularlo
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //Cambia en 2 dígitos hexadecimales
+                //para cada byte
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
         }
     }
 }

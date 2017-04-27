@@ -33,7 +33,9 @@
 
     <div class="row">
         <div class="col-sm-offset-3 col-sm-2"><label>Fecha de nacimiento</label></div>
-        <div class="col-sm-4"><asp:TextBox ID="txtFechaDeNacimiento" class="form-control" runat="server" type="date" format="data-fv-date-format"></asp:TextBox></div>
+        <div class="col-sm-4">
+            <asp:TextBox ID="txtFechaDeNacimiento" class="form-control" runat="server" type="date" max="1992-12-31" data-date-format="DD-MM-YYYY HH:mm:ss"></asp:TextBox>
+        </div>
     </div>
     <br />
 

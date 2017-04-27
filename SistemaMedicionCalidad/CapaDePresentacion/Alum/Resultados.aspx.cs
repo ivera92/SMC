@@ -16,7 +16,8 @@ namespace CapaDePresentacion.Alum
         {
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
-            
+            panelGraficoPie.Visible = false;
+            Panel1.Visible = false;
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -29,6 +30,8 @@ namespace CapaDePresentacion.Alum
         }
         public void graficar()
         {
+
+            panelGraficoPie.Visible = true;
             string rut = Session["rutAlumno"].ToString();
             string[] series = { "Correctas", "Incorrectas" };
             CatalogHPA cHPA = new CatalogHPA();
@@ -68,22 +71,45 @@ namespace CapaDePresentacion.Alum
 
         public void graficarColumna()
         {
+
+            Panel1.Visible = true;
             string rut = Session["rutAlumno"].ToString();
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "SELECT CORRECTA_RESPUESTA, count(id_competencia) as cantidad, NOMBRE_COMPETENCIA FROM COMPETENCIA INNER JOIN PREGUNTA ON ID_COMPETENCIA = ID_COMPETENCIA_PREGUNTA INNER JOIN HISTORICO_PRUEBA_ALUMNO ON ID_PREGUNTA = ID_PREGUNTA_HPA INNER JOIN RESPUESTA ON ID_PREGUNTA = ID_PREGUNTA_RESPUESTA AND ID_RESPUESTA_HPA = ID_RESPUESTA where rut_alumno_hpa='" + rut + "' group by id_competencia, correcta_respuesta, nombre_competencia"; 
+            string sqlSearch = "SELECT CORRECTA_RESPUESTA, count(id_competencia) as cantidad, NOMBRE_COMPETENCIA FROM COMPETENCIA INNER JOIN PREGUNTA ON ID_COMPETENCIA = ID_COMPETENCIA_PREGUNTA INNER JOIN HISTORICO_PRUEBA_ALUMNO ON ID_PREGUNTA = ID_PREGUNTA_HPA INNER JOIN RESPUESTA ON ID_PREGUNTA = ID_PREGUNTA_RESPUESTA AND ID_RESPUESTA_HPA = ID_RESPUESTA where rut_alumno_hpa='" + rut + "' group by id_competencia, correcta_respuesta, nombre_competencia order by nombre_competencia, correcta_respuesta"; 
             bd.CreateCommand(sqlSearch);
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
+                string nombreCompetencia = result.GetString(2);
                 if (result.GetBoolean(0) == false)
                 {
                     this.chartColumna.Series["Incorrectas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                    result.Read();
+                    if(result.GetBoolean(0) == false)
+                    {
+                        this.chartColumna.Series["Correctas"].Points.AddXY(nombreCompetencia, 0);
+                        this.chartColumna.Series["Incorrectas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                    }
+                    else
+                    {
+                        this.chartColumna.Series["Correctas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                    }
                 }
                 else if (result.GetBoolean(0) == true)
                 {
                     this.chartColumna.Series["Correctas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                    result.Read();
+                    if (result.GetBoolean(0) == true)
+                    {
+                        this.chartColumna.Series["Inorrectas"].Points.AddXY(nombreCompetencia, 0);
+                        this.chartColumna.Series["Correctas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                    }
+                    else
+                    {
+                        this.chartColumna.Series["Inorrectas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                    }
                 }
             }
             

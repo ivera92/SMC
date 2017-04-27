@@ -22,24 +22,6 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMostrar;
         
         /// <summary>
-        /// tbxbuscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxbuscar;
-        
-        /// <summary>
-        /// btnbuscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnbuscar;
-        
-        /// <summary>
         /// gvAlumnos control.
         /// </summary>
         /// <remarks>

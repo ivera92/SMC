@@ -34,8 +34,9 @@
         </div>
         <div class="col-sm-3">
             <asp:RadioButtonList ID="rbTipoCompetencia" runat="server">
-            <asp:ListItem Selected="True" Value="Generica"></asp:ListItem>
-            <asp:ListItem Value="Especifica"></asp:ListItem>
+                <asp:ListItem Value="1">Básica</asp:ListItem>
+                <asp:ListItem Value="2">Genérica</asp:ListItem>
+                <asp:ListItem Value="3">Sello UACH</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-sm-2">

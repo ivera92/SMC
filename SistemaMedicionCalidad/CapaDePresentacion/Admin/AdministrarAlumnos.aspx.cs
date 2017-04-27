@@ -17,7 +17,7 @@ namespace CapaDePresentacion
             List<Escuela> lEscuelas = cEscuela.listarEscuelas();
             CatalogPais cPais = new CatalogPais();
             List<Pais> lPaises = cPais.listarPaises();
-
+            
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddEscuela.DataTextField = "Nombre_escuela";
@@ -89,16 +89,6 @@ namespace CapaDePresentacion
             this.divEditar.Visible = true;
         }
 
-        protected void btnbuscar_Click(object sender, EventArgs e)
-        {
-            this.gvAlumnos.Visible = true;
-            CatalogAlumno cAlumno = new CatalogAlumno();
-            List<Alumno> lAlumno = cAlumno.buscarAlumno(this.tbxbuscar.Text);
-
-            this.gvAlumnos.DataSource = lAlumno;
-            this.DataBind();
-        }
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
@@ -141,6 +131,17 @@ namespace CapaDePresentacion
             {
                 Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
             }
+        }
+
+        protected void Grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAlumnos.PageIndex = e.NewPageIndex;
+            this.mostrar();
+        }
+
+        protected void Grid_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            
         }
     }
 }

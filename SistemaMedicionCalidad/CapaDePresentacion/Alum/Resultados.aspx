@@ -44,7 +44,7 @@
     <br />
 
     <asp:Panel runat="server" ID="Panel1">
-        <asp:Chart ID="chartEvaluacion" runat="server" CssClass="col-sm-offset-4 center-block">
+        <asp:Chart ID="chartEvaluacion" runat="server" CssClass="center-block">
             <Series>
                 <asp:Series Name="Series1" ChartType="Pie"></asp:Series>
             </Series>
@@ -52,8 +52,9 @@
                 <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
             </ChartAreas>
         </asp:Chart>
-
-        <asp:Chart ID="chartColumna" runat="server" CssClass="center-block">
+    </asp:Panel>
+    <asp:Panel ID="panelGraficoPie" runat="server">
+        <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="780px" Height="392px">
             <Series>
                 <asp:Series Name="Correctas" Color="Blue"></asp:Series>
                 <asp:Series ChartArea="ChartArea1" Color="Red" Name="Incorrectas">
@@ -63,7 +64,6 @@
                 <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
             </ChartAreas>
         </asp:Chart>
-
     </asp:Panel>
     <br />
 </asp:Content>

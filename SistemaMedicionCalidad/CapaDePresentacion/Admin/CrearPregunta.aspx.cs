@@ -147,7 +147,7 @@ namespace CapaDePresentacion.Doc
         {
             lTxbRespuestas = new List<TextBox>();
             lCbRespuestas = new List<CheckBox>();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 txt = new TextBox();
                 cb = new CheckBox();

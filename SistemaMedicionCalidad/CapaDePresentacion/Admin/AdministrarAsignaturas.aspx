@@ -5,20 +5,27 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
      <div id="divAdministrar" runat="server">
+         <br />
+         <br />
     <h2 class="text-center"> Administrar Asignaturas</h2>
     <br />
 
     <div class="row">
-        <div class="col-sm-offset-2 col-sm-8">
+        <div class="col-sm-12">
             <asp:GridView class="table table-striped" id="gvAsignatura" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                <EmptyDataRowStyle forecolor="Red" CssClass="table table-bordered" />
+                <emptydatatemplate>
+                    ¡No existen asignaturas!
+                </emptydatatemplate>
                 <Columns>
-                    <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" />
+                    <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" />
                     <asp:BoundField DataField="Id_Asignatura" HeaderText="ID" />
                     <asp:BoundField DataField="Nombre_Asignatura" HeaderText="Nombre" />
                     <asp:BoundField DataField="Escuela_Asignatura.Nombre_Escuela" HeaderText="Escuela" />
                     <asp:BoundField DataField="Docente_Asignatura.Nombre_Persona" HeaderText="Docente"/>
                     <asp:BoundField DataField="Ano_Asignatura" HeaderText="Año" />
-                    <asp:BoundField DataField="Duracion_Asignatura" HeaderText="Duracion" />
+                    <asp:BoundField DataField="Duracion_Asignatura" HeaderText="Duracion" Visible="false"/>
                 </Columns>
             </asp:GridView>
         </div>

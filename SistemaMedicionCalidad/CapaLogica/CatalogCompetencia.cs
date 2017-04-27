@@ -71,7 +71,7 @@ namespace Project
 
             while (result.Read())
             {
-                Competencia c = new Competencia(result.GetString(0), result.GetBoolean(1), result.GetInt32(2));
+                Competencia c = new Competencia(result.GetString(0), result.GetInt32(1), result.GetInt32(2));
                 lcompetencia.Add(c);
             }
             result.Close();
@@ -115,7 +115,7 @@ namespace Project
             DbDataReader result = bd.Query();
             result.Read();
 
-            Competencia c = new Competencia(result.GetInt32(0), result.GetString(1), result.GetBoolean(2), result.GetString(3));
+            Competencia c = new Competencia(result.GetInt32(0), result.GetString(1), result.GetInt32(2), result.GetString(3));
 
             result.Close();
             bd.Close();
