@@ -50,19 +50,14 @@ namespace CapaDePresentacion
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
             this.divMostrar.Visible = false;
-            string idCompetencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.NewEditIndex].Cells[3].Text);
+            string idCompetencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.NewEditIndex].Cells[1].Text);
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             Competencia c = cCompetencia.buscarUnaCompetencia(int.Parse(idCompetencia));
             this.txtCompetencia.Text = c.Id_competencia + "";
             this.txtNombreCompetencia.Text = c.Nombre_competencia;
             this.txtADescripcion.InnerText = c.Descripcion_competencia;
 
-            if(int.Parse(rbTipoCompetencia.SelectedValue)==1)
-                this.rbTipoCompetencia.SelectedIndex = 1;
-            else if(int.Parse(rbTipoCompetencia.SelectedValue)==2)
-                this.rbTipoCompetencia.SelectedIndex = 2;
-            else
-                this.rbTipoCompetencia.SelectedIndex = 3;
+            rbTipoCompetencia.SelectedValue = c.Tipo_competencia + "";
 
             this.divEditar.Visible = true;
         }

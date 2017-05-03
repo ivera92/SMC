@@ -4,6 +4,8 @@
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div id="crear" runat="server">
+        <br />
+        <br />
     <h2 class="text-center">Crear Escuela</h2>
     <br />
 
@@ -16,6 +18,8 @@
         <div class="col-sm-2">
             <asp:Button ID="btbCrear" class="btn btn-primary btn-block" runat="server" Text="Crear" 
             onclick="btbCrear_Click" />
+            
+        <br />
         </div>
     </div>
 

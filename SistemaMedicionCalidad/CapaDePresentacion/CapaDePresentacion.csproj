@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelLibrary.1.2011.7.31\lib\ExcelLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
@@ -52,6 +56,9 @@
       <HintPath>..\..\..\..\itextsharp.xmlworker.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -86,6 +93,7 @@
     <Content Include="Admin\ImagenesAdmin\imgPregunta.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgProfesion.jpg" />
     <Content Include="Admin\InicioAdmin.aspx" />
+    <Content Include="Admin\InscribirRamo.aspx" />
     <Content Include="Admin\Logout.aspx" />
     <Content Include="Admin\ResultadosEvaluaciones.aspx" />
     <Content Include="Alum\CambiarClave.aspx" />
@@ -208,6 +216,13 @@
     </Compile>
     <Compile Include="Admin\InicioAdmin.aspx.designer.cs">
       <DependentUpon>InicioAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InscribirRamo.aspx.cs">
+      <DependentUpon>InscribirRamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InscribirRamo.aspx.designer.cs">
+      <DependentUpon>InscribirRamo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>

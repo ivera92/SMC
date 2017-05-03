@@ -5,17 +5,23 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <div id="tablaAdministrar" runat="server">
-
+        <br />
+        <br />
         <h2 class="text-center">Administrar Docentes</h2>
         <br />
 
         <div class="row">
-            <div class="col-sm-offset-2 col-sm-8">
+            <div class="col-sm-12">
                 <asp:GridView class="table table-striped" ID="gvDocentes" runat="server" 
                 AutoGenerateColumns="false" onrowdeleting="rowDeleting" 
                 onrowediting="rowEditing">
+                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                    <EmptyDataRowStyle forecolor="Red" CssClass="table table-bordered" />
+                    <emptydatatemplate>
+                        ¡No existen docentes!
+                    </emptydatatemplate>
                     <Columns>
-                        <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" />
+                        <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" />
                         <asp:BoundField DataField="Nombre_Persona" HeaderText="Nombre" />
                         <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
                         <asp:BoundField DataField="Profesion_Docente.Nombre_profesion" HeaderText="Profesion" />
@@ -26,6 +32,8 @@
 </div>
 
 <div id="tablaEditar" runat="server">
+    <br />
+    <br />
     <h2 class="text-center">Actualizar Docente</h2>
     <br />
 

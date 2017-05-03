@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Drawing;
 using System.Web.UI;
@@ -14,10 +15,13 @@ namespace CapaDePresentacion.Alum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
+
+            string rut = Session["rutAlumno"].ToString();
             panelGraficoPie.Visible = false;
-            Panel1.Visible = false;
+            panelGraficoColumna.Visible = false;
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasEvaluadas(rut);
+            
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -28,7 +32,7 @@ namespace CapaDePresentacion.Alum
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
         }
-        public void graficar()
+        public void graficoPie()
         {
 
             panelGraficoPie.Visible = true;
@@ -66,53 +70,53 @@ namespace CapaDePresentacion.Alum
             var p2 = series1.Points[1];
             p2.AxisLabel = series[1];
             p2.LegendText = "ABC XYZ";
-            Panel1.Controls.Add(chartEvaluacion);
+            panelGraficoColumna.Controls.Add(chartEvaluacion);
         }
 
-        public void graficarColumna()
+        public void graficoColumna()
         {
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
 
-            Panel1.Visible = true;
+            panelGraficoColumna.Visible = true;
             string rut = Session["rutAlumno"].ToString();
-            DataBase bd = new DataBase();
-            bd.connect(); //método conectar
 
-            string sqlSearch = "SELECT CORRECTA_RESPUESTA, count(id_competencia) as cantidad, NOMBRE_COMPETENCIA FROM COMPETENCIA INNER JOIN PREGUNTA ON ID_COMPETENCIA = ID_COMPETENCIA_PREGUNTA INNER JOIN HISTORICO_PRUEBA_ALUMNO ON ID_PREGUNTA = ID_PREGUNTA_HPA INNER JOIN RESPUESTA ON ID_PREGUNTA = ID_PREGUNTA_RESPUESTA AND ID_RESPUESTA_HPA = ID_RESPUESTA where rut_alumno_hpa='" + rut + "' group by id_competencia, correcta_respuesta, nombre_competencia order by nombre_competencia, correcta_respuesta"; 
-            bd.CreateCommand(sqlSearch);
-            DbDataReader result = bd.Query();//disponible resultado
-            while (result.Read())
+            List<string> result = cEvaluacion.obtenerResultadosEvaluacion(rut, int.Parse(ddEvaluacion.SelectedValue));
+            int i = 0;
+            while (i < result.Count)
             {
-                string nombreCompetencia = result.GetString(2);
-                if (result.GetBoolean(0) == false)
+                string nombreCompetencia = result[2];
+                if (Boolean.Parse( result[i]) == false)
                 {
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
-                    result.Read();
-                    if(result.GetBoolean(0) == false)
+                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i+2], int.Parse(result[i+1]));
+                    i = i + 3;
+                    if(Boolean.Parse( result[i]) == false)
                     {
                         this.chartColumna.Series["Correctas"].Points.AddXY(nombreCompetencia, 0);
-                        this.chartColumna.Series["Incorrectas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                        this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     }
                     else
                     {
-                        this.chartColumna.Series["Correctas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                        this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     }
                 }
-                else if (result.GetBoolean(0) == true)
+                else if (Boolean.Parse(result[i]) == true)
                 {
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
-                    result.Read();
-                    if (result.GetBoolean(0) == true)
+                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                    i = i + 3;
+                    if (Boolean.Parse(result[i]) == true)
                     {
                         this.chartColumna.Series["Inorrectas"].Points.AddXY(nombreCompetencia, 0);
-                        this.chartColumna.Series["Correctas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                        this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     }
                     else
                     {
-                        this.chartColumna.Series["Inorrectas"].Points.AddXY(result.GetString(2), result.GetInt32(1));
+                        this.chartColumna.Series["Inorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     }
                 }
+                i = i + 3;
             }
-            
+            chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
+
             // Create a new legend called "Legend2".
             chartColumna.Legends.Add(new Legend("Incorrectas"));
             chartColumna.Legends.Add(new Legend("Correctas"));
@@ -123,8 +127,6 @@ namespace CapaDePresentacion.Alum
 
             chartColumna.Series["Correctas"].Legend = "Correctas";
             chartColumna.Series["Correctas"].IsVisibleInLegend = true;
-            result.Close();
-            bd.Close();
         }
 
         protected void btnGraficar_Click(object sender, EventArgs e)
@@ -133,12 +135,11 @@ namespace CapaDePresentacion.Alum
             {
                 if (ddCompetencia.SelectedValue == "0")
                 {
-                    this.graficar();
-                    this.graficarColumna();
+                    this.graficoColumna();
                 }
                 else
                 {
-                    this.graficar();
+                    this.graficoPie();
                 }
             }catch
             {

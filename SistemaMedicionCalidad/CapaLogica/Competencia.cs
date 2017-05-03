@@ -7,6 +7,8 @@
         private int tipo_competencia;
         private string descripcion_competencia;
 
+        private string nombre_tipo_competencia;
+
         //Constructor predeterminado
         public Competencia()
         {
@@ -21,6 +23,13 @@
         {
             this.nombre_competencia = nombre_competencia;
             this.tipo_competencia = tipo_competencia;
+            this.id_competencia = id_competencia;
+        }
+
+        public Competencia(string nombre_competencia, string descripcion_competencia, int id_competencia)
+        {
+            this.nombre_competencia = nombre_competencia;
+            this.descripcion_competencia = descripcion_competencia;
             this.id_competencia = id_competencia;
         }
 

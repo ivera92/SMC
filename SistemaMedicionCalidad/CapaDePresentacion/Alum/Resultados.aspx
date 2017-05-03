@@ -43,7 +43,7 @@
     </div>
     <br />
 
-    <asp:Panel runat="server" ID="Panel1">
+    <asp:Panel runat="server" ID="panelGraficoColumna">
         <asp:Chart ID="chartEvaluacion" runat="server" CssClass="center-block">
             <Series>
                 <asp:Series Name="Series1" ChartType="Pie"></asp:Series>

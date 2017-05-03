@@ -11,11 +11,16 @@
         <br />
         
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
+            <div class="col-sm-offset-2 col-sm-8">
                 <asp:GridView class="table table-striped" ID="gvEscuelas" runat="server" AutoGenerateColumns="false" 
                     onrowdeleting="rowDeleting" onrowediting="rowEditing">
+                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                <EmptyDataRowStyle forecolor="Red" CssClass="table table-bordered" />
+                <emptydatatemplate>
+                    ¡No existen escuelas!
+                </emptydatatemplate>
                     <Columns>
-                    <asp:CommandField ButtonType="Link" ShowDeleteButton="true" ShowEditButton="true" />
+                    <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" />
                     <asp:BoundField DataField="Nombre_Escuela" HeaderText="Nombre" />
                     <asp:BoundField DataField="Id_Escuela" HeaderText="ID"/>
                     </Columns>
@@ -26,6 +31,8 @@
     </div>
     
     <div id="tablaEditar" runat="server">
+        <br />
+        <br />
         <h2 class="text-center">Actualizar Escuela</h2>
     <br />
 
@@ -37,7 +44,9 @@
         </div>
         <div class="col-sm-2">
             <asp:Button ID="btnGuardar" class="btn btn-primary btn-block" runat="server" Text="Guardar" OnClick="btnGuardar_Click"/>
+            <br />
         </div>
+        
     </div>
     </div>
 </asp:Content>

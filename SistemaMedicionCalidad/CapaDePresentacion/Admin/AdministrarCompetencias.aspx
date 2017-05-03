@@ -5,18 +5,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div id="divMostrar" runat="server">
-
+        <br />
+        <br />
     <h2 class="text-center">Administrar Competencias</h2>
     <br />
     <div class ="row">
         <div class="col-sm-offset-2 col-sm-8">
             <asp:GridView class="table table-striped" ID="gvCompetencias" runat="server" AutoGenerateColumns="false" 
                 onrowdeleting="rowDeleting" onrowediting="rowEditing">
+                <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                <EmptyDataRowStyle forecolor="Red" CssClass="table table-bordered" />
+                <emptydatatemplate>
+                    ¡No existen competencias!
+                </emptydatatemplate>
                 <Columns>
-                <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" />
-                <asp:BoundField DataField="Nombre_Competencia" HeaderText="Nombre" />
-                <asp:BoundField DataField="Tipo_Competencia" HeaderText="Tipo" />
+                <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" />
                 <asp:BoundField DataField="Id_Competencia" HeaderText="Id" />
+                <asp:BoundField DataField="Nombre_Competencia" HeaderText="Nombre" />
+                <asp:BoundField DataField="Descripcion_Competencia" HeaderText="Descripcion" />
                 </Columns>
             </asp:GridView>
         </div>
@@ -25,6 +31,8 @@
 </div>
 
 <div id="divEditar" runat="server">
+    <br />
+    <br />
     <h2 class="text-center">Actualizar Competencia</h2>
     <br />
 
@@ -54,8 +62,9 @@
         </div>
         <div class="col-sm-3">
             <asp:RadioButtonList ID="rbTipoCompetencia" runat="server">
-            <asp:ListItem Selected="True" Value="Generica"></asp:ListItem>
-            <asp:ListItem Value="Especifica"></asp:ListItem>
+                <asp:ListItem Value="1">Básica</asp:ListItem>
+                <asp:ListItem Value="2">Genérica</asp:ListItem>
+                <asp:ListItem Value="3">Sello UACH</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div class="col-sm-2">

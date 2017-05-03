@@ -34,6 +34,8 @@
     </div>
 
     <div id="divEditar" runat="server">
+        <br />
+        <br />
         <h2 class="text-center">Actualizar Asignatura</h2>
         <br />
 

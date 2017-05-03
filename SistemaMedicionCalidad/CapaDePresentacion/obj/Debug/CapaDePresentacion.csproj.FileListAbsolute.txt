@@ -19,3 +19,4 @@ C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\D
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDePresentacion.dll.config
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\itextsharp.dll
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\itextsharp.xml
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\ExcelLibrary.dll

@@ -6,6 +6,8 @@
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div id="crear" runat="server">
+        <br />
+        <br />
     <h2 class="text-center">Crear Docente</h2>
     <br />
 

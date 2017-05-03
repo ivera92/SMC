@@ -4,14 +4,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div runat="server" id="administrar">
+        <br />
+        <br />
         <h2 class="text-center"> Administrar Preguntas</h2>
         <br />
 
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
+            <div class="col-sm-12">
                 <asp:GridView class="table table-striped" ID="gvPreguntas" runat="server" AutoGenerateColumns="false" OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                <EmptyDataRowStyle forecolor="Red" CssClass="table table-bordered" />
+                <emptydatatemplate>
+                    ¡No existen preguntras!
+                </emptydatatemplate>
                 <Columns>
-                <asp:CommandField ButtonType="Link" ShowDeleteButton="true" ShowEditButton="true"/>
+                <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true"/>
                 <asp:BoundField DataField="Nombre_pregunta" HeaderText="Nombre" />
                 <asp:BoundField DataField="Competencia_pregunta.Nombre_competencia" HeaderText="Competencia" />
                 <asp:BoundField DataField="Id_pregunta" HeaderText="ID" />
@@ -23,6 +30,8 @@
     </div>
 
     <div runat="server" id="editar">
+        <br />
+        <br />
         <h2 class="text-center">Actualizar Pregunta</h2>
         <br />
 
@@ -83,6 +92,7 @@
         <div class="row">
             <div class="col-sm-offset-7 col-sm-2">
             <asp:Button class="btn btn-primary btn-block" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click1"/>
+                <br />
             </div>
         </div>
     </div>

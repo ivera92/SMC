@@ -5,7 +5,10 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" >
+    
     <div id="divCrear" runat="server">
+        <br />
+        <br />
     <h2 class="text-center">Crear Pregunta</h2>
     <br />
 

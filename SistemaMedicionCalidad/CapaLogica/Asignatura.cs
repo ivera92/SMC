@@ -16,6 +16,11 @@ namespace Project
         {
         }
 
+        public Asignatura(int id_asignatura, string nombre_asignatura)
+        {
+            this.id_asignatura = id_asignatura;
+            this.nombre_asignatura = nombre_asignatura;
+        }
         public Asignatura(Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
         {
             this.escuela_asignatura = escuela_asignatura;

@@ -49,13 +49,13 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.WebControls.Button btnGraficar;
         
         /// <summary>
-        /// Panel1 control.
+        /// panelGraficoColumna control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Panel panelGraficoColumna;
         
         /// <summary>
         /// chartEvaluacion control.

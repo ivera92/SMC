@@ -68,10 +68,9 @@ namespace Project
             bd.CreateCommandSP(sql);
             List<Competencia> lcompetencia = new List<Competencia>();
             DbDataReader result = bd.Query();
-
             while (result.Read())
             {
-                Competencia c = new Competencia(result.GetString(0), result.GetInt32(1), result.GetInt32(2));
+                Competencia c = new Competencia(result.GetString(0), result.GetString(1), result.GetInt32(2));
                 lcompetencia.Add(c);
             }
             result.Close();
@@ -110,8 +109,9 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sqlSearch = "select * from competencia where id_competencia='" + id_competencia + "'";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "buscarCompetenciaID";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
             DbDataReader result = bd.Query();
             result.Read();
 

@@ -83,6 +83,55 @@ namespace Project
             return lAsignaturas;
         }
 
+
+        //Lista todas las asignaturas en las que el alumno a sido evaluado
+        public List<Asignatura> listarAsignaturasEvaluadas(string rut_alumno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarAsignaturasEvaluadasAlumno";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+            List<Asignatura> lAsignaturas = new List<Asignatura>();
+            DbDataReader result = bd.Query();
+
+            while (result.Read())
+            {
+                Asignatura a = new Asignatura(result.GetInt32(0), result.GetString(1));
+                lAsignaturas.Add(a);
+            }
+            result.Close();
+            bd.Close();
+
+            return lAsignaturas;
+        }
+
+        //Lista todas las asignaturas pertenecientes a una escuela
+        public List<Asignatura> listarAsignaturasDeEscuela(int id_escuela)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarAsignaturasEscuela";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_escuela", DbType.Int32, id_escuela);
+            List<Asignatura> lAsignaturas = new List<Asignatura>();
+            DbDataReader result = bd.Query();
+
+            while (result.Read())
+            {
+                Asignatura a = new Asignatura(result.GetInt32(0), result.GetString(1));
+                lAsignaturas.Add(a);
+            }
+            result.Close();
+            bd.Close();
+
+            return lAsignaturas;
+        }
+
         //Elimina una asignatura existente en la base de datos
         public void eliminarAsignatura(int id_asignatura)
         {
@@ -103,8 +152,9 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "select * from asignatura where id_asignatura='" + id_asignatura + "'";
-            bd.CreateCommand(sql);
+            string sql = "buscarAsignaturaID";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_asignatura", DbType.Int32, id_asignatura);
             DbDataReader result = bd.Query();
             result.Read();
 
