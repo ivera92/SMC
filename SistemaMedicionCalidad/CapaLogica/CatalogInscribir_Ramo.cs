@@ -17,7 +17,7 @@ namespace Project
             string sql = "insInscribirRamo";
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut_alumno_aa", DbType.String, c.Rut_alumno_aa.Rut_persona);
-            bd.createParameter("@id_asignatura_aa", DbType.Int32, c.Id_asignatura_aa.Id_asignatura);
+            bd.createParameter("@cod_asignatura_aa", DbType.String, c.Cod_asignatura_aa.Cod_asignatura);
             bd.execute();
             bd.Close();
         }

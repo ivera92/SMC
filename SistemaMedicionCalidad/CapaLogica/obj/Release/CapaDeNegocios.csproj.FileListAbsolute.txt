@@ -1,0 +1,7 @@
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\bin\Release\CapaLogica.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\bin\Release\CapaLogica.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\bin\Release\CapaDeDatos.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\bin\Release\CapaDeDatos.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\obj\Release\CapaDeNegocios.csprojResolveAssemblyReference.cache
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\obj\Release\CapaLogica.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\obj\Release\CapaLogica.pdb

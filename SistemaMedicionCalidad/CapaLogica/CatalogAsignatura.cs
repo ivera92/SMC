@@ -17,7 +17,7 @@ namespace Project
             string sql = "insAsignatura";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_asignatura", DbType.Int32, a.Id_asignatura);
+            bd.createParameter("@cod_asignatura", DbType.String, a.Cod_asignatura);
             bd.createParameter("@id_escuela_asignatura", DbType.Int32, a.Escuela_asignatura.Id_escuela);
             bd.createParameter("@rut_docente_asignatura", DbType.String, a.Docente_asignatura.Rut_persona);
             bd.createParameter("@nombre_asignatura", DbType.String, a.Nombre_asignatura);
@@ -36,7 +36,7 @@ namespace Project
             string sql = "editarAsignatura";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_asignatura", DbType.Int32, a.Id_asignatura);
+            bd.createParameter("@cod_asignatura", DbType.String, a.Cod_asignatura);
             bd.createParameter("@id_escuela_asignatura", DbType.Int32, a.Escuela_asignatura.Id_escuela);
             bd.createParameter("@rut_docente_asignatura", DbType.String, a.Docente_asignatura.Rut_persona);
             bd.createParameter("@nombre_asignatura", DbType.String, a.Nombre_asignatura);
@@ -69,7 +69,7 @@ namespace Project
                 es = cEscuela.buscarUnaEscuela(result.GetInt32(1));
                 d = cDocente.buscarUnDocente(result.GetString(2));
 
-                a.Id_asignatura = result.GetInt32(0);
+                a.Cod_asignatura = char.Parse(result.GetString(0));
                 a.Escuela_asignatura.Nombre_escuela = es.Nombre_escuela;
                 a.Docente_asignatura.Nombre_persona = d.Nombre_persona;
                 a.Nombre_asignatura = result.GetString(3);
@@ -99,7 +99,7 @@ namespace Project
 
             while (result.Read())
             {
-                Asignatura a = new Asignatura(result.GetInt32(0), result.GetString(1));
+                Asignatura a = new Asignatura(char.Parse(result.GetString(0)), result.GetString(1));
                 lAsignaturas.Add(a);
             }
             result.Close();
@@ -123,7 +123,7 @@ namespace Project
 
             while (result.Read())
             {
-                Asignatura a = new Asignatura(result.GetInt32(0), result.GetString(1));
+                Asignatura a = new Asignatura(char.Parse(result.GetString(0)), result.GetString(1));
                 lAsignaturas.Add(a);
             }
             result.Close();
@@ -133,7 +133,7 @@ namespace Project
         }
 
         //Elimina una asignatura existente en la base de datos
-        public void eliminarAsignatura(int id_asignatura)
+        public void eliminarAsignatura(int cod_asignatura)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -141,20 +141,20 @@ namespace Project
             string sql = "eliminarAsignatura";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_asignatura", DbType.Int32, id_asignatura);
+            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura);
             bd.execute();
             bd.Close();
         }
 
         //Devuelve una asignatura acorde a su ID
-        public Asignatura buscarAsignatura(int id_asignatura)
+        public Asignatura buscarAsignatura(int cod_asignatura)
         {
             DataBase bd = new DataBase();
             bd.connect();
 
             string sql = "buscarAsignaturaID";
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_asignatura", DbType.Int32, id_asignatura);
+            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura);
             DbDataReader result = bd.Query();
             result.Read();
 
@@ -164,7 +164,7 @@ namespace Project
             a.Escuela_asignatura = es;
             a.Docente_asignatura = d;
 
-            a.Id_asignatura = result.GetInt32(0);
+            a.Cod_asignatura = char.Parse(result.GetString(0));
             a.Escuela_asignatura.Id_escuela = result.GetInt32(1);
             a.Docente_asignatura.Rut_persona = result.GetString(2);
             a.Nombre_asignatura = result.GetString(3);

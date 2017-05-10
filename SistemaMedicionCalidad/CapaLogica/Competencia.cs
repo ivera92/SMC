@@ -7,8 +7,6 @@
         private int tipo_competencia;
         private string descripcion_competencia;
 
-        private string nombre_tipo_competencia;
-
         //Constructor predeterminado
         public Competencia()
         {

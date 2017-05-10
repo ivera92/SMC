@@ -68,7 +68,7 @@ namespace Project
                 r.Pregunta_respuesta = p;
                 p=cPregunta.buscarUnaPregunta(result.GetInt32(3));
 
-                r.Pregunta_respuesta.Nombre_pregunta = p.Nombre_pregunta;             
+                r.Pregunta_respuesta.Enunciado_pregunta = p.Enunciado_pregunta;             
                 r.Id_respuesta = result.GetInt32(0);
                 r.Nombre_respuesta = result.GetString(1);
                 r.Correcta_respuesta = result.GetBoolean(2);

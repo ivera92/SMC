@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteAdmin.Master" AutoEventWireup="true" CodeBehind="AsociarAC.aspx.cs" Inherits="CapaDePresentacion.Admin.AsociarAC" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -9,7 +10,7 @@
     <br />
 
     <div class="row">
-        <label class="col-sm-offset-3 col-sm-2">Competencia</label>  
+        <label class="col-sm-offset-3 col-sm-2">Competencia</label>
         <div class="col-sm-4">
             <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddCompetencia" runat="server">
                 <asp:ListItem Value="0"><--Seleccione una competencia--></asp:ListItem>

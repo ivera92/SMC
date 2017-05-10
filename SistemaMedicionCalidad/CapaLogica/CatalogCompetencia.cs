@@ -80,7 +80,7 @@ namespace Project
         }
 
         //Lista las competencias asociadas a una asignatura existentes en la base de datos
-        public List<Competencia> listarCompetenciasAsignatura(int id_asignatura_ac)
+        public List<Competencia> listarCompetenciasAsignatura(int cod_asignatura_ac)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -88,7 +88,7 @@ namespace Project
             string sql = "mostrarCompetenciasAsignatura";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_asignatura_ac", DbType.Int32, id_asignatura_ac);
+            bd.createParameter("@cod_asignatura_ac", DbType.String, cod_asignatura_ac);
             List<Competencia> lCompetencias = new List<Competencia>();
             DbDataReader result = bd.Query();
 

@@ -57,7 +57,7 @@ namespace CapaDePresentacion
 
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)(this.gvPreguntas.Rows[e.RowIndex].Cells[3].Text)));
+            int id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)(this.gvPreguntas.Rows[e.RowIndex].Cells[4].Text)));
             CatalogPregunta cPregunta = new CatalogPregunta();
             CatalogRespuesta cRespuesta = new CatalogRespuesta();
 
@@ -113,7 +113,7 @@ namespace CapaDePresentacion
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
-            id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)this.gvPreguntas.Rows[e.NewEditIndex].Cells[3].Text));
+            id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)this.gvPreguntas.Rows[e.NewEditIndex].Cells[4].Text));
             //this.crearControles(int.Parse(id_pregunta));
             CatalogPregunta cPregunta = new CatalogPregunta();
             Pregunta p = cPregunta.buscarUnaPregunta(id_pregunta);
@@ -122,7 +122,7 @@ namespace CapaDePresentacion
             lRespuestas = cRespuesta.listarRespuestasPregunta(id_pregunta);
 
             this.administrar.Visible = false;
-            this.txtAPregunta.InnerText = p.Nombre_pregunta;
+            this.txtAPregunta.InnerText = p.Enunciado_pregunta;
             this.ddCompetencia.SelectedValue = p.Competencia_pregunta.Id_competencia + "";
             this.ddTipoPregunta.SelectedValue = p.Tipo_pregunta_pregunta.Id_tipo_pregunta + "";
             
@@ -151,7 +151,7 @@ namespace CapaDePresentacion
 
             p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
             p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
-            p.Nombre_pregunta = this.txtAPregunta.InnerText;
+            p.Enunciado_pregunta = this.txtAPregunta.InnerText;
             p.Id_pregunta = id_pregunta;
 
             try

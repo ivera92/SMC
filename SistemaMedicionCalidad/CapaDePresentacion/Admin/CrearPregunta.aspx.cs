@@ -72,8 +72,9 @@ namespace CapaDePresentacion.Doc
                 this.subirImagen();//Guarda la imagen en la carpeta ImagenesPreguntas ubicada en la carpeta Doc
                 p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
-                p.Nombre_pregunta = this.txtAPregunta.InnerText;
-                p.Imagen_pregunta = ruta;            
+                p.Enunciado_pregunta = this.txtAPregunta.InnerText;
+                p.Imagen_pregunta = ruta;
+                p.Nivel_pregunta = char.Parse(txtNivel.Text);         
                 cp.insertarPregunta(p);
                 Response.Write("<script>window.alert('Pregunta creada satisfactoriamente');</script>");
             }

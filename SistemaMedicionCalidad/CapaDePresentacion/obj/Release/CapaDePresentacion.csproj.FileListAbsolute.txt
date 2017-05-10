@@ -1,0 +1,13 @@
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDePresentacion.dll.config
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDePresentacion.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDePresentacion.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDeDatos.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaLogica.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\ExcelLibrary.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\itextsharp.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaDeDatos.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\CapaLogica.pdb
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\itextsharp.xml
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Release\CapaDePresentacion.csprojResolveAssemblyReference.cache
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Release\CapaDePresentacion.dll
+C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Release\CapaDePresentacion.pdb

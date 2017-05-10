@@ -33,10 +33,10 @@ namespace CapaDePresentacion.Admin
             Asignatura a = new Asignatura();
             Alumno al = new Alumno();
             c.Rut_alumno_aa = al;
-            c.Id_asignatura_aa = a;
+            c.Cod_asignatura_aa = a;
 
             c.Rut_alumno_aa.Rut_persona = txtRut.Text;
-            c.Id_asignatura_aa.Id_asignatura = int.Parse(ddAsignatura.SelectedValue);
+            c.Cod_asignatura_aa.Cod_asignatura = char.Parse(ddAsignatura.SelectedValue);
             try
             {
                 cAA.insertarAA(c);

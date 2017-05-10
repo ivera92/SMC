@@ -3,35 +3,35 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    
+
     <div id='divMostrar' runat='server'>
         <br />
         <br />
         <h2 class="text-center">Administrar Alumnos</h2>
         <br />
 
-    <div class ="row">
-        <div class="col-sm-12">
-            <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" onrowdeleting="rowDeletingEvent"
-                 onrowediting="rowEditingEvent" PageSize="10" AllowPaging="True" OnPageIndexChanging="Grid_PageIndexChanging" OnSelectedIndexChanging="Grid_SelectedIndexChanging" BackColor="White">
-                <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-                <EmptyDataRowStyle forecolor="Red" CssClass="table table-bordered" />
-                <emptydatatemplate>
-                    ¡No existen alumnos!
-                </emptydatatemplate>
+        <div class="row">
+            <div class="col-sm-12">
+                <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeletingEvent"
+                    OnRowEditing="rowEditingEvent" PageSize="10" AllowPaging="True" OnPageIndexChanging="Grid_PageIndexChanging" OnSelectedIndexChanging="Grid_SelectedIndexChanging" BackColor="White">
+                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                    <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                    <EmptyDataTemplate>
+                        ¡No existen alumnos!
+                    </EmptyDataTemplate>
 
-                <Columns>
-                    <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true"/>
-                    <asp:BoundField DataField="Nombre_Persona" HeaderText="Nombre" />
-                    <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
-                    <asp:BoundField DataField="Escuela_Alumno.Nombre_Escuela" HeaderText="Escuela" />
-                    <asp:BoundField DataField="Promocion_Alumno" HeaderText="Promocion" />
-                </Columns>
-                <PagerStyle HorizontalAlign = "Right" CssClass = "GridPager" />
-            </asp:GridView>
-        </div>         
+                    <Columns>
+                        <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" />
+                        <asp:BoundField DataField="Nombre_Persona" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
+                        <asp:BoundField DataField="Escuela_Alumno.Nombre_Escuela" HeaderText="Escuela" />
+                        <asp:BoundField DataField="Promocion_Alumno" HeaderText="Promocion" />
+                    </Columns>
+                    <PagerStyle HorizontalAlign="Right" CssClass="GridPager" />
+                </asp:GridView>
+            </div>
+        </div>
     </div>
-</div>
 
 
     <div id='divEditar' runat='server'>
@@ -41,30 +41,32 @@
         <br />
         <div class="row">
             <div class="col-sm-offset-3 col-sm-2">
-                <label for="lbl1">Nombre
+                <label for="lbl1">
+                    Nombre
                 </label>
             </div>
             <div class="col-sm-4">
-                <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$"  placeHolder="Ingrese su nombre" class="form-control"  
-                oninvalid="setCustomValidity('La primera letra del nombre y apellido deben ir en mayuscula')"
-                oninput="setCustomValidity('')" >
+                <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" placeHolder="Ingrese su nombre" class="form-control"
+                    oninvalid="setCustomValidity('La primera letra del nombre y apellido deben ir en mayuscula')"
+                    oninput="setCustomValidity('')">
                 </asp:TextBox>
-            </div>          
+            </div>
         </div>
         <br />
-              
+
         <div class="row">
             <div class="col-sm-offset-3 col-sm-2">
-                <label for="lbl2">Rut 
+                <label for="lbl2">
+                    Rut 
                 </label>
             </div>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtRut" class="form-control" runat="server" placeHolder="Ejemplo: 18205857-2" ReadOnly="true">
                 </asp:TextBox>
             </div>
-       </div>
-       <br />
-        
+        </div>
+        <br />
+
         <div class="row">
             <div class="col-sm-offset-3 col-sm-2">
                 <label for="lbl1">Fecha de nacimiento</label>
@@ -73,7 +75,7 @@
                 <asp:TextBox ID="txtFechaDeNacimiento" class="form-control" runat="server"></asp:TextBox>
             </div>
         </div>
-       <br />
+        <br />
 
         <div class="row">
             <div class="col-sm-offset-3 col-sm-2">
@@ -81,7 +83,7 @@
             </div>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtDireccion" class="form-control" runat="server" placeHolder="Ingrese su dirección"></asp:TextBox>
-            </div>       
+            </div>
         </div>
         <br />
 
@@ -90,10 +92,10 @@
                 <label for="lbl1">Correo</label>
             </div>
             <div class="col-sm-4">
-                <asp:TextBox ID="txtCorreo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" ></asp:TextBox>
-            </div>            
-       </div>
-       <br />
+                <asp:TextBox ID="txtCorreo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl"></asp:TextBox>
+            </div>
+        </div>
+        <br />
 
         <div class="row">
             <div class="col-sm-offset-3 col-sm-2">
@@ -112,14 +114,14 @@
             <div class="col-sm-4">
                 <asp:DropDownList ID="ddPais" runat="server" class="form-control">
                 </asp:DropDownList>
-            </div>    
+            </div>
         </div>
-       <br />
+        <br />
 
-        <div class="row">  
+        <div class="row">
             <div class="col-sm-offset-3 col-sm-2">
                 <label for="lbl10">Escuela</label>
-            </div>                     
+            </div>
             <div class="col-sm-4">
                 <asp:DropDownList ID="ddEscuela" runat="server" class="form-control">
                 </asp:DropDownList>
@@ -133,9 +135,9 @@
             </div>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtPromocion" class="form-control" runat="server" placeHolder="Ingrese año ingreso" type="number" min="2007" max="2017"></asp:TextBox>
-            </div> 
+            </div>
         </div>
-       <br />
+        <br />
 
         <div class="row">
             <div class="col-sm-offset-3 col-sm-2">
@@ -143,28 +145,28 @@
             </div>
             <div class="col-sm-2">
                 <asp:RadioButtonList ID="rbSexo" runat="server">
-                        <asp:ListItem Selected="True" Value="Masculino"></asp:ListItem>
-                        <asp:ListItem Value="Femenino"></asp:ListItem>
+                    <asp:ListItem Selected="True" Value="Masculino"></asp:ListItem>
+                    <asp:ListItem Value="Femenino"></asp:ListItem>
                 </asp:RadioButtonList>
-            </div>   
+            </div>
             <div class="col-sm-1">
                 <label for="lbl1">Beneficio</label>
             </div>
             <div class="col-sm-1">
                 <asp:RadioButtonList ID="rbBeneficio" runat="server">
-                        <asp:ListItem Value="Si"></asp:ListItem>
-                        <asp:ListItem Selected="True" Value="No"></asp:ListItem>
-                    </asp:RadioButtonList>
+                    <asp:ListItem Value="Si"></asp:ListItem>
+                    <asp:ListItem Selected="True" Value="No"></asp:ListItem>
+                </asp:RadioButtonList>
             </div>
         </div>
-       <br />
+        <br />
 
-       <div class="row">
+        <div class="row">
             <div class="col-sm-offset-5 col-sm-4">
-                <asp:Button ID="btnEditar" class="btn btn-primary btn-block" runat="server" onclick="btnGuardar_Click" Text="Guardar"/>  
-            </div> 
-           <br />
-       </div>
-       </div>
-                
+                <asp:Button ID="btnEditar" class="btn btn-primary btn-block" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
+            </div>
+            <br />
+        </div>
+    </div>
+
 </asp:Content>

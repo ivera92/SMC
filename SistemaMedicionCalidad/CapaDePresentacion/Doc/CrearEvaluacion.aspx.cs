@@ -139,7 +139,7 @@ namespace CapaDePresentacion.Doc
             ev.Asignatura_evaluacion = a;
 
             ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
-            ev.Asignatura_evaluacion.Id_asignatura = int.Parse(this.ddAsignatura.SelectedValue);
+            ev.Asignatura_evaluacion.Cod_asignatura = char.Parse(this.ddAsignatura.SelectedValue);
             ev.Nombre_evaluacion = this.txtNombre.Text;
 
             try

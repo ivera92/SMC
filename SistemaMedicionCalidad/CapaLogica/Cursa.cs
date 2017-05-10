@@ -9,14 +9,14 @@ namespace Project
     {
         private int id_aa;
         private Alumno rut_alumno_aa;
-        private Asignatura id_asignatura_aa;
+        private Asignatura cod_asignatura_aa;
 
         public Cursa() { }
 
-        public Cursa(Alumno rut_alumno_aa, Asignatura id_asignatura_aa)
+        public Cursa(Alumno rut_alumno_aa, Asignatura cod_asignatura_aa)
         {
             this.rut_alumno_aa = rut_alumno_aa;
-            this.id_asignatura_aa = id_asignatura_aa;
+            this.cod_asignatura_aa = cod_asignatura_aa;
         }
         public Alumno Rut_alumno_aa
         {
@@ -31,16 +31,16 @@ namespace Project
             }
         }
 
-        public Asignatura Id_asignatura_aa
+        public Asignatura Cod_asignatura_aa
         {
             get
             {
-                return id_asignatura_aa;
+                return cod_asignatura_aa;
             }
 
             set
             {
-                id_asignatura_aa = value;
+                cod_asignatura_aa = value;
             }
         }
 

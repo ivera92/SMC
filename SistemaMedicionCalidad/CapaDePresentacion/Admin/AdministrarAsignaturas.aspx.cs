@@ -98,7 +98,7 @@ namespace CapaDePresentacion.Admin
             a.Nombre_asignatura = this.txtNombre.Text;
             a.Ano_asignatura = int.Parse(this.txtAno.Text);
             a.Duracion_asignatura = duracion;
-            a.Id_asignatura = int.Parse(txtID.Text);
+            a.Cod_asignatura = char.Parse(txtID.Text);
             try
             {
                 cAsignatura.actualizarAsignatura(a);

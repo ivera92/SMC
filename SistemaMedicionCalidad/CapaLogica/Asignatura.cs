@@ -4,7 +4,7 @@ namespace Project
 {
     public class Asignatura
     {
-        private int id_asignatura;
+        private char cod_asignatura;
         private Escuela escuela_asignatura;
         private Docente docente_asignatura;
         private string nombre_asignatura;
@@ -16,9 +16,9 @@ namespace Project
         {
         }
 
-        public Asignatura(int id_asignatura, string nombre_asignatura)
+        public Asignatura(char cod_asignatura, string nombre_asignatura)
         {
-            this.id_asignatura = id_asignatura;
+            this.cod_asignatura = cod_asignatura;
             this.nombre_asignatura = nombre_asignatura;
         }
         public Asignatura(Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
@@ -30,9 +30,9 @@ namespace Project
             this.duracion_asignatura = duracion_asignatura;
         }
 
-        public Asignatura(int id_asignatura, Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
+        public Asignatura(char cod_asignatura, Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
         {
-            this.id_asignatura = id_asignatura;
+            this.cod_asignatura = cod_asignatura;
             this.escuela_asignatura = escuela_asignatura;
             this.docente_asignatura = docente_asignatura;
             this.nombre_asignatura = nombre_asignatura;
@@ -40,10 +40,10 @@ namespace Project
             this.duracion_asignatura = duracion_asignatura;
         }
 
-        public int Id_asignatura
+        public char Cod_asignatura
         {
-            get { return id_asignatura; }
-            set { id_asignatura = value; }
+            get { return cod_asignatura; }
+            set { cod_asignatura = value; }
         }
 
         public string Nombre_asignatura

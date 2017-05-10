@@ -43,7 +43,7 @@ namespace CapaDePresentacion.Admin
             aC.Competencia_ac = c;
 
 
-            aC.Asignatura_ac.Id_asignatura = int.Parse(ddAsignatura.SelectedValue);
+            aC.Asignatura_ac.Cod_asignatura = char.Parse(ddAsignatura.SelectedValue);
             aC.Competencia_ac.Id_competencia = int.Parse(ddCompetencia.SelectedValue);
             try
             {

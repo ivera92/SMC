@@ -18,8 +18,9 @@ namespace Project
             bd.CreateCommandSP(sql);
             bd.createParameter("@id_competencia_pregunta", DbType.Int32, p.Competencia_pregunta.Id_competencia);
             bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Tipo_pregunta_pregunta.Id_tipo_pregunta);
-            bd.createParameter("@nombre_pregunta", DbType.String, p.Nombre_pregunta);
+            bd.createParameter("@enunciado_pregunta", DbType.String, p.Enunciado_pregunta);
             bd.createParameter("@imagen_pregunta", DbType.String, p.Imagen_pregunta);
+            bd.createParameter("@nivel_pregunta", DbType.String, p.Nivel_pregunta);
 
             bd.execute();
             bd.Close();
@@ -93,7 +94,8 @@ namespace Project
             p.Id_pregunta = result.GetInt32(0);
             p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
             p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
-            p.Nombre_pregunta = result.GetString(3);
+            p.Enunciado_pregunta = result.GetString(3);
+            p.Nivel_pregunta = result.GetChar(5);
             try
             {
                 p.Imagen_pregunta = result.GetString(4);
@@ -129,7 +131,8 @@ namespace Project
                 p.Id_pregunta = result.GetInt32(0);
                 p.Competencia_pregunta.Nombre_competencia = c.Nombre_competencia;
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
-                p.Nombre_pregunta = result.GetString(3);
+                p.Enunciado_pregunta = result.GetString(3);
+                p.Nivel_pregunta = result.GetChar(5);
                 lPreguntas.Add(p);
             }
             result.Close();
@@ -148,7 +151,8 @@ namespace Project
             bd.createParameter("@id_pregunta", DbType.Int32, p.Id_pregunta);
             bd.createParameter("@id_competencia_pregunta", DbType.Int32, p.Competencia_pregunta.Id_competencia+1);
             bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Tipo_pregunta_pregunta.Id_tipo_pregunta+1);
-            bd.createParameter("@nombre_pregunta", DbType.String, p.Nombre_pregunta);
+            bd.createParameter("@enunciado_pregunta", DbType.String, p.Enunciado_pregunta);
+            bd.createParameter("@nivel_pregunta", DbType.String, p.Nivel_pregunta);
             bd.execute();
             bd.Close();
         }

@@ -17,7 +17,7 @@ namespace Project
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@id_evaluacion", DbType.Int32, e.Id_evaluacion);
-            bd.createParameter("@id_asignatura_evaluacion", DbType.Int32, e.Asignatura_evaluacion.Id_asignatura);
+            bd.createParameter("@cod_asignatura_evaluacion", DbType.String, e.Asignatura_evaluacion.Cod_asignatura);
             bd.createParameter("@nombre_evaluacion", DbType.String, e.Nombre_evaluacion);
             bd.createParameter("@fecha_evaluacion", DbType.Date, e.Fecha_evaluacion);
             bd.execute();
@@ -49,7 +49,7 @@ namespace Project
         }
 
         //Lista las evaluaciones propias de una asignaturaexistentes en la base de datos
-        public List<Evaluacion> listarEvaluacionesAsignatura(int id_asignatura)
+        public List<Evaluacion> listarEvaluacionesAsignatura(int cod_asignatura)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -57,7 +57,7 @@ namespace Project
             string sql = "mostrarEvaluacionesAsignatura";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_asignatura", DbType.Int32, id_asignatura);
+            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura);
             List<Evaluacion> lEvaluaciones = new List<Evaluacion>();
             DbDataReader result = bd.Query();
             CatalogEvaluacion cEvaluaciones = new CatalogEvaluacion();
@@ -73,7 +73,7 @@ namespace Project
             return lEvaluaciones;
         }
 
-        public int verificarExistencia(int id_asignatura)
+        public int verificarExistencia(int cod_asignatura)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -81,7 +81,7 @@ namespace Project
             string sql = "verificarExistenciaEvaluacion";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_asignatura_evaluacion", DbType.Int32, id_asignatura);
+            bd.createParameter("@cod_asignatura_evaluacion", DbType.String, cod_asignatura);
             DbDataReader result = bd.Query();
             result.Read();
             int existe = result.GetInt32(0);
