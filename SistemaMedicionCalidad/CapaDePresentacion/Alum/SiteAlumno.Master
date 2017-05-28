@@ -151,9 +151,9 @@
                     </li>
                 </ul>
             </div>
-            <div style="width: 1010px; margin: 0 auto; background-color: #E8E8E8; height: 40px; padding-top: 10px; padding-bottom: 15px;">
-            </div>
-            <form runat="server">
+            <form runat="server" style="border: solid 2px #ccc">
+                <br />
+                <br />
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </form>
@@ -168,8 +168,11 @@
             </map>
         </a>
     </div>
-    <div id="footer_direccion">Universidad Austral de Chile · Independencia 631 · Tel: <a href="tel:+56 63 2221500">+56 63 2221500</a> · Valdivia · Chile</div>
-
+    <div id="footer_direccion">
+        Sistema desarrollado por Iván Vera Ruiz
+    <br />
+        Correo: ivera@ic.uach.cl
+    </div>
     <div id="footer_links">
         <p>
             <a href="http://empleos.uach.cl/" target="_blank">Bolsa de Trabajo UACh</a>&nbsp;|&nbsp;<a href="http://www.uach.cl/extension/radio/" target="_blank">Radio UACh Online</a>&nbsp;|&nbsp;<a href="http://www.consejoderectores.cl/" target="_blank">Consejo de Rectores</a>&nbsp;|&nbsp;<a href="http://www.explora.cl/rios" target="_blank">Programa Explora</a>&nbsp;|&nbsp;<a href="http://www.universia.cl/" target="_blank">Universia</a>&nbsp;|&nbsp;<a href="http://www.reuna.cl/" target="_blank">REUNA</a>

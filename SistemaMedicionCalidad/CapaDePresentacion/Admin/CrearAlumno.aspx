@@ -3,23 +3,41 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 
     <script src="../Scripts/rut.js"></script>
-    <script>
-        function anio() {
-            var d = new Date();
-            var n = d.getFullYear();
-            document.getElementById("demo").innerHTML = n;
-        }
-    </script>
 
 </asp:Content>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <div id="crear" runat="server">
-        <br />
-        <br />
         <h2 class="text-center">Crear Alumno</h2>
         <br />
+        <br />
+
+        <div class="row">            
+            <div class="col-sm-4">
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+            </div>
+            <div class="col-sm-3">
+                <asp:Button ID="btnMostrar" Text="Mostrar" CssClass="form-control btn-block btn-primary" runat="server" OnClick="btnMostrar_Click1"/>
+            </div>
+            <div class="col-sm-3">
+                <asp:Button ID="btnImportar" Text="Importar" CssClass="form-control btn-block btn-primary" runat="server" OnClick="btnImportar_Click"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <asp:GridView ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
+                <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                <Columns>
+                    <asp:BoundField DataField="Rut" HeaderText="Rut" />
+                    <asp:BoundField DataField="Nombre Estudiante" HeaderText="Nombre" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" />
+                    <asp:BoundField DataField="Carrera" HeaderText="Carrera" />
+                    <asp:BoundField DataField="Asignatura" HeaderText="Asignatura" />
+                </Columns>
+            </asp:GridView>
+        </div>
+
         <div class="row">
             <div class="col-sm-offset-3 col-sm-2">
                 <label for="lbl1">Nombre</label></div>

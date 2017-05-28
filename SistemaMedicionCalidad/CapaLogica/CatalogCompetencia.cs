@@ -80,7 +80,7 @@ namespace Project
         }
 
         //Lista las competencias asociadas a una asignatura existentes en la base de datos
-        public List<Competencia> listarCompetenciasAsignatura(int cod_asignatura_ac)
+        public List<Competencia> listarCompetenciasAsignatura(string cod_asignatura_ac)
         {
             DataBase bd = new DataBase();
             bd.connect();

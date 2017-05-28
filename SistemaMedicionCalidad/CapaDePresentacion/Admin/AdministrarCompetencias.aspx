@@ -6,12 +6,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div id="divMostrar" runat="server">
-        <br />
-        <br />
         <h2 class="text-center">Administrar Competencias</h2>
         <br />
         <div class="row">
-            <div class="col-sm-offset-2 col-sm-8">
+            <div class="col-sm-12">
                 <asp:GridView class="table table-striped" ID="gvCompetencias" runat="server" AutoGenerateColumns="false"
                     OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
@@ -32,8 +30,6 @@
     </div>
 
     <div id="divEditar" runat="server">
-        <br />
-        <br />
         <h2 class="text-center">Actualizar Competencia</h2>
         <br />
 

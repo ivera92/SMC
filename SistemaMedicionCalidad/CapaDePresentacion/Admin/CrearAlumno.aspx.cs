@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using System.Web.UI;
 using Project.CapaDeNegocios;
 using Project;
+using System.Data.OleDb;
+using System.IO;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using ClosedXML.Excel;
+using System.Web.UI.WebControls;
+using System.Text;
+using System.Web;
 
 namespace CapaDePresentacion.Doc
 {
@@ -87,6 +96,118 @@ namespace CapaDePresentacion.Doc
                 Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
             }
             this.resetearValores();
+        }
+        protected void ImportExcel()
+        {
+            //Save the uploaded Excel file.
+            string filePath = Server.MapPath("~/Excel") + Path.GetFileName(FileUpload1.PostedFile.FileName);
+            FileUpload1.SaveAs(filePath);
+
+            //Open the Excel file using ClosedXML.
+            using (XLWorkbook workBook = new XLWorkbook(filePath))
+            {
+                //Read the first Sheet from Excel file.
+                IXLWorksheet workSheet = workBook.Worksheet(1);
+
+                //Create a new DataTable.
+                DataTable dt = new DataTable();
+
+                //Loop through the Worksheet rows.
+                bool firstRow = true;
+                foreach (IXLRow row in workSheet.Rows())
+                {
+                    
+                    //Use the first row to add columns to DataTable.
+                    if (firstRow)
+                    {
+                        foreach (IXLCell cell in row.Cells())
+                        {
+
+                            dt.Columns.Add(cell.Value.ToString());
+                        }
+                        firstRow = false;
+                    }
+                    else
+                    {
+                        //Add rows to DataTable.
+                        dt.Rows.Add();
+                        int i = 0;
+                        foreach (IXLCell cell in row.Cells())
+                        {
+                            dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                            i++;
+                        }
+                    }
+                    gvAlumnos.DataSource = dt;
+                    gvAlumnos.DataBind();
+                }
+            }
+        }
+        protected void btnMostrar_Click1(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ImportExcel();
+            }
+            catch
+            {
+
+            }
+        }
+
+        protected void btnImportar_Click(object sender, EventArgs e)
+        {
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            CatalogCursa cCursa = new CatalogCursa();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            try
+            {
+                foreach (GridViewRow row in gvAlumnos.Rows)
+                {
+                    string rut = "";
+                    string nombre = "";
+                    string email = "";
+                    string carrera = "";
+                    string asignatura = "";
+                    Alumno a = new Alumno();
+                    Cursa c = new Cursa();
+                    try
+                    {
+                        rut = HttpUtility.HtmlDecode(row.Cells[0].Text).Substring(2, 10);
+                        nombre = HttpUtility.HtmlDecode(row.Cells[1].Text);
+                        email = HttpUtility.HtmlDecode(row.Cells[2].Text);
+                        carrera = HttpUtility.HtmlDecode(row.Cells[3].Text);
+                        asignatura = HttpUtility.HtmlDecode(row.Cells[4].Text);
+                        a.Rut_persona = rut;
+                        a.Nombre_persona = nombre;
+                        a.Correo_persona = email;
+                        a.Escuela_alumno = cEscuela.buscarUnaEscuelaNombre(carrera);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        cAlumno.insertarAlumnoExcel(a);
+                    }
+                    catch { }
+
+                    c.Rut_alumno_aa = cAlumno.buscarAlumnoPorRut(rut);
+                    c.Cod_asignatura_aa = cAsignatura.buscarAsignaturaNombre(asignatura);
+
+                    try
+                    {
+                        cCursa.inscribirAsignatura(c);
+                    }
+
+                    catch { }
+                }
+                Response.Write("<script>window.alert('Lista de alumnos exportada correctamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Lista de alumnos exportada correctamente, verifique en administrar alumnos');</script>");
+            }
         }
     }
 }

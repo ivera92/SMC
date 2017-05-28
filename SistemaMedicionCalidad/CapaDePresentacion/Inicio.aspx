@@ -212,7 +212,7 @@
             <div id="banner_center">
                 <div id="wrapper">
                     <div class="slider-wrapper theme-default">
-                        <div id="slider" class="nivoSlider">
+                        <div id="slider">
                             <a href="http://noticias.uach.cl/principal.php?pag=noticia-externo&amp;cod=102811" class="nivo-imageLink" style="display: none;">
                                 <img src="http://www.uach.cl/uach/_file/58ef9dca0d062.jpg" width="1010" height="350" title="" alt="" border="0" style="width: 1010px; visibility: hidden; display: inline;">
                             </a>
@@ -225,55 +225,7 @@
                             <a href="http://noticias.uach.cl/principal.php?pag=noticia-externo&amp;cod=102507" class="nivo-imageLink" style="display: block;">
                                 <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" width="1010" height="350" title="" alt="" border="0" style="width: 1010px; visibility: hidden; display: inline;">
                             </a>
-                            <img class="nivo-main-image" src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="display: inline; height: 350px;"><div class="nivo-caption"></div>
-                            <div class="nivo-directionNav"><a class="nivo-prevNav">Prev</a><a class="nivo-nextNav">Next</a></div>
-                            <div class="nivo-slice" name="0" style="left: 0px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -0px;">
-                            </div>
-                            <div class="nivo-slice" name="1" style="left: 67px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -67px;">
-                            </div>
-                            <div class="nivo-slice" name="2" style="left: 134px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -134px;">
-                            </div>
-                            <div class="nivo-slice" name="3" style="left: 201px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -201px;">
-                            </div>
-                            <div class="nivo-slice" name="4" style="left: 268px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -268px;">
-                            </div>
-                            <div class="nivo-slice" name="5" style="left: 335px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -335px;">
-                            </div>
-                            <div class="nivo-slice" name="6" style="left: 402px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -402px;">
-                            </div>
-                            <div class="nivo-slice" name="7" style="left: 469px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -469px;">
-                            </div>
-                            <div class="nivo-slice" name="8" style="left: 536px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -536px;">
-                            </div>
-                            <div class="nivo-slice" name="9" style="left: 603px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -603px;">
-                            </div>
-                            <div class="nivo-slice" name="10" style="left: 670px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -670px;">
-                            </div>
-                            <div class="nivo-slice" name="11" style="left: 737px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -737px;">
-                            </div>
-                            <div class="nivo-slice" name="12" style="left: 804px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -804px;">
-                            </div>
-                            <div class="nivo-slice" name="13" style="left: 871px; width: 67px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -871px;">
-                            </div>
-                            <div class="nivo-slice" name="14" style="left: 938px; width: 72px; height: 350px; opacity: 1; overflow: hidden; top: 0px;">
-                                <img src="http://www.uach.cl/uach/_file/58e7f86dc025f.jpg" style="position: absolute; width: 1010px; height: auto; display: block !important; top: 0; left: -938px;">
-                            </div>
                         </div>
-                        <div class="nivo-controlNav"><a class="nivo-control" rel="0">1</a><a class="nivo-control" rel="1">2</a><a class="nivo-control" rel="2">3</a><a class="nivo-control active" rel="3">4</a></div>
                     </div>
                 </div>
             </div>
@@ -292,8 +244,11 @@
             </map>
         </a>
     </div>
-    <div id="footer_direccion">Universidad Austral de Chile · Independencia 631 · Tel: <a href="tel:+56 63 2221500">+56 63 2221500</a> · Valdivia · Chile</div>
-
+    <div id="footer_direccion">
+        Sistema desarrollado por Iván Vera Ruiz
+    <br />
+        Correo: ivera@ic.uach.cl
+    </div>
     <div id="footer_links">
         <p>
             <a href="https://secure01.uach.cl/certificados/" target="_blank">Validación de Certificados</a>&nbsp;|&nbsp;<a href="http://empleos.uach.cl" target="_blank">Portal de Empleos</a>&nbsp;| <a href="http://vinculacion.uach.cl/index.php/unidades-adscritas/radio-uach" target="_blank">Radio UACh Online</a> | <a href="http://www.consejoderectores.cl" target="_blank">Consejo de Rectores</a> | <a href="http://redg9.cl" target="_blank">Red G9</a>&nbsp;| <a href="http://www.explora.cl/rios" target="_blank">Programa Explora</a> |&nbsp;<a href="http://www.universia.cl" target="_blank">Universia</a> |&nbsp;<a href="http://www.reuna.cl" target="_blank">Reuna</a>

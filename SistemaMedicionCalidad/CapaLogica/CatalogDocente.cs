@@ -46,18 +46,16 @@ namespace Project
             string sql = "select * from docente where rut_docente='" + rut + "'";
             bd.CreateCommand(sql);
             bd.createParameter("@rut", DbType.String, rut);
-
-            Profesion p = new Profesion();
-            Pais pa = new Pais();
+            
+            CatalogPais cPais = new CatalogPais();
+            CatalogProfesion cProfesion = new CatalogProfesion();
             DbDataReader result = bd.Query();
             result.Read();
 
             Docente d = new Docente();
-            d.Profesion_docente = p;
-            d.Pais_persona = pa;
             d.Rut_persona = result.GetString(0);
-            d.Profesion_docente.Id_profesion = result.GetInt32(1);
-            d.Pais_persona.Id_pais = result.GetInt32(2);
+            d.Profesion_docente = cProfesion.buscarUnaProfesion(result.GetInt32(1));
+            d.Pais_persona = cPais.buscarUnPais(result.GetInt32(2));
             d.Nombre_persona = result.GetString(3);
             d.Fecha_nacimiento_persona = result.GetDateTime(4);
             d.Direccion_persona = result.GetString(5);
@@ -83,16 +81,13 @@ namespace Project
             List<Docente> lDocentes = new List<Docente>();
             DbDataReader result = bd.Query();
             CatalogProfesion cProfesion = new CatalogProfesion();
-            Profesion p = new Profesion();
             
             while (result.Read())
             {
                 Docente d = new Docente();
-                d.Profesion_docente = p;
-                p =cProfesion.buscarUnaProfesion(result.GetInt32(2));
+                d.Profesion_docente = cProfesion.buscarUnaProfesion(result.GetInt32(2));
                 d.Nombre_persona = result.GetString(0);
                 d.Rut_persona = result.GetString(1);
-                d.Profesion_docente.Nombre_profesion = p.Nombre_profesion;
                 lDocentes.Add(d);
             }
             result.Close();

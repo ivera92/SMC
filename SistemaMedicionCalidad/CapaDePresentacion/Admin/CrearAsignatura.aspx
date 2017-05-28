@@ -5,8 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div id="crear" runat="server">
-        <br />
-        <br />
         <h2 class="text-center">Crear Asignatura</h2>
         <br />
 
@@ -15,7 +13,7 @@
                 <label>Codigo</label>
             </div>
             <div class="col-sm-5">
-                <asp:TextBox ID="txtCodigo" runat="server" class="form-control" MaxLength="7" placeHolder="Ingrese codigo"></asp:TextBox>
+                <asp:TextBox ID="txtCodigo" runat="server" class="form-control" MaxLength="7" placeHolder="Ingrese codigo, ejemplo: CIBA019"></asp:TextBox>
             </div>
         </div>
         <br />

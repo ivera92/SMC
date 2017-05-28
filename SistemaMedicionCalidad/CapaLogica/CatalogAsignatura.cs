@@ -62,16 +62,10 @@ namespace Project
             while (result.Read())
             {
                 Asignatura a = new Asignatura();
-                Escuela es = new Escuela();
-                Docente d = new Docente();
-                a.Escuela_asignatura = es;
-                a.Docente_asignatura = d;
-                es = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-                d = cDocente.buscarUnDocente(result.GetString(2));
 
-                a.Cod_asignatura = char.Parse(result.GetString(0));
-                a.Escuela_asignatura.Nombre_escuela = es.Nombre_escuela;
-                a.Docente_asignatura.Nombre_persona = d.Nombre_persona;
+                a.Cod_asignatura = result.GetString(0);
+                a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
+                a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
                 a.Nombre_asignatura = result.GetString(3);
                 a.Ano_asignatura = result.GetInt32(4);
                 a.Duracion_asignatura = result.GetBoolean(5);
@@ -99,7 +93,7 @@ namespace Project
 
             while (result.Read())
             {
-                Asignatura a = new Asignatura(char.Parse(result.GetString(0)), result.GetString(1));
+                Asignatura a = new Asignatura(result.GetString(0), result.GetString(1));
                 lAsignaturas.Add(a);
             }
             result.Close();
@@ -123,7 +117,7 @@ namespace Project
 
             while (result.Read())
             {
-                Asignatura a = new Asignatura(char.Parse(result.GetString(0)), result.GetString(1));
+                Asignatura a = new Asignatura(result.GetString(0), result.GetString(1));
                 lAsignaturas.Add(a);
             }
             result.Close();
@@ -133,7 +127,7 @@ namespace Project
         }
 
         //Elimina una asignatura existente en la base de datos
-        public void eliminarAsignatura(int cod_asignatura)
+        public void eliminarAsignatura(string cod_asignatura)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -147,7 +141,7 @@ namespace Project
         }
 
         //Devuelve una asignatura acorde a su ID
-        public Asignatura buscarAsignatura(int cod_asignatura)
+        public Asignatura buscarAsignatura(string cod_asignatura)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -159,14 +153,39 @@ namespace Project
             result.Read();
 
             Asignatura a = new Asignatura();
-            Escuela es = new Escuela();
-            Docente d = new Docente();
-            a.Escuela_asignatura = es;
-            a.Docente_asignatura = d;
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            CatalogDocente cDocente = new CatalogDocente();
 
-            a.Cod_asignatura = char.Parse(result.GetString(0));
-            a.Escuela_asignatura.Id_escuela = result.GetInt32(1);
-            a.Docente_asignatura.Rut_persona = result.GetString(2);
+            a.Cod_asignatura = result.GetString(0);
+            a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
+            a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
+            a.Nombre_asignatura = result.GetString(3);
+            a.Ano_asignatura = result.GetInt32(4);
+            a.Duracion_asignatura = result.GetBoolean(5);
+            result.Close();
+            bd.Close();
+            return a;
+        }
+
+        //Devuelve una asignatura acorde a su nombre
+        public Asignatura buscarAsignaturaNombre(string nombre_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "buscarAsignaturaNombre";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_asignatura", DbType.String, nombre_asignatura);
+            DbDataReader result = bd.Query();
+            result.Read();
+
+            Asignatura a = new Asignatura();
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            CatalogDocente cDocente = new CatalogDocente();
+
+            a.Cod_asignatura = result.GetString(0);
+            a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
+            a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
             a.Nombre_asignatura = result.GetString(3);
             a.Ano_asignatura = result.GetInt32(4);
             a.Duracion_asignatura = result.GetBoolean(5);

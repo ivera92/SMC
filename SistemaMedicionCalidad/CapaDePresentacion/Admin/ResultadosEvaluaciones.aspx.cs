@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using Project;
 using Project.CapaDeNegocios;
-using Microsoft.Office.Interop;
 using System.IO;
 using System.Drawing;
+using ClosedXML.Excel;
 
 namespace CapaDePresentacion.Admin
 {
@@ -146,10 +144,10 @@ namespace CapaDePresentacion.Admin
             divEvaluacion.Visible = true;
             divCompetencia.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(int.Parse(ddAsignatura.SelectedValue));
+            List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(ddAsignatura.SelectedValue);
 
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
-            List<Competencia> lCompetencia = cCompetencia.listarCompetenciasAsignatura(int.Parse(ddAsignatura.SelectedValue));
+            List<Competencia> lCompetencia = cCompetencia.listarCompetenciasAsignatura(ddAsignatura.SelectedValue);
 
             this.ddEvaluacion.Items.Clear();
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
@@ -175,20 +173,25 @@ namespace CapaDePresentacion.Admin
             this.ddAsignatura.Items.Clear();
             ddAsignatura.Items.Add(new ListItem("<--Seleccione asignatura-->", "0"));
             this.ddAsignatura.DataTextField = "Nombre_asignatura";
-            this.ddAsignatura.DataValueField = "Id_asignatura";
+            this.ddAsignatura.DataValueField = "Cod_asignatura";
             this.ddAsignatura.DataSource = lAsignaturas;
             this.ddAsignatura.DataBind();
-        }
-        public void graficoColumna()
-        {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
 
             panelGrafico.Visible = true;
+        }
+
+        public void graficoColumna()
+        {
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            panelGrafico.Visible = true;
+
             List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(int.Parse(ddPais.SelectedValue), int.Parse(ddPromocion.SelectedValue), txtRut.Text, int.Parse(ddSexo.SelectedValue), int.Parse(ddDisponibilidad.SelectedValue), int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
+
             int i = 0;
             while (i < result.Count)
             {
-                string nombreCompetencia = result[2];
+                string nombreCompetencia = result[i + 2];
                 if (Boolean.Parse(result[i]) == false)
                 {
                     this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
@@ -196,11 +199,11 @@ namespace CapaDePresentacion.Admin
                     if (Boolean.Parse(result[i]) == false)
                     {
                         this.chartColumna.Series["Correctas"].Points.AddXY(nombreCompetencia, 0);
-                        this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     }
                     else
                     {
                         this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                        i = i + 3;
                     }
                 }
                 else if (Boolean.Parse(result[i]) == true)
@@ -210,14 +213,13 @@ namespace CapaDePresentacion.Admin
                     if (Boolean.Parse(result[i]) == true)
                     {
                         this.chartColumna.Series["Inorrectas"].Points.AddXY(nombreCompetencia, 0);
-                        this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     }
                     else
                     {
                         this.chartColumna.Series["Inorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                        i = i + 3;
                     }
                 }
-                i = i + 3;
             }
             chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
 
@@ -231,13 +233,7 @@ namespace CapaDePresentacion.Admin
 
             chartColumna.Series["Correctas"].Legend = "Correctas";
             chartColumna.Series["Correctas"].IsVisibleInLegend = true;
-
-
-            this.mostrar();
-            ocultarDivs();
-            divUsuario.Visible = false;
-            btnGraficar.Visible = false;
-
+            panelGrafico.Controls.Add(chartColumna);
         }
 
 
@@ -249,7 +245,8 @@ namespace CapaDePresentacion.Admin
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-            exportarExcel();
+            ExportExcel();
+            //exportarExcel();
         }
         public void mostrar()
         {
@@ -309,6 +306,43 @@ namespace CapaDePresentacion.Admin
                 Response.Output.Write(sw.ToString());
                 Response.Flush();
                 Response.End();
+            }
+        }
+
+        //Exporta a Excel datos mediante ClosedXml
+        protected void ExportExcel()
+        {
+            this.mostrar();
+            DataTable dt = new DataTable("GridView_Data");
+            foreach (TableCell cell in gvResultados.HeaderRow.Cells)
+            {
+                dt.Columns.Add(cell.Text);
+            }
+            foreach (GridViewRow row in gvResultados.Rows)
+            {
+                dt.Rows.Add();
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    dt.Rows[dt.Rows.Count - 1][i] = row.Cells[i].Text;
+                }
+            }
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;filename=\"Demo.xlsx\"");
+
+                using (MemoryStream MyMemoryStream = new MemoryStream())
+                {
+                    wb.SaveAs(MyMemoryStream);
+                    MyMemoryStream.WriteTo(Response.OutputStream);
+                    Response.Flush();
+                    Response.End();
+                }
             }
         }
     }

@@ -74,7 +74,7 @@ namespace CapaDePresentacion.Doc
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
                 p.Enunciado_pregunta = this.txtAPregunta.InnerText;
                 p.Imagen_pregunta = ruta;
-                p.Nivel_pregunta = char.Parse(txtNivel.Text);         
+                p.Nivel_pregunta = txtNivel.Text.ToUpper();         
                 cp.insertarPregunta(p);
                 Response.Write("<script>window.alert('Pregunta creada satisfactoriamente');</script>");
             }
@@ -187,12 +187,14 @@ namespace CapaDePresentacion.Doc
             {
                 try
                 {
-                    ruta = "ImagenesPreguntas/" + fileImagen.FileName + sExt;
+                    //OBtiene la ruta del dominio y la base de la ubicacion del archivo                            
+                    ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ImagenesPreguntas/" + fileImagen.FileName + sExt);
+                    ruta = Path.GetFullPath(ruta);
                     fileImagen.SaveAs(Server.MapPath(ruta));
                     ClientScript.RegisterStartupScript(this.GetType(), "Mensaje",
                         "alert('La imagen fue grabada en el servidor');", true);
                 }
-                catch { };
+                catch { ruta = ""; };
             }
         }
 

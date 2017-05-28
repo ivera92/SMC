@@ -11,13 +11,13 @@ namespace CapaDePresentacion.Doc
 {
     public partial class EvaluacionAlumno : System.Web.UI.Page
     {
-        private static List<RadioButtonList> lRbl;
+        private static List<RadioButtonList> lRbl;      //Para poder revisar los checked
         private static List<RadioButtonList> lRblVF;
         private static List<CheckBoxList> lCbl;
-        private static RadioButtonList rbl;
+        private static RadioButtonList rbl;             //Para crear los controles dinamicamente
         private static RadioButtonList rblVF;
         private static CheckBoxList cbxl;
-        private static List<int> lIdsCV;
+        private static List<int> lIdsCV;                //Para guardar el ID de la Pregunta y Respuesta
         private static List<int> lIdsSM;
         private static List<int> lIdsVF;
 
@@ -28,45 +28,26 @@ namespace CapaDePresentacion.Doc
             btnSiguiente.Visible = false;
             btnGuardar.Visible = false;
             divPreguntas.Visible = false;
-            
+            //Se ocupa en el Page Load para que pueda reconocer los checked de los campos
             try
             {
                 this.crearControles();
             }
             catch
             {
-
+                Response.Write("<script>window.alert('No existen preguntas asociadas a la asignatura');</script>");
             }
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                this.ddAsignatura.DataValueField = "Id_asignatura";
+                this.ddAsignatura.DataValueField = "Cod_asignatura";
                 this.ddAsignatura.DataSource = lAsignaturas;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
 
         }
-        public static string verificar(string rut_alumno)
-        {
-            //consulta a la base de datos
-            string s = "";
-            string sql = @"SELECT nombre_alumno FROM alumno WHERE rut_alumno = @rut_alumno";
-            //cadena conexion
-
-            DataBase bd = new DataBase();
-            bd.connect();
-
-            bd.CreateCommand(sql);
-            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
-            DbDataReader result = bd.Query();//disponible resultado
-            if (result.Read())
-            {
-                s = result.GetString(0);
-            }
-            return s;
-        }
-
+        //Recorre la lista de checked y crea historial por cada pregunta y los inserta en la BD
         public void checkearChecked()
         {
             Evaluacion ev = new Evaluacion();
@@ -152,7 +133,8 @@ namespace CapaDePresentacion.Doc
                 }
             }
         }
-
+        //Se crean los controles dependiendo del tipo, se agregan al panel para que sean visibles en la interfaz grafica, y a la vez 
+        //se crean listas estaticas para que se pueda acceder a los atributos checked posteriormente 
         public void crearControles()
         {
             DataBase bd = new DataBase();
@@ -160,7 +142,7 @@ namespace CapaDePresentacion.Doc
 
             string sql = "mostrarPreguntasEvaluacionAsignatura";
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_asignatura", DbType.Int32, int.Parse(this.ddAsignatura.SelectedValue));
+            bd.createParameter("@cod_asignatura", DbType.String, this.ddAsignatura.SelectedValue);
             DbDataReader result = bd.Query();
             string s = "";
             int numPregunta = 1;
@@ -280,13 +262,13 @@ namespace CapaDePresentacion.Doc
                 Response.Write("<script>window.alert('Alumno ya fue evaluado para esta asignatura');</script>");
             }
         }
-
+        //Carga las evaluaciones dependiendo de la asignatura
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnGuardar.Visible = true;
             divPreguntas.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(int.Parse(ddAsignatura.SelectedValue));
+            List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(ddAsignatura.SelectedValue);
             this.ddEvaluacion.Items.Clear();
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
             this.ddEvaluacion.DataValueField = "Id_evaluacion";

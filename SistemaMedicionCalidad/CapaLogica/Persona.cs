@@ -18,6 +18,12 @@ namespace Project
         {
         }
 
+        public Persona(string rut_persona, string nombre_persona, string correo_persona)
+        {
+            this.rut_persona = rut_persona;
+            this.nombre_persona = nombre_persona;
+            this.correo_persona = correo_persona;
+        }
         public Persona(string rut_persona, Pais pais_persona, string nombre_persona, DateTime fecha_nacimiento_persona, string direccion_persona, int telefono_persona, bool sexo_persona, string correo_persona)
         {
             this.rut_persona = rut_persona;

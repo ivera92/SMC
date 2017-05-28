@@ -284,7 +284,7 @@
                         <br />
                     </div>
 
-                    <div class="text-center col-sm-offset-4 col-sm-4" id="divCorreo" runat="server" style="border: solid 2px #ccc">
+                    <div class="text-center col-sm-offset-3 col-sm-6" id="divCorreo" runat="server" style="border: solid 2px #ccc">
                         <br />
                         <h2 class="text-center">Recuperar tu contraseña</h2>
                         <br />
@@ -293,7 +293,7 @@
                         <br />
                         <label id="lblCorreo" runat="server"></label>
                         <br />
-                        <label>Desea enviar un correo para verificar su clave?</label>
+                        <label>¿Desea enviar un correo para verificar su clave?</label>
                         <br />
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-2">

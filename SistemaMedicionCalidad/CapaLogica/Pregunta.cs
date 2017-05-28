@@ -7,7 +7,7 @@
         private Tipo_Pregunta tipo_pregunta_pregunta;
         private string enunciado_pregunta;
         private string imagen_pregunta;
-        private char nivel_pregunta; 
+        private string nivel_pregunta; 
 
         //Constructor predeterminado
         public Pregunta()
@@ -29,7 +29,7 @@
             this.tipo_pregunta_pregunta = tipo_pregunta_pregunta;
             this.enunciado_pregunta = enunciado_pregunta;
         }
-        public Pregunta(Competencia competencia_pregunta, Tipo_Pregunta tipo_pregunta_pregunta, string enunciado_pregunta, string imagen_pregunta, char nivel_pregunta)
+        public Pregunta(Competencia competencia_pregunta, Tipo_Pregunta tipo_pregunta_pregunta, string enunciado_pregunta, string imagen_pregunta, string nivel_pregunta)
         {
             this.competencia_pregunta = competencia_pregunta;
             this.tipo_pregunta_pregunta = tipo_pregunta_pregunta;
@@ -68,7 +68,7 @@
             set { imagen_pregunta = value; }
         }
 
-        public char Nivel_pregunta
+        public string Nivel_pregunta
         {
             get { return nivel_pregunta; }
             set { nivel_pregunta = value; }

@@ -12,6 +12,7 @@ namespace CapaDePresentacion.Alum
             this.cargarDatosAlumno(rut);
             
         }
+        //Carga los datos del docente
         public void cargarDatosAlumno(string rut)
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
@@ -22,13 +23,24 @@ namespace CapaDePresentacion.Alum
             Pais p = cPais.buscarUnPais(a.Pais_persona.Id_pais);
 
             nombreAlumno.InnerText = a.Nombre_persona;
-            nombreEscuela.InnerText = es.Nombre_escuela;
-            nacionalidad.InnerText = p.Nombre_pais;
-            fechaNacimiento.InnerText = a.Fecha_nacimiento_persona.Date.ToString("dd/M/yyyy");
-            direccion.InnerText = a.Direccion_persona;
-            telefono.InnerText = a.Telefono_persona + "";
             correo.InnerText = a.Correo_persona;
-            promocion.InnerText = a.Promocion_alumno + "";
+            nombreEscuela.InnerText = es.Nombre_escuela;
+
+            try
+            {
+                nacionalidad.InnerText = p.Nombre_pais;
+                fechaNacimiento.InnerText = a.Fecha_nacimiento_persona.Date.ToString("dd/M/yyyy");
+                direccion.InnerText = a.Direccion_persona;
+                telefono.InnerText = a.Telefono_persona + "";
+                promocion.InnerText = a.Promocion_alumno + "";
+            }
+            catch {
+                nacionalidad.InnerText = "";
+                fechaNacimiento.InnerText = "";
+                direccion.InnerText = "";
+                telefono.InnerText = "";
+                promocion.InnerText = "";
+            }
         }
     }
 }

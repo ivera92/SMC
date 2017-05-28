@@ -7,35 +7,38 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string alumno, docente, admin;
-            try
+            if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                admin = Session["rutAdmin"].ToString();
-            }
-            catch
-            {
-                admin = "";
-            }
-            try
-            {
-                alumno = Session["rutAlumno"].ToString();
-            }
-            catch
-            {
-                alumno = "";
-            }
-            try
-            {
-                docente = Session["rutDocente"].ToString();
-            }
-            catch
-            {
-                docente = "";
-            }
+                string alumno, docente, admin;
+                try
+                {
+                    admin = Session["rutAdmin"].ToString();
+                }
+                catch
+                {
+                    admin = "";
+                }
+                try
+                {
+                    alumno = Session["rutAlumno"].ToString();
+                }
+                catch
+                {
+                    alumno = "";
+                }
+                try
+                {
+                    docente = Session["rutDocente"].ToString();
+                }
+                catch
+                {
+                    docente = "";
+                }
 
-            if (alumno != "" || admin != "")
-            {
-                Response.Redirect("../CheqLogin.aspx");
+                if (alumno != "" || admin != "")
+                {
+                    Response.Redirect("../CheqLogin.aspx");
+                }
             }
         }
     }

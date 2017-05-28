@@ -48,6 +48,7 @@
     <Compile Include="CatalogAsignatura.cs" />
     <Compile Include="CatalogAsignaturaCompetencia.cs" />
     <Compile Include="CatalogCompetencia.cs" />
+    <Compile Include="CatalogCursa.cs" />
     <Compile Include="CatalogDocente.cs" />
     <Compile Include="CatalogEscuela.cs" />
     <Compile Include="CatalogEvaluacion.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="CatalogPregunta.cs" />
     <Compile Include="CatalogProfesion.cs" />
     <Compile Include="CatalogRespuesta.cs" />
+    <Compile Include="CatalogTipoPregunta.cs" />
     <Compile Include="CatalogTipoUsuario.cs" />
     <Compile Include="CatalogUsuario.cs" />
     <Compile Include="Competencia.cs" />

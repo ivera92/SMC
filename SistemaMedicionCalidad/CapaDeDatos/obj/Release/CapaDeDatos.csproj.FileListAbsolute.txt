@@ -3,3 +3,7 @@ C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\bin\Release\
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\obj\Release\CapaDeDatos.csprojResolveAssemblyReference.cache
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\obj\Release\CapaDeDatos.dll
 C:\Users\Iván\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\obj\Release\CapaDeDatos.pdb
+C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\bin\Release\CapaDeDatos.dll
+C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\bin\Release\CapaDeDatos.pdb
+C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\obj\Release\CapaDeDatos.dll
+C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDeDatos\obj\Release\CapaDeDatos.pdb

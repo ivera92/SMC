@@ -39,8 +39,8 @@ namespace CapaDePresentacion.Admin
             CatalogAsignatura ca = new CatalogAsignatura();
             try
             {
-                string id_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.RowIndex].Cells[1].Text);
-                ca.eliminarAsignatura(int.Parse(id_asignatura));
+                string cod_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.RowIndex].Cells[1].Text);
+                ca.eliminarAsignatura(cod_asignatura);
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
@@ -54,11 +54,11 @@ namespace CapaDePresentacion.Admin
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
             this.divAdministrar.Visible = false;
-            string id_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.NewEditIndex].Cells[1].Text);
-            this.txtID.Text = id_asignatura;
+            string cod_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.NewEditIndex].Cells[1].Text);
+            this.txtID.Text = cod_asignatura;
             this.divEditar.Visible = true;
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            Asignatura a = cAsignatura.buscarAsignatura(int.Parse(id_asignatura));
+            Asignatura a = cAsignatura.buscarAsignatura(cod_asignatura);
             this.ddEscuela.SelectedValue = a.Escuela_asignatura.Id_escuela + "";
             this.ddDocente.SelectedValue = a.Docente_asignatura.Rut_persona;
             this.txtNombre.Text = a.Nombre_asignatura;
@@ -98,7 +98,7 @@ namespace CapaDePresentacion.Admin
             a.Nombre_asignatura = this.txtNombre.Text;
             a.Ano_asignatura = int.Parse(this.txtAno.Text);
             a.Duracion_asignatura = duracion;
-            a.Cod_asignatura = char.Parse(txtID.Text);
+            a.Cod_asignatura = txtID.Text;
             try
             {
                 cAsignatura.actualizarAsignatura(a);

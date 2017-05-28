@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Common;
 using Project.CapaDeDatos;
+using System.Data;
 
 namespace Project
 {
@@ -34,11 +35,12 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "select nombre_pais from pais where id_pais='" + id_pais + "'";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "buscarPaisID";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_pais", DbType.Int32, id_pais);
             DbDataReader result = bd.Query();//disponible resultado
             result.Read();
-            Pais p = new Pais(result.GetString(0));
+            Pais p = new Pais(result.GetInt32(0),result.GetString(1));
 
             result.Close();
             bd.Close();

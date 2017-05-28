@@ -3,9 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <br />
-    <br />
     <h2 class="text-center">Resultado Evaluaciones</h2>
     <br />
 

@@ -5,8 +5,6 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <div id="tablaAdministrar" runat="server">
-        <br />
-        <br />
         <h2 class="text-center">Administrar Docentes</h2>
         <br />
 
@@ -32,8 +30,6 @@
     </div>
 
     <div id="tablaEditar" runat="server">
-        <br />
-        <br />
         <h2 class="text-center">Actualizar Docente</h2>
         <br />
 

@@ -26,11 +26,17 @@ namespace CapaDePresentacion.Admin
                 this.ddCompetencia.DataSource = lCompetencias;
 
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                this.ddAsignatura.DataValueField = "Id_asignatura";
+                this.ddAsignatura.DataValueField = "Cod_asignatura";
                 this.ddAsignatura.DataSource = lAsignatura;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
+        }
+        public void resetearValores()
+        {
+            ddAsignatura.SelectedIndex = 0;
+            ddCompetencia.SelectedIndex = 0;
+            txtNivelDominio.Text = "";
         }
 
         protected void btnAsociar_Click(object sender, EventArgs e)
@@ -39,12 +45,13 @@ namespace CapaDePresentacion.Admin
             Asignatura_Competencia aC = new Asignatura_Competencia();
             Asignatura a = new Asignatura();
             Competencia c = new Competencia();
-            aC.Asignatura_ac = a;
-            aC.Competencia_ac = c;
+            aC.Cod_Asignatura_ac = a;
+            aC.Id_Competencia_ac = c;
 
 
-            aC.Asignatura_ac.Cod_asignatura = char.Parse(ddAsignatura.SelectedValue);
-            aC.Competencia_ac.Id_competencia = int.Parse(ddCompetencia.SelectedValue);
+            aC.Cod_Asignatura_ac.Cod_asignatura = ddAsignatura.SelectedValue;
+            aC.Id_Competencia_ac.Id_competencia = int.Parse(ddCompetencia.SelectedValue);
+            aC.Nivel_dominio_ac = txtNivelDominio.Text.ToUpper();
             try
             {
                 cAC.insertarAC(aC);
@@ -54,6 +61,7 @@ namespace CapaDePresentacion.Admin
             {
                 Response.Write("<script>window.alert('Componentes no pudieron ser asociados');</script>");
             }
+            this.resetearValores();
         }
     }
 }

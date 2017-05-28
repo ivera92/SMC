@@ -14,7 +14,7 @@ namespace Project
         public Alumno()
         {
         }
-
+        //Constructor que recibe los datos mediante Excel (importados)
         public Alumno(string nombre_alumno, string rut_alumno, Escuela escuela_alumno, int promocion_alumno)
         {
             Nombre_persona = nombre_alumno;
@@ -22,7 +22,7 @@ namespace Project
             this.escuela_alumno = escuela_alumno;
             this.promocion_alumno = promocion_alumno;
         }
-
+        //Constructor usado para la creacion de alumnos mediante el sistema web
         public Alumno(string rut_alumno, Escuela escuela_alumno, Pais pais_alumno, string nombre_alumno, DateTime fecha_nacimiento_alumno, string direccion_alumno, int telefono_alumno, bool sexo_alumno, string correo_alumno, int promocion_alumno, bool beneficio_alumno)
         {
             //Atributos heredados

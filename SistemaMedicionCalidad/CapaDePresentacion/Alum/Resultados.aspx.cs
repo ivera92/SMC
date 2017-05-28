@@ -26,7 +26,7 @@ namespace CapaDePresentacion.Alum
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                this.ddAsignatura.DataValueField = "Id_asignatura";
+                this.ddAsignatura.DataValueField = "Cod_asignatura";
                 this.ddAsignatura.DataSource = lAsignatura;                
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
@@ -34,7 +34,8 @@ namespace CapaDePresentacion.Alum
         }
         public void graficoPie()
         {
-
+            panelGraficoColumna.Visible = false;
+            chartColumna.Visible = false;
             panelGraficoPie.Visible = true;
             string rut = Session["rutAlumno"].ToString();
             string[] series = { "Correctas", "Incorrectas" };
@@ -70,13 +71,14 @@ namespace CapaDePresentacion.Alum
             var p2 = series1.Points[1];
             p2.AxisLabel = series[1];
             p2.LegendText = "ABC XYZ";
-            panelGraficoColumna.Controls.Add(chartEvaluacion);
+            panelGraficoPie.Controls.Add(chartEvaluacion);
         }
 
         public void graficoColumna()
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-
+            panelGraficoPie.Visible = false;
+            chartEvaluacion.Visible = false;
             panelGraficoColumna.Visible = true;
             string rut = Session["rutAlumno"].ToString();
 
@@ -84,7 +86,7 @@ namespace CapaDePresentacion.Alum
             int i = 0;
             while (i < result.Count)
             {
-                string nombreCompetencia = result[2];
+                string nombreCompetencia = result[i+2];
                 if (Boolean.Parse( result[i]) == false)
                 {
                     this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i+2], int.Parse(result[i+1]));
@@ -92,11 +94,11 @@ namespace CapaDePresentacion.Alum
                     if(Boolean.Parse( result[i]) == false)
                     {
                         this.chartColumna.Series["Correctas"].Points.AddXY(nombreCompetencia, 0);
-                        this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     }
                     else
                     {
                         this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                        i = i + 3;
                     }
                 }
                 else if (Boolean.Parse(result[i]) == true)
@@ -106,14 +108,13 @@ namespace CapaDePresentacion.Alum
                     if (Boolean.Parse(result[i]) == true)
                     {
                         this.chartColumna.Series["Inorrectas"].Points.AddXY(nombreCompetencia, 0);
-                        this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     }
                     else
                     {
                         this.chartColumna.Series["Inorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                        i = i + 3;
                     }
                 }
-                i = i + 3;
             }
             chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
 
@@ -127,6 +128,7 @@ namespace CapaDePresentacion.Alum
 
             chartColumna.Series["Correctas"].Legend = "Correctas";
             chartColumna.Series["Correctas"].IsVisibleInLegend = true;
+            panelGraficoColumna.Controls.Add(chartColumna);
         }
 
         protected void btnGraficar_Click(object sender, EventArgs e)
@@ -149,10 +151,10 @@ namespace CapaDePresentacion.Alum
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(int.Parse(ddAsignatura.SelectedValue));
+            List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(ddAsignatura.SelectedValue);
 
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
-            List<Competencia> lCompetencia = cCompetencia.listarCompetenciasAsignatura(int.Parse(ddAsignatura.SelectedValue));
+            List<Competencia> lCompetencia = cCompetencia.listarCompetenciasAsignatura(ddAsignatura.SelectedValue);
 
             this.ddEvaluacion.Items.Clear();
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";

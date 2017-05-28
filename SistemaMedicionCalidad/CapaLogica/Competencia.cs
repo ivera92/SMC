@@ -11,33 +11,34 @@
         public Competencia()
         {
         }
-        
+        //Constructor usado para listar las competencias asociadas a una asignatura en dropdownlist
         public Competencia(int id_competencia, string nombre_competencia)
         {
             this.id_competencia = id_competencia;
             this.nombre_competencia = nombre_competencia;
         }
+        //Constructor usado para listar las competencias en el administrador de competencias
         public Competencia(string nombre_competencia, int tipo_competencia, int id_competencia)
         {
             this.nombre_competencia = nombre_competencia;
             this.tipo_competencia = tipo_competencia;
             this.id_competencia = id_competencia;
         }
-
+        //Constructor usado para listar las competencias en dropdownlist
         public Competencia(string nombre_competencia, string descripcion_competencia, int id_competencia)
         {
             this.nombre_competencia = nombre_competencia;
             this.descripcion_competencia = descripcion_competencia;
             this.id_competencia = id_competencia;
         }
-
+        //Constructor usado para crear competencia
         public Competencia(string nombre_competencia, int tipo_competencia, string descripcion_competencia)
         {
             this.nombre_competencia = nombre_competencia;
             this.tipo_competencia = tipo_competencia;
             this.descripcion_competencia = descripcion_competencia;
         }
-
+        //Constructor usado para actualizar competencia
         public Competencia(int id_competencia, string nombre_competencia, int tipo_competencia, string descripcion_competencia)
         {
             this.id_competencia = id_competencia;

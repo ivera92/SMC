@@ -7,28 +7,6 @@ namespace Project.CapaDeNegocios
 {
     public class CatalogEscuela
     { 
-        //Lista las escuelas existentes en la base de datos que cumplan el criterio de busqueda
-        public List<Escuela> buscarEscuela(string buscar)
-        {
-            DataBase bd = new DataBase();
-            bd.connect(); //método conectar
-
-            if (buscar == null)
-                buscar = "";
-
-            string sqlSearch = "select * from escuela where nombre_escuela like '" + buscar + "%' or id_escuela like '" + buscar + "%'";
-            bd.CreateCommand(sqlSearch);
-            List<Escuela> lEscuelas = new List<Escuela>();
-            DbDataReader result = bd.Query();//disponible resultado
-            while (result.Read())
-            {
-                Escuela e = new Escuela(result.GetInt32(0), result.GetString(1));
-                lEscuelas.Add(e);
-            }
-            result.Close();
-            bd.Close();
-            return lEscuelas;
-        }
         //Lista todas las escuelas existentes en la base de datos
         public List<Escuela> listarEscuelas()
         {
@@ -49,14 +27,32 @@ namespace Project.CapaDeNegocios
             return lEscuelas;
         }
 
-        //Devuelve una esculela acorde a su ID
+        //Devuelve una escuela acorde a su ID
         public Escuela buscarUnaEscuela(int id_escuela)
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "select * from escuela where id_escuela='" + id_escuela + "'";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "buscarEscuelaID";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_escuela", DbType.Int32, id_escuela);
+            DbDataReader result = bd.Query();//disponible resultado
+            result.Read();
+            Escuela es = new Escuela(result.GetInt32(0), result.GetString(1));
+            result.Close();
+            bd.Close();
+            return es;
+        }
+
+        //Devuelve una escuela acorde al nombre
+        public Escuela buscarUnaEscuelaNombre(string nombre_escuela)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "buscarEscuelaNombre";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@nombre_escuela", DbType.String, nombre_escuela);
             DbDataReader result = bd.Query();//disponible resultado
             result.Read();
             Escuela es = new Escuela(result.GetInt32(0), result.GetString(1));

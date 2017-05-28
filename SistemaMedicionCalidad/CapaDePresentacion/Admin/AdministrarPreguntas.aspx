@@ -5,8 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div runat="server" id="administrar">
-        <br />
-        <br />
         <h2 class="text-center">Administrar Preguntas</h2>
         <br />
 
@@ -32,8 +30,6 @@
     </div>
 
     <div runat="server" id="editar">
-        <br />
-        <br />
         <h2 class="text-center">Actualizar Pregunta</h2>
         <br />
 

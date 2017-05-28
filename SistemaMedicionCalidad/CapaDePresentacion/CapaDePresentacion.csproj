@@ -46,6 +46,10 @@
     <IncludeIisSettings>false</IncludeIisSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelLibrary.1.2011.7.31\lib\ExcelLibrary.dll</HintPath>
       <Private>True</Private>
@@ -58,9 +62,6 @@
       <HintPath>..\..\..\..\itextsharp.xmlworker.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -83,6 +84,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Admin\AdministrarAsignatura_Competencia.aspx" />
     <Content Include="Admin\AsociarAC.aspx" />
     <Content Include="Admin\ImagenesAdmin\imgAlumno.jpeg" />
     <Content Include="Admin\ImagenesAdmin\imgAsignatura.jpg" />
@@ -98,6 +100,7 @@
     <Content Include="Admin\Logout.aspx" />
     <Content Include="Admin\ResultadosEvaluaciones.aspx" />
     <Content Include="Alum\CambiarClave.aspx" />
+    <Content Include="Alum\EvaluacionA.aspx" />
     <Content Include="Alum\Logout.aspx" />
     <Content Include="Alum\Principal.aspx" />
     <Content Include="Alum\Resultados.aspx" />
@@ -117,10 +120,14 @@
     <Content Include="Admin\CrearEscuela.aspx" />
     <Content Include="Admin\CrearPregunta.aspx" />
     <Content Include="Admin\CrearProfesion.aspx" />
+    <Content Include="Doc\AdministrarPreguntasD.aspx" />
     <Content Include="Doc\CrearEvaluacion.aspx" />
+    <Content Include="Doc\CrearPreguntaD.aspx" />
     <Content Include="Doc\EvaluacionAlumno.aspx" />
     <Content Include="Doc\Logout.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ImagenesPreguntas\ejercicio5Mate1.PNG.PNG" />
+    <Content Include="ImagenesPreguntas\ejercicio7Mate1.PNG.PNG" />
     <Content Include="imagenes\alumno.jpg" />
     <Content Include="imagenes\escuela.jpg" />
     <Content Include="imagenes\imagen.png" />
@@ -139,6 +146,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Alum\SiteAlumno.Master" />
     <Content Include="Admin\SiteAdmin.Master" />
+    <None Include="Properties\PublishProfiles\sistema.pubxml" />
+    <None Include="Properties\PublishProfiles\smc.pubxml" />
     <None Include="Properties\PublishProfiles\SMCFE.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -197,6 +206,13 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AdministrarAsignatura_Competencia.aspx.cs">
+      <DependentUpon>AdministrarAsignatura_Competencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarAsignatura_Competencia.aspx.designer.cs">
+      <DependentUpon>AdministrarAsignatura_Competencia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AsociarAC.aspx.cs">
       <DependentUpon>AsociarAC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -245,6 +261,13 @@
     </Compile>
     <Compile Include="Alum\CambiarClave.aspx.designer.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Alum\EvaluacionA.aspx.cs">
+      <DependentUpon>EvaluacionA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alum\EvaluacionA.aspx.designer.cs">
+      <DependentUpon>EvaluacionA.aspx</DependentUpon>
     </Compile>
     <Compile Include="Alum\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -386,12 +409,26 @@
     <Compile Include="Admin\CrearProfesion.aspx.designer.cs">
       <DependentUpon>CrearProfesion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Doc\AdministrarPreguntasD.aspx.cs">
+      <DependentUpon>AdministrarPreguntasD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doc\AdministrarPreguntasD.aspx.designer.cs">
+      <DependentUpon>AdministrarPreguntasD.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Doc\CrearEvaluacion.aspx.cs">
       <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Doc\CrearEvaluacion.aspx.designer.cs">
       <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doc\CrearPreguntaD.aspx.cs">
+      <DependentUpon>CrearPreguntaD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doc\CrearPreguntaD.aspx.designer.cs">
+      <DependentUpon>CrearPreguntaD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Doc\EvaluacionAlumno.aspx.cs">
       <DependentUpon>EvaluacionAlumno.aspx</DependentUpon>
@@ -441,7 +478,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Admin\ImagenesPreguntas\" />
+    <Folder Include="Admin\Excel\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
   </ItemGroup>

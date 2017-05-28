@@ -95,7 +95,7 @@ namespace Project
             p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
             p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
             p.Enunciado_pregunta = result.GetString(3);
-            p.Nivel_pregunta = result.GetChar(5);
+            p.Nivel_pregunta = result.GetString(5);
             try
             {
                 p.Imagen_pregunta = result.GetString(4);
@@ -132,7 +132,7 @@ namespace Project
                 p.Competencia_pregunta.Nombre_competencia = c.Nombre_competencia;
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
                 p.Enunciado_pregunta = result.GetString(3);
-                p.Nivel_pregunta = result.GetChar(5);
+                p.Nivel_pregunta = result.GetString(5);
                 lPreguntas.Add(p);
             }
             result.Close();

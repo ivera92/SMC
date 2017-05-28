@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Project;
-using System.Net.Mail;
-using System.Text;
-using System.Net;
 
 namespace CapaDePresentacion
 {
@@ -16,26 +10,30 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.divRut.Visible = false;
-            this.divCorreo.Visible = false;
-            CatalogTipoUsuario ctu = new CatalogTipoUsuario();
-            List<Tipo_Usuario> ltp = ctu.listarTiposUsuario();
-            if (!Page.IsPostBack) //para ver si cargo por primera vez
+            try
             {
-                this.ddTipoUsuario.DataTextField = "Nombre_tipo_usuario";
-                this.ddTipoUsuario.DataValueField = "Id_tipo_usuario";
-                this.ddTipoUsuario.DataSource = ltp;
+                this.divRut.Visible = false;
+                this.divCorreo.Visible = false;
+                CatalogTipoUsuario ctu = new CatalogTipoUsuario();
+                List<Tipo_Usuario> ltp = ctu.listarTiposUsuario();
+                if (!Page.IsPostBack) //para ver si cargo por primera vez
+                {
+                    this.ddTipoUsuario.DataTextField = "Nombre_tipo_usuario";
+                    this.ddTipoUsuario.DataValueField = "Id_tipo_usuario";
+                    this.ddTipoUsuario.DataSource = ltp;
 
-                this.DataBind();//enlaza los datos a un dropdownlist                
+                    this.DataBind();//enlaza los datos a un dropdownlist                
+                }
             }
+            catch { }
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            CatalogUsuario cUsuario = new CatalogUsuario();
-            
+            CatalogUsuario cUsuario = new CatalogUsuario();            
             Session.Clear();
             int tipoUsuario = int.Parse(ddTipoUsuario.SelectedValue);
+            //Se verifica si existe el usuario y es valido, despues de eso se ven los roles 
             if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, tipoUsuario))
             {
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
@@ -47,7 +45,7 @@ namespace CapaDePresentacion
                 else if (tipoUsuario == 2)
                 {
                     Session["rutDocente"] = rut.Text;
-                    Response.Redirect("~/Doc/CrearEvaluacion.aspx");
+                    Response.Redirect("~/Doc/InicioDocente.aspx");
                 }
                 else
                 {
@@ -60,24 +58,29 @@ namespace CapaDePresentacion
                 Response.Write("<script>window.alert('Error al Ingresar los datos');</script>");
             }
         }
-
-        
-
+        //Esconde el div de logeo y muestra el de ingresar rut para posteriormente solicitar recuperacion de clave
         protected void recuperar_Click(object sender, EventArgs e)
         {
             this.divLogin.Visible = false;
             this.divRut.Visible = true;
         }
-
+        //Verifica si el rut ingresado existe y registra un email
         protected void btnVerificarRut_Click(object sender, EventArgs e)
         {
-            CatalogUsuario cUsuario = new CatalogUsuario();
-            string correo = cUsuario.verificarRut(this.rutRC.Text);
-            this.lblCorreo.InnerText = correo;
-            this.divRut.Visible = false;
-            this.divCorreo.Visible = true;
+            try
+            {
+                CatalogUsuario cUsuario = new CatalogUsuario();
+                string correo = cUsuario.verificarRut(this.rutRC.Text);
+                this.lblCorreo.InnerText = correo;
+                this.divRut.Visible = false;
+                this.divCorreo.Visible = true;
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('Rut no existe en los registros');</script>");
+            }
         }
-
+        //Se envia un correo al email asociado al rut
         protected void btnEnviarC_Click(object sender, EventArgs e)
         {
             CatalogUsuario cUsuario = new CatalogUsuario();
@@ -91,7 +94,7 @@ namespace CapaDePresentacion
                 Response.Write("<script>window.alert('No se pudo recuperar la contraseña');</script>");
             }
         }
-
+        //En caso de cancelar el envio de correo, redirecciona a la ventana de registro
         protected void btnNoEnviar_Click(object sender, EventArgs e)
         {
             Response.Redirect("CheqLogin.aspx");

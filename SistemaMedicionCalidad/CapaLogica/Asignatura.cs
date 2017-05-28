@@ -4,7 +4,7 @@ namespace Project
 {
     public class Asignatura
     {
-        private char cod_asignatura;
+        private string cod_asignatura;
         private Escuela escuela_asignatura;
         private Docente docente_asignatura;
         private string nombre_asignatura;
@@ -15,12 +15,13 @@ namespace Project
         public Asignatura()
         {
         }
-
-        public Asignatura(char cod_asignatura, string nombre_asignatura)
+        //Constructor listar asignaturas en dropdownlist
+        public Asignatura(string cod_asignatura, string nombre_asignatura)
         {
             this.cod_asignatura = cod_asignatura;
             this.nombre_asignatura = nombre_asignatura;
         }
+        //Constructor usado para crear asignaturas mediante el sistema web
         public Asignatura(Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
         {
             this.escuela_asignatura = escuela_asignatura;
@@ -29,8 +30,8 @@ namespace Project
             this.ano_asignatura = ano_asignatura;
             this.duracion_asignatura = duracion_asignatura;
         }
-
-        public Asignatura(char cod_asignatura, Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
+        //Constructor usado para listar las asignaturas en el administrador
+        public Asignatura(string cod_asignatura, Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
         {
             this.cod_asignatura = cod_asignatura;
             this.escuela_asignatura = escuela_asignatura;
@@ -39,8 +40,7 @@ namespace Project
             this.ano_asignatura = ano_asignatura;
             this.duracion_asignatura = duracion_asignatura;
         }
-
-        public char Cod_asignatura
+        public string Cod_asignatura
         {
             get { return cod_asignatura; }
             set { cod_asignatura = value; }

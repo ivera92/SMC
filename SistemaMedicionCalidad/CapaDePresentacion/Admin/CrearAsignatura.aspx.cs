@@ -56,6 +56,7 @@ namespace CapaDePresentacion
             a.Docente_asignatura.Rut_persona = this.ddDocente.SelectedValue;
             a.Nombre_asignatura = this.txtNombre.Text;
             a.Ano_asignatura = int.Parse(this.txtAno.Text);
+            a.Cod_asignatura = this.txtCodigo.Text.ToUpper();
             a.Duracion_asignatura = duracion;
             try
             {
@@ -64,7 +65,7 @@ namespace CapaDePresentacion
             }
             catch
             {
-                Response.Write("<script>window.alert('Asignatura no pudo ser creada');</script>");
+                Response.Write("<script>window.alert('Codigo de asignatura ya existe');</script>");
             }
             this.resetearValores();
         }

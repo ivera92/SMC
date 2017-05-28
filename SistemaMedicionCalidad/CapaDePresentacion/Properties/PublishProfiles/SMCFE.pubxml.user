@@ -6,272 +6,284 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Iván\Desktop\app</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Ivan\Dropbox\app</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Account/ChangePassword.aspx">
-      <publishTime>05/10/2016 21:54:03</publishTime>
+      <publishTime>10/05/2016 21:54:03</publishTime>
     </File>
     <File Include="Account/ChangePasswordSuccess.aspx">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Account/Login.aspx">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Account/Register.aspx">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Account/Web.config">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Admin/AdministrarAlumnos.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:12:27</publishTime>
     </File>
     <File Include="Admin/AdministrarAsignaturas.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:12:17</publishTime>
+    </File>
+    <File Include="Admin/AdministrarAsignatura_Competencia.aspx">
+      <publishTime>05/17/2017 02:02:04</publishTime>
     </File>
     <File Include="Admin/AdministrarCompetencias.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:12:08</publishTime>
     </File>
     <File Include="Admin/AdministrarDocentes.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:11:59</publishTime>
     </File>
     <File Include="Admin/AdministrarEscuelas.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:11:50</publishTime>
     </File>
     <File Include="Admin/AdministrarPreguntas.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:11:43</publishTime>
     </File>
     <File Include="Admin/AdministrarProfesiones.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:11:32</publishTime>
     </File>
     <File Include="Admin/AsociarAC.aspx">
-      <publishTime>03/05/2017 01:21:40</publishTime>
+      <publishTime>05/17/2017 00:08:16</publishTime>
     </File>
     <File Include="Admin/CambiarClave.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/10/2017 01:00:10</publishTime>
     </File>
     <File Include="Admin/CrearAlumno.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/22/2017 22:24:32</publishTime>
     </File>
     <File Include="Admin/CrearAsignatura.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:08:38</publishTime>
     </File>
     <File Include="Admin/CrearCompetencia.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:08:44</publishTime>
     </File>
     <File Include="Admin/CrearDocente.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:08:49</publishTime>
     </File>
     <File Include="Admin/CrearEscuela.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:08:54</publishTime>
     </File>
     <File Include="Admin/CrearPregunta.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:08:58</publishTime>
     </File>
     <File Include="Admin/CrearProfesion.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:09:04</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgAlumno.jpeg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/26/2017 22:45:42</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgAsignatura.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/26/2017 22:45:42</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgAsociar.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/26/2017 22:45:42</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgClave.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/26/2017 22:45:42</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgCompetencia.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/26/2017 22:45:42</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgDocente.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/26/2017 22:45:39</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgEscuela.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/26/2017 22:45:40</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgPregunta.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/26/2017 22:45:42</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgProfesion.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/26/2017 22:45:42</publishTime>
     </File>
     <File Include="Admin/InicioAdmin.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/10/2017 01:01:27</publishTime>
     </File>
     <File Include="Admin/InscribirRamo.aspx">
-      <publishTime>03/05/2017 01:32:20</publishTime>
+      <publishTime>05/17/2017 00:09:19</publishTime>
     </File>
     <File Include="Admin/Logout.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/10/2017 01:01:37</publishTime>
     </File>
     <File Include="Admin/ResultadosEvaluaciones.aspx">
-      <publishTime>03/05/2017 01:00:01</publishTime>
+      <publishTime>05/17/2017 00:09:23</publishTime>
     </File>
     <File Include="Admin/Site.Master">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/10/2017 01:01:57</publishTime>
     </File>
     <File Include="Admin/SiteAdmin.Master">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:05:51</publishTime>
     </File>
     <File Include="Alum/CambiarClave.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:20:00</publishTime>
+    </File>
+    <File Include="Alum/EvaluacionA.aspx">
+      <publishTime>05/17/2017 00:15:30</publishTime>
     </File>
     <File Include="Alum/Logout.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/10/2017 01:02:24</publishTime>
     </File>
     <File Include="Alum/Principal.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/10/2017 01:02:29</publishTime>
     </File>
     <File Include="Alum/Resultados.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/10/2017 01:02:33</publishTime>
     </File>
     <File Include="Alum/SiteAlumno.Master">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:19:40</publishTime>
     </File>
     <File Include="bin/CapaDeDatos.dll">
-      <publishTime>03/05/2017 18:36:19</publishTime>
+      <publishTime>05/23/2017 03:13:27</publishTime>
     </File>
     <File Include="bin/CapaDePresentacion.dll">
-      <publishTime>03/05/2017 23:26:36</publishTime>
+      <publishTime>05/23/2017 03:13:40</publishTime>
     </File>
     <File Include="bin/CapaLogica.dll">
-      <publishTime>03/05/2017 18:36:20</publishTime>
+      <publishTime>05/23/2017 03:13:32</publishTime>
+    </File>
+    <File Include="bin/ClosedXML.dll">
+      <publishTime>04/03/2017 11:10:06</publishTime>
+    </File>
+    <File Include="bin/DocumentFormat.OpenXml.dll">
+      <publishTime>08/04/2013 13:21:24</publishTime>
     </File>
     <File Include="bin/ExcelLibrary.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>01/27/2016 15:56:00</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
       <publishTime>10/10/2016 06:51:26</publishTime>
     </File>
     <File Include="bin/itextsharp.xmlworker.dll">
-      <publishTime>07/10/2016 09:33:43</publishTime>
+      <publishTime>10/07/2016 09:33:43</publishTime>
     </File>
     <File Include="CheqLogin.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/22/2017 00:34:09</publishTime>
     </File>
     <File Include="Doc/CrearEvaluacion.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/21/2017 20:43:46</publishTime>
     </File>
     <File Include="Doc/EvaluacionAlumno.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/15/2017 01:07:28</publishTime>
     </File>
     <File Include="Doc/InicioDocente.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:28:48</publishTime>
     </File>
     <File Include="Doc/Logout.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/10/2017 01:03:00</publishTime>
     </File>
     <File Include="Doc/SiteDocente.Master">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/17/2017 00:20:31</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>07/12/2016 16:48:26</publishTime>
+      <publishTime>12/07/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>07/12/2016 16:48:26</publishTime>
+      <publishTime>12/07/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>07/12/2016 16:48:26</publishTime>
+      <publishTime>12/07/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>07/12/2016 16:48:26</publishTime>
+      <publishTime>12/07/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>07/12/2016 16:48:25</publishTime>
+      <publishTime>12/07/2016 16:48:25</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="imagenes/alumno.jpg">
-      <publishTime>03/11/2016 15:35:23</publishTime>
+      <publishTime>11/03/2016 15:35:23</publishTime>
     </File>
     <File Include="imagenes/escuela.jpg">
-      <publishTime>03/11/2016 16:25:39</publishTime>
+      <publishTime>11/03/2016 16:25:39</publishTime>
     </File>
     <File Include="imagenes/imagen.png">
-      <publishTime>05/11/2016 15:25:57</publishTime>
+      <publishTime>11/05/2016 15:25:57</publishTime>
     </File>
     <File Include="imagenes/imagen2.jpg">
-      <publishTime>09/12/2016 21:49:49</publishTime>
+      <publishTime>12/09/2016 21:49:49</publishTime>
     </File>
     <File Include="imagenes/login.jpg">
-      <publishTime>09/11/2016 14:09:22</publishTime>
+      <publishTime>11/09/2016 14:09:22</publishTime>
     </File>
     <File Include="imagenes/login.png">
-      <publishTime>09/11/2016 14:06:23</publishTime>
+      <publishTime>11/09/2016 14:06:23</publishTime>
     </File>
     <File Include="imagenes/logo.jpg">
-      <publishTime>09/12/2016 21:49:49</publishTime>
+      <publishTime>12/09/2016 21:49:49</publishTime>
     </File>
     <File Include="imagenes/profesion.jpg">
-      <publishTime>03/11/2016 16:43:09</publishTime>
+      <publishTime>11/03/2016 16:43:09</publishTime>
     </File>
     <File Include="imagenes/profesor.jpg">
-      <publishTime>03/11/2016 15:40:31</publishTime>
+      <publishTime>11/03/2016 15:40:31</publishTime>
     </File>
     <File Include="Inicio.aspx">
-      <publishTime>04/19/2017 19:41:50</publishTime>
+      <publishTime>05/21/2017 22:35:46</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>02/05/2017 20:28:25</publishTime>
+      <publishTime>05/18/2017 01:58:09</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>07/12/2016 16:48:25</publishTime>
+      <publishTime>12/07/2016 16:48:25</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>07/12/2016 16:48:25</publishTime>
+      <publishTime>12/07/2016 16:48:25</publishTime>
     </File>
     <File Include="Scripts/imagen.js">
-      <publishTime>08/04/2017 20:24:11</publishTime>
+      <publishTime>04/08/2017 20:24:11</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1-vsdoc.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>02/23/2017 13:54:31</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1.js">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1.min.js">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Scripts/jquery-1.9.1.js">
-      <publishTime>07/12/2016 16:47:52</publishTime>
+      <publishTime>12/07/2016 16:47:52</publishTime>
     </File>
     <File Include="Scripts/jquery-1.9.1.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>02/23/2017 15:43:13</publishTime>
     </File>
     <File Include="Scripts/jquery-1.9.1.min.map">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/15/2017 00:46:01</publishTime>
     </File>
     <File Include="Scripts/npm.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/25/2016 18:15:10</publishTime>
     </File>
     <File Include="Scripts/rut.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/21/2017 21:02:03</publishTime>
     </File>
     <File Include="Styles/a.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/30/2016 14:51:41</publishTime>
     </File>
     <File Include="Styles/bootstrap-theme.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/25/2016 18:14:12</publishTime>
     </File>
     <File Include="Styles/bootstrap-theme.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/25/2016 18:14:12</publishTime>
     </File>
     <File Include="Styles/bootstrap.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/25/2016 18:14:12</publishTime>
     </File>
     <File Include="Styles/bootstrap.min.css">
-      <publishTime>08/11/2016 01:26:22</publishTime>
+      <publishTime>11/08/2016 01:26:22</publishTime>
     </File>
     <File Include="Styles/Site.css">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/05/2017 23:26:45</publishTime>
+      <publishTime>05/23/2017 03:13:44</publishTime>
     </File>
   </ItemGroup>
 </Project>

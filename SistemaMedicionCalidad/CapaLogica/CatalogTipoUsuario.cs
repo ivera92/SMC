@@ -12,8 +12,8 @@ namespace Project
             DataBase db = new DataBase();
             db.connect();
 
-            string sql = "select * from tipo_usuario";
-            db.CreateCommand(sql);
+            string sql = "mostrarTipoUsuarios";
+            db.CreateCommandSP(sql);
 
             DbDataReader result = db.Query();
             List<Tipo_Usuario> lTiposUsuario = new List<Tipo_Usuario>();

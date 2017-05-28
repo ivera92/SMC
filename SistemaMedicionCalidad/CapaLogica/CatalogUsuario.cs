@@ -170,9 +170,9 @@ namespace Project
             MailMessage msg = new MailMessage();
             msg.To.Add(correo);
             msg.From = new MailAddress("soporte.smcfe@gmail.com", "Administrador", Encoding.UTF8);
-            msg.Subject = "Recuperar contraseña";
+            msg.Subject = "Nuevo Password - Cuenta Sistema-Medicion-Calidad-Formacion-Estudiantes";
             msg.SubjectEncoding = System.Text.Encoding.UTF8;
-            msg.Body = "Su contraseña actual es: " + pw;
+            msg.Body = "Se ha generado un nuevo Password: \n" + pw;
             msg.BodyEncoding = System.Text.Encoding.UTF8;
             msg.IsBodyHtml = false;
 

@@ -10,15 +10,15 @@
     <div class="row">
         <div class="col-sm-4">
             <label>Asignatura</label>
-        <div>
-            <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="ddAsignatura" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
-                <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
-            </asp:DropDownList>
-        </div>
+            <div>
+                <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="ddAsignatura" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
+                    <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
+                </asp:DropDownList>
+            </div>
         </div>
 
         <div class="col-sm-3">
-             <label>Evaluacion</label>
+            <label>Evaluacion</label>
             <div>
                 <asp:DropDownList CssClass="form-control" AutoPostBack="true" AppendDataBoundItems="true" ID="ddEvaluacion" runat="server">
                     <asp:ListItem Value="0"><--Seleccione una evaluacion--></asp:ListItem>
@@ -35,10 +35,10 @@
         </div>
 
         <div>
-        <br />
-        <div class="col-sm-2">
-            <asp:Button id="btnGraficar" runat="server" Text="Graficar" CssClass="btn btn-block btn-primary" OnClick="btnGraficar_Click"/>
-        </div>
+            <br />
+            <div class="col-sm-2">
+                <asp:Button ID="btnGraficar" runat="server" Text="Graficar" CssClass="btn btn-block btn-primary" OnClick="btnGraficar_Click" />
+            </div>
         </div>
     </div>
     <br />

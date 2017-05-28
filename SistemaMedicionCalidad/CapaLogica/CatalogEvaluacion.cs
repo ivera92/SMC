@@ -2,6 +2,9 @@
 using System.Data;
 using System.Data.Common;
 using Project.CapaDeDatos;
+using Project.CapaDeNegocios;
+using System;
+using System.Linq;
 
 namespace Project
 {
@@ -49,7 +52,7 @@ namespace Project
         }
 
         //Lista las evaluaciones propias de una asignaturaexistentes en la base de datos
-        public List<Evaluacion> listarEvaluacionesAsignatura(int cod_asignatura)
+        public List<Evaluacion> listarEvaluacionesAsignatura(string cod_asignatura)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -73,7 +76,7 @@ namespace Project
             return lEvaluaciones;
         }
 
-        public int verificarExistencia(int cod_asignatura)
+        public int verificarExistencia(string cod_asignatura)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -184,35 +187,126 @@ namespace Project
             bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
 
             DbDataReader result = bd.Query();//disponible resultado
-            Respuesta res = new Respuesta();
-            Alumno a = new Alumno();
-            Docente d = new Docente();
+            
+            CatalogDocente cDocente = new CatalogDocente();
+            CatalogAlumno cAlumno = new CatalogAlumno();
             HistoricoPruebaAlumno h = new HistoricoPruebaAlumno();
             Competencia c = new Competencia();
-            Pais p = new Pais();
+            
             List<Resultados> lResultados = new List<Resultados>();
-            Evaluacion e = new Evaluacion();
+            
             while (result.Read())
             {
+                Pais p = new Pais();
+                Evaluacion e = new Evaluacion();
+                Respuesta res = new Respuesta();
                 Resultados r = new Resultados();
                 r.Correcta_respuesta = res;
                 r.Nombre_competencia = c;
-                r.Rut_docente = d;
-                r.Rut_alumno = a;
                 r.Id_evaluacion_hpa = h;
                 r.Id_evaluacion_hpa.Evaluacion_hpa = e;
 
                 r.Correcta_respuesta.Correcta_respuesta=result.GetBoolean(0);
                 r.Cantidad =result.GetInt32(1);
                 r.Nombre_competencia.Nombre_competencia = result.GetString(2);
-                r.Rut_docente.Rut_persona = result.GetString(3);
-                r.Rut_alumno.Rut_persona = result.GetString(4);
+                r.Rut_docente = cDocente.buscarUnDocente(result.GetString(3));
+                r.Rut_alumno = cAlumno.buscarAlumnoPorRut(result.GetString(4));
                 r.Id_evaluacion_hpa.Evaluacion_hpa.Id_evaluacion = result.GetInt32(5);
                 lResultados.Add(r);
             }
             result.Close();
             bd.Close();
             return lResultados;
+        }
+
+        //Lista las preguntas asociadas a una asignatura
+        public List<Pregunta> listarPA(string cod_asignatura_ac)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarPA";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@cod_asignatura_ac", DbType.String, cod_asignatura_ac);
+            List<Pregunta> lPreguntas = new List<Pregunta>();
+            DbDataReader result = bd.Query();
+            CatalogEvaluacion cEvaluaciones = new CatalogEvaluacion();
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            CatalogTipoPregunta cTP = new CatalogTipoPregunta();
+
+            while (result.Read())
+            {
+                Pregunta p = new Pregunta();
+                p.Id_pregunta = result.GetInt32(0);
+                p.Competencia_pregunta = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
+                p.Tipo_pregunta_pregunta = cTP.buscarUnTipoPregunta(result.GetInt32(2));
+                p.Enunciado_pregunta = result.GetString(3);
+                p.Nivel_pregunta = result.GetString(4);
+                lPreguntas.Add(p);
+            }
+            result.Close();
+            bd.Close();
+
+            return lPreguntas;
+        }
+        public DbDataReader mostrarPyRA(string cod_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarPYREvaluaciones";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@cod_asignatura_evaluacion", DbType.String, cod_asignatura);
+            DbDataReader result = bd.Query();
+
+            return result;
+        }
+        //Genera una prueba aleatoria de 15 preguntas
+        public DbDataReader generarPruebaAleatoria(string cod_asignatura)
+        {
+            List<int> lIDS = new List<int>();
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarIDsPA";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@cod_asignatura_evaluacion", DbType.String, cod_asignatura);
+            DbDataReader result = bd.Query();
+            while (result.Read())
+            {
+                lIDS.Add(result.GetInt32(0));
+            }
+            result.Close();
+            List<int> lAleatoria = new List<int>();
+            Random r = new Random();
+            int numero = 0;
+            string ids_preguntas = "";
+            int i = 0;
+            while (i < 15)
+            {
+                numero = r.Next(0, lIDS.Count-1);
+                ids_preguntas += lIDS[numero] + ",";
+                lIDS.RemoveAt(numero);
+                i += 1;
+            }
+            string sql2 = "mostrarPYRAleatorias";
+            bd.CreateCommandSP(sql2);
+            bd.createParameter("@cod_asignatura_evaluacion", DbType.String, cod_asignatura);
+            bd.createParameter("@ids_preguntas", DbType.String, ids_preguntas);
+            DbDataReader result2 = bd.Query();
+            return result2;
+        }
+        public DbDataReader mostrarPyRSeleccionadas(string ids_preguntas)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "mostrarPYRSeleccionadas";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@ids_preguntas", DbType.String, ids_preguntas);
+            DbDataReader result = bd.Query();
+
+            return result;
         }
     }
 }

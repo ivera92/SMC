@@ -6,8 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div id="divAdministrar" runat="server">
-        <br />
-        <br />
         <h2 class="text-center">Administrar Asignaturas</h2>
         <br />
 
@@ -21,7 +19,7 @@
                     </EmptyDataTemplate>
                     <Columns>
                         <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" />
-                        <asp:BoundField DataField="Id_Asignatura" HeaderText="ID" />
+                        <asp:BoundField DataField="Cod_Asignatura" HeaderText="Codigo" />
                         <asp:BoundField DataField="Nombre_Asignatura" HeaderText="Nombre" />
                         <asp:BoundField DataField="Escuela_Asignatura.Nombre_Escuela" HeaderText="Escuela" />
                         <asp:BoundField DataField="Docente_Asignatura.Nombre_Persona" HeaderText="Docente" />
@@ -35,8 +33,6 @@
     </div>
 
     <div id="divEditar" runat="server">
-        <br />
-        <br />
         <h2 class="text-center">Actualizar Asignatura</h2>
         <br />
 

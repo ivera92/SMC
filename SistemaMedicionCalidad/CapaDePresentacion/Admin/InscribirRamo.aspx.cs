@@ -19,7 +19,7 @@ namespace CapaDePresentacion.Admin
             {
 
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                this.ddAsignatura.DataValueField = "Id_asignatura";
+                this.ddAsignatura.DataValueField = "Cod_asignatura";
                 this.ddAsignatura.DataSource = lAsignatura;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
@@ -36,7 +36,7 @@ namespace CapaDePresentacion.Admin
             c.Cod_asignatura_aa = a;
 
             c.Rut_alumno_aa.Rut_persona = txtRut.Text;
-            c.Cod_asignatura_aa.Cod_asignatura = char.Parse(ddAsignatura.SelectedValue);
+            c.Cod_asignatura_aa.Cod_asignatura = ddAsignatura.SelectedValue;
             try
             {
                 cAA.insertarAA(c);
