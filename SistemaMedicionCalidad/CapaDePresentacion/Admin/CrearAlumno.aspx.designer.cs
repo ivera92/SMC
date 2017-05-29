@@ -13,13 +13,40 @@ namespace CapaDePresentacion.Doc {
     public partial class CrearAlumno {
         
         /// <summary>
-        /// crear control.
+        /// divOpcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl crear;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOpcion;
+        
+        /// <summary>
+        /// btnManual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnManual;
+        
+        /// <summary>
+        /// btnExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExcel;
+        
+        /// <summary>
+        /// divCrearExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCrearExcel;
         
         /// <summary>
         /// FileUpload1 control.
@@ -40,6 +67,15 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.Button btnMostrar;
         
         /// <summary>
+        /// gvAlumnos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAlumnos;
+        
+        /// <summary>
         /// btnImportar control.
         /// </summary>
         /// <remarks>
@@ -49,13 +85,13 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.Button btnImportar;
         
         /// <summary>
-        /// gvAlumnos control.
+        /// divCrearManual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAlumnos;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCrearManual;
         
         /// <summary>
         /// txtNombre control.

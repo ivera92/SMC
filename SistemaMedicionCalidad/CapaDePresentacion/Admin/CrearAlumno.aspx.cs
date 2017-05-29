@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Web.UI;
 using Project.CapaDeNegocios;
 using Project;
-using System.Data.OleDb;
 using System.IO;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using ClosedXML.Excel;
 using System.Web.UI.WebControls;
-using System.Text;
 using System.Web;
 
 namespace CapaDePresentacion.Doc
@@ -19,7 +15,8 @@ namespace CapaDePresentacion.Doc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            divCrearManual.Visible = false;
+            divCrearExcel.Visible = false;
             CatalogEscuela cEscuela = new CatalogEscuela();
             List<Escuela> lEscuelas = cEscuela.listarEscuelas();
 
@@ -145,6 +142,7 @@ namespace CapaDePresentacion.Doc
         }
         protected void btnMostrar_Click1(object sender, EventArgs e)
         {
+            divCrearExcel.Visible = true;
             try
             {
                 this.ImportExcel();
@@ -208,6 +206,18 @@ namespace CapaDePresentacion.Doc
             {
                 Response.Write("<script>window.alert('Lista de alumnos exportada correctamente, verifique en administrar alumnos');</script>");
             }
+        }
+
+        protected void btnManual_Click(object sender, EventArgs e)
+        {
+            divOpcion.Visible = false;
+            divCrearManual.Visible = true;
+        }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            divOpcion.Visible = false;
+            divCrearExcel.Visible = true;
         }
     }
 }

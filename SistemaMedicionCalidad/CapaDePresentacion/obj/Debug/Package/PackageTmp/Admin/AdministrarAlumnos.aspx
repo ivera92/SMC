@@ -23,7 +23,6 @@
                         <asp:BoundField DataField="Nombre_Persona" HeaderText="Nombre" />
                         <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
                         <asp:BoundField DataField="Escuela_Alumno.Nombre_Escuela" HeaderText="Escuela" />
-                        <asp:BoundField DataField="Promocion_Alumno" HeaderText="Promocion" />
                     </Columns>
                     <PagerStyle HorizontalAlign="Right" CssClass="GridPager" />
                 </asp:GridView>

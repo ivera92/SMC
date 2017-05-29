@@ -34,6 +34,7 @@ namespace CapaDePresentacion
             this.ddDocente.SelectedIndex = 0;
             this.txtNombre.Text = "";
             this.txtAno.Text = "";
+            this.txtCodigo.Text = "";
             rbDuracion.SelectedIndex = 0;
         }
 

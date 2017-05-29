@@ -69,12 +69,18 @@ namespace CapaDePresentacion
             this.ddEscuela.SelectedValue = a.Escuela_alumno.Id_escuela+"";
             this.txtNombre.Text = a.Nombre_persona;
             this.txtRut.Text = a.Rut_persona;
-            this.txtFechaDeNacimiento.Text = a.Fecha_nacimiento_persona.ToString("d");
-            this.txtDireccion.Text = a.Direccion_persona;
-            this.txtTelefono.Text = a.Telefono_persona+"";
-            this.ddPais.SelectedValue = a.Pais_persona.Id_pais+"";
             this.txtCorreo.Text = a.Correo_persona;
-            this.txtPromocion.Text = a.Promocion_alumno + "";
+
+            try
+            {
+                this.txtFechaDeNacimiento.Text = a.Fecha_nacimiento_persona.ToString("d");
+                this.txtPromocion.Text = a.Promocion_alumno + "";
+                this.txtDireccion.Text = a.Direccion_persona;
+                this.txtTelefono.Text = a.Telefono_persona + "";
+                this.ddPais.SelectedValue = a.Pais_persona.Id_pais + "";
+            }
+            catch
+            {}
 
             if (a.Beneficio_alumno == true)
                 this.rbBeneficio.SelectedIndex = 0;
@@ -112,15 +118,21 @@ namespace CapaDePresentacion
 
             a.Rut_persona = this.txtRut.Text;
             a.Escuela_alumno.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
-            a.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
             a.Nombre_persona = this.txtNombre.Text;
-            a.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
-            a.Direccion_persona = this.txtDireccion.Text;
-            a.Telefono_persona = int.Parse(this.txtTelefono.Text);
-            a.Sexo_persona = sexo;
             a.Correo_persona = this.txtCorreo.Text;
-            a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
-            a.Beneficio_alumno = beneficio;
+
+            try
+            {
+                a.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
+                a.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
+                a.Direccion_persona = this.txtDireccion.Text;
+                a.Telefono_persona = int.Parse(this.txtTelefono.Text);
+                a.Sexo_persona = sexo;
+                a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
+                a.Beneficio_alumno = beneficio;
+            }
+            catch
+            {}
             try
             {
                 cAlumno.actualizarAlumno(a);

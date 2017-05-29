@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteAdmin.Master" AutoEventWireup="true" CodeBehind="ResultadosEvaluaciones.aspx.cs" Inherits="CapaDePresentacion.Admin.ResultadosEvaluaciones" %>
+<%@ Page Title="" Language="C#" MasterPageFile="SiteAdmin.Master" AutoEventWireup="true" CodeBehind="ResultadosEvaluaciones.aspx.cs" Inherits="CapaDePresentacion.Admin.ResultadosEvaluaciones" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 class="text-center">Resultado Evaluaciones</h2>
@@ -151,28 +152,30 @@
                 <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
             </ChartAreas>
         </asp:Chart>
-        <asp:Button runat="server" ID="btnExportar" CssClass="form-control btn-primary btn-block" Text="Exportar" OnClick="btnExportar_Click" />
+        <br />   
     </asp:Panel>
+    <br />
+    <div class="row">
+            <div class="col-sm-offset-8 col-sm-3">
+                <asp:Button runat="server" ID="btnExportar" CssClass="form-control btn-success btn-block" Text="Exportar a Excel" OnClick="btnExportar_Click" />
+            </div>
+        </div>
     <div class="row" runat="server">
         <div class="col-sm-12">
             <asp:GridView ID="gvResultados" runat="server" AutoGenerateColumns="false" class="table table-striped" BackColor="White">
                 <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-                <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
-                <EmptyDataTemplate>
-                    ¡No existen alumnos!
-                </EmptyDataTemplate>
 
                 <Columns>
-                    <asp:BoundField DataField="correcta_respuesta.correcta_respuesta" HeaderText="Correcta" />
+                    <asp:BoundField DataField="estado_respuesta" HeaderText="Estado" />
                     <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
                     <asp:BoundField DataField="nombre_competencia.nombre_competencia" HeaderText="Competencia" />
-                    <asp:BoundField DataField="rut_docente.rut_persona" HeaderText="Rut Docente" />
-                    <asp:BoundField DataField="rut_alumno.rut_persona" HeaderText="Rut Alumno" />
+                    <asp:BoundField DataField="rut_docente.nombre_persona" HeaderText="Docente" />
+                    <asp:BoundField DataField="rut_alumno.nombre_persona" HeaderText="Alumno" />
                     <asp:BoundField DataField="Id_evaluacion_hpa.Evaluacion_hpa.Id_evaluacion" HeaderText="Evaluacion" />
                 </Columns>
 
             </asp:GridView>
-        </div>
+        </div>        
     </div>
 
 </asp:Content>

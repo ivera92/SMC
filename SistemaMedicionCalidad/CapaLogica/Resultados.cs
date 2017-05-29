@@ -14,6 +14,9 @@ namespace Project
         private Alumno rut_alumno;
         private HistoricoPruebaAlumno id_evaluacion_hpa;
 
+        private string estado_respuesta;
+        private string nomnbre_evaluacion;
+
         public Resultados()
         {
 
@@ -26,6 +29,17 @@ namespace Project
             this.rut_docente = rut_docente;
             this.rut_alumno = rut_alumno;
             this.id_evaluacion_hpa = id_evaluacion_hpa;
+        }
+
+        //Para exportar en los resultados
+        public Resultados(string estado_respuesta, int cantidad, Competencia nombre_competencia, Docente rut_docente, Alumno rut_alumno, string nombre_evaluacion)
+        {
+            this.estado_respuesta = estado_respuesta;
+            this.cantidad = cantidad;
+            this.nombre_competencia = nombre_competencia;
+            this.rut_docente = rut_docente;
+            this.rut_alumno = rut_alumno;
+            this.nomnbre_evaluacion = nombre_evaluacion;
         }
 
         public Respuesta Correcta_respuesta
@@ -103,6 +117,32 @@ namespace Project
             set
             {
                 id_evaluacion_hpa = value;
+            }
+        }
+
+        public string Estado_respuesta
+        {
+            get
+            {
+                return estado_respuesta;
+            }
+
+            set
+            {
+                estado_respuesta = value;
+            }
+        }
+
+        public string Nomnbre_evaluacion
+        {
+            get
+            {
+                return nomnbre_evaluacion;
+            }
+
+            set
+            {
+                nomnbre_evaluacion = value;
             }
         }
     }

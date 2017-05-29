@@ -110,7 +110,6 @@ namespace Project.CapaDeNegocios
                 a.Escuela_alumno = cEscuela.buscarUnaEscuela(result.GetInt32(2));
                 a.Nombre_persona = result.GetString(0);
                 a.Rut_persona = result.GetString(1);
-                a.Promocion_alumno = result.GetInt32(3);
                 lAlumnos.Add(a);
             }
             result.Close();

@@ -140,6 +140,12 @@
                         <a href="InicioDocente.aspx" style="color: #333; float: left;">Inicio</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                     </li>
                     <li class="nivel1">
+                        <a href="#" style="color: #333; float: left;">Alumno</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <ul>
+                            <li><a href="CrearAlumnoD.aspx" style="width: 243px;">Crear Alumno</a></li>
+                        </ul>
+                    </li>
+                    <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Evaluacion</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
                             <li><a href="CrearEvaluacion.aspx" style="width: 243px;">Crear evaluacion</a></li>

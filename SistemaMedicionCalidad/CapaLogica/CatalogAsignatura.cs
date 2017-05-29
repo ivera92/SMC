@@ -77,6 +77,72 @@ namespace Project
             return lAsignaturas;
         }
 
+        //Lista todas las asignaturas existentes en la base de datos de determinado docente
+        public List<Asignatura> listarAsignaturasDocente(string rut)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarAsignaturasDocente";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_docente_asignatura", DbType.String, rut);
+            DbDataReader result = bd.Query();
+            List<Asignatura> lAsignaturas = new List<Asignatura>();
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            CatalogDocente cDocente = new CatalogDocente();
+
+            while (result.Read())
+            {
+                Asignatura a = new Asignatura();
+
+                a.Cod_asignatura = result.GetString(0);
+                a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
+                a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
+                a.Nombre_asignatura = result.GetString(3);
+                a.Ano_asignatura = result.GetInt32(4);
+                a.Duracion_asignatura = result.GetBoolean(5);
+                lAsignaturas.Add(a);
+            }
+            result.Close();
+            bd.Close();
+
+            return lAsignaturas;
+        }
+
+        //Lista todas las asignaturas existentes en la base de datos de determinado alumno
+        public List<Asignatura> listarAsignaturasAlumno(string rut)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarAsignaturasAlumno";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_alumno_aa", DbType.String, rut);
+            DbDataReader result = bd.Query();
+            List<Asignatura> lAsignaturas = new List<Asignatura>();
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            CatalogDocente cDocente = new CatalogDocente();
+
+            while (result.Read())
+            {
+                Asignatura a = new Asignatura();
+
+                a.Cod_asignatura = result.GetString(0);
+                a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
+                a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
+                a.Nombre_asignatura = result.GetString(3);
+                a.Ano_asignatura = result.GetInt32(4);
+                a.Duracion_asignatura = result.GetBoolean(5);
+                lAsignaturas.Add(a);
+            }
+            result.Close();
+            bd.Close();
+
+            return lAsignaturas;
+        }
+
 
         //Lista todas las asignaturas en las que el alumno a sido evaluado
         public List<Asignatura> listarAsignaturasEvaluadas(string rut_alumno)

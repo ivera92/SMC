@@ -5,18 +5,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div runat="server" id="divEvaluar">
-        <h1 class="text-center">Cargar resultados</h1>
+        <h1 class="text-center">Responder Evaluacion</h1>
         <br />
 
         <div class="row">
-            <div class="col-sm-offset-1 col-sm-3">
-                <label>Rut Alumno</label>
-                <div>
-                    <asp:TextBox ID="txtRut" runat="server" class="form-control"></asp:TextBox>
-                </div>
-            </div>
-            <asp:CustomValidator ID="cv_rut" runat="server" ControlToValidate="txtRut" Display="Dynamic" ErrorMessage="RUT no valido" ClientValidationFunction="validar_rut" />
-            <div class="col-sm-4">
+            <div class="col-sm-offset-2 col-sm-4">
                 <label>Asignatura</label>
                 <div>
                     <asp:DropDownList ID="ddAsignatura" class="form-control" runat="server" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
@@ -25,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <label>Evaluacion</label>
                 <div>
                     <asp:DropDownList ID="ddEvaluacion" CssClass="form-control" AppendDataBoundItems="true" runat="server">

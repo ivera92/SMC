@@ -19,8 +19,7 @@ namespace CapaDePresentacion.Alum
             Alumno a = cAlumno.buscarAlumnoPorRut(rut);
             CatalogEscuela cEscuela = new CatalogEscuela();
             Escuela es = cEscuela.buscarUnaEscuela(a.Escuela_alumno.Id_escuela);
-            CatalogPais cPais = new CatalogPais();
-            Pais p = cPais.buscarUnPais(a.Pais_persona.Id_pais);
+            CatalogPais cPais = new CatalogPais();            
 
             nombreAlumno.InnerText = a.Nombre_persona;
             correo.InnerText = a.Correo_persona;
@@ -28,6 +27,7 @@ namespace CapaDePresentacion.Alum
 
             try
             {
+                Pais p = cPais.buscarUnPais(a.Pais_persona.Id_pais);
                 nacionalidad.InnerText = p.Nombre_pais;
                 fechaNacimiento.InnerText = a.Fecha_nacimiento_persona.Date.ToString("dd/M/yyyy");
                 direccion.InnerText = a.Direccion_persona;

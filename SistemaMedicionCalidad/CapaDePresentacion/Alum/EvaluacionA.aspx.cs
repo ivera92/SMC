@@ -23,8 +23,9 @@ namespace CapaDePresentacion.Alum
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string rut = Session["rutAlumno"].ToString();
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturas();
+            List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturasAlumno(rut);
             btnSiguiente.Visible = false;
             btnGuardar.Visible = false;
             divPreguntas.Visible = false;
@@ -59,6 +60,7 @@ namespace CapaDePresentacion.Alum
             int ii = 0;
             int jj = 0;
             int kk = 0;
+            string rut = Session["rutAlumno"].ToString();
             foreach (RadioButtonList item in lRbl)
             {
                 for (int i = 0; i < item.Items.Count; i++)
@@ -77,7 +79,7 @@ namespace CapaDePresentacion.Alum
                         hpa.Evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
                         hpa.Pregunta_hpa.Id_pregunta = lIdsSM[ii];
                         hpa.Respuesta_hpa.Id_respuesta = lIdsSM[ii + 1];
-                        hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        hpa.Alumno_hpa.Rut_persona = rut;
                         cHPA.insertarHPA(hpa);
                     }
                     ii = ii + 2;
@@ -102,7 +104,7 @@ namespace CapaDePresentacion.Alum
                         hpa.Evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
                         hpa.Pregunta_hpa.Id_pregunta = lIdsCV[jj];
                         hpa.Respuesta_hpa.Id_respuesta = lIdsCV[jj + 1];
-                        hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        hpa.Alumno_hpa.Rut_persona = rut;
                         cHPA.insertarHPA(hpa);
                     }
                     jj = jj + 2;
@@ -126,7 +128,7 @@ namespace CapaDePresentacion.Alum
                         hpa.Evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
                         hpa.Pregunta_hpa.Id_pregunta = lIdsVF[kk];
                         hpa.Respuesta_hpa.Id_respuesta = lIdsVF[kk + 1];
-                        hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        hpa.Alumno_hpa.Rut_persona = rut;
                         cHPA.insertarHPA(hpa);
                     }
                     kk = kk + 2;

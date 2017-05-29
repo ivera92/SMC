@@ -191,12 +191,13 @@ namespace Project
             CatalogDocente cDocente = new CatalogDocente();
             CatalogAlumno cAlumno = new CatalogAlumno();
             HistoricoPruebaAlumno h = new HistoricoPruebaAlumno();
-            Competencia c = new Competencia();
+            
             
             List<Resultados> lResultados = new List<Resultados>();
             
             while (result.Read())
             {
+                Competencia c = new Competencia();
                 Pais p = new Pais();
                 Evaluacion e = new Evaluacion();
                 Respuesta res = new Respuesta();
@@ -206,7 +207,15 @@ namespace Project
                 r.Id_evaluacion_hpa = h;
                 r.Id_evaluacion_hpa.Evaluacion_hpa = e;
 
-                r.Correcta_respuesta.Correcta_respuesta=result.GetBoolean(0);
+                if (result.GetBoolean(0)==false)
+                {
+                    r.Estado_respuesta = "Incorrecta";
+                }
+                else
+                {
+                    r.Estado_respuesta = "Correcta";
+                }
+
                 r.Cantidad =result.GetInt32(1);
                 r.Nombre_competencia.Nombre_competencia = result.GetString(2);
                 r.Rut_docente = cDocente.buscarUnDocente(result.GetString(3));

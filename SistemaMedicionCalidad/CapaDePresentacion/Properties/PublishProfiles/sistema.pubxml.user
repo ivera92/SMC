@@ -10,22 +10,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="Account/ChangePassword.aspx">
-      <publishTime>05/10/2016 21:54:03</publishTime>
+      <publishTime>10/05/2016 21:54:03</publishTime>
     </File>
     <File Include="Account/ChangePasswordSuccess.aspx">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Account/Login.aspx">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Account/Register.aspx">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Account/Web.config">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Admin/AdministrarAlumnos.aspx">
-      <publishTime>05/17/2017 00:12:27</publishTime>
+      <publishTime>05/28/2017 18:19:39</publishTime>
     </File>
     <File Include="Admin/AdministrarAsignaturas.aspx">
       <publishTime>05/17/2017 00:12:17</publishTime>
@@ -49,13 +49,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/17/2017 00:11:32</publishTime>
     </File>
     <File Include="Admin/AsociarAC.aspx">
-      <publishTime>05/17/2017 00:08:16</publishTime>
+      <publishTime>05/28/2017 01:16:31</publishTime>
     </File>
     <File Include="Admin/CambiarClave.aspx">
       <publishTime>05/10/2017 01:00:10</publishTime>
     </File>
     <File Include="Admin/CrearAlumno.aspx">
-      <publishTime>05/22/2017 22:24:32</publishTime>
+      <publishTime>05/28/2017 18:18:20</publishTime>
     </File>
     <File Include="Admin/CrearAsignatura.aspx">
       <publishTime>05/17/2017 00:08:38</publishTime>
@@ -112,19 +112,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/10/2017 01:01:37</publishTime>
     </File>
     <File Include="Admin/ResultadosEvaluaciones.aspx">
-      <publishTime>05/17/2017 00:09:23</publishTime>
+      <publishTime>05/29/2017 00:51:08</publishTime>
     </File>
     <File Include="Admin/Site.Master">
       <publishTime>05/10/2017 01:01:57</publishTime>
     </File>
     <File Include="Admin/SiteAdmin.Master">
-      <publishTime>05/17/2017 00:05:51</publishTime>
+      <publishTime>05/28/2017 01:06:23</publishTime>
     </File>
     <File Include="Alum/CambiarClave.aspx">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Alum/EvaluacionA.aspx">
-      <publishTime>05/17/2017 00:15:30</publishTime>
+      <publishTime>05/28/2017 17:10:33</publishTime>
     </File>
     <File Include="Alum/Logout.aspx">
       <publishTime>05/10/2017 01:02:24</publishTime>
@@ -136,7 +136,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/10/2017 01:02:33</publishTime>
     </File>
     <File Include="Alum/SiteAlumno.Master">
-      <publishTime>05/17/2017 00:19:40</publishTime>
+      <publishTime>05/28/2017 17:13:45</publishTime>
     </File>
     <File Include="bin/CapaDeDatos.dll">
       <publishTime>05/16/2017 19:58:47</publishTime>
@@ -145,22 +145,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/16/2017 19:58:47</publishTime>
     </File>
     <File Include="bin/CapaDePresentacion.dll">
-      <publishTime>05/26/2017 00:28:15</publishTime>
+      <publishTime>05/29/2017 00:47:46</publishTime>
     </File>
     <File Include="bin/CapaDePresentacion.pdb">
-      <publishTime>05/26/2017 00:28:15</publishTime>
+      <publishTime>05/29/2017 00:47:46</publishTime>
     </File>
     <File Include="bin/CapaLogica.dll">
-      <publishTime>05/25/2017 03:01:53</publishTime>
+      <publishTime>05/28/2017 20:12:42</publishTime>
     </File>
     <File Include="bin/CapaLogica.pdb">
-      <publishTime>05/25/2017 03:01:53</publishTime>
+      <publishTime>05/28/2017 20:12:42</publishTime>
     </File>
     <File Include="bin/ClosedXML.dll">
-      <publishTime>03/04/2017 11:10:06</publishTime>
+      <publishTime>04/03/2017 11:10:06</publishTime>
+    </File>
+    <File Include="bin/ClosedXML.pdb">
+      <publishTime>04/03/2017 11:10:06</publishTime>
     </File>
     <File Include="bin/DocumentFormat.OpenXml.dll">
-      <publishTime>04/08/2013 13:21:24</publishTime>
+      <publishTime>08/04/2013 13:21:24</publishTime>
+    </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>07/14/2016 15:57:38</publishTime>
     </File>
     <File Include="bin/ExcelLibrary.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -169,13 +175,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/10/2016 06:51:26</publishTime>
     </File>
     <File Include="bin/itextsharp.xmlworker.dll">
-      <publishTime>07/10/2016 09:33:43</publishTime>
+      <publishTime>10/07/2016 09:33:43</publishTime>
     </File>
     <File Include="CheqLogin.aspx">
       <publishTime>05/22/2017 00:34:09</publishTime>
     </File>
+    <File Include="Doc/AdministrarPreguntasD.aspx">
+      <publishTime>05/28/2017 00:27:38</publishTime>
+    </File>
+    <File Include="Doc/CrearAlumnoD.aspx">
+      <publishTime>05/28/2017 18:48:47</publishTime>
+    </File>
     <File Include="Doc/CrearEvaluacion.aspx">
       <publishTime>05/24/2017 22:55:05</publishTime>
+    </File>
+    <File Include="Doc/CrearPreguntaD.aspx">
+      <publishTime>05/28/2017 00:26:52</publishTime>
     </File>
     <File Include="Doc/EvaluacionAlumno.aspx">
       <publishTime>05/15/2017 01:07:28</publishTime>
@@ -193,52 +208,52 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/10/2017 01:03:00</publishTime>
     </File>
     <File Include="Doc/SiteDocente.Master">
-      <publishTime>05/17/2017 00:20:31</publishTime>
+      <publishTime>05/28/2017 18:47:55</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>07/12/2016 16:48:26</publishTime>
+      <publishTime>12/07/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>07/12/2016 16:48:26</publishTime>
+      <publishTime>12/07/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>07/12/2016 16:48:26</publishTime>
+      <publishTime>12/07/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>07/12/2016 16:48:26</publishTime>
+      <publishTime>12/07/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>07/12/2016 16:48:25</publishTime>
+      <publishTime>12/07/2016 16:48:25</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="imagenes/alumno.jpg">
-      <publishTime>03/11/2016 15:35:23</publishTime>
+      <publishTime>11/03/2016 15:35:23</publishTime>
     </File>
     <File Include="imagenes/escuela.jpg">
-      <publishTime>03/11/2016 16:25:39</publishTime>
+      <publishTime>11/03/2016 16:25:39</publishTime>
     </File>
     <File Include="imagenes/imagen.png">
-      <publishTime>05/11/2016 15:25:57</publishTime>
+      <publishTime>11/05/2016 15:25:57</publishTime>
     </File>
     <File Include="imagenes/imagen2.jpg">
-      <publishTime>09/12/2016 21:49:49</publishTime>
+      <publishTime>12/09/2016 21:49:49</publishTime>
     </File>
     <File Include="imagenes/login.jpg">
-      <publishTime>09/11/2016 14:09:22</publishTime>
+      <publishTime>11/09/2016 14:09:22</publishTime>
     </File>
     <File Include="imagenes/login.png">
-      <publishTime>09/11/2016 14:06:23</publishTime>
+      <publishTime>11/09/2016 14:06:23</publishTime>
     </File>
     <File Include="imagenes/logo.jpg">
-      <publishTime>09/12/2016 21:49:49</publishTime>
+      <publishTime>12/09/2016 21:49:49</publishTime>
     </File>
     <File Include="imagenes/profesion.jpg">
-      <publishTime>03/11/2016 16:43:09</publishTime>
+      <publishTime>11/03/2016 16:43:09</publishTime>
     </File>
     <File Include="imagenes/profesor.jpg">
-      <publishTime>03/11/2016 15:40:31</publishTime>
+      <publishTime>11/03/2016 15:40:31</publishTime>
     </File>
     <File Include="ImagenesPreguntas/ejercicio5Mate1.PNG.PNG">
       <publishTime>05/25/2017 15:33:51</publishTime>
@@ -250,13 +265,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/21/2017 22:35:46</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/28/2017 23:07:25</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>07/12/2016 16:48:25</publishTime>
+      <publishTime>12/07/2016 16:48:25</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>07/12/2016 16:48:25</publishTime>
+      <publishTime>12/07/2016 16:48:25</publishTime>
     </File>
     <File Include="Scripts/imagen.js">
       <publishTime>04/08/2017 20:24:11</publishTime>
@@ -265,13 +280,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/23/2017 13:54:31</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1.js">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1.min.js">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Scripts/jquery-1.9.1.js">
-      <publishTime>07/12/2016 16:47:52</publishTime>
+      <publishTime>12/07/2016 16:47:52</publishTime>
     </File>
     <File Include="Scripts/jquery-1.9.1.min.js">
       <publishTime>02/23/2017 15:43:13</publishTime>
@@ -298,13 +313,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/25/2016 18:14:12</publishTime>
     </File>
     <File Include="Styles/bootstrap.min.css">
-      <publishTime>08/11/2016 01:26:22</publishTime>
+      <publishTime>11/08/2016 01:26:22</publishTime>
     </File>
     <File Include="Styles/Site.css">
-      <publishTime>05/10/2016 21:54:04</publishTime>
+      <publishTime>10/05/2016 21:54:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/23/2017 15:22:39</publishTime>
+      <publishTime>05/29/2017 00:52:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

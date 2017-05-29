@@ -9,6 +9,8 @@ using Project.CapaDeNegocios;
 using System.IO;
 using System.Drawing;
 using ClosedXML.Excel;
+using System.Web;
+using System.Text;
 
 namespace CapaDePresentacion.Admin
 {
@@ -16,6 +18,7 @@ namespace CapaDePresentacion.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            btnExportar.Visible = false;
             panelGrafico.Visible = false;
             if (!Page.IsPostBack)
             {
@@ -177,8 +180,6 @@ namespace CapaDePresentacion.Admin
             this.ddAsignatura.DataSource = lAsignaturas;
             this.ddAsignatura.DataBind();
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-
-            panelGrafico.Visible = true;
         }
 
         public void graficoColumna()
@@ -241,12 +242,12 @@ namespace CapaDePresentacion.Admin
         {
             this.graficoColumna();
             panelGrafico.Visible = true;
+            btnExportar.Visible = true;
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
             ExportExcel();
-            //exportarExcel();
         }
         public void mostrar()
         {
@@ -261,80 +262,37 @@ namespace CapaDePresentacion.Admin
             /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
                server control at run time. */
         }
-        public void exportarExcel()
-        {
-            Response.Clear();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment;filename=Resultados.xls");
-            Response.Charset = "";
-            Response.ContentType = "application/vnd.ms-excel";
-            using (StringWriter sw = new StringWriter())
-            {
-                HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-                //To Export all pages
-                gvResultados.AllowPaging = false;
-                this.mostrar();
-
-                gvResultados.HeaderRow.BackColor = Color.White;
-                foreach (TableCell cell in gvResultados.HeaderRow.Cells)
-                {
-                    cell.BackColor = gvResultados.HeaderStyle.BackColor;
-                }
-                foreach (GridViewRow row in gvResultados.Rows)
-                {
-                    row.BackColor = Color.White;
-                    foreach (TableCell cell in row.Cells)
-                    {
-                        if (row.RowIndex % 2 == 0)
-                        {
-                            cell.BackColor = gvResultados.AlternatingRowStyle.BackColor;
-                        }
-                        else
-                        {
-                            cell.BackColor = gvResultados.RowStyle.BackColor;
-                        }
-                        cell.CssClass = "textmode";
-                    }
-                }
-
-                gvResultados.RenderControl(hw);
-
-                //style to format numbers to string
-                string style = @"<style> .textmode { } </style>";
-                Response.Write(style);
-                Response.Output.Write(sw.ToString());
-                Response.Flush();
-                Response.End();
-            }
-        }
 
         //Exporta a Excel datos mediante ClosedXml
         protected void ExportExcel()
         {
             this.mostrar();
+            Encoding ANSI = Encoding.GetEncoding(1252);
+
+            
             DataTable dt = new DataTable("GridView_Data");
             foreach (TableCell cell in gvResultados.HeaderRow.Cells)
             {
-                dt.Columns.Add(cell.Text);
+                dt.Columns.Add(HttpUtility.HtmlDecode(cell.Text));
             }
             foreach (GridViewRow row in gvResultados.Rows)
             {
                 dt.Rows.Add();
                 for (int i = 0; i < row.Cells.Count; i++)
                 {
-                    dt.Rows[dt.Rows.Count - 1][i] = row.Cells[i].Text;
+                    dt.Rows[dt.Rows.Count - 1][i] = HttpUtility.HtmlDecode(row.Cells[i].Text);
                 }
             }
+
             using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dt);
-
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("content-disposition", "attachment;filename=\"Demo.xlsx\"");
+                Response.AddHeader("content-disposition", "attachment;filename=GridView.xlsx");
+
 
                 using (MemoryStream MyMemoryStream = new MemoryStream())
                 {

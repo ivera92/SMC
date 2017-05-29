@@ -16,8 +16,9 @@ namespace CapaDePresentacion.Doc
         private static string ids_preguntas;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string rut = Session["rutDocente"].ToString();
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
+            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasDocente(rut);
             divGV.Visible = false;
             if (!Page.IsPostBack)
             {
