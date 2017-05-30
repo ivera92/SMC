@@ -4,7 +4,7 @@
     {
         private int id_competencia;
         private string nombre_competencia;
-        private int tipo_competencia;
+        private Tipo_Competencia id_tipo_competencia;
         private string descripcion_competencia;
 
         //Constructor predeterminado
@@ -18,10 +18,10 @@
             this.nombre_competencia = nombre_competencia;
         }
         //Constructor usado para listar las competencias en el administrador de competencias
-        public Competencia(string nombre_competencia, int tipo_competencia, int id_competencia)
+        public Competencia(string nombre_competencia, Tipo_Competencia id_tipo_competencia, int id_competencia)
         {
             this.nombre_competencia = nombre_competencia;
-            this.tipo_competencia = tipo_competencia;
+            this.id_tipo_competencia = id_tipo_competencia;
             this.id_competencia = id_competencia;
         }
         //Constructor usado para listar las competencias en dropdownlist
@@ -32,18 +32,18 @@
             this.id_competencia = id_competencia;
         }
         //Constructor usado para crear competencia
-        public Competencia(string nombre_competencia, int tipo_competencia, string descripcion_competencia)
+        public Competencia(string nombre_competencia, Tipo_Competencia id_tipo_competencia, string descripcion_competencia)
         {
             this.nombre_competencia = nombre_competencia;
-            this.tipo_competencia = tipo_competencia;
+            this.id_tipo_competencia = id_tipo_competencia;
             this.descripcion_competencia = descripcion_competencia;
         }
         //Constructor usado para actualizar competencia
-        public Competencia(int id_competencia, string nombre_competencia, int tipo_competencia, string descripcion_competencia)
+        public Competencia(int id_competencia, string nombre_competencia, Tipo_Competencia id_tipo_competencia, string descripcion_competencia)
         {
             this.id_competencia = id_competencia;
             this.nombre_competencia = nombre_competencia;
-            this.tipo_competencia = tipo_competencia;
+            this.id_tipo_competencia = id_tipo_competencia;
             this.descripcion_competencia = descripcion_competencia;
         }
 
@@ -59,10 +59,10 @@
             set { nombre_competencia = value; }
         }
 
-        public int Tipo_competencia
+        public Tipo_Competencia Id_tipo_competencia
         {
-            get { return tipo_competencia; }
-            set { tipo_competencia = value; }
+            get { return id_tipo_competencia; }
+            set { id_tipo_competencia = value; }
         }
 
         public string Descripcion_competencia

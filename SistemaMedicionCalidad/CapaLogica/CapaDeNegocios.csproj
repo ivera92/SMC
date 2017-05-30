@@ -58,6 +58,7 @@
     <Compile Include="CatalogPregunta.cs" />
     <Compile Include="CatalogProfesion.cs" />
     <Compile Include="CatalogRespuesta.cs" />
+    <Compile Include="CatalogTipoCompetencia.cs" />
     <Compile Include="CatalogTipoPregunta.cs" />
     <Compile Include="CatalogTipoUsuario.cs" />
     <Compile Include="CatalogUsuario.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respuesta.cs" />
     <Compile Include="Resultados.cs" />
+    <Compile Include="Tipo_Competencia.cs" />
     <Compile Include="Tipo_Pregunta.cs" />
     <Compile Include="Tipo_Usuario.cs" />
     <Compile Include="Usuario.cs" />

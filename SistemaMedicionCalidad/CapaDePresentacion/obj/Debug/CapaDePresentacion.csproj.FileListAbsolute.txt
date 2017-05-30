@@ -50,5 +50,3 @@ C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaDePresentacio
 C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\ClosedXML.pdb
 C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\ClosedXML.xml
 C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\DocumentFormat.OpenXml.dll
-C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\EPPlus.dll
-C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\EPPlus.xml

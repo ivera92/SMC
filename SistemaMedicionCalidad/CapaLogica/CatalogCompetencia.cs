@@ -17,7 +17,7 @@ namespace Project
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@nombre_competencia", DbType.String, c.Nombre_competencia);
-            bd.createParameter("@tipo_competencia", DbType.Boolean, c.Tipo_competencia);
+            bd.createParameter("@id_tipo_competencia", DbType.Int32, c.Id_tipo_competencia.Id_tipo_competencia);
             bd.createParameter("@descripcion_competencia", DbType.String, c.Descripcion_competencia);
             bd.execute();
             bd.Close();
@@ -51,7 +51,7 @@ namespace Project
             
             bd.createParameter("@id_competencia", DbType.Int32, c.Id_competencia);
             bd.createParameter("@nombre_competencia", DbType.String, c.Nombre_competencia);
-            bd.createParameter("@tipo_competencia", DbType.Boolean, c.Tipo_competencia);
+            bd.createParameter("@id_tipo_competencia", DbType.Int32, c.Id_tipo_competencia.Id_tipo_competencia);
             bd.createParameter("@descripcion_competencia", DbType.String, c.Descripcion_competencia);
             bd.execute();
             bd.Close();
@@ -68,9 +68,11 @@ namespace Project
             bd.CreateCommandSP(sql);
             List<Competencia> lcompetencia = new List<Competencia>();
             DbDataReader result = bd.Query();
+            CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             while (result.Read())
             {
-                Competencia c = new Competencia(result.GetString(0), result.GetString(1), result.GetInt32(2));
+                Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
+                Competencia c = new Competencia(result.GetInt32(2), result.GetString(0), tc,result.GetString(1));
                 lcompetencia.Add(c);
             }
             result.Close();
@@ -114,8 +116,9 @@ namespace Project
             bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
             DbDataReader result = bd.Query();
             result.Read();
-
-            Competencia c = new Competencia(result.GetInt32(0), result.GetString(1), result.GetInt32(2), result.GetString(3));
+            CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
+            Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(1));
+            Competencia c = new Competencia(result.GetInt32(0), result.GetString(2), tc, result.GetString(3));
 
             result.Close();
             bd.Close();

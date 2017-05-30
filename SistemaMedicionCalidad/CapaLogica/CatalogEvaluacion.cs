@@ -317,5 +317,18 @@ namespace Project
 
             return result;
         }
+
+        //Muestra las preguntas asociadas a una asignatura
+        public DbDataReader mostrarPyR(string cod_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarPreguntasEvaluacionAsignatura";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura);
+            DbDataReader result = bd.Query();
+            return result;
+        }
     }
 }

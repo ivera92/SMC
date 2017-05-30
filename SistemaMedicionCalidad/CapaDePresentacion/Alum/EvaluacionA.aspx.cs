@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
-using Project.CapaDeDatos;
+using System.IO;
 
 namespace CapaDePresentacion.Alum
 {
@@ -140,13 +139,9 @@ namespace CapaDePresentacion.Alum
         //se crean listas estaticas para que se pueda acceder a los atributos checked posteriormente 
         public void crearControles()
         {
-            DataBase bd = new DataBase();
-            bd.connect();
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            DbDataReader result = cEvaluacion.mostrarPyR(ddAsignatura.SelectedValue);
 
-            string sql = "mostrarPreguntasEvaluacionAsignatura";
-            bd.CreateCommandSP(sql);
-            bd.createParameter("@id_asignatura", DbType.Int32, int.Parse(this.ddAsignatura.SelectedValue));
-            DbDataReader result = bd.Query();
             string s = "";
             int numPregunta = 1;
             int i = 0;
@@ -206,6 +201,16 @@ namespace CapaDePresentacion.Alum
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
                     this.Panel1.Controls.Add(l2);
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
+
+                    if (result.GetString(5) != "")
+                    {
+                        Image img = new Image();
+                        //string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ImagenesPreguntas\" + result.GetString(5));
+                        //ruta = Path.GetFullPath(ruta);
+                        img.ImageUrl = "../ImagenesPreguntas/" + result.GetString(5);
+                        Panel1.Controls.Add(img);
+                    }
+
                     numPregunta = numPregunta + 1;
                     s = pregunta.Text;
                 }
@@ -274,7 +279,7 @@ namespace CapaDePresentacion.Alum
             List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(ddAsignatura.SelectedValue);
             this.ddEvaluacion.Items.Clear();
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
-            this.ddEvaluacion.DataValueField = "Cod_evaluacion";
+            this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;
             this.DataBind();//enlaza los datos a un dropdownlist    
         }

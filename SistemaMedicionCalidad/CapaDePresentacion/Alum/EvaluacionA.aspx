@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/Alum/SiteAlumno.Master" AutoEventWireup="true" CodeBehind="EvaluacionA.aspx.cs" Inherits="CapaDePresentacion.Alum.EvaluacionA" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="../Scripts/rut.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -30,7 +29,8 @@
         <br />
 
         <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
-            <asp:Panel ID="Panel1" runat="server"></asp:Panel>
+            <asp:Panel ID="Panel1" runat="server">
+            </asp:Panel>
             <br />
         </div>
         <div class="row">

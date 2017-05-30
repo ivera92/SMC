@@ -12,3 +12,10 @@ C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\bin\Release\Ca
 C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\obj\Release\CapaDeNegocios.csprojResolveAssemblyReference.cache
 C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\obj\Release\CapaLogica.dll
 C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaLogica\obj\Release\CapaLogica.pdb
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaLogica\bin\Release\CapaLogica.dll
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaLogica\bin\Release\CapaLogica.pdb
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaLogica\bin\Release\CapaDeDatos.dll
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaLogica\bin\Release\CapaDeDatos.pdb
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaLogica\obj\Release\CapaDeNegocios.csprojResolveAssemblyReference.cache
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaLogica\obj\Release\CapaLogica.dll
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaLogica\obj\Release\CapaLogica.pdb

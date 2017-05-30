@@ -12,8 +12,15 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
+            List<Tipo_Competencia> lTiposCompetencia = cTipoCompetencia.listarTipoCompetencias();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.ddTipoCompetencia.DataTextField = "Nombre_tipo_competencia";
+                this.ddTipoCompetencia.DataValueField = "Id_tipo_competencia";
+                this.ddTipoCompetencia.DataSource = lTiposCompetencia;
+
+                this.DataBind();//enlaza los datos a un dropdownlist  
                 this.txtCompetencia.Visible = false;
                 this.divEditar.Visible = false;
                 this.mostrar();
@@ -35,7 +42,7 @@ namespace CapaDePresentacion
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             try
             {
-                string id_competencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.RowIndex].Cells[3].Text);
+                string id_competencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.RowIndex].Cells[1].Text);
                 cCompetencia.eliminarCompetencia(int.Parse(id_competencia));
                 Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
@@ -57,7 +64,7 @@ namespace CapaDePresentacion
             this.txtNombreCompetencia.Text = c.Nombre_competencia;
             this.txtADescripcion.InnerText = c.Descripcion_competencia;
 
-            rbTipoCompetencia.SelectedValue = c.Tipo_competencia + "";
+            ddTipoCompetencia.SelectedValue = c.Id_tipo_competencia.Id_tipo_competencia + "";
 
             this.divEditar.Visible = true;
         }
@@ -65,8 +72,9 @@ namespace CapaDePresentacion
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
-
-            Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, int.Parse(rbTipoCompetencia.SelectedValue), this.txtADescripcion.InnerText);
+            CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
+            Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(int.Parse(ddTipoCompetencia.SelectedValue));
+            Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, tc, this.txtADescripcion.InnerText);
             try
             {
                 cCompetencia.actualizarCompetencia(c);

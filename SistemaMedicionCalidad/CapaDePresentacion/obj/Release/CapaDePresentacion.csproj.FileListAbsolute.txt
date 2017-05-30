@@ -24,3 +24,6 @@ C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\bin\it
 C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Release\CapaDePresentacion.csprojResolveAssemblyReference.cache
 C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Release\CapaDePresentacion.dll
 C:\Users\Ivan\Desktop\Tesis\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Release\CapaDePresentacion.pdb
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Release\CapaDePresentacion.csprojResolveAssemblyReference.cache
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Release\CapaDePresentacion.dll
+C:\Users\Ivan\Desktop\Nueva carpeta\SMC\SistemaMedicionCalidad\CapaDePresentacion\obj\Release\CapaDePresentacion.pdb

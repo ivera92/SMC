@@ -122,11 +122,12 @@ namespace Project
             //cadena conexion
             DataBase bd = new DataBase();
             bd.connect();
-
+            string cActual = encriptar(clave);
+            string cNueva = encriptar(claveNueva);
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut_usuario", DbType.String, rut);
-            bd.createParameter("@contrasena_actual", DbType.String, clave);
-            bd.createParameter("@contrasena_nueva", DbType.String, claveNueva);
+            bd.createParameter("@contrasena_actual", DbType.String, cActual);
+            bd.createParameter("@contrasena_nueva", DbType.String, cNueva);
             DbDataReader result = bd.Query();//disponible resultado
             
             result.Read();
