@@ -23,6 +23,7 @@ namespace Project
             bd.createParameter("@cod_asignatura_evaluacion", DbType.String, e.Asignatura_evaluacion.Cod_asignatura);
             bd.createParameter("@nombre_evaluacion", DbType.String, e.Nombre_evaluacion);
             bd.createParameter("@fecha_evaluacion", DbType.Date, e.Fecha_evaluacion);
+            bd.createParameter("@preguntas_evaluacion", DbType.String, e.Preguntas_evaluacion);
             bd.execute();
             bd.Close();
         }
@@ -169,6 +170,24 @@ namespace Project
             return resultados;
         }
 
+        //Lista los IDs de las preguntas asociadas a una evaluacion
+        public string listarPreguntasEvaluacion(int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "mostrarIDsPE";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            DbDataReader result = bd.Query();
+            result.Read();
+            string ids_preguntas = result.GetString(0);
+
+            result.Close();
+            bd.Close();
+
+            return ids_preguntas;
+        }
+
         //obtiene  resultados de  una evaluacion 
         public List<Resultados> obtenerResultadosEvaluacionGeneralGV(int id_pais, int promocionA, string rut, int sexo, int disponibilidadD, int id_evaluacion, int id_competencia)
         {
@@ -205,7 +224,7 @@ namespace Project
                 r.Correcta_respuesta = res;
                 r.Nombre_competencia = c;
                 r.Id_evaluacion_hpa = h;
-                r.Id_evaluacion_hpa.Evaluacion_hpa = e;
+                r.Id_evaluacion_hpa.Id_evaluacion_hpa = e;
 
                 if (result.GetBoolean(0)==false)
                 {
@@ -220,7 +239,7 @@ namespace Project
                 r.Nombre_competencia.Nombre_competencia = result.GetString(2);
                 r.Rut_docente = cDocente.buscarUnDocente(result.GetString(3));
                 r.Rut_alumno = cAlumno.buscarAlumnoPorRut(result.GetString(4));
-                r.Id_evaluacion_hpa.Evaluacion_hpa.Id_evaluacion = result.GetInt32(5);
+                r.Id_evaluacion_hpa.Id_evaluacion_hpa.Id_evaluacion = result.GetInt32(5);
                 lResultados.Add(r);
             }
             result.Close();
@@ -259,20 +278,8 @@ namespace Project
 
             return lPreguntas;
         }
-        public DbDataReader mostrarPyRA(string cod_asignatura)
-        {
-            DataBase bd = new DataBase();
-            bd.connect();
-
-            string sql = "mostrarPYREvaluaciones";
-            bd.CreateCommandSP(sql);
-            bd.createParameter("@cod_asignatura_evaluacion", DbType.String, cod_asignatura);
-            DbDataReader result = bd.Query();
-
-            return result;
-        }
         //Genera una prueba aleatoria de 15 preguntas
-        public DbDataReader generarPruebaAleatoria(string cod_asignatura)
+        public string generarPruebaAleatoria(string cod_asignatura)
         {
             List<int> lIDS = new List<int>();
             DataBase bd = new DataBase();
@@ -287,7 +294,6 @@ namespace Project
                 lIDS.Add(result.GetInt32(0));
             }
             result.Close();
-            List<int> lAleatoria = new List<int>();
             Random r = new Random();
             int numero = 0;
             string ids_preguntas = "";
@@ -299,12 +305,7 @@ namespace Project
                 lIDS.RemoveAt(numero);
                 i += 1;
             }
-            string sql2 = "mostrarPYRAleatorias";
-            bd.CreateCommandSP(sql2);
-            bd.createParameter("@cod_asignatura_evaluacion", DbType.String, cod_asignatura);
-            bd.createParameter("@ids_preguntas", DbType.String, ids_preguntas);
-            DbDataReader result2 = bd.Query();
-            return result2;
+            return ids_preguntas;
         }
         public DbDataReader mostrarPyRSeleccionadas(string ids_preguntas)
         {
@@ -330,5 +331,26 @@ namespace Project
             DbDataReader result = bd.Query();
             return result;
         }
+
+        //Muestra los id_preguntas asociadas a una asignatura
+        public string mostrarIDsPA(string cod_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarIDsPA";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@cod_asignatura_evaluacion", DbType.String, cod_asignatura);
+            DbDataReader result = bd.Query();
+            string ids_preguntas = "";
+            while (result.Read())
+            {
+                ids_preguntas += result.GetInt32(0) + ",";
+            }
+            result.Close();
+            bd.Close();
+            return ids_preguntas;
+        }
     }
 }
+

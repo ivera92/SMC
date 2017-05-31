@@ -17,29 +17,37 @@ namespace CapaDePresentacion.Doc
         private static string ruta;
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogPregunta cPregunta = new CatalogPregunta();
-            List<Tipo_Pregunta> lTiposPregunta = cPregunta.listarTiposPregunta();
-            CatalogCompetencia cCompetencia = new CatalogCompetencia();
-            List<Competencia> lCompetencias = cCompetencia.listarCompetencias();
-            this.crearRespuestas();
-            if (!Page.IsPostBack) //para ver si cargo por primera vez
+            try
             {
-                ruta = "";
-                this.VoF.Visible = false;
-                this.AltOCas.Visible = false;
-                this.btnCrear.Visible = false;
-                this.btnSeguir.Visible = false;
-                contadorControles = 0;
+                string rut = Session["rutDocente"].ToString();
+                CatalogPregunta cPregunta = new CatalogPregunta();
+                List<Tipo_Pregunta> lTiposPregunta = cPregunta.listarTiposPregunta();
+                CatalogCompetencia cCompetencia = new CatalogCompetencia();
+                List<Competencia> lCompetencias = cCompetencia.listarCompetencias();
+                this.crearRespuestas();
+                if (!Page.IsPostBack) //para ver si cargo por primera vez
+                {
+                    ruta = "";
+                    this.VoF.Visible = false;
+                    this.AltOCas.Visible = false;
+                    this.btnCrear.Visible = false;
+                    this.btnSeguir.Visible = false;
+                    contadorControles = 0;
 
-                this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
-                this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";
-                this.ddTipoPregunta.DataSource = lTiposPregunta;
+                    this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
+                    this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";
+                    this.ddTipoPregunta.DataSource = lTiposPregunta;
 
-                this.ddCompetencia.DataTextField = "Nombre_competencia";
-                this.ddCompetencia.DataValueField = "Id_competencia";
-                this.ddCompetencia.DataSource = lCompetencias;
+                    this.ddCompetencia.DataTextField = "Nombre_competencia";
+                    this.ddCompetencia.DataValueField = "Id_competencia";
+                    this.ddCompetencia.DataSource = lCompetencias;
 
-                this.DataBind();//enlaza los datos a un dropdownlist                
+                    this.DataBind();//enlaza los datos a un dropdownlist                
+                }
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
             }
             try
             {

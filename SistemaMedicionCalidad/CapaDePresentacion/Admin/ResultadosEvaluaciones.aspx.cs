@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using Project;
 using Project.CapaDeNegocios;
 using System.IO;
-using System.Drawing;
 using ClosedXML.Excel;
 using System.Web;
 using System.Text;
@@ -18,11 +17,19 @@ namespace CapaDePresentacion.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            btnExportar.Visible = false;
-            panelGrafico.Visible = false;
-            if (!Page.IsPostBack)
+            try
             {
-                this.ocultarDivs();
+                string rut = Session["rutAdmin"].ToString();
+                btnExportar.Visible = false;
+                panelGrafico.Visible = false;
+                if (!Page.IsPostBack)
+                {
+                    this.ocultarDivs();
+                }
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
             }
         }
         public void ocultarDivs()

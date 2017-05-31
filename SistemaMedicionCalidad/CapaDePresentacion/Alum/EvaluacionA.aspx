@@ -4,11 +4,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div runat="server" id="divEvaluar">
-        <h1 class="text-center">Responder Evaluacion</h1>
+        <h1 class="text-center">Responder evaluacion</h1>
         <br />
 
         <div class="row">
-            <div class="col-sm-offset-2 col-sm-4">
+            <div class="col-sm-offset-1 col-sm-5">
                 <label>Asignatura</label>
                 <div>
                     <asp:DropDownList ID="ddAsignatura" class="form-control" runat="server" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
@@ -17,10 +17,10 @@
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <label>Evaluacion</label>
                 <div>
-                    <asp:DropDownList ID="ddEvaluacion" CssClass="form-control" AppendDataBoundItems="true" runat="server">
+                    <asp:DropDownList ID="ddEvaluacion" CssClass="form-control" AutoPostBack="true" AppendDataBoundItems="true" runat="server" OnSelectedIndexChanged="ddEvaluacion_SelectedIndexChanged">
                         <asp:ListItem Value="0"><--Seleccione una evaluacion--></asp:ListItem>
                     </asp:DropDownList>
                 </div>
@@ -29,16 +29,17 @@
         <br />
 
         <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
-            <asp:Panel ID="Panel1" runat="server">
-            </asp:Panel>
+            <asp:Panel ID="Panel1" runat="server"></asp:Panel>
             <br />
-        </div>
+        </div>        
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
+            <br />
+            <div class="col-sm-offset-4 col-sm-4">
                 <asp:Button ID="btnGuardar" runat="server" class="btn btn-block btn-primary" Text="Guardar" OnClick="btnGuardar_Click" />
                 <br />
             </div>
         </div>
+        <br />
     </div>
 
     <div class="row">
@@ -46,5 +47,4 @@
             <asp:Button runat="server" CssClass="btn btn-block btn-primary" ID="btnSiguiente" Text="Seguir evalaluando" OnClick="btnSiguiente_Click" />
         </div>
     </div>
-
 </asp:Content>

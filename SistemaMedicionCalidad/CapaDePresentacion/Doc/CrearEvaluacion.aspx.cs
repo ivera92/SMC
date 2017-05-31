@@ -13,41 +13,33 @@ namespace CapaDePresentacion.Doc
 {
     public partial class CrearEvaluacion : System.Web.UI.Page
     {
-        private static string ids_preguntas;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string rut = Session["rutDocente"].ToString();
-            CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasDocente(rut);
-            divGV.Visible = false;
-            if (!Page.IsPostBack)
+            try
             {
-                this.fechaEvaluacion.InnerText = DateTime.Today.ToString("d");
-                this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                this.ddAsignatura.DataValueField = "Cod_asignatura";
-                this.ddAsignatura.DataSource = lAsignatura;
-                this.DataBind();//enlaza los datos a un dropdownlist  
+                string rut = Session["rutDocente"].ToString();
+                CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasDocente(rut);
+                divGV.Visible = false;
+                if (!Page.IsPostBack)
+                {
+                    this.fechaEvaluacion.InnerText = DateTime.Today.ToString("d");
+                    this.ddAsignatura.DataTextField = "Nombre_asignatura";
+                    this.ddAsignatura.DataValueField = "Cod_asignatura";
+                    this.ddAsignatura.DataSource = lAsignatura;
+                    this.DataBind();//enlaza los datos a un dropdownlist  
+                }
             }
+            catch
+            {                
+                Response.Redirect("../CheqLogin.aspx");
+            }            
         }
-        public void pdf()
+        public void pdf(string ids_preguntas)
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            DbDataReader result= cEvaluacion.mostrarPyRA(ddAsignatura.SelectedValue); 
-
-            if (ddTipoEvaluacion.SelectedValue == "1")
-            {
-                result = cEvaluacion.mostrarPyRA(ddAsignatura.SelectedValue);
-            }
-            else if (ddTipoEvaluacion.SelectedValue == "2")
-            {
-                result = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue);
-            }
-            else if (ddTipoEvaluacion.SelectedValue == "4")
-            {
-                result = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas); //Trae las Preguntas y respuestas asociadas a la lista de preguntas enviadas  
-            } 
-                  
-            string s = "";
+            DbDataReader result = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas); ;
+            string s = "";            
 
             Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;" + "filename=Evaluacion.pdf");
@@ -102,10 +94,11 @@ namespace CapaDePresentacion.Doc
                     tabla.AddCell(pc1);
                     tabla.AddCell(pc2);
                     tabla.AddCell(pc3);
+
                     try
                     {
                         //Si existe una ruta de imagen
-                        if (result.GetString(3) != null && result.GetString(3) != "ImagenesPreguntas/")
+                        if (result.GetString(3) != null && result.GetString(3) != "")
                         {
                             //OBtiene la ruta del dominio y la base de la ubicacion del archivo                            
                             string ruta2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ImagenesPreguntas\" + result.GetString(3));
@@ -152,42 +145,56 @@ namespace CapaDePresentacion.Doc
             Response.Write(pdfDoc);
             Response.End();
         }
-        
+
         protected void btnCrear_Click1(object sender, EventArgs e)
         {
-            CatalogEvaluacion ce = new CatalogEvaluacion();
-            Evaluacion ev = new Evaluacion();
-            Asignatura a = new Asignatura();
-            ev.Asignatura_evaluacion = a;
-
-            ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
-            ev.Asignatura_evaluacion.Cod_asignatura = this.ddAsignatura.SelectedValue;
-            ev.Nombre_evaluacion = this.txtNombre.Text;
-
+            string ids_preguntas = "";
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            if (ddTipoEvaluacion.SelectedValue == "1")
+            {
+                ids_preguntas = cEvaluacion.mostrarIDsPA(ddAsignatura.SelectedValue);
+            }
+            else if (ddTipoEvaluacion.SelectedValue == "2")
+            {
+                ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue);
+            }
+            else if (ddTipoEvaluacion.SelectedValue == "4")
+            {                
+                ids_preguntas = this.lSeleccionadas(); //Trae las Preguntas y respuestas asociadas a la lista de preguntas enviadas  
+            }
             
-                if (ce.verificarExistencia(ddAsignatura.SelectedValue) > 0)
-                {
-                    Response.Write("<script>window.alert('La evaluacion asociada a esta asignatura ya fue creada anteriormente');</script>");
-                    this.pdf();
-                }
-                else
-                {
-                    ce.insertarEvaluacion(ev);
-                    Response.Write("<script>window.alert('Evaluacion creada satisfactoriamente');</script>");
-                    this.pdf();
-                }
+            Evaluacion ev = new Evaluacion();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            Asignatura a = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
+
+            ev.Asignatura_evaluacion = a;
+            ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
+            ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
+            ev.Preguntas_evaluacion = ids_preguntas;
+
+            try
+            {
+                cEvaluacion.insertarEvaluacion(ev);
+                this.pdf(ids_preguntas);
+                Response.Write("<script>window.alert('Evaluacion creada satisfactoriamente');</script>");
+            }
+            catch
+            {
+                Response.Write("<script>window.alert('El nombre de la evaluacion ya existe, ingrese otro');</script>");
+            }
             ids_preguntas = "";
         }
 
         public string lSeleccionadas()
         {
+            string ids_preguntas = "";
             foreach (GridViewRow row in gvPreguntas.Rows)
             {
                 CheckBox check = row.FindControl("cbSeleccionado") as CheckBox;
 
                 if (check.Checked)
                 {
-                    ids_preguntas += row.Cells[1].Text + " , ";
+                    ids_preguntas += row.Cells[1].Text + ",";
                 }
             }            
             return ids_preguntas;

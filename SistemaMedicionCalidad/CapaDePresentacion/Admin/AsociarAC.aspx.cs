@@ -12,6 +12,14 @@ namespace CapaDePresentacion.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string rut = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             List<Competencia> lCompetencias = cCompetencia.listarCompetencias();
 

@@ -15,6 +15,14 @@ namespace CapaDePresentacion.Doc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string rut = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
             divCrearManual.Visible = false;
             divCrearExcel.Visible = false;
             CatalogEscuela cEscuela = new CatalogEscuela();

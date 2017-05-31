@@ -16,7 +16,8 @@ namespace Project
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@id_hpa", DbType.Int32, hpa.Id_hpa);
-            bd.createParameter("@id_evaluacion_hpa", DbType.Int32, hpa.Evaluacion_hpa.Id_evaluacion);
+            bd.createParameter("@id_evaluacion_hpa", DbType.Int32, hpa.Id_evaluacion_hpa.Id_evaluacion);
+            bd.createParameter("@nombre_evaluacion_hpa", DbType.String, hpa.Nombre_evaluacion_hpa.Nombre_evaluacion);
             bd.createParameter("@id_respuesta_hpa", DbType.Int32, hpa.Respuesta_hpa.Id_respuesta);
             bd.createParameter("@id_pregunta_hpa", DbType.Int32, hpa.Pregunta_hpa.Id_pregunta);
             bd.createParameter("@rut_alumno_hpa", DbType.String, hpa.Alumno_hpa.Rut_persona);
@@ -24,7 +25,7 @@ namespace Project
             bd.Close();
         }
 
-        //Devuelve el ID de la pregunta respondida
+        /*/Devuelve el ID de la pregunta respondida
         public int buscarIDPregunta(string respuesta)
         {
             DataBase bd = new DataBase();
@@ -39,9 +40,9 @@ namespace Project
             result.Close();
             bd.Close();
             return id;
-        }
+        }*/
 
-        //Devuelve el ID de la respuesta
+        /*/Devuelve el ID de la respuesta
         public int buscarIDRespuesta(string respuesta)
         {
             DataBase bd = new DataBase();
@@ -55,7 +56,7 @@ namespace Project
             result.Close();
             bd.Close();
             return id;
-        }
+        }*/
 
         //Devuelve un arreglo de tamaño 2 con la cantidad de respuestas correctas e incorrectas de cierta evaluacion 
         //y de determinado alumno

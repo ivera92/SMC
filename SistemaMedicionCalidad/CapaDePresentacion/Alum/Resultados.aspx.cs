@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
 using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using Project;
-using Project.CapaDeDatos;
 
 namespace CapaDePresentacion.Alum
 {
@@ -15,21 +12,27 @@ namespace CapaDePresentacion.Alum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            string rut = Session["rutAlumno"].ToString();
-            panelGraficoPie.Visible = false;
-            panelGraficoColumna.Visible = false;
-            CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasEvaluadas(rut);
-            
-
-            if (!Page.IsPostBack) //para ver si cargo por primera vez
+            try
             {
-                this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                this.ddAsignatura.DataValueField = "Cod_asignatura";
-                this.ddAsignatura.DataSource = lAsignatura;                
+                string rut = Session["rutAlumno"].ToString();
+                panelGraficoPie.Visible = false;
+                panelGraficoColumna.Visible = false;
+                CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasEvaluadas(rut);
 
-                this.DataBind();//enlaza los datos a un dropdownlist                
+
+                if (!Page.IsPostBack) //para ver si cargo por primera vez
+                {
+                    this.ddAsignatura.DataTextField = "Nombre_asignatura";
+                    this.ddAsignatura.DataValueField = "Cod_asignatura";
+                    this.ddAsignatura.DataSource = lAsignatura;
+
+                    this.DataBind();//enlaza los datos a un dropdownlist                
+                }
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
             }
         }
         public void graficoPie()

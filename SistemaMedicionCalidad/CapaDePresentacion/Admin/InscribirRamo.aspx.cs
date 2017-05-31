@@ -12,17 +12,25 @@ namespace CapaDePresentacion.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
-
-            if (!Page.IsPostBack) //para ver si cargo por primera vez
+            try
             {
+                string rut = Session["rutAdmin"].ToString();
+                CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
 
-                this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                this.ddAsignatura.DataValueField = "Cod_asignatura";
-                this.ddAsignatura.DataSource = lAsignatura;
+                if (!Page.IsPostBack) //para ver si cargo por primera vez
+                {
 
-                this.DataBind();//enlaza los datos a un dropdownlist                
+                    this.ddAsignatura.DataTextField = "Nombre_asignatura";
+                    this.ddAsignatura.DataValueField = "Cod_asignatura";
+                    this.ddAsignatura.DataSource = lAsignatura;
+
+                    this.DataBind();//enlaza los datos a un dropdownlist                
+                }
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
             }
         }
 

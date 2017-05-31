@@ -13,7 +13,10 @@ namespace CapaDePresentacion.Doc
                 string rut = Session["rutDocente"].ToString();                
                 this.cargarDatosDocente(rut);
             }
-            catch { }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
         }
         //Carga los datos en la ventana inicial despues de digitar el rut de usuario y contraseña en el login
         public void cargarDatosDocente(string rut)

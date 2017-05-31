@@ -124,7 +124,6 @@
     <Content Include="Admin\CrearEscuela.aspx" />
     <Content Include="Admin\CrearPregunta.aspx" />
     <Content Include="Admin\CrearProfesion.aspx" />
-    <Content Include="Doc\AdministrarPreguntasD.aspx" />
     <Content Include="Doc\CrearAlumnoD.aspx" />
     <Content Include="Doc\CrearEvaluacion.aspx" />
     <Content Include="Doc\CrearPreguntaD.aspx" />
@@ -413,13 +412,6 @@
     </Compile>
     <Compile Include="Admin\CrearProfesion.aspx.designer.cs">
       <DependentUpon>CrearProfesion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Doc\AdministrarPreguntasD.aspx.cs">
-      <DependentUpon>AdministrarPreguntasD.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Doc\AdministrarPreguntasD.aspx.designer.cs">
-      <DependentUpon>AdministrarPreguntasD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Doc\CrearAlumnoD.aspx.cs">
       <DependentUpon>CrearAlumnoD.aspx</DependentUpon>

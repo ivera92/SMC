@@ -15,25 +15,33 @@ namespace CapaDePresentacion.Doc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            divCrearManual.Visible = false;
-            divCrearExcel.Visible = false;
-            CatalogEscuela cEscuela = new CatalogEscuela();
-            List<Escuela> lEscuelas = cEscuela.listarEscuelas();
-
-            CatalogPais cPais = new CatalogPais();
-            List<Pais> lPaises = cPais.listarPaises();
-
-            if (!Page.IsPostBack) //para ver si cargo por primera vez
+            try
             {
-                this.ddEscuela.DataTextField = "Nombre_escuela";
-                this.ddEscuela.DataValueField = "Id_escuela";
-                this.ddEscuela.DataSource = lEscuelas;
+                string rut = Session["rutDocente"].ToString();
+                divCrearManual.Visible = false;
+                divCrearExcel.Visible = false;
+                CatalogEscuela cEscuela = new CatalogEscuela();
+                List<Escuela> lEscuelas = cEscuela.listarEscuelas();
 
-                this.ddPais.DataTextField = "Nombre_pais";
-                this.ddPais.DataValueField = "Id_pais";
-                this.ddPais.DataSource = lPaises;
+                CatalogPais cPais = new CatalogPais();
+                List<Pais> lPaises = cPais.listarPaises();
 
-                this.DataBind();//enlaza los datos a un dropdownlist                
+                if (!Page.IsPostBack) //para ver si cargo por primera vez
+                {
+                    this.ddEscuela.DataTextField = "Nombre_escuela";
+                    this.ddEscuela.DataValueField = "Id_escuela";
+                    this.ddEscuela.DataSource = lEscuelas;
+
+                    this.ddPais.DataTextField = "Nombre_pais";
+                    this.ddPais.DataValueField = "Id_pais";
+                    this.ddPais.DataSource = lPaises;
+
+                    this.DataBind();//enlaza los datos a un dropdownlist                
+                }
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
             }
         }
         public void resetearValores()
@@ -149,7 +157,7 @@ namespace CapaDePresentacion.Doc
             }
             catch
             {
-
+                Response.Write("<script>window.alert('Archivo Excel no cumple con formato');</script>");
             }
         }
 
@@ -204,7 +212,7 @@ namespace CapaDePresentacion.Doc
             }
             catch
             {
-                Response.Write("<script>window.alert('Lista de alumnos exportada correctamente, verifique en administrar alumnos');</script>");
+                Response.Write("<script>window.alert('Lista de alumnos exportada correctamente');</script>");
             }
         }
 

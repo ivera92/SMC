@@ -12,6 +12,14 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string rut = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
             CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             List<Tipo_Competencia> lTiposCompetencia = cTipoCompetencia.listarTipoCompetencias();
             if (!Page.IsPostBack) //para ver si cargo por primera vez

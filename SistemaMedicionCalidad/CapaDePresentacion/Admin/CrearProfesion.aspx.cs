@@ -7,6 +7,14 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string rut = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)

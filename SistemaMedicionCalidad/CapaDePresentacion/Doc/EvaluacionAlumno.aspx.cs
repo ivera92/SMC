@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
-using Project.CapaDeDatos;
 
 namespace CapaDePresentacion.Doc
 {
@@ -23,30 +21,35 @@ namespace CapaDePresentacion.Doc
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string rut = Session["rutDocente"].ToString();
-            CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturasDocente(rut);
-            btnSiguiente.Visible = false;
-            btnGuardar.Visible = false;
-            divPreguntas.Visible = false;
+            try
+            {
+                string rut = Session["rutDocente"].ToString();
+                CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturasDocente(rut);
+                btnSiguiente.Visible = false;
+                btnGuardar.Visible = false;
+                divPreguntas.Visible = false;
+                if (!Page.IsPostBack) //para ver si cargo por primera vez
+                {
+                    this.ddAsignatura.DataTextField = "Nombre_asignatura";
+                    this.ddAsignatura.DataValueField = "Cod_asignatura";
+                    this.ddAsignatura.DataSource = lAsignaturas;
+
+                    this.DataBind();//enlaza los datos a un dropdownlist                
+                }
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
+
             //Se ocupa en el Page Load para que pueda reconocer los checked de los campos
             try
             {
                 this.crearControles();
             }
             catch
-            {
-                Response.Write("<script>window.alert('No existen preguntas asociadas a la asignatura');</script>");
-            }
-            if (!Page.IsPostBack) //para ver si cargo por primera vez
-            {
-                this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                this.ddAsignatura.DataValueField = "Cod_asignatura";
-                this.ddAsignatura.DataSource = lAsignaturas;
-
-                this.DataBind();//enlaza los datos a un dropdownlist                
-            }
-
+            {}       
         }
         //Recorre la lista de checked y crea historial por cada pregunta y los inserta en la BD
         public void checkearChecked()
@@ -70,15 +73,17 @@ namespace CapaDePresentacion.Doc
                     if (selected == true)
                     {
                         HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
-                        hpa.Evaluacion_hpa = ev;
+                        hpa.Id_evaluacion_hpa = ev;
                         hpa.Pregunta_hpa = p;
                         hpa.Respuesta_hpa = r;
                         hpa.Alumno_hpa = a;
+                        hpa.Nombre_evaluacion_hpa = ev;
 
-                        hpa.Evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
+                        hpa.Id_evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
                         hpa.Pregunta_hpa.Id_pregunta = lIdsSM[ii];
                         hpa.Respuesta_hpa.Id_respuesta = lIdsSM[ii + 1];
                         hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        hpa.Nombre_evaluacion_hpa.Nombre_evaluacion = this.ddEvaluacion.SelectedItem.Text;
                         cHPA.insertarHPA(hpa);
                     }
                     ii = ii + 2;
@@ -95,15 +100,17 @@ namespace CapaDePresentacion.Doc
                     if (selected)
                     {
                         HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
-                        hpa.Evaluacion_hpa = ev;
+                        hpa.Id_evaluacion_hpa = ev;
                         hpa.Pregunta_hpa = p;
                         hpa.Respuesta_hpa = r;
                         hpa.Alumno_hpa = a;
+                        hpa.Nombre_evaluacion_hpa = ev;
 
-                        hpa.Evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
+                        hpa.Id_evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
                         hpa.Pregunta_hpa.Id_pregunta = lIdsCV[jj];
                         hpa.Respuesta_hpa.Id_respuesta = lIdsCV[jj + 1];
                         hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        hpa.Nombre_evaluacion_hpa.Nombre_evaluacion = this.ddEvaluacion.SelectedItem.Text;
                         cHPA.insertarHPA(hpa);
                     }
                     jj = jj + 2;
@@ -119,15 +126,17 @@ namespace CapaDePresentacion.Doc
                     if (selected)
                     {
                         HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
-                        hpa.Evaluacion_hpa = ev;
+                        hpa.Id_evaluacion_hpa = ev;
                         hpa.Pregunta_hpa = p;
                         hpa.Respuesta_hpa = r;
                         hpa.Alumno_hpa = a;
+                        hpa.Nombre_evaluacion_hpa = ev;
 
-                        hpa.Evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
+                        hpa.Id_evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
                         hpa.Pregunta_hpa.Id_pregunta = lIdsVF[kk];
                         hpa.Respuesta_hpa.Id_respuesta = lIdsVF[kk + 1];
                         hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        hpa.Nombre_evaluacion_hpa.Nombre_evaluacion = this.ddEvaluacion.SelectedItem.Text;
                         cHPA.insertarHPA(hpa);
                     }
                     kk = kk + 2;
@@ -138,13 +147,11 @@ namespace CapaDePresentacion.Doc
         //se crean listas estaticas para que se pueda acceder a los atributos checked posteriormente 
         public void crearControles()
         {
-            DataBase bd = new DataBase();
-            bd.connect();
+            string ids_preguntas = "";
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            ids_preguntas = cEvaluacion.listarPreguntasEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
 
-            string sql = "mostrarPreguntasEvaluacionAsignatura";
-            bd.CreateCommandSP(sql);
-            bd.createParameter("@cod_asignatura", DbType.String, this.ddAsignatura.SelectedValue);
-            DbDataReader result = bd.Query();
+            DbDataReader result = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas);
             string s = "";
             int numPregunta = 1;
             int i = 0;
@@ -210,23 +217,23 @@ namespace CapaDePresentacion.Doc
                 if (result.GetString(0) == "Seleccion multiple" && s == pregunta.Text)
                 {
                     rbl.Items.Add(result.GetString(1));
-                    lIdsSM.Add(result.GetInt32(3));
                     lIdsSM.Add(result.GetInt32(4));
+                    lIdsSM.Add(result.GetInt32(5));
                     x = "rbl";
                 }
 
                 else if (result.GetString(0) == "Casillas de verificacion" && s == pregunta.Text)
                 {
                     cbxl.Items.Add(result.GetString(1));
-                    lIdsCV.Add(result.GetInt32(3));
                     lIdsCV.Add(result.GetInt32(4));
+                    lIdsCV.Add(result.GetInt32(5));
                     x = "cbxl";
                 }
                 else if (result.GetString(0) == "Verdadero o falso" && s == pregunta.Text)
                 {
                     rblVF.Items.Add(result.GetString(1));
-                    lIdsVF.Add(result.GetInt32(3));
                     lIdsVF.Add(result.GetInt32(4));
+                    lIdsVF.Add(result.GetInt32(5));
                     x = "rblVF";
                 }
                 s = result.GetString(2);
@@ -266,11 +273,10 @@ namespace CapaDePresentacion.Doc
         //Carga las evaluaciones dependiendo de la asignatura
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnGuardar.Visible = true;
-            divPreguntas.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(ddAsignatura.SelectedValue);
             this.ddEvaluacion.Items.Clear();
+            this.ddEvaluacion.Items.Add(new ListItem("<--Seleccione una evaluacion-->", "0"));
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;
@@ -281,6 +287,12 @@ namespace CapaDePresentacion.Doc
         {
             divEvaluar.Visible = true;
             Response.Redirect("EvaluacionAlumno.aspx");
+        }
+
+        protected void ddEvaluacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnGuardar.Visible = true;
+            divPreguntas.Visible = true;
         }
     }
 }

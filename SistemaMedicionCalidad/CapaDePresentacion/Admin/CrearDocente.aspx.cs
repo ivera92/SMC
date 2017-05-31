@@ -10,6 +10,14 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string rut = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
             CatalogProfesion cProfesion = new CatalogProfesion();
             List<Profesion> lProfesiones = cProfesion.listarProfesiones();
 

@@ -20,7 +20,15 @@ namespace CapaDePresentacion
         private static int id_pregunta;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            try
+            {
+                string rut = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
+
             CatalogPregunta cPregunta = new CatalogPregunta();
             List<Tipo_Pregunta> lTipoPregunta = cPregunta.listarTiposPregunta();
             CatalogCompetencia cCompetencia = new CatalogCompetencia();

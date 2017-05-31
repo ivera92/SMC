@@ -8,9 +8,15 @@ namespace CapaDePresentacion.Alum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string rut = Session["rutAlumno"].ToString();
-            this.cargarDatosAlumno(rut);
-            
+            try
+            {
+                string rut = Session["rutAlumno"].ToString();
+                this.cargarDatosAlumno(rut);
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }            
         }
         //Carga los datos del docente
         public void cargarDatosAlumno(string rut)

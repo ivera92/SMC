@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Project;
 
 namespace CapaDePresentacion.Alum
@@ -12,7 +7,14 @@ namespace CapaDePresentacion.Alum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            try
+            {
+                string rut = Session["rutAlumno"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)

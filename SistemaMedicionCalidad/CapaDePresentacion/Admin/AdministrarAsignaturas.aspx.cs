@@ -13,6 +13,14 @@ namespace CapaDePresentacion.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string rut = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
             CatalogEscuela cEscuela = new CatalogEscuela();
             List<Escuela> lEscuelas = cEscuela.listarEscuelas();//lista escuelas existentes
             CatalogDocente cDocente = new CatalogDocente();

@@ -8,6 +8,7 @@ namespace Project
         private Asignatura asignatura_evaluacion;
         private string nombre_evaluacion;
         private DateTime fecha_evaluacion;
+        private string preguntas_evaluacion;
 
         //Constructor predeterminado
         public Evaluacion()
@@ -27,12 +28,13 @@ namespace Project
             this.fecha_evaluacion = fecha_evaluacion;
         }
 
-        public Evaluacion(int id_evaluacion, Asignatura asignatura_evaluacion, string nombre_evaluacion, DateTime fecha_evaluacion)
+        public Evaluacion(int id_evaluacion, Asignatura asignatura_evaluacion, string nombre_evaluacion, DateTime fecha_evaluacion, string preguntas_evaluacion)
         {
             this.id_evaluacion = id_evaluacion;
             this.asignatura_evaluacion = asignatura_evaluacion;
             this.nombre_evaluacion = nombre_evaluacion;
             this.fecha_evaluacion = fecha_evaluacion;
+            this.Preguntas_evaluacion = preguntas_evaluacion;
         }
 
         public int Id_evaluacion
@@ -57,6 +59,19 @@ namespace Project
         {
             get { return fecha_evaluacion; }
             set { fecha_evaluacion = value; }
+        }
+
+        public string Preguntas_evaluacion
+        {
+            get
+            {
+                return preguntas_evaluacion;
+            }
+
+            set
+            {
+                preguntas_evaluacion = value;
+            }
         }
     }
 }
