@@ -13,7 +13,7 @@
                 <label>Nombre</label>
             </div>
             <div class="col-sm-5">
-                <asp:TextBox runat="server" ID="txtNombreCompetencia" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtNombreCompetencia" class="form-control" placeHolder="Ingrese nombre"></asp:TextBox>
             </div>
         </div>
         <br />
@@ -32,16 +32,18 @@
             <div class="col-sm-offset-3 col-sm-1">
                 <label>Tipo</label>
             </div>
-            <div class="col-sm-3">
-                <asp:RadioButtonList ID="rbTipoCompetencia" runat="server">
-                    <asp:ListItem Value="1">Básica</asp:ListItem>
-                    <asp:ListItem Value="2">Genérica</asp:ListItem>
-                    <asp:ListItem Value="3">Sello UACH</asp:ListItem>
-                </asp:RadioButtonList>
-            </div>
-            <div class="col-sm-2">
-                <asp:Button ID="brnCrear" class="btn btn-primary btn-block btn-lg" runat="server" Text="Crear" OnClick="brnCrear_Click" />
+            <div class="col-sm-5">
+                <asp:DropDownList ID="ddTipoCompetencia" AppendDataBoundItems="true"  runat="server" CssClass="form-control">
+                    <asp:ListItem Value="0"><--Seleccione un tipo de competencia--></asp:ListItem>
+                </asp:DropDownList>
+            </div>            
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-offset-5 col-sm-3">
+                <asp:Button ID="brnCrear" class="btn btn-primary btn-block" runat="server" Text="Crear" OnClick="brnCrear_Click" />
             </div>
         </div>
+        <br />
     </div>
 </asp:Content>

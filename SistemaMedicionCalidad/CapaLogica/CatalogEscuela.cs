@@ -13,8 +13,8 @@ namespace Project.CapaDeNegocios
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "select id_escuela, nombre_escuela from escuela";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "mostrarEscuelas";
+            bd.CreateCommandSP(sqlSearch);
             List<Escuela> lEscuelas = new List<Escuela>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
@@ -45,6 +45,7 @@ namespace Project.CapaDeNegocios
         }
 
         //Devuelve una escuela acorde al nombre
+        //Usado cuando se importan alumnos desde Excel
         public Escuela buscarUnaEscuelaNombre(string nombre_escuela)
         {
             DataBase bd = new DataBase();

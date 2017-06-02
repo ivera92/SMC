@@ -14,18 +14,21 @@ namespace CapaDePresentacion
             {
                 this.divRut.Visible = false;
                 this.divCorreo.Visible = false;
-                CatalogTipoUsuario ctu = new CatalogTipoUsuario();
-                List<Tipo_Usuario> ltp = ctu.listarTiposUsuario();
+                CatalogTipoUsuario cTipoUsuario = new CatalogTipoUsuario();
+                List<Tipo_Usuario> lTipoUsuarios = cTipoUsuario.listarTiposUsuario();
                 if (!Page.IsPostBack) //para ver si cargo por primera vez
                 {
                     this.ddTipoUsuario.DataTextField = "Nombre_tipo_usuario";
                     this.ddTipoUsuario.DataValueField = "Id_tipo_usuario";
-                    this.ddTipoUsuario.DataSource = ltp;
+                    this.ddTipoUsuario.DataSource = lTipoUsuarios;
 
                     this.DataBind();//enlaza los datos a un dropdownlist                
                 }
             }
-            catch { }
+            catch
+            {
+                Response.Write("<script>window.alert('No existen tipos de usuario para mostrar, contactese con el administrador');</script>");
+            }
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -36,7 +39,10 @@ namespace CapaDePresentacion
             //Se verifica si existe el usuario y es valido, despues de eso se ven los roles 
             if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, tipoUsuario))
             {
+                //Redirige al usuario autenticado a la dirección URL solicitada originalmente o la dirección URL predeterminada
+                //Para crear una cookie duradera (aquella que se guarda en las sesiones del explorador); de lo contrario, false.
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
+
                 if (tipoUsuario == 1)
                 {
                     Session["rutAlumno"] = rut.Text;

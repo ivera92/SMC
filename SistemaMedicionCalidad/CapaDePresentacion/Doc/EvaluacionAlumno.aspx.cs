@@ -4,6 +4,8 @@ using System.Data.Common;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
+using System.Data;
+using Project.CapaDeNegocios;
 
 namespace CapaDePresentacion.Doc
 {
@@ -55,9 +57,9 @@ namespace CapaDePresentacion.Doc
         public void checkearChecked()
         {
             Evaluacion ev = new Evaluacion();
-            Pregunta p = new Pregunta();
-            Respuesta r = new Respuesta();
-            Alumno a = new Alumno();
+            CatalogRespuesta cRespuesta = new CatalogRespuesta();
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            CatalogPregunta cPregunta = new CatalogPregunta();
 
             CatalogHPA cHPA = new CatalogHPA();
             int ii = 0;
@@ -74,15 +76,12 @@ namespace CapaDePresentacion.Doc
                     {
                         HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
                         hpa.Id_evaluacion_hpa = ev;
-                        hpa.Pregunta_hpa = p;
-                        hpa.Respuesta_hpa = r;
-                        hpa.Alumno_hpa = a;
                         hpa.Nombre_evaluacion_hpa = ev;
 
                         hpa.Id_evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
-                        hpa.Pregunta_hpa.Id_pregunta = lIdsSM[ii];
-                        hpa.Respuesta_hpa.Id_respuesta = lIdsSM[ii + 1];
-                        hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        hpa.Pregunta_hpa = cPregunta.buscarUnaPregunta(lIdsSM[ii]);
+                        hpa.Respuesta_hpa = cRespuesta.buscarUnaRespuesta(lIdsSM[ii + 1]);
+                        hpa.Alumno_hpa = cAlumno.buscarAlumnoPorRut(txtRut.Text);
                         hpa.Nombre_evaluacion_hpa.Nombre_evaluacion = this.ddEvaluacion.SelectedItem.Text;
                         cHPA.insertarHPA(hpa);
                     }
@@ -101,15 +100,12 @@ namespace CapaDePresentacion.Doc
                     {
                         HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
                         hpa.Id_evaluacion_hpa = ev;
-                        hpa.Pregunta_hpa = p;
-                        hpa.Respuesta_hpa = r;
-                        hpa.Alumno_hpa = a;
                         hpa.Nombre_evaluacion_hpa = ev;
 
                         hpa.Id_evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
-                        hpa.Pregunta_hpa.Id_pregunta = lIdsCV[jj];
-                        hpa.Respuesta_hpa.Id_respuesta = lIdsCV[jj + 1];
-                        hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        hpa.Pregunta_hpa = cPregunta.buscarUnaPregunta(lIdsCV[jj]);
+                        hpa.Respuesta_hpa = cRespuesta.buscarUnaRespuesta(lIdsCV[jj + 1]);
+                        hpa.Alumno_hpa = cAlumno.buscarAlumnoPorRut(txtRut.Text);
                         hpa.Nombre_evaluacion_hpa.Nombre_evaluacion = this.ddEvaluacion.SelectedItem.Text;
                         cHPA.insertarHPA(hpa);
                     }
@@ -127,15 +123,12 @@ namespace CapaDePresentacion.Doc
                     {
                         HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
                         hpa.Id_evaluacion_hpa = ev;
-                        hpa.Pregunta_hpa = p;
-                        hpa.Respuesta_hpa = r;
-                        hpa.Alumno_hpa = a;
                         hpa.Nombre_evaluacion_hpa = ev;
 
                         hpa.Id_evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
-                        hpa.Pregunta_hpa.Id_pregunta = lIdsVF[kk];
-                        hpa.Respuesta_hpa.Id_respuesta = lIdsVF[kk + 1];
-                        hpa.Alumno_hpa.Rut_persona = txtRut.Text;
+                        hpa.Pregunta_hpa = cPregunta.buscarUnaPregunta(lIdsVF[kk]);
+                        hpa.Respuesta_hpa = cRespuesta.buscarUnaRespuesta(lIdsVF[kk + 1]);
+                        hpa.Alumno_hpa = cAlumno.buscarAlumnoPorRut(txtRut.Text);
                         hpa.Nombre_evaluacion_hpa.Nombre_evaluacion = this.ddEvaluacion.SelectedItem.Text;
                         cHPA.insertarHPA(hpa);
                     }
@@ -151,10 +144,9 @@ namespace CapaDePresentacion.Doc
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             ids_preguntas = cEvaluacion.listarPreguntasEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
 
-            DbDataReader result = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas);
+            DataTable dt = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas);
             string s = "";
             int numPregunta = 1;
-            int i = 0;
 
             lRbl = new List<RadioButtonList>();
             lRblVF = new List<RadioButtonList>();
@@ -168,15 +160,15 @@ namespace CapaDePresentacion.Doc
             lIdsVF = new List<int>();
             lIdsSM = new List<int>();
             string x = "";
-            while (result.Read())
+            foreach (DataRow result in dt.Rows)
             {
                 Label pregunta = new Label();
-                pregunta.Text = result.GetString(2);
+                pregunta.Text = result[2].ToString();
 
                 if (s != pregunta.Text)
                 {
                     Label l2 = new Label();
-                    l2.Text = numPregunta + ") " + result.GetString(2);
+                    l2.Text = numPregunta + ") " + result[2].ToString();
 
                     if (rbl.Items.Count > 0 && x=="rbl")
                     {
@@ -194,50 +186,48 @@ namespace CapaDePresentacion.Doc
                         this.Panel1.Controls.Add(rblVF);
                     }
 
-                    if (result.GetString(0) == "Seleccion multiple")
+                    if (result[0].ToString() == "Seleccion multiple")
                     {
                         rbl = new RadioButtonList();
                     }
-                    else if (result.GetString(0) == "Casillas de verificacion")
+                    else if (result[0].ToString() == "Casillas de verificacion")
                     {
                         cbxl = new CheckBoxList();
                     }
-                    else if (result.GetString(0) == "Verdadero o falso")
+                    else if (result[0].ToString() == "Verdadero o falso")
                     {
                         rblVF = new RadioButtonList();
                     }
-
-                    i = 0;
+                    
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
                     this.Panel1.Controls.Add(l2);
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
                     numPregunta = numPregunta + 1;
                     s = pregunta.Text;
                 }
-                if (result.GetString(0) == "Seleccion multiple" && s == pregunta.Text)
+                if (result[0].ToString() == "Seleccion multiple" && s == pregunta.Text)
                 {
-                    rbl.Items.Add(result.GetString(1));
-                    lIdsSM.Add(result.GetInt32(4));
-                    lIdsSM.Add(result.GetInt32(5));
+                    rbl.Items.Add(result[1].ToString());
+                    lIdsSM.Add(int.Parse(result[4].ToString() + ""));
+                    lIdsSM.Add(int.Parse(result[5].ToString() + ""));
                     x = "rbl";
                 }
 
-                else if (result.GetString(0) == "Casillas de verificacion" && s == pregunta.Text)
+                else if (result[0].ToString() == "Casillas de verificacion" && s == pregunta.Text)
                 {
-                    cbxl.Items.Add(result.GetString(1));
-                    lIdsCV.Add(result.GetInt32(4));
-                    lIdsCV.Add(result.GetInt32(5));
+                    cbxl.Items.Add(result[1].ToString());
+                    lIdsCV.Add(int.Parse(result[4].ToString() + ""));
+                    lIdsCV.Add(int.Parse(result[5].ToString() + ""));
                     x = "cbxl";
                 }
-                else if (result.GetString(0) == "Verdadero o falso" && s == pregunta.Text)
+                else if (result[0].ToString() == "Verdadero o falso" && s == pregunta.Text)
                 {
-                    rblVF.Items.Add(result.GetString(1));
-                    lIdsVF.Add(result.GetInt32(4));
-                    lIdsVF.Add(result.GetInt32(5));
+                    rblVF.Items.Add(result[1].ToString());
+                    lIdsVF.Add(int.Parse(result[4].ToString() + ""));
+                    lIdsVF.Add(int.Parse(result[5].ToString() + ""));
                     x = "rblVF";
                 }
-                s = result.GetString(2);
-                i = i + 1;
+                s = result[2].ToString();
             }
             if (rbl.Items.Count > 0 && x == "rbl")
             {

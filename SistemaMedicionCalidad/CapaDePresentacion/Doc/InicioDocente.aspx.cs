@@ -8,6 +8,7 @@ namespace CapaDePresentacion.Doc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Verifica que un docente haya iniciado sesion y carga sus datos, de lo contrario lo redirige 
             try
             {
                 string rut = Session["rutDocente"].ToString();                

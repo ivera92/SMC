@@ -7,6 +7,7 @@ namespace CapaDePresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Verifica que la persona que ingreso corresponde a un docente
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 string alumno, docente, admin;

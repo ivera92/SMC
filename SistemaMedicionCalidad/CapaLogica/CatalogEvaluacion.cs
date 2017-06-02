@@ -4,7 +4,6 @@ using System.Data.Common;
 using Project.CapaDeDatos;
 using Project.CapaDeNegocios;
 using System;
-using System.Linq;
 
 namespace Project
 {
@@ -77,7 +76,8 @@ namespace Project
             return lEvaluaciones;
         }
 
-        public int verificarExistencia(string cod_asignatura)
+        //Verifica si existe un evaluacion con el mismo nombre en una misma asignatura
+        public int verificarExistencia(string cod_asignatura, string nombre_evaluacion)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -86,6 +86,7 @@ namespace Project
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@cod_asignatura_evaluacion", DbType.String, cod_asignatura);
+            bd.createParameter("@nombre_evaluacion", DbType.String, nombre_evaluacion);
             DbDataReader result = bd.Query();
             result.Read();
             int existe = result.GetInt32(0);
@@ -307,7 +308,7 @@ namespace Project
             }
             return ids_preguntas;
         }
-        public DbDataReader mostrarPyRSeleccionadas(string ids_preguntas)
+        public DataTable mostrarPyRSeleccionadas(string ids_preguntas)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -315,21 +316,12 @@ namespace Project
             bd.CreateCommandSP(sql);
             bd.createParameter("@ids_preguntas", DbType.String, ids_preguntas);
             DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
 
-            return result;
-        }
-
-        //Muestra las preguntas asociadas a una asignatura
-        public DbDataReader mostrarPyR(string cod_asignatura)
-        {
-            DataBase bd = new DataBase();
-            bd.connect();
-
-            string sql = "mostrarPreguntasEvaluacionAsignatura";
-            bd.CreateCommandSP(sql);
-            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura);
-            DbDataReader result = bd.Query();
-            return result;
+            result.Close();
+            bd.Close();
+            return dt;
         }
 
         //Muestra los id_preguntas asociadas a una asignatura

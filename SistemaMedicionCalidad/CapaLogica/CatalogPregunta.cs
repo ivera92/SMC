@@ -80,20 +80,19 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "select * from pregunta where id_pregunta='" + id_pregunta + "'";
-            bd.CreateCommand(sql);
+            string sql = "buscarPreguntaID";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_pregunta", DbType.Int32, id_pregunta);
 
             DbDataReader result = bd.Query();
             result.Read();
             Pregunta p = new Pregunta();
-            Competencia c = new Competencia();
-            Tipo_Pregunta tp = new Tipo_Pregunta();
-            p.Competencia_pregunta = c;
-            p.Tipo_pregunta_pregunta = tp;
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
 
             p.Id_pregunta = result.GetInt32(0);
-            p.Competencia_pregunta.Id_competencia = result.GetInt32(1);
-            p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
+            p.Competencia_pregunta = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
+            p.Tipo_pregunta_pregunta = cTipoPregunta.buscarUnTipoPregunta(result.GetInt32(2));
             p.Enunciado_pregunta = result.GetString(3);
             p.Nivel_pregunta = result.GetString(5);
             try
@@ -104,6 +103,9 @@ namespace Project
             {
                 p.Imagen_pregunta = "";
             }
+            result.Close();
+            bd.Close();
+
             return p;
         }
 

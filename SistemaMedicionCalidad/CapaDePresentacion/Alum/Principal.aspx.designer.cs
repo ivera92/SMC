@@ -13,15 +13,6 @@ namespace CapaDePresentacion.Alum {
     public partial class Principal {
         
         /// <summary>
-        /// rut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rut;
-        
-        /// <summary>
         /// nombreAlumno control.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl nombreEscuela;
         
         /// <summary>
+        /// ddPais control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddPais;
+        
+        /// <summary>
         /// nacionalidad control.
         /// </summary>
         /// <remarks>
@@ -47,6 +47,15 @@ namespace CapaDePresentacion.Alum {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl nacionalidad;
+        
+        /// <summary>
+        /// txtFechaDeNacimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaDeNacimiento;
         
         /// <summary>
         /// fechaNacimiento control.
@@ -58,6 +67,15 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl fechaNacimiento;
         
         /// <summary>
+        /// txtDireccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDireccion;
+        
+        /// <summary>
         /// direccion control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace CapaDePresentacion.Alum {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl direccion;
+        
+        /// <summary>
+        /// txtTelefono control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
         
         /// <summary>
         /// telefono control.
@@ -85,6 +112,15 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl correo;
         
         /// <summary>
+        /// txtPromocion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPromocion;
+        
+        /// <summary>
         /// promocion control.
         /// </summary>
         /// <remarks>
@@ -92,5 +128,59 @@ namespace CapaDePresentacion.Alum {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl promocion;
+        
+        /// <summary>
+        /// divSexo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSexo;
+        
+        /// <summary>
+        /// rbSexo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbSexo;
+        
+        /// <summary>
+        /// divBeneficio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBeneficio;
+        
+        /// <summary>
+        /// rbBeneficio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbBeneficio;
+        
+        /// <summary>
+        /// btnActualizar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnActualizar;
+        
+        /// <summary>
+        /// btnGuardar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
     }
 }

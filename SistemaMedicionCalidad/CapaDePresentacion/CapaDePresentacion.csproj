@@ -97,8 +97,11 @@
     <Content Include="Admin\ImagenesAdmin\imgCompetencia.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgDocente.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgEscuela.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgInscribir.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgPregunta.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgProfesion.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgResultados.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgSalir.png" />
     <Content Include="Admin\InicioAdmin.aspx" />
     <Content Include="Admin\InscribirRamo.aspx" />
     <Content Include="Admin\Logout.aspx" />
@@ -124,6 +127,7 @@
     <Content Include="Admin\CrearEscuela.aspx" />
     <Content Include="Admin\CrearPregunta.aspx" />
     <Content Include="Admin\CrearProfesion.aspx" />
+    <Content Include="Doc\CambiarClave.aspx" />
     <Content Include="Doc\CrearAlumnoD.aspx" />
     <Content Include="Doc\CrearEvaluacion.aspx" />
     <Content Include="Doc\CrearPreguntaD.aspx" />
@@ -412,6 +416,13 @@
     </Compile>
     <Compile Include="Admin\CrearProfesion.aspx.designer.cs">
       <DependentUpon>CrearProfesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doc\CambiarClave.aspx.cs">
+      <DependentUpon>CambiarClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doc\CambiarClave.aspx.designer.cs">
+      <DependentUpon>CambiarClave.aspx</DependentUpon>
     </Compile>
     <Compile Include="Doc\CrearAlumnoD.aspx.cs">
       <DependentUpon>CrearAlumnoD.aspx</DependentUpon>

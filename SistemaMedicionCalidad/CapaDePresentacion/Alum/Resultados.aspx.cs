@@ -120,8 +120,7 @@ namespace CapaDePresentacion.Alum
                 }
             }
             chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
-
-            // Create a new legend called "Legend2".
+            
             chartColumna.Legends.Add(new Legend("Incorrectas"));
             chartColumna.Legends.Add(new Legend("Correctas"));
 

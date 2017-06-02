@@ -171,7 +171,7 @@
                     <asp:BoundField DataField="nombre_competencia.nombre_competencia" HeaderText="Competencia" />
                     <asp:BoundField DataField="rut_docente.nombre_persona" HeaderText="Docente" />
                     <asp:BoundField DataField="rut_alumno.nombre_persona" HeaderText="Alumno" />
-                    <asp:BoundField DataField="Id_evaluacion_hpa.Evaluacion_hpa.Id_evaluacion" HeaderText="Evaluacion" />
+                    <asp:BoundField DataField="Id_evaluacion_hpa.Id_evaluacion" HeaderText="Evaluacion" />
                 </Columns>
 
             </asp:GridView>

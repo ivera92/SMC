@@ -234,6 +234,7 @@ namespace Project
         }
 
         //Devuelve una asignatura acorde a su nombre
+        //Usado para cuando se exportan los alumnos de Excel y aparece el nombre de la asignatura
         public Asignatura buscarAsignaturaNombre(string nombre_asignatura)
         {
             DataBase bd = new DataBase();

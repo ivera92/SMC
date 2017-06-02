@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
+using System.Data;
 
 namespace CapaDePresentacion.Alum
 {
@@ -152,7 +153,7 @@ namespace CapaDePresentacion.Alum
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             ids_preguntas = cEvaluacion.listarPreguntasEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
 
-            DbDataReader result = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas);
+            DataTable dt = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas);
             string s = "";
             int numPregunta = 1;
             int i = 0;
@@ -169,15 +170,15 @@ namespace CapaDePresentacion.Alum
             lIdsVF = new List<int>();
             lIdsSM = new List<int>();
             string x = "";
-            while (result.Read())
+            foreach (DataRow result in dt.Rows)
             {
                 Label pregunta = new Label();
-                pregunta.Text = result.GetString(2);
+                pregunta.Text = result[2].ToString();
 
                 if (s != pregunta.Text)
                 {
                     Label l2 = new Label();
-                    l2.Text = numPregunta + ") " + result.GetString(2);
+                    l2.Text = numPregunta + ") " + result[2].ToString();
 
                     if (rbl.Items.Count > 0 && x == "rbl")
                     {
@@ -195,15 +196,15 @@ namespace CapaDePresentacion.Alum
                         this.Panel1.Controls.Add(rblVF);
                     }
 
-                    if (result.GetString(0) == "Seleccion multiple")
+                    if (result[0].ToString() == "Seleccion multiple")
                     {
                         rbl = new RadioButtonList();
                     }
-                    else if (result.GetString(0) == "Casillas de verificacion")
+                    else if (result[0].ToString() == "Casillas de verificacion")
                     {
                         cbxl = new CheckBoxList();
                     }
-                    else if (result.GetString(0) == "Verdadero o falso")
+                    else if (result[0].ToString() == "Verdadero o falso")
                     {
                         rblVF = new RadioButtonList();
                     }
@@ -213,40 +214,40 @@ namespace CapaDePresentacion.Alum
                     this.Panel1.Controls.Add(l2);
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
 
-                    if (result.GetString(3) != "" && result.GetString(3) != null)
+                    if (result[3].ToString() != "" && result[3].ToString() != null)
                     {
                         Image img = new Image();
                         //string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ImagenesPreguntas\" + result.GetString(5));
                         //ruta = Path.GetFullPath(ruta);
-                        img.ImageUrl = "../ImagenesPreguntas/" + result.GetString(3);
+                        img.ImageUrl = "../ImagenesPreguntas/" + result[3].ToString();
                         Panel1.Controls.Add(img);
                     }
                     numPregunta = numPregunta + 1;
                     s = pregunta.Text;
                 }
-                if (result.GetString(0) == "Seleccion multiple" && s == pregunta.Text)
+                if (result[0].ToString() == "Seleccion multiple" && s == pregunta.Text)
                 {
-                    rbl.Items.Add(result.GetString(1));
-                    lIdsSM.Add(result.GetInt32(4));
-                    lIdsSM.Add(result.GetInt32(5));
+                    rbl.Items.Add(result[1].ToString());
+                    lIdsSM.Add(int.Parse(result[4].ToString() + ""));
+                    lIdsSM.Add(int.Parse(result[5].ToString() + ""));
                     x = "rbl";
                 }
 
-                else if (result.GetString(0) == "Casillas de verificacion" && s == pregunta.Text)
+                else if (result[0].ToString() == "Casillas de verificacion" && s == pregunta.Text)
                 {
-                    cbxl.Items.Add(result.GetString(1));
-                    lIdsCV.Add(result.GetInt32(4));
-                    lIdsCV.Add(result.GetInt32(5));
+                    cbxl.Items.Add(result[1].ToString());
+                    lIdsCV.Add(int.Parse(result[4].ToString() + ""));
+                    lIdsCV.Add(int.Parse(result[5].ToString() + ""));
                     x = "cbxl";
                 }
-                else if (result.GetString(0) == "Verdadero o falso" && s == pregunta.Text)
+                else if (result[0].ToString() == "Verdadero o falso" && s == pregunta.Text)
                 {
-                    rblVF.Items.Add(result.GetString(1));
-                    lIdsVF.Add(result.GetInt32(4));
-                    lIdsVF.Add(result.GetInt32(5));
+                    rblVF.Items.Add(result[1].ToString());
+                    lIdsVF.Add(int.Parse(result[4].ToString() + ""));
+                    lIdsVF.Add(int.Parse(result[5].ToString() + ""));
                     x = "rblVF";
                 }
-                s = result.GetString(2);
+                s = result[2].ToString();
                 i = i + 1;
             }
             if (rbl.Items.Count > 0 && x == "rbl")

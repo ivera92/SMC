@@ -33,19 +33,19 @@ namespace Project
 
             bd.createParameter("@id_pregunta_respuesta", DbType.Int32, id_pregunta);
             List<Respuesta> lRespuestasPregunta = new List<Respuesta>();
+            CatalogPregunta cPregunta = new CatalogPregunta();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
                 Respuesta r = new Respuesta();
-                Pregunta p = new Pregunta();
-                r.Pregunta_respuesta = p;
-
                 r.Id_respuesta = result.GetInt32(0);
-                r.Pregunta_respuesta.Id_pregunta = result.GetInt32(1);
+                r.Pregunta_respuesta = cPregunta.buscarUnaPregunta(result.GetInt32(1));
                 r.Nombre_respuesta = result.GetString(2);
                 r.Correcta_respuesta = result.GetBoolean(3);
                 lRespuestasPregunta.Add(r);
             }
+            result.Close();
+            bd.Close();
             return lRespuestasPregunta;
         }
 
@@ -75,6 +75,8 @@ namespace Project
 
                 lRespuestas.Add(r);
             }
+            result.Close();
+            bd.Close();
             return lRespuestas;
         }
         //Elimina una sola respuesta de una pregunta acorde a su ID
@@ -119,6 +121,32 @@ namespace Project
             bd.createParameter("@correcta_respuesta", DbType.Boolean, r.Correcta_respuesta);
             bd.execute();
             bd.Close();
+        }
+
+        //Devuelve una respuesta acorde a su ID
+        public Respuesta buscarUnaRespuesta(int id_respuesta)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "buscarRespuestaID";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_respuesta", DbType.Int32, id_respuesta);
+
+            DbDataReader result = bd.Query();
+            result.Read();
+            Respuesta r = new Respuesta();
+            CatalogPregunta cPregunta = new CatalogPregunta();
+
+            r.Id_respuesta = result.GetInt32(0);
+            r.Pregunta_respuesta = cPregunta.buscarUnaPregunta(result.GetInt32(1));
+            r.Nombre_respuesta = result.GetString(2);
+            r.Correcta_respuesta = result.GetBoolean(3);
+
+            result.Close();
+            bd.Close();
+
+            return r;
         }
     }
 }

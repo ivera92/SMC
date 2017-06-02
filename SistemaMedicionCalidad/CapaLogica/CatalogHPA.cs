@@ -25,39 +25,6 @@ namespace Project
             bd.Close();
         }
 
-        /*/Devuelve el ID de la pregunta respondida
-        public int buscarIDPregunta(string respuesta)
-        {
-            DataBase bd = new DataBase();
-            bd.connect(); //método conectar
-
-            string sqlSearch = "select id_pregunta_respuesta from respuesta where nombre_respuesta='" + respuesta + "'";
-
-            bd.CreateCommand(sqlSearch);
-            DbDataReader result = bd.Query();//disponible resultado
-            result.Read();
-            int id = result.GetInt32(0);
-            result.Close();
-            bd.Close();
-            return id;
-        }*/
-
-        /*/Devuelve el ID de la respuesta
-        public int buscarIDRespuesta(string respuesta)
-        {
-            DataBase bd = new DataBase();
-            bd.connect(); //método conectar
-
-            string sqlSearch = "select id_respuesta from respuesta where nombre_respuesta='" + respuesta + "'";
-            bd.CreateCommand(sqlSearch);
-            DbDataReader result = bd.Query();//disponible resultado
-            result.Read();
-            int id = result.GetInt32(0);
-            result.Close();
-            bd.Close();
-            return id;
-        }*/
-
         //Devuelve un arreglo de tamaño 2 con la cantidad de respuestas correctas e incorrectas de cierta evaluacion 
         //y de determinado alumno
         public int[] resultadoPreguntasE(string rut, int id_evaluacion)

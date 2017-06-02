@@ -2,9 +2,7 @@
 using Project.CapaDeDatos;
 using System.Data.Common;
 using System.Data;
-using System;
 using System.Security.Cryptography;
-using System.IO;
 using System.Text;
 
 namespace Project.CapaDeNegocios
@@ -73,6 +71,26 @@ namespace Project.CapaDeNegocios
             bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_persona.Id_pais);
             bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_persona);
             bd.createParameter("@correo_alumno", DbType.String, a.Correo_persona);
+            bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
+            bd.createParameter("@beneficio_alumno", DbType.Boolean, a.Beneficio_alumno);
+            bd.execute();
+            bd.Close();
+        }
+
+        //Actualiza un alumno de la base de datos
+        public void actualizarAlumnoEnAlumno(Alumno a)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "editarAlumnoEnAlumno";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_alumno", DbType.String, a.Rut_persona);
+            bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_persona);
+            bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_persona);
+            bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_persona);
+            bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_persona.Id_pais);
+            bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_persona);
             bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
             bd.createParameter("@beneficio_alumno", DbType.Boolean, a.Beneficio_alumno);
             bd.execute();
@@ -190,8 +208,8 @@ namespace Project.CapaDeNegocios
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "select distinct promocion_alumno from alumno order by promocion_alumno asc";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "mostrarPromociones";
+            bd.CreateCommandSP(sqlSearch);
             DbDataReader result = bd.Query();//disponible resultado
             List<int> lPromociones = new List<int>();
             while (result.Read())
@@ -220,7 +238,6 @@ namespace Project.CapaDeNegocios
                 //para cada byte
                 strBuilder.Append(result[i].ToString("x2"));
             }
-
             return strBuilder.ToString();
         }
     }

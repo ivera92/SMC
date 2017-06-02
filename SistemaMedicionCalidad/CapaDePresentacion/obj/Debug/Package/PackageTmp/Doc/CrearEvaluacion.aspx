@@ -80,8 +80,9 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
+        <div class="col-sm-offset-4 col-sm-4">
             <asp:Button runat="server" ID="btnCrear" class="btn btn-primary btn-block" Text="Crear" OnClick="btnCrear_Click1" />
         </div>
     </div>
+    <br />
 </asp:Content>

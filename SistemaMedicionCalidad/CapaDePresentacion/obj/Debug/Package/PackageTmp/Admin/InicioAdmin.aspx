@@ -63,12 +63,30 @@
 
                 <td>
                     <asp:ImageButton CssClass="col-sm-6 img-responsive" runat="server" ID="imgBtnAsociar" ImageUrl="ImagenesAdmin/imgAsociar.jpg" />
-                    <asp:HyperLink ID="asociarCA" runat="server" NavigateUrl="~/Admin/AsociarAC.aspx">Asociar Competencia a Asignatura</asp:HyperLink>
+                    <asp:HyperLink ID="adminAC" runat="server" NavigateUrl="~/Admin/AdministrarAsignatura_Competencia.aspx">Administrar Competencia-Asignatura</asp:HyperLink>
+                    <br />
+                    <asp:HyperLink ID="asociarCA" runat="server" NavigateUrl="~/Admin/AsociarAC.aspx">Asociar Competencia-Asignatura</asp:HyperLink>
                 </td>
 
                 <td>
                     <asp:ImageButton CssClass="col-sm-6 img-responsive" runat="server" ID="imgBtnClave" ImageUrl="ImagenesAdmin/imgClave.png" />
                     <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Admin/CambiarClave.aspx">Cambiar Clave</asp:HyperLink>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:ImageButton CssClass="col-sm-6 img-responsive" runat="server" ID="imgBtnIncribir" ImageUrl="ImagenesAdmin/imgInscribir.jpg" />
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Admin/InscribirRamo.aspx">Inscribir ramo</asp:HyperLink>
+                </td>
+
+                <td>
+                    <asp:ImageButton CssClass="col-sm-6 img-responsive" runat="server" ID="imgBtnResultados" ImageUrl="ImagenesAdmin/imgResultados.jpg" />
+                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Admin/ResultadosEvaluaciones.aspx">Resultados evaluaciones</asp:HyperLink>
+                </td>
+
+                <td>
+                    <asp:ImageButton CssClass="col-sm-6 img-responsive" runat="server" ID="imgBtnSalir" ImageUrl="ImagenesAdmin/imgSalir.png" />
+                    <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/Admin/Logout.aspx">Salir</asp:HyperLink>
                 </td>
             </tr>
         </table>

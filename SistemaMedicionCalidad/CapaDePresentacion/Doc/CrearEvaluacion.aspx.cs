@@ -8,6 +8,7 @@ using iTextSharp.text.pdf;
 using Project;
 using System.Web;
 using System.IO;
+using System.Data;
 
 namespace CapaDePresentacion.Doc
 {
@@ -38,7 +39,7 @@ namespace CapaDePresentacion.Doc
         public void pdf(string ids_preguntas)
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            DbDataReader result = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas); ;
+            DataTable dt = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas); ;
             string s = "";            
 
             Response.ContentType = "application/pdf";
@@ -73,11 +74,11 @@ namespace CapaDePresentacion.Doc
             pdfDoc.Add(p);
 
             int numPregunta = 1;
-            while (result.Read())
+            foreach (DataRow result in dt.Rows)
             {
                 Paragraph pp = new Paragraph();
                 Label l = new Label();
-                l.Text = result.GetString(2);       
+                l.Text = result[2].ToString();       
                 PdfPTable tabla = new PdfPTable(1);
 
                 //Si cambio la pregunta
@@ -98,10 +99,10 @@ namespace CapaDePresentacion.Doc
                     try
                     {
                         //Si existe una ruta de imagen
-                        if (result.GetString(3) != null && result.GetString(3) != "")
+                        if (result[3].ToString() != null && result[3].ToString() != "")
                         {
                             //OBtiene la ruta del dominio y la base de la ubicacion del archivo                            
-                            string ruta2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ImagenesPreguntas\" + result.GetString(3));
+                            string ruta2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ImagenesPreguntas\" + result[3].ToString());
                             ruta2 = Path.GetFullPath(ruta2);
                             // Creamos la imagen y le ajustamos el tamaño
                             iTextSharp.text.Image imagen2 = iTextSharp.text.Image.GetInstance(ruta2);
@@ -118,22 +119,22 @@ namespace CapaDePresentacion.Doc
                     numPregunta = numPregunta + 1;
                 }
                 //Dependiendo del tipo de pregunta agrega
-                if (result.GetString(0) == "Seleccion multiple")
+                if (result[0].ToString() == "Seleccion multiple")
                 {
-                    PdfPCell pc2 = new PdfPCell(new Paragraph("O " + result.GetString(1)));
+                    PdfPCell pc2 = new PdfPCell(new Paragraph("O " + result[1].ToString()));
                     pc2.BorderColor = BaseColor.WHITE;
                     tabla.AddCell(pc2);
                 }
 
-                else if (result.GetString(0) == "Casillas de verificacion")
+                else if (result[0].ToString() == "Casillas de verificacion")
                 {
-                    PdfPCell pc2 = new PdfPCell(new Paragraph("[] " + result.GetString(1) + "\n"));
+                    PdfPCell pc2 = new PdfPCell(new Paragraph("[] " + result[1].ToString() + "\n"));
                     pc2.BorderColor = BaseColor.WHITE;
                     tabla.AddCell(pc2);
                 }
-                else if (result.GetString(0) == "Verdadero o falso")
+                else if (result[0].ToString() == "Verdadero o falso")
                 {
-                    PdfPCell pc2 = new PdfPCell(new Paragraph("O " + result.GetString(1)));
+                    PdfPCell pc2 = new PdfPCell(new Paragraph("O " + result[1].ToString()));
                     pc2.BorderColor = BaseColor.WHITE;
                     tabla.AddCell(pc2);
                 }
@@ -147,42 +148,50 @@ namespace CapaDePresentacion.Doc
         }
 
         protected void btnCrear_Click1(object sender, EventArgs e)
-        {
+        {          
             string ids_preguntas = "";
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            if (ddTipoEvaluacion.SelectedValue == "1")
-            {
-                ids_preguntas = cEvaluacion.mostrarIDsPA(ddAsignatura.SelectedValue);
-            }
-            else if (ddTipoEvaluacion.SelectedValue == "2")
-            {
-                ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue);
-            }
-            else if (ddTipoEvaluacion.SelectedValue == "4")
-            {                
-                ids_preguntas = this.lSeleccionadas(); //Trae las Preguntas y respuestas asociadas a la lista de preguntas enviadas  
-            }
-            
-            Evaluacion ev = new Evaluacion();
-            CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            Asignatura a = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
+            int existe = cEvaluacion.verificarExistencia(ddAsignatura.SelectedValue, txtNombre.Text);
 
-            ev.Asignatura_evaluacion = a;
-            ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
-            ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
-            ev.Preguntas_evaluacion = ids_preguntas;
-
-            try
+            if (existe == 0)
             {
-                cEvaluacion.insertarEvaluacion(ev);
-                this.pdf(ids_preguntas);
-                Response.Write("<script>window.alert('Evaluacion creada satisfactoriamente');</script>");
+                if (ddTipoEvaluacion.SelectedValue == "1")
+                {
+                    ids_preguntas = cEvaluacion.mostrarIDsPA(ddAsignatura.SelectedValue);
+                }
+                else if (ddTipoEvaluacion.SelectedValue == "2")
+                {
+                    ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue);
+                }
+                else if (ddTipoEvaluacion.SelectedValue == "4")
+                {
+                    ids_preguntas = this.lSeleccionadas(); //Trae las Preguntas y respuestas asociadas a la lista de preguntas enviadas  
+                }
+
+                Evaluacion ev = new Evaluacion();
+                CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                Asignatura a = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
+
+                ev.Asignatura_evaluacion = a;
+                ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
+                ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
+                ev.Preguntas_evaluacion = ids_preguntas;
+
+                try
+                {
+                    cEvaluacion.insertarEvaluacion(ev);
+                    this.pdf(ids_preguntas);
+                    Response.Write("<script>window.alert('Evaluacion creada satisfactoriamente');</script>");
+                }
+                catch
+                {
+                }
+                ids_preguntas = "";
             }
-            catch
+            else
             {
                 Response.Write("<script>window.alert('El nombre de la evaluacion ya existe, ingrese otro');</script>");
             }
-            ids_preguntas = "";
         }
 
         public string lSeleccionadas()

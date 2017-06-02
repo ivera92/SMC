@@ -40,11 +40,8 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect();
 
-            if (rut == null)
-                rut = "";
-
-            string sql = "select * from docente where rut_docente='" + rut + "'";
-            bd.CreateCommand(sql);
+            string sql = "buscarDocente";
+            bd.CreateCommandSP(sql);
             bd.createParameter("@rut", DbType.String, rut);
             
             CatalogPais cPais = new CatalogPais();
@@ -149,7 +146,6 @@ namespace Project
                 //para cada byte
                 strBuilder.Append(result[i].ToString("x2"));
             }
-
             return strBuilder.ToString();
         }
     }
