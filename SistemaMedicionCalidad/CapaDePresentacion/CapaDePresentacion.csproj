@@ -133,6 +133,7 @@
     <Content Include="Doc\CrearPreguntaD.aspx" />
     <Content Include="Doc\EvaluacionAlumno.aspx" />
     <Content Include="Doc\Logout.aspx" />
+    <Content Include="Doc\ResultadosEvaluacionesD.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ImagenesPreguntas\ejercicio5Mate1.PNG.PNG" />
     <Content Include="ImagenesPreguntas\ejercicio7Mate1.PNG.PNG" />
@@ -458,6 +459,13 @@
     </Compile>
     <Compile Include="Doc\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doc\ResultadosEvaluacionesD.aspx.cs">
+      <DependentUpon>ResultadosEvaluacionesD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doc\ResultadosEvaluacionesD.aspx.designer.cs">
+      <DependentUpon>ResultadosEvaluacionesD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

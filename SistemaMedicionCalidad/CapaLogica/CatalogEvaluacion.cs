@@ -144,7 +144,6 @@ namespace Project
         //obtiene  resultados de  una evaluacion 
         public List<string> obtenerResultadosEvaluacionGeneral(int id_pais, int promocionA, string rut,  int sexo, int disponibilidadD, int id_evaluacion, int id_competencia)
         {
-
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
@@ -210,8 +209,7 @@ namespace Project
             
             CatalogDocente cDocente = new CatalogDocente();
             CatalogAlumno cAlumno = new CatalogAlumno();
-            HistoricoPruebaAlumno h = new HistoricoPruebaAlumno();
-            
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             
             List<Resultados> lResultados = new List<Resultados>();
             
@@ -219,13 +217,10 @@ namespace Project
             {
                 Competencia c = new Competencia();
                 Pais p = new Pais();
-                Evaluacion e = new Evaluacion();
                 Respuesta res = new Respuesta();
                 Resultados r = new Resultados();
                 r.Correcta_respuesta = res;
                 r.Nombre_competencia = c;
-                r.Id_evaluacion_hpa = h;
-                r.Id_evaluacion_hpa.Id_evaluacion_hpa = e;
 
                 if (result.GetBoolean(0)==false)
                 {
@@ -240,7 +235,7 @@ namespace Project
                 r.Nombre_competencia.Nombre_competencia = result.GetString(2);
                 r.Rut_docente = cDocente.buscarUnDocente(result.GetString(3));
                 r.Rut_alumno = cAlumno.buscarAlumnoPorRut(result.GetString(4));
-                r.Id_evaluacion_hpa.Id_evaluacion_hpa.Id_evaluacion = result.GetInt32(5);
+                r.Id_evaluacion_hpa = cEvaluacion.buscarUnaEvaluacion(result.GetInt32(5));
                 lResultados.Add(r);
             }
             result.Close();
@@ -342,6 +337,25 @@ namespace Project
             result.Close();
             bd.Close();
             return ids_preguntas;
+        }
+
+        //Devuelve una evaluacion acorde a su ID existente en la base de datos
+        public Evaluacion buscarUnaEvaluacion(int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "buscarEvaluacionID";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            DbDataReader result = bd.Query();//disponible resultado
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            result.Read();
+            Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(2)), result.GetString(1), result.GetDateTime(3), result.GetString(4));
+           
+            result.Close();
+            bd.Close();
+            return e;
         }
     }
 }

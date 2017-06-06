@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 using Project.CapaDeDatos;
+using Project.CapaDeNegocios;
 
 namespace Project
 {
@@ -92,6 +93,28 @@ namespace Project
             arrResultados[0] = correctas;
             arrResultados[1] = incorrectas;
             return arrResultados;
+        }
+
+        //Devuelve un HPA acorde a su ID existente en la base de datos
+        public HistoricoPruebaAlumno buscarUnHPA(int id_hpa)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "buscarHPAID";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_hpa", DbType.Int32, id_hpa);
+            DbDataReader result = bd.Query();//disponible resultado
+            result.Read();
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            CatalogRespuesta cRespuesta = new CatalogRespuesta();
+            CatalogPregunta cPregunta = new CatalogPregunta();
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno(cEvaluacion.buscarUnaEvaluacion(result.GetInt32(1)), cEvaluacion.buscarUnaEvaluacion(result.GetInt32(1)), cRespuesta.buscarUnaRespuesta(result.GetInt32(3)), cPregunta.buscarUnaPregunta(result.GetInt32(4)), cAlumno.buscarAlumnoPorRut(result.GetString(5)));
+            hpa.Id_hpa = result.GetInt32(0);
+            result.Close();
+            bd.Close();
+            return hpa;
         }
     }
 }

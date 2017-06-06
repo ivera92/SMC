@@ -22,15 +22,6 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox pwActual;
         
         /// <summary>
-        /// re1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator re1;
-        
-        /// <summary>
         /// pwNueva1 control.
         /// </summary>
         /// <remarks>
@@ -40,15 +31,6 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox pwNueva1;
         
         /// <summary>
-        /// re2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator re2;
-        
-        /// <summary>
         /// pwNueva2 control.
         /// </summary>
         /// <remarks>
@@ -56,15 +38,6 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox pwNueva2;
-        
-        /// <summary>
-        /// RegularExpressionValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
         /// btnGuardar control.

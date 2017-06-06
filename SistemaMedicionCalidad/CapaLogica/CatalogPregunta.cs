@@ -46,8 +46,8 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "select * from tipo_pregunta";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "mostrarTiposPregunta";
+            bd.CreateCommandSP(sqlSearch);
             List<Tipo_Pregunta> lTiposPregunta = new List<Tipo_Pregunta>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
@@ -64,7 +64,7 @@ namespace Project
         {
             DataBase bd = new DataBase();
             bd.connect();
-            string sql = "SELECT TOP 1 * FROM pregunta ORDER BY id_pregunta DESC ";
+            string sql = "ultimaPregunta";
             bd.CreateCommand(sql);
             DbDataReader result = bd.Query();
             result.Read();
@@ -115,24 +115,20 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "select * from pregunta";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "mostrarPreguntas";
+            bd.CreateCommandSP(sqlSearch);
             List<Pregunta> lPreguntas = new List<Pregunta>();
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             CatalogPregunta cPregunta = new CatalogPregunta();
+            CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
                 Pregunta p = new Pregunta();
-                Competencia c = new Competencia();
-                Tipo_Pregunta tp = new Tipo_Pregunta();
-                p.Competencia_pregunta = c;
-                p.Tipo_pregunta_pregunta = tp;
-                c = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
 
                 p.Id_pregunta = result.GetInt32(0);
-                p.Competencia_pregunta.Nombre_competencia = c.Nombre_competencia;
-                p.Tipo_pregunta_pregunta.Id_tipo_pregunta = result.GetInt32(2);
+                p.Competencia_pregunta = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
+                p.Tipo_pregunta_pregunta = cTipoPregunta.buscarUnTipoPregunta(result.GetInt32(2));
                 p.Enunciado_pregunta = result.GetString(3);
                 p.Nivel_pregunta = result.GetString(5);
                 lPreguntas.Add(p);

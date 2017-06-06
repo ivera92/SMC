@@ -17,6 +17,7 @@
                     <asp:ListItem Value="2">Docente</asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div runat="server" id="divAlumno" class="col-sm-4">
@@ -31,6 +32,7 @@
                     <asp:ListItem Value="5">Sexo</asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div runat="server" id="divDocente" class="col-sm-4">
@@ -44,6 +46,7 @@
                     <asp:ListItem Value="4">Sexo</asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div runat="server" id="divPais" class="col-sm-4">
@@ -53,6 +56,7 @@
                     <asp:ListItem Value="0"><--Seleccione un pais--></asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div runat="server" id="divPromocion" class="col-sm-4">
@@ -62,6 +66,7 @@
                     <asp:ListItem Value="0"><--Seleccione promocion--></asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div runat="server" id="divRut" class="col-sm-4">
@@ -69,6 +74,7 @@
             <div>
                 <asp:TextBox CssClass="form-control" ID="txtRut" runat="server"></asp:TextBox>
             </div>
+            <br />
         </div>
 
         <div runat="server" id="divSexo" class="col-sm-4">
@@ -80,6 +86,7 @@
                     <asp:ListItem Value="2">Femenino</asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div runat="server" id="divDisponibilidad" class="col-sm-4">
@@ -91,6 +98,7 @@
                     <asp:ListItem Value="2">Full-Time</asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
 
@@ -102,6 +110,7 @@
                     <asp:ListItem Value="0"><--Seleccione escuela--></asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div runat="server" id="divAsignatura" class="col-sm-4">
@@ -111,32 +120,39 @@
                     <asp:ListItem Value="0"><--Seleccione asignatura--></asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
-        <br />
 
         <div runat="server" id="divEvaluacion" class="col-sm-4">
             <label>Evaluacion</label>
             <div>
-                <asp:DropDownList ID="ddEvaluacion" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
+                <asp:DropDownList ID="ddEvaluacion" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddEvaluacion_SelectedIndexChanged">
                     <asp:ListItem Value="0"><--Seleccione evaluacion--></asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
-        <br />
 
         <div runat="server" id="divCompetencia" class="col-sm-4">
             <label>Competencia</label>
             <div>
-                <asp:DropDownList ID="ddCompetencia" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
+                <asp:DropDownList ID="ddCompetencia" runat="server" AppendDataBoundItems="true" CssClass="form-control">
                     <asp:ListItem Value="0"><--Seleccione competencia--></asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div runat="server" id="divBtnGraficar" class="col-sm-4">
             <div>
+                <br />
                 <asp:Button runat="server" ID="btnGraficar" CssClass="form-control btn-primary btn-block" Text="Graficar" OnClick="btnGraficar_Click" />
             </div>
+            <br />
+        </div>
+        <div class="col-sm-4">
+            <br />
+            <asp:Button runat="server" ID="btnExportar" CssClass="form-control btn-success btn-block" Text="Exportar a Excel" OnClick="btnExportar_Click" />
         </div>
     </div>
     <br />
@@ -152,14 +168,9 @@
                 <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
             </ChartAreas>
         </asp:Chart>
-        <br />   
+        <br />
     </asp:Panel>
     <br />
-    <div class="row">
-            <div class="col-sm-offset-8 col-sm-3">
-                <asp:Button runat="server" ID="btnExportar" CssClass="form-control btn-success btn-block" Text="Exportar a Excel" OnClick="btnExportar_Click" />
-            </div>
-        </div>
     <div class="row" runat="server">
         <div class="col-sm-12">
             <asp:GridView ID="gvResultados" runat="server" AutoGenerateColumns="false" class="table table-striped" BackColor="White">
@@ -171,11 +182,11 @@
                     <asp:BoundField DataField="nombre_competencia.nombre_competencia" HeaderText="Competencia" />
                     <asp:BoundField DataField="rut_docente.nombre_persona" HeaderText="Docente" />
                     <asp:BoundField DataField="rut_alumno.nombre_persona" HeaderText="Alumno" />
-                    <asp:BoundField DataField="Id_evaluacion_hpa.Evaluacion_hpa.Id_evaluacion" HeaderText="Evaluacion" />
+                    <asp:BoundField DataField="Id_evaluacion_hpa.nombre_evaluacion" HeaderText="Evaluacion" />
                 </Columns>
 
             </asp:GridView>
-        </div>        
+        </div>
     </div>
 
 </asp:Content>

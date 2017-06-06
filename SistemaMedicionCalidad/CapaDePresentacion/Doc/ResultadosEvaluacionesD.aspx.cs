@@ -10,15 +10,15 @@ using System.IO;
 using ClosedXML.Excel;
 using System.Web;
 
-namespace CapaDePresentacion.Admin
+namespace CapaDePresentacion.Doc
 {
-    public partial class ResultadosEvaluaciones : System.Web.UI.Page
+    public partial class ResultadosEvaluacionesD : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                string rut = Session["rutAdmin"].ToString();
+                string rut = Session["rutDocente"].ToString();
                 btnExportar.Visible = false;
                 panelGrafico.Visible = false;
                 if (!Page.IsPostBack)
@@ -33,32 +33,24 @@ namespace CapaDePresentacion.Admin
         }
         public void ocultarDivs()
         {
-            divAlumno.Visible = false;
-            divDocente.Visible = false;
             divPais.Visible = false;
             divPromocion.Visible = false;
             divRut.Visible = false;
             divSexo.Visible = false;
-            divEscuela.Visible = false;
             divAsignatura.Visible = false;
             divEvaluacion.Visible = false;
             divCompetencia.Visible = false;
-            divDisponibilidad.Visible = false;
             btnGraficar.Visible = false;
         }
 
         public void limpiarDD()
         {
-            ddAlumno.SelectedIndex = 0;
-            ddDocente.SelectedIndex = 0;
             ddPais.SelectedIndex = 0;
             ddPromocion.SelectedIndex = 0;
             ddSexo.SelectedIndex = 0;
-            ddEscuela.SelectedIndex = 0;
             ddAsignatura.SelectedIndex = 0;
             ddEvaluacion.SelectedIndex = 0;
             ddCompetencia.SelectedIndex = 0;
-            ddDisponibilidad.SelectedIndex = 0;
             txtRut.Text = "";
         }
         public void ocultarFitros()
@@ -68,25 +60,19 @@ namespace CapaDePresentacion.Admin
             divRut.Visible = false;
             divSexo.Visible = false;
         }
-
-        protected void ddUsuario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.ocultarDivs();
-            if (ddUsuario.SelectedValue == "1")
-            {
-                divAlumno.Visible = true;
-            }
-            else if(ddUsuario.SelectedValue == "2")
-            {
-                divDocente.Visible = true;
-            }
-        }
         protected void ddAlumno_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ocultarFitros();
-            if (ddAlumno.SelectedValue == "1")
+            if (ddAlumno.SelectedValue == "0")
             {
-                listarEscuelas();
+                divAsignatura.Visible = false;
+                divEvaluacion.Visible = false;
+                divCompetencia.Visible = false;
+            }
+            else if (ddAlumno.SelectedValue == "1")
+            {
+                divAsignatura.Visible = true;
+                listarAsignaturas();
             }
             else if (ddAlumno.SelectedValue == "2")
             {
@@ -121,20 +107,11 @@ namespace CapaDePresentacion.Admin
                 divSexo.Visible = true;
             }
         }
-        public void listarEscuelas()
-        {
-            CatalogEscuela cEscuela = new CatalogEscuela();
-            List<Escuela> lEscuelas = cEscuela.listarEscuelas();
-            this.ddEscuela.DataTextField = "Nombre_escuela";
-            this.ddEscuela.DataValueField = "Id_escuela";
-            this.ddEscuela.DataSource = lEscuelas;
-            this.DataBind();//enlaza los datos a un dropdownlist  
-            divEscuela.Visible = true;
-        }
         public void listarAsignaturas()
         {
+            string rut = Session["rutDocente"].ToString();
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturas();
+            List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturasDocente(rut);
             this.ddAsignatura.Items.Clear();
             ddAsignatura.Items.Add(new ListItem("<--Seleccione asignatura-->", "0"));
             this.ddAsignatura.DataTextField = "Nombre_asignatura";
@@ -145,33 +122,27 @@ namespace CapaDePresentacion.Admin
 
         protected void ddDisponibilidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listarEscuelas();
+            listarAsignaturas();
         }
 
         protected void ddSexo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listarEscuelas();
+            listarAsignaturas();
         }
         protected void ddPais_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listarEscuelas();
+            listarAsignaturas();
         }
         protected void ddPromocion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listarEscuelas();
-        }       
-
-        protected void ddEscuela_asignatura_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            divAsignatura.Visible = true;
-            listarAsignaturas();            
-        }
+            listarAsignaturas();
+        }      
 
         public void graficoColumna()
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             panelGrafico.Visible = true;
-            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(int.Parse(ddPais.SelectedValue), int.Parse(ddPromocion.SelectedValue), txtRut.Text, int.Parse(ddSexo.SelectedValue), int.Parse(ddDisponibilidad.SelectedValue), int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
+            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(int.Parse(ddPais.SelectedValue), int.Parse(ddPromocion.SelectedValue), txtRut.Text, int.Parse(ddSexo.SelectedValue), 0, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
 
             int i = 0;
             while (i < result.Count)
@@ -245,7 +216,7 @@ namespace CapaDePresentacion.Admin
         {
             this.gvResultados.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralGV(int.Parse(ddPais.SelectedValue), int.Parse(ddPromocion.SelectedValue), txtRut.Text, int.Parse(ddSexo.SelectedValue), int.Parse(ddDisponibilidad.SelectedValue), int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
+            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralGV(int.Parse(ddPais.SelectedValue), int.Parse(ddPromocion.SelectedValue), txtRut.Text, int.Parse(ddSexo.SelectedValue), 0, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
             this.gvResultados.DataSource = lResultados;
             this.DataBind();
         }
@@ -295,7 +266,7 @@ namespace CapaDePresentacion.Admin
         }
 
         protected void ddEvaluacion_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             List<Competencia> lCompetencia = cCompetencia.listarCompetenciasAsignatura(ddAsignatura.SelectedValue);
 

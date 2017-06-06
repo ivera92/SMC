@@ -10,9 +10,9 @@
     <label class="col-sm-offset-4">Contraseña Actual</label>
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
-            <asp:TextBox ID="pwActual" runat="server" class="form-control col-sm-4" placeHolder="Ingrese contraseña actual" TextMode="Password" MaxLength="10"></asp:TextBox>
-            <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="pwActual" ID="re1" ValidationExpression="^[\s\S]{6,10}$" runat="server" ErrorMessage="La contraseña debe tener un minimo de 6 caracteres y un maximo de 10."></asp:RegularExpressionValidator>
-            <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" />
+            <asp:TextBox ID="pwActual" runat="server" class="form-control col-sm-4" pattern=".{6,10}" placeHolder="Ingrese contraseña actual" TextMode="Password"
+                oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
+                    oninput="setCustomValidity('')"></asp:TextBox>
         </div>
     </div>
     <br />
@@ -20,9 +20,9 @@
     <label class="col-sm-offset-4">Nueva contraseña</label>
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
-            <asp:TextBox ID="pwNueva1" runat="server" class="form-control col-sm-4" placeHolder="Ingrese nueva contraseña" TextMode="Password" MaxLength="10"></asp:TextBox>
-            <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="pwNueva1" ID="re2" ValidationExpression="^[\s\S]{6,10}$" runat="server" ErrorMessage="La contraseña debe tener un minimo de 6 caracteres y un maximo de 10."></asp:RegularExpressionValidator>
-            <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" />
+            <asp:TextBox ID="pwNueva1" runat="server" class="form-control col-sm-4" pattern=".{6,10}" placeHolder="Ingrese nueva contraseña" TextMode="Password"
+                oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
+                    oninput="setCustomValidity('')"></asp:TextBox>
         </div>
     </div>
     <br />
@@ -30,9 +30,9 @@
     <label class="col-sm-offset-4">Repita la contraseña</label>
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
-            <asp:TextBox ID="pwNueva2" runat="server" class="form-control col-sm-4" placeHolder="Ingrese nuevamente la contraseña" TextMode="Password" MaxLength="10"></asp:TextBox>
-            <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="pwActual" ID="RegularExpressionValidator1" ValidationExpression="^[\s\S]{6,10}$" runat="server" ErrorMessage="La contraseña debe tener un minimo de 6 caracteres y un maximo de 10."></asp:RegularExpressionValidator>
-            <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" />
+            <asp:TextBox ID="pwNueva2" runat="server" class="form-control col-sm-4" pattern=".{6,10}" placeHolder="Ingrese nuevamente la contraseña" TextMode="Password"
+                oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
+                    oninput="setCustomValidity('')"></asp:TextBox>
         </div>
     </div>
     <br />

@@ -58,8 +58,8 @@
             <div class="col-sm-offset-3 col-sm-2">
                 <label for="lbl1">Nombre</label></div>
             <div class="col-sm-4">
-                <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$" placeHolder="Ingrese su nombre y apellido" class="form-control"
-                    oninvalid="setCustomValidity('La primera letra del nombre y apellido deben ir en mayuscula')"
+                <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚa-záéíóú]{3,16}*)+$" placeHolder="Ingrese su nombre y apellido" class="form-control"
+                    oninvalid="setCustomValidity('Ingrese un nombre de minimo 3 caracteres y maximo 16, solo letras')"
                     oninput="setCustomValidity('')">
                 </asp:TextBox>
             </div>

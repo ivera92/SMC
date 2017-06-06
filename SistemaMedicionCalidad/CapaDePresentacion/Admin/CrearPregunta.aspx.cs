@@ -74,7 +74,7 @@ namespace CapaDePresentacion.Doc
             Tipo_Pregunta tp = new Tipo_Pregunta();
             p.Competencia_pregunta = c;
             p.Tipo_pregunta_pregunta = tp;
-
+            int id = 0;
             try
             {
                 this.subirImagen();//Guarda la imagen en la carpeta ImagenesPreguntas ubicada en la carpeta Doc
@@ -82,19 +82,11 @@ namespace CapaDePresentacion.Doc
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
                 p.Enunciado_pregunta = this.txtAPregunta.InnerText;
                 p.Imagen_pregunta = ruta;
-                p.Nivel_pregunta = txtNivel.Text.ToUpper();         
+                p.Nivel_pregunta = txtNivel.Text.ToUpper();
                 cp.insertarPregunta(p);
-                Response.Write("<script>window.alert('Pregunta creada satisfactoriamente');</script>");
-            }
-            catch
-            {
-                Response.Write("<script>window.alert('Pregunta no pudo ser creada');</script>");
-            }
+                id = cp.ultimaPregunta();
 
-            try
-            { 
-            int id = cp.ultimaPregunta();
-            Pregunta pp = new Pregunta();
+                Pregunta pp = new Pregunta();
                 //Preguntamos si es Tipo Verdadero o falso
                 if (int.Parse(ddTipoPregunta.SelectedValue) == 3)
                 {
@@ -130,10 +122,11 @@ namespace CapaDePresentacion.Doc
                         i++;
                     }
                 }
-                Response.Write("<script>window.alert('Respuestas creadas satisfactoriamente');</script>");
+                Response.Write("<script>window.alert('Pregunta creada satisfactoriamente');</script>");
             }
             catch
             {
+                Response.Write("<script>window.alert('Pregunta no pudo ser creada');</script>");
             }
         }
         public void agregarControles(TextBox txt, CheckBox cb)
@@ -190,19 +183,40 @@ namespace CapaDePresentacion.Doc
         }
         public void subirImagen()
         {
-            string sExt = Path.GetExtension(fileImagen.FileName);
-            if (sExt != null || sExt != "")
+            if (IsPostBack)
             {
-                try
+                bool fileOK = false;
+                string path = Server.MapPath("~/ImagenesPreguntas/");
+                if (fileImagen.HasFile)
                 {
-                    //OBtiene la ruta del dominio y la base de la ubicacion del archivo                            
-                    ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ImagenesPreguntas/" + fileImagen.FileName + sExt);
-                    ruta = Path.GetFullPath(ruta);
-                    fileImagen.SaveAs(Server.MapPath(ruta));
-                    ClientScript.RegisterStartupScript(this.GetType(), "Mensaje",
-                        "alert('La imagen fue grabada en el servidor');", true);
+                    string extension = Path.GetExtension(fileImagen.FileName).ToLower();
+                    string[] posiblesExtensiones = { ".gif", ".png", ".jpeg", ".jpg", ".GIF", ".PNG", ".JPEG", ".JPG" };
+                    for (int i = 0; i < posiblesExtensiones.Length; i++)
+                    {
+                        if (extension == posiblesExtensiones[i])
+                        {
+                            fileOK = true;
+                        }
+                    }
                 }
-                catch { ruta = ""; };
+
+                if (fileOK)
+                {
+                    try
+                    {
+                        fileImagen.PostedFile.SaveAs(path + fileImagen.FileName);
+                        Response.Write("<script>window.alert('La imagen fue grabada en el servidor');</script>");
+                        ruta = fileImagen.FileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("<script>window.alert('La imagen no pudo ser grabada en el servidor');</script>");
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>window.alert('El formato de archivo no es soportado');</script>");
+                }
             }
         }
 

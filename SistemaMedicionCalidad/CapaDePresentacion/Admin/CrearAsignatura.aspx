@@ -13,7 +13,7 @@
                 <label>Codigo</label>
             </div>
             <div class="col-sm-5">
-                <asp:TextBox ID="txtCodigo" runat="server" class="form-control" MaxLength="7" placeHolder="Ingrese codigo, ejemplo: CIBA019"></asp:TextBox>
+                <asp:TextBox ID="txtCodigo" runat="server" class="form-control" placeHolder="Ingrese codigo, ejemplo: CIBA019"></asp:TextBox>
             </div>
         </div>
         <br />
@@ -23,7 +23,7 @@
                 <label>Nombre</label>
             </div>
             <div class="col-sm-5">
-                <asp:TextBox ID="txtNombre" runat="server" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚ]{1}[a-zñáéíóú]*[\s]*)+$" placeHolder="Ingrese nombre"></asp:TextBox>
+                <asp:TextBox ID="txtNombre" runat="server" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚa-zñáéíóú1234567890]{1}*)+$" placeHolder="Ingrese nombre"></asp:TextBox>
             </div>
         </div>
         <br />

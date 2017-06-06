@@ -29,8 +29,8 @@
 
         public Evaluacion Id_evaluacion_hpa
         {
-            get { return Id_evaluacion_hpa1; }
-            set { Id_evaluacion_hpa1 = value; }
+            get { return Id_evaluacion_hpa; }
+            set { Id_evaluacion_hpa = value; }
         }
 
         public Respuesta Respuesta_hpa
@@ -51,30 +51,10 @@
             set { alumno_hpa = value; }
         }
 
-        public Evaluacion Id_evaluacion_hpa1
-        {
-            get
-            {
-                return id_evaluacion_hpa;
-            }
-
-            set
-            {
-                id_evaluacion_hpa = value;
-            }
-        }
-
         public Evaluacion Nombre_evaluacion_hpa
         {
-            get
-            {
-                return nombre_evaluacion_hpa;
-            }
-
-            set
-            {
-                nombre_evaluacion_hpa = value;
-            }
+            get { return nombre_evaluacion_hpa; }
+            set { nombre_evaluacion_hpa = value; }
         }
     }
 }

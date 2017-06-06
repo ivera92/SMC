@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Project
+﻿namespace Project
 {
     public class Cursa
     {
@@ -20,41 +15,20 @@ namespace Project
         }
         public Alumno Rut_alumno_aa
         {
-            get
-            {
-                return rut_alumno_aa;
-            }
-
-            set
-            {
-                rut_alumno_aa = value;
-            }
+            get { return rut_alumno_aa; }
+            set { rut_alumno_aa = value; }
         }
 
         public Asignatura Cod_asignatura_aa
         {
-            get
-            {
-                return cod_asignatura_aa;
-            }
-
-            set
-            {
-                cod_asignatura_aa = value;
-            }
+            get { return cod_asignatura_aa; }
+            set { cod_asignatura_aa = value; }
         }
 
         public int Id_aa
         {
-            get
-            {
-                return id_aa;
-            }
-
-            set
-            {
-                id_aa = value;
-            }
+            get { return id_aa; }
+            set { id_aa = value; }
         }
     }
 }

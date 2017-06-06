@@ -159,6 +159,12 @@
                         </ul>
                     </li>
                     <li class="nivel1">
+                        <a href="#" style="color: #333; float: left;">Resultados</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <ul>
+                            <li><a href="ResultadosEvaluacionesD.aspx" style="width: 243px;">Resultados evaluaciones</a></li>
+                        </ul>
+                    </li>
+                    <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Clave</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
                             <li><a href="CambiarClave.aspx" style="width: 243px;">Cambiar clave</a></li>

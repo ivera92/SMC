@@ -34,7 +34,7 @@ namespace Project
             this.asignatura_evaluacion = asignatura_evaluacion;
             this.nombre_evaluacion = nombre_evaluacion;
             this.fecha_evaluacion = fecha_evaluacion;
-            this.Preguntas_evaluacion = preguntas_evaluacion;
+            this.preguntas_evaluacion = preguntas_evaluacion;
         }
 
         public int Id_evaluacion
@@ -63,15 +63,8 @@ namespace Project
 
         public string Preguntas_evaluacion
         {
-            get
-            {
-                return preguntas_evaluacion;
-            }
-
-            set
-            {
-                preguntas_evaluacion = value;
-            }
+            get { return preguntas_evaluacion; }
+            set { preguntas_evaluacion = value; }
         }
     }
 }

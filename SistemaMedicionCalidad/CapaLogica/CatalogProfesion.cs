@@ -13,8 +13,8 @@ namespace Project.CapaDeNegocios
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
             List<Profesion> lProfesiones = new List<Profesion>();
-            string sql = "select * from Profesion"; //comando sql
-            bd.CreateCommand(sql);
+            string sql = "mostrarProfesiones"; //comando sql
+            bd.CreateCommandSP(sql);
 
             DbDataReader result = bd.Query(); //disponible resultado
 
@@ -62,8 +62,9 @@ namespace Project.CapaDeNegocios
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "select * from profesion where id_profesion='" + id_profesion + "'";
-            bd.CreateCommand(sqlSearch);
+            string sqlSearch = "buscarProfesionID";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_profesion", DbType.Int32, id_profesion);
             DbDataReader result = bd.Query();//disponible resultado
             result.Read();
             Profesion p = new Profesion(result.GetInt32(0), result.GetString(1));

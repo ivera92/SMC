@@ -2,16 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 class="text-center">Crear Evaluacion</h2>
     <br />
 
     <div class="row">
-        <div class="col-sm-4">            
+        <div class="col-sm-4">
             <label>Asignatura</label>
             <div>
-                <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False"  AppendDataBoundItems="true">
+                <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
                     <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
                 </asp:DropDownList>
             </div>
@@ -22,10 +22,10 @@
                 <asp:TextBox runat="server" ID="txtNombre" class="form-control"></asp:TextBox>
             </div>
         </div>
-        <div class="col-sm-4">            
+        <div class="col-sm-4">
             <label>Tipo Evaluacion</label>
             <div>
-                <asp:DropDownList runat="server" ID="ddTipoEvaluacion" class="form-control" AutoPostBack="true" AutoGenerateColumns="False"  AppendDataBoundItems="true" OnSelectedIndexChanged="ddTipoEvaluacion_SelectedIndexChanged">
+                <asp:DropDownList runat="server" ID="ddTipoEvaluacion" class="form-control" AutoPostBack="true" AutoGenerateColumns="False" AppendDataBoundItems="true" OnSelectedIndexChanged="ddTipoEvaluacion_SelectedIndexChanged">
                     <asp:ListItem Value="0"><--Seleccione tipo de evaluacion--></asp:ListItem>
                     <asp:ListItem Value="1">Todas las preguntas</asp:ListItem>
                     <asp:ListItem Value="2">15 Aleatorias</asp:ListItem>
@@ -36,7 +36,6 @@
         </div>
     </div>
     <br />
-
     <div id="divGV" runat="server">
         <div class="row">
             <div class="col-sm-12">
@@ -51,7 +50,7 @@
                         <asp:BoundField DataField="Id_Pregunta" HeaderText="Id" />
                         <asp:BoundField DataField="Competencia_Pregunta.nombre_competencia" HeaderText="Competencia" />
                         <asp:BoundField DataField="Tipo_Pregunta_Pregunta.nombre_tipo_pregunta" HeaderText="Tipo Pregunta" />
-                        <asp:BoundField DataField="Enunciado_Pregunta" HeaderText="Enunciado" />                        
+                        <asp:BoundField DataField="Enunciado_Pregunta" HeaderText="Enunciado" />
                         <asp:BoundField DataField="Nivel_Pregunta" HeaderText="Nivel" />
                     </Columns>
                     <PagerStyle HorizontalAlign="Right" CssClass="GridPager" />
@@ -63,7 +62,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm-5">
             <label id="nombreAlumno" runat="server" visible="false">Nombre:</label>

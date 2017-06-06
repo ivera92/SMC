@@ -13,8 +13,8 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
             List<Pais> lPaises = new List<Pais>();
-            string sql = "select * from pais"; //comando sql
-            bd.CreateCommand(sql);
+            string sql = "mostrarPaises"; //comando sql
+            bd.CreateCommandSP(sql);
 
             DbDataReader result = bd.Query(); //disponible resultado
 

@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="SiteAdmin.Master" AutoEventWireup="true" CodeBehind="ResultadosEvaluaciones.aspx.cs" Inherits="CapaDePresentacion.Admin.ResultadosEvaluaciones" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Doc/SiteDocente.Master" AutoEventWireup="true" CodeBehind="ResultadosEvaluacionesD.aspx.cs" Inherits="CapaDePresentacion.Doc.ResultadosEvaluacionesD" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -8,18 +8,6 @@
     <br />
 
     <div class="row">
-        <div class="col-sm-4" id="divUsuario" runat="server">
-            <label>Usuario</label>
-            <div>
-                <asp:DropDownList ID="ddUsuario" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddUsuario_SelectedIndexChanged">
-                    <asp:ListItem Value="0"><--Seleccione tipo de usuario--></asp:ListItem>
-                    <asp:ListItem Value="1">Alumno</asp:ListItem>
-                    <asp:ListItem Value="2">Docente</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <br />
-        </div>
-
         <div runat="server" id="divAlumno" class="col-sm-4">
             <label>Filtro</label>
             <div>
@@ -33,21 +21,7 @@
                 </asp:DropDownList>
             </div>
             <br />
-        </div>
-
-        <div runat="server" id="divDocente" class="col-sm-4">
-            <label>Filtro</label>
-            <div>
-                <asp:DropDownList ID="ddDocente" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control">
-                    <asp:ListItem Value="0"><--Seleccione filtro--></asp:ListItem>
-                    <asp:ListItem Value="1">Disponibilidad</asp:ListItem>
-                    <asp:ListItem Value="2">Pais</asp:ListItem>
-                    <asp:ListItem Value="3">Rut</asp:ListItem>
-                    <asp:ListItem Value="4">Sexo</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <br />
-        </div>
+        </div>        
 
         <div runat="server" id="divPais" class="col-sm-4">
             <label>Pais</label>
@@ -89,30 +63,6 @@
             <br />
         </div>
 
-        <div runat="server" id="divDisponibilidad" class="col-sm-4">
-            <label>Disponibilidad</label>
-            <div>
-                <asp:DropDownList ID="ddDisponibilidad" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddDisponibilidad_SelectedIndexChanged">
-                    <asp:ListItem Value="0"><--Seleccione disponibilidad--></asp:ListItem>
-                    <asp:ListItem Value="1">Part-Time</asp:ListItem>
-                    <asp:ListItem Value="2">Full-Time</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <br />
-        </div>
-
-
-
-        <div runat="server" id="divEscuela" class="col-sm-4">
-            <label>Escuela</label>
-            <div>
-                <asp:DropDownList ID="ddEscuela" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddEscuela_asignatura_SelectedIndexChanged">
-                    <asp:ListItem Value="0"><--Seleccione escuela--></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <br />
-        </div>
-
         <div runat="server" id="divAsignatura" class="col-sm-4">
             <label>Asignatura</label>
             <div>
@@ -148,14 +98,13 @@
                 <br />
                 <asp:Button runat="server" ID="btnGraficar" CssClass="form-control btn-primary btn-block" Text="Graficar" OnClick="btnGraficar_Click" />
             </div>
-            <br />
         </div>
+
         <div class="col-sm-4">
             <br />
-            <asp:Button runat="server" ID="btnExportar" CssClass="form-control btn-success btn-block" Text="Exportar a Excel" OnClick="btnExportar_Click" />
+            <asp:Button runat="server" ID="btnExportar" CssClass="form-control btn-success btn-block" Text="Exportar a Excel" OnClick="btnExportar_Click" />  
         </div>
     </div>
-    <br />
 
     <asp:Panel ID="panelGrafico" runat="server">
         <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="780px" Height="392px">

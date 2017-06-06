@@ -10,7 +10,9 @@
     <label class="col-sm-offset-4">Contraseña Actual</label>
     <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
-            <asp:TextBox ID="txtPwActual" runat="server" class="form-control col-sm-" placeHolder="Ingrese contraseña actual" TextMode="Password" MaxLength="10"></asp:TextBox>
+            <asp:TextBox ID="txtPwActual" runat="server" class="form-control col-sm-" placeHolder="Ingrese contraseña actual" TextMode="Password"
+                oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
+                    oninput="setCustomValidity('')"></asp:TextBox>
         </div>
     </div>
     <br />
@@ -18,7 +20,9 @@
     <label class="col-sm-offset-4">Nueva contraseña</label>
     <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
-            <asp:TextBox ID="txtPwNueva1" runat="server" class="form-control col-sm-4" placeHolder="Ingrese nueva contraseña" TextMode="Password" MaxLength="10"></asp:TextBox>
+            <asp:TextBox ID="txtPwNueva1" runat="server" class="form-control col-sm-4" placeHolder="Ingrese nueva contraseña" TextMode="Password"
+                oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
+                    oninput="setCustomValidity('')"></asp:TextBox>
         </div>
     </div>
     <br />
@@ -26,7 +30,9 @@
     <label class="col-sm-offset-4">Repita la contraseña</label>
     <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
-            <asp:TextBox ID="txtPwNueva2" runat="server" class="form-control col-sm-4" placeHolder="Ingrese nuevamente la contraseña" TextMode="Password" MaxLength="10"></asp:TextBox>
+            <asp:TextBox ID="txtPwNueva2" runat="server" class="form-control col-sm-4" placeHolder="Ingrese nuevamente la contraseña" TextMode="Password"
+                oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
+                    oninput="setCustomValidity('')"></asp:TextBox>
         </div>
     </div>
     <br />

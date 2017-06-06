@@ -1,5 +1,4 @@
-﻿
-namespace Project
+﻿namespace Project
 {
     public class Tipo_Competencia
     {
@@ -20,28 +19,14 @@ namespace Project
         }
         public int Id_tipo_competencia
         {
-            get
-            {
-                return id_tipo_competencia;
-            }
-
-            set
-            {
-                id_tipo_competencia = value;
-            }
+            get { return id_tipo_competencia; }
+            set { id_tipo_competencia = value; }
         }
 
         public string Nombre_tipo_competencia
         {
-            get
-            {
-                return nombre_tipo_competencia;
-            }
-
-            set
-            {
-                nombre_tipo_competencia = value;
-            }
+            get { return nombre_tipo_competencia; }
+            set { nombre_tipo_competencia = value; }
         }
     }
 }

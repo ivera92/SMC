@@ -21,9 +21,10 @@ namespace CapaDePresentacion.Doc
                 string rut = Session["rutDocente"].ToString();
                 CatalogAsignatura cAsignatura = new CatalogAsignatura();
                 List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasDocente(rut);
-                divGV.Visible = false;
+                
                 if (!Page.IsPostBack)
                 {
+                    divGV.Visible = false;
                     this.fechaEvaluacion.InnerText = DateTime.Today.ToString("d");
                     this.ddAsignatura.DataTextField = "Nombre_asignatura";
                     this.ddAsignatura.DataValueField = "Cod_asignatura";
@@ -181,16 +182,14 @@ namespace CapaDePresentacion.Doc
                 {
                     cEvaluacion.insertarEvaluacion(ev);
                     this.pdf(ids_preguntas);
-                    Response.Write("<script>window.alert('Evaluacion creada satisfactoriamente');</script>");
+                    Response.Write("<script>alert('Evaluacion creada satisfactoriamente');</script>");
                 }
-                catch
-                {
-                }
+                catch{}
                 ids_preguntas = "";
             }
             else
             {
-                Response.Write("<script>window.alert('El nombre de la evaluacion ya existe, ingrese otro');</script>");
+                Response.Write("<script>alert('El nombre de la evaluacion ya existe, ingrese otro');</script>");
             }
         }
 
@@ -211,9 +210,9 @@ namespace CapaDePresentacion.Doc
 
         protected void ddTipoEvaluacion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddTipoEvaluacion.SelectedValue == "3")
+            if (ddTipoEvaluacion.SelectedValue == "0" || ddTipoEvaluacion.SelectedValue == "1"|| ddTipoEvaluacion.SelectedValue == "2" || ddTipoEvaluacion.SelectedValue == "3")
             {
-
+                divGV.Visible = false;
             }
             else if (ddTipoEvaluacion.SelectedValue == "4")
             {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Project
+﻿namespace Project
 {
     public class Resultados
     {
@@ -12,7 +7,7 @@ namespace Project
         private Competencia nombre_competencia;
         private Docente rut_docente;
         private Alumno rut_alumno;
-        private HistoricoPruebaAlumno id_evaluacion_hpa;
+        private Evaluacion id_evaluacion_hpa;
 
         private string estado_respuesta;
         private string nomnbre_evaluacion;
@@ -21,7 +16,7 @@ namespace Project
         {
 
         }
-        public Resultados(Respuesta correcta_respuesta, int cantidad, Competencia nombre_competencia, Docente rut_docente, Alumno rut_alumno, HistoricoPruebaAlumno id_evaluacion_hpa)
+        public Resultados(Respuesta correcta_respuesta, int cantidad, Competencia nombre_competencia, Docente rut_docente, Alumno rut_alumno, Evaluacion id_evaluacion_hpa)
         {
             this.correcta_respuesta = correcta_respuesta;
             this.cantidad = cantidad;
@@ -44,106 +39,50 @@ namespace Project
 
         public Respuesta Correcta_respuesta
         {
-            get
-            {
-                return correcta_respuesta;
-            }
-
-            set
-            {
-                correcta_respuesta = value;
-            }
+            get { return correcta_respuesta; }
+            set { correcta_respuesta = value; }
         }
 
         public int Cantidad
         {
-            get
-            {
-                return cantidad;
-            }
-
-            set
-            {
-                cantidad = value;
-            }
+            get { return cantidad; }
+            set { cantidad = value; }
         }
 
         public Competencia Nombre_competencia
         {
-            get
-            {
-                return nombre_competencia;
-            }
-
-            set
-            {
-                nombre_competencia = value;
-            }
+            get { return nombre_competencia; }
+            set { nombre_competencia = value; }
         }
 
         public Docente Rut_docente
         {
-            get
-            {
-                return rut_docente;
-            }
-
-            set
-            {
-                rut_docente = value;
-            }
+            get { return rut_docente; }
+            set { rut_docente = value; }
         }
 
         public Alumno Rut_alumno
         {
-            get
-            {
-                return rut_alumno;
-            }
-
-            set
-            {
-                rut_alumno = value;
-            }
+            get { return rut_alumno; }
+            set { rut_alumno = value; }
         }
 
-        public HistoricoPruebaAlumno Id_evaluacion_hpa
+        public Evaluacion Id_evaluacion_hpa
         {
-            get
-            {
-                return id_evaluacion_hpa;
-            }
-
-            set
-            {
-                id_evaluacion_hpa = value;
-            }
+            get { return id_evaluacion_hpa; }
+            set { id_evaluacion_hpa = value; }
         }
 
         public string Estado_respuesta
         {
-            get
-            {
-                return estado_respuesta;
-            }
-
-            set
-            {
-                estado_respuesta = value;
-            }
+            get { return estado_respuesta; }
+            set { estado_respuesta = value; }
         }
 
         public string Nomnbre_evaluacion
         {
-            get
-            {
-                return nomnbre_evaluacion;
-            }
-
-            set
-            {
-                nomnbre_evaluacion = value;
-            }
+            get { return nomnbre_evaluacion; }
+            set { nomnbre_evaluacion = value; }
         }
     }
 }

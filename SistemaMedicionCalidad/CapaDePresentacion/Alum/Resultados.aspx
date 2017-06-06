@@ -15,6 +15,7 @@
                     <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div class="col-sm-3">
@@ -24,6 +25,7 @@
                     <asp:ListItem Value="0"><--Seleccione una evaluacion--></asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
         <div class="col-sm-3">
             <label>Competencia</label>
@@ -32,6 +34,7 @@
                     <asp:ListItem Value="0"><--Seleccione una competencia--></asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <br />
         </div>
 
         <div>

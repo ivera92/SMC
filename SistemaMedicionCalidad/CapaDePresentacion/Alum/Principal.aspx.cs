@@ -120,7 +120,13 @@ namespace CapaDePresentacion.Alum
         {
             try
             {
+                
                 this.cargarActualizacion();
+                nacionalidad.Visible = false;
+                fechaNacimiento.Visible = false;
+                direccion.Visible = false;
+                telefono.Visible = false;
+                promocion.Visible = false;
             }
             catch
             {
