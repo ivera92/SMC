@@ -260,5 +260,38 @@ namespace Project
             bd.Close();
             return a;
         }
+
+        //Lista todas las asignaturas existentes en la base de datos acorde a una busqueda
+        public List<Asignatura> listarAsignaturasBusqueda(string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarAsignaturasBusqueda";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@buscar", DbType.String, buscar);
+            List<Asignatura> lAsignaturas = new List<Asignatura>();
+            DbDataReader result = bd.Query();
+            CatalogEscuela cEscuela = new CatalogEscuela();
+            CatalogDocente cDocente = new CatalogDocente();
+
+            while (result.Read())
+            {
+                Asignatura a = new Asignatura();
+
+                a.Cod_asignatura = result.GetString(0);
+                a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
+                a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
+                a.Nombre_asignatura = result.GetString(3);
+                a.Ano_asignatura = result.GetInt32(4);
+                a.Duracion_asignatura = result.GetBoolean(5);
+                lAsignaturas.Add(a);
+            }
+            result.Close();
+            bd.Close();
+
+            return lAsignaturas;
+        }
     }
 }

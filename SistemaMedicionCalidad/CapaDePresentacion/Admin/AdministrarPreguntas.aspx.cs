@@ -133,6 +133,7 @@ namespace CapaDePresentacion
             this.txtAPregunta.InnerText = p.Enunciado_pregunta;
             this.ddCompetencia.SelectedValue = p.Competencia_pregunta.Id_competencia + "";
             this.ddTipoPregunta.SelectedValue = p.Tipo_pregunta_pregunta.Id_tipo_pregunta + "";
+            this.txtNivel.Text = p.Nivel_pregunta;
             
             //Se cargan las respuestas y si son correctas o no, esto mediante datos de la base 
             for(int i=0; i<lRespuestas.Count; i++)
@@ -161,7 +162,7 @@ namespace CapaDePresentacion
             p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
             p.Enunciado_pregunta = this.txtAPregunta.InnerText;
             p.Id_pregunta = id_pregunta;
-
+            p.Nivel_pregunta = txtNivel.Text.Trim();
             try
             {
                 cPregunta.actualizarPregunta(p);
@@ -183,6 +184,32 @@ namespace CapaDePresentacion
                 Response.Write("<script>window.alert('Pregunta no a podido ser actualizada');</script>");
             }
             this.editar.Visible = false;
+        }
+
+        protected void gvPreguntas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvPreguntas.PageIndex = e.NewPageIndex;
+            if (txtBuscar.Text != "")
+            {
+                gvPreguntas.Visible = true;
+                CatalogPregunta cPregunta = new CatalogPregunta();
+                List<Pregunta> lPreguntas = cPregunta.listarPreguntasBusqueda(txtBuscar.Text);
+                this.gvPreguntas.DataSource = lPreguntas;
+                this.DataBind();
+            }
+            else
+            {
+                this.mostrar();
+            }
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            gvPreguntas.Visible = true;
+            CatalogPregunta cPregunta = new CatalogPregunta();
+            List<Pregunta> lPreguntas = cPregunta.listarPreguntasBusqueda(txtBuscar.Text);
+            this.gvPreguntas.DataSource = lPreguntas;
+            this.DataBind();
         }
     }
 }

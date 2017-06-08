@@ -5,7 +5,6 @@ using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using Project;
-using Project.CapaDeNegocios;
 using System.IO;
 using ClosedXML.Excel;
 using System.Web;
@@ -33,10 +32,7 @@ namespace CapaDePresentacion.Doc
         }
         public void ocultarDivs()
         {
-            divPais.Visible = false;
-            divPromocion.Visible = false;
             divRut.Visible = false;
-            divSexo.Visible = false;
             divAsignatura.Visible = false;
             divEvaluacion.Visible = false;
             divCompetencia.Visible = false;
@@ -45,9 +41,6 @@ namespace CapaDePresentacion.Doc
 
         public void limpiarDD()
         {
-            ddPais.SelectedIndex = 0;
-            ddPromocion.SelectedIndex = 0;
-            ddSexo.SelectedIndex = 0;
             ddAsignatura.SelectedIndex = 0;
             ddEvaluacion.SelectedIndex = 0;
             ddCompetencia.SelectedIndex = 0;
@@ -55,10 +48,7 @@ namespace CapaDePresentacion.Doc
         }
         public void ocultarFitros()
         {
-            divPais.Visible = false;
-            divPromocion.Visible = false;
             divRut.Visible = false;
-            divSexo.Visible = false;
         }
         protected void ddAlumno_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -71,40 +61,16 @@ namespace CapaDePresentacion.Doc
             }
             else if (ddAlumno.SelectedValue == "1")
             {
+                txtRut.Text = "";
                 divAsignatura.Visible = true;
                 listarAsignaturas();
             }
             else if (ddAlumno.SelectedValue == "2")
             {
-                CatalogPais cPais = new CatalogPais();
-                List<Pais> lPaises = cPais.listarPaises();
-                this.ddPais.DataTextField = "Nombre_pais";
-                this.ddPais.DataValueField = "Id_pais";
-                this.ddPais.DataSource = lPaises;
-                this.DataBind();//enlaza los datos a un dropdownlist     
-
-                divPais.Visible = true;
-            }
-            else if (ddAlumno.SelectedValue == "3")
-            {
-                CatalogAlumno cAlumno = new CatalogAlumno();
-                List<int> lPromociones = cAlumno.listarPromociones();
-                foreach (int item in lPromociones)
-                {
-                    this.ddPromocion.Items.Add(new ListItem(item + ""));
-                }
-                divPromocion.Visible = true;
-            }
-            else if (ddAlumno.SelectedValue == "4")
-            {
                 divRut.Visible = true;
                 listarAsignaturas();
                 
                 divAsignatura.Visible = true;
-            }
-            else if (ddAlumno.SelectedValue == "5")
-            {
-                divSexo.Visible = true;
             }
         }
         public void listarAsignaturas()
@@ -123,26 +89,13 @@ namespace CapaDePresentacion.Doc
         protected void ddDisponibilidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             listarAsignaturas();
-        }
-
-        protected void ddSexo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            listarAsignaturas();
-        }
-        protected void ddPais_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            listarAsignaturas();
-        }
-        protected void ddPromocion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            listarAsignaturas();
-        }      
+        }    
 
         public void graficoColumna()
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             panelGrafico.Visible = true;
-            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(int.Parse(ddPais.SelectedValue), int.Parse(ddPromocion.SelectedValue), txtRut.Text, int.Parse(ddSexo.SelectedValue), 0, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
+            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(txtRut.Text, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
 
             int i = 0;
             while (i < result.Count)
@@ -216,7 +169,7 @@ namespace CapaDePresentacion.Doc
         {
             this.gvResultados.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralGV(int.Parse(ddPais.SelectedValue), int.Parse(ddPromocion.SelectedValue), txtRut.Text, int.Parse(ddSexo.SelectedValue), 0, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
+            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralGV(txtRut.Text, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
             this.gvResultados.DataSource = lResultados;
             this.DataBind();
         }

@@ -33,28 +33,6 @@
         <h2 class="text-center">Actualizar Pregunta</h2>
         <br />
 
-        <label class="col-sm-offset-3">Enunciado</label>
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <textarea class="form-control" id="txtAPregunta" runat="server" rows="3"></textarea>
-            </div>
-        </div>
-        <br />
-
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:FileUpload ID="fileImagen" runat="server" onchange="showimagepreview(this)" />
-            </div>
-        </div>
-        <br />
-
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <img runat="server" alt="" src="s" id="imgFoto" class="img-responsive" />
-            </div>
-        </div>
-        <br />
-
         <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
                 <label>Competencia</label>
@@ -82,6 +60,41 @@
             </div>
         </div>
         <br />
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <label>Nivel de Pregunta</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <asp:TextBox ID="txtNivel" CssClass="form-control" runat="server" MaxLength="3" placeHolder="Ejemplo: C01"></asp:TextBox>
+            </div>
+        </div>
+        <br />
+
+        <label class="col-sm-offset-3">Enunciado</label>
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <textarea class="form-control" id="txtAPregunta" runat="server" rows="3"></textarea>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-offset-4 col-sm-4">
+                <asp:FileUpload ID="fileImagen" runat="server" onchange="showimagepreview(this)" />
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <img runat="server" alt="" src="s" id="imgFoto" class="img-responsive" />
+            </div>
+        </div>
+        <br />        
         <br />
 
         <label class="col-sm-offset-8">Correcta</label>

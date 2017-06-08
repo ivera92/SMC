@@ -94,5 +94,31 @@ namespace CapaDePresentacion
                 Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
             }
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            gvCompetencias.Visible = true;
+            CatalogCompetencia cCompetencias = new CatalogCompetencia();
+            List<Competencia> lCompetencias = cCompetencias.listarCompetenciasBusqueda(txtBuscar.Text);
+            this.gvCompetencias.DataSource = lCompetencias;
+            this.DataBind();
+        }
+
+        protected void gvCompetencias_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvCompetencias.PageIndex = e.NewPageIndex;
+            if (txtBuscar.Text != "")
+            {
+                gvCompetencias.Visible = true;
+                CatalogCompetencia cCompetencias = new CatalogCompetencia();
+                List<Competencia> lCompetencias = cCompetencias.listarCompetenciasBusqueda(txtBuscar.Text);
+                this.gvCompetencias.DataSource = lCompetencias;
+                this.DataBind();
+            }
+            else
+            {
+                this.mostrar();
+            }
+        }
     }
 }

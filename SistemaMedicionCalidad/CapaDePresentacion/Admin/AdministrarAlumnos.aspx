@@ -9,9 +9,19 @@
         <br />
 
         <div class="row">
+            <div class="col-sm-offset-3 col-sm-4">
+                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre o rut a buscar" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="col-sm-2">
+                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
             <div class="col-sm-12">
-                <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeletingEvent"
-                    OnRowEditing="rowEditingEvent" PageSize="10" AllowPaging="True" OnPageIndexChanging="Grid_PageIndexChanging" OnSelectedIndexChanging="Grid_SelectedIndexChanging" BackColor="White">
+                <asp:GridView CssClass="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeletingEvent"
+                    OnRowEditing="rowEditingEvent" PageSize="10" AllowPaging="True" OnPageIndexChanging="Grid_PageIndexChanging" BackColor="White">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <EmptyDataTemplate>
@@ -24,7 +34,7 @@
                         <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
                         <asp:BoundField DataField="Escuela_Alumno.Nombre_Escuela" HeaderText="Escuela" />
                     </Columns>
-                    <PagerStyle HorizontalAlign="Right" CssClass="GridPager" />
+                    <PagerStyle HorizontalAlign = "Right" CssClass ="pagination-ys" />
                 </asp:GridView>
             </div>
         </div>

@@ -59,7 +59,7 @@ namespace CapaDePresentacion.Admin
 
             aC.Cod_Asignatura_ac.Cod_asignatura = ddAsignatura.SelectedValue;
             aC.Id_Competencia_ac.Id_competencia = int.Parse(ddCompetencia.SelectedValue);
-            aC.Nivel_dominio_ac = txtNivelDominio.Text.ToUpper();
+            aC.Nivel_dominio_ac = txtNivelDominio.Text.ToUpper().Trim();
             try
             {
                 cAC.insertarAC(aC);

@@ -92,6 +92,33 @@ namespace Project
             return lDocentes;
         }
 
+        //Lista todos los docentes existentes con un filtro de busqueda en la base de datos
+        public List<Docente> listarDocentesBusqueda(string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sql = "mostrarDocentesBusqueda";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@buscar", DbType.String, buscar);
+
+            List<Docente> lDocentes = new List<Docente>();
+            DbDataReader result = bd.Query();
+            CatalogProfesion cProfesion = new CatalogProfesion();
+
+            while (result.Read())
+            {
+                Docente d = new Docente();
+                d.Profesion_docente = cProfesion.buscarUnaProfesion(result.GetInt32(2));
+                d.Nombre_persona = result.GetString(0);
+                d.Rut_persona = result.GetString(1);
+                lDocentes.Add(d);
+            }
+            result.Close();
+            bd.Close();
+            return lDocentes;
+        }
+
         //Elimina un docente existente en la base de datos
         public void eliminarDocente(string rut_docente)
         {

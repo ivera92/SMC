@@ -22,6 +22,24 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMostrar;
         
         /// <summary>
+        /// txtBuscar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+        
+        /// <summary>
+        /// btnBuscar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        
+        /// <summary>
         /// gvCompetencias control.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,15 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEditar;
         
         /// <summary>
+        /// ddTipoCompetencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddTipoCompetencia;
+        
+        /// <summary>
         /// txtNombreCompetencia control.
         /// </summary>
         /// <remarks>
@@ -65,15 +92,6 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtADescripcion;
-        
-        /// <summary>
-        /// ddTipoCompetencia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddTipoCompetencia;
         
         /// <summary>
         /// btnGuardar control.

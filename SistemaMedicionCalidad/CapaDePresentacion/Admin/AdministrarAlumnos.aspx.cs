@@ -127,7 +127,7 @@ namespace CapaDePresentacion
             a.Rut_persona = this.txtRut.Text;
             a.Escuela_alumno.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
             a.Nombre_persona = this.txtNombre.Text;
-            a.Correo_persona = this.txtCorreo.Text;
+            a.Correo_persona = this.txtCorreo.Text.Trim();
 
             try
             {
@@ -156,12 +156,27 @@ namespace CapaDePresentacion
         protected void Grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAlumnos.PageIndex = e.NewPageIndex;
-            this.mostrar();
+            if (txtBuscar.Text != "")
+            {
+                gvAlumnos.Visible = true;
+                CatalogAlumno cAlumno = new CatalogAlumno();
+                List<Alumno> lAlumnos = cAlumno.listarAlumnosBusqueda(txtBuscar.Text);
+                this.gvAlumnos.DataSource = lAlumnos;
+                this.DataBind();
+            }
+            else
+            {
+                this.mostrar();
+            }
         }
 
-        protected void Grid_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            
+            gvAlumnos.Visible = true;
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            List<Alumno> lAlumnos = cAlumno.listarAlumnosBusqueda(txtBuscar.Text);
+            this.gvAlumnos.DataSource = lAlumnos;
+            this.DataBind();
         }
     }
 }

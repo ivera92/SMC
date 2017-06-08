@@ -135,14 +135,11 @@ namespace Project.CapaDeNegocios
             return lAlumnos;
         }
 
-        //Lista alumnos de la base de datos acorde a busqueda
-        public List<Alumno> buscarAlumno(string buscar)
+        //Lista alumnos de la base de datos acorde a busqueda ya sea por rut o nombre
+        public List<Alumno> listarAlumnosBusqueda(string buscar)
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
-
-            if (buscar == null)
-                buscar = "";
 
             string sqlSearch = "mostrarAlumnosBusqueda";
             bd.CreateCommandSP(sqlSearch);
@@ -153,12 +150,9 @@ namespace Project.CapaDeNegocios
             while (result.Read())
             {
                 Alumno a = new Alumno();
-
-                a.Nombre_persona = result.GetString(3);
                 a.Rut_persona = result.GetString(0);
                 a.Escuela_alumno = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-                a.Promocion_alumno = result.GetInt32(9);
-                lAlumnos.Add(a);
+                a.Nombre_persona = result.GetString(3);
                 lAlumnos.Add(a);
             }
             result.Close();

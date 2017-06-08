@@ -76,6 +76,32 @@ namespace Project
             return lEvaluaciones;
         }
 
+        //Lista las evaluaciones propias de un docente en la base de datos
+        public List<Evaluacion> listarEvaluacionesDocente(string rut_docente)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarEvaluacionesDocente";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_docente", DbType.String, rut_docente);
+            List<Evaluacion> lEvaluaciones = new List<Evaluacion>();
+            DbDataReader result = bd.Query();
+            CatalogEvaluacion cEvaluaciones = new CatalogEvaluacion();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+
+            while (result.Read())
+            {
+                Evaluacion e = new Evaluacion(cAsignatura.buscarAsignatura(result.GetString(0)), result.GetString(1), result.GetDateTime(2), result.GetString(3));
+                lEvaluaciones.Add(e);
+            }
+            result.Close();
+            bd.Close();
+
+            return lEvaluaciones;
+        }
+
         //Verifica si existe un evaluacion con el mismo nombre en una misma asignatura
         public int verificarExistencia(string cod_asignatura, string nombre_evaluacion)
         {
@@ -142,18 +168,14 @@ namespace Project
         }
 
         //obtiene  resultados de  una evaluacion 
-        public List<string> obtenerResultadosEvaluacionGeneral(int id_pais, int promocionA, string rut,  int sexo, int disponibilidadD, int id_evaluacion, int id_competencia)
+        public List<string> obtenerResultadosEvaluacionGeneral(string rut, int id_evaluacion, int id_competencia)
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "mostrarResultadosGenerales";
             bd.CreateCommandSP(sqlSearch);
-            bd.createParameter("@id_pais", DbType.Int32, id_pais);
-            bd.createParameter("@promocion", DbType.Int32, promocionA);
             bd.createParameter("@rut", DbType.String, rut);
-            bd.createParameter("@sexo", DbType.Int32, sexo);
-            bd.createParameter("@disponibilidadD", DbType.Int32, disponibilidadD);
             bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
             bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
 
@@ -189,7 +211,7 @@ namespace Project
         }
 
         //obtiene  resultados de  una evaluacion 
-        public List<Resultados> obtenerResultadosEvaluacionGeneralGV(int id_pais, int promocionA, string rut, int sexo, int disponibilidadD, int id_evaluacion, int id_competencia)
+        public List<Resultados> obtenerResultadosEvaluacionGeneralGV(string rut, int id_evaluacion, int id_competencia)
         {
 
             DataBase bd = new DataBase();
@@ -197,11 +219,7 @@ namespace Project
 
             string sqlSearch = "mostrarResultadosGeneralesGV";
             bd.CreateCommandSP(sqlSearch);
-            bd.createParameter("@id_pais", DbType.Int32, id_pais);
-            bd.createParameter("@promocion", DbType.Int32, promocionA);
             bd.createParameter("@rut", DbType.String, rut);
-            bd.createParameter("@sexo", DbType.Int32, sexo);
-            bd.createParameter("@disponibilidadD", DbType.Int32, disponibilidadD);
             bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
             bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
 

@@ -80,5 +80,31 @@ namespace CapaDePresentacion
                 Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
             }
         }
+
+        protected void gvProfesiones_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProfesiones.PageIndex = e.NewPageIndex;
+            if (txtBuscar.Text != "")
+            {
+                gvProfesiones.Visible = true;
+                CatalogProfesion cProfesion = new CatalogProfesion();
+                List<Profesion> lProfesiones = cProfesion.listarProfesionesBusqueda(txtBuscar.Text);
+                this.gvProfesiones.DataSource = lProfesiones;
+                this.DataBind();
+            }
+            else
+            {
+                this.mostrar();
+            }
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            gvProfesiones.Visible = true;
+            CatalogProfesion cProfesion = new CatalogProfesion();
+            List<Profesion> lProfesiones = cProfesion.listarProfesionesBusqueda(txtBuscar.Text);
+            this.gvProfesiones.DataSource = lProfesiones;
+            this.DataBind();
+        }
     }
 }

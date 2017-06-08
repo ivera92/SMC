@@ -131,7 +131,7 @@ namespace CapaDePresentacion.Doc
             d.Direccion_persona = this.txtDireccion.Text;
             d.Telefono_persona = int.Parse(this.txtTelefono.Text);
             d.Sexo_persona = sexo;
-            d.Correo_persona = this.txtCorreo.Text;
+            d.Correo_persona = this.txtCorreo.Text.Trim();
             d.Disponibilidad_docente = disponibilidad;
             try
             {
@@ -142,6 +142,32 @@ namespace CapaDePresentacion.Doc
             catch
             {
                 Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
+            }
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            gvDocentes.Visible = true;
+            CatalogDocente cDocente = new CatalogDocente();
+            List<Docente> lDocentes = cDocente.listarDocentesBusqueda(txtBuscar.Text);
+            this.gvDocentes.DataSource = lDocentes;
+            this.DataBind();
+        }
+
+        protected void gvDocentes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvDocentes.PageIndex = e.NewPageIndex;
+            if (txtBuscar.Text != "")
+            {
+                gvDocentes.Visible = true;
+                CatalogDocente cDocente = new CatalogDocente();
+                List<Docente> lDocentes = cDocente.listarDocentesBusqueda(txtBuscar.Text);
+                this.gvDocentes.DataSource = lDocentes;
+                this.DataBind();
+            }
+            else
+            {
+                this.mostrar();
             }
         }
     }

@@ -72,7 +72,7 @@ namespace CapaDePresentacion
                 Pais pa = new Pais();
                 d.Profesion_docente = p;
                 d.Pais_persona = pa;
-                d.Rut_persona = this.txtRut.Text;
+                d.Rut_persona = this.txtRut.Text.Trim();
                 d.Profesion_docente.Id_profesion = int.Parse(this.ddProfesion.SelectedValue);
                 d.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
                 d.Nombre_persona = this.txtNombre.Text;
@@ -80,7 +80,7 @@ namespace CapaDePresentacion
                 d.Direccion_persona = this.txtDireccion.Text;
                 d.Telefono_persona = int.Parse(this.txtTelefono.Text);
                 d.Sexo_persona = sexo;
-                d.Correo_persona = this.txtCorreo.Text;
+                d.Correo_persona = this.txtCorreo.Text.Trim();
                 d.Disponibilidad_docente = disponibilidad;
 
                 cDocente.insertarDocente(d);

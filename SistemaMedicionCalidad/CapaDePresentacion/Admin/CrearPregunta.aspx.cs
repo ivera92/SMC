@@ -82,7 +82,7 @@ namespace CapaDePresentacion.Doc
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
                 p.Enunciado_pregunta = this.txtAPregunta.InnerText;
                 p.Imagen_pregunta = ruta;
-                p.Nivel_pregunta = txtNivel.Text.ToUpper();
+                p.Nivel_pregunta = txtNivel.Text.ToUpper().Trim();
                 cp.insertarPregunta(p);
                 id = cp.ultimaPregunta();
 

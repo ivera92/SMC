@@ -22,6 +22,24 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl administrar;
         
         /// <summary>
+        /// txtBuscar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+        
+        /// <summary>
+        /// btnBuscar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        
+        /// <summary>
         /// gvPreguntas control.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,33 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl editar;
         
         /// <summary>
+        /// ddCompetencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
+        
+        /// <summary>
+        /// ddTipoPregunta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddTipoPregunta;
+        
+        /// <summary>
+        /// txtNivel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNivel;
+        
+        /// <summary>
         /// txtAPregunta control.
         /// </summary>
         /// <remarks>
@@ -74,24 +119,6 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage imgFoto;
-        
-        /// <summary>
-        /// ddCompetencia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
-        
-        /// <summary>
-        /// ddTipoPregunta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddTipoPregunta;
         
         /// <summary>
         /// Panel1 control.

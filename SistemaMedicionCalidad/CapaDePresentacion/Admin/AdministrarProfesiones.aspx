@@ -9,15 +9,26 @@
         <br />
 
         <div class="row">
+            <div class="col-sm-offset-3 col-sm-4">
+                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre profesión" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="col-sm-2">
+                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
             <div class="col-sm-offset-2 col-sm-8">
-                <asp:GridView class="table table-striped" ID="gvProfesiones" runat="server" AutoGenerateColumns="false" OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                <asp:GridView class="table table-striped" ID="gvProfesiones" runat="server" AutoGenerateColumns="false" OnRowDeleting="rowDeleting" 
+                    OnRowEditing="rowEditing" PageSize="10" AllowPaging="true" OnPageIndexChanging="gvProfesiones_PageIndexChanging">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <EmptyDataTemplate>
                         ¡No existen profesiones!
                     </EmptyDataTemplate>
                     <Columns>
-                        <asp:CommandField ButtonType="Link" ShowDeleteButton="true" ShowEditButton="true" />
+                        <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" />
                         <asp:BoundField DataField="Nombre_profesion" HeaderText="Nombre" />
                         <asp:BoundField DataField="Id_profesion" HeaderText="ID" />
                     </Columns>

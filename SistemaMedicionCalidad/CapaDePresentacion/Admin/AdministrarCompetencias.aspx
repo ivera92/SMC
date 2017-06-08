@@ -8,10 +8,22 @@
     <div id="divMostrar" runat="server">
         <h2 class="text-center">Administrar Competencias</h2>
         <br />
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-4">
+                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre, tipo o descripción a buscar" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="col-sm-2">
+                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
+            </div>
+        </div>
+        <br />
+
         <div class="row">
             <div class="col-sm-12">
                 <asp:GridView class="table table-striped" ID="gvCompetencias" runat="server" AutoGenerateColumns="false"
-                    OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                    OnRowDeleting="rowDeleting" OnRowEditing="rowEditing" OnPageIndexChanging="gvCompetencias_PageIndexChanging"
+                    PageSize="10" AllowPaging="true">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <EmptyDataTemplate>
@@ -24,6 +36,7 @@
                         <asp:BoundField DataField="Descripcion_Competencia" HeaderText="Descripcion" />
                         <asp:BoundField DataField="Id_tipo_competencia.nombre_tipo_competencia" HeaderText="Tipo Competencia" />
                     </Columns>
+                    <PagerStyle HorizontalAlign = "Right" CssClass ="pagination-ys" />
                 </asp:GridView>
             </div>
             <asp:TextBox runat="server" ID="txtCompetencia"></asp:TextBox>
@@ -32,6 +45,17 @@
 
     <div id="divEditar" runat="server">
         <h2 class="text-center">Actualizar Competencia</h2>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-1">
+                <label>Tipo</label>
+            </div>
+            <div class="col-sm-5">
+                <asp:DropDownList ID="ddTipoCompetencia" runat="server" CssClass="form-control">
+                </asp:DropDownList>
+            </div>            
+        </div>
         <br />
 
         <div class="row">
@@ -53,17 +77,7 @@
             </div>
         </div>
         <br />
-
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-1">
-                <label>Tipo</label>
-            </div>
-            <div class="col-sm-5">
-                <asp:DropDownList ID="ddTipoCompetencia" runat="server" CssClass="form-control">
-                </asp:DropDownList>
-            </div>            
-        </div>
-        <br />
+        
         <div class="row">
             <div class="col-sm-offset-5 col-sm-3">
                 <asp:Button ID="btnGuardar" class="btn btn-primary btn-block" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />

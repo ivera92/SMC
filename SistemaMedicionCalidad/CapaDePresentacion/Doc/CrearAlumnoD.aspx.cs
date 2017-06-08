@@ -79,14 +79,14 @@ namespace CapaDePresentacion.Doc
             else
                 beneficio = false;
 
-            a.Rut_persona = this.txtRut.Text;
+            a.Rut_persona = this.txtRut.Text.Trim();
             a.Escuela_alumno.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
             a.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
             a.Nombre_persona = this.txtNombre.Text;
             a.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
             a.Direccion_persona = this.txtDireccion.Text;
             a.Telefono_persona = int.Parse(this.txtTelefono.Text);
-            a.Correo_persona = this.txtCorreo.Text;
+            a.Correo_persona = this.txtCorreo.Text.Trim();
             a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
 
             a.Sexo_persona = sexo;

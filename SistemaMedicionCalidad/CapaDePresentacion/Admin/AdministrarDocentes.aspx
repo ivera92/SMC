@@ -9,10 +9,20 @@
         <br />
 
         <div class="row">
+            <div class="col-sm-offset-3 col-sm-4">
+                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre o rut a buscar" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="col-sm-2">
+                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
             <div class="col-sm-12">
                 <asp:GridView class="table table-striped" ID="gvDocentes" runat="server"
-                    AutoGenerateColumns="false" OnRowDeleting="rowDeleting"
-                    OnRowEditing="rowEditing">
+                    AutoGenerateColumns="false" OnRowDeleting="rowDeleting" PageSize="10" AllowPaging="true"
+                    OnRowEditing="rowEditing" OnPageIndexChanging="gvDocentes_PageIndexChanging">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <EmptyDataTemplate>
@@ -24,6 +34,7 @@
                         <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
                         <asp:BoundField DataField="Profesion_Docente.Nombre_profesion" HeaderText="Profesion" />
                     </Columns>
+                    <PagerStyle HorizontalAlign = "Right" CssClass ="pagination-ys" />
                 </asp:GridView>
             </div>
         </div>

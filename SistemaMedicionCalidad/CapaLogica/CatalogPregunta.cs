@@ -137,6 +137,36 @@ namespace Project
             bd.Close();
             return lPreguntas;
         }
+
+        //Lista todas las preguntas acorde a un criterio de busqueda existentes en la base de datos
+        public List<Pregunta> listarPreguntasBusqueda(string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarPreguntasBusqueda";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@buscar", DbType.String, buscar);
+            List<Pregunta> lPreguntas = new List<Pregunta>();
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            CatalogPregunta cPregunta = new CatalogPregunta();
+            CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
+            DbDataReader result = bd.Query();//disponible resultado
+            while (result.Read())
+            {
+                Pregunta p = new Pregunta();
+
+                p.Id_pregunta = result.GetInt32(0);
+                p.Competencia_pregunta = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
+                p.Tipo_pregunta_pregunta = cTipoPregunta.buscarUnTipoPregunta(result.GetInt32(2));
+                p.Enunciado_pregunta = result.GetString(3);
+                p.Nivel_pregunta = result.GetString(5);
+                lPreguntas.Add(p);
+            }
+            result.Close();
+            bd.Close();
+            return lPreguntas;
+        }
         //Actualiza una pregunta existente en la base de datos
         public void actualizarPregunta(Pregunta p)
         {

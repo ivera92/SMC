@@ -8,42 +8,19 @@
     <br />
 
     <div class="row">
-        <div runat="server" id="divAlumno" class="col-sm-4">
+        <div runat="server" id="divAlumno" class="col-sm-3">
             <label>Filtro</label>
             <div>
                 <asp:DropDownList ID="ddAlumno" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAlumno_SelectedIndexChanged">
                     <asp:ListItem Value="0"><--Seleccione filtro--></asp:ListItem>
                     <asp:ListItem Value="1">Todos los alumnos</asp:ListItem>
-                    <asp:ListItem Value="2">Pais</asp:ListItem>
-                    <asp:ListItem Value="3">Promocion</asp:ListItem>
-                    <asp:ListItem Value="4">Rut</asp:ListItem>
-                    <asp:ListItem Value="5">Sexo</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <br />
-        </div>        
-
-        <div runat="server" id="divPais" class="col-sm-4">
-            <label>Pais</label>
-            <div>
-                <asp:DropDownList ID="ddPais" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddPais_SelectedIndexChanged">
-                    <asp:ListItem Value="0"><--Seleccione un pais--></asp:ListItem>
+                    <asp:ListItem Value="2">Rut</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <br />
         </div>
 
-        <div runat="server" id="divPromocion" class="col-sm-4">
-            <label>Promocion</label>
-            <div>
-                <asp:DropDownList ID="ddPromocion" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddPromocion_SelectedIndexChanged">
-                    <asp:ListItem Value="0"><--Seleccione promocion--></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <br />
-        </div>
-
-        <div runat="server" id="divRut" class="col-sm-4">
+        <div runat="server" id="divRut" class="col-sm-3">
             <label>Rut</label>
             <div>
                 <asp:TextBox CssClass="form-control" ID="txtRut" runat="server"></asp:TextBox>
@@ -51,19 +28,7 @@
             <br />
         </div>
 
-        <div runat="server" id="divSexo" class="col-sm-4">
-            <label>Sexo</label>
-            <div>
-                <asp:DropDownList ID="ddSexo" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddSexo_SelectedIndexChanged">
-                    <asp:ListItem Value="0"><--Seleccione sexo--></asp:ListItem>
-                    <asp:ListItem Value="1">Masculino</asp:ListItem>
-                    <asp:ListItem Value="2">Femenino</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <br />
-        </div>
-
-        <div runat="server" id="divAsignatura" class="col-sm-4">
+        <div runat="server" id="divAsignatura" class="col-sm-3">
             <label>Asignatura</label>
             <div>
                 <asp:DropDownList ID="ddAsignatura" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
@@ -73,7 +38,7 @@
             <br />
         </div>
 
-        <div runat="server" id="divEvaluacion" class="col-sm-4">
+        <div runat="server" id="divEvaluacion" class="col-sm-3">
             <label>Evaluacion</label>
             <div>
                 <asp:DropDownList ID="ddEvaluacion" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddEvaluacion_SelectedIndexChanged">
@@ -83,7 +48,7 @@
             <br />
         </div>
 
-        <div runat="server" id="divCompetencia" class="col-sm-4">
+        <div runat="server" id="divCompetencia" class="col-sm-3">
             <label>Competencia</label>
             <div>
                 <asp:DropDownList ID="ddCompetencia" runat="server" AppendDataBoundItems="true" CssClass="form-control">
@@ -93,14 +58,14 @@
             <br />
         </div>
 
-        <div runat="server" id="divBtnGraficar" class="col-sm-4">
+        <div runat="server" id="divBtnGraficar" class="col-sm-2">
             <div>
                 <br />
                 <asp:Button runat="server" ID="btnGraficar" CssClass="form-control btn-primary btn-block" Text="Graficar" OnClick="btnGraficar_Click" />
             </div>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-2">
             <br />
             <asp:Button runat="server" ID="btnExportar" CssClass="form-control btn-success btn-block" Text="Exportar a Excel" OnClick="btnExportar_Click" />  
         </div>

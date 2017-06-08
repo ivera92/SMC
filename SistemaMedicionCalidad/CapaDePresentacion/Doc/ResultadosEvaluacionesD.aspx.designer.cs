@@ -31,42 +31,6 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.DropDownList ddAlumno;
         
         /// <summary>
-        /// divPais control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPais;
-        
-        /// <summary>
-        /// ddPais control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddPais;
-        
-        /// <summary>
-        /// divPromocion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPromocion;
-        
-        /// <summary>
-        /// ddPromocion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddPromocion;
-        
-        /// <summary>
         /// divRut control.
         /// </summary>
         /// <remarks>
@@ -83,24 +47,6 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRut;
-        
-        /// <summary>
-        /// divSexo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSexo;
-        
-        /// <summary>
-        /// ddSexo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddSexo;
         
         /// <summary>
         /// divAsignatura control.

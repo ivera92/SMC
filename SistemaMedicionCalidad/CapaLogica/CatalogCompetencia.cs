@@ -81,6 +81,31 @@ namespace Project
             return lcompetencia;
         }
 
+        //Lista todas las competencias existentes buscadas en la base de datos
+        public List<Competencia> listarCompetenciasBusqueda(string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarCompetenciasBusqueda";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@buscar", DbType.String, buscar);
+            List<Competencia> lcompetencia = new List<Competencia>();
+            DbDataReader result = bd.Query();
+            CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
+            while (result.Read())
+            {
+                Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
+                Competencia c = new Competencia(result.GetInt32(2), result.GetString(0), tc, result.GetString(1));
+                lcompetencia.Add(c);
+            }
+            result.Close();
+            bd.Close();
+
+            return lcompetencia;
+        }
+
         //Lista las competencias asociadas a una asignatura existentes en la base de datos
         public List<Competencia> listarCompetenciasAsignatura(string cod_asignatura_ac)
         {

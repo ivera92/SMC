@@ -118,5 +118,31 @@ namespace CapaDePresentacion.Admin
                 Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
             }     
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            gvAsignatura.Visible = true;
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            List<Asignatura> lAsignautras = cAsignatura.listarAsignaturasBusqueda(txtBuscar.Text);
+            this.gvAsignatura.DataSource = lAsignautras;
+            this.DataBind();
+        }
+
+        protected void gvAsignatura_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAsignatura.PageIndex = e.NewPageIndex;
+            if (txtBuscar.Text != "")
+            {
+                gvAsignatura.Visible = true;
+                CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                List<Asignatura> lAsignautras = cAsignatura.listarAsignaturasBusqueda(txtBuscar.Text);
+                this.gvAsignatura.DataSource = lAsignautras;
+                this.DataBind();
+            }
+            else
+            {
+                this.mostrar();
+            }
+        }
     }
 }

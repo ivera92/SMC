@@ -21,7 +21,7 @@ namespace CapaDePresentacion.Doc
                 string rut = Session["rutDocente"].ToString();
                 CatalogAsignatura cAsignatura = new CatalogAsignatura();
                 List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasDocente(rut);
-                
+
                 if (!Page.IsPostBack)
                 {
                     divGV.Visible = false;
@@ -33,15 +33,15 @@ namespace CapaDePresentacion.Doc
                 }
             }
             catch
-            {                
+            {
                 Response.Redirect("../CheqLogin.aspx");
-            }            
+            }
         }
         public void pdf(string ids_preguntas)
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             DataTable dt = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas); ;
-            string s = "";            
+            string s = "";
 
             Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;" + "filename=Evaluacion.pdf");
@@ -79,18 +79,18 @@ namespace CapaDePresentacion.Doc
             {
                 Paragraph pp = new Paragraph();
                 Label l = new Label();
-                l.Text = result[2].ToString();       
+                l.Text = result[2].ToString();
                 PdfPTable tabla = new PdfPTable(1);
 
                 //Si cambio la pregunta
                 if (s != l.Text)
                 {
-                    PdfPCell pc1 = new PdfPCell(new Paragraph(" "));                                      
+                    PdfPCell pc1 = new PdfPCell(new Paragraph(" "));
                     PdfPCell pc2 = new PdfPCell(new Phrase(numPregunta + ") " + l.Text + "\n"));
                     PdfPCell pc3 = new PdfPCell(new Paragraph(" "));
 
                     //De dejan los bordes en blanco para que no se vean, la tabla es solo para dar orden
-                    pc1.BorderColor = BaseColor.WHITE;  
+                    pc1.BorderColor = BaseColor.WHITE;
                     pc2.BorderColor = BaseColor.WHITE;
                     pc3.BorderColor = BaseColor.WHITE;
                     tabla.AddCell(pc1);
@@ -116,7 +116,7 @@ namespace CapaDePresentacion.Doc
                             tabla.AddCell(imageCell);
                         }
                     }
-                    catch{}
+                    catch { }
                     numPregunta = numPregunta + 1;
                 }
                 //Dependiendo del tipo de pregunta agrega
@@ -149,42 +149,45 @@ namespace CapaDePresentacion.Doc
         }
 
         protected void btnCrear_Click1(object sender, EventArgs e)
-        {          
+        {
             string ids_preguntas = "";
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             int existe = cEvaluacion.verificarExistencia(ddAsignatura.SelectedValue, txtNombre.Text);
 
             if (existe == 0)
             {
-                if (ddTipoEvaluacion.SelectedValue == "1")
-                {
-                    ids_preguntas = cEvaluacion.mostrarIDsPA(ddAsignatura.SelectedValue);
-                }
-                else if (ddTipoEvaluacion.SelectedValue == "2")
-                {
-                    ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue);
-                }
-                else if (ddTipoEvaluacion.SelectedValue == "4")
-                {
-                    ids_preguntas = this.lSeleccionadas(); //Trae las Preguntas y respuestas asociadas a la lista de preguntas enviadas  
-                }
-
-                Evaluacion ev = new Evaluacion();
-                CatalogAsignatura cAsignatura = new CatalogAsignatura();
-                Asignatura a = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
-
-                ev.Asignatura_evaluacion = a;
-                ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
-                ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
-                ev.Preguntas_evaluacion = ids_preguntas;
-
                 try
                 {
+                    if (ddTipoEvaluacion.SelectedValue == "1")
+                    {
+                        ids_preguntas = cEvaluacion.mostrarIDsPA(ddAsignatura.SelectedValue);
+                    }
+                    else if (ddTipoEvaluacion.SelectedValue == "2")
+                    {
+                        ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue);
+                    }
+                    else if (ddTipoEvaluacion.SelectedValue == "4")
+                    {
+                        ids_preguntas = this.lSeleccionadas(); //Trae las Preguntas y respuestas asociadas a la lista de preguntas enviadas  
+                    }
+
+                    Evaluacion ev = new Evaluacion();
+                    CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                    Asignatura a = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
+
+                    ev.Asignatura_evaluacion = a;
+                    ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
+                    ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
+                    ev.Preguntas_evaluacion = ids_preguntas;
+
                     cEvaluacion.insertarEvaluacion(ev);
                     this.pdf(ids_preguntas);
                     Response.Write("<script>alert('Evaluacion creada satisfactoriamente');</script>");
                 }
-                catch{}
+                catch
+                {
+                    Response.Write("<script>alert('No existe el minimo de preguntas para crear el tipo de evaluacion');</script>");
+                }
                 ids_preguntas = "";
             }
             else
@@ -204,13 +207,13 @@ namespace CapaDePresentacion.Doc
                 {
                     ids_preguntas += row.Cells[1].Text + ",";
                 }
-            }            
+            }
             return ids_preguntas;
-        }        
+        }
 
         protected void ddTipoEvaluacion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddTipoEvaluacion.SelectedValue == "0" || ddTipoEvaluacion.SelectedValue == "1"|| ddTipoEvaluacion.SelectedValue == "2" || ddTipoEvaluacion.SelectedValue == "3")
+            if (ddTipoEvaluacion.SelectedValue == "0" || ddTipoEvaluacion.SelectedValue == "1" || ddTipoEvaluacion.SelectedValue == "2" || ddTipoEvaluacion.SelectedValue == "3")
             {
                 divGV.Visible = false;
             }

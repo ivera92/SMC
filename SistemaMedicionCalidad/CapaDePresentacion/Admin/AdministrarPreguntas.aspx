@@ -9,20 +9,32 @@
         <br />
 
         <div class="row">
+            <div class="col-sm-offset-2 col-sm-6">
+                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre competencia, enunciado o nivel" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="col-sm-2">
+                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
             <div class="col-sm-12">
-                <asp:GridView class="table table-striped" ID="gvPreguntas" runat="server" AutoGenerateColumns="false" OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                <asp:GridView class="table table-striped" ID="gvPreguntas" runat="server" AutoGenerateColumns="false" OnRowDeleting="rowDeleting" 
+                    OnRowEditing="rowEditing" PageSize="10" AllowPaging="true" OnPageIndexChanging="gvPreguntas_PageIndexChanging" >
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <EmptyDataTemplate>
-                        ¡No existen preguntras!
+                        ¡No existen preguntas!
                     </EmptyDataTemplate>
                     <Columns>
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" />
-                        <asp:BoundField DataField="Enunciado_pregunta" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Enunciado_pregunta" HeaderText="Enunciado" />
                         <asp:BoundField DataField="Competencia_pregunta.Nombre_competencia" HeaderText="Competencia" />
                         <asp:BoundField DataField="Nivel_pregunta" HeaderText="Nivel" />
                         <asp:BoundField DataField="Id_pregunta" HeaderText="ID" />
                     </Columns>
+                    <PagerStyle HorizontalAlign = "Right" CssClass ="pagination-ys" />
                 </asp:GridView>
             </div>
             <asp:TextBox ID="txtid" runat="server"></asp:TextBox>
@@ -31,28 +43,6 @@
 
     <div runat="server" id="editar">
         <h2 class="text-center">Actualizar Pregunta</h2>
-        <br />
-
-        <label class="col-sm-offset-3">Enunciado</label>
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <textarea class="form-control" id="txtAPregunta" runat="server" rows="3"></textarea>
-            </div>
-        </div>
-        <br />
-
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:FileUpload ID="fileImagen" runat="server" onchange="showimagepreview(this)" />
-            </div>
-        </div>
-        <br />
-
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <img runat="server" alt="" src="s" id="imgFoto" class="img-responsive" />
-            </div>
-        </div>
         <br />
 
         <div class="row">
@@ -82,6 +72,41 @@
             </div>
         </div>
         <br />
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <label>Nivel de Pregunta</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <asp:TextBox ID="txtNivel" CssClass="form-control" runat="server" MaxLength="3" placeHolder="Ejemplo: C01"></asp:TextBox>
+            </div>
+        </div>
+        <br />
+
+        <label class="col-sm-offset-3">Enunciado</label>
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <textarea class="form-control" id="txtAPregunta" runat="server" rows="3"></textarea>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-offset-4 col-sm-4">
+                <asp:FileUpload ID="fileImagen" runat="server" onchange="showimagepreview(this)" />
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <img runat="server" alt="" src="s" id="imgFoto" class="img-responsive" />
+            </div>
+        </div>
+        <br />        
         <br />
 
         <label class="col-sm-offset-8">Correcta</label>

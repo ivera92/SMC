@@ -37,6 +37,15 @@ namespace Project
             this.preguntas_evaluacion = preguntas_evaluacion;
         }
 
+        //Usado para el administrar evaluacion en docente
+        public Evaluacion(Asignatura asignatura_evaluacion, string nombre_evaluacion, DateTime fecha_evaluacion, string preguntas_evaluacion)
+        {
+            this.asignatura_evaluacion = asignatura_evaluacion;
+            this.nombre_evaluacion = nombre_evaluacion;
+            this.fecha_evaluacion = fecha_evaluacion;
+            this.preguntas_evaluacion = preguntas_evaluacion;
+        }
+
         public int Id_evaluacion
         {
             get { return id_evaluacion; }

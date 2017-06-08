@@ -29,6 +29,29 @@ namespace Project.CapaDeNegocios
             return lProfesiones;
         }
 
+        //Lista las profesiones existentes acorde a una busqueda en la base de datos
+        public List<Profesion> listarProfesionesBusqueda(string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+            List<Profesion> lProfesiones = new List<Profesion>();
+            string sql = "mostrarProfesionesBusqueda"; //comando sql
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@buscar", DbType.String, buscar);
+
+            DbDataReader result = bd.Query(); //disponible resultado
+
+            while (result.Read())
+            {
+                Profesion p = new Profesion(result.GetInt32(0), result.GetString(1));
+                lProfesiones.Add(p);
+            }
+            result.Close();
+            bd.Close();
+
+            return lProfesiones;
+        }
+
         //Inserta una profesion en la base de datos
         public void insertarProfesion(Profesion p)
         {

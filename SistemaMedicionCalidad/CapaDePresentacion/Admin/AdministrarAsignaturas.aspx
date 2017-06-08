@@ -10,8 +10,19 @@
         <br />
 
         <div class="row">
+            <div class="col-sm-offset-3 col-sm-4">
+                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre o codigo a buscar" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="col-sm-2">
+                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
             <div class="col-sm-12">
-                <asp:GridView class="table table-striped" ID="gvAsignatura" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                <asp:GridView class="table table-striped" ID="gvAsignatura" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeleting" OnRowEditing="rowEditing"
+                    PageSize="10" AllowPaging="true" OnPageIndexChanging="gvAsignatura_PageIndexChanging">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <EmptyDataTemplate>
@@ -26,6 +37,7 @@
                         <asp:BoundField DataField="Ano_Asignatura" HeaderText="Año" />
                         <asp:BoundField DataField="Duracion_Asignatura" HeaderText="Duracion" Visible="false" />
                     </Columns>
+                    <PagerStyle HorizontalAlign = "Right" CssClass ="pagination-ys" />
                 </asp:GridView>
             </div>
             <asp:TextBox runat="server" ID="txtID"></asp:TextBox>
