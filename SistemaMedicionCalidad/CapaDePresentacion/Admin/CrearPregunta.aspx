@@ -18,7 +18,7 @@
 
         <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
-                <asp:DropDownList class="form-control" runat="server" ID="ddCompetencia" AppendDataBoundItems="true">
+                <asp:DropDownList class="form-control" runat="server" ID="ddCompetencia" AutoPostBack="true" AppendDataBoundItems="true">
                     <asp:ListItem Value="0"><--Seleccione una competencia--></asp:ListItem>
                 </asp:DropDownList>
             </div>

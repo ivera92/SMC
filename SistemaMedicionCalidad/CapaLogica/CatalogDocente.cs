@@ -16,20 +16,14 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "insDocentes";
+            string sql = "insDocente";
             string contrasenaEn = encriptar(d.Rut_persona);
             bd.CreateCommandSP(sql);
             bd.createParameter("@contraseña_usuario", DbType.String, contrasenaEn);
             bd.createParameter("@rut_docente", DbType.String, d.Rut_persona);
-            bd.createParameter("@id_profesion_docente", DbType.Int32, d.Profesion_docente.Id_profesion);
             bd.createParameter("@nombre_docente", DbType.String, d.Nombre_persona);
-            bd.createParameter("@fecha_nacimiento_docente", DbType.Date, d.Fecha_nacimiento_persona);
-            bd.createParameter("@direccion_docente", DbType.String, d.Direccion_persona);
-            bd.createParameter("@telefono_docente", DbType.Int32, d.Telefono_persona);
-            bd.createParameter("@id_pais_docente", DbType.Int32, d.Pais_persona.Id_pais);
-            bd.createParameter("@sexo_docente", DbType.Boolean, d.Sexo_persona);
             bd.createParameter("@correo_docente", DbType.String, d.Correo_persona);
-            bd.createParameter("@disponibilidad_docente", DbType.Boolean, d.Disponibilidad_docente);
+            bd.createParameter("@disponibilidad_docente", DbType.Boolean, d.Contrato_docente);
             bd.execute();
             bd.Close();
         }
@@ -40,26 +34,18 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "buscarDocente";
+            string sql = "buscarDocentePorRut";
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut", DbType.String, rut);
             
-            CatalogPais cPais = new CatalogPais();
-            CatalogProfesion cProfesion = new CatalogProfesion();
             DbDataReader result = bd.Query();
             result.Read();
 
             Docente d = new Docente();
             d.Rut_persona = result.GetString(0);
-            d.Profesion_docente = cProfesion.buscarUnaProfesion(result.GetInt32(1));
-            d.Pais_persona = cPais.buscarUnPais(result.GetInt32(2));
-            d.Nombre_persona = result.GetString(3);
-            d.Fecha_nacimiento_persona = result.GetDateTime(4);
-            d.Direccion_persona = result.GetString(5);
-            d.Telefono_persona = result.GetInt32(6);
-            d.Sexo_persona = result.GetBoolean(7);
-            d.Correo_persona = result.GetString(8);
-            d.Disponibilidad_docente = result.GetBoolean(9);
+            d.Nombre_persona = result.GetString(1);
+            d.Correo_persona = result.GetString(2);
+            d.Contrato_docente = result.GetBoolean(3);
 
             result.Close();
             bd.Close();
@@ -81,10 +67,7 @@ namespace Project
             
             while (result.Read())
             {
-                Docente d = new Docente();
-                d.Profesion_docente = cProfesion.buscarUnaProfesion(result.GetInt32(2));
-                d.Nombre_persona = result.GetString(0);
-                d.Rut_persona = result.GetString(1);
+                Docente d = new Docente(result.GetString(0), result.GetString(1), result.GetString(2), result.GetBoolean(3));
                 lDocentes.Add(d);
             }
             result.Close();
@@ -108,10 +91,7 @@ namespace Project
 
             while (result.Read())
             {
-                Docente d = new Docente();
-                d.Profesion_docente = cProfesion.buscarUnaProfesion(result.GetInt32(2));
-                d.Nombre_persona = result.GetString(0);
-                d.Rut_persona = result.GetString(1);
+                Docente d = new Docente(result.GetString(0), result.GetString(1), result.GetString(2), result.GetBoolean(3)); ;
                 lDocentes.Add(d);
             }
             result.Close();
@@ -143,15 +123,9 @@ namespace Project
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut_docente", DbType.String, d.Rut_persona);
-            bd.createParameter("@id_profesion_docente", DbType.Int32, d.Profesion_docente.Id_profesion);
             bd.createParameter("@nombre_docente", DbType.String, d.Nombre_persona);
-            bd.createParameter("@fecha_nacimiento_docente", DbType.Date, d.Fecha_nacimiento_persona);
-            bd.createParameter("@direccion_docente", DbType.String, d.Direccion_persona);
-            bd.createParameter("@telefono_docente", DbType.Int32, d.Telefono_persona);
-            bd.createParameter("@id_pais_docente", DbType.Int32, d.Pais_persona.Id_pais);
-            bd.createParameter("@sexo_docente", DbType.Boolean, d.Sexo_persona);
             bd.createParameter("@correo_docente", DbType.String, d.Correo_persona);
-            bd.createParameter("@disponibilidad_docente", DbType.Boolean, d.Disponibilidad_docente);
+            bd.createParameter("@disponibilidad_docente", DbType.Boolean, d.Contrato_docente);
             bd.execute();
             bd.Close();
         }

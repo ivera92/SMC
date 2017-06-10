@@ -6,9 +6,7 @@ namespace Project
     {
         private string cod_asignatura;
         private Escuela escuela_asignatura;
-        private Docente docente_asignatura;
         private string nombre_asignatura;
-        private int ano_asignatura;
         private bool duracion_asignatura;
 
         //Constructor predeterminado
@@ -22,22 +20,11 @@ namespace Project
             this.nombre_asignatura = nombre_asignatura;
         }
         //Constructor usado para crear asignaturas mediante el sistema web
-        public Asignatura(Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
-        {
-            this.escuela_asignatura = escuela_asignatura;
-            this.docente_asignatura = docente_asignatura;
-            this.nombre_asignatura = nombre_asignatura;
-            this.ano_asignatura = ano_asignatura;
-            this.duracion_asignatura = duracion_asignatura;
-        }
-        //Constructor usado para listar las asignaturas en el administrador
-        public Asignatura(string cod_asignatura, Escuela escuela_asignatura, Docente docente_asignatura, string nombre_asignatura, int ano_asignatura, bool duracion_asignatura)
+        public Asignatura(string cod_asignatura, Escuela escuela_asignatura, string nombre_asignatura, bool duracion_asignatura)
         {
             this.cod_asignatura = cod_asignatura;
             this.escuela_asignatura = escuela_asignatura;
-            this.docente_asignatura = docente_asignatura;
             this.nombre_asignatura = nombre_asignatura;
-            this.ano_asignatura = ano_asignatura;
             this.duracion_asignatura = duracion_asignatura;
         }
         public string Cod_asignatura
@@ -52,12 +39,6 @@ namespace Project
             set { nombre_asignatura = value; }
         }
 
-        public int Ano_asignatura
-        {
-            get { return ano_asignatura; }
-            set { ano_asignatura = value; }
-        }
-
         public bool Duracion_asignatura
         {
             get { return duracion_asignatura; }
@@ -68,12 +49,6 @@ namespace Project
         {
             get { return escuela_asignatura; }
             set { escuela_asignatura = value; }
-        }
-
-        public Docente Docente_asignatura
-        {
-            get { return docente_asignatura; }
-            set { docente_asignatura = value; }
         }
     }
 }

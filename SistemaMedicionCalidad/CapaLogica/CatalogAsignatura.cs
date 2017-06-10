@@ -19,9 +19,7 @@ namespace Project
             bd.CreateCommandSP(sql);
             bd.createParameter("@cod_asignatura", DbType.String, a.Cod_asignatura);
             bd.createParameter("@id_escuela_asignatura", DbType.Int32, a.Escuela_asignatura.Id_escuela);
-            bd.createParameter("@rut_docente_asignatura", DbType.String, a.Docente_asignatura.Rut_persona);
             bd.createParameter("@nombre_asignatura", DbType.String, a.Nombre_asignatura);
-            bd.createParameter("@ano_asignatura", DbType.Int32, a.Ano_asignatura);
             bd.createParameter("@duracion_asignatura", DbType.Boolean, a.Duracion_asignatura);
             bd.execute();
             bd.Close();
@@ -38,9 +36,7 @@ namespace Project
             bd.CreateCommandSP(sql);
             bd.createParameter("@cod_asignatura", DbType.String, a.Cod_asignatura);
             bd.createParameter("@id_escuela_asignatura", DbType.Int32, a.Escuela_asignatura.Id_escuela);
-            bd.createParameter("@rut_docente_asignatura", DbType.String, a.Docente_asignatura.Rut_persona);
             bd.createParameter("@nombre_asignatura", DbType.String, a.Nombre_asignatura);
-            bd.createParameter("@ano_asignatura", DbType.Int32, a.Ano_asignatura);
             bd.createParameter("@duracion_asignatura", DbType.Boolean, a.Duracion_asignatura);
             bd.execute();
             bd.Close();
@@ -61,14 +57,7 @@ namespace Project
 
             while (result.Read())
             {
-                Asignatura a = new Asignatura();
-
-                a.Cod_asignatura = result.GetString(0);
-                a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-                a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
-                a.Nombre_asignatura = result.GetString(3);
-                a.Ano_asignatura = result.GetInt32(4);
-                a.Duracion_asignatura = result.GetBoolean(5);
+                Asignatura a = new Asignatura(result.GetString(0), cEscuela.buscarUnaEscuela(result.GetInt32(1)), result.GetString(2), result.GetBoolean(3));                
                 lAsignaturas.Add(a);
             }
             result.Close();
@@ -86,22 +75,13 @@ namespace Project
             string sql = "mostrarAsignaturasDocente";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_docente_asignatura", DbType.String, rut);
+            bd.createParameter("@rut_docente", DbType.String, rut);
             DbDataReader result = bd.Query();
             List<Asignatura> lAsignaturas = new List<Asignatura>();
-            CatalogEscuela cEscuela = new CatalogEscuela();
-            CatalogDocente cDocente = new CatalogDocente();
 
             while (result.Read())
             {
-                Asignatura a = new Asignatura();
-
-                a.Cod_asignatura = result.GetString(0);
-                a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-                a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
-                a.Nombre_asignatura = result.GetString(3);
-                a.Ano_asignatura = result.GetInt32(4);
-                a.Duracion_asignatura = result.GetBoolean(5);
+                Asignatura a = new Asignatura(result.GetString(0), result.GetString(1));
                 lAsignaturas.Add(a);
             }
             result.Close();
@@ -119,22 +99,13 @@ namespace Project
             string sql = "mostrarAsignaturasAlumno";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_alumno_aa", DbType.String, rut);
+            bd.createParameter("@rut_alumno", DbType.String, rut);
             DbDataReader result = bd.Query();
             List<Asignatura> lAsignaturas = new List<Asignatura>();
-            CatalogEscuela cEscuela = new CatalogEscuela();
-            CatalogDocente cDocente = new CatalogDocente();
 
             while (result.Read())
             {
-                Asignatura a = new Asignatura();
-
-                a.Cod_asignatura = result.GetString(0);
-                a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-                a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
-                a.Nombre_asignatura = result.GetString(3);
-                a.Ano_asignatura = result.GetInt32(4);
-                a.Duracion_asignatura = result.GetBoolean(5);
+                Asignatura a = new Asignatura(result.GetString(0), result.GetString(1));
                 lAsignaturas.Add(a);
             }
             result.Close();
@@ -224,9 +195,7 @@ namespace Project
 
             a.Cod_asignatura = result.GetString(0);
             a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-            a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
             a.Nombre_asignatura = result.GetString(3);
-            a.Ano_asignatura = result.GetInt32(4);
             a.Duracion_asignatura = result.GetBoolean(5);
             result.Close();
             bd.Close();
@@ -252,9 +221,7 @@ namespace Project
 
             a.Cod_asignatura = result.GetString(0);
             a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-            a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
             a.Nombre_asignatura = result.GetString(3);
-            a.Ano_asignatura = result.GetInt32(4);
             a.Duracion_asignatura = result.GetBoolean(5);
             result.Close();
             bd.Close();
@@ -282,9 +249,7 @@ namespace Project
 
                 a.Cod_asignatura = result.GetString(0);
                 a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-                a.Docente_asignatura = cDocente.buscarUnDocente(result.GetString(2));
                 a.Nombre_asignatura = result.GetString(3);
-                a.Ano_asignatura = result.GetInt32(4);
                 a.Duracion_asignatura = result.GetBoolean(5);
                 lAsignaturas.Add(a);
             }

@@ -40,12 +40,22 @@ namespace CapaDePresentacion.Doc
                 contadorControles = 0;
 
                 this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
-                this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";
+                this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";                
                 this.ddTipoPregunta.DataSource = lTiposPregunta;
 
                 this.ddCompetencia.DataTextField = "Nombre_competencia";
                 this.ddCompetencia.DataValueField = "Id_competencia";
+                //ddCompetencia.ToolTip = ddCompetencia.DataValueField = "Descripcion_Competencia";
                 this.ddCompetencia.DataSource = lCompetencias;
+                int i= 0;
+                foreach (ListItem item in ddCompetencia.Items)
+                {
+                    if (i == 0) { }
+                    else {
+                        item.Attributes.Add("Title", lCompetencias[i].Descripcion_competencia+"Si entro");
+                    }
+                    i += 1;
+                }
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
@@ -58,6 +68,16 @@ namespace CapaDePresentacion.Doc
             }
             catch
             {
+            }
+        }
+
+        public void Tooltip(DropDownList dd)
+        {
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            List<Competencia> lCompetencias = cCompetencia.listarCompetencias();
+            for (int d = 0; d < dd.Items.Count; d++)
+            {
+                dd.Items[d].Attributes.Add("title", lCompetencias[d].Descripcion_competencia);
             }
         }
 

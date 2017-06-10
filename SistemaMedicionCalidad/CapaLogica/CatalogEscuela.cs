@@ -85,7 +85,6 @@ namespace Project.CapaDeNegocios
             string sql = "insEscuela";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_escuela", DbType.Int32, e.Id_escuela);
             bd.createParameter("@nombre_escuela", DbType.String, e.Nombre_escuela);
             bd.execute();
             bd.Close();
@@ -97,7 +96,7 @@ namespace Project.CapaDeNegocios
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "editarEscuelas";
+            string sql = "editarEscuela";
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@id_escuela", DbType.Int32, e.Id_escuela);
