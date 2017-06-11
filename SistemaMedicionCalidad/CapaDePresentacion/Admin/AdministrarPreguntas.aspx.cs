@@ -29,8 +29,8 @@ namespace CapaDePresentacion
                 Response.Redirect("../CheqLogin.aspx");
             }
 
-            CatalogPregunta cPregunta = new CatalogPregunta();
-            List<Tipo_Pregunta> lTipoPregunta = cPregunta.listarTiposPregunta();
+            CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
+            List<Tipo_Pregunta> lTipoPregunta = cTipoPregunta.listarTipoPreguntas();
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             List<Competencia> lCompetencia = cCompetencia.listarCompetencias();
             this.crearControles();

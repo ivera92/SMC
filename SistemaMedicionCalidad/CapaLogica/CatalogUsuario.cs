@@ -13,9 +13,8 @@ namespace Project
     {
         //Verifica la existencia del usuario, su contraseña, y si coincide con el tipo de usuario seleccionado
         //1 en caso de coincidir los datos, 0 caso contrario
-        public static bool Autenticar(string rut_usuario, string contrasena, int id_tipo_usuario)
-        {
-            
+        public int[] Autenticar(string rut_usuario, string contrasena)
+        {            
             //consulta a la base de datos
             string sql = "autentificarUsuario";
             //cadena conexion
@@ -25,30 +24,28 @@ namespace Project
             string s = encriptar(contrasena);
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_tipo_usuario_usuario", DbType.Int32, id_tipo_usuario);
             bd.createParameter("@rut_usuario", DbType.String, rut_usuario);
             bd.createParameter("@contraseña_usuario", DbType.String, s);
             DbDataReader result = bd.Query();//disponible resultado
             result.Read();
-            int count = result.GetInt32(0);
+            int numero = result.GetInt32(0);
+            int tipo_usuario = result.GetInt32(1);
+            int[] autentificacion = { numero,  tipo_usuario};
 
-            if (count == 0)
-                return false;
-            else
-                return true;
+            return autentificacion;
         }
 
-        public string verificarRut(string rut_usuario)
+        public string verificarRut(string usuario)
         {
             string s = "";
-            string sql = "buscarCorreoRut";
+            string sql = "buscarCorreo";
             //cadena conexion
 
             DataBase bd = new DataBase();
             bd.connect();
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_usuario", DbType.String, rut_usuario);
+            bd.createParameter("@usuario", DbType.String, usuario);
             DbDataReader result = bd.Query();//disponible resultado
             result.Read();
             s = result.GetString(0);
@@ -113,7 +110,7 @@ namespace Project
         }
 
         //Cambia la clave de un usuario (actualiza la columna contraseña)
-        public int actualizarClave(string rut, string clave, string claveNueva)
+        public int actualizarClave(string usuario, string clave, string claveNueva)
         {
             int filasAfectadas = 0;
             //consulta a la base de datos
@@ -125,7 +122,7 @@ namespace Project
             string cActual = encriptar(clave);
             string cNueva = encriptar(claveNueva);
             bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_usuario", DbType.String, rut);
+            bd.createParameter("@usuario", DbType.String, usuario);
             bd.createParameter("@contrasena_actual", DbType.String, cActual);
             bd.createParameter("@contrasena_nueva", DbType.String, cNueva);
             DbDataReader result = bd.Query();//disponible resultado
@@ -138,7 +135,7 @@ namespace Project
         }
 
         //Obtiene la clave asociada a un rut
-        public int reestablecerClave(string rut)
+        public int reestablecerClave(string usuario)
         {
             Random r = new Random();
             int pwTemp = r.Next(100000, 999999);
@@ -153,7 +150,7 @@ namespace Project
             bd.connect();
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_usuario", DbType.String, rut);
+            bd.createParameter("@usuario", DbType.String, usuario);
             bd.createParameter("@contrasena_nueva", DbType.String, pwTempS);
             DbDataReader result = bd.Query();//disponible resultado
 
@@ -164,10 +161,10 @@ namespace Project
             return pwTemp;
         }
 
-        public void  recuperarContrasena(string rut, string correo)
+        public void  recuperarContrasena(string usuario, string correo)
         {
             CatalogUsuario cUsuario = new CatalogUsuario();
-            int pw = cUsuario.reestablecerClave(rut);
+            int pw = cUsuario.reestablecerClave(usuario);
             MailMessage msg = new MailMessage();
             msg.To.Add(correo);
             msg.From = new MailAddress("soporte.smcfe@gmail.com", "Administrador", Encoding.UTF8);

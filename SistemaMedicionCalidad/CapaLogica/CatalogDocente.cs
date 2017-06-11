@@ -4,7 +4,6 @@ using System.Data.Common;
 using System.Security.Cryptography;
 using System.Text;
 using Project.CapaDeDatos;
-using Project.CapaDeNegocios;
 
 namespace Project
 {
@@ -63,7 +62,6 @@ namespace Project
 
             List<Docente> lDocentes = new List<Docente>();
             DbDataReader result = bd.Query();
-            CatalogProfesion cProfesion = new CatalogProfesion();
             
             while (result.Read())
             {
@@ -87,7 +85,6 @@ namespace Project
 
             List<Docente> lDocentes = new List<Docente>();
             DbDataReader result = bd.Query();
-            CatalogProfesion cProfesion = new CatalogProfesion();
 
             while (result.Read())
             {

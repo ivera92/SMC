@@ -16,9 +16,9 @@ namespace Project
             string sql="insCompetencia";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@nombre_competencia", DbType.String, c.Nombre_competencia);
+            bd.createParameter("@id_ambito", DbType.Int32, c.Id_ambito.Id_ambito);
             bd.createParameter("@id_tipo_competencia", DbType.Int32, c.Id_tipo_competencia.Id_tipo_competencia);
-            bd.createParameter("@descripcion_competencia", DbType.String, c.Descripcion_competencia);
+            bd.createParameter("@nombre_competencia", DbType.String, c.Nombre_competencia);
             bd.execute();
             bd.Close();
         }
@@ -28,10 +28,7 @@ namespace Project
         {
             DataBase bd = new DataBase();
             bd.connect();
-
-
             string sql = "eliminarCompetencia";
-
             bd.CreateCommandSP(sql);
 
             bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
@@ -50,9 +47,9 @@ namespace Project
             bd.CreateCommandSP(sql);
             
             bd.createParameter("@id_competencia", DbType.Int32, c.Id_competencia);
-            bd.createParameter("@nombre_competencia", DbType.String, c.Nombre_competencia);
+            bd.createParameter("@id_ambito", DbType.Int32, c.Id_ambito.Id_ambito);
             bd.createParameter("@id_tipo_competencia", DbType.Int32, c.Id_tipo_competencia.Id_tipo_competencia);
-            bd.createParameter("@descripcion_competencia", DbType.String, c.Descripcion_competencia);
+            bd.createParameter("@nombre_competencia", DbType.String, c.Nombre_competencia);
             bd.execute();
             bd.Close();
         }
@@ -68,11 +65,14 @@ namespace Project
             bd.CreateCommandSP(sql);
             List<Competencia> lcompetencia = new List<Competencia>();
             DbDataReader result = bd.Query();
+            CatalogAmbito cAmbito = new CatalogAmbito();
             CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             while (result.Read())
             {
+                Ambito a = cAmbito.buscarUnAmbito(result.GetInt32(1));
                 Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
-                Competencia c = new Competencia(result.GetInt32(2), result.GetString(0), tc,result.GetString(1));
+                
+                Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(1));
                 lcompetencia.Add(c);
             }
             result.Close();
@@ -93,11 +93,14 @@ namespace Project
             bd.createParameter("@buscar", DbType.String, buscar);
             List<Competencia> lcompetencia = new List<Competencia>();
             DbDataReader result = bd.Query();
+            CatalogAmbito cAmbito = new CatalogAmbito();
             CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             while (result.Read())
             {
+                Ambito a = cAmbito.buscarUnAmbito(result.GetInt32(1));
                 Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
-                Competencia c = new Competencia(result.GetInt32(2), result.GetString(0), tc, result.GetString(1));
+
+                Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(1));
                 lcompetencia.Add(c);
             }
             result.Close();
@@ -115,13 +118,18 @@ namespace Project
             string sql = "mostrarCompetenciasAsignatura";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@cod_asignatura_ac", DbType.String, cod_asignatura_ac);
+            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura_ac);
             List<Competencia> lCompetencias = new List<Competencia>();
+            CatalogAmbito cAmbito = new CatalogAmbito();
+            CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             DbDataReader result = bd.Query();
 
             while (result.Read())
             {
-                Competencia c = new Competencia(result.GetInt32(0), result.GetString(1));
+                Ambito a = cAmbito.buscarUnAmbito(result.GetInt32(1));
+                Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
+
+                Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(1));
                 lCompetencias.Add(c);
             }
             result.Close();
@@ -141,9 +149,12 @@ namespace Project
             bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
             DbDataReader result = bd.Query();
             result.Read();
+            CatalogAmbito cAmbito = new CatalogAmbito();
             CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
-            Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(1));
-            Competencia c = new Competencia(result.GetInt32(0), result.GetString(2), tc, result.GetString(3));
+            Ambito a = cAmbito.buscarUnAmbito(result.GetInt32(1));
+            Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
+
+            Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(1));
 
             result.Close();
             bd.Close();

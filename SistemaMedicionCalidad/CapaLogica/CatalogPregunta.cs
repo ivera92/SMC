@@ -16,12 +16,11 @@ namespace Project
             string sql = "insPregunta";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_competencia_pregunta", DbType.Int32, p.Competencia_pregunta.Id_competencia);
+            bd.createParameter("@id_desempeno", DbType.Int32, p.Id_desempeno.Id_desempeno);
             bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Tipo_pregunta_pregunta.Id_tipo_pregunta);
             bd.createParameter("@enunciado_pregunta", DbType.String, p.Enunciado_pregunta);
             bd.createParameter("@imagen_pregunta", DbType.String, p.Imagen_pregunta);
-            bd.createParameter("@nivel_pregunta", DbType.String, p.Nivel_pregunta);
-
+            bd.createParameter("@nivel_pregunta", DbType.Int32, p.Nivel_pregunta);
             bd.execute();
             bd.Close();
         }
@@ -38,26 +37,6 @@ namespace Project
             bd.createParameter("@id_pregunta", DbType.Int32, id_pregunta);
             bd.execute();
             bd.Close();
-        }
-
-        //Lista los Tipos de Preguntas
-        public List<Tipo_Pregunta> listarTiposPregunta()
-        {
-            DataBase bd = new DataBase();
-            bd.connect(); //método conectar
-
-            string sqlSearch = "mostrarTiposPregunta";
-            bd.CreateCommandSP(sqlSearch);
-            List<Tipo_Pregunta> lTiposPregunta = new List<Tipo_Pregunta>();
-            DbDataReader result = bd.Query();//disponible resultado
-            while (result.Read())
-            {
-                Tipo_Pregunta tp = new Tipo_Pregunta(result.GetInt32(0), result.GetString(1));
-                lTiposPregunta.Add(tp);
-            }
-            result.Close();
-            bd.Close();
-            return lTiposPregunta;
         }
         //Devuelve la ultima pregunta ingresada en la base de datos
         public int ultimaPregunta()
@@ -87,14 +66,13 @@ namespace Project
             DbDataReader result = bd.Query();
             result.Read();
             Pregunta p = new Pregunta();
-            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
 
             p.Id_pregunta = result.GetInt32(0);
-            p.Competencia_pregunta = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
+            p.Id_desempeno = cDesempeno.buscarUnDesempeno(result.GetInt32(1));
             p.Tipo_pregunta_pregunta = cTipoPregunta.buscarUnTipoPregunta(result.GetInt32(2));
             p.Enunciado_pregunta = result.GetString(3);
-            p.Nivel_pregunta = result.GetString(5);
             try
             {
                 p.Imagen_pregunta = result.GetString(4);
@@ -103,6 +81,8 @@ namespace Project
             {
                 p.Imagen_pregunta = "";
             }
+            p.Nivel_pregunta = result.GetInt32(5);
+            
             result.Close();
             bd.Close();
 
@@ -118,8 +98,8 @@ namespace Project
             string sqlSearch = "mostrarPreguntas";
             bd.CreateCommandSP(sqlSearch);
             List<Pregunta> lPreguntas = new List<Pregunta>();
-            CatalogCompetencia cCompetencia = new CatalogCompetencia();
-            CatalogPregunta cPregunta = new CatalogPregunta();
+
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
@@ -127,10 +107,18 @@ namespace Project
                 Pregunta p = new Pregunta();
 
                 p.Id_pregunta = result.GetInt32(0);
-                p.Competencia_pregunta = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
+                p.Id_desempeno = cDesempeno.buscarUnDesempeno(result.GetInt32(1));
                 p.Tipo_pregunta_pregunta = cTipoPregunta.buscarUnTipoPregunta(result.GetInt32(2));
                 p.Enunciado_pregunta = result.GetString(3);
-                p.Nivel_pregunta = result.GetString(5);
+                try
+                {
+                    p.Imagen_pregunta = result.GetString(4);
+                }
+                catch
+                {
+                    p.Imagen_pregunta = "";
+                }
+                p.Nivel_pregunta = result.GetInt32(5);
                 lPreguntas.Add(p);
             }
             result.Close();
@@ -146,10 +134,9 @@ namespace Project
 
             string sqlSearch = "mostrarPreguntasBusqueda";
             bd.CreateCommandSP(sqlSearch);
-            bd.createParameter("@buscar", DbType.String, buscar);
             List<Pregunta> lPreguntas = new List<Pregunta>();
-            CatalogCompetencia cCompetencia = new CatalogCompetencia();
-            CatalogPregunta cPregunta = new CatalogPregunta();
+
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
@@ -157,10 +144,18 @@ namespace Project
                 Pregunta p = new Pregunta();
 
                 p.Id_pregunta = result.GetInt32(0);
-                p.Competencia_pregunta = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
+                p.Id_desempeno = cDesempeno.buscarUnDesempeno(result.GetInt32(1));
                 p.Tipo_pregunta_pregunta = cTipoPregunta.buscarUnTipoPregunta(result.GetInt32(2));
                 p.Enunciado_pregunta = result.GetString(3);
-                p.Nivel_pregunta = result.GetString(5);
+                try
+                {
+                    p.Imagen_pregunta = result.GetString(4);
+                }
+                catch
+                {
+                    p.Imagen_pregunta = "";
+                }
+                p.Nivel_pregunta = result.GetInt32(5);
                 lPreguntas.Add(p);
             }
             result.Close();
@@ -173,14 +168,14 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "actualizarPregunta";
+            string sql = "editarPregunta";
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@id_pregunta", DbType.Int32, p.Id_pregunta);
-            bd.createParameter("@id_competencia_pregunta", DbType.Int32, p.Competencia_pregunta.Id_competencia+1);
+            bd.createParameter("@id_desempeno_pregunta", DbType.Int32, p.Id_desempeno.Id_desempeno);
             bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Tipo_pregunta_pregunta.Id_tipo_pregunta+1);
             bd.createParameter("@enunciado_pregunta", DbType.String, p.Enunciado_pregunta);
-            bd.createParameter("@nivel_pregunta", DbType.String, p.Nivel_pregunta);
+            bd.createParameter("@nivel_pregunta", DbType.Int32, p.Nivel_pregunta);
             bd.execute();
             bd.Close();
         }

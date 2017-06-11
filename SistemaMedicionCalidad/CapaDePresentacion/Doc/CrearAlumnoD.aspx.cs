@@ -188,13 +188,12 @@ namespace CapaDePresentacion.Doc
                         a.Rut_persona = rut;
                         a.Nombre_persona = nombre;
                         a.Correo_persona = email;
-                        a.Escuela_alumno = cEscuela.buscarUnaEscuelaNombre(carrera);
                     }
                     catch { }
 
                     try
                     {
-                        cAlumno.insertarAlumnoExcel(a);
+                        cAlumno.insertarAlumno(a);
                     }
                     catch { }
 

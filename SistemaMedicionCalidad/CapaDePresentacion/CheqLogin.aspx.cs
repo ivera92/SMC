@@ -35,20 +35,22 @@ namespace CapaDePresentacion
         {
             CatalogUsuario cUsuario = new CatalogUsuario();            
             Session.Clear();
-            int tipoUsuario = int.Parse(ddTipoUsuario.SelectedValue);
+
+            int[] autentificacion =cUsuario.Autenticar(rut.Text, txtclave.Text);
+
             //Se verifica si existe el usuario y es valido, despues de eso se ven los roles 
-            if (CatalogUsuario.Autenticar(rut.Text, txtclave.Text, tipoUsuario))
+            if (autentificacion[0] > 0)
             {
                 //Redirige al usuario autenticado a la dirección URL solicitada originalmente o la dirección URL predeterminada
                 //Para crear una cookie duradera (aquella que se guarda en las sesiones del explorador); de lo contrario, false.
                 FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
 
-                if (tipoUsuario == 1)
+                if (autentificacion[1] == 1)
                 {
                     Session["rutAlumno"] = rut.Text;
                     Response.Redirect("~/Alum/Principal.aspx");
                 }
-                else if (tipoUsuario == 2)
+                else if (autentificacion[1] == 2)
                 {
                     Session["rutDocente"] = rut.Text;
                     Response.Redirect("~/Doc/InicioDocente.aspx");
@@ -59,10 +61,9 @@ namespace CapaDePresentacion
                     Response.Redirect("~/Admin/InicioAdmin.aspx");
                 }
             }
-            else
             {
                 Response.Write("<script>window.alert('Error al Ingresar los datos');</script>");
-            }
+            }               
         }
         //Esconde el div de logeo y muestra el de ingresar rut para posteriormente solicitar recuperacion de clave
         protected void recuperar_Click(object sender, EventArgs e)

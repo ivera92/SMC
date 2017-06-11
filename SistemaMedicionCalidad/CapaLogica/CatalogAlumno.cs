@@ -15,41 +15,15 @@ namespace Project.CapaDeNegocios
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "insAlumnos";
+            string sql = "insAlumno";
             string contraseña = encriptar(a.Rut_persona);
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut_alumno", DbType.String, a.Rut_persona);
             bd.createParameter("@contraseña_usuario", DbType.String, contraseña);
-            bd.createParameter("@id_escuela_alumno", DbType.Int32, a.Escuela_alumno.Id_escuela);
-            bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_persona.Id_pais);
             bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_persona);
-            bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_persona);
-            bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_persona);
-            bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_persona);
-            bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_persona);
             bd.createParameter("@correo_alumno", DbType.String, a.Correo_persona);
             bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
-            bd.createParameter("@beneficio_alumno", DbType.Boolean, a.Beneficio_alumno);
-            bd.execute();
-            bd.Close();
-        }
-
-        //Inserta un alumno a la base de datos desde tabla Excel
-        public void insertarAlumnoExcel(Alumno a)
-        {
-            DataBase bd = new DataBase();
-            bd.connect();
-
-            string sql = "insAlumnosExcel";
-            string contraseña = encriptar(a.Rut_persona);
-
-            bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_alumno", DbType.String, a.Rut_persona);
-            bd.createParameter("@contraseña_usuario", DbType.String, contraseña);
-            bd.createParameter("@id_escuela_alumno", DbType.Int32, a.Escuela_alumno.Id_escuela);
-            bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_persona);
-            bd.createParameter("@correo_alumno", DbType.String, a.Correo_persona);
             bd.execute();
             bd.Close();
         }
@@ -60,39 +34,12 @@ namespace Project.CapaDeNegocios
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "editarAlumnos";
+            string sql = "editarAlumno";
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut_alumno", DbType.String, a.Rut_persona);
-            bd.createParameter("@id_escuela_alumno", DbType.Int32, a.Escuela_alumno.Id_escuela);
             bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_persona);
-            bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_persona);
-            bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_persona);
-            bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_persona);
-            bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_persona.Id_pais);
-            bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_persona);
             bd.createParameter("@correo_alumno", DbType.String, a.Correo_persona);
             bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
-            bd.createParameter("@beneficio_alumno", DbType.Boolean, a.Beneficio_alumno);
-            bd.execute();
-            bd.Close();
-        }
-
-        //Actualiza un alumno de la base de datos
-        public void actualizarAlumnoEnAlumno(Alumno a)
-        {
-            DataBase bd = new DataBase();
-            bd.connect();
-
-            string sql = "editarAlumnoEnAlumno";
-            bd.CreateCommandSP(sql);
-            bd.createParameter("@rut_alumno", DbType.String, a.Rut_persona);
-            bd.createParameter("@fecha_nacimiento_alumno", DbType.Date, a.Fecha_nacimiento_persona);
-            bd.createParameter("@direccion_alumno", DbType.String, a.Direccion_persona);
-            bd.createParameter("@telefono_alumno", DbType.Int32, a.Telefono_persona);
-            bd.createParameter("@id_pais_alumno", DbType.Int32, a.Pais_persona.Id_pais);
-            bd.createParameter("@sexo_alumno", DbType.Boolean, a.Sexo_persona);
-            bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
-            bd.createParameter("@beneficio_alumno", DbType.Boolean, a.Beneficio_alumno);
             bd.execute();
             bd.Close();
         }
@@ -121,13 +68,9 @@ namespace Project.CapaDeNegocios
             bd.CreateCommandSP(sqlSearch);
             List<Alumno> lAlumnos = new List<Alumno>();
             DbDataReader result = bd.Query();//disponible resultado
-            CatalogEscuela cEscuela = new CatalogEscuela();
             while (result.Read())
             {
-                Alumno a = new Alumno();
-                a.Escuela_alumno = cEscuela.buscarUnaEscuela(result.GetInt32(2));
-                a.Nombre_persona = result.GetString(0);
-                a.Rut_persona = result.GetString(1);
+                Alumno a = new Alumno(result.GetString(0), result.GetString(1), result.GetString(2), result.GetInt32(3));
                 lAlumnos.Add(a);
             }
             result.Close();
@@ -146,13 +89,9 @@ namespace Project.CapaDeNegocios
             bd.createParameter("@buscar", DbType.String, buscar);
             List<Alumno> lAlumnos = new List<Alumno>();
             DbDataReader result = bd.Query();//disponible resultado
-            CatalogEscuela cEscuela = new CatalogEscuela();
             while (result.Read())
             {
-                Alumno a = new Alumno();
-                a.Rut_persona = result.GetString(0);
-                a.Escuela_alumno = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-                a.Nombre_persona = result.GetString(3);
+                Alumno a = new Alumno(result.GetString(0), result.GetString(1), result.GetString(2), result.GetInt32(3));
                 lAlumnos.Add(a);
             }
             result.Close();
@@ -171,24 +110,15 @@ namespace Project.CapaDeNegocios
             bd.createParameter("@rut", DbType.String, rut);
             DbDataReader result = bd.Query();//disponible resultado
             result.Read();
-            CatalogPais cPais = new CatalogPais();
-            CatalogEscuela cEscuela = new CatalogEscuela();
             Alumno a = new Alumno();
 
             a.Rut_persona = result.GetString(0);
-            a.Escuela_alumno = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-            a.Nombre_persona = result.GetString(3);
-            a.Correo_persona = result.GetString(8);
+            a.Nombre_persona = result.GetString(1);
+            a.Correo_persona = result.GetString(2);
 
             try
             {
-                a.Pais_persona = cPais.buscarUnPais(result.GetInt32(2));
-                a.Fecha_nacimiento_persona = result.GetDateTime(4);
-                a.Direccion_persona = result.GetString(5);
-                a.Telefono_persona = result.GetInt32(6);
-                a.Sexo_persona = result.GetBoolean(7);
-                a.Promocion_alumno = result.GetInt32(9);
-                a.Beneficio_alumno = result.GetBoolean(10);
+                a.Promocion_alumno = result.GetInt32(3);
             }
             catch
             {

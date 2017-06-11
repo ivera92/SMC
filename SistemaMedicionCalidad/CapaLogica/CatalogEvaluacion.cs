@@ -145,28 +145,6 @@ namespace Project
             return resultados;
         }
 
-        public List<string> resultadosTodosAEvaluacion (int id_evaluacion)
-        {
-
-            DataBase bd = new DataBase();
-            bd.connect(); //método conectar
-
-            string sqlSearch = "mostrarResultadosEvaluacionTodosAlumnos";
-            bd.CreateCommandSP(sqlSearch);
-            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
-            DbDataReader result = bd.Query();//disponible resultado
-            List<string> resultados = new List<string>();
-            while (result.Read())
-            {
-                resultados.Add(result.GetBoolean(0) + "");
-                resultados.Add(result.GetInt32(1) + "");
-                resultados.Add(result.GetString(2));
-            }
-            result.Close();
-            bd.Close();
-            return resultados;
-        }
-
         //obtiene  resultados de  una evaluacion 
         public List<string> obtenerResultadosEvaluacionGeneral(string rut, int id_evaluacion, int id_competencia)
         {

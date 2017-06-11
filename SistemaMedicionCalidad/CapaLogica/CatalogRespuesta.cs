@@ -47,51 +47,7 @@ namespace Project
             result.Close();
             bd.Close();
             return lRespuestasPregunta;
-        }
-
-        //Lista todas las respuestas existentes en la base de datos
-        public List<Respuesta> listarRespuestas()
-        {
-            DataBase bd = new DataBase();
-            bd.connect();
-
-            string sql = "mostrarTodasRespuestas";
-            bd.CreateCommandSP(sql);
-
-            List<Respuesta> lRespuestas = new List<Respuesta>();
-            DbDataReader result = bd.Query();//disponible resultado
-            CatalogPregunta cPregunta = new CatalogPregunta();
-            Pregunta p = new Pregunta();
-            while (result.Read())
-            {
-                Respuesta r = new Respuesta();
-                r.Pregunta_respuesta = p;
-                p=cPregunta.buscarUnaPregunta(result.GetInt32(3));
-
-                r.Pregunta_respuesta.Enunciado_pregunta = p.Enunciado_pregunta;             
-                r.Id_respuesta = result.GetInt32(0);
-                r.Nombre_respuesta = result.GetString(1);
-                r.Correcta_respuesta = result.GetBoolean(2);
-
-                lRespuestas.Add(r);
-            }
-            result.Close();
-            bd.Close();
-            return lRespuestas;
-        }
-        //Elimina una sola respuesta de una pregunta acorde a su ID
-        public void eliminarRespuesta(int id_respuesta)
-        {
-            DataBase bd = new DataBase();
-            bd.connect();
-
-            string sql = "eliminarRespuesta";
-
-            bd.CreateCommandSP(sql);
-            bd.createParameter("@id_respuesta", DbType.Int32, id_respuesta);
-            bd.execute();
-            bd.Close();
-        }
+        }        
 
         //Elimina todas las respuestas asociadas a una pregunta acorde a su ID
         public void eliminarRespuestas(int id_pregunta)
@@ -99,7 +55,7 @@ namespace Project
             DataBase bd = new DataBase();
             bd.connect();
 
-            string sql = "eliminarRespuestas";
+            string sql = "eliminarRespuestasDePregunta";
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@id_pregunta", DbType.Int32, id_pregunta);
