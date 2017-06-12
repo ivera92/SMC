@@ -36,7 +36,7 @@ namespace CapaDePresentacion.Admin
 
         protected void btnInscribir_Click(object sender, EventArgs e)
         {
-            CatalogInscribir_Ramo cAA = new CatalogInscribir_Ramo();
+            CatalogCursa cCursa = new CatalogCursa();
             Cursa c= new Cursa();
             Asignatura a = new Asignatura();
             Alumno al = new Alumno();
@@ -47,7 +47,7 @@ namespace CapaDePresentacion.Admin
             c.Cod_asignatura_aa.Cod_asignatura = ddAsignatura.SelectedValue;
             try
             {
-                cAA.insertarAA(c);
+                cCursa.inscribirAsignatura(c);
                 Response.Write("<script>window.alert('Asignatura inscrita correctamente');</script>");
             }
             catch

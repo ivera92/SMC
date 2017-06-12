@@ -131,9 +131,8 @@ namespace CapaDePresentacion
 
             this.administrar.Visible = false;
             this.txtAPregunta.InnerText = p.Enunciado_pregunta;
-            this.ddCompetencia.SelectedValue = p.Competencia_pregunta.Id_competencia + "";
             this.ddTipoPregunta.SelectedValue = p.Tipo_pregunta_pregunta.Id_tipo_pregunta + "";
-            this.txtNivel.Text = p.Nivel_pregunta;
+            //this.txtNivel.Text = p.Nivel_pregunta;
             
             //Se cargan las respuestas y si son correctas o no, esto mediante datos de la base 
             for(int i=0; i<lRespuestas.Count; i++)
@@ -155,14 +154,12 @@ namespace CapaDePresentacion
             CatalogRespuesta cRespuesta = new CatalogRespuesta();
             Competencia c = new Competencia();
             Tipo_Pregunta tp = new Tipo_Pregunta();
-            p.Competencia_pregunta = c;
             p.Tipo_pregunta_pregunta = tp;
-
-            p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
+            
             p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
             p.Enunciado_pregunta = this.txtAPregunta.InnerText;
             p.Id_pregunta = id_pregunta;
-            p.Nivel_pregunta = txtNivel.Text.Trim();
+            //p.Nivel_pregunta = txtNivel.Text.Trim();
             try
             {
                 cPregunta.actualizarPregunta(p);

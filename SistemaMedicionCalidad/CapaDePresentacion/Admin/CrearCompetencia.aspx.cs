@@ -18,27 +18,35 @@ namespace CapaDePresentacion
             }
             CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             List<Tipo_Competencia> lTiposCompetencia = cTipoCompetencia.listarTipoCompetencias();
+            CatalogAmbito cAmbito = new CatalogAmbito();
+            List<Ambito> lAmbitos = cAmbito.listarAmbitos();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddTipoCompetencia.DataTextField = "Nombre_tipo_competencia";
                 this.ddTipoCompetencia.DataValueField = "Id_tipo_competencia";
                 this.ddTipoCompetencia.DataSource = lTiposCompetencia;
 
+                this.ddAmbito.DataTextField = "Nombre_ambito";
+                this.ddAmbito.DataValueField = "Id_ambito";
+                this.ddAmbito.DataSource = lAmbitos;
+
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
         }
         public void resetearValores()
         {
-            this.txtNombreCompetencia.Text = "";
             this.ddTipoCompetencia.SelectedIndex = 0;
-            this.txtADescripcion.InnerText = "";
+            this.ddAmbito.SelectedIndex = 0;
+            this.txtNombre.InnerText = "";
         }
         protected void brnCrear_Click(object sender, EventArgs e)
         {
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             Tipo_Competencia tp = cTipoCompetencia.buscarUnTipoCompetencia(int.Parse(ddTipoCompetencia.SelectedValue));
-            Competencia c = new Competencia(this.txtNombreCompetencia.Text, tp , this.txtADescripcion.InnerText);
+            CatalogAmbito cAmbito = new CatalogAmbito();
+            Ambito a = cAmbito.buscarUnAmbito(int.Parse(ddAmbito.SelectedValue));
+            Competencia c = new Competencia(a, tp , txtNombre.InnerText);
             try
             {
                 cCompetencia.insertarCompetencia(c);

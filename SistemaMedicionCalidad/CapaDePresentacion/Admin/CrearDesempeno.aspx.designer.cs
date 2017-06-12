@@ -10,43 +10,25 @@
 namespace CapaDePresentacion.Admin {
     
     
-    public partial class AdministrarAsignatura_Competencia {
+    public partial class CrearDesempeno {
         
         /// <summary>
-        /// divMostrar control.
+        /// divCrear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMostrar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCrear;
         
         /// <summary>
-        /// gvAC control.
+        /// txtIndicador control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAC;
-        
-        /// <summary>
-        /// txtAC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAC;
-        
-        /// <summary>
-        /// divEditar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEditar;
+        protected global::System.Web.UI.WebControls.TextBox txtIndicador;
         
         /// <summary>
         /// ddCompetencia control.
@@ -58,22 +40,40 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
         
         /// <summary>
-        /// ddAsignatura control.
+        /// txtNBasico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddAsignatura;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtNBasico;
         
         /// <summary>
-        /// txtNivelDominio control.
+        /// txtNMedio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNivelDominio;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtNMedio;
+        
+        /// <summary>
+        /// txtNSuperior control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtNSuperior;
+        
+        /// <summary>
+        /// txtNAvanzado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtNAvanzado;
         
         /// <summary>
         /// btnGuardar control.

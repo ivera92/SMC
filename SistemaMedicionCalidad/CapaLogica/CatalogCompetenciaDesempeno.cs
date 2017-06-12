@@ -74,6 +74,31 @@ namespace Project
             return cd;
         }
 
+        //Devuelve la asociacion acorde a su ID
+        public Competencia_Desempeno buscarCDIDDesempeno(int id_desempeno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "buscarCDIDDesempeno";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_desempeno", DbType.Int32, id_desempeno);
+            DbDataReader result = bd.Query();
+            result.Read();
+
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            Competencia_Desempeno cd = new Competencia_Desempeno();
+
+            cd.Id_cd = result.GetInt32(0);
+            cd.Id_desempeno = cDesempeno.buscarUnDesempeno(result.GetInt32(1));
+            cd.Id_competencia = cCompetencia.buscarUnaCompetencia(result.GetInt32(2));
+
+            result.Close();
+            bd.Close();
+            return cd;
+        }
+
         //Actualiza una asociacion existente en la base de datos
         public void actualizarAsociacion(Competencia_Desempeno cd)
         {

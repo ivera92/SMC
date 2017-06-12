@@ -70,9 +70,9 @@ namespace Project
             while (result.Read())
             {
                 Ambito a = cAmbito.buscarUnAmbito(result.GetInt32(1));
-                Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
+                Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(2));
                 
-                Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(1));
+                Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(3));
                 lcompetencia.Add(c);
             }
             result.Close();
@@ -98,9 +98,9 @@ namespace Project
             while (result.Read())
             {
                 Ambito a = cAmbito.buscarUnAmbito(result.GetInt32(1));
-                Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
+                Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(2));
 
-                Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(1));
+                Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(3));
                 lcompetencia.Add(c);
             }
             result.Close();
@@ -127,9 +127,9 @@ namespace Project
             while (result.Read())
             {
                 Ambito a = cAmbito.buscarUnAmbito(result.GetInt32(1));
-                Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
+                Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(2));
 
-                Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(1));
+                Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(3));
                 lCompetencias.Add(c);
             }
             result.Close();
@@ -152,9 +152,9 @@ namespace Project
             CatalogAmbito cAmbito = new CatalogAmbito();
             CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             Ambito a = cAmbito.buscarUnAmbito(result.GetInt32(1));
-            Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(3));
+            Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(2));
 
-            Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(1));
+            Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(3));
 
             result.Close();
             bd.Close();

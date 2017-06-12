@@ -79,5 +79,30 @@ namespace Project
 
             return lNiveles;
         }
+
+        //Lista todas los niveles de un indicador de desempeño existentes en la base de datos
+        public List<Nivel> listarNivelesDesempeno(int id_desempeno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarNivelesDesempeno";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_desempeno", DbType.Int32, id_desempeno);
+            List<Nivel> lNiveles = new List<Nivel>();
+            DbDataReader result = bd.Query();
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+
+            while (result.Read())
+            {
+                Nivel n = new Nivel(result.GetInt32(0), cDesempeno.buscarUnDesempeno(result.GetInt32(1)), result.GetInt32(2), result.GetString(3), result.GetString(4));
+                lNiveles.Add(n);
+            }
+            result.Close();
+            bd.Close();
+
+            return lNiveles;
+        }
     }
 }

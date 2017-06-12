@@ -22,11 +22,17 @@ namespace CapaDePresentacion
             }
             CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             List<Tipo_Competencia> lTiposCompetencia = cTipoCompetencia.listarTipoCompetencias();
+            CatalogAmbito cAmbito = new CatalogAmbito();
+            List<Ambito> lAmbitos = cAmbito.listarAmbitos();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
                 this.ddTipoCompetencia.DataTextField = "Nombre_tipo_competencia";
                 this.ddTipoCompetencia.DataValueField = "Id_tipo_competencia";
                 this.ddTipoCompetencia.DataSource = lTiposCompetencia;
+
+                this.ddAmbito.DataTextField = "Nombre_ambito";
+                this.ddAmbito.DataValueField = "Id_ambito";
+                this.ddAmbito.DataSource = lAmbitos;
 
                 this.DataBind();//enlaza los datos a un dropdownlist  
                 this.txtCompetencia.Visible = false;
@@ -69,10 +75,10 @@ namespace CapaDePresentacion
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             Competencia c = cCompetencia.buscarUnaCompetencia(int.Parse(idCompetencia));
             this.txtCompetencia.Text = c.Id_competencia + "";
-            this.txtNombreCompetencia.Text = c.Nombre_competencia;
-            this.txtADescripcion.InnerText = c.Descripcion_competencia;
+            this.txtNombre.InnerText = c.Nombre_competencia;
 
             ddTipoCompetencia.SelectedValue = c.Id_tipo_competencia.Id_tipo_competencia + "";
+            ddAmbito.SelectedValue = c.Id_ambito.Id_ambito + "";
 
             this.divEditar.Visible = true;
         }
@@ -82,7 +88,9 @@ namespace CapaDePresentacion
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
             CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
             Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(int.Parse(ddTipoCompetencia.SelectedValue));
-            Competencia c = new Competencia(int.Parse(this.txtCompetencia.Text), this.txtNombreCompetencia.Text, tc, this.txtADescripcion.InnerText);
+            CatalogAmbito cAmbito = new CatalogAmbito();
+            Ambito a = cAmbito.buscarUnAmbito(int.Parse(ddAmbito.SelectedValue));
+            Competencia c = new Competencia(int.Parse(txtCompetencia.Text), a, tc, txtNombre.InnerText);
             try
             {
                 cCompetencia.actualizarCompetencia(c);

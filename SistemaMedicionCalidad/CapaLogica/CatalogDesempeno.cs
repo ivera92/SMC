@@ -44,6 +44,23 @@ namespace Project
             return d;
         }
 
+        //Devuelve un desempeno acorde a su indicador
+        public Desempeno buscarUnDesempenoIndicador(string indicador_desempeno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "buscarDesempenoIndicador";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@indicador_desempeno", DbType.String, indicador_desempeno);
+            DbDataReader result = bd.Query();//disponible resultado
+            result.Read();
+            Desempeno d = new Desempeno(result.GetInt32(0), result.GetString(1));
+            result.Close();
+            bd.Close();
+            return d;
+        }
+
         //Elimina un Desempeño existente en la base de datos acorde a su ID
         public void eliminarDesempeno(int id_desempeno)
         {
@@ -59,7 +76,7 @@ namespace Project
         }
 
         //Inserta un desempeno en la base de datos
-        public void insertarEscuela(Desempeno d)
+        public void insertarDesempeno(Desempeno d)
         {
             DataBase bd = new DataBase();
             bd.connect();

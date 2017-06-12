@@ -10,7 +10,7 @@
         <div class="row">
             <label class="col-sm-offset-2 col-sm-1">Nombre</label>
             <div class="col-sm-5">
-                <asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="^([A-ZÁÉÍÓÚa-záéíóú]{3,16}*)+$" placeHolder="Ingrese nombre">
+                <asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="^([A-ZÁÉÍÓÚa-záéíóú]{3,16}*)+$" placeHolder="Ingrese nombre de escuela" required>
                 </asp:TextBox>
             </div>
             <div class="col-sm-2">

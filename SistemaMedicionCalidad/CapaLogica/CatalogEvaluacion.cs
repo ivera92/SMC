@@ -212,7 +212,6 @@ namespace Project
             while (result.Read())
             {
                 Competencia c = new Competencia();
-                Pais p = new Pais();
                 Respuesta res = new Respuesta();
                 Resultados r = new Resultados();
                 r.Correcta_respuesta = res;
@@ -252,17 +251,17 @@ namespace Project
             List<Pregunta> lPreguntas = new List<Pregunta>();
             DbDataReader result = bd.Query();
             CatalogEvaluacion cEvaluaciones = new CatalogEvaluacion();
-            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogTipoPregunta cTP = new CatalogTipoPregunta();
 
             while (result.Read())
             {
                 Pregunta p = new Pregunta();
                 p.Id_pregunta = result.GetInt32(0);
-                p.Competencia_pregunta = cCompetencia.buscarUnaCompetencia(result.GetInt32(1));
+                p.Id_desempeno = cDesempeno.buscarUnDesempeno(result.GetInt32(1));
                 p.Tipo_pregunta_pregunta = cTP.buscarUnTipoPregunta(result.GetInt32(2));
                 p.Enunciado_pregunta = result.GetString(3);
-                p.Nivel_pregunta = result.GetString(4);
+                p.Nivel_pregunta = result.GetInt32(4);
                 lPreguntas.Add(p);
             }
             result.Close();

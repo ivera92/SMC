@@ -52,7 +52,7 @@ namespace CapaDePresentacion.Doc
                 {
                     if (i == 0) { }
                     else {
-                        item.Attributes.Add("Title", lCompetencias[i].Descripcion_competencia+"Si entro");
+                        //item.Attributes.Add("Title", lCompetencias[i].Descripcion_competencia+"Si entro");
                     }
                     i += 1;
                 }
@@ -77,7 +77,7 @@ namespace CapaDePresentacion.Doc
             List<Competencia> lCompetencias = cCompetencia.listarCompetencias();
             for (int d = 0; d < dd.Items.Count; d++)
             {
-                dd.Items[d].Attributes.Add("title", lCompetencias[d].Descripcion_competencia);
+                //dd.Items[d].Attributes.Add("title", lCompetencias[d].Descripcion_competencia);
             }
         }
 
@@ -90,19 +90,17 @@ namespace CapaDePresentacion.Doc
             CatalogRespuesta cr = new CatalogRespuesta();
 
             Pregunta p = new Pregunta();
-            Competencia c = new Competencia();
             Tipo_Pregunta tp = new Tipo_Pregunta();
-            p.Competencia_pregunta = c;
             p.Tipo_pregunta_pregunta = tp;
             int id = 0;
             try
             {
                 this.subirImagen();//Guarda la imagen en la carpeta ImagenesPreguntas ubicada en la carpeta Doc
-                p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
+                //p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
                 p.Enunciado_pregunta = this.txtAPregunta.InnerText;
                 p.Imagen_pregunta = ruta;
-                p.Nivel_pregunta = txtNivel.Text.ToUpper().Trim();
+                //p.Nivel_pregunta = txtNivel.Text.ToUpper().Trim();
                 cp.insertarPregunta(p);
                 id = cp.ultimaPregunta();
 

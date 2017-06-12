@@ -20,8 +20,6 @@ namespace CapaDePresentacion
             }
             CatalogEscuela cEscuela = new CatalogEscuela();
             List<Escuela> lEscuelas = cEscuela.listarEscuelas();
-            CatalogDocente cDocente = new CatalogDocente();
-            List<Docente> lDocentes = cDocente.listarDocentes();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -29,43 +27,33 @@ namespace CapaDePresentacion
                 this.ddEscuela.DataValueField = "Id_escuela";
                 this.ddEscuela.DataSource = lEscuelas;
 
-                this.ddDocente.DataTextField = "Nombre_persona";
-                this.ddDocente.DataValueField = "Rut_persona";
-                this.ddDocente.DataSource = lDocentes;
-
                 this.DataBind();//enlaza los datos a un dropdownlist   
             }
         }
         public void resetearValores()
         {
             this.ddEscuela.SelectedIndex = 0;
-            this.ddDocente.SelectedIndex = 0;
             this.txtNombre.Text = "";
-            this.txtAno.Text = "";
             this.txtCodigo.Text = "";
-            rbDuracion.SelectedIndex = 0;
+            rbDuracion.SelectedIndex=-1;
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             bool duracion;
-            if (this.rbDuracion.Text == "Semestral")
+            if (this.rbDuracion.SelectedValue == "0")
                 duracion = true;
             else
                 duracion = false;
 
             Asignatura a = new Asignatura();
             Escuela es = new Escuela();
-            Docente d = new Docente();
             a.Escuela_asignatura = es;
-            a.Docente_asignatura = d;
 
+            a.Cod_asignatura = this.txtCodigo.Text.ToUpper().Trim();
             a.Escuela_asignatura.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
-            a.Docente_asignatura.Rut_persona = this.ddDocente.SelectedValue;
-            a.Nombre_asignatura = this.txtNombre.Text;
-            a.Ano_asignatura = int.Parse(this.txtAno.Text);
-            a.Cod_asignatura = this.txtCodigo.Text.ToUpper();
+            a.Nombre_asignatura = this.txtNombre.Text.Trim();
             a.Duracion_asignatura = duracion;
             try
             {

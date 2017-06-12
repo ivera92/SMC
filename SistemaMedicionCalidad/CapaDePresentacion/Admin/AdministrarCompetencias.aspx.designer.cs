@@ -67,6 +67,15 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEditar;
         
         /// <summary>
+        /// ddAmbito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddAmbito;
+        
+        /// <summary>
         /// ddTipoCompetencia control.
         /// </summary>
         /// <remarks>
@@ -76,22 +85,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddTipoCompetencia;
         
         /// <summary>
-        /// txtNombreCompetencia control.
+        /// txtNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreCompetencia;
-        
-        /// <summary>
-        /// txtADescripcion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtADescripcion;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtNombre;
         
         /// <summary>
         /// btnGuardar control.

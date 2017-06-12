@@ -32,9 +32,9 @@
                     <Columns>
                         <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" />
                         <asp:BoundField DataField="Id_Competencia" HeaderText="Id" />
-                        <asp:BoundField DataField="Nombre_Competencia" HeaderText="Nombre" />
-                        <asp:BoundField DataField="Descripcion_Competencia" HeaderText="Descripcion" />
-                        <asp:BoundField DataField="Id_tipo_competencia.nombre_tipo_competencia" HeaderText="Tipo Competencia" />
+                        <asp:BoundField DataField="Id_ambito.nombre_ambito" HeaderText="Ambito" />
+                        <asp:BoundField DataField="Id_tipo_competencia.nombre_tipo_competencia" HeaderText="Tipo Competencia" />                        
+                        <asp:BoundField DataField="nombre_Competencia" HeaderText="Competencia" />
                     </Columns>
                     <PagerStyle HorizontalAlign = "Right" CssClass ="pagination-ys" />
                 </asp:GridView>
@@ -47,44 +47,40 @@
         <h2 class="text-center">Actualizar Competencia</h2>
         <br />
 
+        <label class="col-sm-offset-3">Ambito</label>
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-1">
-                <label>Tipo</label>
-            </div>
-            <div class="col-sm-5">
-                <asp:DropDownList ID="ddTipoCompetencia" runat="server" CssClass="form-control">
+            <div class="col-sm-offset-3 col-sm-6">
+                <asp:DropDownList ID="ddAmbito" AppendDataBoundItems="true"  runat="server" CssClass="form-control">
+                    <asp:ListItem Value="0"><--Seleccione ambito--></asp:ListItem>
                 </asp:DropDownList>
             </div>            
         </div>
         <br />
 
+        <label class="col-sm-offset-3">Tipo</label>
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-1">
-                <label>Nombre</label>
-            </div>
-            <div class="col-sm-5">
-                <asp:TextBox runat="server" ID="txtNombreCompetencia" class="form-control" placeHolder="Ingrese nombre"></asp:TextBox>
-            </div>
+            <div class="col-sm-offset-3 col-sm-6">
+                <asp:DropDownList ID="ddTipoCompetencia" AppendDataBoundItems="true"  runat="server" CssClass="form-control">
+                    <asp:ListItem Value="0"><--Seleccione un tipo de competencia--></asp:ListItem>
+                </asp:DropDownList>
+            </div>            
         </div>
         <br />
 
+        <label class="col-sm-offset-3">Nombre</label>
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-1">
-                <label>Descripcion</label>
-            </div>
-            <div class="col-sm-5">
-                <textarea class="form-control" id="txtADescripcion" runat="server" rows="5"></textarea>
+            <div class="col-sm-offset-3 col-sm-6">
+                <textarea class="form-control" id="txtNombre" runat="server" rows="5"></textarea>
             </div>
         </div>
         <br />
         
         <div class="row">
-            <div class="col-sm-offset-5 col-sm-3">
+            <div class="col-sm-offset-5 col-sm-2">
                 <asp:Button ID="btnGuardar" class="btn btn-primary btn-block" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
             </div>
         </div>
         <br />
-
     </div>
 </asp:Content>
 

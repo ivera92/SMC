@@ -14,15 +14,8 @@ namespace CapaDePresentacion
             {
                 this.divRut.Visible = false;
                 this.divCorreo.Visible = false;
-                CatalogTipoUsuario cTipoUsuario = new CatalogTipoUsuario();
-                List<Tipo_Usuario> lTipoUsuarios = cTipoUsuario.listarTiposUsuario();
                 if (!Page.IsPostBack) //para ver si cargo por primera vez
-                {
-                    this.ddTipoUsuario.DataTextField = "Nombre_tipo_usuario";
-                    this.ddTipoUsuario.DataValueField = "Id_tipo_usuario";
-                    this.ddTipoUsuario.DataSource = lTipoUsuarios;
-
-                    this.DataBind();//enlaza los datos a un dropdownlist                
+                {              
                 }
             }
             catch
@@ -36,32 +29,36 @@ namespace CapaDePresentacion
             CatalogUsuario cUsuario = new CatalogUsuario();            
             Session.Clear();
 
-            int[] autentificacion =cUsuario.Autenticar(rut.Text, txtclave.Text);
-
-            //Se verifica si existe el usuario y es valido, despues de eso se ven los roles 
-            if (autentificacion[0] > 0)
+            try
             {
-                //Redirige al usuario autenticado a la dirección URL solicitada originalmente o la dirección URL predeterminada
-                //Para crear una cookie duradera (aquella que se guarda en las sesiones del explorador); de lo contrario, false.
-                FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
+                int[] autentificacion = cUsuario.Autenticar(rut.Text, txtclave.Text);
 
-                if (autentificacion[1] == 1)
+
+                //Se verifica si existe el usuario y es valido, despues de eso se ven los roles 
+                if (autentificacion[0] > 0)
                 {
-                    Session["rutAlumno"] = rut.Text;
-                    Response.Redirect("~/Alum/Principal.aspx");
-                }
-                else if (autentificacion[1] == 2)
-                {
-                    Session["rutDocente"] = rut.Text;
-                    Response.Redirect("~/Doc/InicioDocente.aspx");
-                }
-                else
-                {
-                    Session["rutAdmin"] = rut.Text;
-                    Response.Redirect("~/Admin/InicioAdmin.aspx");
+                    //Redirige al usuario autenticado a la dirección URL solicitada originalmente o la dirección URL predeterminada
+                    //Para crear una cookie duradera (aquella que se guarda en las sesiones del explorador); de lo contrario, false.
+                    FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
+
+                    if (autentificacion[1] == 1)
+                    {
+                        Session["rutAlumno"] = rut.Text;
+                        Response.Redirect("~/Alum/Principal.aspx");
+                    }
+                    else if (autentificacion[1] == 2)
+                    {
+                        Session["rutDocente"] = rut.Text;
+                        Response.Redirect("~/Doc/InicioDocente.aspx");
+                    }
+                    else
+                    {
+                        Session["rutAdmin"] = rut.Text;
+                        Response.Redirect("~/Admin/InicioAdmin.aspx");
+                    }
                 }
             }
-            {
+            catch { 
                 Response.Write("<script>window.alert('Error al Ingresar los datos');</script>");
             }               
         }

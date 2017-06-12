@@ -23,8 +23,6 @@ namespace CapaDePresentacion.Admin
             }
             CatalogEscuela cEscuela = new CatalogEscuela();
             List<Escuela> lEscuelas = cEscuela.listarEscuelas();//lista escuelas existentes
-            CatalogDocente cDocente = new CatalogDocente();
-            List<Docente> lDocentes = cDocente.listarDocentes();//lista docentes existentes
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -32,12 +30,7 @@ namespace CapaDePresentacion.Admin
                 this.ddEscuela.DataValueField = "Id_escuela";
                 this.ddEscuela.DataSource = lEscuelas;
 
-                this.ddDocente.DataTextField = "Nombre_Persona";
-                this.ddDocente.DataValueField = "Rut_Persona";
-                this.ddDocente.DataSource = lDocentes;
-
                 this.divEditar.Visible = false;
-                this.txtID.Visible = false;
                 this.mostrar();
             }
         }
@@ -63,14 +56,12 @@ namespace CapaDePresentacion.Admin
         {
             this.divAdministrar.Visible = false;
             string cod_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.NewEditIndex].Cells[1].Text);
-            this.txtID.Text = cod_asignatura;
             this.divEditar.Visible = true;
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             Asignatura a = cAsignatura.buscarAsignatura(cod_asignatura);
+            this.txtCodigo.Text = a.Cod_asignatura;
             this.ddEscuela.SelectedValue = a.Escuela_asignatura.Id_escuela + "";
-            this.ddDocente.SelectedValue = a.Docente_asignatura.Rut_persona;
             this.txtNombre.Text = a.Nombre_asignatura;
-            this.txtAno.Text = a.Ano_asignatura + "";
             if (a.Duracion_asignatura == true)
                 this.rbDuracion.SelectedIndex = 0;
             else
@@ -90,23 +81,19 @@ namespace CapaDePresentacion.Admin
         {
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             bool duracion;
-            if (this.rbDuracion.Text == "Semestral")
+            if (this.rbDuracion.SelectedValue == "0")
                 duracion = true;
             else
                 duracion = false;
 
+            CatalogEscuela cEscuela = new CatalogEscuela();
             Asignatura a = new Asignatura();
-            Escuela es = new Escuela();
-            Docente d = new Docente();
-            a.Escuela_asignatura = es;
-            a.Docente_asignatura = d;
 
-            a.Escuela_asignatura.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
-            a.Docente_asignatura.Rut_persona = this.ddDocente.SelectedValue;
-            a.Nombre_asignatura = this.txtNombre.Text;
-            a.Ano_asignatura = int.Parse(this.txtAno.Text);
+            a.Cod_asignatura = txtCodigo.Text;
+            a.Escuela_asignatura = cEscuela.buscarUnaEscuela(int.Parse(this.ddEscuela.SelectedValue));            
+            a.Nombre_asignatura = this.txtNombre.Text.Trim();
             a.Duracion_asignatura = duracion;
-            a.Cod_asignatura = txtID.Text;
+            
             try
             {
                 cAsignatura.actualizarAsignatura(a);

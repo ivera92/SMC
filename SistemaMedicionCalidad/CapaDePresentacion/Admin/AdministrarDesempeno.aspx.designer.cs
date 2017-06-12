@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDePresentacion {
+namespace CapaDePresentacion.Admin {
     
     
-    public partial class AdministrarProfesiones {
+    public partial class AdministrarDesempeno {
         
         /// <summary>
-        /// administrar control.
+        /// tablaAdministrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl administrar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tablaAdministrar;
         
         /// <summary>
         /// txtBuscar control.
@@ -40,13 +40,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
-        /// gvProfesiones control.
+        /// gvDesempenos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProfesiones;
+        protected global::System.Web.UI.WebControls.GridView gvDesempenos;
         
         /// <summary>
         /// txtid control.
@@ -58,22 +58,67 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtid;
         
         /// <summary>
-        /// editar control.
+        /// divEditar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEditar;
         
         /// <summary>
-        /// tbxProfesion control.
+        /// txtIndicador control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxProfesion;
+        protected global::System.Web.UI.WebControls.TextBox txtIndicador;
+        
+        /// <summary>
+        /// ddCompetencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
+        
+        /// <summary>
+        /// txtNBasico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtNBasico;
+        
+        /// <summary>
+        /// txtNMedio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtNMedio;
+        
+        /// <summary>
+        /// txtNSuperior control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtNSuperior;
+        
+        /// <summary>
+        /// txtNAvanzado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtNAvanzado;
         
         /// <summary>
         /// btnGuardar control.

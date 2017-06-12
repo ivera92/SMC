@@ -195,8 +195,8 @@ namespace Project
 
             a.Cod_asignatura = result.GetString(0);
             a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-            a.Nombre_asignatura = result.GetString(3);
-            a.Duracion_asignatura = result.GetBoolean(5);
+            a.Nombre_asignatura = result.GetString(2);
+            a.Duracion_asignatura = result.GetBoolean(3);
             result.Close();
             bd.Close();
             return a;
@@ -221,8 +221,8 @@ namespace Project
 
             a.Cod_asignatura = result.GetString(0);
             a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-            a.Nombre_asignatura = result.GetString(3);
-            a.Duracion_asignatura = result.GetBoolean(5);
+            a.Nombre_asignatura = result.GetString(2);
+            a.Duracion_asignatura = result.GetBoolean(3);
             result.Close();
             bd.Close();
             return a;
@@ -249,8 +249,8 @@ namespace Project
 
                 a.Cod_asignatura = result.GetString(0);
                 a.Escuela_asignatura = cEscuela.buscarUnaEscuela(result.GetInt32(1));
-                a.Nombre_asignatura = result.GetString(3);
-                a.Duracion_asignatura = result.GetBoolean(5);
+                a.Nombre_asignatura = result.GetString(2);
+                a.Duracion_asignatura = result.GetBoolean(3);
                 lAsignaturas.Add(a);
             }
             result.Close();

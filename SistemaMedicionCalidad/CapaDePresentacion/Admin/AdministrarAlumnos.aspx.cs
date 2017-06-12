@@ -21,20 +21,9 @@ namespace CapaDePresentacion
             {
                 Response.Redirect("../CheqLogin.aspx");
             }
-            CatalogEscuela cEscuela = new CatalogEscuela();
-            List<Escuela> lEscuelas = cEscuela.listarEscuelas();
-            CatalogPais cPais = new CatalogPais();
-            List<Pais> lPaises = cPais.listarPaises();
             
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.ddEscuela.DataTextField = "Nombre_escuela";
-                this.ddEscuela.DataValueField = "Id_escuela";
-                this.ddEscuela.DataSource = lEscuelas;
-
-                this.ddPais.DataTextField = "Nombre_pais";
-                this.ddPais.DataValueField = "Id_pais";
-                this.ddPais.DataSource = lPaises;
 
                 this.divEditar.Visible = false;
                 this.mostrar();
@@ -52,12 +41,12 @@ namespace CapaDePresentacion
 
         protected void rowDeletingEvent(object sender, GridViewDeleteEventArgs e)
         {
-            string rut_alumno = HttpUtility.HtmlDecode((string)this.gvAlumnos.Rows[e.RowIndex].Cells[2].Text);
+            string rut_alumno = HttpUtility.HtmlDecode((string)this.gvAlumnos.Rows[e.RowIndex].Cells[1].Text);
             CatalogAlumno cAlumno = new CatalogAlumno();
             try
             {
                 cAlumno.eliminarAlumno(rut_alumno);
-                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
+                Response.Write("<script>window.alert('Usuario asociado a alumno eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
             }
@@ -71,34 +60,19 @@ namespace CapaDePresentacion
         protected void rowEditingEvent(object sender, GridViewEditEventArgs e)
         {
             this.divMostrar.Visible = false;
-            string rut_alumno = HttpUtility.HtmlDecode((string)this.gvAlumnos.Rows[e.NewEditIndex].Cells[2].Text);
+            string rut_alumno = HttpUtility.HtmlDecode((string)this.gvAlumnos.Rows[e.NewEditIndex].Cells[1].Text);
             CatalogAlumno cAlumno = new CatalogAlumno();
             Alumno a = cAlumno.buscarAlumnoPorRut(rut_alumno);
-            this.ddEscuela.SelectedValue = a.Escuela_alumno.Id_escuela+"";
             this.txtNombre.Text = a.Nombre_persona;
             this.txtRut.Text = a.Rut_persona;
             this.txtCorreo.Text = a.Correo_persona;
 
             try
             {
-                this.txtFechaDeNacimiento.Text = a.Fecha_nacimiento_persona.ToString("d");
                 this.txtPromocion.Text = a.Promocion_alumno + "";
-                this.txtDireccion.Text = a.Direccion_persona;
-                this.txtTelefono.Text = a.Telefono_persona + "";
-                this.ddPais.SelectedValue = a.Pais_persona.Id_pais + "";
             }
             catch
             {}
-
-            if (a.Beneficio_alumno == true)
-                this.rbBeneficio.SelectedIndex = 0;
-            else
-                this.rbBeneficio.SelectedIndex = 1;
-
-            if (a.Sexo_persona == true)
-                this.rbSexo.SelectedIndex = 0;
-            else
-                this.rbSexo.SelectedIndex = 1;
 
             this.divEditar.Visible = true;
         }
@@ -106,38 +80,16 @@ namespace CapaDePresentacion
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
-            bool sexo, beneficio;
-
-            if (this.rbSexo.Text == "Masculino")
-                sexo = true;
-            else
-                sexo = false;
-
-            if (this.rbBeneficio.Text == "Si")
-                beneficio = true;
-            else
-                beneficio = false;
 
             Alumno a = new Alumno();
-            Escuela es = new Escuela();
-            Pais p = new Pais();
-            a.Escuela_alumno = es;
-            a.Pais_persona = p;
 
             a.Rut_persona = this.txtRut.Text;
-            a.Escuela_alumno.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
             a.Nombre_persona = this.txtNombre.Text;
             a.Correo_persona = this.txtCorreo.Text.Trim();
 
             try
             {
-                a.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
-                a.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
-                a.Direccion_persona = this.txtDireccion.Text;
-                a.Telefono_persona = int.Parse(this.txtTelefono.Text);
-                a.Sexo_persona = sexo;
                 a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
-                a.Beneficio_alumno = beneficio;
             }
             catch
             {}

@@ -50,7 +50,7 @@ namespace CapaDePresentacion.Alum
             }
             else
             {
-                arrResultados = cHPA.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
+                //arrResultados = cHPA.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
             }
 
             chartEvaluacion.Series.Clear();

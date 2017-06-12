@@ -21,37 +21,22 @@ namespace CapaDePresentacion.Doc
             {
                 Response.Redirect("../CheqLogin.aspx");
             }
-            CatalogProfesion cProfesion = new CatalogProfesion();
-            List<Profesion> lProfesiones = cProfesion.listarProfesiones();
-
-            CatalogPais cPais = new CatalogPais();
-            List<Pais> lPaises = cPais.listarPaises();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                this.ddProfesion.DataTextField = "Nombre_profesion";
-                this.ddProfesion.DataValueField = "Id_profesion";
-                this.ddProfesion.DataSource = lProfesiones;
-
-                this.ddPais.DataTextField = "Nombre_pais";
-                this.ddPais.DataValueField = "Id_pais";
-                this.ddPais.DataSource = lPaises;
-
                 this.tablaEditar.Visible = false;
-
                 this.mostrar();
-                this.DataBind();
             }
         }
         //Elimina la fila seleccionada
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string rut_docente = HttpUtility.HtmlDecode((string)this.gvDocentes.Rows[e.RowIndex].Cells[2].Text);
+            string rut_docente = HttpUtility.HtmlDecode((string)this.gvDocentes.Rows[e.RowIndex].Cells[1].Text);
             CatalogDocente cDocente = new CatalogDocente();
             try
             {
                 cDocente.eliminarDocente(rut_docente);
-                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
+                Response.Write("<script>window.alert(''Usuario asociado a docente eliminado satisfactoriamente');</script>");
                 Thread.Sleep(1500);
                 this.mostrar();
             }
@@ -65,31 +50,22 @@ namespace CapaDePresentacion.Doc
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
             this.tablaAdministrar.Visible = false;
-            string rut_docente = HttpUtility.HtmlDecode((string)this.gvDocentes.Rows[e.NewEditIndex].Cells[2].Text);
-            this.ddProfesion.SelectedIndex = 0;
+            string rut_docente = HttpUtility.HtmlDecode((string)this.gvDocentes.Rows[e.NewEditIndex].Cells[1].Text);
             CatalogDocente cDocente = new CatalogDocente();
             Docente d = cDocente.buscarUnDocente(rut_docente);
             
-            this.txtCorreo.Text = d.Correo_persona;
-            this.txtDireccion.Text = d.Direccion_persona;
-
-            if (d.Disponibilidad_docente == true)
-                this.rbDisponibilidad.SelectedIndex = 0;
-            else
-                this.rbDisponibilidad.SelectedIndex = 1;
-
-            this.txtFechaDeNacimiento.Text = d.Fecha_nacimiento_persona.ToString("d");
-            this.ddPais.SelectedValue = d.Pais_persona.Id_pais+"";
+            this.txtRut.Text = d.Rut_persona;
             this.txtNombre.Text = d.Nombre_persona;
-            this.ddProfesion.SelectedValue = d.Profesion_docente.Id_profesion+"";
-            this.txtRut.Text = d.Rut_persona + "";
-
-            if (d.Sexo_persona == true)
-                this.rbSexo.SelectedIndex = 0;
+            this.txtCorreo.Text = d.Correo_persona;  
+            if (d.Contrato_docente == true)
+            {
+                this.rbDisponibilidad.SelectedIndex = 0;
+            }
             else
-                this.rbSexo.SelectedIndex = 1;
+            {
+                this.rbDisponibilidad.SelectedIndex = 1;
+            }
 
-            this.txtTelefono.Text = d.Telefono_persona+"";
             this.tablaEditar.Visible = true;
         }
         //Carga los docentes existente en el gridview
@@ -105,34 +81,19 @@ namespace CapaDePresentacion.Doc
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             CatalogDocente cDocente = new CatalogDocente();
-            bool sexo, disponibilidad;
-
-            if (this.rbSexo.Text == "Masculino")
-                sexo = true;
-            else
-                sexo = false;
-
-            if (this.rbDisponibilidad.Text == "Part-Time")
-                disponibilidad = true;
-            else
-                disponibilidad = false;
-
             Docente d = new Docente();
-            Profesion p = new Profesion();
-            Pais pa = new Pais();
-            d.Profesion_docente = p;
-            d.Pais_persona = pa;
 
             d.Rut_persona = this.txtRut.Text;
-            d.Profesion_docente.Id_profesion = int.Parse(this.ddProfesion.SelectedValue);
-            d.Pais_persona.Id_pais = int.Parse(this.ddPais.SelectedValue);
-            d.Nombre_persona = this.txtNombre.Text;
-            d.Fecha_nacimiento_persona = DateTime.Parse(this.txtFechaDeNacimiento.Text);
-            d.Direccion_persona = this.txtDireccion.Text;
-            d.Telefono_persona = int.Parse(this.txtTelefono.Text);
-            d.Sexo_persona = sexo;
+            d.Nombre_persona = this.txtNombre.Text.Trim();
             d.Correo_persona = this.txtCorreo.Text.Trim();
-            d.Disponibilidad_docente = disponibilidad;
+            if (this.rbDisponibilidad.SelectedValue == "0")
+            {
+                d.Contrato_docente = true;
+            }
+            else
+            {
+                d.Contrato_docente = false;
+            }
             try
             {
                 cDocente.actualizarDocente(d);

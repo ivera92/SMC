@@ -221,32 +221,21 @@
                             <br />
                         </div>
 
+                        <label class="col-sm-offset-1">Usuario</label>
                         <div class="row">
                             <div class="col-sm-offset-1 col-sm-10">
-                                <asp:TextBox class="form-control text-center" ID="rut" runat="server" placeHolder="Rut, ejemplo: 18205857-2"></asp:TextBox>
-                                <asp:CustomValidator ID="CustomValidator1" runat="server"
-                                    ClientValidationFunction="validar_rut" ControlToValidate="rut"
-                                    Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True"></asp:CustomValidator>
+                                <asp:TextBox class="form-control text-center" ID="rut" runat="server" placeHolder="Ingrese usuario"></asp:TextBox>
                             </div>
                         </div>
                         <br />
 
+                        <label class="col-sm-offset-1">Contraseña</label>
                         <div class="row">
                             <div class="col-sm-offset-1 col-sm-10">
                                 <asp:TextBox class="form-control text-center" ID="txtclave" runat="server" TextMode="Password" placeHolder="Contraseña"></asp:TextBox>
                             </div>
                         </div>
                         <br />
-
-                        <div class="row">
-                            <div class="col-sm-offset-1 col-sm-10 tex">
-                                <asp:DropDownList ID="ddTipoUsuario" runat="server" class="form-control" AppendDataBoundItems="true">
-                                    <asp:ListItem Value="0"><--Seleccione un tipo de usuario--></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-                        <br />
-
 
                         <div>
                             <div class="row">
@@ -266,12 +255,10 @@
                         <br />
                         <h2 class="text-center">Recuperar tu contraseña</h2>
                         <br />
+                        
                         <div class="row">
                             <div class="col-sm-offset-1 col-sm-10">
-                                <asp:TextBox class="form-control" ID="rutRC" runat="server" placeHolder="Rut, ejemplo: 18205857-2"></asp:TextBox>
-                                <asp:CustomValidator ID="CustomValidator2" runat="server" ClientValidationFunction="validar_rut"
-                                    ControlToValidate="rutRC" Display="Dynamic" ErrorMessage="RUT incorrecto" SetFocusOnError="True">
-                                </asp:CustomValidator>
+                                <asp:TextBox class="form-control" ID="rutRC" runat="server" placeHolder="Ingrese usuario"></asp:TextBox>
                             </div>
                         </div>
                         <br />
