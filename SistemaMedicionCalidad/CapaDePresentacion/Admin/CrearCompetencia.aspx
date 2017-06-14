@@ -8,37 +8,62 @@
         <h2 class="text-center">Crear Competencia</h2>
         <br />
 
-        <label class="col-sm-offset-3">Ambito</label>
+        
+        
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
+            <div class="col-sm-6">
+                <label">Ambito</label>
                 <asp:DropDownList ID="ddAmbito" AppendDataBoundItems="true"  runat="server" CssClass="form-control">
                     <asp:ListItem Value="0"><--Seleccione ambito--></asp:ListItem>
                 </asp:DropDownList>
-            </div>            
-        </div>
-        <br />
-
-        <label class="col-sm-offset-3">Tipo</label>
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
+            </div>  
+            <div class="col-sm-6">
+                <label>Tipo</label>
                 <asp:DropDownList ID="ddTipoCompetencia" AppendDataBoundItems="true"  runat="server" CssClass="form-control">
                     <asp:ListItem Value="0"><--Seleccione un tipo de competencia--></asp:ListItem>
                 </asp:DropDownList>
-            </div>            
+            </div>             
         </div>
-        <br />
-
-        <label class="col-sm-offset-3">Nombre</label>
+        <br />        
+        
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <textarea class="form-control" id="txtNombre" runat="server" rows="5"></textarea>
+            <div class="col-sm-6">
+                <label>Nombre</label>
+                <textarea class="form-control" id="txtNombre" runat="server" rows="3" required></textarea>
+            </div>
+            <div class="col-sm-6">
+                <label>Indicador de Desempeño</label>
+                <textarea class="form-control" id="txtIndicador" runat="server" rows="3" required></textarea>
             </div>
         </div>
         <br />
         
         <div class="row">
-            <div class="col-sm-offset-5 col-sm-2">
-                <asp:Button ID="brnCrear" class="btn btn-primary btn-block" runat="server" Text="Crear" OnClick="brnCrear_Click" />
+            <div class="col-sm-3">
+                <label>Nivel Básico</label>
+                <textarea class="form-control" id="txtNBasico" runat="server" rows="6" required></textarea>
+            </div>
+            <div class="col-sm-3">
+                <label>Nivel Medio</label>
+                <textarea class="form-control" id="txtNMedio" runat="server" rows="6" required></textarea>
+            </div>
+            <div class="col-sm-3">
+                <label>Nivel Superior</label>
+                <textarea class="form-control" id="txtNSuperior" runat="server" rows="6" required></textarea>
+            </div>
+            <div class="col-sm-3">
+                <label>Nivel Avanzado</label>
+                <textarea class="form-control" id="txtNAvanzado" runat="server" rows="6"></textarea>
+            </div>
+        </div>
+        <br />
+        
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-4">
+                <asp:Button ID="brnCrear" class="btn btn-primary btn-block" runat="server" Text="Crear y salir" OnClick="brnCrear_Click" />
+            </div>
+            <div class="col-sm-offset-2 col-sm-4">
+                <asp:Button ID="btnSeguir" class="btn btn-primary btn-block" runat="server" Text="Crear y seguir asignando desempeños" OnClick="btnSeguir_Click"/>
             </div>
         </div>
         <br />

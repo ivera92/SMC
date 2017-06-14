@@ -33,15 +33,15 @@ namespace CapaDePresentacion
                 {
                     filasAfectadas = cUsuario.actualizarClave(rut, this.pwActual.Text, this.pwNueva1.Text);
                     if (filasAfectadas == 1)
-                        Response.Write("<script>window.alert('Contraseña cambiada correctamente');</script>");
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Contraseña cambiada correctamente');window.location='InicioAdmin.aspx';</script>'");
                 }
                 catch
                 {
-                    Response.Write("<script>window.alert('Ingrese la contraseña actual correctamente');</script>");
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Ingrese la contraseña actual correctamente');window.location='CambiarClave.aspx';</script>'");
                 }
 
             else
-                Response.Write("<script>window.alert('Debe repetir 2 veces la nueva contraseña');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Debe repetir 2 veces la nueva contraseña');window.location='CambiarClave.aspx';</script>'");
         }
     }
 }

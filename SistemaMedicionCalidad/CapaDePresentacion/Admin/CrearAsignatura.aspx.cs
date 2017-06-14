@@ -30,13 +30,6 @@ namespace CapaDePresentacion
                 this.DataBind();//enlaza los datos a un dropdownlist   
             }
         }
-        public void resetearValores()
-        {
-            this.ddEscuela.SelectedIndex = 0;
-            this.txtNombre.Text = "";
-            this.txtCodigo.Text = "";
-            rbDuracion.SelectedIndex=-1;
-        }
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
@@ -58,13 +51,12 @@ namespace CapaDePresentacion
             try
             {
                 cAsignatura.insertarAsignatura(a);
-                Response.Write("<script>window.alert('Asignatura creada satisfactoriamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura creada satisfactoriamente');window.location='CrearAsignatura.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Codigo de asignatura ya existe');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Codigo de asignatura ya existe en los registros, verifique en administrar asignaturas');window.location='AdministrarAsignaturas.aspx';</script>'");
             }
-            this.resetearValores();
         }
     }
 }

@@ -42,13 +42,11 @@ namespace CapaDePresentacion.Admin
             {
                 string cod_asignatura = HttpUtility.HtmlDecode((string)this.gvAsignatura.Rows[e.RowIndex].Cells[1].Text);
                 ca.eliminarAsignatura(cod_asignatura);
-                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
-                Thread.Sleep(1500);
-                this.mostrar();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro eliminado satisfactoriamente');window.location='AdministrarAsignaturas.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro no a podido ser eliminado');window.location='AdministrarAsignaturas.aspx';</script>'");
             }
         }
         //Carga los valores de la fila seleccionada para posteriormente actualizarlos
@@ -98,11 +96,11 @@ namespace CapaDePresentacion.Admin
             {
                 cAsignatura.actualizarAsignatura(a);
                 this.divEditar.Visible = false;
-                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Cambios guardados satisfactoriamente');window.location='AdministrarAsignaturas.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No fue posible guardar los cambios');window.location='AdministrarAsignaturas.aspx';</script>'");
             }     
         }
 

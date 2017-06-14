@@ -37,28 +37,32 @@ namespace CapaDePresentacion.Doc
             this.txtRut.Text = "";
             this.txtNombre.Text = "";
             this.txtCorreo.Text = "";
-            this.txtPromocion.Text = "";
         }
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
+            CatalogCursa cCursa = new CatalogCursa();
 
-            Alumno a = new Alumno();
-
-            a.Rut_persona = this.txtRut.Text.Trim();
-            a.Nombre_persona = this.txtNombre.Text.Trim();
-            a.Correo_persona = this.txtCorreo.Text.Trim();
-            a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
+            Alumno a = new Alumno(this.txtRut.Text.Trim(), this.txtNombre.Text.Trim(), this.txtCorreo.Text.Trim());
             try
             {
                 cAlumno.insertarAlumno(a);
-                Response.Write("<script>window.alert('Alumno creado satisfactoriamente');</script>");
+                if (ddAsignatura.SelectedValue != "0")
+                {
+                    DateTime fechaHoy = DateTime.Now;
+                    CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                    Cursa c = new Cursa(a, cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue), fechaHoy.Year + "");
+                    if (cCursa.verificarExistenciaCursa(c) == 0)
+                    {
+                        cCursa.inscribirAsignatura(c);
+                    }
+                }
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Alumno creado satisfactoriamente');window.location='CrearAlumno.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Ya existe registro asociado al rut');window.location='CrearAlumno.aspx';</script>'");
             }
-            this.resetearValores();
         }
         protected void ImportExcel()
         {

@@ -160,5 +160,45 @@ namespace Project
             bd.Close();
             return c;
         }
+
+        //Devuelve una competencia acorde a su nombre
+        public Competencia buscarUnaCompetenciaNombre(string nombre_competencia)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "buscarCompetenciaNombre";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@nombre_competencia", DbType.String, nombre_competencia);
+            DbDataReader result = bd.Query();
+            result.Read();
+            CatalogAmbito cAmbito = new CatalogAmbito();
+            CatalogTipoCompetencia cTipoCompetencia = new CatalogTipoCompetencia();
+            Ambito a = cAmbito.buscarUnAmbito(result.GetInt32(1));
+            Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(result.GetInt32(2));
+
+            Competencia c = new Competencia(result.GetInt32(0), a, tc, result.GetString(3));
+
+            result.Close();
+            bd.Close();
+            return c;
+        }
+        //Verifica si ya existe en la base de datos una competencia con el mismo nombre
+        public int verificarExistenciaCompetencia(string nombre_competencia)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "verificarExistenciaCompetencia";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@nombre_competencia", DbType.String, nombre_competencia);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+
+            result.Close();
+            bd.Close();
+            return existe;
+        }
     }
 }

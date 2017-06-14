@@ -23,7 +23,6 @@ namespace Project.CapaDeNegocios
             bd.createParameter("@contraseña_usuario", DbType.String, contraseña);
             bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_persona);
             bd.createParameter("@correo_alumno", DbType.String, a.Correo_persona);
-            bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
             bd.execute();
             bd.Close();
         }
@@ -39,7 +38,6 @@ namespace Project.CapaDeNegocios
             bd.createParameter("@rut_alumno", DbType.String, a.Rut_persona);
             bd.createParameter("@nombre_alumno", DbType.String, a.Nombre_persona);
             bd.createParameter("@correo_alumno", DbType.String, a.Correo_persona);
-            bd.createParameter("@promocion_alumno", DbType.Int32, a.Promocion_alumno);
             bd.execute();
             bd.Close();
         }
@@ -70,7 +68,7 @@ namespace Project.CapaDeNegocios
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
-                Alumno a = new Alumno(result.GetString(0), result.GetString(1), result.GetString(2), result.GetInt32(3));
+                Alumno a = new Alumno(result.GetString(0), result.GetString(1), result.GetString(2));
                 lAlumnos.Add(a);
             }
             result.Close();
@@ -91,7 +89,7 @@ namespace Project.CapaDeNegocios
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
-                Alumno a = new Alumno(result.GetString(0), result.GetString(1), result.GetString(2), result.GetInt32(3));
+                Alumno a = new Alumno(result.GetString(0), result.GetString(1), result.GetString(2));
                 lAlumnos.Add(a);
             }
             result.Close();
@@ -115,34 +113,9 @@ namespace Project.CapaDeNegocios
             a.Rut_persona = result.GetString(0);
             a.Nombre_persona = result.GetString(1);
             a.Correo_persona = result.GetString(2);
-
-            try
-            {
-                a.Promocion_alumno = result.GetInt32(3);
-            }
-            catch
-            {
-            }
             result.Close();
             bd.Close();
             return a;
-        }
-        public List<int> listarPromociones()
-        {
-            DataBase bd = new DataBase();
-            bd.connect(); //método conectar
-
-            string sqlSearch = "mostrarPromociones";
-            bd.CreateCommandSP(sqlSearch);
-            DbDataReader result = bd.Query();//disponible resultado
-            List<int> lPromociones = new List<int>();
-            while (result.Read())
-            {
-                lPromociones.Add(result.GetInt32(0));
-            }
-            result.Close();
-            bd.Close();
-            return lPromociones;
         }
 
         public static string encriptar(string clave)

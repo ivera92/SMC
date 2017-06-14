@@ -91,12 +91,18 @@
         </div>
         <br />
 
-        <label class="col-sm-offset-4">Año ingreso</label>
+        <label class="col-sm-offset-4">Asignatura (Opcional)</label>
         <div class="row">
-            <div class="col-sm-offset-4 col-sm-2">
-                <asp:TextBox ID="txtPromocion" class="form-control" runat="server" placeHolder="Año ingreso" type="number" min="2000" required></asp:TextBox>
+            <div class="col-sm-offset-4 col-sm-4">
+                <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
+                    <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
+                </asp:DropDownList>
             </div>
-            <div class="col-sm-2">
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-offset-5 col-sm-2">
                 <asp:Button ID="btnCrear" class="btn-primary btn-block form-control" runat="server" OnClick="btnCrear_Click" Text="Crear" />
             </div>
         </div>

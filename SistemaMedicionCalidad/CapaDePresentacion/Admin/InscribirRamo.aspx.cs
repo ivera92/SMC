@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Project;
+using Project.CapaDeNegocios;
 
 namespace CapaDePresentacion.Admin
 {
@@ -36,23 +34,31 @@ namespace CapaDePresentacion.Admin
 
         protected void btnInscribir_Click(object sender, EventArgs e)
         {
-            CatalogCursa cCursa = new CatalogCursa();
-            Cursa c= new Cursa();
-            Asignatura a = new Asignatura();
-            Alumno al = new Alumno();
-            c.Rut_alumno_aa = al;
-            c.Cod_asignatura_aa = a;
-
-            c.Rut_alumno_aa.Rut_persona = txtRut.Text;
-            c.Cod_asignatura_aa.Cod_asignatura = ddAsignatura.SelectedValue;
             try
             {
-                cCursa.inscribirAsignatura(c);
-                Response.Write("<script>window.alert('Asignatura inscrita correctamente');</script>");
+                CatalogCursa cCursa = new CatalogCursa();
+                CatalogAlumno cAlumno = new CatalogAlumno();
+                CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                DateTime fechaHoy = DateTime.Now;
+                Cursa c = new Cursa();
+
+                c.Rut_alumno_aa = cAlumno.buscarAlumnoPorRut(txtRut.Text);
+                c.Cod_asignatura_aa = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
+                c.Ano_asignatura = fechaHoy.Year + "";
+
+                if (cCursa.verificarExistenciaCursa(c)==0)
+                {
+                    cCursa.inscribirAsignatura(c);
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura inscrita correctamente');window.location='InscribirRamo.aspx';</script>'");
+                }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura ya existe inscrita para el alumno');window.location='InscribirRamo.aspx';</script>'");
+                }
             }
             catch
             {
-                Response.Write("<script>window.alert('Asignatura no pudo ser inscrita, o ya se encuentra inscrita');</script>");
+                Response.Write("<script>window.alert('Seleccione alguna asignatura');</script>");
             }
         }
     }

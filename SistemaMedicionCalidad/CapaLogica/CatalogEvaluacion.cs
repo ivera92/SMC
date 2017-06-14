@@ -352,6 +352,60 @@ namespace Project
             bd.Close();
             return e;
         }
+
+        //Verifica si existe una evaliacion de una asignatura en los registros
+        public int verificarExistenciaEvaluacionAsignatura(string cod_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "verificarExistenciaEvaluacionAsignatura";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+            bd.Close();
+            result.Close();
+            return existe;
+        }
+
+        //Verifica si un alumno fue evaluado en una asignatura en los registros
+        public int verificarAlumnoEvaluado(string rut_alumno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "verificarAlumnoEvaluado";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+            bd.Close();
+            result.Close();
+            return existe;
+        }
+
+        //Verifica si existe una evaluacion asociada a un docente en los registros
+        public int verificarDocenteEvaluacion(string rut_docente)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "verificarDocenteEvaluacion";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_docente", DbType.String, rut_docente);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+            bd.Close();
+            result.Close();
+            return existe;
+        }
     }
 }
 

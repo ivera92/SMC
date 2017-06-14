@@ -1,22 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/SiteAdmin.Master" AutoEventWireup="true" CodeBehind="InscribirRamo.aspx.cs" Inherits="CapaDePresentacion.Admin.InscribirRamo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <script src="../Scripts/rut.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 class="text-center">Inscribir ramo</h2>
     <br />
 
     <div class="row">
-        <label class="col-sm-offset-3 col-sm-2">Rut</label>
-        <div class="col-sm-4">
-            <asp:TextBox ID="txtRut" runat="server" CssClass="form-control"></asp:TextBox>
+        <div class="col-sm-offset-4 col-sm-4">
+        <label">Rut</label>  
+            <asp:TextBox ID="txtRut" runat="server" CssClass="form-control" required></asp:TextBox>
         </div>
+        <br />
+        <div class="col-sm-4">
+                <asp:CustomValidator ID="CustomValidator1" runat="server"
+                    ClientValidationFunction="validar_rut" ControlToValidate="txtRut"
+                    Display="Dynamic" ErrorMessage="RUT incorrecto" ForeColor="Red" SetFocusOnError="True">
+                </asp:CustomValidator>
+            </div>
     </div>
     <br />
 
     <div class="row">
-        <label class="col-sm-offset-3 col-sm-2">Asignatura</label>
-        <div class="col-sm-4">
+        <div class="col-sm-offset-4 col-sm-4">
+            <label>Asignatura</label>
             <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddAsignatura" runat="server">
                 <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
             </asp:DropDownList>

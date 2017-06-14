@@ -53,11 +53,11 @@ namespace CapaDePresentacion.Admin
                     Nivel nAvanzado = new Nivel(dd, 4, "Avanzado", txtNAvanzado.InnerText);
                     cNivel.insertarNivel(nAvanzado);
                 }
-                Response.Write("<script>window.alert('Desempeño, niveles y asociacion fueron creadas satisfactoriamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Desempeño, niveles y asociacion creados satisfactoriamente');window.location='CrearDesempeno.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('No fue posible crear Desempeño');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No fue posible crear desempeño');window.location='CrearDesempeno.aspx';</script>'");
             }
         }
     }

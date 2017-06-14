@@ -11,7 +11,7 @@
 
         <div class="row">
             <div class="col-sm-offset-3 col-sm-4">
-                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre, tipo o descripción a buscar" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese ambito, tipo o descripción a buscar" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-sm-2">
                 <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />

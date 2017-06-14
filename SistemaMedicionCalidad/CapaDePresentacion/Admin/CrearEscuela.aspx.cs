@@ -20,17 +20,16 @@ namespace CapaDePresentacion
         protected void btbCrear_Click(object sender, EventArgs e)
         {
             CatalogEscuela cEscuela = new CatalogEscuela();
-            Escuela es= new Escuela (this.tbxEscuela.Text);
-            try
+            Escuela es = new Escuela(this.tbxEscuela.Text);
+            if (cEscuela.verificarExistenciaEscuela(this.tbxEscuela.Text) == 0)
             {
                 cEscuela.insertarEscuela(es);
-                Response.Write("<script>window.alert('Escuela creada satisfactoriamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Escuela creada satisfactoriamente');window.location='CrearEscuela.aspx';</script>'");
             }
-            catch
+            else
             {
-                Response.Write("<script>window.alert('Escuela no a podido ser registrada');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Ya existe una escuela con ese nombre');window.location='CrearEscuela.aspx';</script>'");
             }
-            this.tbxEscuela.Text = "";
         }
     }
 }

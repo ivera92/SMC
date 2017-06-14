@@ -88,7 +88,11 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Admin\AdministrarAsignaturasAsociadas.aspx" />
+    <Content Include="Admin\AdministrarAsignaturasInscritas.aspx" />
+    <Content Include="Admin\AdministrarCD.aspx" />
     <Content Include="Admin\AdministrarDesempeno.aspx" />
+    <Content Include="Admin\AsociarAsignaturaDocente.aspx" />
     <Content Include="Admin\CrearDesempeno.aspx" />
     <Content Include="Admin\ImagenesAdmin\imgAlumno.jpeg" />
     <Content Include="Admin\ImagenesAdmin\imgAsignatura.jpg" />
@@ -216,12 +220,40 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AdministrarAsignaturasAsociadas.aspx.cs">
+      <DependentUpon>AdministrarAsignaturasAsociadas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarAsignaturasAsociadas.aspx.designer.cs">
+      <DependentUpon>AdministrarAsignaturasAsociadas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdministrarAsignaturasInscritas.aspx.cs">
+      <DependentUpon>AdministrarAsignaturasInscritas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarAsignaturasInscritas.aspx.designer.cs">
+      <DependentUpon>AdministrarAsignaturasInscritas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdministrarCD.aspx.cs">
+      <DependentUpon>AdministrarCD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarCD.aspx.designer.cs">
+      <DependentUpon>AdministrarCD.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AdministrarDesempeno.aspx.cs">
       <DependentUpon>AdministrarDesempeno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdministrarDesempeno.aspx.designer.cs">
       <DependentUpon>AdministrarDesempeno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AsociarAsignaturaDocente.aspx.cs">
+      <DependentUpon>AsociarAsignaturaDocente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AsociarAsignaturaDocente.aspx.designer.cs">
+      <DependentUpon>AsociarAsignaturaDocente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrearDesempeno.aspx.cs">
       <DependentUpon>CrearDesempeno.aspx</DependentUpon>
@@ -520,6 +552,9 @@
     <None Include="Styles\bootstrap-theme.min.css.map" />
     <None Include="Styles\bootstrap.css.map" />
     <None Include="Styles\bootstrap.min.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

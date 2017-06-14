@@ -36,13 +36,11 @@ namespace CapaDePresentacion.Doc
             try
             {
                 cDocente.eliminarDocente(rut_docente);
-                Response.Write("<script>window.alert(''Usuario asociado a docente eliminado satisfactoriamente');</script>");
-                Thread.Sleep(1500);
-                this.mostrar();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Usuario asociado a docente eliminado satisfactoriamente');window.location='AdministrarDocentes.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro no a podido ser eliminado');window.location='AdministrarDocentes.aspx';</script>'");
             }
 
         }
@@ -98,11 +96,11 @@ namespace CapaDePresentacion.Doc
             {
                 cDocente.actualizarDocente(d);
                 this.tablaEditar.Visible = false;
-                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Cambios guardados satisfactoriamente');window.location='AdministrarDocentes.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No fue posible guardar los cambios');window.location='AdministrarDocentes.aspx';</script>'");
             }
         }
 
@@ -110,7 +108,7 @@ namespace CapaDePresentacion.Doc
         {
             gvDocentes.Visible = true;
             CatalogDocente cDocente = new CatalogDocente();
-            List<Docente> lDocentes = cDocente.listarDocentesBusqueda(txtBuscar.Text);
+            List<Docente> lDocentes = cDocente.listarDocentesBusqueda(txtBuscar.Text.Trim());
             this.gvDocentes.DataSource = lDocentes;
             this.DataBind();
         }

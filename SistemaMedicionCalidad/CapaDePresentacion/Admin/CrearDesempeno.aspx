@@ -7,14 +7,13 @@
         <h2 class="text-center">Crear Desempeño</h2>
         <br />
 
-        <label class="col-sm-6">Indicador de desempeño</label>
-        <label>Competencia</label>
-
         <div class="row">
             <div class="col-sm-6">
+                <label>Indicador de desempeño</label>
                 <asp:TextBox ID="txtIndicador" runat="server" CssClass="form-control" required></asp:TextBox>
             </div>
             <div class="col-sm-6">
+                <label>Competencia</label>
                 <asp:DropDownList runat="server" AppendDataBoundItems="true" ID="ddCompetencia" class="form-control">
                     <asp:ListItem Value="0"><--Seleccione una competencia--></asp:ListItem>
                 </asp:DropDownList>
@@ -23,22 +22,22 @@
         <br />
         <br />
 
-        <label class="col-sm-3">Nivel Básico</label>
-        <label class="col-sm-3">Nivel Medio</label>
-        <label class="col-sm-3">Nivel Superior</label>
-        <label class="col-sm-3">Nivel Avanzado</label>
         <div class="row">
             <div class="col-sm-3">
-                <textarea class="form-control" id="txtNBasico" runat="server" rows="8" required></textarea>
+                <label>Nivel Básico</label>
+                <textarea class="form-control" id="txtNBasico" runat="server" rows="10" required></textarea>
             </div>
             <div class="col-sm-3">
-                <textarea class="form-control" id="txtNMedio" runat="server" rows="8" required></textarea>
+                <label>Nivel Medio</label>
+                <textarea class="form-control" id="txtNMedio" runat="server" rows="10" required></textarea>
             </div>
             <div class="col-sm-3">
-                <textarea class="form-control" id="txtNSuperior" runat="server" rows="8" required></textarea>
+                <label>Nivel Superior</label>
+                <textarea class="form-control" id="txtNSuperior" runat="server" rows="10" required></textarea>
             </div>
             <div class="col-sm-3">
-                <textarea class="form-control" id="txtNAvanzado" runat="server" rows="8"></textarea>
+                <label>Nivel Avanzado</label>
+                <textarea class="form-control" id="txtNAvanzado" runat="server" rows="10"></textarea>
             </div>
         </div>
         <br />

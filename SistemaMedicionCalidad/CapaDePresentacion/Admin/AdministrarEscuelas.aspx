@@ -20,7 +20,7 @@
                     </EmptyDataTemplate>
                     <Columns>
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" />
-                        <asp:BoundField DataField="Nombre_Escuela" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Nombre_Escuela" HeaderText="Escuela" />
                         <asp:BoundField DataField="Id_Escuela" HeaderText="ID" />
                     </Columns>
                 </asp:GridView>
@@ -33,17 +33,20 @@
         <h2 class="text-center">Actualizar Escuela</h2>
         <br />
 
+        <label class="col-sm-offset-3">Nombre</label>
         <div class="row">
-            <label class="col-sm-offset-2 col-sm-1">Nombre</label>
-            <div class="col-sm-5">
+            <div class="col-sm-offset-3 col-sm-6">
                 <asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="^([A-ZÁÉÍÓÚa-záéíóú]{3,16}*)+$" placeHolder="Ingrese nombre" required>
                 </asp:TextBox>
             </div>
-            <div class="col-sm-2">
+        </div>
+        <br />
+
+        <div class="row">
+            <div class=" col-sm-offset-5 col-sm-2">
                 <asp:Button ID="btnGuardar" class="btn btn-primary btn-block" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
                 <br />
             </div>
-
         </div>
     </div>
 </asp:Content>

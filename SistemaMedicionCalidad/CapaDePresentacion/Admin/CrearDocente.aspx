@@ -39,6 +39,16 @@
     </div>
     <br />
 
+    <label class="col-sm-offset-4">Asignatura (Opcional)</label>
+        <div class="row">
+            <div class="col-sm-offset-4 col-sm-4">
+                <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
+                    <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+        </div>
+        <br />
+
     <label class="col-sm-offset-4">Contrato</label>
     <div class="row">
         <div class="col-sm-offset-4 col-sm-2">

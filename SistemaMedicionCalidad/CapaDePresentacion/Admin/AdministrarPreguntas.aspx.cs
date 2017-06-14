@@ -73,13 +73,11 @@ namespace CapaDePresentacion
             {
                 cRespuesta.eliminarRespuestas(id_pregunta);
                 cPregunta.eliminarPregunta(id_pregunta);
-                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
-                Thread.Sleep(1500);
-                this.mostrar();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro eliminado satisfactoriamente');window.location='AdministrarPreguntas.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Registro no a podido ser eliminado');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro no a podiddo ser eliminado');window.location='AdministrarPreguntas.aspx';</script>'");
             }
 
         }
@@ -174,11 +172,11 @@ namespace CapaDePresentacion
                     r.Id_respuesta = int.Parse(lIdRespuesta[i].Text);
                     cRespuesta.actualizarRespuesta(r);
                 }
-                Response.Write("<script>window.alert('Pregunta actualizada correctamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Pregunta actualizada correctamente');window.location='AdministrarPreguntas.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Pregunta no a podido ser actualizada');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Pregunta no a podido ser actualizada');window.location='AdministrarPreguntas.aspx';</script>'");
             }
             this.editar.Visible = false;
         }

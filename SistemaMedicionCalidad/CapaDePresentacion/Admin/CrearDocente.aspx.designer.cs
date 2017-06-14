@@ -49,6 +49,15 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtCorreo;
         
         /// <summary>
+        /// ddAsignatura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddAsignatura;
+        
+        /// <summary>
         /// rbDisponibilidad control.
         /// </summary>
         /// <remarks>

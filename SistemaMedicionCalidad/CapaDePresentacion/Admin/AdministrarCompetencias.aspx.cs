@@ -58,13 +58,11 @@ namespace CapaDePresentacion
             {
                 string id_competencia = HttpUtility.HtmlDecode((string)this.gvCompetencias.Rows[e.RowIndex].Cells[1].Text);
                 cCompetencia.eliminarCompetencia(int.Parse(id_competencia));
-                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
-                Thread.Sleep(1500);
-                this.mostrar();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro eliminado satisfactoriamente');window.location='AdministrarCompetencias.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Competencia no a podido ser eliminada puesto que esta asociada a algun desempeño o asignatura');window.location='AdministrarCompetencias.aspx';</script>'");
             }
         }
         //Carga los valores de la competencia a editar
@@ -90,16 +88,16 @@ namespace CapaDePresentacion
             Tipo_Competencia tc = cTipoCompetencia.buscarUnTipoCompetencia(int.Parse(ddTipoCompetencia.SelectedValue));
             CatalogAmbito cAmbito = new CatalogAmbito();
             Ambito a = cAmbito.buscarUnAmbito(int.Parse(ddAmbito.SelectedValue));
-            Competencia c = new Competencia(int.Parse(txtCompetencia.Text), a, tc, txtNombre.InnerText);
+            Competencia c = new Competencia(int.Parse(txtCompetencia.Text), a, tc, txtNombre.InnerText.Trim());
             try
             {
                 cCompetencia.actualizarCompetencia(c);
                 this.divEditar.Visible = false;
-                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Cambios guardados satisfactoriamente');window.location='AdministrarCompetencias.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No fue posible guardar los cambios');window.location='AdministrarCompetencias.aspx';</script>'");
             }
         }
 
@@ -107,7 +105,7 @@ namespace CapaDePresentacion
         {
             gvCompetencias.Visible = true;
             CatalogCompetencia cCompetencias = new CatalogCompetencia();
-            List<Competencia> lCompetencias = cCompetencias.listarCompetenciasBusqueda(txtBuscar.Text);
+            List<Competencia> lCompetencias = cCompetencias.listarCompetenciasBusqueda(txtBuscar.Text.Trim());
             this.gvCompetencias.DataSource = lCompetencias;
             this.DataBind();
         }

@@ -95,7 +95,11 @@ namespace CapaDePresentacion.Doc
             int id = 0;
             try
             {
-                this.subirImagen();//Guarda la imagen en la carpeta ImagenesPreguntas ubicada en la carpeta Doc
+                try
+                {
+                    this.subirImagen();//Guarda la imagen en la carpeta ImagenesPreguntas ubicada en la carpeta Doc
+                }
+                catch { }
                 //p.Competencia_pregunta.Id_competencia = int.Parse(this.ddCompetencia.SelectedValue);
                 p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
                 p.Enunciado_pregunta = this.txtAPregunta.InnerText;
@@ -140,11 +144,11 @@ namespace CapaDePresentacion.Doc
                         i++;
                     }
                 }
-                Response.Write("<script>window.alert('Pregunta creada satisfactoriamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Pregunta creada satisfactoriamente');window.location='CrearPregunta.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Pregunta no pudo ser creada');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Pregunta no a podido ser creada');window.location='CrearPregunta.aspx';</script>'");
             }
         }
         public void agregarControles(TextBox txt, CheckBox cb)
@@ -226,7 +230,7 @@ namespace CapaDePresentacion.Doc
                         Response.Write("<script>window.alert('La imagen fue grabada en el servidor');</script>");
                         ruta = fileImagen.FileName;
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         Response.Write("<script>window.alert('La imagen no pudo ser grabada en el servidor');</script>");
                     }

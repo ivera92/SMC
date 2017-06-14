@@ -103,5 +103,23 @@ namespace Project
             bd.execute();
             bd.Close();
         }
+
+        //Verifica si ya existe en la base de datos un desempeño con el mismo nombre
+        public int verificarExistenciaIDesempeno(string indicador_desempeno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "verificarExistenciaIDesempeno";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@indicador_desempeno", DbType.String, indicador_desempeno);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+
+            result.Close();
+            bd.Close();
+            return existe;
+        }
     }
 }

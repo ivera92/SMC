@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministrarCursa.aspx.cs">
+      <DependentUpon>AdministrarCursa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarCursa.aspx.designer.cs">
+      <DependentUpon>AdministrarCursa.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Alumno.cs" />
     <Compile Include="Ambito.cs" />
     <Compile Include="Asignatura.cs" />
@@ -90,6 +97,9 @@
       <Project>{B268E72F-E9FB-4763-B916-D2A0BE656DBC}</Project>
       <Name>CapaDeDatos</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdministrarCursa.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

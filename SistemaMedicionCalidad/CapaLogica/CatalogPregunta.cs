@@ -179,5 +179,23 @@ namespace Project
             bd.execute();
             bd.Close();
         }
+
+        //Verifica si existe alguna pregunta asociada al desempeño
+        public int verificarExistenciaPDesempeno(int id_desempeno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "verificarExistenciaPDesempeno";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_desempeno", DbType.String, id_desempeno);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+
+            result.Close();
+            bd.Close();
+            return existe;
+        }
     }
 }

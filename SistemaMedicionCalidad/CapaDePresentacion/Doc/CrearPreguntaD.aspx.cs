@@ -214,7 +214,7 @@ namespace CapaDePresentacion.Doc
                         Response.Write("<script>window.alert('La imagen fue grabada en el servidor');</script>");
                         ruta = fileImagen.FileName;
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         Response.Write("<script>window.alert('La imagen no pudo ser grabada en el servidor');</script>");
                     }

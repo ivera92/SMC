@@ -74,10 +74,7 @@
 
         <label class="col-sm-offset-4">Año ingreso</label>
         <div class="row">
-            <div class="col-sm-offset-4 col-sm-2">
-                <asp:TextBox ID="txtPromocion" class="form-control" runat="server" placeHolder="Año ingreso" type="number" min="2000" required></asp:TextBox>
-            </div>
-            <div class="col-sm-2">
+            <div class="col-sm-offset-5 col-sm-2">
                 <asp:Button ID="btnEditar" class="btn btn-primary btn-block" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
             </div>
         </div>

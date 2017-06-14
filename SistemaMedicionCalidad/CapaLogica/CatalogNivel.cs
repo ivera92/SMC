@@ -104,5 +104,37 @@ namespace Project
 
             return lNiveles;
         }
+
+        //Elimina los niveles asociados a un indicador de desempeño existentes en la base de datos
+        public void eliminarNivelesDesempeno(int id_desempeno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "eliminarNivelesDesempeno";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_desempeno", DbType.Int32, id_desempeno);
+            bd.execute();
+            bd.Close();
+        }
+
+        //Verifica si ya existe en la base de datos un nivel con la misma descripcion
+        public int verificarExistenciaNivel(string descripcion_nivel)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "verificarExistenciaNivel";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@descripcion_nivel", DbType.String, descripcion_nivel);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+
+            result.Close();
+            bd.Close();
+            return existe;
+        }
     }
 }

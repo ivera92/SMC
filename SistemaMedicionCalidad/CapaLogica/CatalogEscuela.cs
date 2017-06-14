@@ -104,5 +104,23 @@ namespace Project.CapaDeNegocios
             bd.execute();
             bd.Close();
         }
+
+        //Verifica si existe una escuela creada con el mismo nombre
+        public int verificarExistenciaEscuela(string nombre_escuela)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "verificarExistenciaEscuela";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@nombre_escuela", DbType.String, nombre_escuela);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+
+            result.Close();
+            bd.Close();
+            return existe;
+        }
     }
 }

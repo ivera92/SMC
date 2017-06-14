@@ -18,18 +18,16 @@ namespace CapaDePresentacion
             {
                 Response.Redirect("../CheqLogin.aspx");
             }
-            
 
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.ddAsignatura.DataTextField = "Nombre_asignatura";
+                this.ddAsignatura.DataValueField = "Cod_asignatura";
+                this.ddAsignatura.DataSource = lAsignatura;
+                this.DataBind();//enlaza los datos a un dropdownlist  
             }
-        }
-        public void resetarValores()
-        {
-            this.txtRut.Text="";
-            this.txtNombre.Text="";
-            this.txtCorreo.Text = "";
-            this.rbDisponibilidad.SelectedIndex = 0;
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)
@@ -51,13 +49,27 @@ namespace CapaDePresentacion
                 d.Contrato_docente = disponibilidad;
 
                 cDocente.insertarDocente(d);
-                Response.Write("<script>window.alert('Docente creado satisfactoriamente');</script>");
-            }
+                if (ddAsignatura.SelectedValue != "0")
+                {
+                    DateTime fechaHoy = DateTime.Now;
+                    CatalogImparte cImparte = new CatalogImparte();
+                    CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                    Imparte i = new Imparte(d, cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue), fechaHoy.Year + "");
+                    if (cImparte.verificarExistenciaImparte(i) == 0)
+                    {
+                        cImparte.insertarAD(i);
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Docente creado y asignatura asignada satisfactoriamente');window.location='CrearDocente.aspx';</script>'");
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Ya existe registro entre docente y asignatura en este año');window.location='CrearAlumno.aspx';</script>'");
+                    }              
+                }
+                }
             catch
             {
-                Response.Write("<script>window.alert('Docente no pudo ser creado o ya existe');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Docente ya existe en los registros');window.location='AdministrarDocentes.aspx';</script>'");
             }
-            this.resetarValores();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/SiteAdmin.Master" AutoEventWireup="true" CodeBehind="AdministrarDesempeno.aspx.cs" Inherits="CapaDePresentacion.Admin.AdministrarDesempeno" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -29,7 +30,7 @@
                     <Columns>
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" />
                         <asp:BoundField DataField="Id_desempeno" HeaderText="ID" />
-                        <asp:BoundField DataField="Indicador_Desempeno" HeaderText="Nombre" />                        
+                        <asp:BoundField DataField="Indicador_Desempeno" HeaderText="Indicador de desempeño" />
                     </Columns>
                 </asp:GridView>
             </div>
@@ -40,14 +41,13 @@
         <h2 class="text-center">Actualizar Desempeño</h2>
         <br />
 
-        <label class="col-sm-6">Indicador de desempeño</label>
-        <label>Competencia</label>
-
         <div class="row">
             <div class="col-sm-6">
+                <label>Indicador de desempeño</label>
                 <asp:TextBox ID="txtIndicador" runat="server" CssClass="form-control" required></asp:TextBox>
             </div>
             <div class="col-sm-6">
+                <label>Competencia</label>
                 <asp:DropDownList runat="server" ID="ddCompetencia" class="form-control">
                 </asp:DropDownList>
             </div>
@@ -55,22 +55,22 @@
         <br />
         <br />
 
-        <label class="col-sm-3">Nivel Básico</label>
-        <label class="col-sm-3">Nivel Medio</label>
-        <label class="col-sm-3">Nivel Superior</label>
-        <label class="col-sm-3">Nivel Avanzado</label>
         <div class="row">
             <div class="col-sm-3">
-                <textarea class="form-control" id="txtNBasico" runat="server" rows="8" required></textarea>
+                <label>Nivel Básico</label>
+                <textarea class="form-control" id="txtNBasico" runat="server" rows="10" required></textarea>
             </div>
             <div class="col-sm-3">
-                <textarea class="form-control" id="txtNMedio" runat="server" rows="8" required></textarea>
+                <label>Nivel Medio</label>
+                <textarea class="form-control" id="txtNMedio" runat="server" rows="10" required></textarea>
             </div>
             <div class="col-sm-3">
-                <textarea class="form-control" id="txtNSuperior" runat="server" rows="8" required></textarea>
+                <label>Nivel Superior</label>
+                <textarea class="form-control" id="txtNSuperior" runat="server" rows="10" required></textarea>
             </div>
             <div class="col-sm-3">
-                <textarea class="form-control" id="txtNAvanzado" runat="server" rows="8"></textarea>
+                <label>Nivel Avanzado</label>
+                <textarea class="form-control" id="txtNAvanzado" runat="server" rows="10"></textarea>
             </div>
         </div>
         <br />

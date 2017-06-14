@@ -91,5 +91,23 @@ namespace Project
             arrResultados[1] = incorrectas;
             return arrResultados;
         }
+
+        //Verifica si existe rut alumno en los registros
+        public int verificarExistenciaAlumnoHPA(string rut_alumno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "verificarExistenciaAlumnoHPA";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+            bd.Close();
+            result.Close();
+            return existe;
+        }
     }
 }

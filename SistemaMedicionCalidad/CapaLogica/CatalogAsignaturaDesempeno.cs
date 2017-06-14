@@ -94,5 +94,23 @@ namespace Project
             bd.execute();
             bd.Close();
         }
+
+        //Verifica si ya existe asociacion acorde al id del desempeño
+        public int verificarExistenciaADIDD(int id_desempeño)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "verificarExistenciaADIDD";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_desempeno", DbType.Int32, id_desempeño);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+
+            result.Close();
+            bd.Close();
+            return existe;
+        }
     }
 }

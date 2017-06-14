@@ -5,7 +5,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project.CapaDeNegocios;
 using Project;
-using System.Threading;
 
 namespace CapaDePresentacion
 {
@@ -46,13 +45,11 @@ namespace CapaDePresentacion
             try
             {
                 cAlumno.eliminarAlumno(rut_alumno);
-                Response.Write("<script>window.alert('Usuario asociado a alumno eliminado satisfactoriamente');</script>");
-                Thread.Sleep(1500);
-                this.mostrar();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Usuario asociado a alumno eliminado satisfactoriamente');window.location='AdministrarAlumnos.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Registro no a podido ser eliminado');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro no pudo ser eliminado');window.location='AdministrarAlumno.aspx';</script>'");
             }
             
         }
@@ -63,16 +60,9 @@ namespace CapaDePresentacion
             string rut_alumno = HttpUtility.HtmlDecode((string)this.gvAlumnos.Rows[e.NewEditIndex].Cells[1].Text);
             CatalogAlumno cAlumno = new CatalogAlumno();
             Alumno a = cAlumno.buscarAlumnoPorRut(rut_alumno);
-            this.txtNombre.Text = a.Nombre_persona;
+            this.txtNombre.Text = a.Nombre_persona.Trim();
             this.txtRut.Text = a.Rut_persona;
-            this.txtCorreo.Text = a.Correo_persona;
-
-            try
-            {
-                this.txtPromocion.Text = a.Promocion_alumno + "";
-            }
-            catch
-            {}
+            this.txtCorreo.Text = a.Correo_persona.Trim();
 
             this.divEditar.Visible = true;
         }
@@ -81,27 +71,17 @@ namespace CapaDePresentacion
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
 
-            Alumno a = new Alumno();
-
-            a.Rut_persona = this.txtRut.Text;
-            a.Nombre_persona = this.txtNombre.Text;
-            a.Correo_persona = this.txtCorreo.Text.Trim();
-
-            try
-            {
-                a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
-            }
-            catch
-            {}
+            Alumno a = new Alumno(txtRut.Text.Trim(), txtNombre.Text.Trim(), txtCorreo.Text.Trim());
             try
             {
                 cAlumno.actualizarAlumno(a);
                 this.divEditar.Visible = false;
-                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Cambios guardados satisfactoriamente');window.location='AdministrarAlumnos.aspx';</script>'");
+
             }
             catch
             {
-                Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No fue posible guardar los cambios');window.location='AdministrarAlumnos.aspx';</script>'");
             }
         }
 
@@ -126,7 +106,7 @@ namespace CapaDePresentacion
         {
             gvAlumnos.Visible = true;
             CatalogAlumno cAlumno = new CatalogAlumno();
-            List<Alumno> lAlumnos = cAlumno.listarAlumnosBusqueda(txtBuscar.Text);
+            List<Alumno> lAlumnos = cAlumno.listarAlumnosBusqueda(txtBuscar.Text.Trim());
             this.gvAlumnos.DataSource = lAlumnos;
             this.DataBind();
         }

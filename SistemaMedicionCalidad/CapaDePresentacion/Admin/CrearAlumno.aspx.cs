@@ -23,6 +23,9 @@ namespace CapaDePresentacion.Doc
             {
                 Response.Redirect("../CheqLogin.aspx");
             }
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
+
             divCrearManual.Visible = false;
             divCrearExcel.Visible = false;
             CatalogEscuela cEscuela = new CatalogEscuela();
@@ -30,35 +33,37 @@ namespace CapaDePresentacion.Doc
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.ddAsignatura.DataTextField = "Nombre_asignatura";
+                this.ddAsignatura.DataValueField = "Cod_asignatura";
+                this.ddAsignatura.DataSource = lAsignatura;
+                this.DataBind();//enlaza los datos a un dropdownlist  
             }
-        }
-        public void resetearValores()
-        {
-            this.txtRut.Text="";
-            this.txtNombre.Text="";
-            this.txtCorreo.Text="";
-            this.txtPromocion.Text="";
         }
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
+            CatalogCursa cCursa = new CatalogCursa();
 
-            Alumno a = new Alumno();
-
-            a.Rut_persona = this.txtRut.Text.Trim();
-            a.Nombre_persona = this.txtNombre.Text.Trim();
-            a.Correo_persona = this.txtCorreo.Text.Trim();
-            a.Promocion_alumno = int.Parse(this.txtPromocion.Text);
+            Alumno a = new Alumno(this.txtRut.Text.Trim(), this.txtNombre.Text.Trim(), this.txtCorreo.Text.Trim());
             try
             {
                 cAlumno.insertarAlumno(a);
-                Response.Write("<script>window.alert('Alumno creado satisfactoriamente');</script>");
+                if (ddAsignatura.SelectedValue != "0")
+                {
+                    DateTime fechaHoy = DateTime.Now;
+                    CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                    Cursa c = new Cursa(a, cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue), fechaHoy.Year+"");
+                    if (cCursa.verificarExistenciaCursa(c) == 0)
+                    {
+                        cCursa.inscribirAsignatura(c);
+                    }
+                }
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Alumno creado satisfactoriamente');window.location='CrearAlumno.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Ya existe registro asociado al Rut');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Ya existe registro asociado al rut');window.location='CrearAlumno.aspx';</script>'");
             }
-            this.resetearValores();
         }
         protected void ImportExcel()
         {
@@ -79,7 +84,7 @@ namespace CapaDePresentacion.Doc
                 bool firstRow = true;
                 foreach (IXLRow row in workSheet.Rows())
                 {
-                    
+
                     //Use the first row to add columns to DataTable.
                     if (firstRow)
                     {
@@ -162,18 +167,18 @@ namespace CapaDePresentacion.Doc
 
                     catch { }
                 }
-                Response.Write("<script>window.alert('Lista de alumnos exportada correctamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Lista de alumnos exportada correctamente');window.location='AdministrarAlumnos.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Lista de alumnos exportada correctamente, verifique en administrar alumnos');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Lista de alumnos exportada con problemas, verifique en administrar alumnos');window.location='AdministrarAlumnos.aspx';</script>'");
             }
         }
 
         protected void btnManual_Click(object sender, EventArgs e)
         {
             divOpcion.Visible = false;
-            divCrearManual.Visible = true;            
+            divCrearManual.Visible = true;
         }
 
         protected void btnExcel_Click(object sender, EventArgs e)

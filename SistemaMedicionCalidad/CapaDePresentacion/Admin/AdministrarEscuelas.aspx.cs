@@ -46,13 +46,11 @@ namespace CapaDePresentacion
             try
             {
                 cEscuela.eliminarEscuela(id_escuela);
-                Response.Write("<script>window.alert('Registro eliminado satisfactoriamente');</script>");
-                Thread.Sleep(1500);
-                this.mostrar();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro eliminado satisfactoriamente');window.location='AdministrarEscuelas.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Registro no se a podido eliminar');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro no a podido ser eliminado');window.location='AdministrarEscuelas.aspx';</script>'");
             }
         }
         //Carga los datos de la fila a actualizar
@@ -70,16 +68,16 @@ namespace CapaDePresentacion
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             CatalogEscuela cEscuela = new CatalogEscuela();
-            Escuela es = new Escuela(int.Parse(this.txtid.Text), this.tbxEscuela.Text);
+            Escuela es = new Escuela(int.Parse(this.txtid.Text), this.tbxEscuela.Text.Trim());
             try
             {
                 cEscuela.actualizarEscuela(es);
                 this.tablaEditar.Visible = false;
-                Response.Write("<script>window.alert('Cambios guardados satisfactoriamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Cambios guardados satisfactoriamente');window.location='AdministrarEscuelas.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('No fue posible guardar los cambios');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No fue posible guardar los cambios');window.location='AdministrarEscuelas.aspx';</script>'");
             }
         }
     }

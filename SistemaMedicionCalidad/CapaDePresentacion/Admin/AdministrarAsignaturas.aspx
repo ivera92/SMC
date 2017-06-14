@@ -30,12 +30,12 @@
                     </EmptyDataTemplate>
                     <Columns>
                         <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" />
-                        <asp:BoundField DataField="Cod_Asignatura" HeaderText="Codigo" />                        
+                        <asp:BoundField DataField="Cod_Asignatura" HeaderText="Codigo" />
                         <asp:BoundField DataField="Escuela_Asignatura.Nombre_Escuela" HeaderText="Escuela" />
-                        <asp:BoundField DataField="Nombre_Asignatura" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Nombre_Asignatura" HeaderText="Asignatura" />
                         <asp:BoundField DataField="Duracion_Asignatura" HeaderText="Duracion" Visible="false" />
                     </Columns>
-                    <PagerStyle HorizontalAlign = "Right" CssClass ="pagination-ys" />
+                    <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
                 </asp:GridView>
             </div>
         </div>
@@ -45,39 +45,34 @@
         <h2 class="text-center">Actualizar Asignatura</h2>
         <br />
 
+        <label class="col-sm-offset-4">Codigo</label>
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-1">
-                <label>Codigo</label>
-            </div>
-            <div class="col-sm-5">
+            <div class="col-sm-offset-4 col-sm-4">
                 <asp:TextBox ID="txtCodigo" runat="server" class="form-control" placeHolder="Ingrese codigo, ejemplo: CIBA019" ReadOnly="True"></asp:TextBox>
             </div>
         </div>
         <br />
 
+        <label class="col-sm-offset-4">Escuela</label>
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-1">
-                <label>Escuela</label></div>
-            <div class="col-sm-5">
+            <div class="col-sm-offset-4 col-sm-4">
                 <asp:DropDownList runat="server" ID="ddEscuela" class="form-control">
                 </asp:DropDownList>
             </div>
         </div>
         <br />
 
+        <label class="col-sm-offset-4">Nombre</label>
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-1">
-                <label>Nombre</label></div>
-            <div class="col-sm-5">
+            <div class="col-sm-offset-4 col-sm-4">
                 <asp:TextBox ID="txtNombre" runat="server" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚa-zñáéíóú1234567890]{1}*)+$" placeHolder="Ingrese nombre" required></asp:TextBox>
             </div>
         </div>
         <br />
 
+        <label class="col-sm-offset-4">Duracion</label>
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-1">
-                <label>Duracion</label></div>
-            <div class="col-sm-3">
+            <div class="col-sm-offset-4 col-sm-2">
                 <asp:RadioButtonList ID="rbDuracion" runat="server">
                     <asp:ListItem Value="Semestral"></asp:ListItem>
                     <asp:ListItem Value="Anual"></asp:ListItem>
