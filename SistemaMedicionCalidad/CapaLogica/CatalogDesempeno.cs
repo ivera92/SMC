@@ -27,6 +27,27 @@ namespace Project
             return lDesempenos;
         }
 
+        //Lista los desempeños acorde a una busqueda existentes en la base de datos
+        public List<Desempeno> listarDesempenosBusqueda(string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarDesempenosBusqueda";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@buscar", DbType.String, buscar);
+            List<Desempeno> lDesempenos = new List<Desempeno>();
+            DbDataReader result = bd.Query();//disponible resultado
+            while (result.Read())
+            {
+                Desempeno d = new Desempeno(result.GetInt32(0), result.GetString(1));
+                lDesempenos.Add(d);
+            }
+            result.Close();
+            bd.Close();
+            return lDesempenos;
+        }
+
         //Devuelve un desempeno acorde a su ID
         public Desempeno buscarUnDesempeno(int id_desempeno)
         {

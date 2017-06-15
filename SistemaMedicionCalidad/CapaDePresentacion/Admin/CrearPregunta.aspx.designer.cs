@@ -22,13 +22,13 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCrear;
         
         /// <summary>
-        /// ddCompetencia control.
+        /// ddDesempeno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
+        protected global::System.Web.UI.WebControls.DropDownList ddDesempeno;
         
         /// <summary>
         /// ddTipoPregunta control.
@@ -40,13 +40,13 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.DropDownList ddTipoPregunta;
         
         /// <summary>
-        /// txtNivel control.
+        /// ddNivel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNivel;
+        protected global::System.Web.UI.WebControls.DropDownList ddNivel;
         
         /// <summary>
         /// txtAPregunta control.
@@ -74,15 +74,6 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
-        
-        /// <summary>
-        /// Panel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
         /// AltOCas control.
@@ -155,14 +146,5 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCrear;
-        
-        /// <summary>
-        /// btnSeguir control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSeguir;
     }
 }

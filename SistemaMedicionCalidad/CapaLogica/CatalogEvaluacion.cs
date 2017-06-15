@@ -18,7 +18,6 @@ namespace Project
             string sql = "insEvaluacion";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_evaluacion", DbType.Int32, e.Id_evaluacion);
             bd.createParameter("@cod_asignatura_evaluacion", DbType.String, e.Asignatura_evaluacion.Cod_asignatura);
             bd.createParameter("@nombre_evaluacion", DbType.String, e.Nombre_evaluacion);
             bd.createParameter("@fecha_evaluacion", DbType.Date, e.Fecha_evaluacion);
@@ -253,6 +252,7 @@ namespace Project
             CatalogEvaluacion cEvaluaciones = new CatalogEvaluacion();
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogTipoPregunta cTP = new CatalogTipoPregunta();
+            CatalogNivel cNivel = new CatalogNivel();
 
             while (result.Read())
             {
@@ -261,7 +261,7 @@ namespace Project
                 p.Id_desempeno = cDesempeno.buscarUnDesempeno(result.GetInt32(1));
                 p.Tipo_pregunta_pregunta = cTP.buscarUnTipoPregunta(result.GetInt32(2));
                 p.Enunciado_pregunta = result.GetString(3);
-                p.Nivel_pregunta = result.GetInt32(4);
+                p.Nivel_pregunta = cNivel.buscarNivel(result.GetInt32(4));
                 lPreguntas.Add(p);
             }
             result.Close();

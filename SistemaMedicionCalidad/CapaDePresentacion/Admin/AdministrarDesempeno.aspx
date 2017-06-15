@@ -20,8 +20,8 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <asp:GridView class="table table-striped" ID="gvDesempenos" runat="server" AutoGenerateColumns="false"
-                    OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                <asp:GridView class="table table-striped" ID="gvDesempenos" runat="server" AutoGenerateColumns="false" AllowPaging="true" PageSize="10"
+                    OnRowDeleting="rowDeleting" OnRowEditing="rowEditing" OnPageIndexChanging="gvDesempenos_PageIndexChanging">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <EmptyDataTemplate>

@@ -10,7 +10,7 @@ using System.Web;
 using System.IO;
 using System.Data;
 
-namespace CapaDePresentacion.Doc
+namespace CapaDePresentacion.Admin
 {
     public partial class CrearEvaluacion : System.Web.UI.Page
     {
@@ -18,9 +18,9 @@ namespace CapaDePresentacion.Doc
         {
             try
             {
-                string rut = Session["rutDocente"].ToString();
+                string rut = Session["rutAdmin"].ToString();
                 CatalogAsignatura cAsignatura = new CatalogAsignatura();
-                List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasDocente(rut);
+                List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
 
                 if (!Page.IsPostBack)
                 {
@@ -40,7 +40,7 @@ namespace CapaDePresentacion.Doc
         public void pdf(string ids_preguntas)
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            DataTable dt = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas); ;
+            DataTable dt = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas);
             string s = "";
 
             Response.ContentType = "application/pdf";

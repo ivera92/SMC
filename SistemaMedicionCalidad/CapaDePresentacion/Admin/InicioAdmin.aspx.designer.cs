@@ -94,33 +94,6 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.HyperLink adminCompetencia;
         
         /// <summary>
-        /// imgDesempeno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgDesempeno;
-        
-        /// <summary>
-        /// crearDesempeno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink crearDesempeno;
-        
-        /// <summary>
-        /// adminDesempeno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink adminDesempeno;
-        
-        /// <summary>
         /// imgBtnDocente control.
         /// </summary>
         /// <remarks>
@@ -184,15 +157,6 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.ImageButton imgBtnPregunta;
         
         /// <summary>
-        /// adminPreguntas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink adminPreguntas;
-        
-        /// <summary>
         /// crearPregunta control.
         /// </summary>
         /// <remarks>
@@ -202,67 +166,31 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.HyperLink crearPregunta;
         
         /// <summary>
-        /// imgBtnAsociar control.
+        /// adminPreguntas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgBtnAsociar;
+        protected global::System.Web.UI.WebControls.HyperLink adminPreguntas;
         
         /// <summary>
-        /// adminAC control.
+        /// imgBtnEvaluacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink adminAC;
+        protected global::System.Web.UI.WebControls.ImageButton imgBtnEvaluacion;
         
         /// <summary>
-        /// asociarCA control.
+        /// HyperLink7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink asociarCA;
-        
-        /// <summary>
-        /// imgBtnClave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgBtnClave;
-        
-        /// <summary>
-        /// HyperLink5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
-        
-        /// <summary>
-        /// imgBtnIncribir control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgBtnIncribir;
-        
-        /// <summary>
-        /// HyperLink1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink7;
         
         /// <summary>
         /// imgBtnResultados control.
@@ -283,21 +211,21 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
         
         /// <summary>
-        /// imgBtnSalir control.
+        /// imgBtnClave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgBtnSalir;
+        protected global::System.Web.UI.WebControls.ImageButton imgBtnClave;
         
         /// <summary>
-        /// HyperLink7 control.
+        /// HyperLink5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink7;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
     }
 }

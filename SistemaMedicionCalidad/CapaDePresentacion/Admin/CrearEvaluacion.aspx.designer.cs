@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDePresentacion.Doc {
+namespace CapaDePresentacion.Admin {
     
     
     public partial class CrearEvaluacion {

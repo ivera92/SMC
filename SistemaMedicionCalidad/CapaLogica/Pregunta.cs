@@ -7,16 +7,26 @@
         private Tipo_Pregunta tipo_pregunta_pregunta;
         private string enunciado_pregunta;
         private string imagen_pregunta;
-        private int nivel_pregunta;
+        private Nivel nivel_pregunta;
 
         //Constructor predeterminado
         public Pregunta()
         {
         }
 
-        public Pregunta(Desempeno id_desempeno, Tipo_Pregunta tipo_pregunta_pregunta, string enunciado_pregunta, string imagen_pregunta, int nivel_pregunta)
+        public Pregunta(Desempeno id_desempeno, Tipo_Pregunta tipo_pregunta_pregunta, string enunciado_pregunta, string imagen_pregunta, Nivel nivel_pregunta)
         {
             this.Id_desempeno = id_desempeno;
+            this.tipo_pregunta_pregunta = tipo_pregunta_pregunta;
+            this.enunciado_pregunta = enunciado_pregunta;
+            this.imagen_pregunta = imagen_pregunta;
+            this.nivel_pregunta = nivel_pregunta;
+        }
+
+        public Pregunta(int id_pregunta, Desempeno id_desempeno, Tipo_Pregunta tipo_pregunta_pregunta, string enunciado_pregunta, string imagen_pregunta, Nivel nivel_pregunta)
+        {
+            this.id_pregunta = id_pregunta;
+            this.id_desempeno = id_desempeno;
             this.tipo_pregunta_pregunta = tipo_pregunta_pregunta;
             this.enunciado_pregunta = enunciado_pregunta;
             this.imagen_pregunta = imagen_pregunta;
@@ -53,7 +63,7 @@
             set { id_desempeno = value; }
         }
 
-        public int Nivel_pregunta
+        public Nivel Nivel_pregunta
         {
             get { return nivel_pregunta; }
             set { nivel_pregunta = value; }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteDocente.Master" AutoEventWireup="true" CodeBehind="CrearEvaluacion.aspx.cs" Inherits="CapaDePresentacion.Doc.CrearEvaluacion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteAdmin.Master" AutoEventWireup="true" CodeBehind="CrearEvaluacion.aspx.cs" Inherits="CapaDePresentacion.Admin.CrearEvaluacion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -48,10 +48,10 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Id_Pregunta" HeaderText="Id" />
-                        <asp:BoundField DataField="Competencia_Pregunta.nombre_competencia" HeaderText="Competencia" />
+                        <asp:BoundField DataField="id_desempeno.indicador_desempeno" HeaderText="Desempeno" />
                         <asp:BoundField DataField="Tipo_Pregunta_Pregunta.nombre_tipo_pregunta" HeaderText="Tipo Pregunta" />
                         <asp:BoundField DataField="Enunciado_Pregunta" HeaderText="Enunciado" />
-                        <asp:BoundField DataField="Nivel_Pregunta" HeaderText="Nivel" />
+                        <asp:BoundField DataField="Nivel_Pregunta.nombre_nivel" HeaderText="Nivel" />
                     </Columns>
                     <PagerStyle HorizontalAlign="Right" CssClass="GridPager" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />

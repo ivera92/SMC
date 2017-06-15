@@ -16,11 +16,11 @@ namespace Project
             string sql = "insPregunta";
 
             bd.CreateCommandSP(sql);
-            bd.createParameter("@id_desempeno", DbType.Int32, p.Id_desempeno.Id_desempeno);
+            bd.createParameter("@id_desempeno_pregunta", DbType.Int32, p.Id_desempeno.Id_desempeno);
             bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Tipo_pregunta_pregunta.Id_tipo_pregunta);
             bd.createParameter("@enunciado_pregunta", DbType.String, p.Enunciado_pregunta);
             bd.createParameter("@imagen_pregunta", DbType.String, p.Imagen_pregunta);
-            bd.createParameter("@nivel_pregunta", DbType.Int32, p.Nivel_pregunta);
+            bd.createParameter("@nivel_pregunta", DbType.Int32, p.Nivel_pregunta.Id_nivel);
             bd.execute();
             bd.Close();
         }
@@ -68,6 +68,7 @@ namespace Project
             Pregunta p = new Pregunta();
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
+            CatalogNivel cNivel = new CatalogNivel();
 
             p.Id_pregunta = result.GetInt32(0);
             p.Id_desempeno = cDesempeno.buscarUnDesempeno(result.GetInt32(1));
@@ -81,7 +82,7 @@ namespace Project
             {
                 p.Imagen_pregunta = "";
             }
-            p.Nivel_pregunta = result.GetInt32(5);
+            p.Nivel_pregunta = cNivel.buscarNivel(result.GetInt32(5));
             
             result.Close();
             bd.Close();
@@ -101,6 +102,7 @@ namespace Project
 
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
+            CatalogNivel cNivel = new CatalogNivel();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
@@ -118,7 +120,7 @@ namespace Project
                 {
                     p.Imagen_pregunta = "";
                 }
-                p.Nivel_pregunta = result.GetInt32(5);
+                p.Nivel_pregunta = cNivel.buscarNivel(result.GetInt32(5));
                 lPreguntas.Add(p);
             }
             result.Close();
@@ -134,10 +136,12 @@ namespace Project
 
             string sqlSearch = "mostrarPreguntasBusqueda";
             bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@buscar", DbType.String, buscar);
             List<Pregunta> lPreguntas = new List<Pregunta>();
 
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
+            CatalogNivel cNivel = new CatalogNivel();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
             {
@@ -155,7 +159,7 @@ namespace Project
                 {
                     p.Imagen_pregunta = "";
                 }
-                p.Nivel_pregunta = result.GetInt32(5);
+                p.Nivel_pregunta = cNivel.buscarNivel(result.GetInt32(5));
                 lPreguntas.Add(p);
             }
             result.Close();
@@ -173,9 +177,8 @@ namespace Project
             bd.CreateCommandSP(sql);
             bd.createParameter("@id_pregunta", DbType.Int32, p.Id_pregunta);
             bd.createParameter("@id_desempeno_pregunta", DbType.Int32, p.Id_desempeno.Id_desempeno);
-            bd.createParameter("@id_tipo_pregunta_pregunta", DbType.Int32, p.Tipo_pregunta_pregunta.Id_tipo_pregunta+1);
             bd.createParameter("@enunciado_pregunta", DbType.String, p.Enunciado_pregunta);
-            bd.createParameter("@nivel_pregunta", DbType.Int32, p.Nivel_pregunta);
+            bd.createParameter("@nivel_pregunta", DbType.Int32, p.Nivel_pregunta.Id_nivel);
             bd.execute();
             bd.Close();
         }

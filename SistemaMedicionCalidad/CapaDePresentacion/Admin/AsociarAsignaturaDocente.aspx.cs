@@ -48,11 +48,11 @@ namespace CapaDePresentacion.Admin
                 if (cImparte.verificarExistenciaImparte(i) == 0)
                 {
                     cImparte.insertarAD(i);
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura asociada correctamente');window.location='InscribirRamo.aspx';</script>'");
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura asociada correctamente');window.location='AsociarAsignaturaDocente.aspx';</script>'");
                 }
                 else
                 {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura ya esta asociada para el docente');window.location='InscribirRamo.aspx';</script>'");
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura ya esta asociada para el docente');window.location='AsociarAsignaturaDocente.aspx';</script>'");
                 }
             }
             catch

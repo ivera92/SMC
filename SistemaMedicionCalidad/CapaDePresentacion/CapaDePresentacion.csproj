@@ -88,11 +88,13 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Admin\AdministrarAD.aspx" />
     <Content Include="Admin\AdministrarAsignaturasAsociadas.aspx" />
     <Content Include="Admin\AdministrarAsignaturasInscritas.aspx" />
     <Content Include="Admin\AdministrarCD.aspx" />
     <Content Include="Admin\AdministrarDesempeno.aspx" />
     <Content Include="Admin\AsociarAsignaturaDocente.aspx" />
+    <Content Include="Admin\AsociarDesempenoAsignatura.aspx" />
     <Content Include="Admin\CrearDesempeno.aspx" />
     <Content Include="Admin\ImagenesAdmin\imgAlumno.jpeg" />
     <Content Include="Admin\ImagenesAdmin\imgAsignatura.jpg" />
@@ -102,6 +104,7 @@
     <Content Include="Admin\ImagenesAdmin\imgDesempeno.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgDocente.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgEscuela.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgEvaluacion.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgInscribir.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgPregunta.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgProfesion.jpg" />
@@ -133,8 +136,7 @@
     <Content Include="Doc\AdministrarEvaluaciones.aspx" />
     <Content Include="Doc\CambiarClave.aspx" />
     <Content Include="Doc\CrearAlumnoD.aspx" />
-    <Content Include="Doc\CrearEvaluacion.aspx" />
-    <Content Include="Doc\CrearPreguntaD.aspx" />
+    <Content Include="Admin\CrearEvaluacion.aspx" />
     <Content Include="Doc\EvaluacionAlumno.aspx" />
     <Content Include="Doc\Logout.aspx" />
     <Content Include="Doc\ResultadosEvaluacionesD.aspx" />
@@ -220,6 +222,13 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AdministrarAD.aspx.cs">
+      <DependentUpon>AdministrarAD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarAD.aspx.designer.cs">
+      <DependentUpon>AdministrarAD.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AdministrarAsignaturasAsociadas.aspx.cs">
       <DependentUpon>AdministrarAsignaturasAsociadas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,6 +263,13 @@
     </Compile>
     <Compile Include="Admin\AsociarAsignaturaDocente.aspx.designer.cs">
       <DependentUpon>AsociarAsignaturaDocente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AsociarDesempenoAsignatura.aspx.cs">
+      <DependentUpon>AsociarDesempenoAsignatura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AsociarDesempenoAsignatura.aspx.designer.cs">
+      <DependentUpon>AsociarDesempenoAsignatura.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrearDesempeno.aspx.cs">
       <DependentUpon>CrearDesempeno.aspx</DependentUpon>
@@ -458,19 +474,12 @@
     <Compile Include="Doc\CrearAlumnoD.aspx.designer.cs">
       <DependentUpon>CrearAlumnoD.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Doc\CrearEvaluacion.aspx.cs">
+    <Compile Include="Admin\CrearEvaluacion.aspx.cs">
       <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Doc\CrearEvaluacion.aspx.designer.cs">
+    <Compile Include="Admin\CrearEvaluacion.aspx.designer.cs">
       <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Doc\CrearPreguntaD.aspx.cs">
-      <DependentUpon>CrearPreguntaD.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Doc\CrearPreguntaD.aspx.designer.cs">
-      <DependentUpon>CrearPreguntaD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Doc\EvaluacionAlumno.aspx.cs">
       <DependentUpon>EvaluacionAlumno.aspx</DependentUpon>

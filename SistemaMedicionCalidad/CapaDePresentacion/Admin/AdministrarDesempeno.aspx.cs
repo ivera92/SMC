@@ -102,7 +102,11 @@ namespace CapaDePresentacion.Admin
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            this.gvDesempenos.Visible = true;
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            List<Desempeno> lDesempenos = cDesempeno.listarDesempenosBusqueda(txtBuscar.Text);
+            this.gvDesempenos.DataSource = lDesempenos;
+            this.DataBind();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -139,6 +143,23 @@ namespace CapaDePresentacion.Admin
             catch
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No fue posible guardar los cambios');window.location='AdministrarDesempeno.aspx';</script>'");
+            }
+        }
+
+        protected void gvDesempenos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvDesempenos.PageIndex = e.NewPageIndex;
+            if (txtBuscar.Text != "")
+            {
+                this.gvDesempenos.Visible = true;
+                CatalogDesempeno cDesempeno = new CatalogDesempeno();
+                List<Desempeno> lDesempenos = cDesempeno.listarDesempenosBusqueda(txtBuscar.Text);
+                this.gvDesempenos.DataSource = lDesempenos;
+                this.DataBind();
+            }
+            else
+            {
+                this.mostrar();
             }
         }
     }

@@ -28,26 +28,21 @@ namespace CapaDePresentacion
             {
                 Response.Redirect("../CheqLogin.aspx");
             }
-
-            CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
-            List<Tipo_Pregunta> lTipoPregunta = cTipoPregunta.listarTipoPreguntas();
-            CatalogCompetencia cCompetencia = new CatalogCompetencia();
-            List<Competencia> lCompetencia = cCompetencia.listarCompetencias();
+            
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            List<Desempeno> lDesempenos = cDesempeno.listarDesempenos();
             this.crearControles();
             this.editar.Visible = false;
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                VoF.Visible = false;
+                AltOCas.Visible = true;
                 lRespuestas = new List<Respuesta>();
-                this.imgFoto.Visible = false;
                 this.mostrar();
 
-                this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
-                this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";
-                this.ddTipoPregunta.DataSource = lTipoPregunta;
-
-                this.ddCompetencia.DataTextField = "Nombre_competencia";
-                this.ddCompetencia.DataValueField = "Id_competencia";
-                this.ddCompetencia.DataSource = lCompetencia;
+                this.ddDesempeno.DataTextField = "Indicador_desempeno";
+                this.ddDesempeno.DataValueField = "Id_desempeno";
+                this.ddDesempeno.DataSource = lDesempenos;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
             }
@@ -77,7 +72,7 @@ namespace CapaDePresentacion
             }
             catch
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Registro no a podiddo ser eliminado');window.location='AdministrarPreguntas.aspx';</script>'");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Pregunta esta en uso, por tanto no puede ser eliminada');window.location='AdministrarPreguntas.aspx';</script>'");
             }
 
         }
@@ -86,29 +81,32 @@ namespace CapaDePresentacion
             lTxbRespuestas = new List<TextBox>();
             lCbRespuestas = new List<CheckBox>();
             lIdRespuesta = new List<TextBox>();
+            
             for (int i = 0; i < 4; i++)
             {
                 txt = new TextBox();
                 cb = new CheckBox();
                 id = new TextBox();
-                Panel p1 = new Panel();
-                Panel p2 = new Panel();
-                Panel p3 = new Panel();
+                
                 id.Visible = false;
                 txt.Visible = false;
                 cb.Visible = false;
+                Panel p1 = new Panel();
+                Panel p2 = new Panel();
+                Panel p3 = new Panel();
+
                 txt.ID = "txt" + i;
                 cb.ID = "cb" + i;
                 id.ID = "txtID" + i;
                 txt.CssClass = "form-control";
-                p3.CssClass = "row";
-                p1.CssClass = "col-sm-offset-3 col-sm-5";
+                p1.CssClass = "col-sm-5";
                 p2.CssClass = "col-sm-1";
                 p1.Controls.Add(txt);
                 p2.Controls.Add(cb);
                 p2.Controls.Add(id);
                 p3.Controls.Add(p1);
                 p3.Controls.Add(p2);
+                p3.Controls.Add(new LiteralControl("<br/>"));
                 Panel1.Controls.Add(p3);
                 Panel1.Controls.Add(new LiteralControl("<br/>"));
                 lTxbRespuestas.Add(txt);
@@ -119,29 +117,38 @@ namespace CapaDePresentacion
 
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
-            id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)this.gvPreguntas.Rows[e.NewEditIndex].Cells[4].Text));
-            //this.crearControles(int.Parse(id_pregunta));
+            this.editar.Visible = true;
+            id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)this.gvPreguntas.Rows[e.NewEditIndex].Cells[4].Text));            
             CatalogPregunta cPregunta = new CatalogPregunta();
             Pregunta p = cPregunta.buscarUnaPregunta(id_pregunta);
-
-            CatalogRespuesta cRespuesta = new CatalogRespuesta();
-            lRespuestas = cRespuesta.listarRespuestasPregunta(id_pregunta);
-
             this.administrar.Visible = false;
             this.txtAPregunta.InnerText = p.Enunciado_pregunta;
-            this.ddTipoPregunta.SelectedValue = p.Tipo_pregunta_pregunta.Id_tipo_pregunta + "";
-            //this.txtNivel.Text = p.Nivel_pregunta;
-            
-            //Se cargan las respuestas y si son correctas o no, esto mediante datos de la base 
-            for(int i=0; i<lRespuestas.Count; i++)
+            ddDesempeno.SelectedValue = p.Id_desempeno.Id_desempeno + "";
+            this.cargarNiveles();
+            ddNivel.SelectedValue = p.Nivel_pregunta.Id_nivel + "";
+            CatalogRespuesta cRespuesta = new CatalogRespuesta();
+            lRespuestas = cRespuesta.listarRespuestasPregunta(id_pregunta);
+            if (p.Tipo_pregunta_pregunta.Nombre_tipo_pregunta== "Seleccion multiple" || p.Tipo_pregunta_pregunta.Nombre_tipo_pregunta== "Casillas de verificacion")
             {
-                lTxbRespuestas[i].Text = lRespuestas[i].Nombre_respuesta;
-                lCbRespuestas[i].Checked = lRespuestas[i].Correcta_respuesta;
-                lIdRespuesta[i].Text = lRespuestas[i].Id_respuesta+"";
-                lTxbRespuestas[i].Visible = true;
-                lCbRespuestas[i].Visible = true;
+                AltOCas.Visible = true;
+                
+                //Se cargan las respuestas y si son correctas o no, esto mediante datos de la base 
+                for (int i = 0; i < lRespuestas.Count; i++)
+                {
+                    lTxbRespuestas[i].Text = lRespuestas[i].Nombre_respuesta;
+                    lCbRespuestas[i].Checked = lRespuestas[i].Correcta_respuesta;
+                    lIdRespuesta[i].Text = lRespuestas[i].Id_respuesta + "";
+                    lTxbRespuestas[i].Visible = true;
+                    lCbRespuestas[i].Visible = true;
+                }                
             }
-            this.editar.Visible = true;
+            else
+            {
+                cbV.Checked = lRespuestas[0].Correcta_respuesta;
+                cbF.Checked = lRespuestas[1].Correcta_respuesta;
+                AltOCas.Visible = false;
+                VoF.Visible = true;
+            }            
         }
 
 
@@ -150,27 +157,43 @@ namespace CapaDePresentacion
             CatalogPregunta cPregunta = new CatalogPregunta();
             Pregunta p = new Pregunta();
             CatalogRespuesta cRespuesta = new CatalogRespuesta();
+            CatalogTipoPregunta cTP = new CatalogTipoPregunta();
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            CatalogNivel cNivel = new CatalogNivel();
             Competencia c = new Competencia();
-            Tipo_Pregunta tp = new Tipo_Pregunta();
-            p.Tipo_pregunta_pregunta = tp;
-            
-            p.Tipo_pregunta_pregunta.Id_tipo_pregunta = int.Parse(this.ddTipoPregunta.SelectedValue);
+
+            p.Id_pregunta = id_pregunta;
+            p.Id_desempeno = cDesempeno.buscarUnDesempeno(int.Parse(ddDesempeno.SelectedValue));
             p.Enunciado_pregunta = this.txtAPregunta.InnerText;
             p.Id_pregunta = id_pregunta;
-            //p.Nivel_pregunta = txtNivel.Text.Trim();
+            p.Nivel_pregunta = cNivel.buscarNivel(int.Parse(ddNivel.SelectedValue));
             try
             {
                 cPregunta.actualizarPregunta(p);
-                for (int i = 0; i < lRespuestas.Count; i++)
+                if (AltOCas.Visible == true)
                 {
-                    Respuesta r = new Respuesta();
-                    Pregunta pp = new Pregunta();
-                    r.Pregunta_respuesta = pp;
+                    for (int i = 0; i < lRespuestas.Count; i++)
+                    {
+                        Respuesta r = new Respuesta();
+                        r.Pregunta_respuesta = cPregunta.buscarUnaPregunta(id_pregunta);
+                        r.Nombre_respuesta = lTxbRespuestas[i].Text;
+                        r.Correcta_respuesta = lCbRespuestas[i].Checked;
+                        r.Id_respuesta = int.Parse(lIdRespuesta[i].Text);
+                        cRespuesta.actualizarRespuesta(r);
+                    }
+                }
+                else
+                {
+                    List<Respuesta> lRespuestas = cRespuesta.listarRespuestasPregunta(id_pregunta);
+                    Respuesta v = lRespuestas[0];
+                    Respuesta f = lRespuestas[1];
 
-                    r.Nombre_respuesta = lTxbRespuestas[i].Text;
-                    r.Correcta_respuesta = lCbRespuestas[i].Checked;
-                    r.Id_respuesta = int.Parse(lIdRespuesta[i].Text);
-                    cRespuesta.actualizarRespuesta(r);
+                    v.Correcta_respuesta = cbV.Checked;
+                    f.Correcta_respuesta = cbF.Checked;
+
+                    cRespuesta.actualizarRespuesta(v);
+                    cRespuesta.actualizarRespuesta(f);
+
                 }
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Pregunta actualizada correctamente');window.location='AdministrarPreguntas.aspx';</script>'");
             }
@@ -205,6 +228,23 @@ namespace CapaDePresentacion
             List<Pregunta> lPreguntas = cPregunta.listarPreguntasBusqueda(txtBuscar.Text);
             this.gvPreguntas.DataSource = lPreguntas;
             this.DataBind();
+        }
+
+        public void cargarNiveles()
+        {
+            this.editar.Visible = true;
+            CatalogNivel cNivel = new CatalogNivel();
+            List<Nivel> lNiveles = cNivel.listarNivelesDesempeno(int.Parse(ddDesempeno.SelectedValue));
+            this.ddNivel.DataTextField = "Nombre_nivel";
+            this.ddNivel.DataValueField = "Id_nivel";
+            this.ddNivel.DataSource = lNiveles;
+
+            this.DataBind();//enlaza los datos a un dropdownlist  
+        }
+
+        protected void ddDesempeno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.cargarNiveles();
         }
     }
 }

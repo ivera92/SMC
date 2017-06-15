@@ -67,31 +67,22 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl editar;
         
         /// <summary>
-        /// ddCompetencia control.
+        /// ddDesempeno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
+        protected global::System.Web.UI.WebControls.DropDownList ddDesempeno;
         
         /// <summary>
-        /// ddTipoPregunta control.
+        /// ddNivel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddTipoPregunta;
-        
-        /// <summary>
-        /// txtNivel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNivel;
+        protected global::System.Web.UI.WebControls.DropDownList ddNivel;
         
         /// <summary>
         /// txtAPregunta control.
@@ -103,22 +94,13 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtAPregunta;
         
         /// <summary>
-        /// fileImagen control.
+        /// AltOCas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileImagen;
-        
-        /// <summary>
-        /// imgFoto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgFoto;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AltOCas;
         
         /// <summary>
         /// Panel1 control.
@@ -128,6 +110,51 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// VoF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VoF;
+        
+        /// <summary>
+        /// lblV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblV;
+        
+        /// <summary>
+        /// cbV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbV;
+        
+        /// <summary>
+        /// lblF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblF;
+        
+        /// <summary>
+        /// cbF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbF;
         
         /// <summary>
         /// btnGuardar control.

@@ -136,5 +136,24 @@ namespace Project
             bd.Close();
             return existe;
         }
+
+        //Devuelve un nivel acorde a su ID
+        public Nivel buscarNivel(int id_nivel)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "buscarNivelID";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_nivel", DbType.Int32, id_nivel);
+            DbDataReader result = bd.Query();
+            result.Read();
+
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            Nivel n = new Nivel(result.GetInt32(0), cDesempeno.buscarUnDesempeno(result.GetInt32(1)), result.GetInt32(2), result.GetString(3), result.GetString(4));
+            result.Close();
+            bd.Close();
+            return n;
+        }
     }
 }
