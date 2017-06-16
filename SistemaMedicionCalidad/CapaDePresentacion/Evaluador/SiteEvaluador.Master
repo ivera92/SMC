@@ -1,8 +1,8 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteAlumno.master.cs" Inherits="CapaDePresentacion.Alum.SiteAlumno" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteEvaluador.master.cs" Inherits="CapaDePresentacion.Evaluador.SiteEvaluador" %>
 
 <!DOCTYPE html>
 
-<html lang="es">
+<html xmlns="https://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
@@ -13,8 +13,8 @@
     <script src="../Scripts/bootstrap.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Portal de Alumnos</title>
+    <title>Portal de Evalueadores y Colaboradores</title>
+    <link rel="stylesheet" href="http://www.uach.cl/uach/_includes/fade/default.css" type="text/css" media="screen">
     <link rel="stylesheet" href="http://www.uach.cl/uach/_includes/fade/nivo-slider.css" type="text/css" media="screen">
     <link rel="stylesheet" href="http://www.uach.cl/uach/_includes/fade/style.css" type="text/css" media="screen">
     <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
@@ -89,11 +89,11 @@
         }
 
         #barra_top {
-            background-color: #FF6600;
+            background-color: #EAB602;
         }
 
         #barra_bottom {
-            background-color: #FF6600;
+            background-color: #EAB602;
         }
 
         #scroll #contenedor #menu_3 {
@@ -102,50 +102,42 @@
             padding-left: 210px;
         }
 
-        .theme-default .nivo-controlNav {
-            /*width: 112px;*/
-            width: 100%;
-            max-width: 150px;
+        #scroll #contenedor #logos {
+            width: auto;
+            background-image: url(http://www.uach.cl/uach/_imag/pix_menu.jpg);
+        }
+
+        .nivo-caption {
+            background-image: url(http://www.uach.cl/uach/_imag/transparente.png);
         }
         /* Responsive */
         .navbar-toggle {
-            background-color: #FF6600;
+            background-color: #EAB602;
             background-image: none;
         }
     </style>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body onload="$(&quot;#agente&quot;).trigger(&quot;click&quot;);">
-    <div id="barra_top">
-    </div>
+<body>
+
+    <div id="barra_top"></div>
     <div id="banner_top">
-        <img src="http://www.uach.cl/uach/_file/5189140b335bf.jpg" width="1010" height="105" alt="" border="0">
+        <img src="../imagenes/bannerEvaluador.jpg" width="1010" height="105" alt="" border="0">
     </div>
     <div id="scroll">
+
         <div id="contenedor">
             <div id="logo">
-                <img src="http://www.uach.cl/uach/_imag/logo.jpg" border="0" alt="" style="margin-top: 21px;">
-            </div>
+                <img src="http://www.uach.cl/uach/_imag/logo.jpg" border="0" alt="" style="margin-top: 21px;"></div>
             <div id="menu_3">
                 <ul>
                     <li class="nivel1">
-                        <a href="Principal.aspx" style="color: #333; float: left;">Personal</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
-                    </li>
-                    <li class="nivel1">
-                        <a href="EvaluacionA.aspx" style="float: left;">Evaluacion</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
-                    </li>
-                    <li class="nivel1">
-                        <a href="Resultados.aspx" style="float: left;">Resultados</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
-                    </li>
-                    <li class="nivel1">
-                        <a href="CambiarClave.aspx" style="float: left;">Cambiar contraseña</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
-                    </li>
-                    <li class="nivel1">
-                        <a href="Logout.aspx" style="float: right;">Salir</a>
+                        <a href="CrearPregunta.aspx" style="color: #333; float: left;">Crear Pregunta</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                     </li>
                 </ul>
             </div>
+
             <form runat="server" style="border: solid 2px #ccc">
                 <br />
                 <br />
@@ -153,29 +145,27 @@
                 </asp:ContentPlaceHolder>
             </form>
         </div>
+
     </div>
-    <div id="banner_bottom">
-        <a href="http://www.uach.cl/">
-            <img src="http://www.uach.cl/uach/_file/5159e83eb185a.jpg" alt="" class="img-responsive" height="105" border="0" usemap="#Map3">
-            <map name="Map3" id="Map3">
-                <area shape="rect" coords="0,3,48,16" href="#" alt="subir">
-                <area shape="rect" coords="964,3,1012,16" href="#" alt="bajar">
-            </map>
-        </a>
+
+    <div id="banner_bottom"><img src="http://www.uach.cl/uach/_file/516723dd8a458.jpg" alt="" class="img-responsive" height="105" border="0" usemap="#Map2">
+        <map name="Map2" id="Map2">
+            <area shape="rect" coords="0,20,48,33" href="#" alt="subir">
+            <area shape="rect" coords="964,21,1012,34" href="#" alt="bajar">
+        </map>
     </div>
     <div id="footer_direccion">
         Sistema desarrollado por Iván Vera Ruiz
     <br />
         Correo: ivera@ic.uach.cl
     </div>
+
     <div id="footer_links">
         <p>
             <a href="http://empleos.uach.cl/" target="_blank">Bolsa de Trabajo UACh</a>&nbsp;|&nbsp;<a href="http://www.uach.cl/extension/radio/" target="_blank">Radio UACh Online</a>&nbsp;|&nbsp;<a href="http://www.consejoderectores.cl/" target="_blank">Consejo de Rectores</a>&nbsp;|&nbsp;<a href="http://www.explora.cl/rios" target="_blank">Programa Explora</a>&nbsp;|&nbsp;<a href="http://www.universia.cl/" target="_blank">Universia</a>&nbsp;|&nbsp;<a href="http://www.reuna.cl/" target="_blank">REUNA</a>
         </p>
     </div>
-    <div id="footer_derechos">
-        © Todos los derechos reservados
-    </div>
+    <div id="footer_derechos">© Todos los derechos reservados</div>
     <script type="text/javascript">
 
         var _gaq = _gaq || [];
@@ -189,5 +179,6 @@
         })();
 
     </script>
+
 </body>
 </html>

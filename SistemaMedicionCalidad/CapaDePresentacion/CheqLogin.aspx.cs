@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Security;
 using System.Web.UI;
 using Project;
@@ -31,22 +30,22 @@ namespace CapaDePresentacion
 
             try
             {
-                int[] autentificacion = cUsuario.Autenticar(rut.Text, txtclave.Text);
+                string[] autentificacion = cUsuario.Autenticar(rut.Text, txtclave.Text);
 
 
                 //Se verifica si existe el usuario y es valido, despues de eso se ven los roles 
-                if (autentificacion[0] > 0)
+                if (int.Parse(autentificacion[0]) > 0 && bool.Parse(autentificacion[2])==true)
                 {
                     //Redirige al usuario autenticado a la dirección URL solicitada originalmente o la dirección URL predeterminada
                     //Para crear una cookie duradera (aquella que se guarda en las sesiones del explorador); de lo contrario, false.
                     FormsAuthentication.RedirectFromLoginPage(rut.Text, true);
 
-                    if (autentificacion[1] == 1)
+                    if (int.Parse(autentificacion[1]) == 1)
                     {
                         Session["rutAlumno"] = rut.Text;
                         Response.Redirect("~/Alum/Principal.aspx");
                     }
-                    else if (autentificacion[1] == 2)
+                    else if (int.Parse(autentificacion[1]) == 2)
                     {
                         Session["rutDocente"] = rut.Text;
                         Response.Redirect("~/Doc/InicioDocente.aspx");
@@ -57,8 +56,13 @@ namespace CapaDePresentacion
                         Response.Redirect("~/Admin/InicioAdmin.aspx");
                     }
                 }
+                else
+                {
+                    Response.Write("<script>window.alert('El usuario con el que intenta ingresar se encuentra inactivo');</script>");
+                }
             }
-            catch { 
+            catch
+            { 
                 Response.Write("<script>window.alert('Error al Ingresar los datos');</script>");
             }               
         }

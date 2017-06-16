@@ -7,91 +7,127 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDePresentacion.Admin {
+namespace CapaDePresentacion.Evaluador {
     
     
-    public partial class CrearEvaluacion {
+    public partial class CrearPregunta {
         
         /// <summary>
-        /// ddAsignatura control.
+        /// ddDesempeno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddAsignatura;
+        protected global::System.Web.UI.WebControls.DropDownList ddDesempeno;
         
         /// <summary>
-        /// ddTipoEvaluacion control.
+        /// ddTipoPregunta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddTipoEvaluacion;
+        protected global::System.Web.UI.WebControls.DropDownList ddTipoPregunta;
         
         /// <summary>
-        /// txtNombre control.
+        /// ddNivel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.DropDownList ddNivel;
         
         /// <summary>
-        /// divGV control.
+        /// txtAPregunta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGV;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtAPregunta;
         
         /// <summary>
-        /// gvPreguntas control.
+        /// fileImagen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPreguntas;
+        protected global::System.Web.UI.WebControls.FileUpload fileImagen;
         
         /// <summary>
-        /// nombreAlumno control.
+        /// RegularExpressionValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nombreAlumno;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
-        /// rut control.
+        /// AltOCas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rut;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AltOCas;
         
         /// <summary>
-        /// fecha control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fecha;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// fechaEvaluacion control.
+        /// VoF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fechaEvaluacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VoF;
+        
+        /// <summary>
+        /// lblV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblV;
+        
+        /// <summary>
+        /// cbV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbV;
+        
+        /// <summary>
+        /// lblF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblF;
+        
+        /// <summary>
+        /// cbF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbF;
         
         /// <summary>
         /// btnCrear control.

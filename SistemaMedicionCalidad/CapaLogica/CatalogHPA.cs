@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 using Project.CapaDeDatos;
+using System.Collections.Generic;
 
 namespace Project
 {
@@ -55,6 +56,55 @@ namespace Project
             arrResultados[0] = correctas;
             arrResultados[1] = incorrectas;
             return arrResultados;
+        }
+
+        //Lista los HPA existentes en la base de datos
+        public List<HistoricoPruebaAlumno> listarHPA()
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarHPA";
+            bd.CreateCommandSP(sqlSearch);
+            List<HistoricoPruebaAlumno> lHPAs = new List<HistoricoPruebaAlumno>();
+            DbDataReader result = bd.Query();//disponible resultado
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            CatalogRespuesta cRespuesta = new CatalogRespuesta();
+            CatalogPregunta cPregunta = new CatalogPregunta();
+            while (result.Read())
+            {
+                HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno(result.GetInt32(0), cAlumno.buscarAlumnoPorRut(result.GetString(1)), cEvaluacion.buscarUnaEvaluacion(result.GetInt32(2)), cPregunta.buscarUnaPregunta(result.GetInt32(3)), cRespuesta.buscarUnaRespuesta(result.GetInt32(4)));
+                lHPAs.Add(hpa);
+            }
+            result.Close();
+            bd.Close();
+            return lHPAs;
+        }
+
+        //Lista los HPA existentes en la base de datos despues de una busqueda
+        public List<HistoricoPruebaAlumno> listarHPABusqueda(string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarHPABusqueda";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@buscar", DbType.String, buscar);
+            List<HistoricoPruebaAlumno> lHPAs = new List<HistoricoPruebaAlumno>();
+            DbDataReader result = bd.Query();//disponible resultado
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            CatalogRespuesta cRespuesta = new CatalogRespuesta();
+            CatalogPregunta cPregunta = new CatalogPregunta();
+            while (result.Read())
+            {
+                HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno(result.GetInt32(0), cAlumno.buscarAlumnoPorRut(result.GetString(1)), cEvaluacion.buscarUnaEvaluacion(result.GetInt32(2)), cPregunta.buscarUnaPregunta(result.GetInt32(3)), cRespuesta.buscarUnaRespuesta(result.GetInt32(4)));
+                lHPAs.Add(hpa);
+            }
+            result.Close();
+            bd.Close();
+            return lHPAs;
         }
 
 

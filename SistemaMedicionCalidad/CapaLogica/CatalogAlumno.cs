@@ -5,7 +5,7 @@ using System.Data;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Project.CapaDeNegocios
+namespace Project
 {
     public class CatalogAlumno
     {

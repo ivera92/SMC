@@ -66,7 +66,10 @@
                 <td>
                     <asp:ImageButton CssClass="col-sm-6 img-responsive" runat="server" ID="imgBtnEvaluacion" ImageUrl="ImagenesAdmin/imgEvaluacion.jpg" />
                     <br />
-                    <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/Admin/CrearEvaluacion.aspx">Crear Evaluacion</asp:HyperLink>
+                    <asp:HyperLink ID="crearEvaluacion" runat="server" NavigateUrl="~/Admin/CrearEvaluacion.aspx">Crear Evaluacion</asp:HyperLink>
+                    <br />
+                    <br />
+                    <asp:HyperLink ID="adminEvaluacion" runat="server" NavigateUrl="~/Admin/AdministrarEvaluaciones.aspx">Administrar Evaluaciones</asp:HyperLink>                  
                 </td>
                 <td>
                     <asp:ImageButton CssClass="col-sm-6 img-responsive" runat="server" ID="imgBtnResultados" ImageUrl="ImagenesAdmin/imgResultados.jpg" />

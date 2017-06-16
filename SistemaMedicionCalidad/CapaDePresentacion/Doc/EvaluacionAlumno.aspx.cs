@@ -76,13 +76,11 @@ namespace CapaDePresentacion.Doc
                     {
                         HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
                         hpa.Id_evaluacion_hpa = ev;
-                        hpa.Nombre_evaluacion_hpa = ev;
 
                         hpa.Id_evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
                         hpa.Pregunta_hpa = cPregunta.buscarUnaPregunta(lIdsSM[ii]);
                         hpa.Respuesta_hpa = cRespuesta.buscarUnaRespuesta(lIdsSM[ii + 1]);
                         hpa.Alumno_hpa = cAlumno.buscarAlumnoPorRut(txtRut.Text);
-                        hpa.Nombre_evaluacion_hpa.Nombre_evaluacion = this.ddEvaluacion.SelectedItem.Text;
                         cHPA.insertarHPA(hpa);
                     }
                     ii = ii + 2;
@@ -100,13 +98,11 @@ namespace CapaDePresentacion.Doc
                     {
                         HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
                         hpa.Id_evaluacion_hpa = ev;
-                        hpa.Nombre_evaluacion_hpa = ev;
 
                         hpa.Id_evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
                         hpa.Pregunta_hpa = cPregunta.buscarUnaPregunta(lIdsCV[jj]);
                         hpa.Respuesta_hpa = cRespuesta.buscarUnaRespuesta(lIdsCV[jj + 1]);
                         hpa.Alumno_hpa = cAlumno.buscarAlumnoPorRut(txtRut.Text);
-                        hpa.Nombre_evaluacion_hpa.Nombre_evaluacion = this.ddEvaluacion.SelectedItem.Text;
                         cHPA.insertarHPA(hpa);
                     }
                     jj = jj + 2;
@@ -123,13 +119,11 @@ namespace CapaDePresentacion.Doc
                     {
                         HistoricoPruebaAlumno hpa = new HistoricoPruebaAlumno();
                         hpa.Id_evaluacion_hpa = ev;
-                        hpa.Nombre_evaluacion_hpa = ev;
 
                         hpa.Id_evaluacion_hpa.Id_evaluacion = int.Parse(ddEvaluacion.SelectedValue);
                         hpa.Pregunta_hpa = cPregunta.buscarUnaPregunta(lIdsVF[kk]);
                         hpa.Respuesta_hpa = cRespuesta.buscarUnaRespuesta(lIdsVF[kk + 1]);
                         hpa.Alumno_hpa = cAlumno.buscarAlumnoPorRut(txtRut.Text);
-                        hpa.Nombre_evaluacion_hpa.Nombre_evaluacion = this.ddEvaluacion.SelectedItem.Text;
                         cHPA.insertarHPA(hpa);
                     }
                     kk = kk + 2;

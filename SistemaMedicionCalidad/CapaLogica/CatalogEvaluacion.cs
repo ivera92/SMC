@@ -38,10 +38,37 @@ namespace Project
             List<Evaluacion> lEvaluaciones = new List<Evaluacion>();
             DbDataReader result = bd.Query();
             CatalogEvaluacion cEvaluaciones = new CatalogEvaluacion();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
 
             while (result.Read())
             {
-                Evaluacion e = new Evaluacion(result.GetInt32(0), result.GetString(1));
+                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4));
+                lEvaluaciones.Add(e);
+            }
+            result.Close();
+            bd.Close();
+
+            return lEvaluaciones;
+        }
+
+        //Lista las evaluaciones despues de una busqueda existentes en la base de datos
+        public List<Evaluacion> listarEvaluacionesBusqueda(string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarEvaluacionesBusqueda";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@buscar", DbType.String, buscar);
+            List<Evaluacion> lEvaluaciones = new List<Evaluacion>();
+            DbDataReader result = bd.Query();
+            CatalogEvaluacion cEvaluaciones = new CatalogEvaluacion();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+
+            while (result.Read())
+            {
+                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4));
                 lEvaluaciones.Add(e);
             }
             result.Close();
@@ -55,7 +82,7 @@ namespace Project
         {
             DataBase bd = new DataBase();
             bd.connect();
-            
+
             string sql = "mostrarEvaluacionesAsignatura";
 
             bd.CreateCommandSP(sql);
@@ -101,8 +128,8 @@ namespace Project
             return lEvaluaciones;
         }
 
-        //Verifica si existe un evaluacion con el mismo nombre en una misma asignatura
-        public int verificarExistencia(string cod_asignatura, string nombre_evaluacion)
+        //Verifica si existe un evaluacion con el mismo nombre en una misma asignatura en el año
+        public int verificarExistencia(string cod_asignatura, string nombre_evaluacion, DateTime fecha_evaluacion)
         {
             DataBase bd = new DataBase();
             bd.connect();
@@ -112,6 +139,7 @@ namespace Project
             bd.CreateCommandSP(sql);
             bd.createParameter("@cod_asignatura_evaluacion", DbType.String, cod_asignatura);
             bd.createParameter("@nombre_evaluacion", DbType.String, nombre_evaluacion);
+            bd.createParameter("@fecha_evaluacion", DbType.DateTime, fecha_evaluacion);
             DbDataReader result = bd.Query();
             result.Read();
             int existe = result.GetInt32(0);
@@ -119,7 +147,25 @@ namespace Project
             result.Close();
             return existe;
         }
-        
+
+        //Verifica si existe un un registro en el historico de pruebas relacionado con la evaluacion
+        public int verificarExistenciaEvaluacionHPA(string nombre_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "verificarExistenciaEvaluacionHPA";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_evaluacion", DbType.String, nombre_evaluacion);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+            bd.Close();
+            result.Close();
+            return existe;
+        }
+
         //obtiene los resultados de un alumno en una evaluacion 
         public List<string> obtenerResultadosEvaluacion(string rut_alumno, int id_evaluacion)
         {
@@ -136,7 +182,7 @@ namespace Project
             while (result.Read())
             {
                 resultados.Add(result.GetBoolean(0) + "");
-                resultados.Add(result.GetInt32(1)+"");
+                resultados.Add(result.GetInt32(1) + "");
                 resultados.Add(result.GetString(2));
             }
             result.Close();
@@ -187,6 +233,24 @@ namespace Project
             return ids_preguntas;
         }
 
+        //Lista los IDs de las preguntas asociadas a una evaluacion por su nombre
+        public string listarPreguntasEvaluacionNombre(string nombre_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "mostrarIDsPENombre";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_evaluacion", DbType.String, nombre_evaluacion);
+            DbDataReader result = bd.Query();
+            result.Read();
+            string ids_preguntas = result.GetString(0);
+
+            result.Close();
+            bd.Close();
+
+            return ids_preguntas;
+        }
+
         //obtiene  resultados de  una evaluacion 
         public List<Resultados> obtenerResultadosEvaluacionGeneralGV(string rut, int id_evaluacion, int id_competencia)
         {
@@ -201,13 +265,13 @@ namespace Project
             bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
 
             DbDataReader result = bd.Query();//disponible resultado
-            
+
             CatalogDocente cDocente = new CatalogDocente();
             CatalogAlumno cAlumno = new CatalogAlumno();
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            
+
             List<Resultados> lResultados = new List<Resultados>();
-            
+
             while (result.Read())
             {
                 Competencia c = new Competencia();
@@ -216,7 +280,7 @@ namespace Project
                 r.Correcta_respuesta = res;
                 r.Nombre_competencia = c;
 
-                if (result.GetBoolean(0)==false)
+                if (result.GetBoolean(0) == false)
                 {
                     r.Estado_respuesta = "Incorrecta";
                 }
@@ -225,7 +289,7 @@ namespace Project
                     r.Estado_respuesta = "Correcta";
                 }
 
-                r.Cantidad =result.GetInt32(1);
+                r.Cantidad = result.GetInt32(1);
                 r.Nombre_competencia.Nombre_competencia = result.GetString(2);
                 r.Rut_docente = cDocente.buscarUnDocente(result.GetString(3));
                 r.Rut_alumno = cAlumno.buscarAlumnoPorRut(result.GetString(4));
@@ -270,7 +334,7 @@ namespace Project
             return lPreguntas;
         }
         //Genera una prueba aleatoria de 15 preguntas
-        public string generarPruebaAleatoria(string cod_asignatura)
+        public string generarPruebaAleatoria(string cod_asignatura, int cantidad_preguntas)
         {
             List<int> lIDS = new List<int>();
             DataBase bd = new DataBase();
@@ -289,9 +353,9 @@ namespace Project
             int numero = 0;
             string ids_preguntas = "";
             int i = 0;
-            while (i < 15)
+            while (i < cantidad_preguntas)
             {
-                numero = r.Next(0, lIDS.Count-1);
+                numero = r.Next(0, lIDS.Count - 1);
                 ids_preguntas += lIDS[numero] + ",";
                 lIDS.RemoveAt(numero);
                 i += 1;
@@ -346,8 +410,8 @@ namespace Project
             DbDataReader result = bd.Query();//disponible resultado
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             result.Read();
-            Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(2)), result.GetString(1), result.GetDateTime(3), result.GetString(4));
-           
+            Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4));
+
             result.Close();
             bd.Close();
             return e;
@@ -405,6 +469,20 @@ namespace Project
             bd.Close();
             result.Close();
             return existe;
+        }
+
+        //Elimina una Evaluacion existente en la base de datos acorde a su ID
+        public void eliminarEvaluacion(string nombre_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "eliminarEvaluacion";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_evaluacion", DbType.String, nombre_evaluacion);
+            bd.execute();
+            bd.Close();
         }
     }
 }

@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="SiteAdmin.Master" AutoEventWireup="true" CodeBehind="CrearEvaluacion.aspx.cs" Inherits="CapaDePresentacion.Admin.CrearEvaluacion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+        .scrolling-table-container {
+            height: 378px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -17,12 +24,6 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <label>Nombre Evaluacion</label>
-            <div>
-                <asp:TextBox runat="server" ID="txtNombre" class="form-control"></asp:TextBox>
-            </div>
-        </div>
-        <div class="col-sm-4">
             <label>Tipo Evaluacion</label>
             <div>
                 <asp:DropDownList runat="server" ID="ddTipoEvaluacion" class="form-control" AutoPostBack="true" AutoGenerateColumns="False" AppendDataBoundItems="true" OnSelectedIndexChanged="ddTipoEvaluacion_SelectedIndexChanged">
@@ -34,12 +35,18 @@
                 </asp:DropDownList>
             </div>
         </div>
+        <div class="col-sm-4">
+            <label>Nombre Evaluacion</label>
+            <div>
+                <asp:TextBox runat="server" ID="txtNombre" class="form-control"></asp:TextBox>
+            </div>
+        </div>
     </div>
     <br />
     <div id="divGV" runat="server">
         <div class="row">
-            <div class="col-sm-12">
-                <asp:GridView class="table table-striped" ID="gvPreguntas" AutoGenerateColumns="False" runat="server">
+            <div class="col-sm-12 scrolling-table-container">
+                <asp:GridView class="table table-striped small-top-margin" ID="gvPreguntas" AutoGenerateColumns="False" runat="server">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <Columns>
                         <asp:TemplateField HeaderText="Seleccionar">

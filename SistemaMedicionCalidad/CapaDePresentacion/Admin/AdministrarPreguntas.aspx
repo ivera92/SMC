@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-sm-offset-2 col-sm-6">
-                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre competencia, enunciado o nivel" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre desempeño, enunciado o nivel" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-sm-2">
                 <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />

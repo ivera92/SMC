@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System;
 using System.Net.Mail;
+using System.Collections.Generic;
 
 namespace Project
 {
@@ -13,7 +14,7 @@ namespace Project
     {
         //Verifica la existencia del usuario, su contraseña, y si coincide con el tipo de usuario seleccionado
         //1 en caso de coincidir los datos, 0 caso contrario
-        public int[] Autenticar(string rut_usuario, string contrasena)
+        public string[] Autenticar(string rut_usuario, string contrasena)
         {            
             //consulta a la base de datos
             string sql = "autentificarUsuario";
@@ -30,7 +31,8 @@ namespace Project
             result.Read();
             int numero = result.GetInt32(0);
             int tipo_usuario = result.GetInt32(1);
-            int[] autentificacion = { numero,  tipo_usuario};
+            bool activo = result.GetBoolean(2);
+            string[] autentificacion = { numero+"",  tipo_usuario+"", activo+""};
 
             return autentificacion;
         }
@@ -181,6 +183,118 @@ namespace Project
             client.Host = "smtp.gmail.com";
             client.EnableSsl = true; //Esto es para que vaya a través de SSL que es obligatorio con GMail
             client.Send(msg);
+        }
+
+        //Inserta un usuario a la base de datos
+        public void insertarUsuario(Usuario u)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "insUsuario";
+            string contraseña = encriptar(u.Nombre_usuario);
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_usuario", DbType.String, u.Nombre_usuario);
+            bd.createParameter("@id_tipo_usuario_usuario", DbType.Int32, u.Tipo_usuario_usuario.Id_tipo_usuario);
+            bd.createParameter("@contrasena_usuario", DbType.String, contraseña);
+            bd.createParameter("@correo_usuario", DbType.String, u.Correo_usuario);
+            bd.execute();
+            bd.Close();
+        }
+
+        //Verifica si existe un usuario con el mismo nombre en la base de datos
+        public int verificarExistenciaUsuario(string nombre_usuario)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "verificarExistenciaUsuario";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_usuario", DbType.String, nombre_usuario);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+            bd.Close();
+            result.Close();
+            return existe;
+        }
+
+        //Editar estado de usuario
+        public void actualizarEstado(string nombre_usuario, bool estado_usuario) { 
+
+            string sql = "editarEstadoUsuario";
+
+            //cadena conexion
+            DataBase bd = new DataBase();
+            bd.connect();
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_usuario", DbType.String, nombre_usuario);
+            bd.createParameter("@estado_usuario", DbType.Boolean, estado_usuario);
+            bd.execute();
+            bd.Close();
+        }
+
+        //Lista los usuarios existentes en la base de datos
+        public List<Usuario> listarUsuarios()
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarUsuarios";
+            bd.CreateCommandSP(sqlSearch);
+            List<Usuario> lUsuarios = new List<Usuario>();
+            DbDataReader result = bd.Query();//disponible resultado
+            CatalogTipoUsuario cTU = new CatalogTipoUsuario();
+            while (result.Read())
+            {
+                string estado = "";
+                if (result.GetBoolean(4) == true)
+                {
+                    estado = "Activo";
+                }
+                else
+                {
+                    estado = "Inactivo";
+                }
+                Usuario u = new Usuario(result.GetString(0), cTU.buscarUnTipoUsuario(result.GetInt32(1)), result.GetString(3), estado);
+                lUsuarios.Add(u);
+            }
+            result.Close();
+            bd.Close();
+            return lUsuarios;
+        }
+
+        //Lista los usuarios existentes en la base de datos despues de una busqueda
+        public List<Usuario> listarUsuariosBusqueda(string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarUsuariosBusqueda";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@buscar", DbType.String, buscar);
+            List<Usuario> lUsuarios = new List<Usuario>();
+            DbDataReader result = bd.Query();//disponible resultado
+            CatalogTipoUsuario cTU = new CatalogTipoUsuario();
+            while (result.Read())
+            {
+                string estado = "";
+                if (result.GetBoolean(4) == true)
+                {
+                    estado = "Activo";
+                }
+                else
+                {
+                    estado = "Inactivo";
+                }
+                Usuario u = new Usuario(result.GetString(0), cTU.buscarUnTipoUsuario(result.GetInt32(1)), result.GetString(3), estado);
+                lUsuarios.Add(u);
+            }
+            result.Close();
+            bd.Close();
+            return lUsuarios;
         }
     }
 }

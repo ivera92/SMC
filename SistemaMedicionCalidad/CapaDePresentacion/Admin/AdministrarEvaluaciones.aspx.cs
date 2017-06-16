@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -11,39 +10,101 @@ using System.Data;
 
 namespace CapaDePresentacion.Admin
 {
-    public partial class CrearEvaluacion : System.Web.UI.Page
+    public partial class AdministrarEvaluaciones : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 string rut = Session["rutAdmin"].ToString();
-                CatalogAsignatura cAsignatura = new CatalogAsignatura();
-                List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
-
-                if (!Page.IsPostBack)
-                {
-                    divGV.Visible = false;
-                    this.fechaEvaluacion.InnerText = DateTime.Today.ToString("d");
-                    this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                    this.ddAsignatura.DataValueField = "Cod_asignatura";
-                    this.ddAsignatura.DataSource = lAsignatura;
-                    this.DataBind();//enlaza los datos a un dropdownlist  
-                }
+                this.mostrar();
             }
             catch
             {
                 Response.Redirect("../CheqLogin.aspx");
             }
         }
-        public void pdf(string ids_preguntas)
+        public void mostrar()
+        {
+            this.gvEvaluaciones.Visible = true;
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            List<Evaluacion> lEvaluacion = cEvaluacion.listarEvaluaciones();
+            this.gvEvaluaciones.DataSource = lEvaluacion;
+            this.DataBind();
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            this.gvEvaluaciones.Visible = true;
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            List<Evaluacion> lEvaluacion = cEvaluacion.listarEvaluacionesBusqueda(txtBuscar.Text);
+            this.gvEvaluaciones.DataSource = lEvaluacion;
+            this.DataBind();
+        }
+
+        protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string nombre_evaluacion = HttpUtility.HtmlDecode((string)(this.gvEvaluaciones.Rows[e.RowIndex].Cells[1].Text));
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            if (cEvaluacion.verificarExistenciaEvaluacionHPA(nombre_evaluacion) == 0)
+            {
+                try
+                {
+                    cEvaluacion.eliminarEvaluacion(nombre_evaluacion);
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Evaluacion eliminada satisfactoriamente');window.location='AdministrarEvaluaciones.aspx';</script>'");
+                }
+                catch { }
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Evaluacion no pudo ser eliminada puesto que esta en uso');window.location='AdministrarEvaluaciones.aspx';</script>'");
+            }
+        }
+
+        protected void gvEvaluaciones_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvEvaluaciones.PageIndex = e.NewPageIndex;
+            if (txtBuscar.Text != "")
+            {
+                this.gvEvaluaciones.Visible = true;
+                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                List<Evaluacion> lEvaluacion = cEvaluacion.listarEvaluacionesBusqueda(txtBuscar.Text);
+                this.gvEvaluaciones.DataSource = lEvaluacion;
+                this.DataBind();
+            }
+            else
+            {
+                this.mostrar();
+            }
+        }
+
+        protected void gvEvaluaciones_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "imgBtnPDF")
+            {
+                // Recupera el índice de fila almacenado en el
+                // CommandArgument propiedad.
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                // Recuperar la fila que contiene el botón
+                // de la Filas.
+                GridViewRow row = gvEvaluaciones.Rows[index];
+                string nombre_asignatura = HttpUtility.HtmlDecode(row.Cells[2].Text);
+                string nombre_evaluacion = HttpUtility.HtmlDecode(row.Cells[1].Text);
+                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                string preguntas = cEvaluacion.listarPreguntasEvaluacionNombre(nombre_evaluacion);
+                this.pdf(preguntas, nombre_evaluacion, nombre_asignatura);
+            }
+        }
+
+        public void pdf(string ids_preguntas, string nombre_evaluacion, string nombre_asignatura)
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             DataTable dt = cEvaluacion.mostrarPyRSeleccionadas(ids_preguntas);
             string s = "";
 
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;" + "filename="+txtNombre.Text+".pdf");
+            Response.AddHeader("content-disposition", "attachment;" + "filename=" + nombre_evaluacion + ".pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             // Creamos el documento con el tamaño de página tradicional
@@ -65,12 +126,12 @@ namespace CapaDePresentacion.Admin
             // Insertamos la imagen en el documento
             pdfDoc.Add(imagen);
 
-            Paragraph p2 = new Paragraph(this.txtNombre.Text + " - " + this.ddAsignatura.SelectedItem.Text + "\n");     //Agrega el nombre de la prueba y el de la asignatura
+            Paragraph p2 = new Paragraph(nombre_evaluacion + " - " + nombre_asignatura + "\n");     //Agrega el nombre de la prueba y el de la asignatura
             p2.Alignment = Element.ALIGN_CENTER;
             pdfDoc.Add(p2);
-            Paragraph p = new Paragraph(this.nombreAlumno.InnerText + "\n");
-            p.Add(this.rut.InnerText + "\n");
-            p.Add(this.fecha.InnerText + "\n");
+            Paragraph p = new Paragraph("Nombre alumno:\n");
+            p.Add("Rut:\n");
+            p.Add("Fecha:\n");
             pdfDoc.Add(p);
 
             int numPregunta = 1;
@@ -145,89 +206,6 @@ namespace CapaDePresentacion.Admin
             pdfDoc.Close();
             Response.Write(pdfDoc);
             Response.End();
-        }
-
-        protected void btnCrear_Click1(object sender, EventArgs e)
-        {
-            string ids_preguntas = "";
-            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            int existe = cEvaluacion.verificarExistencia(ddAsignatura.SelectedValue, txtNombre.Text, DateTime.Parse(this.fechaEvaluacion.InnerText));
-
-            if (existe == 0)
-            {
-                try
-                {
-                    if (ddTipoEvaluacion.SelectedValue == "1")
-                    {
-                        ids_preguntas = cEvaluacion.mostrarIDsPA(ddAsignatura.SelectedValue);
-                    }
-                    else if (ddTipoEvaluacion.SelectedValue == "2")
-                    {
-                        ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue, 15);
-                    }
-                    else if (ddTipoEvaluacion.SelectedValue == "3")
-                    {
-                        ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue, 30);
-                    }
-                    else if (ddTipoEvaluacion.SelectedValue == "4")
-                    {
-                        ids_preguntas = this.lSeleccionadas(); //Trae las Preguntas y respuestas asociadas a la lista de preguntas enviadas  
-                    }
-
-                    Evaluacion ev = new Evaluacion();
-                    CatalogAsignatura cAsignatura = new CatalogAsignatura();
-                    Asignatura a = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
-
-                    ev.Asignatura_evaluacion = a;
-                    ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
-                    ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
-                    ev.Preguntas_evaluacion = ids_preguntas;
-
-                    cEvaluacion.insertarEvaluacion(ev);
-                    this.pdf(ids_preguntas);
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Evaluacion creada satisfactoriamente');window.location='CrearEvaluacion.aspx';</script>'");
-                }
-                catch
-                {
-                    Response.Write("<script>alert('No existe el minimo de preguntas para crear el tipo de evaluacion');</script>");
-                }
-                ids_preguntas = "";
-            }
-            else
-            {
-                Response.Write("<script>alert('El nombre de la evaluacion ya existe, ingrese otro');</script>");
-            }
-        }
-
-        public string lSeleccionadas()
-        {
-            string ids_preguntas = "";
-            foreach (GridViewRow row in gvPreguntas.Rows)
-            {
-                CheckBox check = row.FindControl("cbSeleccionado") as CheckBox;
-
-                if (check.Checked)
-                {
-                    ids_preguntas += row.Cells[1].Text + ",";
-                }
-            }
-            return ids_preguntas;
-        }
-
-        protected void ddTipoEvaluacion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddTipoEvaluacion.SelectedValue == "0" || ddTipoEvaluacion.SelectedValue == "1" || ddTipoEvaluacion.SelectedValue == "2" || ddTipoEvaluacion.SelectedValue == "3")
-            {
-                divGV.Visible = false;
-            }
-            else if (ddTipoEvaluacion.SelectedValue == "4")
-            {
-                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-                List<Pregunta> lPreguntas = cEvaluacion.listarPA(ddAsignatura.SelectedValue);
-                this.gvPreguntas.DataSource = lPreguntas;
-                this.DataBind();
-                this.divGV.Visible = true;
-            }
         }
     }
 }

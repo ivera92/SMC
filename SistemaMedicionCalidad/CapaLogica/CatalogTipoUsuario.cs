@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Common;
 using Project.CapaDeDatos;
+using System.Data;
 
 namespace Project
 {
@@ -24,6 +25,25 @@ namespace Project
                 
             }
             return lTiposUsuario;
+        }
+
+        //Devuelve un tipo de usuario acorde a su ID
+        public Tipo_Usuario buscarUnTipoUsuario(int id_tipo_usuario)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sqlSearch = "buscarTipoUsuarioID";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_tipo_usuario", DbType.Int32, id_tipo_usuario);
+            DbDataReader result = bd.Query();
+            result.Read();
+
+            Tipo_Usuario tu = new Tipo_Usuario(result.GetInt32(0), result.GetString(1));
+
+            result.Close();
+            bd.Close();
+            return tu;
         }
     }
 }

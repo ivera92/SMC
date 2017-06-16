@@ -93,23 +93,21 @@
     <Content Include="Admin\AdministrarAsignaturasInscritas.aspx" />
     <Content Include="Admin\AdministrarCD.aspx" />
     <Content Include="Admin\AdministrarDesempeno.aspx" />
+    <Content Include="Admin\AdministrarHPA.aspx" />
+    <Content Include="Admin\AdministrarUsuarios.aspx" />
     <Content Include="Admin\AsociarAsignaturaDocente.aspx" />
     <Content Include="Admin\AsociarDesempenoAsignatura.aspx" />
     <Content Include="Admin\CrearDesempeno.aspx" />
+    <Content Include="Admin\CrearUsuario.aspx" />
     <Content Include="Admin\ImagenesAdmin\imgAlumno.jpeg" />
     <Content Include="Admin\ImagenesAdmin\imgAsignatura.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgAsociar.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgClave.png" />
     <Content Include="Admin\ImagenesAdmin\imgCompetencia.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgDesempeno.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgDocente.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgEscuela.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgEvaluacion.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgInscribir.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgPregunta.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgProfesion.jpg" />
     <Content Include="Admin\ImagenesAdmin\imgResultados.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgSalir.png" />
     <Content Include="Admin\InicioAdmin.aspx" />
     <Content Include="Admin\InscribirRamo.aspx" />
     <Content Include="Admin\Logout.aspx" />
@@ -133,17 +131,19 @@
     <Content Include="Admin\CrearDocente.aspx" />
     <Content Include="Admin\CrearEscuela.aspx" />
     <Content Include="Admin\CrearPregunta.aspx" />
-    <Content Include="Doc\AdministrarEvaluaciones.aspx" />
+    <Content Include="Admin\AdministrarEvaluaciones.aspx" />
     <Content Include="Doc\CambiarClave.aspx" />
     <Content Include="Doc\CrearAlumnoD.aspx" />
     <Content Include="Admin\CrearEvaluacion.aspx" />
     <Content Include="Doc\EvaluacionAlumno.aspx" />
     <Content Include="Doc\Logout.aspx" />
     <Content Include="Doc\ResultadosEvaluacionesD.aspx" />
+    <Content Include="Evaluador\CrearPregunta.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ImagenesPreguntas\ejercicio5Mate1.PNG.PNG" />
     <Content Include="ImagenesPreguntas\ejercicio7Mate1.PNG.PNG" />
     <Content Include="imagenes\alumno.jpg" />
+    <Content Include="imagenes\bannerEvaluador.jpg" />
     <Content Include="imagenes\escuela.jpg" />
     <Content Include="imagenes\imagen.png" />
     <Content Include="imagenes\imagen2.jpg" />
@@ -162,6 +162,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Alum\SiteAlumno.Master" />
     <Content Include="Admin\SiteAdmin.Master" />
+    <Content Include="Evaluador\SiteEvaluador.Master" />
     <None Include="Properties\PublishProfiles\sistema.pubxml" />
     <None Include="Properties\PublishProfiles\smc.pubxml" />
     <None Include="Properties\PublishProfiles\SMCFE.pubxml" />
@@ -257,6 +258,20 @@
     <Compile Include="Admin\AdministrarDesempeno.aspx.designer.cs">
       <DependentUpon>AdministrarDesempeno.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AdministrarHPA.aspx.cs">
+      <DependentUpon>AdministrarHPA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarHPA.aspx.designer.cs">
+      <DependentUpon>AdministrarHPA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdministrarUsuarios.aspx.cs">
+      <DependentUpon>AdministrarUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarUsuarios.aspx.designer.cs">
+      <DependentUpon>AdministrarUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AsociarAsignaturaDocente.aspx.cs">
       <DependentUpon>AsociarAsignaturaDocente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -277,6 +292,13 @@
     </Compile>
     <Compile Include="Admin\CrearDesempeno.aspx.designer.cs">
       <DependentUpon>CrearDesempeno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CrearUsuario.aspx.cs">
+      <DependentUpon>CrearUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CrearUsuario.aspx.designer.cs">
+      <DependentUpon>CrearUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\InicioAdmin.aspx.cs">
       <DependentUpon>InicioAdmin.aspx</DependentUpon>
@@ -453,11 +475,11 @@
     <Compile Include="Admin\CrearPregunta.aspx.designer.cs">
       <DependentUpon>CrearPregunta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Doc\AdministrarEvaluaciones.aspx.cs">
+    <Compile Include="Admin\AdministrarEvaluaciones.aspx.cs">
       <DependentUpon>AdministrarEvaluaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Doc\AdministrarEvaluaciones.aspx.designer.cs">
+    <Compile Include="Admin\AdministrarEvaluaciones.aspx.designer.cs">
       <DependentUpon>AdministrarEvaluaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Doc\CambiarClave.aspx.cs">
@@ -501,6 +523,20 @@
     </Compile>
     <Compile Include="Doc\ResultadosEvaluacionesD.aspx.designer.cs">
       <DependentUpon>ResultadosEvaluacionesD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluador\CrearPregunta.aspx.cs">
+      <DependentUpon>CrearPregunta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\CrearPregunta.aspx.designer.cs">
+      <DependentUpon>CrearPregunta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluador\SiteEvaluador.Master.cs">
+      <DependentUpon>SiteEvaluador.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\SiteEvaluador.Master.designer.cs">
+      <DependentUpon>SiteEvaluador.Master</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
