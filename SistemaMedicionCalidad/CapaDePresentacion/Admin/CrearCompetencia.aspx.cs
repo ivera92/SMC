@@ -84,8 +84,10 @@ namespace CapaDePresentacion
                 Tipo_Competencia tp = cTipoCompetencia.buscarUnTipoCompetencia(int.Parse(ddTipoCompetencia.SelectedValue));
                 Ambito a = cAmbito.buscarUnAmbito(int.Parse(ddAmbito.SelectedValue));
                 Competencia c = new Competencia(a, tp, txtNombre.InnerText);
-                cCompetencia.insertarCompetencia(c);
-
+                if (cCompetencia.verificarExistenciaCompetencia(txtNombre.InnerText) == 0)
+                {
+                    cCompetencia.insertarCompetencia(c);
+                }
 
                 Desempeno d = new Desempeno(txtIndicador.InnerText);
                 cDesempeno.insertarDesempeno(d);

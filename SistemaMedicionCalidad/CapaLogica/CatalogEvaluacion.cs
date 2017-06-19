@@ -51,6 +51,7 @@ namespace Project
             return lEvaluaciones;
         }
 
+
         //Lista las evaluaciones despues de una busqueda existentes en la base de datos
         public List<Evaluacion> listarEvaluacionesBusqueda(string buscar)
         {
@@ -191,7 +192,7 @@ namespace Project
         }
 
         //obtiene  resultados de  una evaluacion 
-        public List<string> obtenerResultadosEvaluacionGeneral(string rut, int id_evaluacion, int id_competencia)
+        public List<string> obtenerResultadosEvaluacionGeneral(string rut, int id_evaluacion, int id_desempeno)
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
@@ -200,7 +201,7 @@ namespace Project
             bd.CreateCommandSP(sqlSearch);
             bd.createParameter("@rut", DbType.String, rut);
             bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
-            bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
+            bd.createParameter("@id_desempeno", DbType.Int32, id_desempeno);
 
             DbDataReader result = bd.Query();//disponible resultado
             List<string> resultados = new List<string>();
@@ -252,7 +253,7 @@ namespace Project
         }
 
         //obtiene  resultados de  una evaluacion 
-        public List<Resultados> obtenerResultadosEvaluacionGeneralGV(string rut, int id_evaluacion, int id_competencia)
+        public List<Resultados> obtenerResultadosEvaluacionGeneralGV(string rut, int id_evaluacion, int id_desempeno)
         {
 
             DataBase bd = new DataBase();
@@ -262,23 +263,23 @@ namespace Project
             bd.CreateCommandSP(sqlSearch);
             bd.createParameter("@rut", DbType.String, rut);
             bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
-            bd.createParameter("@id_competencia", DbType.Int32, id_competencia);
+            bd.createParameter("@id_desempeno", DbType.Int32, id_desempeno);
 
             DbDataReader result = bd.Query();//disponible resultado
 
             CatalogDocente cDocente = new CatalogDocente();
             CatalogAlumno cAlumno = new CatalogAlumno();
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
 
             List<Resultados> lResultados = new List<Resultados>();
 
             while (result.Read())
             {
-                Competencia c = new Competencia();
+                Desempeno d = new Desempeno();
                 Respuesta res = new Respuesta();
                 Resultados r = new Resultados();
                 r.Correcta_respuesta = res;
-                r.Nombre_competencia = c;
 
                 if (result.GetBoolean(0) == false)
                 {
@@ -290,7 +291,7 @@ namespace Project
                 }
 
                 r.Cantidad = result.GetInt32(1);
-                r.Nombre_competencia.Nombre_competencia = result.GetString(2);
+                r.Indicador_desempeno = cDesempeno.buscarUnDesempenoIndicador(result.GetString(2));
                 r.Rut_docente = cDocente.buscarUnDocente(result.GetString(3));
                 r.Rut_alumno = cAlumno.buscarAlumnoPorRut(result.GetString(4));
                 r.Id_evaluacion_hpa = cEvaluacion.buscarUnaEvaluacion(result.GetInt32(5));
@@ -445,6 +446,25 @@ namespace Project
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+            DbDataReader result = bd.Query();
+            result.Read();
+            int existe = result.GetInt32(0);
+            bd.Close();
+            result.Close();
+            return existe;
+        }
+
+        //Verifica si un alumno fue evaluado en una asignatura en los registros
+        public int verificarAlumnoEvaluadoAsignatura(string nombre_alumno, string nombre_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "verificarAlumnoEvaluadoAsignatura";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_alumno", DbType.String, nombre_alumno);
+            bd.createParameter("@nombre_asignatura", DbType.String, nombre_asignatura);
             DbDataReader result = bd.Query();
             result.Read();
             int existe = result.GetInt32(0);

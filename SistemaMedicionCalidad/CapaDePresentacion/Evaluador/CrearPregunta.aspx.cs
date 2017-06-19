@@ -17,14 +17,14 @@ namespace CapaDePresentacion.Evaluador
         private static string ruta;
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*try
+            try
             {
-                string rut = Session["rutAdmin"].ToString();
+                string rut = Session["rutEvaluador"].ToString();
             }
             catch
             {
                 Response.Redirect("../CheqLogin.aspx");
-            }*/
+            }
             CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
             List<Tipo_Pregunta> lTiposPregunta = cTipoPregunta.listarTipoPreguntas();
             CatalogDesempeno cDesempeno = new CatalogDesempeno();

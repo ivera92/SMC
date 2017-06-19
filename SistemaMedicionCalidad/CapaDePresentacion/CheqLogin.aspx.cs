@@ -43,17 +43,22 @@ namespace CapaDePresentacion
                     if (int.Parse(autentificacion[1]) == 1)
                     {
                         Session["rutAlumno"] = rut.Text;
-                        Response.Redirect("~/Alum/Principal.aspx");
+                        Response.Redirect("~/Alum/Resultados.aspx");
                     }
                     else if (int.Parse(autentificacion[1]) == 2)
                     {
                         Session["rutDocente"] = rut.Text;
-                        Response.Redirect("~/Doc/InicioDocente.aspx");
+                        Response.Redirect("~/Doc/AdministrarEvaluaciones.aspx");
                     }
-                    else
+                    else if (int.Parse(autentificacion[1]) == 3)
                     {
                         Session["rutAdmin"] = rut.Text;
                         Response.Redirect("~/Admin/InicioAdmin.aspx");
+                    }
+                    else 
+                    {
+                        Session["rutEvaluador"] = rut.Text;
+                        Response.Redirect("~/Evaluador/CrearPregunta.aspx");
                     }
                 }
                 else

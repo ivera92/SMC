@@ -85,22 +85,22 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddEvaluacion;
         
         /// <summary>
-        /// divCompetencia control.
+        /// divDesempeno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCompetencia;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDesempeno;
         
         /// <summary>
-        /// ddCompetencia control.
+        /// ddDesempeno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
+        protected global::System.Web.UI.WebControls.DropDownList ddDesempeno;
         
         /// <summary>
         /// divBtnGraficar control.

@@ -31,13 +31,22 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.WebControls.DropDownList ddEvaluacion;
         
         /// <summary>
-        /// ddCompetencia control.
+        /// divDesempeno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDesempeno;
+        
+        /// <summary>
+        /// ddDesempeno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddDesempeno;
         
         /// <summary>
         /// btnGraficar control.
@@ -56,24 +65,6 @@ namespace CapaDePresentacion.Alum {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelGraficoColumna;
-        
-        /// <summary>
-        /// chartEvaluacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chartEvaluacion;
-        
-        /// <summary>
-        /// panelGraficoPie control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelGraficoPie;
         
         /// <summary>
         /// chartColumna control.

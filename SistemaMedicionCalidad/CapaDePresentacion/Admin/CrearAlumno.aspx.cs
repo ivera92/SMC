@@ -28,8 +28,6 @@ namespace CapaDePresentacion.Doc
 
             divCrearManual.Visible = false;
             divCrearExcel.Visible = false;
-            CatalogEscuela cEscuela = new CatalogEscuela();
-            List<Escuela> lEscuelas = cEscuela.listarEscuelas();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {

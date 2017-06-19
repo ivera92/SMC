@@ -15,6 +15,14 @@ namespace CapaDePresentacion.Admin
             try
             {
                 string rut = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
+            try
+            {
+                string rut = Session["rutAdmin"].ToString();
                 CatalogAsignatura cAsignatura = new CatalogAsignatura();
                 List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
                 CatalogDesempeno cDesempeno = new CatalogDesempeno();
@@ -43,6 +51,7 @@ namespace CapaDePresentacion.Admin
 
         protected void ddDesempeno_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.ddNivel.Items.Clear();            
             CatalogNivel cNivel = new CatalogNivel();
             List<Nivel> lNiveles = cNivel.listarNivelesDesempeno(int.Parse(ddDesempeno.SelectedValue));
             this.ddNivel.DataTextField = "Nombre_nivel";

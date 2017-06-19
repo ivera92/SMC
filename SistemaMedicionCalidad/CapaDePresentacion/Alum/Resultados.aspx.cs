@@ -15,7 +15,6 @@ namespace CapaDePresentacion.Alum
             try
             {
                 string rut = Session["rutAlumno"].ToString();
-                panelGraficoPie.Visible = false;
                 panelGraficoColumna.Visible = false;
                 CatalogAsignatura cAsignatura = new CatalogAsignatura();
                 List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasEvaluadas(rut);
@@ -35,7 +34,7 @@ namespace CapaDePresentacion.Alum
                 Response.Redirect("../CheqLogin.aspx");
             }
         }
-        public void graficoPie()
+        /*public void graficoPie()
         {
             panelGraficoColumna.Visible = false;
             chartColumna.Visible = false;
@@ -75,52 +74,61 @@ namespace CapaDePresentacion.Alum
             p2.AxisLabel = series[1];
             p2.LegendText = "ABC XYZ";
             panelGraficoPie.Controls.Add(chartEvaluacion);
-        }
+        }*/
 
         public void graficoColumna()
         {
-            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            panelGraficoPie.Visible = false;
-            chartEvaluacion.Visible = false;
             panelGraficoColumna.Visible = true;
+            chartColumna.Visible = true;
             string rut = Session["rutAlumno"].ToString();
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(rut, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddDesempeno.SelectedValue));
 
-            List<string> result = cEvaluacion.obtenerResultadosEvaluacion(rut, int.Parse(ddEvaluacion.SelectedValue));
             int i = 0;
             while (i < result.Count)
             {
-                string nombreCompetencia = result[i+2];
-                if (Boolean.Parse( result[i]) == false)
-                {
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i+2], int.Parse(result[i+1]));
-                    i = i + 3;
-                    if(Boolean.Parse( result[i]) == false)
-                    {
-                        this.chartColumna.Series["Correctas"].Points.AddXY(nombreCompetencia, 0);
-                    }
-                    else
-                    {
-                        this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                        i = i + 3;
-                    }
-                }
-                else if (Boolean.Parse(result[i]) == true)
+                string nombreCompetencia = result[i + 2];
+
+                if (Boolean.Parse(result[i]) == true)
                 {
                     this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     i = i + 3;
-                    if (Boolean.Parse(result[i]) == true)
+                    try
                     {
-                        this.chartColumna.Series["Inorrectas"].Points.AddXY(nombreCompetencia, 0);
+                        if (Boolean.Parse(result[i]) == false)
+                        {
+                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
+                        }
+                        else
+                        {
+                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                            i = i + 3;
+                        }
                     }
-                    else
+                    catch { }
+                }
+                else if (Boolean.Parse(result[i]) == false)
+                {
+                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                    i = i + 3;
+                    try
                     {
-                        this.chartColumna.Series["Inorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                        i = i + 3;
+                        if (Boolean.Parse(result[i]) == false)
+                        {
+                            this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], 0);
+                        }
+                        else
+                        {
+                            this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                            i = i + 3;
+                        }
                     }
+                    catch { }
                 }
             }
             chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
-            
+
+            /*/ Create a new legend called "Legend2".
             chartColumna.Legends.Add(new Legend("Incorrectas"));
             chartColumna.Legends.Add(new Legend("Correctas"));
 
@@ -129,25 +137,12 @@ namespace CapaDePresentacion.Alum
             chartColumna.Series["Incorrectas"].IsVisibleInLegend = true;
 
             chartColumna.Series["Correctas"].Legend = "Correctas";
-            chartColumna.Series["Correctas"].IsVisibleInLegend = true;
-            panelGraficoColumna.Controls.Add(chartColumna);
+            chartColumna.Series["Correctas"].IsVisibleInLegend = true;*/
         }
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (ddCompetencia.SelectedValue == "0")
-                {
-                    this.graficoColumna();
-                }
-                else
-                {
-                    this.graficoPie();
-                }
-            }catch
-            {
-            }
+            this.graficoColumna();            
         }
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,15 +158,18 @@ namespace CapaDePresentacion.Alum
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;
 
-            this.ddCompetencia.Items.Clear();
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            List<Desempeno> lDesempeno = cDesempeno.listarDesempenosAsignatura(ddAsignatura.SelectedValue);
 
-            if (lCompetencia.Count > 0)
-                this.ddCompetencia.Items.Add(new ListItem("Todas las Competencias", "0"));
+            this.ddDesempeno.Items.Clear();
 
-            this.ddCompetencia.DataTextField = "Nombre_competencia";
-            this.ddCompetencia.DataValueField = "Id_competencia";
-            this.ddCompetencia.DataSource = lCompetencia;
-            this.DataBind();//enlaza los datos a un dropdownlist    
+            if (lDesempeno.Count > 0)
+                this.ddDesempeno.Items.Add(new ListItem("Todos los Desempeños", "0"));
+
+            this.ddDesempeno.DataTextField = "Indicador_desempeno";
+            this.ddDesempeno.DataValueField = "Id_desempeno";
+            this.ddDesempeno.DataSource = lDesempeno;
+            this.DataBind();//enlaza los datos a un dropdownlist  
         }
     }
 }

@@ -15,28 +15,28 @@ namespace CapaDePresentacion.Doc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string rut = "";
             try
             {
-                string rut = Session["rutDocente"].ToString();
+                rut = Session["rutDocente"].ToString();
             }
             catch
             {
                 Response.Redirect("../CheqLogin.aspx");
             }
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasDocente(rut);
+
             divCrearManual.Visible = false;
             divCrearExcel.Visible = false;
-            CatalogEscuela cEscuela = new CatalogEscuela();
-            List<Escuela> lEscuelas = cEscuela.listarEscuelas();
 
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                this.ddAsignatura.DataTextField = "Nombre_asignatura";
+                this.ddAsignatura.DataValueField = "Cod_asignatura";
+                this.ddAsignatura.DataSource = lAsignatura;
+                this.DataBind();//enlaza los datos a un dropdownlist  
             }
-        }
-        public void resetearValores()
-        {
-            this.txtRut.Text = "";
-            this.txtNombre.Text = "";
-            this.txtCorreo.Text = "";
         }
         protected void btnCrear_Click(object sender, EventArgs e)
         {
@@ -166,11 +166,11 @@ namespace CapaDePresentacion.Doc
 
                     catch { }
                 }
-                Response.Write("<script>window.alert('Lista de alumnos exportada correctamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Lista de alumnos exportada correctamente');window.location='AdministrarAlumnos.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Lista de alumnos exportada correctamente, verifique en administrar alumnos');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Lista de alumnos exportada con problemas, verifique en administrar alumnos');window.location='AdministrarAlumnos.aspx';</script>'");
             }
         }
 

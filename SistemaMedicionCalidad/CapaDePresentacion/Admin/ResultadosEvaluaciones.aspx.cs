@@ -5,7 +5,6 @@ using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using Project;
-using Project.CapaDeNegocios;
 using System.IO;
 using ClosedXML.Excel;
 using System.Web;
@@ -36,7 +35,7 @@ namespace CapaDePresentacion.Admin
             divRut.Visible = false;
             divAsignatura.Visible = false;
             divEvaluacion.Visible = false;
-            divCompetencia.Visible = false;
+            divDesempeno.Visible = false;
             btnGraficar.Visible = false;
         }
 
@@ -44,7 +43,7 @@ namespace CapaDePresentacion.Admin
         {
             ddAsignatura.SelectedIndex = 0;
             ddEvaluacion.SelectedIndex = 0;
-            ddCompetencia.SelectedIndex = 0;
+            ddDesempeno.SelectedIndex = 0;
             txtRut.Text = "";
         }
         public void ocultarFitros()
@@ -54,11 +53,12 @@ namespace CapaDePresentacion.Admin
         protected void ddAlumno_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ocultarFitros();
+            divAlumno.Visible = false;
             if (ddAlumno.SelectedValue == "0")
             {
                 divAsignatura.Visible = false;
                 divEvaluacion.Visible = false;
-                divCompetencia.Visible = false;
+                divDesempeno.Visible = false;
             }
             else if (ddAlumno.SelectedValue == "1")
             {
@@ -70,7 +70,7 @@ namespace CapaDePresentacion.Admin
             {
                 divRut.Visible = true;
                 listarAsignaturas();
-
+                
                 divAsignatura.Visible = true;
             }
         }
@@ -89,19 +89,38 @@ namespace CapaDePresentacion.Admin
         protected void ddDisponibilidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             listarAsignaturas();
-        }
+        }    
 
         public void graficoColumna()
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             panelGrafico.Visible = true;
-            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(txtRut.Text, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
+            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(txtRut.Text, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddDesempeno.SelectedValue));
 
             int i = 0;
             while (i < result.Count)
             {
                 string nombreCompetencia = result[i + 2];
-                if (Boolean.Parse(result[i]) == false)
+                
+                if (Boolean.Parse(result[i]) == true)
+                {
+                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                    i = i + 3;
+                    try
+                    {
+                        if (Boolean.Parse(result[i]) == false)
+                        {
+                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
+                        }
+                        else
+                        {
+                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                            i = i + 3;
+                        }
+                    }
+                    catch { }
+                }
+                else if (Boolean.Parse(result[i]) == false)
                 {
                     this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     i = i + 3;
@@ -109,7 +128,7 @@ namespace CapaDePresentacion.Admin
                     {
                         if (Boolean.Parse(result[i]) == false)
                         {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(nombreCompetencia, 0);
+                            this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], 0);
                         }
                         else
                         {
@@ -119,28 +138,10 @@ namespace CapaDePresentacion.Admin
                     }
                     catch { }
                 }
-                else if (Boolean.Parse(result[i]) == true)
-                {
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
-                    try
-                    {
-                        if (Boolean.Parse(result[i]) == true)
-                        {
-                            this.chartColumna.Series["Inorrectas"].Points.AddXY(nombreCompetencia, 0);
-                        }
-                        else
-                        {
-                            this.chartColumna.Series["Inorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                            i = i + 3;
-                        }
-                    }
-                    catch { }
-                }
             }
             chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
 
-            // Create a new legend called "Legend2".
+            /*/ Create a new legend called "Legend2".
             chartColumna.Legends.Add(new Legend("Incorrectas"));
             chartColumna.Legends.Add(new Legend("Correctas"));
 
@@ -149,7 +150,7 @@ namespace CapaDePresentacion.Admin
             chartColumna.Series["Incorrectas"].IsVisibleInLegend = true;
 
             chartColumna.Series["Correctas"].Legend = "Correctas";
-            chartColumna.Series["Correctas"].IsVisibleInLegend = true;
+            chartColumna.Series["Correctas"].IsVisibleInLegend = true;*/
             panelGrafico.Controls.Add(chartColumna);
         }
 
@@ -169,7 +170,7 @@ namespace CapaDePresentacion.Admin
         {
             this.gvResultados.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Resultados> lResultados = cEvaluacion.obtenerResultadosEvaluacionGeneralGV(txtRut.Text, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddCompetencia.SelectedValue));
+            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralGV(txtRut.Text, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddDesempeno.SelectedValue));
             this.gvResultados.DataSource = lResultados;
             this.DataBind();
         }
@@ -183,7 +184,7 @@ namespace CapaDePresentacion.Admin
         protected void ExportExcel()
         {
             this.mostrar();
-
+            
             DataTable dt = new DataTable("GridView_Data");
             foreach (TableCell cell in gvResultados.HeaderRow.Cells)
             {
@@ -220,20 +221,20 @@ namespace CapaDePresentacion.Admin
 
         protected void ddEvaluacion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CatalogCompetencia cCompetencia = new CatalogCompetencia();
-            List<Competencia> lCompetencia = cCompetencia.listarCompetenciasAsignatura(ddAsignatura.SelectedValue);
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            List<Desempeno> lDesempeno = cDesempeno.listarDesempenosAsignatura(ddAsignatura.SelectedValue);
 
-            this.ddCompetencia.Items.Clear();
+            this.ddDesempeno.Items.Clear();
 
-            if (lCompetencia.Count > 0)
-                this.ddCompetencia.Items.Add(new ListItem("Todas las Competencias", "0"));
+            if (lDesempeno.Count > 0)
+                this.ddDesempeno.Items.Add(new ListItem("Todos los Desempeños", "0"));
 
-            this.ddCompetencia.DataTextField = "Nombre_competencia";
-            this.ddCompetencia.DataValueField = "Id_competencia";
-            this.ddCompetencia.DataSource = lCompetencia;
+            this.ddDesempeno.DataTextField = "Indicador_desempeno";
+            this.ddDesempeno.DataValueField = "Id_desempeno";
+            this.ddDesempeno.DataSource = lDesempeno;
             this.DataBind();//enlaza los datos a un dropdownlist  
 
-            divCompetencia.Visible = true;
+            divDesempeno.Visible = true;
             btnGraficar.Visible = true;
         }
 
@@ -246,7 +247,7 @@ namespace CapaDePresentacion.Admin
             this.ddEvaluacion.Items.Clear();
             if (lEvaluaciones.Count > 0)
                 this.ddEvaluacion.Items.Add(new ListItem("<--Seleccione una evaluacion-->", "0"));
-
+            
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;

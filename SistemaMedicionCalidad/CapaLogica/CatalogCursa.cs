@@ -65,6 +65,55 @@ namespace Project
             return lCursa;
         }
 
+        //Lista todas las asignaturas inscritas de los estudiantes de los alumnos de un determinado docente existentes en la base de datos
+        public List<Cursa> listarCursaDocente(string rut_docente)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarCursaDocente";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@rut_docente", DbType.String, rut_docente);
+            List<Cursa> lCursa = new List<Cursa>();
+            DbDataReader result = bd.Query();//disponible resultado
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+
+            while (result.Read())
+            {
+                Cursa c = new Cursa(result.GetInt32(0), cAlumno.buscarAlumnoPorRut(result.GetString(1)), cAsignatura.buscarAsignatura(result.GetString(2)), result.GetString(3));
+                lCursa.Add(c);
+            }
+            result.Close();
+            bd.Close();
+            return lCursa;
+        }
+
+        //Lista todas las asignaturas inscritas de los estudiantes de los alumnos de un determinado docente despues de una busqueda existentes en la base de datos
+        public List<Cursa> listarCursaDocenteBusqueda(string rut_docente, string buscar)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarCursaDocenteBusqueda";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@rut_docente", DbType.String, rut_docente);
+            bd.createParameter("@buscar", DbType.String, buscar);
+            List<Cursa> lCursa = new List<Cursa>();
+            DbDataReader result = bd.Query();//disponible resultado
+            CatalogAlumno cAlumno = new CatalogAlumno();
+            CatalogAsignatura cAsignatura = new CatalogAsignatura();
+
+            while (result.Read())
+            {
+                Cursa c = new Cursa(result.GetInt32(0), cAlumno.buscarAlumnoPorRut(result.GetString(1)), cAsignatura.buscarAsignatura(result.GetString(2)), result.GetString(3));
+                lCursa.Add(c);
+            }
+            result.Close();
+            bd.Close();
+            return lCursa;
+        }
+
         //Lista todas las asignaturas inscritas despues de una busqueda existentes en la base de datos
         public List<Cursa> listarAsignaturasInscritasBusqueda(string buscar)
         {
@@ -99,6 +148,21 @@ namespace Project
 
             bd.CreateCommandSP(sql);
             bd.createParameter("@id_cursa", DbType.Int32, id_cursa);
+            bd.execute();
+            bd.Close();
+        }
+
+        //Elimina una inscripcion de asignatura existente en la base de datos acorde a su ID
+        public void eliminarCursaDocente(string nombre_alumno, string nombre_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "eliminarCursaDocente";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_alumno", DbType.String, nombre_alumno);
+            bd.createParameter("@nombre_asignatura", DbType.String, nombre_asignatura);
             bd.execute();
             bd.Close();
         }

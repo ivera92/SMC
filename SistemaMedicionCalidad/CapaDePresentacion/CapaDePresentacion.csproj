@@ -115,7 +115,6 @@
     <Content Include="Alum\CambiarClave.aspx" />
     <Content Include="Alum\EvaluacionA.aspx" />
     <Content Include="Alum\Logout.aspx" />
-    <Content Include="Alum\Principal.aspx" />
     <Content Include="Alum\Resultados.aspx" />
     <Content Include="CheqLogin.aspx" />
     <Content Include="Admin\AdministrarAlumnos.aspx" />
@@ -132,13 +131,21 @@
     <Content Include="Admin\CrearEscuela.aspx" />
     <Content Include="Admin\CrearPregunta.aspx" />
     <Content Include="Admin\AdministrarEvaluaciones.aspx" />
+    <Content Include="Doc\AdministrarAsignaturasInscritas.aspx" />
+    <Content Include="Doc\AdministrarEvaluaciones.aspx" />
     <Content Include="Doc\CambiarClave.aspx" />
     <Content Include="Doc\CrearAlumnoD.aspx" />
     <Content Include="Admin\CrearEvaluacion.aspx" />
     <Content Include="Doc\EvaluacionAlumno.aspx" />
     <Content Include="Doc\Logout.aspx" />
     <Content Include="Doc\ResultadosEvaluacionesD.aspx" />
+    <Content Include="Evaluador\AdministrarEvaluaciones.aspx" />
+    <Content Include="Evaluador\AdministrarPreguntas.aspx" />
+    <Content Include="Evaluador\CambiarClave.aspx" />
+    <Content Include="Evaluador\CrearEvaluacion.aspx" />
     <Content Include="Evaluador\CrearPregunta.aspx" />
+    <Content Include="Evaluador\Logout.aspx" />
+    <Content Include="Evaluador\ResultadosEvaluaciones.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ImagenesPreguntas\ejercicio5Mate1.PNG.PNG" />
     <Content Include="ImagenesPreguntas\ejercicio7Mate1.PNG.PNG" />
@@ -153,7 +160,6 @@
     <Content Include="imagenes\pdf.png" />
     <Content Include="imagenes\profesion.jpg" />
     <Content Include="imagenes\profesor.jpg" />
-    <Content Include="Doc\InicioDocente.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -356,13 +362,6 @@
     <Compile Include="Alum\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Alum\Principal.aspx.cs">
-      <DependentUpon>Principal.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Alum\Principal.aspx.designer.cs">
-      <DependentUpon>Principal.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Alum\Resultados.aspx.cs">
       <DependentUpon>Resultados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -482,6 +481,20 @@
     <Compile Include="Admin\AdministrarEvaluaciones.aspx.designer.cs">
       <DependentUpon>AdministrarEvaluaciones.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Doc\AdministrarAsignaturasInscritas.aspx.cs">
+      <DependentUpon>AdministrarAsignaturasInscritas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doc\AdministrarAsignaturasInscritas.aspx.designer.cs">
+      <DependentUpon>AdministrarAsignaturasInscritas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doc\AdministrarEvaluaciones.aspx.cs">
+      <DependentUpon>AdministrarEvaluaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doc\AdministrarEvaluaciones.aspx.designer.cs">
+      <DependentUpon>AdministrarEvaluaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Doc\CambiarClave.aspx.cs">
       <DependentUpon>CambiarClave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -524,12 +537,54 @@
     <Compile Include="Doc\ResultadosEvaluacionesD.aspx.designer.cs">
       <DependentUpon>ResultadosEvaluacionesD.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Evaluador\AdministrarEvaluaciones.aspx.cs">
+      <DependentUpon>AdministrarEvaluaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\AdministrarEvaluaciones.aspx.designer.cs">
+      <DependentUpon>AdministrarEvaluaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluador\AdministrarPreguntas.aspx.cs">
+      <DependentUpon>AdministrarPreguntas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\AdministrarPreguntas.aspx.designer.cs">
+      <DependentUpon>AdministrarPreguntas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluador\CambiarClave.aspx.cs">
+      <DependentUpon>CambiarClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\CambiarClave.aspx.designer.cs">
+      <DependentUpon>CambiarClave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluador\CrearEvaluacion.aspx.cs">
+      <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\CrearEvaluacion.aspx.designer.cs">
+      <DependentUpon>CrearEvaluacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Evaluador\CrearPregunta.aspx.cs">
       <DependentUpon>CrearPregunta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Evaluador\CrearPregunta.aspx.designer.cs">
       <DependentUpon>CrearPregunta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluador\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluador\ResultadosEvaluaciones.aspx.cs">
+      <DependentUpon>ResultadosEvaluaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\ResultadosEvaluaciones.aspx.designer.cs">
+      <DependentUpon>ResultadosEvaluaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Evaluador\SiteEvaluador.Master.cs">
       <DependentUpon>SiteEvaluador.Master</DependentUpon>
@@ -541,13 +596,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Doc\InicioDocente.aspx.cs">
-      <DependentUpon>InicioDocente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Doc\InicioDocente.aspx.designer.cs">
-      <DependentUpon>InicioDocente.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -556,13 +604,6 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Admin\Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Site.Master.designer.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
     <Compile Include="Doc\SiteDocente.Master.cs">
       <DependentUpon>SiteDocente.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -578,7 +619,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
-    <Content Include="Admin\Site.Master" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaDeDatos\CapaDeDatos.csproj">
