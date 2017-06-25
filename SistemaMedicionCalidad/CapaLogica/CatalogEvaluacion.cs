@@ -192,16 +192,14 @@ namespace Project
         }
 
         //obtiene  resultados de  una evaluacion 
-        public List<string> obtenerResultadosEvaluacionGeneral(string rut, int id_evaluacion, int id_desempeno)
+        public List<string> obtenerResultadosEvaluacionGeneral(int id_evaluacion)
         {
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
             string sqlSearch = "mostrarResultadosGenerales";
             bd.CreateCommandSP(sqlSearch);
-            bd.createParameter("@rut", DbType.String, rut);
             bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
-            bd.createParameter("@id_desempeno", DbType.Int32, id_desempeno);
 
             DbDataReader result = bd.Query();//disponible resultado
             List<string> resultados = new List<string>();
@@ -209,7 +207,31 @@ namespace Project
             {
                 resultados.Add(result.GetBoolean(0) + "");
                 resultados.Add(result.GetInt32(1) + "");
-                resultados.Add(result.GetString(2));
+                resultados.Add(result.GetInt32(2)+"");
+            }
+            result.Close();
+            bd.Close();
+            return resultados;
+        }
+
+        //obtiene  resultados de  una evaluacion de un alumno
+        public List<string> obtenerResultadosEvaluacionGeneralAlumno(int id_evaluacion, string rut_alumno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarResultadosGeneralesAlumno";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+
+            DbDataReader result = bd.Query();//disponible resultado
+            List<string> resultados = new List<string>();
+            while (result.Read())
+            {
+                resultados.Add(result.GetBoolean(0) + "");
+                resultados.Add(result.GetInt32(1) + "");
+                resultados.Add(result.GetInt32(2) + "");
             }
             result.Close();
             bd.Close();
@@ -253,7 +275,7 @@ namespace Project
         }
 
         //obtiene  resultados de  una evaluacion 
-        public List<Resultados> obtenerResultadosEvaluacionGeneralGV(string rut, int id_evaluacion, int id_desempeno)
+        public List<Resultados> obtenerResultadosEvaluacionGeneralGV(int id_evaluacion)
         {
 
             DataBase bd = new DataBase();
@@ -261,9 +283,7 @@ namespace Project
 
             string sqlSearch = "mostrarResultadosGeneralesGV";
             bd.CreateCommandSP(sqlSearch);
-            bd.createParameter("@rut", DbType.String, rut);
             bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
-            bd.createParameter("@id_desempeno", DbType.Int32, id_desempeno);
 
             DbDataReader result = bd.Query();//disponible resultado
 

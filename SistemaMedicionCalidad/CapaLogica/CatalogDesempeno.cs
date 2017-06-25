@@ -163,5 +163,26 @@ namespace Project
             bd.Close();
             return existe;
         }
+
+        //Lista todos los desempeños de una evaluacion con sus respectivos niveles existentes en la base de datos
+        public List<Desempeno> listarDesempenosEvaluacion(int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarDesempenosEvaluacion";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("id_evaluacion", DbType.Int32, id_evaluacion);
+            List<Desempeno> lDesempenos = new List<Desempeno>();
+            DbDataReader result = bd.Query();//disponible resultado
+            while (result.Read())
+            {
+                Desempeno d = new Desempeno(result.GetInt32(0), result.GetString(1), result.GetString(2));
+                lDesempenos.Add(d);
+            }
+            result.Close();
+            bd.Close();
+            return lDesempenos;
+        }
     }
 }

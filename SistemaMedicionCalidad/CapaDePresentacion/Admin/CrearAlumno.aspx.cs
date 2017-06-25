@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI;
-using Project.CapaDeNegocios;
 using Project;
 using System.IO;
 using System.Data;
@@ -50,7 +49,7 @@ namespace CapaDePresentacion.Doc
                 {
                     DateTime fechaHoy = DateTime.Now;
                     CatalogAsignatura cAsignatura = new CatalogAsignatura();
-                    Cursa c = new Cursa(a, cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue), fechaHoy.Year+"");
+                    Cursa c = new Cursa(a, cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue), fechaHoy.Year + "");
                     if (cCursa.verificarExistenciaCursa(c) == 0)
                     {
                         cCursa.inscribirAsignatura(c);
@@ -125,6 +124,7 @@ namespace CapaDePresentacion.Doc
 
         protected void btnImportar_Click(object sender, EventArgs e)
         {
+            DateTime fechaHoy = DateTime.Now;
             CatalogAlumno cAlumno = new CatalogAlumno();
             CatalogCursa cCursa = new CatalogCursa();
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
@@ -141,9 +141,9 @@ namespace CapaDePresentacion.Doc
                     try
                     {
                         rut = HttpUtility.HtmlDecode(row.Cells[0].Text).Substring(2, 10);
-                        nombre = HttpUtility.HtmlDecode(row.Cells[1].Text);
-                        email = HttpUtility.HtmlDecode(row.Cells[2].Text);
-                        asignatura = HttpUtility.HtmlDecode(row.Cells[3].Text);
+                        nombre = HttpUtility.HtmlDecode(row.Cells[1].Text.Trim());
+                        email = HttpUtility.HtmlDecode(row.Cells[2].Text.Trim());
+                        asignatura = HttpUtility.HtmlDecode(row.Cells[3].Text.Trim());
                         a.Rut_persona = rut;
                         a.Nombre_persona = nombre;
                         a.Correo_persona = email;
@@ -160,7 +160,11 @@ namespace CapaDePresentacion.Doc
                     {
                         c.Rut_alumno_aa = cAlumno.buscarAlumnoPorRut(rut);
                         c.Cod_asignatura_aa = cAsignatura.buscarAsignaturaNombre(asignatura);
-                        cCursa.inscribirAsignatura(c);
+                        c.Ano_asignatura = fechaHoy.Year + "";
+                        if (cCursa.verificarExistenciaCursa(c) == 0)
+                        {
+                            cCursa.inscribirAsignatura(c);
+                        }
                     }
 
                     catch { }

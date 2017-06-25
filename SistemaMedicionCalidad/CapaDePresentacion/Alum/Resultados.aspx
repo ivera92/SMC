@@ -8,7 +8,7 @@
     <br />
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-5">
             <label>Asignatura</label>
             <div>
                 <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="ddAsignatura" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
@@ -18,20 +18,11 @@
             <br />
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-5">
             <label>Evaluacion</label>
             <div>
                 <asp:DropDownList CssClass="form-control" AutoPostBack="true" AppendDataBoundItems="true" ID="ddEvaluacion" runat="server">
                     <asp:ListItem Value="0"><--Seleccione una evaluacion--></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <br />
-        </div>
-        <div runat="server" id="divDesempeno" class="col-sm-3">
-            <label>Desempeño</label>
-            <div>
-                <asp:DropDownList ID="ddDesempeno" runat="server" AppendDataBoundItems="true" CssClass="form-control">
-                    <asp:ListItem Value="0"><--Seleccione desempeño--></asp:ListItem>
                 </asp:DropDownList>
             </div>
             <br />
@@ -48,8 +39,8 @@
     <asp:Panel ID="panelGraficoColumna" runat="server">
         <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="1010px" Height="505px">
             <Series>
-                <asp:Series Name="Correctas" Color="Blue"></asp:Series>
-                <asp:Series ChartArea="ChartArea1" Color="Red" Name="Incorrectas">
+                <asp:Series Name="Correctas" Color="#7373FF"></asp:Series>
+                <asp:Series ChartArea="ChartArea1" Color="#FF5353" Name="Incorrectas">
                 </asp:Series>
             </Series>
             <ChartAreas>
@@ -58,5 +49,20 @@
         </asp:Chart>
     </asp:Panel>
     <br />
+    <div class="row" runat="server">
+        <div class="col-sm-12">
+            <asp:GridView ID="gvDesempenos" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">
+                <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+
+                <Columns>
+                    <asp:BoundField DataField="id_desempeno" HeaderText="ID" />
+                    <asp:BoundField DataField="indicador_desempeno" HeaderText="Desempeño" />
+                    <asp:BoundField DataField="nombre_nivel" HeaderText="Nivel" />
+
+                </Columns>
+
+            </asp:GridView>
+        </div>
+    </div>
 </asp:Content>
 

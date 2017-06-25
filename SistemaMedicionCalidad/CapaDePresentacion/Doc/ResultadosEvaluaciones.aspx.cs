@@ -22,56 +22,13 @@ namespace CapaDePresentacion.Doc
                 panelGrafico.Visible = false;
                 if (!Page.IsPostBack)
                 {
-                    this.ocultarDivs();
+                    this.listarAsignaturas();
+                    gvDesempenos.Visible = false;
                 }
             }
             catch
             {
                 Response.Redirect("../CheqLogin.aspx");
-            }
-        }
-        public void ocultarDivs()
-        {
-            divRut.Visible = false;
-            divAsignatura.Visible = false;
-            divEvaluacion.Visible = false;
-            divDesempeno.Visible = false;
-            btnGraficar.Visible = false;
-        }
-
-        public void limpiarDD()
-        {
-            ddAsignatura.SelectedIndex = 0;
-            ddEvaluacion.SelectedIndex = 0;
-            ddDesempeno.SelectedIndex = 0;
-            txtRut.Text = "";
-        }
-        public void ocultarFitros()
-        {
-            divRut.Visible = false;
-        }
-        protected void ddAlumno_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.ocultarFitros();
-            divAlumno.Visible = false;
-            if (ddAlumno.SelectedValue == "0")
-            {
-                divAsignatura.Visible = false;
-                divEvaluacion.Visible = false;
-                divDesempeno.Visible = false;
-            }
-            else if (ddAlumno.SelectedValue == "1")
-            {
-                txtRut.Text = "";
-                divAsignatura.Visible = true;
-                listarAsignaturas();
-            }
-            else if (ddAlumno.SelectedValue == "2")
-            {
-                divRut.Visible = true;
-                listarAsignaturas();
-                
-                divAsignatura.Visible = true;
             }
         }
         public void listarAsignaturas()
@@ -87,16 +44,11 @@ namespace CapaDePresentacion.Doc
             this.ddAsignatura.DataBind();
         }
 
-        protected void ddDisponibilidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            listarAsignaturas();
-        }
-
         public void graficoColumna()
         {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             panelGrafico.Visible = true;
-            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(txtRut.Text, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddDesempeno.SelectedValue));
+            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(int.Parse(ddEvaluacion.SelectedValue));
 
             int i = 0;
             while (i < result.Count)
@@ -141,24 +93,19 @@ namespace CapaDePresentacion.Doc
                 }
             }
             chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
-
-            /*/ Create a new legend called "Legend2".
-            chartColumna.Legends.Add(new Legend("Incorrectas"));
-            chartColumna.Legends.Add(new Legend("Correctas"));
-
-            // Assign the legend to Series1.
-            chartColumna.Series["Incorrectas"].Legend = "Incorrectas";
-            chartColumna.Series["Incorrectas"].IsVisibleInLegend = true;
-
-            chartColumna.Series["Correctas"].Legend = "Correctas";
-            chartColumna.Series["Correctas"].IsVisibleInLegend = true;*/
             panelGrafico.Controls.Add(chartColumna);
         }
 
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
+            gvDesempenos.Visible = true;
             this.graficoColumna();
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
+            this.gvDesempenos.DataSource = lDesempenos;
+            this.DataBind();
+            gvDesempenos.Visible = true;
             panelGrafico.Visible = true;
             btnExportar.Visible = true;
         }
@@ -169,9 +116,11 @@ namespace CapaDePresentacion.Doc
         }
         public void mostrar()
         {
-            this.gvResultados.Visible = true;
-            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralGV(txtRut.Text, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddDesempeno.SelectedValue));
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();            
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
+            this.gvDesempenos.DataSource = lDesempenos;
+            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralGV(int.Parse(ddEvaluacion.SelectedValue));
             this.gvResultados.DataSource = lResultados;
             this.DataBind();
         }
@@ -186,7 +135,7 @@ namespace CapaDePresentacion.Doc
         {
             this.mostrar();
             
-            DataTable dt = new DataTable("GridView_Data");
+            DataTable dt = new DataTable("Resultados");
             foreach (TableCell cell in gvResultados.HeaderRow.Cells)
             {
                 dt.Columns.Add(HttpUtility.HtmlDecode(cell.Text));
@@ -200,9 +149,24 @@ namespace CapaDePresentacion.Doc
                 }
             }
 
+            DataTable dtDesempenos = new DataTable("Desempeños");
+            foreach (TableCell cell in gvDesempenos.HeaderRow.Cells)
+            {
+                dtDesempenos.Columns.Add(HttpUtility.HtmlDecode(cell.Text));
+            }
+            foreach (GridViewRow row in gvDesempenos.Rows)
+            {
+                dtDesempenos.Rows.Add();
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    dtDesempenos.Rows[dtDesempenos.Rows.Count - 1][i] = HttpUtility.HtmlDecode(row.Cells[i].Text);
+                }
+            }
+
             using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dt);
+                wb.Worksheets.Add(dtDesempenos);
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";
@@ -218,25 +182,6 @@ namespace CapaDePresentacion.Doc
                     Response.End();
                 }
             }
-        }
-
-        protected void ddEvaluacion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CatalogDesempeno cDesempeno = new CatalogDesempeno();
-            List<Desempeno> lDesempeno = cDesempeno.listarDesempenosAsignatura(ddAsignatura.SelectedValue);
-
-            this.ddDesempeno.Items.Clear();
-
-            if (lDesempeno.Count > 0)
-                this.ddDesempeno.Items.Add(new ListItem("Todos los Desempeños", "0"));
-
-            this.ddDesempeno.DataTextField = "Indicador_desempeno";
-            this.ddDesempeno.DataValueField = "Id_desempeno";
-            this.ddDesempeno.DataSource = lDesempeno;
-            this.DataBind();//enlaza los datos a un dropdownlist  
-
-            divDesempeno.Visible = true;
-            btnGraficar.Visible = true;
         }
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)

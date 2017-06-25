@@ -138,7 +138,7 @@
     <Content Include="Admin\CrearEvaluacion.aspx" />
     <Content Include="Doc\EvaluacionAlumno.aspx" />
     <Content Include="Doc\Logout.aspx" />
-    <Content Include="Doc\ResultadosEvaluacionesD.aspx" />
+    <Content Include="Doc\ResultadosEvaluaciones.aspx" />
     <Content Include="Evaluador\AdministrarEvaluaciones.aspx" />
     <Content Include="Evaluador\AdministrarPreguntas.aspx" />
     <Content Include="Evaluador\CambiarClave.aspx" />
@@ -530,12 +530,12 @@
     <Compile Include="Doc\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Doc\ResultadosEvaluacionesD.aspx.cs">
-      <DependentUpon>ResultadosEvaluacionesD.aspx</DependentUpon>
+    <Compile Include="Doc\ResultadosEvaluaciones.aspx.cs">
+      <DependentUpon>ResultadosEvaluaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Doc\ResultadosEvaluacionesD.aspx.designer.cs">
-      <DependentUpon>ResultadosEvaluacionesD.aspx</DependentUpon>
+    <Compile Include="Doc\ResultadosEvaluaciones.aspx.designer.cs">
+      <DependentUpon>ResultadosEvaluaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Evaluador\AdministrarEvaluaciones.aspx.cs">
       <DependentUpon>AdministrarEvaluaciones.aspx</DependentUpon>

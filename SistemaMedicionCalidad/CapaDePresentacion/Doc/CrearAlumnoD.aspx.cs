@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI;
-using Project.CapaDeNegocios;
 using Project;
 using System.IO;
 using System.Data;
@@ -126,6 +125,7 @@ namespace CapaDePresentacion.Doc
 
         protected void btnImportar_Click(object sender, EventArgs e)
         {
+            DateTime fechaHoy = DateTime.Now;
             CatalogAlumno cAlumno = new CatalogAlumno();
             CatalogCursa cCursa = new CatalogCursa();
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
@@ -161,16 +161,20 @@ namespace CapaDePresentacion.Doc
                     {
                         c.Rut_alumno_aa = cAlumno.buscarAlumnoPorRut(rut);
                         c.Cod_asignatura_aa = cAsignatura.buscarAsignaturaNombre(asignatura);
-                        cCursa.inscribirAsignatura(c);
+                        c.Ano_asignatura = fechaHoy.Year + "";
+                        if (cCursa.verificarExistenciaCursa(c) == 0)
+                        {
+                            cCursa.inscribirAsignatura(c);
+                        }
                     }
 
                     catch { }
                 }
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Lista de alumnos exportada correctamente');window.location='AdministrarAlumnos.aspx';</script>'");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Lista de alumnos exportada correctamente');window.location='AdministrarAsignaturasInscritas.aspx';</script>'");
             }
             catch
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Lista de alumnos exportada con problemas, verifique en administrar alumnos');window.location='AdministrarAlumnos.aspx';</script>'");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Lista de alumnos exportada con problemas, verifique en administrar alumnos');window.location='AdministrarAsignaturasInscritas.aspx';</script>'");
             }
         }
 

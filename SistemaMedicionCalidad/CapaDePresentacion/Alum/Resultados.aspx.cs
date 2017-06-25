@@ -22,6 +22,7 @@ namespace CapaDePresentacion.Alum
 
                 if (!Page.IsPostBack) //para ver si cargo por primera vez
                 {
+                    gvDesempenos.Visible = false;
                     this.ddAsignatura.DataTextField = "Nombre_asignatura";
                     this.ddAsignatura.DataValueField = "Cod_asignatura";
                     this.ddAsignatura.DataSource = lAsignatura;
@@ -34,55 +35,14 @@ namespace CapaDePresentacion.Alum
                 Response.Redirect("../CheqLogin.aspx");
             }
         }
-        /*public void graficoPie()
-        {
-            panelGraficoColumna.Visible = false;
-            chartColumna.Visible = false;
-            panelGraficoPie.Visible = true;
-            string rut = Session["rutAlumno"].ToString();
-            string[] series = { "Correctas", "Incorrectas" };
-            CatalogHPA cHPA = new CatalogHPA();
-            int[] arrResultados = new int[2];
-            if (ddCompetencia.SelectedValue == "0")
-            {
-                arrResultados = cHPA.resultadoPreguntasE(rut, int.Parse(ddEvaluacion.SelectedValue));
-            }
-            else
-            {
-                //arrResultados = cHPA.resultadoPreguntas(rut, int.Parse(ddCompetencia.SelectedValue));
-            }
-
-            chartEvaluacion.Series.Clear();
-            chartEvaluacion.Palette = ChartColorPalette.Fire;
-            chartEvaluacion.BackColor = Color.LightYellow;
-            chartEvaluacion.Titles.Add(ddCompetencia.SelectedItem.ToString());
-            chartEvaluacion.ChartAreas[0].BackColor = Color.Transparent;
-            Series series1 = new Series
-            {
-                Name = "series1",
-                IsVisibleInLegend = true,
-                Color = Color.Green,
-                ChartType = SeriesChartType.Pie
-            };
-            chartEvaluacion.Series.Add(series1);
-            series1.Points.Add(arrResultados[0]);
-            series1.Points.Add(arrResultados[1]);
-            var p1 = series1.Points[0];
-            p1.AxisLabel = series[0];
-            p1.LegendText = "Hiren Khirsaria";
-            var p2 = series1.Points[1];
-            p2.AxisLabel = series[1];
-            p2.LegendText = "ABC XYZ";
-            panelGraficoPie.Controls.Add(chartEvaluacion);
-        }*/
 
         public void graficoColumna()
         {
+            string rut = Session["rutAlumno"].ToString();
             panelGraficoColumna.Visible = true;
             chartColumna.Visible = true;
-            string rut = Session["rutAlumno"].ToString();
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(rut, int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddDesempeno.SelectedValue));
+            List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneralAlumno(int.Parse(ddEvaluacion.SelectedValue), rut);
 
             int i = 0;
             while (i < result.Count)
@@ -127,22 +87,16 @@ namespace CapaDePresentacion.Alum
                 }
             }
             chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
-
-            /*/ Create a new legend called "Legend2".
-            chartColumna.Legends.Add(new Legend("Incorrectas"));
-            chartColumna.Legends.Add(new Legend("Correctas"));
-
-            // Assign the legend to Series1.
-            chartColumna.Series["Incorrectas"].Legend = "Incorrectas";
-            chartColumna.Series["Incorrectas"].IsVisibleInLegend = true;
-
-            chartColumna.Series["Correctas"].Legend = "Correctas";
-            chartColumna.Series["Correctas"].IsVisibleInLegend = true;*/
         }
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
-            this.graficoColumna();            
+            this.graficoColumna();
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
+            this.gvDesempenos.DataSource = lDesempenos;
+            this.DataBind();
+            gvDesempenos.Visible = true;
         }
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,18 +111,6 @@ namespace CapaDePresentacion.Alum
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;
-
-            CatalogDesempeno cDesempeno = new CatalogDesempeno();
-            List<Desempeno> lDesempeno = cDesempeno.listarDesempenosAsignatura(ddAsignatura.SelectedValue);
-
-            this.ddDesempeno.Items.Clear();
-
-            if (lDesempeno.Count > 0)
-                this.ddDesempeno.Items.Add(new ListItem("Todos los Desempeños", "0"));
-
-            this.ddDesempeno.DataTextField = "Indicador_desempeno";
-            this.ddDesempeno.DataValueField = "Id_desempeno";
-            this.ddDesempeno.DataSource = lDesempeno;
             this.DataBind();//enlaza los datos a un dropdownlist  
         }
     }

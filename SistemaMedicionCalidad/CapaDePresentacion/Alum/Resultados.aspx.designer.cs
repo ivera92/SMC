@@ -31,24 +31,6 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.WebControls.DropDownList ddEvaluacion;
         
         /// <summary>
-        /// divDesempeno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDesempeno;
-        
-        /// <summary>
-        /// ddDesempeno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddDesempeno;
-        
-        /// <summary>
         /// btnGraficar control.
         /// </summary>
         /// <remarks>
@@ -74,5 +56,14 @@ namespace CapaDePresentacion.Alum {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartColumna;
+        
+        /// <summary>
+        /// gvDesempenos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvDesempenos;
     }
 }
