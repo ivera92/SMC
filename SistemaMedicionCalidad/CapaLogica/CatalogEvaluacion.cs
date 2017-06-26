@@ -524,6 +524,47 @@ namespace Project
             bd.execute();
             bd.Close();
         }
+
+        public List<string> resultadosEspecificos(int id_evaluacion, int accion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarResultadosEspecificos";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            bd.createParameter("@accion", DbType.Int32, accion);
+            DbDataReader result = bd.Query();
+            List<string> lResultados = new List<string>();
+            while (result.Read())
+            {
+                try
+                {
+                    lResultados.Add(result.GetString(0));
+                }
+                catch
+                {
+                    lResultados.Add(result.GetInt32(0)+"");
+                }
+
+                lResultados.Add(result.GetString(1));
+
+                try
+                {
+                    lResultados.Add(result.GetString(2));
+                }
+                catch
+                {
+                    lResultados.Add(result.GetInt32(2)+"");
+                }
+                
+                
+                
+            }
+            result.Close();
+            bd.Close();
+            return lResultados;
+        }
     }
 }
 

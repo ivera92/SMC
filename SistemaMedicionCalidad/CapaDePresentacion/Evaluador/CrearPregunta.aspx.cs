@@ -28,7 +28,7 @@ namespace CapaDePresentacion.Evaluador
             CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
             List<Tipo_Pregunta> lTiposPregunta = cTipoPregunta.listarTipoPreguntas();
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
-            List<Desempeno> lDesempenos = cDesempeno.listarDesempenos();
+            List<Desempeno> lDesempenos = cDesempeno.listarDesempenosAjustado();
             this.crearRespuestas();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {

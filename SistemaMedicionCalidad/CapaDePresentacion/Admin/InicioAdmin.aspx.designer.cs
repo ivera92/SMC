@@ -220,13 +220,13 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
         
         /// <summary>
-        /// imgBtnClave control.
+        /// imgBtnContrasena control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgBtnClave;
+        protected global::System.Web.UI.WebControls.ImageButton imgBtnContrasena;
         
         /// <summary>
         /// HyperLink5 control.

@@ -33,8 +33,9 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <asp:GridView ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
+                <asp:GridView  class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                    <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <Columns>
                         <asp:BoundField DataField="Rut" HeaderText="Rut" />
                         <asp:BoundField DataField="Nombre Estudiante" HeaderText="Nombre" />

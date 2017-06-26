@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <asp:GridView class="table table-striped" ID="gvPreguntas" runat="server" AutoGenerateColumns="false" OnRowDeleting="rowDeleting"
-                    OnRowEditing="rowEditing" PageSize="10" AllowPaging="true" OnPageIndexChanging="gvPreguntas_PageIndexChanging">
+                    OnRowEditing="rowEditing" PageSize="10" AllowPaging="true" OnPageIndexChanging="gvPreguntas_PageIndexChanging" OnRowCommand="gvPreguntas_RowCommand">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <EmptyDataTemplate>
@@ -29,6 +29,9 @@
                     </EmptyDataTemplate>
                     <Columns>
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" />
+                        <asp:ButtonField ButtonType="Button" CommandName="activo" ControlStyle-CssClass="btnActivo" Text="Cambiar estado">
+                            <ControlStyle CssClass="btnActivo form-control btn-danger" />
+                        </asp:ButtonField>
                         <asp:BoundField DataField="Enunciado_pregunta" HeaderText="Enunciado" />
                         <asp:BoundField DataField="id_desempeno.indicador_desempeno" HeaderText="Desempeño" />
                         <asp:BoundField DataField="Nivel_pregunta.nombre_nivel" HeaderText="Nivel" />

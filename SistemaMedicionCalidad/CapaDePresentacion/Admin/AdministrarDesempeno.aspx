@@ -32,6 +32,7 @@
                         <asp:BoundField DataField="Id_desempeno" HeaderText="ID" />
                         <asp:BoundField DataField="Indicador_Desempeno" HeaderText="Indicador de desempeño" />
                     </Columns>
+                    <PagerStyle HorizontalAlign = "Right" CssClass ="pagination-ys" />
                 </asp:GridView>
             </div>
             <asp:TextBox ID="txtid" runat="server"></asp:TextBox>

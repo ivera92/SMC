@@ -11,7 +11,7 @@
     <h2 class="text-center">Asociar desempeño a asignatura</h2>
     <br />
     <div class="row">
-        <div class="col-sm-offset-1 col-sm-10">
+        <div class="col-sm-12">
         <label">Desempeño</label>  
             <asp:DropDownList CssClass="form-control" AutoPostBack="true" AppendDataBoundItems="true" ID="ddDesempeno" runat="server" OnSelectedIndexChanged="ddDesempeno_SelectedIndexChanged">
                 <asp:ListItem Value="0"><--Seleccione un desempeño--></asp:ListItem>
@@ -21,23 +21,20 @@
     <br />
 
     <div class="row">
-        <div class="col-sm-offset-1 col-sm-10">
+        <div class="col-sm-6">
             <label>Asignatura</label>
             <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddAsignatura" runat="server">
                 <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
             </asp:DropDownList>
         </div>
-    </div>
-    <br />
-
-    <div class="row">
-        <div class="col-sm-offset-1 col-sm-10">
+        <div class="col-sm-6">
             <label>Nivel</label>
             <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddNivel" runat="server">
                 <asp:ListItem Value="0"><--Seleccione un nivel--></asp:ListItem>
             </asp:DropDownList>
         </div>
     </div>
+    <br />
     <br />
 
     <div class="row">

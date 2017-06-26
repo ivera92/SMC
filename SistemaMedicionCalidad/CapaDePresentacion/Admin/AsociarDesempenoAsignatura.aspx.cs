@@ -26,7 +26,7 @@ namespace CapaDePresentacion.Admin
                 CatalogAsignatura cAsignatura = new CatalogAsignatura();
                 List<Asignatura> lAsignatura = cAsignatura.listarAsignaturas();
                 CatalogDesempeno cDesempeno = new CatalogDesempeno();
-                List<Desempeno> lDesempeno = cDesempeno.listarDesempenos();
+                List<Desempeno> lDesempeno = cDesempeno.listarDesempenosAjustado();
 
                 if (!Page.IsPostBack) //para ver si cargo por primera vez
                 {

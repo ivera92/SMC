@@ -99,15 +99,15 @@
     <Content Include="Admin\AsociarDesempenoAsignatura.aspx" />
     <Content Include="Admin\CrearDesempeno.aspx" />
     <Content Include="Admin\CrearUsuario.aspx" />
-    <Content Include="Admin\ImagenesAdmin\imgAlumno.jpeg" />
-    <Content Include="Admin\ImagenesAdmin\imgAsignatura.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgClave.png" />
-    <Content Include="Admin\ImagenesAdmin\imgCompetencia.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgDocente.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgEscuela.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgEvaluacion.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgPregunta.jpg" />
-    <Content Include="Admin\ImagenesAdmin\imgResultados.jpg" />
+    <Content Include="Admin\ImagenesAdmin\imgAlumno.png" />
+    <Content Include="Admin\ImagenesAdmin\imgAsignatura.png" />
+    <Content Include="Admin\ImagenesAdmin\imgCompetencia.png" />
+    <Content Include="Admin\ImagenesAdmin\imgContrasena.png" />
+    <Content Include="Admin\ImagenesAdmin\imgDocente.png" />
+    <Content Include="Admin\ImagenesAdmin\imgEscuela.png" />
+    <Content Include="Admin\ImagenesAdmin\imgEvaluacion.png" />
+    <Content Include="Admin\ImagenesAdmin\imgPregunta.png" />
+    <Content Include="Admin\ImagenesAdmin\imgResultados.png" />
     <Content Include="Admin\InicioAdmin.aspx" />
     <Content Include="Admin\InscribirRamo.aspx" />
     <Content Include="Admin\Logout.aspx" />
@@ -145,6 +145,7 @@
     <Content Include="Evaluador\CrearEvaluacion.aspx" />
     <Content Include="Evaluador\CrearPregunta.aspx" />
     <Content Include="Evaluador\Logout.aspx" />
+    <Content Include="Evaluador\ResultadosEspecificos.aspx" />
     <Content Include="Evaluador\ResultadosEvaluaciones.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ImagenesPreguntas\ejercicio5Mate1.PNG.PNG" />
@@ -578,6 +579,13 @@
     </Compile>
     <Compile Include="Evaluador\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluador\ResultadosEspecificos.aspx.cs">
+      <DependentUpon>ResultadosEspecificos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\ResultadosEspecificos.aspx.designer.cs">
+      <DependentUpon>ResultadosEspecificos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Evaluador\ResultadosEvaluaciones.aspx.cs">
       <DependentUpon>ResultadosEvaluaciones.aspx</DependentUpon>

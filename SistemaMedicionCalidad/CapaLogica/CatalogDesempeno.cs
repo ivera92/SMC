@@ -18,8 +18,38 @@ namespace Project
             List<Desempeno> lDesempenos = new List<Desempeno>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
-            {
+            {                
                 Desempeno d = new Desempeno(result.GetInt32(0), result.GetString(1));
+                lDesempenos.Add(d);
+            }
+            result.Close();
+            bd.Close();
+            return lDesempenos;
+        }
+
+        //Lista todos los desempeños existentes en la base de datos
+        public List<Desempeno> listarDesempenosAjustado()
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarDesempenos";
+            bd.CreateCommandSP(sqlSearch);
+            List<Desempeno> lDesempenos = new List<Desempeno>();
+            DbDataReader result = bd.Query();//disponible resultado
+            while (result.Read())
+            {
+                string s = "";
+                try
+                {
+                    s = result.GetString(1).Substring(0, 145) + "...";
+                }
+                catch
+                {
+                    s = result.GetString(1);
+                }
+
+                Desempeno d = new Desempeno(result.GetInt32(0), s);
                 lDesempenos.Add(d);
             }
             result.Close();

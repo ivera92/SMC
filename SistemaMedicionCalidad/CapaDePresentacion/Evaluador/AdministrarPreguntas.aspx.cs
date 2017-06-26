@@ -30,7 +30,7 @@ namespace CapaDePresentacion.Evaluador
             }
             
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
-            List<Desempeno> lDesempenos = cDesempeno.listarDesempenos();
+            List<Desempeno> lDesempenos = cDesempeno.listarDesempenosAjustado();
             this.crearControles();
             this.editar.Visible = false;
             if (!Page.IsPostBack) //para ver si cargo por primera vez
@@ -245,6 +245,11 @@ namespace CapaDePresentacion.Evaluador
         protected void ddDesempeno_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.cargarNiveles();
+        }
+
+        protected void gvPreguntas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
         }
     }
 }

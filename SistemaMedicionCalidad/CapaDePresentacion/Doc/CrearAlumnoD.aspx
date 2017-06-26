@@ -7,8 +7,8 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-        
-        <div class="row" runat="server" id="divOpcion">
+
+    <div class="row" runat="server" id="divOpcion">
         <h2 class="text-center">Crear Alumno</h2>
         <br />
         <div class="col-sm-offset-3 col-sm-3">
@@ -35,8 +35,9 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <asp:GridView ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
+                <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                    <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <Columns>
                         <asp:BoundField DataField="Rut" HeaderText="Rut" />
                         <asp:BoundField DataField="Nombre Estudiante" HeaderText="Nombre" />
