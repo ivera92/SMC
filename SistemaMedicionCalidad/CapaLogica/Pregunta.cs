@@ -9,6 +9,8 @@
         private string imagen_pregunta;
         private Nivel nivel_pregunta;
 
+        private string estado;
+
         //Constructor predeterminado
         public Pregunta()
         {
@@ -23,7 +25,7 @@
             this.nivel_pregunta = nivel_pregunta;
         }
 
-        public Pregunta(int id_pregunta, Desempeno id_desempeno, Tipo_Pregunta tipo_pregunta_pregunta, string enunciado_pregunta, string imagen_pregunta, Nivel nivel_pregunta)
+        public Pregunta(int id_pregunta, Desempeno id_desempeno, Tipo_Pregunta tipo_pregunta_pregunta, string enunciado_pregunta, string imagen_pregunta, Nivel nivel_pregunta, string estado)
         {
             this.id_pregunta = id_pregunta;
             this.id_desempeno = id_desempeno;
@@ -31,6 +33,7 @@
             this.enunciado_pregunta = enunciado_pregunta;
             this.imagen_pregunta = imagen_pregunta;
             this.nivel_pregunta = nivel_pregunta;
+            this.estado = estado;
         }
 
         public int Id_pregunta
@@ -67,6 +70,19 @@
         {
             get { return nivel_pregunta; }
             set { nivel_pregunta = value; }
+        }
+
+        public string Estado
+        {
+            get
+            {
+                return estado;
+            }
+
+            set
+            {
+                estado = value;
+            }
         }
     }
 }

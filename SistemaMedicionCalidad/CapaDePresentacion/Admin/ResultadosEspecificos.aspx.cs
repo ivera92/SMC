@@ -1,11 +1,8 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using Project;
+﻿using Project;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Web.UI.DataVisualization.Charting;
 
-namespace CapaDePresentacion.Evaluador
+namespace CapaDePresentacion.Admin
 {
     public partial class ResultadosEspecificos : System.Web.UI.Page
     {

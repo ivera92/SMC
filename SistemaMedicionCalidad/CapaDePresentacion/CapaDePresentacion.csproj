@@ -111,6 +111,7 @@
     <Content Include="Admin\InicioAdmin.aspx" />
     <Content Include="Admin\InscribirRamo.aspx" />
     <Content Include="Admin\Logout.aspx" />
+    <Content Include="Admin\ResultadosEspecificos.aspx" />
     <Content Include="Admin\ResultadosEvaluaciones.aspx" />
     <Content Include="Alum\CambiarClave.aspx" />
     <Content Include="Alum\EvaluacionA.aspx" />
@@ -327,6 +328,13 @@
     </Compile>
     <Compile Include="Admin\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ResultadosEspecificos.aspx.cs">
+      <DependentUpon>ResultadosEspecificos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ResultadosEspecificos.aspx.designer.cs">
+      <DependentUpon>ResultadosEspecificos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ResultadosEvaluaciones.aspx.cs">
       <DependentUpon>ResultadosEvaluaciones.aspx</DependentUpon>

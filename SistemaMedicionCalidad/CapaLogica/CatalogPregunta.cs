@@ -121,6 +121,17 @@ namespace Project
                     p.Imagen_pregunta = "";
                 }
                 p.Nivel_pregunta = cNivel.buscarNivel(result.GetInt32(5));
+
+                string estado = "";
+                if (result.GetBoolean(6) == true)
+                {
+                    estado = "Activo";
+                }
+                else
+                {
+                    estado = "Inactivo";
+                }
+                p.Estado = estado;
                 lPreguntas.Add(p);
             }
             result.Close();
@@ -160,6 +171,18 @@ namespace Project
                     p.Imagen_pregunta = "";
                 }
                 p.Nivel_pregunta = cNivel.buscarNivel(result.GetInt32(5));
+
+                string estado = "";
+                if (result.GetBoolean(6) == true)
+                {
+                    estado = "Activo";
+                }
+                else
+                {
+                    estado = "Inactivo";
+                }
+                p.Estado = estado;
+
                 lPreguntas.Add(p);
             }
             result.Close();
@@ -179,6 +202,21 @@ namespace Project
             bd.createParameter("@id_desempeno_pregunta", DbType.Int32, p.Id_desempeno.Id_desempeno);
             bd.createParameter("@enunciado_pregunta", DbType.String, p.Enunciado_pregunta);
             bd.createParameter("@nivel_pregunta", DbType.Int32, p.Nivel_pregunta.Id_nivel);
+            bd.execute();
+            bd.Close();
+        }
+
+        //Actualiza el estado de una pregunta existente en la base de datos
+        public void actualizarEstadoPregunta(int id_pregunta, bool estado)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "editarEstadoPregunta";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_pregunta", DbType.Int32, id_pregunta);
+            bd.createParameter("@estado", DbType.Boolean, estado);
             bd.execute();
             bd.Close();
         }

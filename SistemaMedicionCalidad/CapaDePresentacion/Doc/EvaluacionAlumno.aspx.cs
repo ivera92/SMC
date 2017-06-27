@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using Project;
 using System.Data;
 using Project.CapaDeNegocios;
+using System.Drawing;
 
 namespace CapaDePresentacion.Doc
 {
@@ -28,7 +29,6 @@ namespace CapaDePresentacion.Doc
                 string rut = Session["rutDocente"].ToString();
                 CatalogAsignatura cAsignatura = new CatalogAsignatura();
                 List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturasDocente(rut);
-                btnSiguiente.Visible = false;
                 btnGuardar.Visible = false;
                 divPreguntas.Visible = false;
                 if (!Page.IsPostBack) //para ver si cargo por primera vez
@@ -166,18 +166,37 @@ namespace CapaDePresentacion.Doc
 
                     if (rbl.Items.Count > 0 && x=="rbl")
                     {
+                        rbl.ID = "rbl" + lRbl.Count;
+                        RequiredFieldValidator rqdVal = new RequiredFieldValidator();
+                        rqdVal.ID = "rqdVal" + rbl.ID;
+                        rqdVal.ControlToValidate = rbl.ID;
+                        rqdVal.ErrorMessage = "Por favor seleccione al menos una respuesta en todas las preguntas";
+                        rqdVal.ForeColor = Color.Red;
+                        rqdVal.Display = ValidatorDisplay.Dynamic;
                         lRbl.Add(rbl);
+                        this.Panel1.Controls.Add(new LiteralControl("<br/>"));
+                        this.Panel1.Controls.Add(rqdVal);
                         this.Panel1.Controls.Add(rbl);
                     }
                     else if (cbxl.Items.Count > 0 && x == "cbxl")
                     {
+                        cbxl.ID = "cbxl" + lCbl.Count;
                         lCbl.Add(cbxl);
                         this.Panel1.Controls.Add(cbxl);
                     }
                     else if (rblVF.Items.Count > 0 && x == "rblVF") 
                     {
+                        rblVF.ID = "rblVF" + lRblVF.Count;
+                        RequiredFieldValidator rqdVal = new RequiredFieldValidator();
+                        rqdVal.ID = "rqdVal" + rblVF.ID;
+                        rqdVal.ControlToValidate = rblVF.ID;
+                        rqdVal.ErrorMessage = "Por favor seleccione al menos una respuesta en todas las preguntas";
+                        rqdVal.ForeColor = Color.Red;
+                        rqdVal.Display = ValidatorDisplay.Dynamic;
                         lRblVF.Add(rblVF);
                         this.Panel1.Controls.Add(rblVF);
+                        this.Panel1.Controls.Add(new LiteralControl("<br/>"));
+                        this.Panel1.Controls.Add(rqdVal);
                     }
 
                     if (result[0].ToString() == "Seleccion multiple")
@@ -225,18 +244,37 @@ namespace CapaDePresentacion.Doc
             }
             if (rbl.Items.Count > 0 && x == "rbl")
             {
+                rbl.ID = "rbl"+lRbl.Count;
+                RequiredFieldValidator rqdVal = new RequiredFieldValidator();
+                rqdVal.ID = "rqdVal"+rbl.ID;
+                rqdVal.ControlToValidate = rbl.ID;
+                rqdVal.ErrorMessage = "Por favor seleccione al menos una respuesta en todas las preguntas";
+                rqdVal.ForeColor = Color.Red;
+                rqdVal.Display = ValidatorDisplay.Dynamic;                
                 lRbl.Add(rbl);
                 this.Panel1.Controls.Add(rbl);
+                this.Panel1.Controls.Add(new LiteralControl("<br/>"));
+                this.Panel1.Controls.Add(rqdVal);
             }
             else if (cbxl.Items.Count > 0 && x == "cbxl")
             {
+                cbxl.ID = "cbxl" + lCbl.Count;
                 lCbl.Add(cbxl);
                 this.Panel1.Controls.Add(cbxl);
             }
             else if (rblVF.Items.Count > 0 && x == "rblVF")
             {
+                rblVF.ID = "rblVF" + lRblVF.Count;
+                RequiredFieldValidator rqdVal = new RequiredFieldValidator();
+                rqdVal.ID = "rqdVal"+rblVF.ID;
+                rqdVal.ControlToValidate = rblVF.ID;
+                rqdVal.ErrorMessage = "Por favor seleccione al menos una respuesta en todas las preguntas";
+                rqdVal.ForeColor = Color.Red;
+                rqdVal.Display = ValidatorDisplay.Dynamic;
                 lRblVF.Add(rblVF);
                 this.Panel1.Controls.Add(rblVF);
+                this.Panel1.Controls.Add(new LiteralControl("<br/>"));                
+                this.Panel1.Controls.Add(rqdVal);
             }
         }
 
@@ -246,12 +284,11 @@ namespace CapaDePresentacion.Doc
             {
                 divEvaluar.Visible = false;
                 this.checkearChecked();
-                Response.Write("<script>window.alert('Alumno evaluado correctamente');</script>");
-                btnSiguiente.Visible = true;                
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Respuestas guardadas satisfactoriamente, revise sus resultados');window.location='ResultadosEvaluaciones.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('Alumno ya fue evaluado para esta asignatura');</script>");
+                Response.Write("<script>window.alert('Alumno no pudo ser evaluado');</script>");
             }
         }
         //Carga las evaluaciones dependiendo de la asignatura
@@ -265,12 +302,6 @@ namespace CapaDePresentacion.Doc
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;
             this.DataBind();//enlaza los datos a un dropdownlist    
-        }
-
-        protected void btnSiguiente_Click(object sender, EventArgs e)
-        {
-            divEvaluar.Visible = true;
-            Response.Redirect("EvaluacionAlumno.aspx");
         }
 
         protected void ddEvaluacion_SelectedIndexChanged(object sender, EventArgs e)

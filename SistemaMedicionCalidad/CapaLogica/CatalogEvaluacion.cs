@@ -565,6 +565,32 @@ namespace Project
             bd.Close();
             return lResultados;
         }
+
+        //Lista las evaluaciones pendientes de un alumno en una asignatura en la base de datos
+        public List<Evaluacion> listarEvaluacionesPendientes(string rut_alumno, string cod_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarEvaluacionesPendientes";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura);
+            List<Evaluacion> lEvaluaciones = new List<Evaluacion>();
+            DbDataReader result = bd.Query();
+            CatalogEvaluacion cEvaluaciones = new CatalogEvaluacion();
+
+            while (result.Read())
+            {
+                Evaluacion e = new Evaluacion(result.GetInt32(0), result.GetString(1));
+                lEvaluaciones.Add(e);
+            }
+            result.Close();
+            bd.Close();
+
+            return lEvaluaciones;
+        }
     }
 }
 

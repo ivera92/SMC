@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -60,7 +59,7 @@ namespace CapaDePresentacion
 
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)(this.gvPreguntas.Rows[e.RowIndex].Cells[4].Text)));
+            int id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)(this.gvPreguntas.Rows[e.RowIndex].Cells[2].Text)));
             CatalogPregunta cPregunta = new CatalogPregunta();
             CatalogRespuesta cRespuesta = new CatalogRespuesta();
 
@@ -118,7 +117,7 @@ namespace CapaDePresentacion
         protected void rowEditing(object sender, GridViewEditEventArgs e)
         {
             this.editar.Visible = true;
-            id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)this.gvPreguntas.Rows[e.NewEditIndex].Cells[4].Text));            
+            id_pregunta = int.Parse(HttpUtility.HtmlDecode((string)this.gvPreguntas.Rows[e.NewEditIndex].Cells[2].Text));            
             CatalogPregunta cPregunta = new CatalogPregunta();
             Pregunta p = cPregunta.buscarUnaPregunta(id_pregunta);
             this.administrar.Visible = false;
@@ -245,6 +244,32 @@ namespace CapaDePresentacion
         protected void ddDesempeno_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.cargarNiveles();
+        }
+
+        protected void gvPreguntas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "activo")
+            {
+                // Recupera el índice de fila almacenado en el CommandArgument propiedad.
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                // Recuperar la fila que contiene el botón de la Filas.
+                GridViewRow row = gvPreguntas.Rows[index];
+                int id_pregunta = int.Parse(HttpUtility.HtmlDecode(row.Cells[2].Text));
+                string estado = HttpUtility.HtmlDecode(row.Cells[6].Text);
+                bool estado_nuevo;
+                if (estado == "Activo")
+                {
+                    estado_nuevo = false;
+                }
+                else
+                {
+                    estado_nuevo = true;
+                }
+                CatalogPregunta cPregunta = new CatalogPregunta();
+                cPregunta.actualizarEstadoPregunta(id_pregunta, estado_nuevo);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Estado de pregunta cambiado satisfactoriamente');window.location='AdministrarPreguntas.aspx';</script>'");
+            }
         }
     }
 }

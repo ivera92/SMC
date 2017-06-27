@@ -31,15 +31,6 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.TextBox txtRut;
         
         /// <summary>
-        /// cv_rut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cv_rut;
-        
-        /// <summary>
         /// ddAsignatura control.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddEvaluacion;
+        
+        /// <summary>
+        /// cv_rut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_rut;
         
         /// <summary>
         /// divPreguntas control.
@@ -83,14 +83,5 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
-        
-        /// <summary>
-        /// btnSiguiente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSiguiente;
     }
 }

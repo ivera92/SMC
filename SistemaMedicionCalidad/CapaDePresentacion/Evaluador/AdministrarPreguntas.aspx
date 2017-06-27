@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-sm-offset-2 col-sm-6">
-                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre desempeño, enunciado o nivel" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese indicador de desempeño, enunciado o nivel" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-sm-2">
                 <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
@@ -32,10 +32,11 @@
                         <asp:ButtonField ButtonType="Button" CommandName="activo" ControlStyle-CssClass="btnActivo" Text="Cambiar estado">
                             <ControlStyle CssClass="btnActivo form-control btn-danger" />
                         </asp:ButtonField>
+                        <asp:BoundField DataField="Id_pregunta" HeaderText="ID" />
                         <asp:BoundField DataField="Enunciado_pregunta" HeaderText="Enunciado" />
                         <asp:BoundField DataField="id_desempeno.indicador_desempeno" HeaderText="Desempeño" />
-                        <asp:BoundField DataField="Nivel_pregunta.nombre_nivel" HeaderText="Nivel" />
-                        <asp:BoundField DataField="Id_pregunta" HeaderText="ID" />
+                        <asp:BoundField DataField="Nivel_pregunta.nombre_nivel" HeaderText="Nivel" />    
+                        <asp:BoundField DataField="estado" HeaderText="Estado" />                      
                     </Columns>
                     <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
                 </asp:GridView>

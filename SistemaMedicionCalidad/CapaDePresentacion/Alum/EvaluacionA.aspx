@@ -18,7 +18,7 @@
             </div>
 
             <div class="col-sm-5">
-                <label>Evaluacion</label>
+                <label>Evaluaciones pendientes</label>
                 <div>
                     <asp:DropDownList ID="ddEvaluacion" CssClass="form-control" AutoPostBack="true" AppendDataBoundItems="true" runat="server" OnSelectedIndexChanged="ddEvaluacion_SelectedIndexChanged">
                         <asp:ListItem Value="0"><--Seleccione una evaluacion--></asp:ListItem>
@@ -40,11 +40,5 @@
             </div>
         </div>
         <br />
-    </div>
-
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
-            <asp:Button runat="server" CssClass="btn btn-block btn-primary" ID="btnSiguiente" Text="Seguir evalaluando" OnClick="btnSiguiente_Click" />
-        </div>
     </div>
 </asp:Content>
