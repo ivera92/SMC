@@ -14,35 +14,35 @@ namespace CapaDePresentacion.Doc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string rut = "";
             try
             {
-                rut = Session["rutDocente"].ToString();
+                string rut = Session["rutDocente"].ToString();
+                CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasDocente(rut);
+                if (!Page.IsPostBack) //para ver si cargo por primera vez
+                {
+                    this.ddAsignatura.DataTextField = "Nombre_asignatura";
+                    this.ddAsignatura.DataValueField = "Cod_asignatura";
+                    this.ddAsignatura.DataSource = lAsignatura;
+                    this.DataBind();//enlaza los datos a un dropdownlist  
+                }
             }
             catch
             {
                 Response.Redirect("../CheqLogin.aspx");
-            }
-            CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            List<Asignatura> lAsignatura = cAsignatura.listarAsignaturasDocente(rut);
+            }  
 
             divCrearManual.Visible = false;
             divCrearExcel.Visible = false;
 
-            if (!Page.IsPostBack) //para ver si cargo por primera vez
-            {
-                this.ddAsignatura.DataTextField = "Nombre_asignatura";
-                this.ddAsignatura.DataValueField = "Cod_asignatura";
-                this.ddAsignatura.DataSource = lAsignatura;
-                this.DataBind();//enlaza los datos a un dropdownlist  
-            }
+            
         }
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
             CatalogCursa cCursa = new CatalogCursa();
 
-            Alumno a = new Alumno(this.txtRut.Text.Trim(), this.txtNombre.Text.Trim(), this.txtCorreo.Text.Trim());
+            Alumno a = new Alumno(this.txtRut.Text.Trim().ToUpper(), this.txtNombre.Text.Trim(), this.txtCorreo.Text.Trim());
             try
             {
                 cAlumno.insertarAlumno(a);
@@ -56,11 +56,11 @@ namespace CapaDePresentacion.Doc
                         cCursa.inscribirAsignatura(c);
                     }
                 }
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Alumno creado satisfactoriamente');window.location='CrearAlumno.aspx';</script>'");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Alumno creado satisfactoriamente');window.location='CrearAlumnoD.aspx';</script>'");
             }
             catch
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Ya existe registro asociado al rut');window.location='CrearAlumno.aspx';</script>'");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Ya existe registro asociado al rut');window.location='CrearAlumnoD.aspx';</script>'");
             }
         }
         protected void ImportExcel()
@@ -141,7 +141,7 @@ namespace CapaDePresentacion.Doc
                     Cursa c = new Cursa();
                     try
                     {
-                        rut = HttpUtility.HtmlDecode(row.Cells[0].Text).Substring(2, 10);
+                        rut = HttpUtility.HtmlDecode(row.Cells[0].Text).Substring(2, 10).ToUpper();
                         nombre = HttpUtility.HtmlDecode(row.Cells[1].Text);
                         email = HttpUtility.HtmlDecode(row.Cells[2].Text);
                         asignatura = HttpUtility.HtmlDecode(row.Cells[3].Text);

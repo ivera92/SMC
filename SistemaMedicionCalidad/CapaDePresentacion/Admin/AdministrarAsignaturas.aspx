@@ -5,31 +5,26 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div id="divAdministrar" runat="server">
-        <h2 class="text-center">Administrar Asignaturas</h2>
-        <br />
-
-        <div class="row">
+    <div id="divAdministrar" runat="server" class="row">
+        <div class="col-sm-12" style="border: solid 1px #ccc">
+            <asp:Image ID="aAsignatura" runat="server" ImageUrl="ImagenesAdmin/aAsignaturas.PNG" />
+        
             <div class="col-sm-offset-3 col-sm-4">
                 <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre o codigo a buscar" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-sm-2">
                 <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
             </div>
-        </div>
-        <br />
-
-        <div class="row">
             <div class="col-sm-12">
                 <asp:GridView class="table table-striped" ID="gvAsignatura" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeleting" OnRowEditing="rowEditing"
                     PageSize="10" AllowPaging="true" OnPageIndexChanging="gvAsignatura_PageIndexChanging">
-                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <EmptyDataTemplate>
                         ¡No existen asignaturas!
                     </EmptyDataTemplate>
                     <Columns>
-                        <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" />
+                        <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" HeaderText="Accion" />
                         <asp:BoundField DataField="Cod_Asignatura" HeaderText="Codigo" />
                         <asp:BoundField DataField="Escuela_Asignatura.Nombre_Escuela" HeaderText="Escuela" />
                         <asp:BoundField DataField="Nombre_Asignatura" HeaderText="Asignatura" />
@@ -38,6 +33,7 @@
                     <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
                 </asp:GridView>
             </div>
+            <asp:Image ID="aEND" runat="server" ImageUrl="ImagenesAdmin/iEndSM12.PNG" />
         </div>
     </div>
 
@@ -65,7 +61,9 @@
         <label class="col-sm-offset-4">Nombre</label>
         <div class="row">
             <div class="col-sm-offset-4 col-sm-4">
-                <asp:TextBox ID="txtNombre" runat="server" class="form-control" pattern="^([a-zA-ZÁÉÍÓÚa-zñáéíóú1234567890]{1}*)+$" placeHolder="Ingrese nombre" required></asp:TextBox>
+                <asp:TextBox ID="txtNombre" runat="server" class="form-control" pattern=".{6,}" placeHolder="Ingrese nombre"
+                    oninvalid="setCustomValidity('El nombre debe contener un minimo de 6 caracteres')"
+                    oninput="setCustomValidity('')" required></asp:TextBox>
             </div>
         </div>
         <br />

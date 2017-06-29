@@ -1,6 +1,9 @@
-﻿using Project;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Project;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace CapaDePresentacion.Admin
 {
@@ -8,12 +11,22 @@ namespace CapaDePresentacion.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string rut = Session["rutAdmin"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("../CheqLogin.aspx");
+            }
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturas();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
+                gvDesempenos.Visible = false;
                 divAlumno.Visible = false;
                 divPregunta.Visible = false;
+                divRut.Visible = false;
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
                 this.ddAsignatura.DataValueField = "Cod_asignatura";
                 this.ddAsignatura.DataSource = lAsignaturas;
@@ -32,7 +45,9 @@ namespace CapaDePresentacion.Admin
                 this.graficoColumna(lResultados[0]);
                 divPregunta.Visible = false;
                 divAlumno.Visible = true;
+                chartColumna.Visible = true;
                 lblCorrectas.InnerText = lResultados[2];
+                gvDesempenos.Visible = true;
             }
             else if (ddOpcion.SelectedValue == "2")
             {
@@ -41,13 +56,14 @@ namespace CapaDePresentacion.Admin
                 this.graficoColumna(lResultados[0]);
                 divPregunta.Visible = false;
                 divAlumno.Visible = true;
-                lblCorrectas.InnerText = lResultados[2];                
+                chartColumna.Visible = true;
+                lblCorrectas.InnerText = lResultados[2];
+                gvDesempenos.Visible = true;          
             }
             else if (ddOpcion.SelectedValue == "3")
             {
                 List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 3);
                 txtAPregunta.InnerText = lResultados[1];
-                lblID.InnerText = lResultados[0];
                 lblCorrectasP.InnerText = lResultados[2];
                 divAlumno.Visible = false;
                 divPregunta.Visible = true;                
@@ -56,15 +72,26 @@ namespace CapaDePresentacion.Admin
             {
                 List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 4);
                 txtAPregunta.InnerText = lResultados[1];
-                lblID.InnerText = lResultados[0];
                 lblCorrectasP.InnerText = lResultados[2];
                 divAlumno.Visible = false;
                 divPregunta.Visible = true;
+            }
+            else if (ddOpcion.SelectedValue == "5")
+            {
+                graficoColumna(txtRut.Text);
+                divAlumno.Visible = true;
+                lblCorrectas.Visible = false;
+                lblNombreAlumno.Visible = false;
+                nombre.Visible = false;
+                respuestas.Visible = false;
+                divPregunta.Visible = false;
+                gvDesempenos.Visible = true;
             }
         }
 
         public void graficoColumna(string rut_alumno)
         {
+            this.mostrar();
             panelGraficoColumna.Visible = true;
             chartColumna.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
@@ -128,6 +155,32 @@ namespace CapaDePresentacion.Admin
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;
             this.DataBind();//enlaza los datos a un dropdownlist  
+        }
+
+        protected void ddOpcion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chartColumna.Visible = false;
+            divAlumno.Visible = false;
+            gvDesempenos.Visible = false;
+            divPregunta.Visible = false;
+            if (ddOpcion.SelectedValue == "5")
+            {
+                txtRut.Text = "";
+                divRut.Visible = true;
+            }
+            else
+            {
+                divRut.Visible = false;
+            }
+        }
+
+        public void mostrar()
+        {
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+            List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
+            this.gvDesempenos.DataSource = lDesempenos;
+            this.DataBind();
         }
     }
 }

@@ -191,6 +191,18 @@ namespace CapaDePresentacion.Evaluador
                             fileOK = true;
                         }
                     }
+                    if (fileOK)
+                    {
+                        int width = Convert.ToInt32(fileImagen.Width);
+                        int height = Convert.ToInt32(fileImagen.Height);
+                        while (width > 1100)
+                        {
+                            width = width * (80 / 100);
+                            height = height * (80 / 100);
+                            fileImagen.Width = width;
+                            fileImagen.Height = height;
+                        }
+                    }
                 }
 
                 if (fileOK)

@@ -40,6 +40,33 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddOpcion;
         
         /// <summary>
+        /// divRut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRut;
+        
+        /// <summary>
+        /// txtRut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRut;
+        
+        /// <summary>
+        /// CustomValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
+        
+        /// <summary>
         /// btnVer control.
         /// </summary>
         /// <remarks>
@@ -58,6 +85,15 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAlumno;
         
         /// <summary>
+        /// nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nombre;
+        
+        /// <summary>
         /// lblNombreAlumno control.
         /// </summary>
         /// <remarks>
@@ -65,6 +101,15 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombreAlumno;
+        
+        /// <summary>
+        /// respuestas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl respuestas;
         
         /// <summary>
         /// lblCorrectas control.
@@ -103,15 +148,6 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPregunta;
         
         /// <summary>
-        /// lblID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblID;
-        
-        /// <summary>
         /// txtAPregunta control.
         /// </summary>
         /// <remarks>
@@ -128,5 +164,14 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCorrectasP;
+        
+        /// <summary>
+        /// gvDesempenos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvDesempenos;
     }
 }

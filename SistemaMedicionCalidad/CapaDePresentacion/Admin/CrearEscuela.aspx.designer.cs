@@ -22,6 +22,15 @@ namespace CapaDePresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl crear;
         
         /// <summary>
+        /// cEscuela control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image cEscuela;
+        
+        /// <summary>
         /// tbxEscuela control.
         /// </summary>
         /// <remarks>
@@ -38,5 +47,14 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btbCrear;
+        
+        /// <summary>
+        /// cEscuelaEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image cEscuelaEnd;
     }
 }

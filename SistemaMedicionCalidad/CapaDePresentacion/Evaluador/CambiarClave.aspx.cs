@@ -23,10 +23,10 @@ namespace CapaDePresentacion.Evaluador
             CatalogUsuario cUsuario = new CatalogUsuario();
             int filasAfectadas = 0;
 
-            if (txtPwNueva1.Text == txtPwNueva2.Text)
+            if (txtPwNueva1.Text.ToUpper() == txtPwNueva2.Text.ToUpper())
                 try
                 {
-                    filasAfectadas = cUsuario.actualizarClave(rut, this.txtPwActual.Text, this.txtPwNueva1.Text);
+                    filasAfectadas = cUsuario.actualizarClave(rut.ToUpper(), this.txtPwActual.Text.ToUpper(), this.txtPwNueva1.Text.ToUpper());
                     if (filasAfectadas == 1)
                         Response.Write("<script>window.alert('Contraseña cambiada correctamente');</script>");
                 }

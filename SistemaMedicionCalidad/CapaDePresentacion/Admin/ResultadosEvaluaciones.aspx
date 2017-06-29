@@ -43,14 +43,16 @@
     </div>
 
     <asp:Panel ID="panelGrafico" runat="server">
-        <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="1010px" Height="505">
+        <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="1010px" Height="505px">
             <Series>
-                <asp:Series Name="Correctas" Color="#7373FF"></asp:Series>
-                <asp:Series ChartArea="ChartArea1" Color="#FF5353" Name="Incorrectas">
+                <asp:Series Name="Correctas" Color="#7373FF" ChartType="StackedBar"></asp:Series>
+                <asp:Series ChartArea="ChartArea1" Color="#FF5353" Name="Incorrectas" ChartType="StackedBar">
                 </asp:Series>
             </Series>
             <ChartAreas>
-                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+                <asp:ChartArea Name="ChartArea1" Area3DStyle-Enable3D="true"> 
+                    <Area3DStyle Enable3D="True" />
+                </asp:ChartArea>
             </ChartAreas>
         </asp:Chart>
         <br />

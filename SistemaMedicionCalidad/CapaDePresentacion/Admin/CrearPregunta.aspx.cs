@@ -29,7 +29,7 @@ namespace CapaDePresentacion.Doc
             CatalogTipoPregunta cTipoPregunta = new CatalogTipoPregunta();
             List<Tipo_Pregunta> lTiposPregunta = cTipoPregunta.listarTipoPreguntas();
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
-            List<Desempeno> lDesempenos = cDesempeno.listarDesempenos();
+            List<Desempeno> lDesempenos = cDesempeno.listarDesempenosAjustado();
             this.crearRespuestas();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
@@ -40,7 +40,7 @@ namespace CapaDePresentacion.Doc
                 contadorControles = 0;
 
                 this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
-                this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";                
+                this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";
                 this.ddTipoPregunta.DataSource = lTiposPregunta;
 
                 this.ddDesempeno.DataTextField = "Indicador_desempeno";
@@ -191,6 +191,20 @@ namespace CapaDePresentacion.Doc
                         if (extension == posiblesExtensiones[i])
                         {
                             fileOK = true;
+                        }
+                    }
+                    
+                    if (fileOK)
+                    {
+                        System.Drawing.Image imagen = System.Drawing.Image.FromStream(fileImagen.PostedFile.InputStream);
+                        int width = Convert.ToInt32(imagen.Width);
+                        int height = Convert.ToInt32(imagen.Height);
+                        while (width > 1100)
+                        {
+                            width = width * (80 / 100);
+                            height = height * (80 / 100);
+                            fileImagen.Width = width;
+                            fileImagen.Height = height;
                         }
                     }
                 }

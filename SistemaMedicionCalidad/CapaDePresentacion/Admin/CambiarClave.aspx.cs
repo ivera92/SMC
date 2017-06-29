@@ -28,10 +28,10 @@ namespace CapaDePresentacion
             CatalogUsuario cUsuario = new CatalogUsuario();
             int filasAfectadas = 0;
 
-            if (pwNueva1.Text == pwNueva2.Text)
+            if (pwNueva1.Text.ToUpper() == pwNueva2.Text.ToUpper())
                 try
                 {
-                    filasAfectadas = cUsuario.actualizarClave(rut, this.pwActual.Text, this.pwNueva1.Text);
+                    filasAfectadas = cUsuario.actualizarClave(rut.ToUpper(), this.pwActual.Text.ToUpper(), this.pwNueva1.Text.ToUpper());
                     if (filasAfectadas == 1)
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Contraseña cambiada correctamente');window.location='InicioAdmin.aspx';</script>'");
                 }

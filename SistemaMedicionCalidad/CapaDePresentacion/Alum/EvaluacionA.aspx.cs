@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
+using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
@@ -223,6 +223,14 @@ namespace CapaDePresentacion.Alum
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
                     this.Panel1.Controls.Add(l2);
                     this.Panel1.Controls.Add(new LiteralControl("<br/>"));
+                    if (result[3].ToString() != "" && result[3].ToString() != null)
+                    {
+                        System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
+                        //string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ImagenesPreguntas\" + result.GetString(5));
+                        //ruta = Path.GetFullPath(ruta);
+                        img.ImageUrl = "../ImagenesPreguntas/" + result[3].ToString();
+                        Panel1.Controls.Add(img);
+                    }
                     numPregunta = numPregunta + 1;
                     s = pregunta.Text;
                 }

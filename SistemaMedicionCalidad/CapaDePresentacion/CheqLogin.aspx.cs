@@ -30,7 +30,7 @@ namespace CapaDePresentacion
 
             try
             {
-                string[] autentificacion = cUsuario.Autenticar(rut.Text, txtclave.Text);
+                string[] autentificacion = cUsuario.Autenticar(rut.Text.ToUpper(), txtclave.Text.ToUpper());
 
 
                 //Se verifica si existe el usuario y es valido, despues de eso se ven los roles 
@@ -42,22 +42,22 @@ namespace CapaDePresentacion
 
                     if (int.Parse(autentificacion[1]) == 1)
                     {
-                        Session["rutAlumno"] = rut.Text;
+                        Session["rutAlumno"] = rut.Text.ToUpper();
                         Response.Redirect("~/Alum/EvaluacionA.aspx");
                     }
                     else if (int.Parse(autentificacion[1]) == 2)
                     {
-                        Session["rutDocente"] = rut.Text;
+                        Session["rutDocente"] = rut.Text.ToUpper();
                         Response.Redirect("~/Doc/AdministrarEvaluaciones.aspx");
                     }
                     else if (int.Parse(autentificacion[1]) == 3)
                     {
-                        Session["rutAdmin"] = rut.Text;
+                        Session["rutAdmin"] = rut.Text.ToUpper();
                         Response.Redirect("~/Admin/InicioAdmin.aspx");
                     }
                     else 
                     {
-                        Session["rutEvaluador"] = rut.Text;
+                        Session["rutEvaluador"] = rut.Text.ToUpper();
                         Response.Redirect("~/Evaluador/CrearPregunta.aspx");
                     }
                 }
@@ -100,11 +100,11 @@ namespace CapaDePresentacion
             try
             {
                 cUsuario.recuperarContrasena(rutRC.Text, lblCorreo.InnerText);
-                Response.Write("<script>window.alert('Correo enviado correctamente');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Correo enviado satisfactoriamente');window.location='CheqLogin.aspx';</script>'");
             }
             catch
             {
-                Response.Write("<script>window.alert('No se pudo recuperar la contraseña');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No se pudo recuperar la contraseña');window.location='CheqLogin.aspx';</script>'");
             }
         }
         //En caso de cancelar el envio de correo, redirecciona a la ventana de registro

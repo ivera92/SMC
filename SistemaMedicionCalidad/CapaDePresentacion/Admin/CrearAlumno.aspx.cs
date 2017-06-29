@@ -41,7 +41,7 @@ namespace CapaDePresentacion.Doc
             CatalogAlumno cAlumno = new CatalogAlumno();
             CatalogCursa cCursa = new CatalogCursa();
 
-            Alumno a = new Alumno(this.txtRut.Text.Trim(), this.txtNombre.Text.Trim(), this.txtCorreo.Text.Trim());
+            Alumno a = new Alumno(this.txtRut.Text.Trim().ToUpper(), this.txtNombre.Text.Trim(), this.txtCorreo.Text.Trim());
             try
             {
                 cAlumno.insertarAlumno(a);
@@ -140,7 +140,7 @@ namespace CapaDePresentacion.Doc
                     Cursa c = new Cursa();
                     try
                     {
-                        rut = HttpUtility.HtmlDecode(row.Cells[0].Text).Substring(2, 10);
+                        rut = HttpUtility.HtmlDecode(row.Cells[0].Text).Substring(2, 10).ToUpper();
                         nombre = HttpUtility.HtmlDecode(row.Cells[1].Text.Trim());
                         email = HttpUtility.HtmlDecode(row.Cells[2].Text.Trim());
                         asignatura = HttpUtility.HtmlDecode(row.Cells[3].Text.Trim());

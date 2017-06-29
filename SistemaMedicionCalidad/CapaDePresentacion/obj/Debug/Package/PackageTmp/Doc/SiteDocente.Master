@@ -148,7 +148,7 @@
                         <ul>
                             <li><a href="AdministrarEvaluaciones.aspx" style="width: 243px;">Ver evaluaciones</a></li>
                             <li><a href="EvaluacionAlumno.aspx" style="width: 243px;">Cargar respuestas alumno</a></li>   
-                            <li><a href="ResultadosEvaluacionesD.aspx" style="width: 243px;">Resultados evaluaciones</a></li>                        
+                            <li><a href="ResultadosEvaluaciones.aspx" style="width: 243px;">Resultados evaluaciones</a></li>                        
                         </ul>
                     </li>
                     <li class="nivel1">

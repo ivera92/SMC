@@ -70,7 +70,7 @@
         <label class="col-sm-offset-3">Nombre</label>
         <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
-                <textarea class="form-control" id="txtNombre" runat="server" rows="5"></textarea>
+                <textarea class="form-control" id="txtNombre" runat="server" rows="5" required></textarea>
             </div>
         </div>
         <br />
