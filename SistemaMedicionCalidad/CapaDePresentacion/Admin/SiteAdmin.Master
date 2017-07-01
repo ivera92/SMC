@@ -298,7 +298,6 @@
             </div>
             <form runat="server" style="border: solid 2px #ccc">
                 <br />
-                <br />
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </form>

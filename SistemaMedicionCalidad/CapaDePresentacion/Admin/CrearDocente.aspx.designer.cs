@@ -13,6 +13,15 @@ namespace CapaDePresentacion {
     public partial class CrearDocente {
         
         /// <summary>
+        /// cAlumno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image cAlumno;
+        
+        /// <summary>
         /// txtRut control.
         /// </summary>
         /// <remarks>
@@ -74,5 +83,14 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCrear;
+        
+        /// <summary>
+        /// iEndSM4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM4;
     }
 }

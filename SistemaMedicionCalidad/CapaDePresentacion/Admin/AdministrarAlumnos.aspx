@@ -41,43 +41,38 @@
     </div>
 
 
-    <div id='divEditar' runat='server'>
-        <h2 class="text-center">Actualizar Alumno</h2>
-        <br />
+    <div id='divEditar' runat='server' class="row">
+        <div class="col-sm-offset-4 col-sm-4">
+            <asp:Image ID="cAlumno" runat="server" ImageUrl="ImagenesAdmin/acAlumno.PNG" />
+            <div class="col-sm-12" style="border: solid 1px #ccc">
+                <div>
+                    <br />
+                    <label>Rut </label>
+                    <asp:TextBox ID="txtRut" class="form-control" runat="server" placeHolder="Ejemplo: 18205857-2" required ReadOnly="True"></asp:TextBox>
+                    <br />
+                </div>
 
-        <label class="col-sm-offset-4">Rut </label>
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:TextBox ID="txtRut" class="form-control" runat="server" placeHolder="Ejemplo: 18205857-2" required ReadOnly="True"></asp:TextBox>
-            </div>
-        </div>
-        <br />
+                <div>
+                    <label>Nombre</label>
+                    <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚa-záéíóú]{3,16}*)+$" placeHolder="Ingrese su nombre y apellido" class="form-control"
+                        oninvalid="setCustomValidity('Ingrese un nombre de minimo 3 caracteres y maximo 16, solo letras')"
+                        oninput="setCustomValidity('')" required>
+                    </asp:TextBox>
+                    <br />
+                </div>
 
-        <label class="col-sm-offset-4">Nombre</label>
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚa-záéíóú]{3,16}*)+$" placeHolder="Ingrese su nombre y apellido" class="form-control"
-                    oninvalid="setCustomValidity('Ingrese un nombre de minimo 3 caracteres y maximo 16, solo letras')"
-                    oninput="setCustomValidity('')" required>
-                </asp:TextBox>
-            </div>
-        </div>
-        <br />
+                <div>
+                    <label>Correo</label>
+                    <asp:TextBox ID="txtCorreo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" required></asp:TextBox>
+                    <br />
+                </div>
 
-        <label class="col-sm-offset-4">Correo</label>
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:TextBox ID="txtCorreo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" required></asp:TextBox>
+                <div class="col-sm-offset-3 col-sm-6">
+                    <asp:Button ID="btnEditar" class="btn btn-success btn-block" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
+                    <br />
+                </div>
             </div>
+            <asp:Image ID="iEndSM4" runat="server" ImageUrl="ImagenesAdmin/iEndSM4.PNG" />
         </div>
-        <br />
-
-        <label class="col-sm-offset-4">Año ingreso</label>
-        <div class="row">
-            <div class="col-sm-offset-5 col-sm-2">
-                <asp:Button ID="btnEditar" class="btn btn-primary btn-block" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
-            </div>
-        </div>
-        <br />
     </div>
 </asp:Content>

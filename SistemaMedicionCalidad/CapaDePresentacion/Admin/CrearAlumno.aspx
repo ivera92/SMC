@@ -33,7 +33,7 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <asp:GridView  class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
+                <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                     <Columns>
@@ -54,57 +54,52 @@
         </div>
     </div>
 
-    <div id="divCrearManual" runat="server">
-        <h2 class="text-center">Crear Alumno</h2>
-        <br />
-        <label class="col-sm-offset-4">Rut </label>
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:TextBox ID="txtRut" class="form-control" runat="server" placeHolder="Ejemplo: 18205857-2" required></asp:TextBox>
-            </div>
-            <div class="col-sm-4">
-                <asp:CustomValidator ID="CustomValidator1" runat="server"
-                    ClientValidationFunction="validar_rut" ControlToValidate="txtRut"
-                    Display="Dynamic" ErrorMessage="RUT incorrecto" ForeColor="Red" SetFocusOnError="True">
-                </asp:CustomValidator>
-            </div>
-        </div>
-        <br />
+    <div id="divCrearManual" runat="server" class="row">
+        <div class="col-sm-offset-4 col-sm-4">
+            <asp:Image ID="cAlumno" runat="server" ImageUrl="ImagenesAdmin/cAlumno.PNG" />
+            <div class="col-sm-12" style="border: solid 1px #ccc">
+                <div>
+                    <br />
+                    <label>Rut</label>
+                    <asp:TextBox ID="txtRut" class="form-control" runat="server" placeHolder="Ejemplo: 18205857-2" required></asp:TextBox>
+                </div>
+                <div>
+                    <asp:CustomValidator ID="CustomValidator1" runat="server"
+                        ClientValidationFunction="validar_rut" ControlToValidate="txtRut"
+                        Display="Dynamic" ErrorMessage="RUT incorrecto" ForeColor="Red" SetFocusOnError="True">
+                    </asp:CustomValidator>
+                    <br />
+                </div>
 
-        <label class="col-sm-offset-4">Nombre</label>
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚa-záéíóú]{3,16}*)+$" placeHolder="Ingrese su nombre y apellido" class="form-control"
-                    oninvalid="setCustomValidity('Ingrese un nombre de minimo 3 caracteres y maximo 16, solo letras')"
-                    oninput="setCustomValidity('')" required>
-                </asp:TextBox>
-            </div>
-        </div>
-        <br />
+                <div>
+                    <label>Nombre</label>
+                    <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚa-záéíóú]{3,16}*)+$" placeHolder="Ingrese su nombre y apellido" class="form-control"
+                        oninvalid="setCustomValidity('Ingrese un nombre de minimo 3 caracteres y maximo 16, solo letras')"
+                        oninput="setCustomValidity('')" required>
+                    </asp:TextBox>
+                    <br />
+                </div>
 
-        <label class="col-sm-offset-4">Correo</label>
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:TextBox ID="txtCorreo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" required></asp:TextBox>
-            </div>
-        </div>
-        <br />
 
-        <label class="col-sm-offset-4">Asignatura (Opcional)</label>
-        <div class="row">
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
-                    <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-        </div>
-        <br />
+                <div>
+                    <label>Correo</label>
+                    <asp:TextBox ID="txtCorreo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" required></asp:TextBox>
+                    <br />
+                </div>
+                <div>
+                    <label>Asignatura (Opcional)</label>
+                    <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
+                        <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                </div>
 
-        <div class="row">
-            <div class="col-sm-offset-5 col-sm-2">
-                <asp:Button ID="btnCrear" class="btn-primary btn-block form-control" runat="server" OnClick="btnCrear_Click" Text="Crear" />
+                <div class="col-sm-offset-3 col-sm-6">
+                    <asp:Button ID="btnCrear" class="btn-block btn-success form-control" runat="server" OnClick="btnCrear_Click" Text="Crear" />
+                    <br />
+                </div>
             </div>
+            <asp:Image ID="iEndSM4" runat="server" ImageUrl="ImagenesAdmin/iEndSM4.PNG" />
         </div>
-        <br />
     </div>
 </asp:Content>

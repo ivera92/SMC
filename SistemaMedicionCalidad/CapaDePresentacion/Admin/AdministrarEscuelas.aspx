@@ -9,20 +9,22 @@
 
         <div class="col-sm-offset-2 col-sm-8">
             <asp:Image ID="aEscuela" runat="server" ImageUrl="ImagenesAdmin/aEscuelas.PNG" />
-            <div style="border: solid 1px #ccc">
-                <asp:GridView class="table table-striped" ID="gvEscuelas" runat="server" AutoGenerateColumns="false"
-                    OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
-                    <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
-                    <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
-                    <EmptyDataTemplate>
-                        ¡No existen escuelas!
-                    </EmptyDataTemplate>
-                    <Columns>
-                        <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" HeaderText="Accion" />
-                        <asp:BoundField DataField="Nombre_Escuela" HeaderText="Escuela" />
-                        <asp:BoundField DataField="Id_Escuela" HeaderText="ID" />
-                    </Columns>
-                </asp:GridView>
+            <div class="col-sm-12" style="border: solid 1px #ccc">                
+                <div>
+                    <asp:GridView class="table table-striped" ID="gvEscuelas" runat="server" AutoGenerateColumns="false"
+                        OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                        <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
+                        <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                        <EmptyDataTemplate>
+                            ¡No existen escuelas!
+                        </EmptyDataTemplate>
+                        <Columns>
+                            <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" HeaderText="Accion" />
+                            <asp:BoundField DataField="Nombre_Escuela" HeaderText="Escuela" />
+                            <asp:BoundField DataField="Id_Escuela" HeaderText="ID" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
             <asp:Image ID="aEND" runat="server" ImageUrl="ImagenesAdmin/iEndSM8.PNG" />
         </div>
@@ -49,6 +51,5 @@
             </div>
             <asp:Image ID="cEscuelaEnd" runat="server" ImageUrl="ImagenesAdmin/iEndSM6.PNG" />
         </div>
-        <br />
-        </div>
+    </div>
 </asp:Content>

@@ -8,8 +8,8 @@
         <div class="col-sm-offset-4 col-sm-4">
             <asp:Image ID="cAsignatura" runat="server" ImageUrl="ImagenesAdmin/cAsignatura.PNG" />
             <div class="col-sm-12" style="border: solid 1px #ccc">
-                <br />
                 <div>
+                    <br />
                     <label>Codigo</label>
                     <asp:TextBox ID="txtCodigo" runat="server" class="form-control" pattern=".{7,15}"
                         placeHolder="Ingrese codigo, ejemplo CIBA019" oninvalid="setCustomValidity('El codigo debe contener un minimo de 7 caracteres y un maximo de 15')"
@@ -49,7 +49,6 @@
                 <br />
             </div>
             <asp:Image ID="cAsignaturaEnd" runat="server" ImageUrl="ImagenesAdmin/iEndSM4.PNG" />
-
         </div>
     </div>
 </asp:Content>
