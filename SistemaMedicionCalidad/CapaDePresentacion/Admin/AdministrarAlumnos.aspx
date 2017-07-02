@@ -4,39 +4,40 @@
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
-    <div id='divMostrar' runat="server">
-        <h2 class="text-center">Administrar Alumnos</h2>
-        <br />
+    <div id='divMostrar' runat="server" class="row">
+        <div class="col-sm-12">
+            <asp:Image ID="aAlumnos" runat="server" ImageUrl="ImagenesAdmin/aAlumnos.PNG" />
+            <div style="border: solid 1px #ccc">
+                <div class="col-sm-offset-3 col-sm-4">
+                    <br />
+                    <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre o rut a buscar" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="col-sm-2">
+                    <br />
+                    <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-success btn-block" OnClick="btnBuscar_Click" />
+                </div>
 
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-4">
-                <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese nombre o rut a buscar" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="col-sm-2">
-                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
-            </div>
-        </div>
-        <br />
+                <div class="col-sm-12">
+                    <br />
+                    <asp:GridView CssClass="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeletingEvent"
+                        OnRowEditing="rowEditingEvent" PageSize="10" AllowPaging="True" OnPageIndexChanging="Grid_PageIndexChanging" BackColor="White">
+                        <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
+                        <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                        <EmptyDataTemplate>
+                            ¡No existen alumnos!
+                        </EmptyDataTemplate>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <asp:GridView CssClass="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="False" OnRowDeleting="rowDeletingEvent"
-                    OnRowEditing="rowEditingEvent" PageSize="10" AllowPaging="True" OnPageIndexChanging="Grid_PageIndexChanging" BackColor="White">
-                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-                    <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
-                    <EmptyDataTemplate>
-                        ¡No existen alumnos!
-                    </EmptyDataTemplate>
-
-                    <Columns>
-                        <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" />
-                        <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
-                        <asp:BoundField DataField="Nombre_Persona" HeaderText="Nombre" />
-                        <asp:BoundField DataField="Correo_Persona" HeaderText="Correo" />
-                    </Columns>
-                    <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
-                </asp:GridView>
+                        <Columns>
+                            <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" HeaderText="Accion" />
+                            <asp:BoundField DataField="Rut_Persona" HeaderText="Rut" />
+                            <asp:BoundField DataField="Nombre_Persona" HeaderText="Nombre" />
+                            <asp:BoundField DataField="Correo_Persona" HeaderText="Correo" />
+                        </Columns>
+                        <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
+                    </asp:GridView>
+                </div>
             </div>
+            <asp:Image ID="iEndSM12" runat="server" ImageUrl="ImagenesAdmin/iEndSM12.PNG" />
         </div>
     </div>
 

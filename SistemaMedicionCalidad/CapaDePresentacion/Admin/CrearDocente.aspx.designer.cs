@@ -13,13 +13,13 @@ namespace CapaDePresentacion {
     public partial class CrearDocente {
         
         /// <summary>
-        /// cAlumno control.
+        /// cDocente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image cAlumno;
+        protected global::System.Web.UI.WebControls.Image cDocente;
         
         /// <summary>
         /// txtRut control.

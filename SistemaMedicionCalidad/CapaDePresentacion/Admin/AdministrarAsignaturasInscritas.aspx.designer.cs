@@ -13,6 +13,15 @@ namespace CapaDePresentacion {
     public partial class AdministrarAsignaturasInscritas {
         
         /// <summary>
+        /// aAI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image aAI;
+        
+        /// <summary>
         /// txtBuscar control.
         /// </summary>
         /// <remarks>
@@ -47,5 +56,14 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtId;
+        
+        /// <summary>
+        /// iEndSM12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM12;
     }
 }

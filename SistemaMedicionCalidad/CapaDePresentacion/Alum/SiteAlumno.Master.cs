@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,10 +13,10 @@ namespace CapaDePresentacion.Alum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string alumno, docente, admin;
+            string alumno, docente, admin, evaluador;
             try
             {
-                admin = Session["rutAdmin"].ToString();
+                admin = Session["rutAdmin"].ToString();                
             }
             catch
             {
@@ -23,7 +24,17 @@ namespace CapaDePresentacion.Alum
             }
             try
             {
+                evaluador = Session["rutEvaluador"].ToString();
+            }
+            catch
+            {
+                evaluador = "";
+            }
+            try
+            {
                 alumno = Session["rutAlumno"].ToString();
+                CatalogAlumno cAlumno = new CatalogAlumno();                
+                Label1.Text = "Usuario: " + cAlumno.buscarAlumnoPorRut(alumno).Nombre_persona;
             }
             catch
             {
@@ -37,8 +48,8 @@ namespace CapaDePresentacion.Alum
             {
                 docente = "";
             }
-            
-            if(admin!="" || docente!="")
+
+            if (admin != "" || docente != "" || evaluador != "")
             {
                 Response.Redirect("../CheqLogin.aspx");
             }

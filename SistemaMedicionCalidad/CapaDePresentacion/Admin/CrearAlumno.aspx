@@ -7,50 +7,56 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <div class="row" runat="server" id="divOpcion">
-        <h2 class="text-center">Crear Alumno</h2>
-        <br />
-        <div class="col-sm-offset-3 col-sm-3">
-            <asp:Button ID="btnManual" runat="server" Text="Crear Manual" CssClass="form-control btn-info" OnClick="btnManual_Click" />
-        </div>
-        <div class="col-sm-3">
-            <asp:Button ID="btnExcel" runat="server" Text="Importar Excel" CssClass="form-control btn-success" OnClick="btnExcel_Click" />
-            <br />
+        <div class="col-sm-6 col-sm-offset-3">
+            <asp:Image ID="aRA" runat="server" ImageUrl="ImagenesAdmin/cAlumno6.PNG" />
+            <div class="col-sm-12" style="border: solid 1px #ccc">
+                <div class="col-sm-offset-2 col-sm-4">
+                    <br />
+                    <asp:Button ID="btnManual" runat="server" Text="Crear Manual" CssClass="form-control btn-info" OnClick="btnManual_Click" />
+                    <br />
+                </div>
+                <div class="col-sm-4">
+                    <br />
+                    <asp:Button ID="btnExcel" runat="server" Text="Importar Excel" CssClass="form-control btn-success" OnClick="btnExcel_Click" />
+                    <br />
+                </div>
+            </div>
+            <asp:Image ID="iEndSM6" runat="server" ImageUrl="ImagenesAdmin/iEndSM6.PNG" />
         </div>
     </div>
 
-    <div id="divCrearExcel" runat="server">
-        <h2 class="text-center">Crear Alumno</h2>
-        <br />
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-4">
-                <asp:FileUpload ID="FileUpload1" runat="server" />
-            </div>
-            <div class="col-sm-2">
-                <asp:Button ID="btnMostrar" Text="Mostrar" CssClass="form-control btn-primary" runat="server" OnClick="btnMostrar_Click1" />
-            </div>
-        </div>
-        <br />
+    <div id="divCrearExcel" runat="server" class="row">
+        <div class="col-sm-12">
+            <asp:Image ID="cAlumno12" runat="server" ImageUrl="ImagenesAdmin/cAlumno12.PNG" />
+            <div style="border: solid 1px #ccc">
+                <div class="col-sm-offset-3 col-sm-4">
+                    <br />
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                </div>
+                <div class="col-sm-2">
+                    <br />
+                    <asp:Button ID="btnMostrar" Text="Mostrar" CssClass="form-control btn-success" runat="server" OnClick="btnMostrar_Click1" />
+                </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
-                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-                    <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
-                    <Columns>
-                        <asp:BoundField DataField="Rut" HeaderText="Rut" />
-                        <asp:BoundField DataField="Nombre Estudiante" HeaderText="Nombre" />
-                        <asp:BoundField DataField="Email" HeaderText="Email" />
-                        <asp:BoundField DataField="Asignatura" HeaderText="Asignatura" />
-                    </Columns>
-                </asp:GridView>
+                <div class="col-sm-12">
+                    <br />
+                    <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
+                        <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
+                        <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                        <Columns>
+                            <asp:BoundField DataField="Rut" HeaderText="Rut" />
+                            <asp:BoundField DataField="Nombre Estudiante" HeaderText="Nombre" />
+                            <asp:BoundField DataField="Email" HeaderText="Email" />
+                            <asp:BoundField DataField="Asignatura" HeaderText="Asignatura" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <br />
             <div class="col-sm-offset-5 col-sm-2">
-                <asp:Button ID="btnImportar" Text="Importar" CssClass="form-control btn-primary" runat="server" OnClick="btnImportar_Click" />
+                <asp:Button ID="btnImportar" Text="Importar" CssClass="form-control btn-success" runat="server" OnClick="btnImportar_Click" />
                 <br />
             </div>
+            <asp:Image ID="iEndSM12" runat="server" ImageUrl="ImagenesAdmin/iEndSM12.PNG" />
         </div>
     </div>
 

@@ -99,6 +99,8 @@
     <Content Include="Admin\AsociarDesempenoAsignatura.aspx" />
     <Content Include="Admin\CrearDesempeno.aspx" />
     <Content Include="Admin\CrearUsuario.aspx" />
+    <Content Include="Admin\ImagenesAdmin\aAIA.png" />
+    <Content Include="Admin\ImagenesAdmin\aAlumnos.png" />
     <Content Include="Admin\ImagenesAdmin\aAsignaturas.png" />
     <Content Include="Admin\ImagenesAdmin\acAlumno.png" />
     <Content Include="Admin\ImagenesAdmin\acAsignatura.png" />
@@ -120,6 +122,8 @@
     <Content Include="Admin\ImagenesAdmin\aRA.png" />
     <Content Include="Admin\ImagenesAdmin\aUsuarios.png" />
     <Content Include="Admin\ImagenesAdmin\cAlumno.png" />
+    <Content Include="Admin\ImagenesAdmin\cAlumno12.png" />
+    <Content Include="Admin\ImagenesAdmin\cAlumno6.png" />
     <Content Include="Admin\ImagenesAdmin\cAsignatura.png" />
     <Content Include="Admin\ImagenesAdmin\cCompetencia.png" />
     <Content Include="Admin\ImagenesAdmin\cContraseña.png" />
@@ -190,6 +194,12 @@
     <Content Include="Evaluador\CambiarClave.aspx" />
     <Content Include="Evaluador\CrearEvaluacion.aspx" />
     <Content Include="Evaluador\CrearPregunta.aspx" />
+    <Content Include="Evaluador\ImagenesEvaluador\acPregunta.png" />
+    <Content Include="Evaluador\ImagenesEvaluador\aEvaluaciones.png" />
+    <Content Include="Evaluador\ImagenesEvaluador\aPreguntas.png" />
+    <Content Include="Evaluador\ImagenesEvaluador\cClave.png" />
+    <Content Include="Evaluador\ImagenesEvaluador\iEndSM12.PNG" />
+    <Content Include="Evaluador\ImagenesEvaluador\iEndSM4.png" />
     <Content Include="Evaluador\Logout.aspx" />
     <Content Include="Evaluador\ResultadosEspecificos.aspx" />
     <Content Include="Evaluador\ResultadosEvaluaciones.aspx" />

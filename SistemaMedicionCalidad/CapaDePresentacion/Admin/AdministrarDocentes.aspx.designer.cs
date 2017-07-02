@@ -22,6 +22,15 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tablaAdministrar;
         
         /// <summary>
+        /// aDocente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image aDocente;
+        
+        /// <summary>
         /// txtBuscar control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvDocentes;
+        
+        /// <summary>
+        /// iEnd12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEnd12;
         
         /// <summary>
         /// tablaEditar control.

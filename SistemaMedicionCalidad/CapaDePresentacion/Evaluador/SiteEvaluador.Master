@@ -229,6 +229,9 @@
             <form runat="server" style="border: solid 2px #ccc">
                 <br />
                 <br />
+                <div class="text-right">
+                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </form>

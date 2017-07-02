@@ -24,7 +24,6 @@ namespace CapaDePresentacion.Admin
                 if (!Page.IsPostBack)
                 {
                     divGV.Visible = false;
-                    this.fechaEvaluacion.InnerText = DateTime.Today.ToString("d");
                     this.ddAsignatura.DataTextField = "Nombre_asignatura";
                     this.ddAsignatura.DataValueField = "Cod_asignatura";
                     this.ddAsignatura.DataSource = lAsignatura;
@@ -68,9 +67,9 @@ namespace CapaDePresentacion.Admin
             Paragraph p2 = new Paragraph(this.txtNombre.Text + " - " + this.ddAsignatura.SelectedItem.Text + "\n");     //Agrega el nombre de la prueba y el de la asignatura
             p2.Alignment = Element.ALIGN_CENTER;
             pdfDoc.Add(p2);
-            Paragraph p = new Paragraph(this.nombreAlumno.InnerText + "\n");
-            p.Add(this.rut.InnerText + "\n");
-            p.Add(this.fecha.InnerText + "\n");
+            Paragraph p = new Paragraph("Nombre Alumno:  "+ "\n");
+            p.Add("Rut Alumno: " + "\n");
+            p.Add("Fecha de Evaluación" + "\n");
             pdfDoc.Add(p);
 
             int numPregunta = 1;
@@ -151,7 +150,7 @@ namespace CapaDePresentacion.Admin
         {
             string ids_preguntas = "";
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            int existe = cEvaluacion.verificarExistencia(ddAsignatura.SelectedValue, txtNombre.Text, DateTime.Parse(this.fechaEvaluacion.InnerText));
+            int existe = cEvaluacion.verificarExistencia(ddAsignatura.SelectedValue, txtNombre.Text, DateTime.Parse(DateTime.Today.ToString("d")));
 
             if (existe == 0)
             {
@@ -179,7 +178,7 @@ namespace CapaDePresentacion.Admin
                     Asignatura a = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
 
                     ev.Asignatura_evaluacion = a;
-                    ev.Fecha_evaluacion = DateTime.Parse(this.fechaEvaluacion.InnerText);
+                    ev.Fecha_evaluacion = DateTime.Parse(DateTime.Today.ToString("d"));
                     ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
                     ev.Preguntas_evaluacion = ids_preguntas;
 

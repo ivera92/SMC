@@ -6,13 +6,12 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <div id="tablaAdministrar" runat="server" class="row">
-
         <div class="col-sm-offset-2 col-sm-8">
             <asp:Image ID="aEscuela" runat="server" ImageUrl="ImagenesAdmin/aEscuelas.PNG" />
             <div class="col-sm-12" style="border: solid 1px #ccc">                
                 <div>
                     <asp:GridView class="table table-striped" ID="gvEscuelas" runat="server" AutoGenerateColumns="false"
-                        OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
+                        OnRowDeleting="rowDeleting" OnRowEditing="rowEditing" Font-Names="Sengoe-UI" Font-Size="12">
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
                         <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                         <EmptyDataTemplate>

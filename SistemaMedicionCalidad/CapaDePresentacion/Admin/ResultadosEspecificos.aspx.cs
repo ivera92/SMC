@@ -139,7 +139,7 @@ namespace CapaDePresentacion.Admin
                     catch { }
                 }
             }
-            chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
+            chartColumna.Titles.Add("Alumno: "+lblNombreAlumno.InnerText+" Respuestas correctas: "+ lblCorrectasP.InnerText);
         }
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)

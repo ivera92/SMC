@@ -22,6 +22,15 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tablaAdministrar;
         
         /// <summary>
+        /// ADesenpeños control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ADesenpeños;
+        
+        /// <summary>
         /// txtBuscar control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtid;
         
         /// <summary>
+        /// iEnd12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEnd12;
+        
+        /// <summary>
         /// divEditar control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEditar;
+        
+        /// <summary>
+        /// aDesempeños control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image aDesempeños;
         
         /// <summary>
         /// txtIndicador control.
@@ -128,5 +155,14 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
+        
+        /// <summary>
+        /// iEndSM12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM12;
     }
 }

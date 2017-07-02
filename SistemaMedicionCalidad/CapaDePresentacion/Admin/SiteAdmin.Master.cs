@@ -11,10 +11,11 @@ namespace CapaDePresentacion.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string alumno, docente, admin;
+            string alumno, docente, admin, evaluador;
             try
             {
                 admin = Session["rutAdmin"].ToString();
+                Label1.Text = "Usuario: "+ admin+"";
             }
             catch
             {
@@ -36,8 +37,16 @@ namespace CapaDePresentacion.Admin
             {
                 docente = "";
             }
+            try
+            {
+                evaluador = Session["rutEvaluador"].ToString();
+            }
+            catch
+            {
+                evaluador = "";
+            }
 
-            if (alumno != "" || docente != "")
+            if (alumno != "" || docente != "" || evaluador != "")
             {
                 Response.Redirect("../CheqLogin.aspx");
             }

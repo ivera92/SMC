@@ -27,13 +27,13 @@
                 <div>
                     <label>Asignatura</label>
                     <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddAsignatura" runat="server">
-                        <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione una asignatura</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>
 
                 <div class="col-sm-offset-3 col-sm-6">
-                    <asp:Button CssClass="btn btn-block btn-success" runat="server" ID="btnAsociar" Text="Asociar" OnClick="btnAsociar_Click" />
+                    <asp:Button CssClass="btn btn-block btn-success" runat="server" ID="btnAsociar" Text="Asignar" OnClick="btnAsociar_Click" />
                     <br />
                 </div>
             </div>

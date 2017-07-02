@@ -13,6 +13,15 @@ namespace CapaDePresentacion.Admin {
     public partial class CrearUsuario {
         
         /// <summary>
+        /// cUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image cUsuario;
+        
+        /// <summary>
         /// ddTipoUsuario control.
         /// </summary>
         /// <remarks>
@@ -47,5 +56,14 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCrear;
+        
+        /// <summary>
+        /// iEndSM4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM4;
     }
 }

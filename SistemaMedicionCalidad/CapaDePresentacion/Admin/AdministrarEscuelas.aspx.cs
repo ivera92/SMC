@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project.CapaDeNegocios;
+using System.Drawing;
 
 namespace CapaDePresentacion
 {

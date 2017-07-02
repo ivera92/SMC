@@ -13,6 +13,15 @@ namespace CapaDePresentacion.Admin {
     public partial class AdministrarHPA {
         
         /// <summary>
+        /// hRA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image hRA;
+        
+        /// <summary>
         /// txtBuscar control.
         /// </summary>
         /// <remarks>
@@ -38,5 +47,14 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvHPA;
+        
+        /// <summary>
+        /// iEndSM12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM12;
     }
 }
