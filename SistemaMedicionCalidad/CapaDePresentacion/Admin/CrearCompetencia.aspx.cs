@@ -35,14 +35,21 @@ namespace CapaDePresentacion
         }
         protected void brnCrear_Click(object sender, EventArgs e)
         {
-            try
+            if (ddAmbito.SelectedValue != "0" && ddTipoCompetencia.SelectedValue != "0")
             {
-                this.crearCompetencia();
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Competencia creada satisfactoriamente');window.location='AdministrarCompetencias.aspx';</script>'");
+                try
+                {
+                    this.crearCompetencia();
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Competencia creada satisfactoriamente');window.location='AdministrarCompetencias.aspx';</script>'");
+                }
+                catch
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Competencia no a podido ser creada');window.location='AdministrarCompetencias.aspx';</script>'");
+                }
             }
-            catch
+            else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Competencia no a podido ser creada');window.location='AdministrarCompetencias.aspx';</script>'");
+                Response.Write("<script>window.alert('Debe seleccionar ambito y tipo de competencia');</script>");
             }
         }
 
@@ -56,12 +63,19 @@ namespace CapaDePresentacion
         }
         protected void btnSeguir_Click(object sender, EventArgs e)
         {
-            try
+            if (ddAmbito.SelectedValue != "0" && ddTipoCompetencia.SelectedValue != "0")
             {
-                this.crearCompetencia();
-                this.limpiarControles();
+                try
+                {
+                    this.crearCompetencia();
+                    this.limpiarControles();
+                }
+                catch { }
             }
-            catch { }
+            else
+            {
+                Response.Write("<script>window.alert('Debe seleccionar ambito y tipo de competencia');</script>");
+            }
         }
 
         public void crearCompetencia()

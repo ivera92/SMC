@@ -43,7 +43,7 @@ namespace CapaDePresentacion
                     disponibilidad = false;
 
                 Docente d = new Docente();
-                d.Rut_persona = this.txtRut.Text;
+                d.Rut_persona = this.txtRut.Text.ToUpper();
                 d.Nombre_persona = this.txtNombre.Text.Trim();
                 d.Correo_persona = this.txtCorreo.Text.Trim();
                 d.Contrato_docente = disponibilidad;

@@ -69,7 +69,7 @@ namespace CapaDePresentacion
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             CatalogEscuela cEscuela = new CatalogEscuela();
-            Escuela es = new Escuela(int.Parse(this.txtid.Text), this.tbxEscuela.Text.Trim());
+            Escuela es = new Escuela(int.Parse(this.txtid.Text), this.tbxEscuela.Text.Trim().ToUpper());
             try
             {
                 cEscuela.actualizarEscuela(es);

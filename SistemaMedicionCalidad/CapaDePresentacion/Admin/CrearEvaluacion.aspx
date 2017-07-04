@@ -37,7 +37,8 @@
                 <div class="col-sm-3">
                     <br />
                     <label>Nombre de Evaluación</label>
-                    <asp:TextBox runat="server" ID="txtNombre" class="form-control"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtNombre" class="form-control" placeHolder="Ingrese nombre de Evaluación" pattern="^([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{4,}([\s][a-zA-ZñÑáéíóúÁÉÍÓÚüÜ01234567890]{1,})+)$" 
+                        oninvalid="setCustomValidity('Ingrese al menos una palabra seguida de un espacio, un numero o otra palabra')" oninput="setCustomValidity('')" required></asp:TextBox>
                 </div>
             </div>
             <div class="col-sm-1 text-center">
@@ -59,7 +60,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="Id_Pregunta" HeaderText="Id" />
-                            <asp:BoundField DataField="id_desempeno.indicador_desempeno" HeaderText="Desempeno" />
+                            <asp:BoundField DataField="id_desempeno.indicador_desempeno" HeaderText="Desempeño" />
                             <asp:BoundField DataField="Tipo_Pregunta_Pregunta.nombre_tipo_pregunta" HeaderText="Tipo Pregunta" />
                             <asp:BoundField DataField="Enunciado_Pregunta" HeaderText="Enunciado" />
                             <asp:BoundField DataField="Nivel_Pregunta.nombre_nivel" HeaderText="Nivel" />

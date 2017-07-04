@@ -40,7 +40,7 @@ namespace CapaDePresentacion.Evaluador
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturas();
             this.ddAsignatura.Items.Clear();
-            ddAsignatura.Items.Add(new ListItem("<--Seleccione asignatura-->", "0"));
+            ddAsignatura.Items.Add(new ListItem("Seleccione una Asignatura", "0"));
             this.ddAsignatura.DataTextField = "Nombre_asignatura";
             this.ddAsignatura.DataValueField = "Cod_asignatura";
             this.ddAsignatura.DataSource = lAsignaturas;
@@ -197,7 +197,7 @@ namespace CapaDePresentacion.Evaluador
 
             this.ddEvaluacion.Items.Clear();
             if (lEvaluaciones.Count > 0)
-                this.ddEvaluacion.Items.Add(new ListItem("<--Seleccione una evaluacion-->", "0"));
+                this.ddEvaluacion.Items.Add(new ListItem("Seleccione una Evaluación", "0"));
             
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
             this.ddEvaluacion.DataValueField = "Id_evaluacion";

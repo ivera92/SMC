@@ -33,29 +33,35 @@ namespace CapaDePresentacion.Admin
 
         protected void btnAsociar_Click(object sender, EventArgs e)
         {
-            try
+            if (ddAsignatura.SelectedValue != "0")
             {
-                CatalogImparte cImparte = new CatalogImparte();
-                CatalogDocente cDocente = new CatalogDocente();
-                CatalogAsignatura cAsignatura = new CatalogAsignatura();
-                DateTime fechaHoy = DateTime.Now;
-                Imparte i = new Imparte();
-
-                i.Rut_docente_imparte = cDocente.buscarUnDocente(txtRut.Text);
-                i.Cod_asignatura_imparte = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
-                i.Ano_imparte = fechaHoy.Year + "";
-
-                if (cImparte.verificarExistenciaImparte(i) == 0)
+                try
                 {
-                    cImparte.insertarAD(i);
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura asociada correctamente');window.location='AsociarAsignaturaDocente.aspx';</script>'");
+                    CatalogImparte cImparte = new CatalogImparte();
+                    CatalogDocente cDocente = new CatalogDocente();
+                    CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                    DateTime fechaHoy = DateTime.Now;
+                    Imparte i = new Imparte();
+
+                    i.Rut_docente_imparte = cDocente.buscarUnDocente(txtRut.Text);
+                    i.Cod_asignatura_imparte = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
+                    i.Ano_imparte = fechaHoy.Year + "";
+
+                    if (cImparte.verificarExistenciaImparte(i) == 0)
+                    {
+                        cImparte.insertarAD(i);
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura asociada correctamente');window.location='AsociarAsignaturaDocente.aspx';</script>'");
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura ya esta asociada para el docente');window.location='AsociarAsignaturaDocente.aspx';</script>'");
+                    }
                 }
-                else
+                catch
                 {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura ya esta asociada para el docente');window.location='AsociarAsignaturaDocente.aspx';</script>'");
                 }
             }
-            catch
+            else
             {
                 Response.Write("<script>window.alert('Seleccione alguna asignatura');</script>");
             }

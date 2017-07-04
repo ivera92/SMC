@@ -86,6 +86,7 @@
     <style type="text/css">
         body {
             background-color: #525353;
+            font-family:'Segoe UI';
         }
 
         #barra_top {
@@ -120,6 +121,65 @@
             background-color: #FF6600;
             background-image: none;
         }
+        .pagination-ys {
+            /*display: inline-block;*/
+            padding-left: 0;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+            .pagination-ys table > tbody > tr > td {
+                display: inline;
+            }
+
+                .pagination-ys table > tbody > tr > td > a,
+                .pagination-ys table > tbody > tr > td > span {
+                    position: relative;
+                    float: left;
+                    padding: 8px 12px;
+                    line-height: 1.42857143;
+                    text-decoration: none;
+                    color: #dd4814;
+                    background-color: #ffffff;
+                    border: 1px solid #dddddd;
+                    margin-left: -1px;
+                }
+
+                .pagination-ys table > tbody > tr > td > span {
+                    position: relative;
+                    float: left;
+                    padding: 8px 12px;
+                    line-height: 1.42857143;
+                    text-decoration: none;
+                    margin-left: -1px;
+                    z-index: 2;
+                    color: #aea79f;
+                    background-color: #f5f5f5;
+                    border-color: #dddddd;
+                    cursor: default;
+                }
+
+                .pagination-ys table > tbody > tr > td:first-child > a,
+                .pagination-ys table > tbody > tr > td:first-child > span {
+                    margin-left: 0;
+                    border-bottom-left-radius: 4px;
+                    border-top-left-radius: 4px;
+                }
+
+                .pagination-ys table > tbody > tr > td:last-child > a,
+                .pagination-ys table > tbody > tr > td:last-child > span {
+                    border-bottom-right-radius: 4px;
+                    border-top-right-radius: 4px;
+                }
+
+                .pagination-ys table > tbody > tr > td > a:hover,
+                .pagination-ys table > tbody > tr > td > span:hover,
+                .pagination-ys table > tbody > tr > td > a:focus,
+                .pagination-ys table > tbody > tr > td > span:focus {
+                    color: #97310e;
+                    background-color: #eeeeee;
+                    border-color: #dddddd;
+                }
     </style>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
@@ -140,21 +200,27 @@
                         <a href="#" style="color: #333; float: left;">Alumno</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
                             <li><a href="CrearAlumnoD.aspx" style="width: 243px;">Crear Alumno</a></li>
-                            <li><a href="AdministrarAsignaturasInscritas.aspx" style="width: 243px;">Administrar asignaturas inscritas alumnos</a></li>
+                            <li><a href="AdministrarAsignaturasInscritas.aspx" style="width: 243px;">Administrar Asignaturas Inscritas de Alumnos</a></li>
                         </ul>
                     </li>
                     <li class="nivel1">
-                        <a href="#" style="color: #333; float: left;">Evaluacion</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <a href="#" style="color: #333; float: left;">Evaluación</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="AdministrarEvaluaciones.aspx" style="width: 243px;">Ver evaluaciones</a></li>
-                            <li><a href="EvaluacionAlumno.aspx" style="width: 243px;">Cargar respuestas alumno</a></li>   
-                            <li><a href="ResultadosEvaluaciones.aspx" style="width: 243px;">Resultados evaluaciones</a></li>                        
+                            <li><a href="AdministrarEvaluaciones.aspx" style="width: 243px;">Ver Evaluaciones</a></li>
+                            <li><a href="EvaluacionAlumno.aspx" style="width: 243px;">Cargar Respuestas de Alumno</a></li>
+                        </ul>
+                    </li>
+                    <li class="nivel1">
+                        <a href="#" style="color: #333; float: left;">Resultados</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <ul>
+                            <li><a href="ResultadosEspecificos.aspx" style="width: 243px;">Resultados de Evaluación Específicos</a></li>
+                            <li><a href="ResultadosEvaluaciones.aspx" style="width: 243px;">Resultados de Evaluación Generales</a></li>
                         </ul>
                     </li>
                     <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Clave</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="CambiarClave.aspx" style="width: 243px;">Cambiar clave</a></li>
+                            <li><a href="CambiarClave.aspx" style="width: 243px;">Cambiar Clave</a></li>
                         </ul>
                     </li>
                     <li class="nivel1">
@@ -164,9 +230,11 @@
             </div>
             <form runat="server" style="border: solid 2px #ccc">
                 <br />
-                    <br />
+                <br />
+                <div class="text-right">
+                    <asp:Label ID="Label1" runat="server"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    
                 </asp:ContentPlaceHolder>
             </form>
         </div>

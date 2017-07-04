@@ -44,7 +44,7 @@ namespace CapaDePresentacion
             CatalogAlumno cAlumno = new CatalogAlumno();
             try
             {
-                cAlumno.eliminarAlumno(rut_alumno);
+                cAlumno.eliminarAlumno(rut_alumno.Trim().ToUpper());
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Usuario asociado a alumno eliminado satisfactoriamente');window.location='AdministrarAlumnos.aspx';</script>'");
             }
             catch
@@ -61,7 +61,7 @@ namespace CapaDePresentacion
             CatalogAlumno cAlumno = new CatalogAlumno();
             Alumno a = cAlumno.buscarAlumnoPorRut(rut_alumno);
             this.txtNombre.Text = a.Nombre_persona.Trim();
-            this.txtRut.Text = a.Rut_persona;
+            this.txtRut.Text = a.Rut_persona.Trim().ToUpper(); ;
             this.txtCorreo.Text = a.Correo_persona.Trim();
 
             this.divEditar.Visible = true;
@@ -71,7 +71,7 @@ namespace CapaDePresentacion
         {
             CatalogAlumno cAlumno = new CatalogAlumno();
 
-            Alumno a = new Alumno(txtRut.Text.Trim(), txtNombre.Text.Trim(), txtCorreo.Text.Trim());
+            Alumno a = new Alumno(txtRut.Text.Trim().ToUpper(), txtNombre.Text.Trim(), txtCorreo.Text.Trim());
             try
             {
                 cAlumno.actualizarAlumno(a);

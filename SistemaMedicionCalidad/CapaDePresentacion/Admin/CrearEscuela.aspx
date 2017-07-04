@@ -10,8 +10,8 @@
                 <br />
                 <div>
                     <label>Nombre</label>
-                    <asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,})+"
-                        placeHolder="Ingrese nombre de escuela" oninvalid="setCustomValidity('El nombre debe contener solo letras, minimo 4')"
+                    <asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{5,})([\s][a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{1,})*"
+                        placeHolder="Ingrese nombre de escuela" oninvalid="setCustomValidity('Ingrese solo letras, palabras separadas por solo un espacio, primera palabra minimo 5 caracteres, ejemplo: Ingeniería en Computación')"
                         oninput="setCustomValidity('')" required>
                     </asp:TextBox>
                     <br />

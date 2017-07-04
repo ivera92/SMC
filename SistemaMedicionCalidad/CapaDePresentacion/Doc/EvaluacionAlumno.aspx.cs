@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
 using System.Data;
-using Project.CapaDeNegocios;
 using System.Drawing;
 
 namespace CapaDePresentacion.Doc
@@ -297,7 +295,7 @@ namespace CapaDePresentacion.Doc
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(ddAsignatura.SelectedValue);
             this.ddEvaluacion.Items.Clear();
-            this.ddEvaluacion.Items.Add(new ListItem("<--Seleccione una evaluacion-->", "0"));
+            this.ddEvaluacion.Items.Add(new ListItem("<--Seleccione una Evaluación", "0"));
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;

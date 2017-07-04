@@ -94,15 +94,6 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.Image aDesempeños;
         
         /// <summary>
-        /// txtIndicador control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIndicador;
-        
-        /// <summary>
         /// ddCompetencia control.
         /// </summary>
         /// <remarks>
@@ -110,6 +101,15 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddCompetencia;
+        
+        /// <summary>
+        /// txtIndicador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIndicador;
         
         /// <summary>
         /// txtNBasico control.

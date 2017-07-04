@@ -30,7 +30,7 @@ namespace CapaDePresentacion
 
             try
             {
-                string[] autentificacion = cUsuario.Autenticar(rut.Text.ToUpper(), txtclave.Text.ToUpper());
+                string[] autentificacion = cUsuario.Autenticar(rut.Text.ToUpper().Trim(), txtclave.Text.ToUpper().Trim());
 
 
                 //Se verifica si existe el usuario y es valido, despues de eso se ven los roles 
@@ -83,7 +83,7 @@ namespace CapaDePresentacion
             try
             {
                 CatalogUsuario cUsuario = new CatalogUsuario();
-                string correo = cUsuario.verificarRut(this.rutRC.Text);
+                string correo = cUsuario.verificarRut(this.rutRC.Text.Trim());
                 this.lblCorreo.InnerText = correo;
                 this.divRut.Visible = false;
                 this.divCorreo.Visible = true;

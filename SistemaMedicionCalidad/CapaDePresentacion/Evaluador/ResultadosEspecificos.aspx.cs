@@ -55,7 +55,7 @@ namespace CapaDePresentacion.Evaluador
                 divAlumno.Visible = true;
                 chartColumna.Visible = true;
                 lblCorrectas.InnerText = lResultados[2];
-                gvDesempenos.Visible = true;          
+                gvDesempenos.Visible = true;
             }
             else if (ddOpcion.SelectedValue == "3")
             {
@@ -63,7 +63,7 @@ namespace CapaDePresentacion.Evaluador
                 txtAPregunta.InnerText = lResultados[1];
                 lblCorrectasP.InnerText = lResultados[2];
                 divAlumno.Visible = false;
-                divPregunta.Visible = true;                
+                divPregunta.Visible = true;
             }
             else if (ddOpcion.SelectedValue == "4")
             {

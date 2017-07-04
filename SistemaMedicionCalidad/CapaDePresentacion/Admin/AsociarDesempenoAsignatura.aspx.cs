@@ -51,7 +51,8 @@ namespace CapaDePresentacion.Admin
 
         protected void ddDesempeno_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.ddNivel.Items.Clear();            
+            this.ddNivel.Items.Clear();
+            ddNivel.Items.Add(new ListItem("Seleccione un nivel", "0"));
             CatalogNivel cNivel = new CatalogNivel();
             List<Nivel> lNiveles = cNivel.listarNivelesDesempeno(int.Parse(ddDesempeno.SelectedValue));
             this.ddNivel.DataTextField = "Nombre_nivel";
@@ -63,7 +64,7 @@ namespace CapaDePresentacion.Admin
 
         protected void btnAsociar_Click(object sender, EventArgs e)
         {
-            try
+            if (ddAsignatura.SelectedValue != "0" && ddDesempeno.SelectedValue != "0" && ddNivel.SelectedValue != "0")
             {
                 CatalogAsignaturaDesempeno cAD = new CatalogAsignaturaDesempeno();
                 CatalogAsignatura cAsignatura = new CatalogAsignatura();
@@ -80,7 +81,7 @@ namespace CapaDePresentacion.Admin
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Desempeño ya esta asociado con esta asignatura');window.location='AsociarDesempenoAsignatura.aspx';</script>'");
                 }
             }
-            catch
+            else
             {
                 Response.Write("<script>window.alert('Debe seleccionar todos los campos');</script>");
             }

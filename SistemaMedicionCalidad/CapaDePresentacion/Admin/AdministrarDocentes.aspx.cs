@@ -35,7 +35,7 @@ namespace CapaDePresentacion.Doc
             CatalogDocente cDocente = new CatalogDocente();
             try
             {
-                cDocente.eliminarDocente(rut_docente);
+                cDocente.eliminarDocente(rut_docente.Trim().ToUpper());
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Usuario asociado a docente eliminado satisfactoriamente');window.location='AdministrarDocentes.aspx';</script>'");
             }
             catch
@@ -52,9 +52,9 @@ namespace CapaDePresentacion.Doc
             CatalogDocente cDocente = new CatalogDocente();
             Docente d = cDocente.buscarUnDocente(rut_docente);
             
-            this.txtRut.Text = d.Rut_persona;
-            this.txtNombre.Text = d.Nombre_persona;
-            this.txtCorreo.Text = d.Correo_persona;  
+            this.txtRut.Text = d.Rut_persona.ToUpper().Trim();
+            this.txtNombre.Text = d.Nombre_persona.Trim();
+            this.txtCorreo.Text = d.Correo_persona.Trim();  
             if (d.Contrato_docente == true)
             {
                 this.rbDisponibilidad.SelectedIndex = 0;
@@ -81,7 +81,7 @@ namespace CapaDePresentacion.Doc
             CatalogDocente cDocente = new CatalogDocente();
             Docente d = new Docente();
 
-            d.Rut_persona = this.txtRut.Text;
+            d.Rut_persona = this.txtRut.Text.Trim().ToUpper();
             d.Nombre_persona = this.txtNombre.Text.Trim();
             d.Correo_persona = this.txtCorreo.Text.Trim();
             if (this.rbDisponibilidad.SelectedValue == "0")

@@ -31,7 +31,7 @@
                             <asp:CommandField ButtonType="Button" ShowDeleteButton="true" HeaderText="Accion" />
                             <asp:BoundField DataField="id_ad" HeaderText="ID" />
                             <asp:BoundField DataField="cod_asignatura.nombre_asignatura" HeaderText="Asignatura" />
-                            <asp:BoundField DataField="Id_desempeno.indicador_desempeno" HeaderText="Desempeno" />
+                            <asp:BoundField DataField="Id_desempeno.indicador_desempeno" HeaderText="Desempeño" />
                             <asp:BoundField DataField="Id_nivel.nombre_nivel" HeaderText="Nivel" />
                         </Columns>
                         <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />

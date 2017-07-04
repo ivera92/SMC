@@ -65,7 +65,9 @@
                 <div>
                     <br />
                     <label>Nombre</label>
-                    <textarea class="form-control" id="txtNombre" runat="server" rows="5" required></textarea>
+                    <textarea class="form-control" id="txtNombre" runat="server" rows="5" pattern="^([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{1,}(([\s][a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{1,})?([\,][\s][a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{1,})?([\-][a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{1})?)+)$" placeHolder="Ingrese nombre de Competencia"
+                        oninvalid="setCustomValidity('Solo letras, separada por un espacio, coma y espacio, o dos palabras juntas por un guión')"
+                        oninput="setCustomValidity('')" required></textarea>
                 </div>
 
                 <div class="col-sm-offset-3 col-sm-6">

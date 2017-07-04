@@ -22,6 +22,15 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEvaluar;
         
         /// <summary>
+        /// rEvaluacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image rEvaluacion;
+        
+        /// <summary>
         /// ddAsignatura control.
         /// </summary>
         /// <remarks>
@@ -65,5 +74,14 @@ namespace CapaDePresentacion.Alum {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
+        
+        /// <summary>
+        /// iEndSM12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM12;
     }
 }

@@ -25,7 +25,7 @@ namespace CapaDePresentacion.Admin
             if (cUsuario.verificarExistenciaUsuario(txtNombreUsuario.Text) == 0)
             {
                 Usuario u = new Usuario();
-                u.Nombre_usuario = txtNombreUsuario.Text;
+                u.Nombre_usuario = txtNombreUsuario.Text.ToUpper().Trim();
                 u.Tipo_usuario_usuario = cTP.buscarUnTipoUsuario(int.Parse(ddTipoUsuario.SelectedValue));
                 u.Correo_usuario = txtCorreo.Text;
                 cUsuario.insertarUsuario(u);

@@ -14,14 +14,14 @@
                     <br />
                     <label>Desempeño</label>
                     <asp:DropDownList class="form-control" runat="server" ID="ddDesempeno" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddDesempeno_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione un desempeño</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione un Desempeño</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                 <div class="col-sm-4">
                     <br />
                     <label>Tipo de Pregunta</label>
                     <asp:DropDownList class="form-control" AutoPostBack="true" AppendDataBoundItems="true" runat="server" ID="ddTipoPregunta" OnSelectedIndexChanged="ddTipoPregunta_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione el tipo de pregunta</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione el Tipo de Pregunta</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>
@@ -59,6 +59,7 @@
 
                 <div runat="server" id="VoF">
                     <label>Respuestas</label>
+                    <br />
                     <label class="col-sm-offset-3">Correcta</label>
                     <div class="col-sm-3">
                         <label id="lblV" runat="server">Verdadero</label>

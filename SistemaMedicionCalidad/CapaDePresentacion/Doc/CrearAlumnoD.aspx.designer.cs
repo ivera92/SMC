@@ -13,15 +13,6 @@ namespace CapaDePresentacion.Doc {
     public partial class CrearAlumnoD {
         
         /// <summary>
-        /// cAlumno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image cAlumno;
-        
-        /// <summary>
         /// divOpcion control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOpcion;
+        
+        /// <summary>
+        /// aRA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image aRA;
         
         /// <summary>
         /// btnManual control.
@@ -49,6 +49,15 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.Button btnExcel;
         
         /// <summary>
+        /// iEndSM6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM6;
+        
+        /// <summary>
         /// divCrearExcel control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCrearExcel;
+        
+        /// <summary>
+        /// cAlumno12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image cAlumno12;
         
         /// <summary>
         /// FileUpload1 control.
@@ -94,6 +112,15 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.Button btnImportar;
         
         /// <summary>
+        /// iEndSM12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM12;
+        
+        /// <summary>
         /// divCrearManual control.
         /// </summary>
         /// <remarks>
@@ -101,6 +128,15 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCrearManual;
+        
+        /// <summary>
+        /// cAlumno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image cAlumno;
         
         /// <summary>
         /// txtRut control.
@@ -155,5 +191,14 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCrear;
+        
+        /// <summary>
+        /// iEndSM4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM4;
     }
 }

@@ -101,7 +101,7 @@
                     <div class="col-sm-7">
                         <br />
                         <br />
-                        <asp:HyperLink ID="crearEvaluacion" runat="server" NavigateUrl="~/Admin/CrearEvaluacion.aspx">Crear Evaluacion</asp:HyperLink>
+                        <asp:HyperLink ID="crearEvaluacion" runat="server" NavigateUrl="~/Admin/CrearEvaluacion.aspx">Crear Evaluación</asp:HyperLink>
                         <br />
                         <br />
                         <asp:HyperLink ID="adminEvaluacion" runat="server" NavigateUrl="~/Admin/AdministrarEvaluaciones.aspx">Administrar Evaluaciones</asp:HyperLink>
@@ -114,7 +114,9 @@
                     <div class="col-sm-7">
                         <br />
                         <br />
-                        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Admin/ResultadosEvaluaciones.aspx">Resultados evaluaciones</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Admin/ResultadosEvaluaciones.aspx">Resultados Generales</asp:HyperLink>
+                        <br />
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Admin/ResultadosEspecificos.aspx">Resultados Específicos</asp:HyperLink>
                     </div>
                 </td>
                 <td>

@@ -86,6 +86,7 @@
     <style type="text/css">
         body {
             background-color: #525353;
+            font-family:'Segoe UI';
         }
 
         #barra_top {

@@ -4,54 +4,49 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div runat="server" id="divEvaluar">
-        <h1 class="text-center">Cargar resultados</h1>
-        <br />
-
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-3">
-                <label>Rut Alumno</label>
-                <div>
+    <div runat="server" id="divEvaluar" class="row">
+        <div class="col-sm-12">
+            <asp:Image ID="cRA" runat="server" ImageUrl="ImagenesDoc/cRA.PNG" />
+            <div>
+                <div class="col-sm-offset-1 col-sm-3">
+                    <br />
+                    <label>Rut Alumno</label>
                     <asp:TextBox ID="txtRut" runat="server" class="form-control" required></asp:TextBox>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <label>Asignatura</label>
-                <div>
+                <div class="col-sm-4">
+                    <br />
+                    <label>Asignatura</label>
                     <asp:DropDownList ID="ddAsignatura" class="form-control" runat="server" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
-                        <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione una Asignatura</asp:ListItem>
                     </asp:DropDownList>
                 </div>
-            </div>
 
-            <div class="col-sm-3">
-                <label>Evaluaciones pendientes</label>
-                <div>
+                <div class="col-sm-3">
+                    <br />
+                    <label>Evaluaciones pendientes</label>
                     <asp:DropDownList ID="ddEvaluacion" CssClass="form-control" AutoPostBack="true" AppendDataBoundItems="true" runat="server" OnSelectedIndexChanged="ddEvaluacion_SelectedIndexChanged">
-                        <asp:ListItem Value="0"><--Seleccione una evaluacion--></asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione una Evaluación</asp:ListItem>
                     </asp:DropDownList>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-3">
-                <asp:CustomValidator ID="cv_rut" runat="server" ControlToValidate="txtRut" Display="Dynamic" ErrorMessage="RUT no valido" ClientValidationFunction="validar_rut" ForeColor="Red"/>
-            </div>
-        </div>
-        <br />
 
-        <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
-            <asp:Panel ID="Panel1" runat="server"></asp:Panel>
-            <br />
-        </div>
-        <div class="row">
-            <br />
-            <div class="col-sm-offset-4 col-sm-4">
-                <asp:Button ID="btnGuardar" runat="server" class="btn btn-block btn-primary" Text="Guardar" OnClick="btnGuardar_Click" />
-                <br />
+                <div class="col-sm-offset-1 col-sm-3">
+                    <asp:CustomValidator ID="cv_rut" runat="server" ControlToValidate="txtRut" Display="Dynamic" ErrorMessage="RUT no valido" ClientValidationFunction="validar_rut" ForeColor="Red" />
+                    <br />
+                </div>
+
+
+                <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
+                    <asp:Panel ID="Panel1" runat="server"></asp:Panel>
+                    <br />
+                </div>
+                <div class="col-sm-offset-4 col-sm-4">
+                    <br />
+                    <asp:Button ID="btnGuardar" runat="server" class="btn btn-block" ForeColor="White" BackColor="#7F1734" BorderColor="White" Text="Guardar" OnClick="btnGuardar_Click" />
+                    <br />
+                </div>
             </div>
+            <asp:Image ID="iEndSM12" runat="server" ImageUrl="ImagenesDoc/iEndSM12.PNG" />
         </div>
-        <br />
     </div>
 </asp:Content>

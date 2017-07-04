@@ -60,8 +60,8 @@
 
                 <div>
                     <label>Nombre</label>
-                    <asp:TextBox ID="txtNombre" runat="server" class="form-control" pattern=".{6,}" placeHolder="Ingrese nombre"
-                        oninvalid="setCustomValidity('El nombre debe contener un minimo de 6 caracteres')"
+                    <asp:TextBox ID="txtNombre" runat="server" class="form-control" pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{3,})([\s][a-zA-ZñÑáéíóúÁÉÍÓÚüÜ0123456789]{1,})*" placeHolder="Ingrese nombre"
+                        oninvalid="setCustomValidity('Primera palabra minimo 3 letras, separada de un espacio, seguido o no de uno o mas numeros o letras')"
                         oninput="setCustomValidity('')" required></asp:TextBox>
                     <br />
                 </div>

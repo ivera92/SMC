@@ -27,7 +27,7 @@
                 <div>
                     <label>Asignatura</label>
                     <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddAsignatura" runat="server">
-                        <asp:ListItem Value="0">Seleccione una asignatura</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione una Asignatura</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>

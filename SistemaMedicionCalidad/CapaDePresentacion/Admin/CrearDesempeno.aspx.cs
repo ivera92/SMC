@@ -34,38 +34,45 @@ namespace CapaDePresentacion.Admin
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            if (ddCompetencia.SelectedValue != "0")
             {
-                CatalogDesempeno cDesempeno = new CatalogDesempeno();
-                Desempeno d = new Desempeno(txtIndicador.Text);
-                cDesempeno.insertarDesempeno(d);
-
-                CatalogCompetenciaDesempeno cCD = new CatalogCompetenciaDesempeno();
-                Desempeno dd = cDesempeno.buscarUnDesempenoIndicador(txtIndicador.Text);
-
-                CatalogCompetencia cCompetencia = new CatalogCompetencia();
-                Competencia c = cCompetencia.buscarUnaCompetencia(int.Parse(ddCompetencia.SelectedValue));
-                Competencia_Desempeno cd = new Competencia_Desempeno(dd, c);
-                cCD.insertarCD(cd);
-
-                CatalogNivel cNivel = new CatalogNivel();
-                Nivel nBasico = new Nivel(dd, 1, "Básico", txtNBasico.InnerText);
-                Nivel nMedio = new Nivel(dd, 2, "Medio", txtNMedio.InnerText);
-                Nivel nSuperior = new Nivel(dd, 3, "Superior", txtNSuperior.InnerText);
-                cNivel.insertarNivel(nBasico);
-                cNivel.insertarNivel(nMedio);
-                cNivel.insertarNivel(nSuperior);
-
-                if (txtNAvanzado.InnerText.Length > 0)
+                try
                 {
-                    Nivel nAvanzado = new Nivel(dd, 4, "Avanzado", txtNAvanzado.InnerText);
-                    cNivel.insertarNivel(nAvanzado);
+                    CatalogDesempeno cDesempeno = new CatalogDesempeno();
+                    Desempeno d = new Desempeno(txtIndicador.Text);
+                    cDesempeno.insertarDesempeno(d);
+
+                    CatalogCompetenciaDesempeno cCD = new CatalogCompetenciaDesempeno();
+                    Desempeno dd = cDesempeno.buscarUnDesempenoIndicador(txtIndicador.Text);
+
+                    CatalogCompetencia cCompetencia = new CatalogCompetencia();
+                    Competencia c = cCompetencia.buscarUnaCompetencia(int.Parse(ddCompetencia.SelectedValue));
+                    Competencia_Desempeno cd = new Competencia_Desempeno(dd, c);
+                    cCD.insertarCD(cd);
+
+                    CatalogNivel cNivel = new CatalogNivel();
+                    Nivel nBasico = new Nivel(dd, 1, "Básico", txtNBasico.InnerText);
+                    Nivel nMedio = new Nivel(dd, 2, "Medio", txtNMedio.InnerText);
+                    Nivel nSuperior = new Nivel(dd, 3, "Superior", txtNSuperior.InnerText);
+                    cNivel.insertarNivel(nBasico);
+                    cNivel.insertarNivel(nMedio);
+                    cNivel.insertarNivel(nSuperior);
+
+                    if (txtNAvanzado.InnerText.Length > 0)
+                    {
+                        Nivel nAvanzado = new Nivel(dd, 4, "Avanzado", txtNAvanzado.InnerText);
+                        cNivel.insertarNivel(nAvanzado);
+                    }
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Desempeño, niveles y asociacion creados satisfactoriamente');window.location='CrearDesempeno.aspx';</script>'");
                 }
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Desempeño, niveles y asociacion creados satisfactoriamente');window.location='CrearDesempeno.aspx';</script>'");
+                catch
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No fue posible crear desempeño');window.location='CrearDesempeno.aspx';</script>'");
+                }
             }
-            catch
+            else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('No fue posible crear desempeño');window.location='CrearDesempeno.aspx';</script>'");
+                Response.Write("<script>alert('Seleccione la Competencia a la que pertenecera el Desempeño');</script>");
             }
         }
     }

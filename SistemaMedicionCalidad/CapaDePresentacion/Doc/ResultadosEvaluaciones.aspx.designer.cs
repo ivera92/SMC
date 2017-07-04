@@ -13,6 +13,15 @@ namespace CapaDePresentacion.Doc {
     public partial class ResultadosEvaluacionesD {
         
         /// <summary>
+        /// rEG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image rEG;
+        
+        /// <summary>
         /// divAsignatura control.
         /// </summary>
         /// <remarks>
@@ -110,5 +119,14 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvDesempenos;
+        
+        /// <summary>
+        /// iEndSM12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM12;
     }
 }

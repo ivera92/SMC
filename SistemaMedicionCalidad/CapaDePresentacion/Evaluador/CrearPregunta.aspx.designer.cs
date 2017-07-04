@@ -13,6 +13,15 @@ namespace CapaDePresentacion.Evaluador {
     public partial class CrearPregunta {
         
         /// <summary>
+        /// cPregunta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image cPregunta;
+        
+        /// <summary>
         /// ddDesempeno control.
         /// </summary>
         /// <remarks>
@@ -137,5 +146,14 @@ namespace CapaDePresentacion.Evaluador {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCrear;
+        
+        /// <summary>
+        /// iEndSM12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM12;
     }
 }

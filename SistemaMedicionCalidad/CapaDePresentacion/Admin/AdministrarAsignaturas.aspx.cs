@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -59,7 +58,7 @@ namespace CapaDePresentacion.Admin
             Asignatura a = cAsignatura.buscarAsignatura(cod_asignatura);
             this.txtCodigo.Text = a.Cod_asignatura;
             this.ddEscuela.SelectedValue = a.Escuela_asignatura.Id_escuela + "";
-            this.txtNombre.Text = a.Nombre_asignatura;
+            this.txtNombre.Text = a.Nombre_asignatura.ToUpper();
             if (a.Duracion_asignatura == true)
                 this.rbDuracion.SelectedIndex = 0;
             else
@@ -89,7 +88,7 @@ namespace CapaDePresentacion.Admin
 
             a.Cod_asignatura = txtCodigo.Text;
             a.Escuela_asignatura = cEscuela.buscarUnaEscuela(int.Parse(this.ddEscuela.SelectedValue));            
-            a.Nombre_asignatura = this.txtNombre.Text.Trim();
+            a.Nombre_asignatura = this.txtNombre.Text.Trim().ToUpper();
             a.Duracion_asignatura = duracion;
             
             try

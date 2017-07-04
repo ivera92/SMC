@@ -148,53 +148,60 @@ namespace CapaDePresentacion.Admin
 
         protected void btnCrear_Click1(object sender, EventArgs e)
         {
-            string ids_preguntas = "";
-            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            int existe = cEvaluacion.verificarExistencia(ddAsignatura.SelectedValue, txtNombre.Text, DateTime.Parse(DateTime.Today.ToString("d")));
-
-            if (existe == 0)
+            if (ddAsignatura.SelectedValue != "0" && ddTipoEvaluacion.SelectedValue != "0")
             {
-                try
+                string ids_preguntas = "";
+                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                int existe = cEvaluacion.verificarExistencia(ddAsignatura.SelectedValue, txtNombre.Text, DateTime.Parse(DateTime.Today.ToString("d")));
+
+                if (existe == 0)
                 {
-                    if (ddTipoEvaluacion.SelectedValue == "1")
+                    try
                     {
-                        ids_preguntas = cEvaluacion.mostrarIDsPA(ddAsignatura.SelectedValue);
-                    }
-                    else if (ddTipoEvaluacion.SelectedValue == "2")
-                    {
-                        ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue, 15);
-                    }
-                    else if (ddTipoEvaluacion.SelectedValue == "3")
-                    {
-                        ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue, 30);
-                    }
-                    else if (ddTipoEvaluacion.SelectedValue == "4")
-                    {
-                        ids_preguntas = this.lSeleccionadas(); //Trae las Preguntas y respuestas asociadas a la lista de preguntas enviadas  
-                    }
+                        if (ddTipoEvaluacion.SelectedValue == "1")
+                        {
+                            ids_preguntas = cEvaluacion.mostrarIDsPA(ddAsignatura.SelectedValue);
+                        }
+                        else if (ddTipoEvaluacion.SelectedValue == "2")
+                        {
+                            ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue, 15);
+                        }
+                        else if (ddTipoEvaluacion.SelectedValue == "3")
+                        {
+                            ids_preguntas = cEvaluacion.generarPruebaAleatoria(ddAsignatura.SelectedValue, 30);
+                        }
+                        else if (ddTipoEvaluacion.SelectedValue == "4")
+                        {
+                            ids_preguntas = this.lSeleccionadas(); //Trae las Preguntas y respuestas asociadas a la lista de preguntas enviadas  
+                        }
 
-                    Evaluacion ev = new Evaluacion();
-                    CatalogAsignatura cAsignatura = new CatalogAsignatura();
-                    Asignatura a = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
+                        Evaluacion ev = new Evaluacion();
+                        CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                        Asignatura a = cAsignatura.buscarAsignatura(ddAsignatura.SelectedValue);
 
-                    ev.Asignatura_evaluacion = a;
-                    ev.Fecha_evaluacion = DateTime.Parse(DateTime.Today.ToString("d"));
-                    ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
-                    ev.Preguntas_evaluacion = ids_preguntas;
+                        ev.Asignatura_evaluacion = a;
+                        ev.Fecha_evaluacion = DateTime.Parse(DateTime.Today.ToString("d"));
+                        ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
+                        ev.Preguntas_evaluacion = ids_preguntas;
 
-                    cEvaluacion.insertarEvaluacion(ev);
-                    this.pdf(ids_preguntas);
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Evaluacion creada satisfactoriamente');window.location='CrearEvaluacion.aspx';</script>'");
+                        cEvaluacion.insertarEvaluacion(ev);
+                        this.pdf(ids_preguntas);
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Evaluacion creada satisfactoriamente');window.location='CrearEvaluacion.aspx';</script>'");
+                    }
+                    catch
+                    {
+                        Response.Write("<script>alert('No existe el minimo de preguntas para crear el tipo de evaluacion');</script>");
+                    }
+                    ids_preguntas = "";
                 }
-                catch
+                else
                 {
-                    Response.Write("<script>alert('No existe el minimo de preguntas para crear el tipo de evaluacion');</script>");
+                    Response.Write("<script>alert('El nombre de la evaluacion ya existe, ingrese otro');</script>");
                 }
-                ids_preguntas = "";
             }
             else
             {
-                Response.Write("<script>alert('El nombre de la evaluacion ya existe, ingrese otro');</script>");
+                Response.Write("<script>alert('Seleccione Asignatura, y Tipo de Evaluación');</script>");
             }
         }
 

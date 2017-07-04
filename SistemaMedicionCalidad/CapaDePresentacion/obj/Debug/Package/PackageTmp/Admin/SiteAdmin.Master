@@ -88,6 +88,7 @@
     <style type="text/css">
         body {
             background-color: #787887;
+            font-family:'Segoe UI';
         }
 
         #barra_top {
@@ -203,12 +204,12 @@
 
     <div id="barra_top"></div>
     <div id="banner_top">
-        <img src="http://www.uach.cl/uach/_file/5151be071d10c.jpg" width="1010" height="105" alt="" border="0">
+        <img src="http://www.uach.cl/uach/_file/5151be071d10c.jpg" class="img-responsive" alt="" border="0">
     </div>
     <div id="scroll">
         <div id="contenedor">
             <div id="logo">
-                <img src="http://www.uach.cl/uach/_imag/logo.jpg" border="0" alt="" style="margin-top: 21px;">
+                <img src="http://www.uach.cl/uach/_imag/logo.jpg" class="img-fluid" border="0" alt="" style="margin-top: 21px;">
             </div>
             <div id="menu_3">
                 <ul>
@@ -218,63 +219,63 @@
                     <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Escuela</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="CrearEscuela.aspx" style="width: 243px;">Crear escuela</a></li>
-                            <li><a href="AdministrarEscuelas.aspx" style="width: 243px;">Administrar escuelas</a></li>
+                            <li><a href="CrearEscuela.aspx" style="width: 243px;">Crear Escuela</a></li>
+                            <li><a href="AdministrarEscuelas.aspx" style="width: 243px;">Administrar Escuelas</a></li>
                         </ul>
                     </li>
                     <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Asignatura</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="CrearAsignatura.aspx" style="width: 243px;">Crear asignatura</a></li>
-                            <li><a href="AdministrarAsignaturas.aspx" style="width: 243px;">Administrar asignaturas</a></li>
-                            <li><a href="AsociarDesempenoAsignatura.aspx" style="width: 243px;">Asociar desempeño a asignatura</a></li>
-                            <li><a href="AdministrarAD.aspx" style="width: 243px;">Administrar asociaciones desempeño-asignatura</a></li>
+                            <li><a href="CrearAsignatura.aspx" style="width: 243px;">Crear Asignatura</a></li>
+                            <li><a href="AdministrarAsignaturas.aspx" style="width: 243px;">Administrar Asignaturas</a></li>
+                            <li><a href="AsociarDesempenoAsignatura.aspx" style="width: 243px;">Asignar Desempeño a Asignatura</a></li>
+                            <li><a href="AdministrarAD.aspx" style="width: 243px;">Administrar Desempeños Asignados a Asignaturas</a></li>
                         </ul>
                     </li>
                     <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Competencia</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="CrearCompetencia.aspx" style="width: 243px;">Crear competencia</a></li>                            
-                            <li><a href="CrearDesempeno.aspx" style="width: 243px;">Crear desempeño y asociar a competencia</a></li>
-                            <li><a href="AdministrarCompetencias.aspx" style="width: 243px;">Administrar competencias</a></li>
-                            <li><a href="AdministrarDesempeno.aspx" style="width: 243px;">Administrar desempeños y niveles</a></li>
-                            <li><a href="AdministrarCD.aspx" style="width: 243px;">Ver desempeños asociados a competencias</a></li>
+                            <li><a href="CrearCompetencia.aspx" style="width: 243px;">Crear Competencia</a></li>
+                            <li><a href="CrearDesempeno.aspx" style="width: 243px;">Crear Desempeño</a></li>
+                            <li><a href="AdministrarCompetencias.aspx" style="width: 243px;">Administrar Competencias</a></li>
+                            <li><a href="AdministrarDesempeno.aspx" style="width: 243px;">Administrar Desempeños</a></li>
+                            <li><a href="AdministrarCD.aspx" style="width: 243px;">Ver Desempeños Asignados a Competencias</a></li>
 
                         </ul>
-                    </li> 
+                    </li>
                     <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Docente</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="CrearDocente.aspx" style="width: 243px;">Crear docente</a></li>
-                            <li><a href="AdministrarDocentes.aspx" style="width: 243px;">Administrar docentes</a></li>
-                            <li><a href="AsociarAsignaturaDocente.aspx" style="width: 243px;">Asociar asignatura</a></li>
-                            <li><a href="AdministrarAsignaturasAsociadas.aspx" style="width: 243px;">Administrar asignaturas asociadas</a></li>
+                            <li><a href="CrearDocente.aspx" style="width: 243px;">Crear Docente</a></li>
+                            <li><a href="AdministrarDocentes.aspx" style="width: 243px;">Administrar Docentes</a></li>
+                            <li><a href="AsociarAsignaturaDocente.aspx" style="width: 243px;">Asignar Asignatura a Docente</a></li>
+                            <li><a href="AdministrarAsignaturasAsociadas.aspx" style="width: 243px;">Administrar Responsables Asignaturas</a></li>
                         </ul>
-                    </li>  
+                    </li>
                     <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Alumno</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="CrearAlumno.aspx" style="width: 243px;">Crear alumno</a></li>
-                            <li><a href="AdministrarAlumnos.aspx" style="width: 243px;">Administrar alumnos</a></li>
-                            <li><a href="InscribirRamo.aspx" style="width: 243px;">Inscribir asignatura</a></li>   
-                            <li><a href="AdministrarAsignaturasInscritas.aspx" style="width: 243px;">Administrar asignaturas inscritas</a></li>                            
+                            <li><a href="CrearAlumno.aspx" style="width: 243px;">Crear Alumno</a></li>
+                            <li><a href="AdministrarAlumnos.aspx" style="width: 243px;">Administrar Alumnos</a></li>
+                            <li><a href="InscribirRamo.aspx" style="width: 243px;">Inscribir Asignatura a Alumno</a></li>
+                            <li><a href="AdministrarAsignaturasInscritas.aspx" style="width: 243px;">Administrar Asignaturas Inscritas a Alumnos</a></li>
                         </ul>
-                    </li>        
+                    </li>
                     <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Evaluacion</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="CrearEvaluacion.aspx" style="width: 243px;">Crear evaluacion</a></li>
-                            <li><a href="CrearPregunta.aspx" style="width: 243px;">Crear pregunta</a></li>
-                            <li><a href="AdministrarEvaluaciones.aspx" style="width: 243px;">Administrar evaluaciones</a></li>                            
-                            <li><a href="AdministrarPreguntas.aspx" style="width: 243px;">Administrar pregunta</a></li>
+                            <li><a href="CrearEvaluacion.aspx" style="width: 243px;">Crear Evaluación</a></li>
+                            <li><a href="CrearPregunta.aspx" style="width: 243px;">Crear Pregunta</a></li>
+                            <li><a href="AdministrarEvaluaciones.aspx" style="width: 243px;">Administrar Evaluaciones</a></li>
+                            <li><a href="AdministrarPreguntas.aspx" style="width: 243px;">Administrar Preguntas</a></li>
                         </ul>
-                    </li>                 
+                    </li>
                     <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Resultados</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="ResultadosEvaluaciones.aspx" style="width: 243px;">Resultados evaluaciones</a></li>
-                            <li><a href="ResultadosEspecificos.aspx" style="width: 243px;">Resultados especificos</a></li>
-                            <li><a href="AdministrarHPA.aspx" style="width: 243px;">Ver Historial de respuestas</a></li>
+                            <li><a href="ResultadosEvaluaciones.aspx" style="width: 243px;">Resultados de Evaluación Generales</a></li>
+                            <li><a href="ResultadosEspecificos.aspx" style="width: 243px;">Resultados de Evaluación Específicos</a></li>
+                            <li><a href="AdministrarHPA.aspx" style="width: 243px;">Ver Historial de Respuestas Alumnos</a></li>
                         </ul>
                     </li>
                     <li class="nivel1">
@@ -287,7 +288,7 @@
                     <li class="nivel1">
                         <a href="#" style="color: #333; float: left;">Clave</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
-                            <li><a href="CambiarClave.aspx" style="width: 243px;">Cambiar clave</a></li>
+                            <li><a href="CambiarClave.aspx" style="width: 243px;">Cambiar Clave</a></li>
                         </ul>
                     </li>
                     <li class="nivel1">
@@ -298,7 +299,12 @@
             </div>
             <form runat="server" style="border: solid 2px #ccc">
                 <br />
-                <br />
+                <div>
+                    <div class="text-right">
+                        <asp:Label ID="Label1" runat="server" ForeColor="Green"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+                        <br />                 
+                    </div>
+                </div>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </form>
@@ -315,9 +321,9 @@
     </div>
     <div id="footer_direccion">
         Sistema desarrollado por <a href="https://www.facebook.com/ivan.veraruiz" title="Creador">Iván Vera Ruiz</a>
-    <br />
+        <br />
         Correo: ivera@ic.uach.cl
-        </div>
+    </div>
     <div id="footer_links">
         <div>Iconos hechos por <a href="http://www.freepik.com" title="Freepik">Freepik</a> desde <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     </div>

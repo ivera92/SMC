@@ -6,23 +6,24 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <div id="tablaAdministrar" runat="server" class="row">
-
         <div class="col-sm-offset-2 col-sm-8">
             <asp:Image ID="aEscuela" runat="server" ImageUrl="ImagenesAdmin/aEscuelas.PNG" />
-            <div style="border: solid 1px #ccc">
-                <asp:GridView class="table table-striped" ID="gvEscuelas" runat="server" AutoGenerateColumns="false"
-                    OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
-                    <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
-                    <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
-                    <EmptyDataTemplate>
-                        ¡No existen escuelas!
-                    </EmptyDataTemplate>
-                    <Columns>
-                        <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" HeaderText="Accion" />
-                        <asp:BoundField DataField="Nombre_Escuela" HeaderText="Escuela" />
-                        <asp:BoundField DataField="Id_Escuela" HeaderText="ID" />
-                    </Columns>
-                </asp:GridView>
+            <div class="col-sm-12" style="border: solid 1px #ccc">                
+                <div>
+                    <asp:GridView class="table table-striped" ID="gvEscuelas" runat="server" AutoGenerateColumns="false"
+                        OnRowDeleting="rowDeleting" OnRowEditing="rowEditing" Font-Names="Sengoe-UI" Font-Size="12">
+                        <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
+                        <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                        <EmptyDataTemplate>
+                            ¡No existen escuelas!
+                        </EmptyDataTemplate>
+                        <Columns>
+                            <asp:CommandField ButtonType="Button" ShowDeleteButton="true" ShowEditButton="true" HeaderText="Accion" />
+                            <asp:BoundField DataField="Nombre_Escuela" HeaderText="Escuela" />
+                            <asp:BoundField DataField="Id_Escuela" HeaderText="ID" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
             <asp:Image ID="aEND" runat="server" ImageUrl="ImagenesAdmin/iEndSM8.PNG" />
         </div>
@@ -36,8 +37,8 @@
                 <br />
                 <div>
                     <label>Nombre</label>
-                    <asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,})+"
-                        placeHolder="Ingrese nombre de escuela" oninvalid="setCustomValidity('El nombre debe contener solo letras, minimo 4')"
+                    <asp:TextBox ID="tbxEscuela" class="form-control" runat="server" pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{5,})([\s][a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{1,})*"
+                        placeHolder="Ingrese nombre de escuela" oninvalid="setCustomValidity('Ingrese solo letras, palabras separadas por solo un espacio, primera palabra minimo 5 caracteres, ejemplo: Ingeniería en Computación')"
                         oninput="setCustomValidity('')" required>
                     </asp:TextBox>
                     <br />
@@ -49,6 +50,5 @@
             </div>
             <asp:Image ID="cEscuelaEnd" runat="server" ImageUrl="ImagenesAdmin/iEndSM6.PNG" />
         </div>
-        <br />
-        </div>
+    </div>
 </asp:Content>

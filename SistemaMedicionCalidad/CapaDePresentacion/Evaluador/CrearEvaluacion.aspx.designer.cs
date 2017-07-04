@@ -13,6 +13,15 @@ namespace CapaDePresentacion.Evaluador {
     public partial class CrearEvaluacion {
         
         /// <summary>
+        /// cEvaluacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image cEvaluacion;
+        
+        /// <summary>
         /// ddAsignatura control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace CapaDePresentacion.Evaluador {
         protected global::System.Web.UI.WebControls.TextBox txtNombre;
         
         /// <summary>
+        /// btnCrear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCrear;
+        
+        /// <summary>
         /// divGV control.
         /// </summary>
         /// <remarks>
@@ -58,48 +76,12 @@ namespace CapaDePresentacion.Evaluador {
         protected global::System.Web.UI.WebControls.GridView gvPreguntas;
         
         /// <summary>
-        /// nombreAlumno control.
+        /// iEndSM12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nombreAlumno;
-        
-        /// <summary>
-        /// rut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rut;
-        
-        /// <summary>
-        /// fecha control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fecha;
-        
-        /// <summary>
-        /// fechaEvaluacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fechaEvaluacion;
-        
-        /// <summary>
-        /// btnCrear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCrear;
+        protected global::System.Web.UI.WebControls.Image iEndSM12;
     }
 }

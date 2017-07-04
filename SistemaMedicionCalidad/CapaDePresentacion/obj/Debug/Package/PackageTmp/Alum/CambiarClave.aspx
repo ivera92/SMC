@@ -4,43 +4,42 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1 class="text-center">Cambiar contraseña</h1>
-    <br />
-
-    <label class="col-sm-offset-4">Contraseña Actual</label>
     <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
-            <asp:TextBox ID="txtPwActual" runat="server" class="form-control col-sm-" placeHolder="Ingrese contraseña actual" TextMode="Password"
-                oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
-                    oninput="setCustomValidity('')"></asp:TextBox>
-        </div>
-    </div>
-    <br />
+            <asp:Image ID="cClave" runat="server" ImageUrl="ImagenesAlumno/cClave.PNG" />
+            <div class="col-sm-12" style="border: solid 1px #ccc">
+                <div>
+                    <br />
+                    <label>Clave Actual</label>
+                    <asp:TextBox ID="txtPwActual" runat="server" class="form-control col-sm-" placeHolder="Ingrese clave actual" TextMode="Password"
+                        oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
+                        oninput="setCustomValidity('')"></asp:TextBox>
+                    <br />
+                </div>
 
-    <label class="col-sm-offset-4">Nueva contraseña</label>
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
-            <asp:TextBox ID="txtPwNueva1" runat="server" class="form-control col-sm-4" placeHolder="Ingrese nueva contraseña" TextMode="Password"
-                oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
-                    oninput="setCustomValidity('')"></asp:TextBox>
-        </div>
-    </div>
-    <br />
+                <div>
+                    <label>Nueva Clave</label>
+                    <asp:TextBox ID="txtPwNueva1" runat="server" class="form-control" placeHolder="Ingrese nueva clave" TextMode="Password"
+                        oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
+                        oninput="setCustomValidity('')"></asp:TextBox>
+                </div>
 
-    <label class="col-sm-offset-4">Repita la contraseña</label>
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
-            <asp:TextBox ID="txtPwNueva2" runat="server" class="form-control col-sm-4" placeHolder="Ingrese nuevamente la contraseña" TextMode="Password"
-                oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
-                    oninput="setCustomValidity('')"></asp:TextBox>
-        </div>
-    </div>
-    <br />
+                <div>
+                    <br />
+                    <label>Repita la Clave</label>
+                    <asp:TextBox ID="txtPwNueva2" runat="server" class="form-control" placeHolder="Ingrese nuevamente la clave" TextMode="Password"
+                        oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
+                        oninput="setCustomValidity('')">
+                    </asp:TextBox>
+                    <br />
+                </div>
 
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
-            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-block  btn-primary" OnClick="btnGuardar_Click" />
+                <div class="col-sm-offset-2 col-sm-8">
+                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-block" BackColor="Orange" BorderColor="White" ForeColor="White" OnClick="btnGuardar_Click" />
+                    <br />
+                </div>
+            </div>
+            <asp:Image ID="iEndSM4" runat="server" ImageUrl="ImagenesAlumno/iEndSM4.PNG" />
         </div>
     </div>
-    <br />
 </asp:Content>

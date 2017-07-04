@@ -33,29 +33,35 @@ namespace CapaDePresentacion
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            CatalogAsignatura cAsignatura = new CatalogAsignatura();
-            bool duracion;
-            if (this.rbDuracion.SelectedValue == "0")
-                duracion = true;
-            else
-                duracion = false;
-
-            Asignatura a = new Asignatura();
-            Escuela es = new Escuela();
-            a.Escuela_asignatura = es;
-
-            a.Cod_asignatura = this.txtCodigo.Text.ToUpper().Trim();
-            a.Escuela_asignatura.Id_escuela = int.Parse(this.ddEscuela.SelectedValue);
-            a.Nombre_asignatura = this.txtNombre.Text.Trim();
-            a.Duracion_asignatura = duracion;
-            try
+            if (ddEscuela.SelectedValue != "0")
             {
-                cAsignatura.insertarAsignatura(a);
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura creada satisfactoriamente');window.location='CrearAsignatura.aspx';</script>'");
+                CatalogAsignatura cAsignatura = new CatalogAsignatura();
+                CatalogEscuela cEscuela = new CatalogEscuela();
+                bool duracion;
+                if (this.rbDuracion.SelectedValue == "0")
+                    duracion = true;
+                else
+                    duracion = false;
+
+                Asignatura a = new Asignatura();
+
+                a.Cod_asignatura = this.txtCodigo.Text.ToUpper().Trim();
+                a.Escuela_asignatura = cEscuela.buscarUnaEscuela(int.Parse(this.ddEscuela.SelectedValue));
+                a.Nombre_asignatura = this.txtNombre.Text.Trim();
+                a.Duracion_asignatura = duracion;
+                try
+                {
+                    cAsignatura.insertarAsignatura(a);
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Asignatura creada satisfactoriamente');window.location='CrearAsignatura.aspx';</script>'");
+                }
+                catch
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Codigo de asignatura ya existe en los registros, verifique en administrar asignaturas');window.location='AdministrarAsignaturas.aspx';</script>'");
+                }
             }
-            catch
+            else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Codigo de asignatura ya existe en los registros, verifique en administrar asignaturas');window.location='AdministrarAsignaturas.aspx';</script>'");
+                Response.Write("<script>alert('Seleccione una Escuela');</script>");
             }
         }
     }

@@ -13,31 +13,40 @@ namespace CapaDePresentacion {
     public partial class CambiarClave {
         
         /// <summary>
-        /// pwActual control.
+        /// cClave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pwActual;
+        protected global::System.Web.UI.WebControls.Image cClave;
         
         /// <summary>
-        /// pwNueva1 control.
+        /// txtPwActual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pwNueva1;
+        protected global::System.Web.UI.WebControls.TextBox txtPwActual;
         
         /// <summary>
-        /// pwNueva2 control.
+        /// txtPwNueva1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pwNueva2;
+        protected global::System.Web.UI.WebControls.TextBox txtPwNueva1;
+        
+        /// <summary>
+        /// txtPwNueva2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPwNueva2;
         
         /// <summary>
         /// btnGuardar control.
@@ -47,5 +56,14 @@ namespace CapaDePresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
+        
+        /// <summary>
+        /// iEndSM4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image iEndSM4;
     }
 }
