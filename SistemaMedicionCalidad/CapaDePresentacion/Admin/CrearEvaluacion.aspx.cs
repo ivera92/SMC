@@ -185,7 +185,7 @@ namespace CapaDePresentacion.Admin
                         ev.Preguntas_evaluacion = ids_preguntas;
 
                         cEvaluacion.insertarEvaluacion(ev);
-                        this.pdf(ids_preguntas);
+                        //this.pdf(ids_preguntas);
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Evaluacion creada satisfactoriamente');window.location='CrearEvaluacion.aspx';</script>'");
                     }
                     catch

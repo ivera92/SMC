@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-     <div class="row" runat="server" id="divOpcion">
+    <div class="row" runat="server" id="divOpcion">
         <div class="col-sm-6 col-sm-offset-3">
             <asp:Image ID="aRA" runat="server" ImageUrl="ImagenesDoc/cAlumno6.PNG" />
             <div class="col-sm-12" style="border: solid 1px #ccc">

@@ -314,7 +314,7 @@ namespace CapaDePresentacion.Alum
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesPendientes(rut, ddAsignatura.SelectedValue);
             this.ddEvaluacion.Items.Clear();
-            this.ddEvaluacion.Items.Add(new ListItem("<--Seleccione una evaluacion-->", "0"));
+            this.ddEvaluacion.Items.Add(new ListItem("Seleccione una Evaluacion", "0"));
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;

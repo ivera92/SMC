@@ -42,7 +42,16 @@ namespace Project
 
             while (result.Read())
             {
-                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4));
+                string activo_evaluacion = "";
+                if (result.GetBoolean(5) == true)
+                {
+                    activo_evaluacion = "Habilitada";
+                }
+                else
+                {
+                    activo_evaluacion = "Deshabilitada";
+                }
+                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4), activo_evaluacion);
                 lEvaluaciones.Add(e);
             }
             result.Close();
@@ -69,7 +78,17 @@ namespace Project
 
             while (result.Read())
             {
-                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4));
+                string activo_evaluacion = "";
+                if (result.GetBoolean(5) == true)
+                {
+                    activo_evaluacion = "Habilitada";
+                }
+                else
+                {
+                    activo_evaluacion = "Deshabilitada";
+                }
+
+                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4), activo_evaluacion);
                 lEvaluaciones.Add(e);
             }
             result.Close();
@@ -120,7 +139,16 @@ namespace Project
 
             while (result.Read())
             {
-                Evaluacion e = new Evaluacion(cAsignatura.buscarAsignatura(result.GetString(0)), result.GetString(1), result.GetDateTime(2), result.GetString(3));
+                string activo_evaluacion = "";
+                if (result.GetBoolean(4) == true)
+                {
+                    activo_evaluacion = "Habilitada";
+                }
+                else
+                {
+                    activo_evaluacion = "Deshabilitada";
+                }
+                Evaluacion e = new Evaluacion(cAsignatura.buscarAsignatura(result.GetString(0)), result.GetString(1), result.GetDateTime(2), result.GetString(3), activo_evaluacion);
                 lEvaluaciones.Add(e);
             }
             result.Close();
@@ -203,11 +231,12 @@ namespace Project
 
             DbDataReader result = bd.Query();//disponible resultado
             List<string> resultados = new List<string>();
+            int i = 1;
             while (result.Read())
             {
                 resultados.Add(result.GetBoolean(0) + "");
                 resultados.Add(result.GetInt32(1) + "");
-                resultados.Add(result.GetInt32(2)+"");
+                resultados.Add(result.GetInt32(2)+ "");
             }
             result.Close();
             bd.Close();
@@ -431,7 +460,16 @@ namespace Project
             DbDataReader result = bd.Query();//disponible resultado
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             result.Read();
-            Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4));
+            string activo_evaluacion = "";
+            if (result.GetBoolean(5) == true)
+            {
+                activo_evaluacion = "Habilitada";
+            }
+            else
+            {
+                activo_evaluacion = "Deshabilitada";
+            }
+            Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4), activo_evaluacion);
 
             result.Close();
             bd.Close();
@@ -590,6 +628,66 @@ namespace Project
             bd.Close();
 
             return lEvaluaciones;
+        }
+
+        //Actualiza el estado de una evaluacion existente en la base de datos
+        public void actualizarEstadoEvaluacion(string nombre_evaluacion, bool estado)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "editarEstadoEvaluacion";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_evaluacion", DbType.String, nombre_evaluacion);
+            bd.createParameter("@estado", DbType.Boolean, estado);
+            bd.execute();
+            bd.Close();
+        }
+
+        //Lista las respuestas de un alumno en una evaluacion en la base de datos
+        public List<int> listarIDsRA(string rut_alumno, int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarRespuestasAlumnoEvaluacion";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            DbDataReader result = bd.Query();
+            List<int> lIDs = new List<int>();
+            while (result.Read())
+            {
+                lIDs.Add(result.GetInt32(0));
+            }
+            result.Close();
+            bd.Close();
+
+            return lIDs;
+        }
+
+        //Lista las respuestas correctas en una evaluacion en la base de datos
+        public List<int> listarIDsRC(int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarRespuestasCorrectasEvaluacion";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            DbDataReader result = bd.Query();
+            List<int> lIDs = new List<int>();
+            while (result.Read())
+            {
+                lIDs.Add(result.GetInt32(0));
+            }
+            result.Close();
+            bd.Close();
+
+            return lIDs;
         }
     }
 }

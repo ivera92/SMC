@@ -1,4 +1,4 @@
-﻿
+﻿using System.Drawing;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -137,6 +137,11 @@ namespace CapaDePresentacion.Doc
             p1.CssClass = "col-sm-5";
             p2.CssClass = "col-sm-1";
             p1.Controls.Add(txt);
+            RequiredFieldValidator rfv = new RequiredFieldValidator();
+            rfv.ErrorMessage = "Ingrese una respuesta";
+            rfv.BorderColor = Color.Red;
+            rfv.ControlToValidate = txt.ID;
+            p1.Controls.Add(rfv);
             p2.Controls.Add(cb);
             p3.Controls.Add(p1);
             p3.Controls.Add(p2);
@@ -153,6 +158,7 @@ namespace CapaDePresentacion.Doc
             {
                 txt = new TextBox();
                 cb = new CheckBox();
+                txt.ID = "txt" + i;
                 txt.CssClass = "form-control";
                 lTxbRespuestas.Add(txt);
                 lCbRespuestas.Add(cb);

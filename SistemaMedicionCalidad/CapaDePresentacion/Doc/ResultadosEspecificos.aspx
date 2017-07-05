@@ -31,8 +31,8 @@
                     <label>Resultados</label>
                     <asp:DropDownList ID="ddOpcion" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddOpcion_SelectedIndexChanged">
                         <asp:ListItem Value="0">Seleccione una Opción</asp:ListItem>
-                        <asp:ListItem Value="1">Mejor alumno de evaluación</asp:ListItem>
-                        <asp:ListItem Value="2">Peor alumno de evaluación</asp:ListItem>
+                        <asp:ListItem Value="1">Mejor puntaje de evaluación</asp:ListItem>
+                        <asp:ListItem Value="2">Peor puntaje de evaluación</asp:ListItem>
                         <asp:ListItem Value="3">Pregunta mejor contestada</asp:ListItem>
                         <asp:ListItem Value="4">Pregunta peor contestada</asp:ListItem>
                         <asp:ListItem Value="5">Un alumno en específico</asp:ListItem>

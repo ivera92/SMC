@@ -40,15 +40,20 @@
                         <br />
                         <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="970px" Height="505px">
                             <Series>
-                                <asp:Series Name="Correctas" Color="#7373FF" ChartType="StackedBar"></asp:Series>
-                                <asp:Series ChartArea="ChartArea1" Color="#FF5353" Name="Incorrectas" ChartType="StackedBar">
+                                <asp:Series Name="Correctas" Color="#7373FF" ChartType="StackedColumn"></asp:Series>
+                                <asp:Series ChartArea="ChartArea1" Color="#FF5353" Name="Incorrectas" ChartType="StackedColumn">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
-                                <asp:ChartArea Name="ChartArea1" Area3DStyle-Enable3D="true">
-                                    <Area3DStyle Enable3D="True" />
+                                <asp:ChartArea Name="ChartArea1">
                                 </asp:ChartArea>
                             </ChartAreas>
+                            <Titles>
+                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de respuestas">
+                                </asp:Title>
+                                <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Desempeños">
+                                </asp:Title>
+                            </Titles>
                         </asp:Chart>
                         <br />
                     </asp:Panel>

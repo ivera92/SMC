@@ -77,6 +77,28 @@ namespace CapaDePresentacion.Doc
                 string preguntas = cEvaluacion.listarPreguntasEvaluacionNombre(nombre_evaluacion);
                 this.pdf(preguntas, nombre_evaluacion, nombre_asignatura);
             }
+            else if (e.CommandName == "activo")
+            {
+                // Recupera el índice de fila almacenado en el CommandArgument propiedad.
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                // Recuperar la fila que contiene el botón de la Filas.
+                GridViewRow row = gvEvaluaciones.Rows[index];
+                string nombre_evaluacion = HttpUtility.HtmlDecode(row.Cells[1].Text);
+                string estado = HttpUtility.HtmlDecode(row.Cells[3].Text);
+                bool estado_nuevo;
+                if (estado == "Habilitada")
+                {
+                    estado_nuevo = false;
+                }
+                else
+                {
+                    estado_nuevo = true;
+                }
+                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                cEvaluacion.actualizarEstadoEvaluacion(nombre_evaluacion, estado_nuevo);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Estado de Evaluación cambiado satisfactoriamente');window.location='AdministrarEvaluaciones.aspx';</script>'");
+            }
         }
 
         public void pdf(string ids_preguntas, string nombre_evaluacion, string nombre_asignatura)

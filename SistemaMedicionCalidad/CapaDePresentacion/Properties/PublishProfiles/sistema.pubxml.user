@@ -385,10 +385,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2017 15:36:45</publishTime>
     </File>
     <File Include="bin/CapaDePresentacion.dll">
-      <publishTime>07/04/2017 02:20:24</publishTime>
+      <publishTime>07/04/2017 16:37:38</publishTime>
     </File>
     <File Include="bin/CapaDePresentacion.pdb">
-      <publishTime>07/04/2017 02:20:24</publishTime>
+      <publishTime>07/04/2017 16:37:38</publishTime>
     </File>
     <File Include="bin/CapaLogica.dll">
       <publishTime>06/27/2017 15:36:45</publishTime>

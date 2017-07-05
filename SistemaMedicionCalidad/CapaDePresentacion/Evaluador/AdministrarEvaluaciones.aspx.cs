@@ -44,7 +44,7 @@ namespace CapaDePresentacion.Evaluador
 
         protected void rowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string nombre_evaluacion = HttpUtility.HtmlDecode((string)(this.gvEvaluaciones.Rows[e.RowIndex].Cells[1].Text));
+            string nombre_evaluacion = HttpUtility.HtmlDecode((string)(this.gvEvaluaciones.Rows[e.RowIndex].Cells[2].Text));
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             if (cEvaluacion.verificarExistenciaEvaluacionHPA(nombre_evaluacion) == 0)
             {
@@ -94,6 +94,28 @@ namespace CapaDePresentacion.Evaluador
                 CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
                 string preguntas = cEvaluacion.listarPreguntasEvaluacionNombre(nombre_evaluacion);
                 this.pdf(preguntas, nombre_evaluacion, nombre_asignatura);
+            }
+            else if (e.CommandName == "activo")
+            {
+                // Recupera el índice de fila almacenado en el CommandArgument propiedad.
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                // Recuperar la fila que contiene el botón de la Filas.
+                GridViewRow row = gvEvaluaciones.Rows[index];
+                string nombre_evaluacion = HttpUtility.HtmlDecode(row.Cells[2].Text);
+                string estado = HttpUtility.HtmlDecode(row.Cells[4].Text);
+                bool estado_nuevo;
+                if (estado == "Habilitada")
+                {
+                    estado_nuevo = false;
+                }
+                else
+                {
+                    estado_nuevo = true;
+                }
+                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                cEvaluacion.actualizarEstadoEvaluacion(nombre_evaluacion, estado_nuevo);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Estado de Evaluación cambiado satisfactoriamente');window.location='AdministrarEvaluaciones.aspx';</script>'");
             }
         }
 

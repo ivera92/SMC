@@ -95,37 +95,28 @@ namespace CapaDePresentacion.Doc
             List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneralAlumno(int.Parse(ddEvaluacion.SelectedValue), rut_alumno);
 
             int i = 0;
+            bool primera_vez = true;
             while (i < result.Count)
             {
-                string nombreCompetencia = result[i + 2];
 
-                if (Boolean.Parse(result[i]) == true)
+                if (Boolean.Parse(result[i]) == true && primera_vez)
                 {
+                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
                     this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     i = i + 3;
-                    try
-                    {
-                        if (Boolean.Parse(result[i]) == false)
-                        {
-                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
-                        }
-                        else
-                        {
-                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                            i = i + 3;
-                        }
-                    }
-                    catch { }
+                    primera_vez = false;
                 }
+
                 else if (Boolean.Parse(result[i]) == false)
                 {
+                    string x = result[i + 2];
                     this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     i = i + 3;
                     try
                     {
                         if (Boolean.Parse(result[i]) == false)
                         {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], 0);
+                            this.chartColumna.Series["Correctas"].Points.AddXY(x, 0);
                         }
                         else
                         {
@@ -133,7 +124,16 @@ namespace CapaDePresentacion.Doc
                             i = i + 3;
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                        this.chartColumna.Series["Correctas"].Points.AddXY(x, 0);
+                    }
+                }
+                else if (Boolean.Parse(result[i]) == true)
+                {
+                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
+                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                    i = i + 3;
                 }
             }
             chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
