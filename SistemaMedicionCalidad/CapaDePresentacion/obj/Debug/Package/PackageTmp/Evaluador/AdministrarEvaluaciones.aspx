@@ -27,8 +27,12 @@
                         </EmptyDataTemplate>
                         <Columns>
                             <asp:CommandField ButtonType="Button" ShowDeleteButton="true" HeaderText="Accion" />
+                            <asp:ButtonField ButtonType="Button" CommandName="activo"  ControlStyle-CssClass="btnActivo" Text="Cambiar estado" HeaderText="Cambiar Estado">
+                                <ControlStyle CssClass="btnActivo form-control btn-primary" />
+                            </asp:ButtonField>
                             <asp:BoundField DataField="Nombre_evaluacion" HeaderText="Evaluacion" />
                             <asp:BoundField DataField="Asignatura_evaluacion.Nombre_asignatura" HeaderText="Asignatura" />
+                            <asp:BoundField DataField="activo_evaluacion" HeaderText="Estado" />
                             <asp:BoundField DataField="Fecha_evaluacion" HeaderText="Fecha" DataFormatString="{0:d}" />
                             <asp:ButtonField ButtonType="Image" ImageUrl="~/imagenes/pdf.png" CommandName="imgBtnPDF" ControlStyle-CssClass="BotonDeImagen" HeaderText="PDF">
                                 <ControlStyle CssClass="BotonDeImagen" Width="40" Height="40" />

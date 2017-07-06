@@ -18,7 +18,8 @@
                 <div runat="server" id="divEvaluacion" class="col-sm-4">
                     <br />
                     <label>Evaluación</label>
-                    <asp:DropDownList ID="ddEvaluacion" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                    <asp:DropDownList ID="ddEvaluacion" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                        <asp:ListItem Text="Seleccione una Evaluación" Value="0"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
 
@@ -63,11 +64,22 @@
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
                         <Columns>
                             <asp:BoundField DataField="estado_respuesta" HeaderText="Estado" />
-                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
-                            <asp:BoundField DataField="indicador_desempeno.id_desempeno" HeaderText="Desempeno" />
+                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad de Respuestas" />
+                            <asp:BoundField DataField="indicador_desempeno.nombre_desempeno" HeaderText="Desempeño" />
                             <asp:BoundField DataField="rut_docente.nombre_persona" HeaderText="Docente" />
                             <asp:BoundField DataField="rut_alumno.nombre_persona" HeaderText="Alumno" />
                             <asp:BoundField DataField="Id_evaluacion_hpa.nombre_evaluacion" HeaderText="Evaluacion" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
+
+                <div class="col-sm-12">
+                    <asp:GridView ID="gvResultadosGenerales" runat="server" AutoGenerateColumns="false" class="table table-striped" BackColor="White">
+                        <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="estado_respuesta" HeaderText="Estado" />
+                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad de Respuestas" />
+                            <asp:BoundField DataField="indicador_desempeno.nombre_desempeno" HeaderText="Desempeño" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -77,8 +89,8 @@
                     <asp:GridView ID="gvDesempenos" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="id_desempeno" HeaderText="ID" />
-                            <asp:BoundField DataField="indicador_desempeno" HeaderText="Desempeño" />
+                            <asp:BoundField DataField="nombre_desempeno" HeaderText="Desempeño" />
+                            <asp:BoundField DataField="indicador_desempeno" HeaderText="Indicador" />
                             <asp:BoundField DataField="nombre_nivel" HeaderText="Nivel" />
                         </Columns>
                     </asp:GridView>

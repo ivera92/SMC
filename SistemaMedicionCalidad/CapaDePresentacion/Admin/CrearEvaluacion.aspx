@@ -19,7 +19,7 @@
                     <br />
                     <label>Asignatura</label>
                     <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
-                        <asp:ListItem Value="0">Seleccione una asignatura</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione una Asignatura</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>
@@ -27,7 +27,7 @@
                     <br />
                     <label>Tipo de Evaluación</label>
                     <asp:DropDownList runat="server" ID="ddTipoEvaluacion" class="form-control" AutoPostBack="true" AutoGenerateColumns="False" AppendDataBoundItems="true" OnSelectedIndexChanged="ddTipoEvaluacion_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione tipo de evaluación</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione Tipo de Evaluación</asp:ListItem>
                         <asp:ListItem Value="1">Todas las preguntas</asp:ListItem>
                         <asp:ListItem Value="2">15 Aleatorias</asp:ListItem>
                         <asp:ListItem Value="3">30 Aleatorias</asp:ListItem>

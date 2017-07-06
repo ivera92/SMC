@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
+using System.Drawing;
 
 namespace CapaDePresentacion
 {
@@ -100,6 +101,10 @@ namespace CapaDePresentacion
                 txt.CssClass = "form-control";
                 p1.CssClass = "col-sm-5";
                 p2.CssClass = "col-sm-1";
+                RequiredFieldValidator rfv = new RequiredFieldValidator();
+                rfv.ErrorMessage = "Ingrese una respuesta";
+                rfv.ForeColor = Color.Red;
+                rfv.ControlToValidate = txt.ID;
                 p1.Controls.Add(txt);
                 p2.Controls.Add(cb);
                 p2.Controls.Add(id);
@@ -155,11 +160,13 @@ namespace CapaDePresentacion
         {
             CatalogPregunta cPregunta = new CatalogPregunta();
             Pregunta p = new Pregunta();
+            Pregunta p2 = cPregunta.buscarUnaPregunta(id_pregunta);
             CatalogRespuesta cRespuesta = new CatalogRespuesta();
             CatalogTipoPregunta cTP = new CatalogTipoPregunta();
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogNivel cNivel = new CatalogNivel();
             Competencia c = new Competencia();
+            List<Respuesta> lRespuesta= cRespuesta.listarRespuestasPregunta(id_pregunta);
 
             p.Id_pregunta = id_pregunta;
             p.Id_desempeno = cDesempeno.buscarUnDesempeno(int.Parse(ddDesempeno.SelectedValue));
@@ -169,9 +176,9 @@ namespace CapaDePresentacion
             try
             {
                 cPregunta.actualizarPregunta(p);
-                if (AltOCas.Visible == true)
+                if (p2.Tipo_pregunta_pregunta.Id_tipo_pregunta == 1 || p2.Tipo_pregunta_pregunta.Id_tipo_pregunta == 2)
                 {
-                    for (int i = 0; i < lRespuestas.Count; i++)
+                    for (int i = 0; i < lRespuesta.Count; i++)
                     {
                         Respuesta r = new Respuesta();
                         r.Pregunta_respuesta = cPregunta.buscarUnaPregunta(id_pregunta);

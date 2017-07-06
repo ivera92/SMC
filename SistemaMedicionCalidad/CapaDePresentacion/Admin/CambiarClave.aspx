@@ -9,25 +9,25 @@
                 <div>
                     <br />
                     <label>Clave Actual</label>
-                    <asp:TextBox ID="txtPwActual" runat="server" class="form-control col-sm-" placeHolder="Ingrese clave actual" TextMode="Password"
-                        oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
-                        oninput="setCustomValidity('')"></asp:TextBox>
+                    <asp:TextBox ID="txtPwActual" runat="server" class="form-control" pattern="\S{5,10}" placeHolder="Ingrese clave actual" TextMode="Password"
+                        oninvalid="setCustomValidity('Minimo 5 caracteres, maximo 10')"
+                        oninput="setCustomValidity('')" required></asp:TextBox>
                     <br />
                 </div>
 
                 <div>
                     <label>Nueva Clave</label>
-                    <asp:TextBox ID="txtPwNueva1" runat="server" class="form-control" placeHolder="Ingrese nueva clave" TextMode="Password"
-                        oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
-                        oninput="setCustomValidity('')"></asp:TextBox>
+                    <asp:TextBox ID="txtPwNueva1" runat="server" class="form-control" pattern="\S{5,10}" placeHolder="Ingrese nueva clave" TextMode="Password"
+                        oninvalid="setCustomValidity('Minimo 5 caracteres, maximo 10')"
+                        oninput="setCustomValidity('')" required></asp:TextBox>
                 </div>
 
                 <div>
                     <br />
                     <label>Repita la Clave</label>
-                    <asp:TextBox ID="txtPwNueva2" runat="server" class="form-control" placeHolder="Ingrese nuevamente la clave" TextMode="Password"
-                        oninvalid="setCustomValidity('Minimo 6 caracteres, maximo 10')"
-                        oninput="setCustomValidity('')">
+                    <asp:TextBox ID="txtPwNueva2" runat="server" class="form-control" pattern="\S{5,10}" placeHolder="Ingrese nuevamente la clave" TextMode="Password"
+                        oninvalid="setCustomValidity('Minimo 5 caracteres, maximo 10')"
+                        oninput="setCustomValidity('')" required>
                     </asp:TextBox>
                     <br />
                 </div>

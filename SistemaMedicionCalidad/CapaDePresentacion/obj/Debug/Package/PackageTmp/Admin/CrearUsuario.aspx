@@ -11,7 +11,7 @@
                     <br />
                     <label>Tipo de usuario</label>
                     <asp:DropDownList ID="ddTipoUsuario" runat="server" AppendDataBoundItems="true" CssClass="form-control">
-                        <asp:ListItem Value="0">Seleccione tipo de usuario</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione un Tipo de Usuario</asp:ListItem>
                         <asp:ListItem Value="3">Administrador</asp:ListItem>
                         <asp:ListItem Value="4">Evaluador</asp:ListItem>
                     </asp:DropDownList>
@@ -20,14 +20,18 @@
 
                 <div>
                     <label>Nombre de usuario</label>
-                    <asp:TextBox runat="server" ID="txtNombreUsuario" class="form-control" placeHolder="Ingrese nombre usuario" required></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtNombreUsuario" class="form-control" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ0123456789]{5,10}" placeHolder="Ingrese nombre usuario"
+                        oninvalid="setCustomValidity('Ingrese solo letras y numeros, minimo 5, maximo 10 caracteres')"
+                        oninput="setCustomValidity('')"  required></asp:TextBox>
                     <br />
                 </div>
 
 
                 <div>
                     <label>Correo</label>
-                    <asp:TextBox runat="server" ID="txtCorreo" class="form-control" type="email" placeHolder="Ejemplo: ejemplo@live.cl" required></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtCorreo" class="form-control" type="email" placeHolder="Ejemplo: ejemplo@live.cl" pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" 
+                        oninvalid="setCustomValidity('Correo ingresado no cumple con el formato')"
+                        oninput="setCustomValidity('')" required></asp:TextBox>
                     <br />
                 </div>
 

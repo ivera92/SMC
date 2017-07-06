@@ -18,7 +18,7 @@ namespace Project
             List<Desempeno> lDesempenos = new List<Desempeno>();
             DbDataReader result = bd.Query();//disponible resultado
             while (result.Read())
-            {                
+            {
                 Desempeno d = new Desempeno(result.GetInt32(0), result.GetString(1));
                 lDesempenos.Add(d);
             }
@@ -205,10 +205,14 @@ namespace Project
             bd.createParameter("id_evaluacion", DbType.Int32, id_evaluacion);
             List<Desempeno> lDesempenos = new List<Desempeno>();
             DbDataReader result = bd.Query();//disponible resultado
+            int i = 1;
+            string s = "";
             while (result.Read())
             {
-                Desempeno d = new Desempeno(result.GetInt32(0), result.GetString(1), result.GetString(2));
+                s = "Desempeño " + i;
+                Desempeno d = new Desempeno(s, result.GetString(1), result.GetString(2));
                 lDesempenos.Add(d);
+                i += 1;
             }
             result.Close();
             bd.Close();

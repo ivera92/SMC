@@ -123,7 +123,7 @@ namespace CapaDePresentacion.Evaluador
             this.gvDesempenos.Visible = true;
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralGV(int.Parse(ddEvaluacion.SelectedValue));
+            List<Resultados> lResultados = cEvaluacion.obtenerResultadosEvaluacionGeneralPorAlumnoGV(int.Parse(ddEvaluacion.SelectedValue));
             List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
             this.gvResultados.DataSource = lResultados;
             this.gvDesempenos.DataSource = lDesempenos;
@@ -139,7 +139,7 @@ namespace CapaDePresentacion.Evaluador
         protected void ExportExcel()
         {
             this.mostrar();
-            
+
             DataTable dt = new DataTable("Resultados");
             foreach (TableCell cell in gvResultados.HeaderRow.Cells)
             {
@@ -198,7 +198,7 @@ namespace CapaDePresentacion.Evaluador
             this.ddEvaluacion.Items.Clear();
             if (lEvaluaciones.Count > 0)
                 this.ddEvaluacion.Items.Add(new ListItem("Seleccione una Evaluación", "0"));
-            
+
             this.ddEvaluacion.DataTextField = "Nombre_evaluacion";
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;

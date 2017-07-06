@@ -232,11 +232,22 @@ namespace Project
             DbDataReader result = bd.Query();//disponible resultado
             List<string> resultados = new List<string>();
             int i = 1;
+            int id_desempeño = 0;
+            bool primera_vez = false;
             while (result.Read())
             {
+                if (primera_vez == false)
+                {
+                    primera_vez = true;
+                }
+                else if (result.GetInt32(2) != id_desempeño)
+                {
+                    i = i + 1;
+                }
                 resultados.Add(result.GetBoolean(0) + "");
                 resultados.Add(result.GetInt32(1) + "");
-                resultados.Add(result.GetInt32(2)+ "");
+                resultados.Add("Desempeño " + i);                
+                id_desempeño = result.GetInt32(2);
             }
             result.Close();
             bd.Close();
@@ -256,11 +267,23 @@ namespace Project
 
             DbDataReader result = bd.Query();//disponible resultado
             List<string> resultados = new List<string>();
+            int i = 1;
+            int id_desempeño = 0;
+            bool primera_vez = false;
             while (result.Read())
             {
+                if (primera_vez == false)
+                {
+                    primera_vez = true;
+                }
+                else if (result.GetInt32(2) != id_desempeño)
+                {
+                    i = i + 1;
+                }
                 resultados.Add(result.GetBoolean(0) + "");
                 resultados.Add(result.GetInt32(1) + "");
-                resultados.Add(result.GetInt32(2) + "");
+                resultados.Add("Desempeño " + i);                
+                id_desempeño = result.GetInt32(2);
             }
             result.Close();
             bd.Close();
@@ -304,13 +327,13 @@ namespace Project
         }
 
         //obtiene  resultados de  una evaluacion 
-        public List<Resultados> obtenerResultadosEvaluacionGeneralGV(int id_evaluacion)
+        public List<Resultados> obtenerResultadosEvaluacionGeneralPorAlumnoGV(int id_evaluacion)
         {
 
             DataBase bd = new DataBase();
             bd.connect(); //método conectar
 
-            string sqlSearch = "mostrarResultadosGeneralesGV";
+            string sqlSearch = "mostrarResultadosGeneralesPorAlumnoGV";
             bd.CreateCommandSP(sqlSearch);
             bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
 
@@ -322,7 +345,80 @@ namespace Project
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
 
             List<Resultados> lResultados = new List<Resultados>();
+            int i = 1;
+            string indicador_desempeño = "";
+            bool primera_vez = false;
+            string s = "";
+            while (result.Read())
+            {
+                if (s != result.GetString(4))
+                {
+                    i = 1;
+                }
+                Desempeno d = new Desempeno();
+                Respuesta res = new Respuesta();
+                Resultados r = new Resultados();
+                r.Correcta_respuesta = res;
 
+                if (result.GetBoolean(0) == false)
+                {
+                    r.Estado_respuesta = "Incorrecta";
+                }
+                else
+                {
+                    r.Estado_respuesta = "Correcta";
+                }
+
+                r.Cantidad = result.GetInt32(1);
+                r.Indicador_desempeno = cDesempeno.buscarUnDesempenoIndicador(result.GetString(2));
+
+                if (primera_vez == false)
+                {
+                    primera_vez = true;
+                    r.Indicador_desempeno.Nombre_desempeno = "Desempeño " + i;
+                    i += 1;
+                }
+                else if (result.GetString(2) != indicador_desempeño)
+                {
+                    r.Indicador_desempeno.Nombre_desempeno = "Desempeño " + i;
+                    i = i + 1;
+                }
+                else
+                {
+                    r.Indicador_desempeno.Nombre_desempeno = "Desempeño " + (i - 1);
+                }
+                indicador_desempeño = result.GetString(2);
+
+                r.Rut_docente = cDocente.buscarUnDocente(result.GetString(3));
+                r.Rut_alumno = cAlumno.buscarAlumnoPorRut(result.GetString(4));
+                r.Id_evaluacion_hpa = cEvaluacion.buscarUnaEvaluacion(result.GetInt32(5));
+                lResultados.Add(r);
+                s = result.GetString(4);
+            }
+            result.Close();
+            bd.Close();
+            return lResultados;
+        }
+
+        //obtiene  resultados de  una evaluacion 
+        public List<Resultados> obtenerResultadosEvaluacionGeneralesGV(int id_evaluacion)
+        {
+
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarResultadosGeneralesGV";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+
+            DbDataReader result = bd.Query();//disponible resultado
+            CatalogDesempeno cDesempeno = new CatalogDesempeno();
+
+            List<Resultados> lResultados = new List<Resultados>();
+            int i = 1;
+            string indicador_desempeño = "";
+            bool primera_vez = false;
+            string s = "";
             while (result.Read())
             {
                 Desempeno d = new Desempeno();
@@ -341,10 +437,26 @@ namespace Project
 
                 r.Cantidad = result.GetInt32(1);
                 r.Indicador_desempeno = cDesempeno.buscarUnDesempenoIndicador(result.GetString(2));
-                r.Rut_docente = cDocente.buscarUnDocente(result.GetString(3));
-                r.Rut_alumno = cAlumno.buscarAlumnoPorRut(result.GetString(4));
-                r.Id_evaluacion_hpa = cEvaluacion.buscarUnaEvaluacion(result.GetInt32(5));
+
+                if (primera_vez == false)
+                {
+                    primera_vez = true;
+                    r.Indicador_desempeno.Nombre_desempeno = "Desempeño " + i;
+                    i += 1;
+                }
+                else if (result.GetString(2) != indicador_desempeño)
+                {
+                    r.Indicador_desempeno.Nombre_desempeno = "Desempeño " + i;
+                    i = i + 1;
+                }
+                else
+                {
+                    r.Indicador_desempeno.Nombre_desempeno = "Desempeño " + (i - 1);
+                }
+                indicador_desempeño = result.GetString(2);
+                
                 lResultados.Add(r);
+                s = result.GetString(2);
             }
             result.Close();
             bd.Close();
@@ -582,7 +694,7 @@ namespace Project
                 }
                 catch
                 {
-                    lResultados.Add(result.GetInt32(0)+"");
+                    lResultados.Add(result.GetInt32(0) + "");
                 }
 
                 lResultados.Add(result.GetString(1));
@@ -593,11 +705,11 @@ namespace Project
                 }
                 catch
                 {
-                    lResultados.Add(result.GetInt32(2)+"");
+                    lResultados.Add(result.GetInt32(2) + "");
                 }
-                
-                
-                
+
+
+
             }
             result.Close();
             bd.Close();

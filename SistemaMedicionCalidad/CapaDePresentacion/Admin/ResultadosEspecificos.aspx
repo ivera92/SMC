@@ -31,8 +31,8 @@
                     <label>Resultados</label>
                     <asp:DropDownList ID="ddOpcion" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddOpcion_SelectedIndexChanged">
                         <asp:ListItem Value="0">Seleccione opcion</asp:ListItem>
-                        <asp:ListItem Value="1">Mejor puntaje de evaluación</asp:ListItem>
-                        <asp:ListItem Value="2">Peor puntaje de evaluación</asp:ListItem>
+                        <asp:ListItem Value="1">Mejor puntaje de Evaluación</asp:ListItem>
+                        <asp:ListItem Value="2">Peor puntaje de Evaluación</asp:ListItem>
                         <asp:ListItem Value="3">Pregunta mejor contestada</asp:ListItem>
                         <asp:ListItem Value="4">Pregunta peor contestada</asp:ListItem>
                         <asp:ListItem Value="5">Un alumno en específico</asp:ListItem>
@@ -56,14 +56,6 @@
                 </div>
                 <div id="divAlumno" runat="server">
                     <div class="text-center">
-                        <label id="nombre" runat="server">Nombre alumno:</label>
-                    </div>
-                    <div class="text-center">
-                        <label id="lblNombreAlumno" runat="server"></label>
-                    </div>
-                    <br />
-
-                    <div class="text-center">
                         <label id="respuestas" runat="server">Respuestas correctas</label>
                     </div>
                     <div class="text-center">
@@ -74,15 +66,20 @@
                             <br />
                             <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="970px" Height="505px">
                                 <Series>
-                                    <asp:Series Name="Correctas" Color="#7373FF" ChartType="StackedBar"></asp:Series>
-                                    <asp:Series ChartArea="ChartArea1" Color="#FF5353" Name="Incorrectas" ChartType="StackedBar">
+                                    <asp:Series Name="Correctas" Color="#7373FF" ChartType="StackedColumn"></asp:Series>
+                                    <asp:Series ChartArea="ChartArea1" Color="#FF5353" Name="Incorrectas" ChartType="StackedColumn">
                                     </asp:Series>
                                 </Series>
                                 <ChartAreas>
-                                    <asp:ChartArea Name="ChartArea1" Area3DStyle-Enable3D="true">
-                                        <Area3DStyle Enable3D="True" />
+                                    <asp:ChartArea Name="ChartArea1">
                                     </asp:ChartArea>
                                 </ChartAreas>
+                                <Titles>
+                                    <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de Respuestas">
+                                    </asp:Title>
+                                    <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Desempeños">
+                                    </asp:Title>
+                                </Titles>
                             </asp:Chart>
                         </asp:Panel>
                         <br />
@@ -108,8 +105,8 @@
                     <asp:GridView ID="gvDesempenos" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="id_desempeno" HeaderText="ID" />
-                            <asp:BoundField DataField="indicador_desempeno" HeaderText="Desempeño" />
+                            <asp:BoundField DataField="nombre_desempeno" HeaderText="Desempeño" />
+                            <asp:BoundField DataField="indicador_desempeno" HeaderText="Indicador de Desempeño" />
                             <asp:BoundField DataField="nombre_nivel" HeaderText="Nivel" />
                         </Columns>
                     </asp:GridView>

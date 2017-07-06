@@ -134,12 +134,12 @@ namespace CapaDePresentacion.Doc
             Panel p1 = new Panel();
             Panel p2 = new Panel();
             Panel p3 = new Panel();
-            p1.CssClass = "col-sm-5";
-            p2.CssClass = "col-sm-1";
+            p1.CssClass = "col-sm-10";
+            p2.CssClass = "col-sm-2";
             p1.Controls.Add(txt);
             RequiredFieldValidator rfv = new RequiredFieldValidator();
             rfv.ErrorMessage = "Ingrese una respuesta";
-            rfv.BorderColor = Color.Red;
+            rfv.ForeColor = Color.Red;
             rfv.ControlToValidate = txt.ID;
             p1.Controls.Add(rfv);
             p2.Controls.Add(cb);

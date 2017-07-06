@@ -3,6 +3,7 @@
     public class Desempeno
     {
         private int id_desempeno;
+        private string nombre_desempeno;
         private string indicador_desempeno;
 
         private string nombre_nivel;   //para mostrar en gridview en los resultados dependiendo la evaluacion
@@ -30,6 +31,13 @@
             this.indicador_desempeno = indicador_desempeno;
             this.nombre_nivel = nombre_nivel;
         }
+        //Contructor para mostrar desempeños con niveles dependiendo la evaluacion con sus resultados
+        public Desempeno(string nombre_desempeno, string indicador_desempeno, string nombre_nivel)
+        {
+            this.nombre_desempeno = nombre_desempeno;
+            this.indicador_desempeno = indicador_desempeno;
+            this.nombre_nivel = nombre_nivel;
+        }
 
         public int Id_desempeno
         {
@@ -53,6 +61,19 @@
             set
             {
                 nombre_nivel = value;
+            }
+        }
+
+        public string Nombre_desempeno
+        {
+            get
+            {
+                return nombre_desempeno;
+            }
+
+            set
+            {
+                nombre_desempeno = value;
             }
         }
     }

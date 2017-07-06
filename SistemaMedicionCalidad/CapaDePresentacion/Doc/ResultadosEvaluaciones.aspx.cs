@@ -119,7 +119,7 @@ namespace CapaDePresentacion.Doc
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
             List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
             this.gvDesempenos.DataSource = lDesempenos;
-            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralGV(int.Parse(ddEvaluacion.SelectedValue));
+            List<Resultados> lResultados= cEvaluacion.obtenerResultadosEvaluacionGeneralPorAlumnoGV(int.Parse(ddEvaluacion.SelectedValue));
             this.gvResultados.DataSource = lResultados;
             this.DataBind();
         }

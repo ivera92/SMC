@@ -37,55 +37,58 @@ namespace CapaDePresentacion.Admin
 
         protected void btnVer_Click(object sender, EventArgs e)
         {
-            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            if (ddOpcion.SelectedValue == "1")
+            if (ddAsignatura.SelectedValue == "0" || ddEvaluacion.SelectedValue == "0" || ddOpcion.SelectedValue == "0")
             {
-                List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 1);
-                lblNombreAlumno.InnerText = lResultados[1];
-                this.graficoColumna(lResultados[0]);
-                divPregunta.Visible = false;
-                divAlumno.Visible = true;
-                chartColumna.Visible = true;
-                lblCorrectas.InnerText = lResultados[2];
-                gvDesempenos.Visible = true;
+                Response.Write("<script>alert('Seleccione una Asignatura, Evaluación, y el resultado que desea obtener');</script>");
             }
-            else if (ddOpcion.SelectedValue == "2")
+            else
             {
-                List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 2);
-                lblNombreAlumno.InnerText = lResultados[1];
-                this.graficoColumna(lResultados[0]);
-                divPregunta.Visible = false;
-                divAlumno.Visible = true;
-                chartColumna.Visible = true;
-                lblCorrectas.InnerText = lResultados[2];
-                gvDesempenos.Visible = true;          
-            }
-            else if (ddOpcion.SelectedValue == "3")
-            {
-                List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 3);
-                txtAPregunta.InnerText = lResultados[1];
-                lblCorrectasP.InnerText = lResultados[2];
-                divAlumno.Visible = false;
-                divPregunta.Visible = true;                
-            }
-            else if (ddOpcion.SelectedValue == "4")
-            {
-                List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 4);
-                txtAPregunta.InnerText = lResultados[1];
-                lblCorrectasP.InnerText = lResultados[2];
-                divAlumno.Visible = false;
-                divPregunta.Visible = true;
-            }
-            else if (ddOpcion.SelectedValue == "5")
-            {
-                graficoColumna(txtRut.Text);
-                divAlumno.Visible = true;
-                lblCorrectas.Visible = false;
-                lblNombreAlumno.Visible = false;
-                nombre.Visible = false;
-                respuestas.Visible = false;
-                divPregunta.Visible = false;
-                gvDesempenos.Visible = true;
+                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                if (ddOpcion.SelectedValue == "1")
+                {
+                    List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 1);
+                    this.graficoColumna(lResultados[0]);
+                    divPregunta.Visible = false;
+                    divAlumno.Visible = true;
+                    chartColumna.Visible = true;
+                    lblCorrectas.InnerText = lResultados[2];
+                    gvDesempenos.Visible = true;
+                }
+                else if (ddOpcion.SelectedValue == "2")
+                {
+                    List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 2);
+                    this.graficoColumna(lResultados[0]);
+                    divPregunta.Visible = false;
+                    divAlumno.Visible = true;
+                    chartColumna.Visible = true;
+                    lblCorrectas.InnerText = lResultados[2];
+                    gvDesempenos.Visible = true;
+                }
+                else if (ddOpcion.SelectedValue == "3")
+                {
+                    List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 3);
+                    txtAPregunta.InnerText = lResultados[1];
+                    lblCorrectasP.InnerText = lResultados[2];
+                    divAlumno.Visible = false;
+                    divPregunta.Visible = true;
+                }
+                else if (ddOpcion.SelectedValue == "4")
+                {
+                    List<string> lResultados = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 4);
+                    txtAPregunta.InnerText = lResultados[1];
+                    lblCorrectasP.InnerText = lResultados[2];
+                    divAlumno.Visible = false;
+                    divPregunta.Visible = true;
+                }
+                else if (ddOpcion.SelectedValue == "5")
+                {
+                    graficoColumna(txtRut.Text);
+                    divAlumno.Visible = true;
+                    lblCorrectas.Visible = false;
+                    respuestas.Visible = false;
+                    divPregunta.Visible = false;
+                    gvDesempenos.Visible = true;
+                }
             }
         }
 
@@ -99,27 +102,50 @@ namespace CapaDePresentacion.Admin
 
             int i = 0;
             bool primera_vez = true;
+            bool estado_anterior = false; ;
             while (i < result.Count)
             {
-
                 if (Boolean.Parse(result[i]) == true && primera_vez)
                 {
                     this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
                     this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     i = i + 3;
-                    primera_vez = false;
                 }
-
+                else if (Boolean.Parse(result[i]) == true && estado_anterior == true)
+                {
+                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
+                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                    i = i + 3;
+                }
+                else if (Boolean.Parse(result[i]) == true)
+                {
+                    string ss = result[i + 2];
+                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                    i = i + 3;
+                    try
+                    {
+                        if (Boolean.Parse(result[i]) == false)
+                        {
+                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                            i = i + 3;
+                        }
+                        else
+                        {
+                            this.chartColumna.Series["Incorrectas"].Points.AddXY(ss, 0);
+                        }
+                    }
+                    catch { }
+                }
                 else if (Boolean.Parse(result[i]) == false)
                 {
-                    string x = result[i + 2];
+                    string s = result[i + 2];
                     this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     i = i + 3;
                     try
                     {
                         if (Boolean.Parse(result[i]) == false)
                         {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(x, 0);
+                            this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
                         }
                         else
                         {
@@ -127,17 +153,17 @@ namespace CapaDePresentacion.Admin
                             i = i + 3;
                         }
                     }
-                    catch
-                    {
-                        this.chartColumna.Series["Correctas"].Points.AddXY(x, 0);
-                    }
+                    catch { }
+
                 }
-                else if (Boolean.Parse(result[i]) == true)
+                try
                 {
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
+                    estado_anterior = Boolean.Parse(result[i]);
                 }
+                catch
+                {
+                }
+                primera_vez = false;
             }
             chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
         }

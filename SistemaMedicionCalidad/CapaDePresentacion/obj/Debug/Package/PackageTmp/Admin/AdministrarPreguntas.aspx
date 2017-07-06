@@ -53,8 +53,7 @@
                 <div class="col-sm-6">
                     <br />
                     <label>Desempeño</label>
-                    <asp:DropDownList class="form-control" runat="server" ID="ddDesempeno" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddDesempeno_SelectedIndexChanged">
-                        <asp:ListItem Value="0"><--Seleccione un desempeno--></asp:ListItem>
+                    <asp:DropDownList class="form-control" runat="server" ID="ddDesempeno" AutoPostBack="true" OnSelectedIndexChanged="ddDesempeno_SelectedIndexChanged">
                     </asp:DropDownList>
                     <br />
                 </div>
@@ -68,7 +67,7 @@
 
                 <div class="col-sm-6">
                     <label>Enunciado</label>
-                    <textarea class="form-control" id="txtAPregunta" runat="server" rows="8"></textarea>
+                    <textarea class="form-control" id="txtAPregunta" runat="server" rows="8" required></textarea>
                     <br />
                 </div>
 

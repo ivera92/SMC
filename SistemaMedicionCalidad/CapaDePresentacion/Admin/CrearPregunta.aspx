@@ -39,7 +39,7 @@
                     <br />
                     <asp:FileUpload ID="fileImagen" runat="server" onchange="readURL(this);" />
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
-                        ErrorMessage="Tipo de archivo no permitido" oninvalid="setCustomValidity('Solo se permiten imagenes')" ControlToValidate="fileImagen"
+                        ErrorMessage="Tipo de archivo no permitido" ForeColor="Red" oninvalid="setCustomValidity('Solo se permiten imagenes')" ControlToValidate="fileImagen"
                         ValidationExpression="(.*).(.jpg|.JPG|.gif|.GIF|.jpeg|.JPEG|.bmp|.BMP|.png|.PNG)$">
                     </asp:RegularExpressionValidator>
                     <br />
@@ -47,12 +47,10 @@
                     <img id="blah" src="#" alt="" class="img-responsive" />
                 </div>
 
-                <div runat="server" id="AltOCas">
-                    <br />
-                    <label>Respuestas</label>
-                    <label class="col-sm-offset-4">Correcta</label>
-                    <br />
+                <div runat="server" id="AltOCas" class="col-sm-6">
                     <asp:Panel ID="Panel1" runat="server">
+                        <label>Respuestas</label>
+                        <label class="col-sm-offset-8">Correcta</label>
                     </asp:Panel>
                     <br />
                 </div>
