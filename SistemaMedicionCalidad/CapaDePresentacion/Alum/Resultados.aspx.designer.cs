@@ -85,6 +85,33 @@ namespace CapaDePresentacion.Alum {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPreguntas;
         
         /// <summary>
+        /// lblnEvaluacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblnEvaluacion;
+        
+        /// <summary>
+        /// lblCorrectas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCorrectas;
+        
+        /// <summary>
+        /// lblIncorrectas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblIncorrectas;
+        
+        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>

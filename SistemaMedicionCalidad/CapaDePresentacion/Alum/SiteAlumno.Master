@@ -131,16 +131,19 @@
             <div id="menu_3">
                 <ul>
                     <li class="nivel1">
-                        <a href="EvaluacionA.aspx" style="float: left;">Evaluacion</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <a href="Inicio.aspx" style="color: #333; float: left;">Inicio</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                     </li>
                     <li class="nivel1">
-                        <a href="Resultados.aspx" style="float: left;">Resultados</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <a href="EvaluacionA.aspx" style="color: #333; float: left;">Evaluacion</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                     </li>
                     <li class="nivel1">
-                        <a href="CambiarClave.aspx" style="float: left;">Cambiar Clave</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <a href="Resultados.aspx" style="color: #333; float: left;">Resultados</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                     </li>
                     <li class="nivel1">
-                        <a href="Logout.aspx" style="float: right;">Salir</a>
+                        <a href="CambiarClave.aspx" style="color: #333; float: left;">Cambiar Clave</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                    </li>
+                    <li class="nivel1">
+                        <a href="Logout.aspx" style="color: #333; float: right;">Salir</a>
                     </li>
                 </ul>
             </div>

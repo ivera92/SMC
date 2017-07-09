@@ -28,7 +28,7 @@
                 <div class="col-sm-2">
                     <br />
                     <br />
-                    <asp:Button ID="btnGraficar" runat="server" Text="Graficar" CssClass="btn btn-block" BackColor="Orange" BorderColor="White" ForeColor="White" OnClick="btnGraficar_Click" />
+                    <asp:Button ID="btnGraficar" runat="server" Text="Ver" CssClass="btn btn-block" BackColor="Orange" BorderColor="White" ForeColor="White" OnClick="btnGraficar_Click" />
                 </div>
 
                 <div class="col-sm-12">
@@ -36,14 +36,25 @@
                         <br />
                         <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="970px" Height="505px">
                             <Series>
-                                <asp:Series Name="Correctas" Color="#7373FF" ChartType="StackedBar"></asp:Series>
-                                <asp:Series ChartArea="ChartArea1" Color="#FF5353" Name="Incorrectas" ChartType="StackedBar">
+                                <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1"></asp:Series>
+                                <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
-                                <asp:ChartArea Name="ChartArea1" Area3DStyle-Enable3D="true"></asp:ChartArea>
+                                <asp:ChartArea Name="ChartArea1">
+                                </asp:ChartArea>
                             </ChartAreas>
+                            <Legends>
+                                <asp:Legend Name="Legend1" Alignment="Center" Docking="Bottom">
+                                </asp:Legend>
+                            </Legends>
+                            <Titles>
+                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de respuestas">
+                                </asp:Title>
+                            </Titles>
+                            <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
                         </asp:Chart>
+                        <br />
                     </asp:Panel>
                     <br />
                 </div>
@@ -59,6 +70,17 @@
                 </div>
 
                 <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
+                    <br />
+                    <div class="text-center">
+                        <label id="lblnEvaluacion" runat="server"></label>
+                    </div>
+                    <br />
+                    <div class="text-center">
+                        <label id="lblCorrectas" runat="server"></label>
+                    </div>
+                    <div class="text-center">
+                        <label id="lblIncorrectas" runat="server"></label>
+                    </div>
                     <br />
                     <asp:Panel ID="Panel1" runat="server"></asp:Panel>
                 </div>

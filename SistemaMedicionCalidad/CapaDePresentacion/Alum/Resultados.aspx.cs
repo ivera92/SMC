@@ -23,6 +23,7 @@ namespace CapaDePresentacion.Alum
 
                 if (!Page.IsPostBack) //para ver si cargo por primera vez
                 {
+                    divPreguntas.Visible = false;
                     gvDesempenos.Visible = false;
                     this.ddAsignatura.DataTextField = "Nombre_asignatura";
                     this.ddAsignatura.DataValueField = "Cod_asignatura";
@@ -47,52 +48,89 @@ namespace CapaDePresentacion.Alum
 
             int i = 0;
             bool primera_vez = true;
+            bool estado_anterior = false; ;
             while (i < result.Count)
             {
-
                 if (Boolean.Parse(result[i]) == true && primera_vez)
                 {
                     this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
                     this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     i = i + 3;
-                    primera_vez = false;
                 }
-
+                else if (Boolean.Parse(result[i]) == true && estado_anterior == true)
+                {
+                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
+                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                    i = i + 3;
+                }
+                else if (Boolean.Parse(result[i]) == true)
+                {
+                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                    i = i + 3;
+                    try
+                    {
+                        if (Boolean.Parse(result[i]) == false)
+                        {
+                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
+                            i = i + 3;
+                        }
+                        else
+                        {
+                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
+                        }
+                    }
+                    catch { }
+                }
                 else if (Boolean.Parse(result[i]) == false)
                 {
-                    string x = result[i + 2];
+                    string s = result[i + 2];
                     this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     i = i + 3;
                     try
                     {
                         if (Boolean.Parse(result[i]) == false)
                         {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(x, 0);
+                            this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
+                        }
+                        else if (Boolean.Parse(result[i]) == true && s == result[i + 2])
+                        {
+                            this.chartColumna.Series["Correctas"].Points.AddXY(s, int.Parse(result[i + 1]));
+                            i = i + 3;
                         }
                         else
                         {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                            i = i + 3;
+                            this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
                         }
                     }
-                    catch
-                    {
-                        this.chartColumna.Series["Correctas"].Points.AddXY(x, 0);
-                    }
+                    catch { }
+
                 }
-                else if (Boolean.Parse(result[i]) == true)
+                try
                 {
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
+                    estado_anterior = Boolean.Parse(result[i]);
                 }
+                catch
+                {
+                }
+                primera_vez = false;
             }
-            chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
+            System.Web.UI.DataVisualization.Charting.Title title = chartColumna.Titles.Add(ddEvaluacion.SelectedItem.ToString());
+            title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
+            title.ForeColor = Color.White;
         }
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
+            string rut = Session["rutAlumno"].ToString();
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            List<string> lResultados = cEvaluacion.mostrarResumenA(int.Parse(ddEvaluacion.SelectedValue), rut);
+            lblnEvaluacion.InnerText = ddEvaluacion.SelectedItem.Text;
+            lblCorrectas.InnerText = "Respuestas Correctas: " + lResultados[1].ToString();
+            lblIncorrectas.InnerText = "Respuestas Incorrectas: " + lResultados[2].ToString();
+            lblCorrectas.Attributes.Add("style", "Color: Green; font-weight:bold");
+            lblIncorrectas.Attributes.Add("style", "Color: Red; font-weight:bold");
             this.crearControles();
+            divPreguntas.Visible = true;
             /*this.graficoColumna();
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
             List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
@@ -103,6 +141,7 @@ namespace CapaDePresentacion.Alum
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
+            divPreguntas.Visible = false;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(ddAsignatura.SelectedValue);
 

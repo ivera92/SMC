@@ -165,8 +165,13 @@
     <Content Include="Alum\ImagenesAlumno\cClave.png" />
     <Content Include="Alum\ImagenesAlumno\iEndSM12.PNG" />
     <Content Include="Alum\ImagenesAlumno\iEndSM4.png" />
+    <Content Include="Alum\ImagenesAlumno\imgContrasena.png" />
+    <Content Include="Alum\ImagenesAlumno\imgEvaluacion.png" />
+    <Content Include="Alum\ImagenesAlumno\imgResultados.png" />
+    <Content Include="Alum\ImagenesAlumno\rEE.png" />
     <Content Include="Alum\ImagenesAlumno\respEvaluacion.png" />
     <Content Include="Alum\ImagenesAlumno\rEvaluacion.png" />
+    <Content Include="Alum\Inicio.aspx" />
     <Content Include="Alum\Logout.aspx" />
     <Content Include="Alum\Resultados.aspx" />
     <Content Include="CheqLogin.aspx" />
@@ -438,6 +443,13 @@
     </Compile>
     <Compile Include="Alum\EvaluacionA.aspx.designer.cs">
       <DependentUpon>EvaluacionA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Alum\Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alum\Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Alum\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>

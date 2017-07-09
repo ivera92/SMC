@@ -112,6 +112,15 @@ namespace CapaDePresentacion.Evaluador {
         protected global::System.Web.UI.WebControls.GridView gvResultados;
         
         /// <summary>
+        /// gvResultadosGenerales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvResultadosGenerales;
+        
+        /// <summary>
         /// gvDesempenos control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace CapaDePresentacion.Evaluador {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvDesempenos;
+        
+        /// <summary>
+        /// gvResumen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvResumen;
         
         /// <summary>
         /// iEndSM12 control.

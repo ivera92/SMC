@@ -246,7 +246,7 @@ namespace Project
                 }
                 resultados.Add(result.GetBoolean(0) + "");
                 resultados.Add(result.GetInt32(1) + "");
-                resultados.Add("Desempeño " + i);                
+                resultados.Add("Desempeño " + i);
                 id_desempeño = result.GetInt32(2);
             }
             result.Close();
@@ -282,7 +282,7 @@ namespace Project
                 }
                 resultados.Add(result.GetBoolean(0) + "");
                 resultados.Add(result.GetInt32(1) + "");
-                resultados.Add("Desempeño " + i);                
+                resultados.Add("Desempeño " + i);
                 id_desempeño = result.GetInt32(2);
             }
             result.Close();
@@ -454,7 +454,7 @@ namespace Project
                     r.Indicador_desempeno.Nombre_desempeno = "Desempeño " + (i - 1);
                 }
                 indicador_desempeño = result.GetString(2);
-                
+
                 lResultados.Add(r);
                 s = result.GetString(2);
             }
@@ -697,8 +697,14 @@ namespace Project
                     lResultados.Add(result.GetInt32(0) + "");
                 }
 
-                lResultados.Add(result.GetString(1));
-
+                try
+                {
+                    lResultados.Add(result.GetString(1));
+                }
+                catch
+                {
+                    lResultados.Add(result.GetInt32(1) + "");
+                }
                 try
                 {
                     lResultados.Add(result.GetString(2));
@@ -800,6 +806,43 @@ namespace Project
             bd.Close();
 
             return lIDs;
+        }
+
+        //Resumen de evaluacion respuestas correctas e incorrectas por rut de alumno
+        public DataTable mostrarResumen(int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "mostrarResumenEvaluacion";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+
+            result.Close();
+            bd.Close();
+            return dt;
+        }
+
+        //Devuelve el rut, la cantidad de respuestas correctas e incorrectas de un alumno en una evaluacion
+        public List<string> mostrarResumenA(int id_evaluacion, string rut_alumno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "mostrarResumenEvaluacionA";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+            DbDataReader result = bd.Query();
+            result.Read();
+            List<string> lResultados = new List<string>();
+            lResultados.Add(result.GetString(0));
+            lResultados.Add(result.GetInt32(1) + "");
+            lResultados.Add(result.GetInt32(2) + "");
+            result.Close();
+            bd.Close();
+            return lResultados;
         }
     }
 }

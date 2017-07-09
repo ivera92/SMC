@@ -10,7 +10,7 @@
 namespace CapaDePresentacion.Doc {
     
     
-    public partial class ResultadosEvaluacionesD {
+    public partial class ResultadosEvaluaciones {
         
         /// <summary>
         /// rEG control.
@@ -112,6 +112,15 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.GridView gvResultados;
         
         /// <summary>
+        /// gvResultadosGenerales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvResultadosGenerales;
+        
+        /// <summary>
         /// gvDesempenos control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace CapaDePresentacion.Doc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvDesempenos;
+        
+        /// <summary>
+        /// gvResumen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvResumen;
         
         /// <summary>
         /// iEndSM12 control.

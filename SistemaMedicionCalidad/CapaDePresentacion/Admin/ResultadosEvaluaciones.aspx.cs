@@ -8,6 +8,7 @@ using Project;
 using System.IO;
 using ClosedXML.Excel;
 using System.Web;
+using System.Drawing;
 
 namespace CapaDePresentacion.Admin
 {
@@ -50,6 +51,7 @@ namespace CapaDePresentacion.Admin
         public void graficoColumna()
         {
             gvDesempenos.Visible = true;
+            gvResumen.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             panelGrafico.Visible = true;
             List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(int.Parse(ddEvaluacion.SelectedValue));
@@ -73,7 +75,6 @@ namespace CapaDePresentacion.Admin
                 }
                 else if (Boolean.Parse(result[i]) == true)
                 {
-                    string ss = result[i + 2];
                     this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
                     i = i + 3;
                     try
@@ -85,7 +86,7 @@ namespace CapaDePresentacion.Admin
                         }
                         else
                         {
-                            this.chartColumna.Series["Incorrectas"].Points.AddXY(ss, 0);
+                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
                         }
                     }
                     catch { }
@@ -101,10 +102,14 @@ namespace CapaDePresentacion.Admin
                         {
                             this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
                         }
+                        else if (Boolean.Parse(result[i]) == true && s == result[i + 2])
+                        {
+                            this.chartColumna.Series["Correctas"].Points.AddXY(s, int.Parse(result[i + 1]));
+                            i = i + 3;
+                        }
                         else
                         {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                            i = i + 3;
+                            this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
                         }
                     }
                     catch { }
@@ -119,7 +124,10 @@ namespace CapaDePresentacion.Admin
                 }
                 primera_vez = false;
             }
-            chartColumna.Titles.Add(ddEvaluacion.SelectedItem.Text);
+            System.Web.UI.DataVisualization.Charting.Title title = chartColumna.Titles.Add(ddEvaluacion.SelectedItem.ToString());
+            title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
+            title.ForeColor = Color.White;
+
             panelGrafico.Controls.Add(chartColumna);
         }
 
@@ -133,11 +141,15 @@ namespace CapaDePresentacion.Admin
             else
             {
                 this.graficoColumna();
+                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                DataTable dt = cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue));
+                this.gvResumen.DataSource = dt;
                 CatalogDesempeno cDesempeno = new CatalogDesempeno();
                 List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
                 this.gvDesempenos.DataSource = lDesempenos;
                 this.DataBind();
                 gvDesempenos.Visible = true;
+                gvResumen.Visible = true;
                 panelGrafico.Visible = true;
                 btnExportar.Visible = true;                
             }
@@ -166,7 +178,9 @@ namespace CapaDePresentacion.Admin
         protected void ExportExcel()
         {
             this.mostrar();
-
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            DataTable dtResumen = cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue));
+            dtResumen.TableName = "Resumen Respuestas Alumnos";
             DataTable dt3 = new DataTable("Resultados Generales Desempeño");
             foreach (TableCell cell in gvResultadosGenerales.HeaderRow.Cells)
             {
@@ -213,6 +227,7 @@ namespace CapaDePresentacion.Admin
                 wb.Worksheets.Add(dt3);
                 wb.Worksheets.Add(dt);
                 wb.Worksheets.Add(dtDesempenos);
+                wb.Worksheets.Add(dtResumen);
 
                 Response.Clear();
                 Response.Buffer = true;
@@ -234,6 +249,10 @@ namespace CapaDePresentacion.Admin
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
             divEvaluacion.Visible = true;
+            gvDesempenos.Visible = false;
+            gvResultados.Visible = false;
+            gvResultadosGenerales.Visible = false;
+            gvResumen.Visible = false;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(ddAsignatura.SelectedValue);
 

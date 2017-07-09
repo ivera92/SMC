@@ -43,7 +43,7 @@ namespace CapaDePresentacion
                     if (int.Parse(autentificacion[1]) == 1)
                     {
                         Session["rutAlumno"] = rut.Text.ToUpper();
-                        Response.Redirect("~/Alum/EvaluacionA.aspx");
+                        Response.Redirect("~/Alum/Inicio.aspx");
                     }
                     else if (int.Parse(autentificacion[1]) == 2)
                     {
