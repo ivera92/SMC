@@ -204,9 +204,14 @@
     <Content Include="Doc\ImagenesDoc\iEndSM12.PNG" />
     <Content Include="Doc\ImagenesDoc\iEndSM4.png" />
     <Content Include="Doc\ImagenesDoc\iEndSM6.png" />
+    <Content Include="Doc\ImagenesDoc\imgAlumno.png" />
+    <Content Include="Doc\ImagenesDoc\imgContrasena.png" />
+    <Content Include="Doc\ImagenesDoc\imgEvaluacion.png" />
+    <Content Include="Doc\ImagenesDoc\imgResultados.png" />
     <Content Include="Doc\ImagenesDoc\rEE.png" />
     <Content Include="Doc\ImagenesDoc\rEG.png" />
     <Content Include="Doc\ImagenesDoc\vEvaluaciones.png" />
+    <Content Include="Doc\Inicio.aspx" />
     <Content Include="Doc\Logout.aspx" />
     <Content Include="Doc\ResultadosEspecificos.aspx" />
     <Content Include="Doc\ResultadosEvaluaciones.aspx" />
@@ -223,8 +228,13 @@
     <Content Include="Evaluador\ImagenesEvaluador\cPregunta.png" />
     <Content Include="Evaluador\ImagenesEvaluador\iEndSM12.PNG" />
     <Content Include="Evaluador\ImagenesEvaluador\iEndSM4.png" />
+    <Content Include="Evaluador\ImagenesEvaluador\imgContrasena.png" />
+    <Content Include="Evaluador\ImagenesEvaluador\imgEvaluacion.png" />
+    <Content Include="Evaluador\ImagenesEvaluador\imgPregunta.png" />
+    <Content Include="Evaluador\ImagenesEvaluador\imgResultados.png" />
     <Content Include="Evaluador\ImagenesEvaluador\rEE.png" />
     <Content Include="Evaluador\ImagenesEvaluador\rEG.png" />
+    <Content Include="Evaluador\Inicio.aspx" />
     <Content Include="Evaluador\Logout.aspx" />
     <Content Include="Evaluador\ResultadosEspecificos.aspx" />
     <Content Include="Evaluador\ResultadosEvaluaciones.aspx" />
@@ -619,6 +629,13 @@
     <Compile Include="Doc\EvaluacionAlumno.aspx.designer.cs">
       <DependentUpon>EvaluacionAlumno.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Doc\Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doc\Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Doc\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -674,6 +691,13 @@
     </Compile>
     <Compile Include="Evaluador\CrearPregunta.aspx.designer.cs">
       <DependentUpon>CrearPregunta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluador\Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluador\Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Evaluador\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>

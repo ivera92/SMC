@@ -62,6 +62,32 @@
                         <br />
                     </asp:Panel>
                 </div>
+
+                <div class="col-sm-12">
+                    <asp:Panel ID="panel1" runat="server">
+                        <br />
+                        <asp:Chart ID="chartPuntos" runat="server" CssClass="center-block" Width="970px" Height="505px">
+                            <Series>
+                                <asp:Series Name="Rut" Color="#4F81BC" IsValueShownAsLabel="True" Legend="Legend1" ChartType="Point"></asp:Series>                         
+                            </Series>
+                            <ChartAreas>
+                                <asp:ChartArea Name="ChartArea1">
+                                </asp:ChartArea>
+                            </ChartAreas>
+                            <Legends>
+                                <asp:Legend Name="Legend1" Alignment="Center" Docking="Bottom">
+                                </asp:Legend>
+                            </Legends>
+                            <Titles>
+                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de respuestas">
+                                </asp:Title>
+                            </Titles>
+                            <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
+                        </asp:Chart>
+                        <br />
+                    </asp:Panel>
+                </div>
+
                 <div class="col-sm-12">
                     <asp:GridView ID="gvResultados" runat="server" AutoGenerateColumns="false" class="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
@@ -107,6 +133,7 @@
                             <asp:BoundField DataField="Rut" HeaderText="Rut" />
                             <asp:BoundField DataField="Correctas" HeaderText="Correctas" />
                             <asp:BoundField DataField="Incorrectas" HeaderText="Incorrectas" />
+                            <asp:BoundField DataField="Promedio" HeaderText="Promedio" />
                         </Columns>
                     </asp:GridView>
                 </div>

@@ -121,22 +121,29 @@ namespace CapaDePresentacion.Alum
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
-            string rut = Session["rutAlumno"].ToString();
-            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<string> lResultados = cEvaluacion.mostrarResumenA(int.Parse(ddEvaluacion.SelectedValue), rut);
-            lblnEvaluacion.InnerText = ddEvaluacion.SelectedItem.Text;
-            lblCorrectas.InnerText = "Respuestas Correctas: " + lResultados[1].ToString();
-            lblIncorrectas.InnerText = "Respuestas Incorrectas: " + lResultados[2].ToString();
-            lblCorrectas.Attributes.Add("style", "Color: Green; font-weight:bold");
-            lblIncorrectas.Attributes.Add("style", "Color: Red; font-weight:bold");
-            this.crearControles();
-            divPreguntas.Visible = true;
-            /*this.graficoColumna();
-            CatalogDesempeno cDesempeno = new CatalogDesempeno();
-            List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
-            this.gvDesempenos.DataSource = lDesempenos;
-            this.DataBind();
-            gvDesempenos.Visible = true;*/
+            if (ddAsignatura.SelectedValue != "0" && ddEvaluacion.SelectedValue != "0")
+            {
+                string rut = Session["rutAlumno"].ToString();
+                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                List<string> lResultados = cEvaluacion.mostrarResumenA(int.Parse(ddEvaluacion.SelectedValue), rut);
+                lblnEvaluacion.InnerText = ddEvaluacion.SelectedItem.Text;
+                lblCorrectas.InnerText = "Respuestas Correctas: " + lResultados[1].ToString();
+                lblIncorrectas.InnerText = "Respuestas Incorrectas: " + lResultados[2].ToString();
+                lblCorrectas.Attributes.Add("style", "Color: Green; font-weight:bold");
+                lblIncorrectas.Attributes.Add("style", "Color: Red; font-weight:bold");
+                this.crearControles();
+                divPreguntas.Visible = true;
+                /*this.graficoColumna();
+                CatalogDesempeno cDesempeno = new CatalogDesempeno();
+                List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
+                this.gvDesempenos.DataSource = lDesempenos;
+                this.DataBind();
+                gvDesempenos.Visible = true;*/
+            }
+            else
+            {
+                Response.Write("<script>alert('Seleccione una Asignatura y Evaluación para poder graficar');</script>");
+            }
         }
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)

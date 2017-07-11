@@ -54,7 +54,7 @@ namespace CapaDePresentacion.Alum
         //Recorre la lista de checked y crea historial por cada pregunta y los inserta en la BD
         public void checkearChecked()
         {
-            string rut = Session["rutAlumno"].ToString();
+            string rut = Session["rutAlumno"].ToString();            
             Evaluacion ev = new Evaluacion();
             Pregunta p = new Pregunta();
             Respuesta r = new Respuesta();
@@ -142,6 +142,7 @@ namespace CapaDePresentacion.Alum
         //se crean listas estaticas para que se pueda acceder a los atributos checked posteriormente 
         public void crearControles()
         {
+            lblnEvaluacion.InnerText = ddEvaluacion.SelectedItem.Text;
             string ids_preguntas = "";
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             ids_preguntas = cEvaluacion.listarPreguntasEvaluacion(int.Parse(ddEvaluacion.SelectedValue));

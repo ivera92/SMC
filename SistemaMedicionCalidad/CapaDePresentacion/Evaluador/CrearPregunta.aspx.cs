@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Drawing;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web.UI;
@@ -62,6 +63,7 @@ namespace CapaDePresentacion.Evaluador
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
+            this.divCrear.Visible = false;
             int i = 0;
             CatalogPregunta cp = new CatalogPregunta();
             CatalogRespuesta cr = new CatalogRespuesta();
@@ -132,9 +134,14 @@ namespace CapaDePresentacion.Evaluador
             Panel p1 = new Panel();
             Panel p2 = new Panel();
             Panel p3 = new Panel();
-            p1.CssClass = "col-sm-5";
-            p2.CssClass = "col-sm-1";
+            p1.CssClass = "col-sm-10";
+            p2.CssClass = "col-sm-2";
             p1.Controls.Add(txt);
+            RequiredFieldValidator rfv = new RequiredFieldValidator();
+            rfv.ErrorMessage = "Ingrese una respuesta";
+            rfv.ForeColor = Color.Red;
+            rfv.ControlToValidate = txt.ID;
+            p1.Controls.Add(rfv);
             p2.Controls.Add(cb);
             p3.Controls.Add(p1);
             p3.Controls.Add(p2);
@@ -151,6 +158,7 @@ namespace CapaDePresentacion.Evaluador
             {
                 txt = new TextBox();
                 cb = new CheckBox();
+                txt.ID = "txt" + i;
                 txt.CssClass = "form-control";
                 lTxbRespuestas.Add(txt);
                 lCbRespuestas.Add(cb);
@@ -191,10 +199,12 @@ namespace CapaDePresentacion.Evaluador
                             fileOK = true;
                         }
                     }
+                    
                     if (fileOK)
                     {
-                        int width = Convert.ToInt32(fileImagen.Width);
-                        int height = Convert.ToInt32(fileImagen.Height);
+                        System.Drawing.Image imagen = System.Drawing.Image.FromStream(fileImagen.PostedFile.InputStream);
+                        int width = Convert.ToInt32(imagen.Width);
+                        int height = Convert.ToInt32(imagen.Height);
                         while (width > 1100)
                         {
                             width = width * (80 / 100);

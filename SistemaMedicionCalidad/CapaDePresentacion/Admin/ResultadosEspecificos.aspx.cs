@@ -137,7 +137,7 @@ namespace CapaDePresentacion.Admin
                         {
                             this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
                         }
-                        else if (Boolean.Parse(result[i]) == true && s==result[i+2])
+                        else if (Boolean.Parse(result[i]) == true && s == result[i + 2])
                         {
                             this.chartColumna.Series["Correctas"].Points.AddXY(s, int.Parse(result[i + 1]));
                             i = i + 3;
@@ -147,7 +147,10 @@ namespace CapaDePresentacion.Admin
                             this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                        this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
+                    }
 
                 }
                 try

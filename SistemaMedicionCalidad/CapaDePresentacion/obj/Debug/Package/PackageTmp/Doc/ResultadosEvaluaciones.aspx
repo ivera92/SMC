@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Doc/SiteDocente.Master" AutoEventWireup="true" CodeBehind="ResultadosEvaluaciones.aspx.cs" Inherits="CapaDePresentacion.Doc.ResultadosEvaluacionesD" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Doc/SiteDocente.Master" AutoEventWireup="true" CodeBehind="ResultadosEvaluaciones.aspx.cs" Inherits="CapaDePresentacion.Doc.ResultadosEvaluaciones" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -7,63 +7,82 @@
     <div class="row">
         <div class="col-sm-12">
             <asp:Image ID="rEG" runat="server" ImageUrl="ImagenesDoc/rEG.PNG" />
-            <div>
+            <div style="border: solid 1px #ccc">
                 <div runat="server" id="divAsignatura" class="col-sm-4">
                     <br />
                     <label>Asignatura</label>
                     <asp:DropDownList ID="ddAsignatura" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione una Asignatura</asp:ListItem>
                     </asp:DropDownList>
-                    <br />
                 </div>
 
                 <div runat="server" id="divEvaluacion" class="col-sm-4">
                     <br />
-                    <label>Evaluacion</label>
-                    <asp:DropDownList ID="ddEvaluacion" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control">
-                        <asp:ListItem Value="0">Seleccione una Evaluación</asp:ListItem>
+                    <label>Evaluación</label>
+                    <asp:DropDownList ID="ddEvaluacion" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                        <asp:ListItem Text="Seleccione una Evaluación" Value="0"></asp:ListItem>
                     </asp:DropDownList>
-                    <br />
                 </div>
+
 
                 <div runat="server" id="divBtnGraficar" class="col-sm-2">
                     <br />
                     <br />
-                    <asp:Button runat="server" ID="btnGraficar" CssClass="form-control btn-block" ForeColor="White" BackColor="#7F1734" BorderColor="White" Text="Graficar" OnClick="btnGraficar_Click" />
+                    <asp:Button runat="server" ID="btnGraficar" CssClass="form-control btn-block"  ForeColor="White" BackColor="#7F1734" BorderColor="White" Text="Graficar" OnClick="btnGraficar_Click" />
                 </div>
 
                 <div class="col-sm-2">
                     <br />
                     <br />
-                    <asp:Button runat="server" ID="btnExportar" CssClass="form-control btn-success btn-block" Text="Exportar a Excel" OnClick="btnExportar_Click" />
+                    <asp:Button runat="server" ID="btnExportar" CssClass="form-control btn-block btn-success"  ForeColor="White" BackColor="#7F1734" BorderColor="White" Text="Exportar a Excel" OnClick="btnExportar_Click" />
                 </div>
 
                 <div class="col-sm-12">
                     <asp:Panel ID="panelGrafico" runat="server">
+                        <br />
                         <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="970px" Height="505px">
                             <Series>
-                                <asp:Series Name="Correctas" Color="#7373FF" ChartType="StackedBar"></asp:Series>
-                                <asp:Series ChartArea="ChartArea1" Color="#FF5353" Name="Incorrectas" ChartType="StackedBar">
+                                <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1"></asp:Series>
+                                <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
-                                <asp:ChartArea Name="ChartArea1" Area3DStyle-Enable3D="true"></asp:ChartArea>
+                                <asp:ChartArea Name="ChartArea1">
+                                </asp:ChartArea>
                             </ChartAreas>
+                            <Legends>
+                                <asp:Legend Name="Legend1" Alignment="Center" Docking="Bottom">
+                                </asp:Legend>
+                            </Legends>
+                            <Titles>
+                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de respuestas">
+                                </asp:Title>
+                            </Titles>
+                            <BorderSkin BackColor="Firebrick" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
                         </asp:Chart>
                         <br />
                     </asp:Panel>
-                    <br />
                 </div>
                 <div class="col-sm-12">
                     <asp:GridView ID="gvResultados" runat="server" AutoGenerateColumns="false" class="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#7F1734" Font-Bold="True" ForeColor="White" />
                         <Columns>
                             <asp:BoundField DataField="estado_respuesta" HeaderText="Estado" />
-                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
-                            <asp:BoundField DataField="indicador_desempeno.id_desempeno" HeaderText="Desempeño" />
+                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad de Respuestas" />
+                            <asp:BoundField DataField="indicador_desempeno.nombre_desempeno" HeaderText="Desempeño" />
                             <asp:BoundField DataField="rut_docente.nombre_persona" HeaderText="Docente" />
                             <asp:BoundField DataField="rut_alumno.nombre_persona" HeaderText="Alumno" />
-                            <asp:BoundField DataField="Id_evaluacion_hpa.nombre_evaluacion" HeaderText="Evaluación" />
+                            <asp:BoundField DataField="Id_evaluacion_hpa.nombre_evaluacion" HeaderText="Evaluacion" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
+
+                <div class="col-sm-12">
+                    <asp:GridView ID="gvResultadosGenerales" runat="server" AutoGenerateColumns="false" class="table table-striped" BackColor="White">
+                        <HeaderStyle BackColor="#7F1734" Font-Bold="True" ForeColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="estado_respuesta" HeaderText="Estado" />
+                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad de Respuestas" />
+                            <asp:BoundField DataField="indicador_desempeno.nombre_desempeno" HeaderText="Desempeño" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -73,11 +92,22 @@
                     <asp:GridView ID="gvDesempenos" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#7F1734" Font-Bold="True" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="id_desempeno" HeaderText="ID" />
-                            <asp:BoundField DataField="indicador_desempeno" HeaderText="Desempeño" />
+                            <asp:BoundField DataField="nombre_desempeno" HeaderText="Desempeño" />
+                            <asp:BoundField DataField="indicador_desempeno" HeaderText="Indicador" />
                             <asp:BoundField DataField="nombre_nivel" HeaderText="Nivel" />
                         </Columns>
+                    </asp:GridView>
+                </div>
 
+                <div class="col-sm-6 col-sm-offset-3">
+                    <br />
+                    <asp:GridView ID="gvResumen" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">
+                        <HeaderStyle BackColor="#7F1734" Font-Bold="True" ForeColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="Rut" HeaderText="Rut" />
+                            <asp:BoundField DataField="Correctas" HeaderText="Correctas" />
+                            <asp:BoundField DataField="Incorrectas" HeaderText="Incorrectas" />
+                        </Columns>
                     </asp:GridView>
                 </div>
             </div>

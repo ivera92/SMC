@@ -86,7 +86,7 @@
     <style type="text/css">
         body {
             background-color: #525353;
-            font-family:'Segoe UI';
+            font-family: 'Segoe UI';
         }
 
         #barra_top {
@@ -131,21 +131,32 @@
             <div id="menu_3">
                 <ul>
                     <li class="nivel1">
-                        <a href="EvaluacionA.aspx" style="float: left;">Evaluacion</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <a href="Inicio.aspx" style="color: #333; float: left;">Inicio</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                     </li>
                     <li class="nivel1">
-                        <a href="Resultados.aspx" style="float: left;">Resultados</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <a href="#" style="color: #333; float: left;">Evaluacion</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <ul>
+                            <li><a href="EvaluacionA.aspx" style="width: 243px;">Responder una Evaluación</a></li>
+                        </ul>
                     </li>
                     <li class="nivel1">
-                        <a href="CambiarClave.aspx" style="float: left;">Cambiar Clave</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <a href="#.aspx" style="color: #333; float: left;">Resultados</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <ul>
+                            <li><a href="Resultados.aspx" style="width: 243px;">Ver Resultados de Evaluación</a></li>
+                        </ul>
                     </li>
                     <li class="nivel1">
-                        <a href="Logout.aspx" style="float: right;">Salir</a>
+                        <a href="#" style="color: #333; float: left;">Clave</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
+                        <ul>
+                            <li><a href="CambiarClave.aspx" style="width: 243px;">Cambiar Clave</a></li>
+                        </ul>
+                    </li>
+                    <li class="nivel1">
+                        <a href="Logout.aspx" style="color: #333; float: right;">Salir</a>
                     </li>
                 </ul>
             </div>
             <form runat="server" style="border: solid 2px #ccc">
-                <br />
                 <br />
                 <div class="text-right">
                     <asp:Label ID="Label1" runat="server"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

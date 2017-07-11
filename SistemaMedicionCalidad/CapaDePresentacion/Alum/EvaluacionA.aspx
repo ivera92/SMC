@@ -7,7 +7,7 @@
     <div runat="server" id="divEvaluar" class="row">
         <div class="col-sm-12">
             <asp:Image ID="rEvaluacion" runat="server" ImageUrl="ImagenesAlumno/respEvaluacion.PNG" />
-            <div style="border: solid 1px #ccc">
+            <div style="border: solid 1px #ccc" class="col-sm-12">
                 <div class="col-sm-offset-1 col-sm-5">
                     <br />
                     <label>Asignatura</label>
@@ -26,6 +26,11 @@
                 </div>
 
                 <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
+                    <br />
+                    <div class="text-center">
+                        <label id="lblnEvaluacion" runat="server"></label>
+                    </div>
+                    <br /
                     <asp:Panel ID="Panel1" runat="server"></asp:Panel>
                     <br />
                 </div>

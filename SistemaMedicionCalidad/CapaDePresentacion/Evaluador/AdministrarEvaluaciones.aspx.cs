@@ -89,8 +89,8 @@ namespace CapaDePresentacion.Evaluador
                 // Recuperar la fila que contiene el botón
                 // de la Filas.
                 GridViewRow row = gvEvaluaciones.Rows[index];
-                string nombre_asignatura = HttpUtility.HtmlDecode(row.Cells[2].Text);
-                string nombre_evaluacion = HttpUtility.HtmlDecode(row.Cells[1].Text);
+                string nombre_asignatura = HttpUtility.HtmlDecode(row.Cells[3].Text);
+                string nombre_evaluacion = HttpUtility.HtmlDecode(row.Cells[2].Text);
                 CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
                 string preguntas = cEvaluacion.listarPreguntasEvaluacionNombre(nombre_evaluacion);
                 this.pdf(preguntas, nombre_evaluacion, nombre_asignatura);

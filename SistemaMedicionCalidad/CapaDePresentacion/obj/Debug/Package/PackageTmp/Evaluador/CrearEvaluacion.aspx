@@ -19,7 +19,7 @@
                     <br />
                     <label>Asignatura</label>
                     <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
-                        <asp:ListItem Value="0">Seleccione una asignatura</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione una Asignatura</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>
@@ -27,7 +27,7 @@
                     <br />
                     <label>Tipo de Evaluación</label>
                     <asp:DropDownList runat="server" ID="ddTipoEvaluacion" class="form-control" AutoPostBack="true" AutoGenerateColumns="False" AppendDataBoundItems="true" OnSelectedIndexChanged="ddTipoEvaluacion_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione tipo de evaluación</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione un Tipo de Evaluación</asp:ListItem>
                         <asp:ListItem Value="1">Todas las preguntas</asp:ListItem>
                         <asp:ListItem Value="2">15 Aleatorias</asp:ListItem>
                         <asp:ListItem Value="3">30 Aleatorias</asp:ListItem>
@@ -38,7 +38,8 @@
                 <div class="col-sm-3">
                     <br />
                     <label>Nombre Evaluación</label>
-                    <asp:TextBox runat="server" ID="txtNombre" class="form-control" placeHolder="Ingrese nombre de Evaluación"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtNombre" class="form-control" placeHolder="Ingrese nombre de Evaluación" pattern="^([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{4,}([\s][a-zA-ZñÑáéíóúÁÉÍÓÚüÜ01234567890]{1,})+)$" 
+                        oninvalid="setCustomValidity('Ingrese al menos una palabra seguida de un espacio, un numero o otra palabra')" oninput="setCustomValidity('')" required></asp:TextBox>
                     <br />
                 </div>
 

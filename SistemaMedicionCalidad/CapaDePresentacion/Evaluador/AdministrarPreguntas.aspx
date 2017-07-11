@@ -7,19 +7,18 @@
     <div runat="server" id="administrar" class="row">
         <div class="col-sm-12">
             <asp:Image ID="aPreguntas" runat="server" ImageUrl="ImagenesEvaluador/aPreguntas.PNG" />
-            <div class="col-sm-12" style="border: solid 1px #ccc">
+            <div class="col-sm-12">
                 <div class="col-sm-offset-2 col-sm-6">
                     <br />
                     <asp:TextBox ID="txtBuscar" runat="server" placeHolder="Ingrese indicador de desempeño, enunciado o nivel" CssClass="form-control"></asp:TextBox>
-                    <br />
                 </div>
                 <div class="col-sm-2">
                     <br />
                     <asp:Button ID="btnBuscar" Text="Buscar" runat="server" CssClass="form-control btn-primary btn-block" OnClick="btnBuscar_Click" />
-                    <br />
                 </div>
 
                 <div class="col-sm-12">
+                    <br />
                     <asp:GridView class="table table-striped" ID="gvPreguntas" runat="server" AutoGenerateColumns="false" OnRowDeleting="rowDeleting"
                         OnRowEditing="rowEditing" PageSize="10" AllowPaging="true" OnPageIndexChanging="gvPreguntas_PageIndexChanging" OnRowCommand="gvPreguntas_RowCommand">
                         <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
@@ -43,19 +42,18 @@
                 </div>
                 <asp:TextBox ID="txtid" runat="server"></asp:TextBox>
             </div>
-            <asp:Image ID="iEndSM12" runat="server" ImageUrl="ImagenesEvaluador/iEndSM12.PNG" />
+            <asp:Image ID="iEndSM12" runat="server" ImageUrl="ImagenesAdmin/iEndSM12.PNG" />
         </div>
     </div>
 
     <div runat="server" id="editar" class="row">
         <div class="col-sm-12">
-            <asp:Image ID="acPregunta" runat="server" ImageUrl="ImagenesEvaluador/acPregunta.PNG" />
+            <asp:Image ID="acPregunta" runat="server" ImageUrl="ImagenesAdmin/acPregunta.PNG" />
             <div class="col-sm-12" style="border: solid 1px #ccc">
                 <div class="col-sm-6">
                     <br />
                     <label>Desempeño</label>
-                    <asp:DropDownList class="form-control" runat="server" ID="ddDesempeno" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddDesempeno_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione un desempeño</asp:ListItem>
+                    <asp:DropDownList class="form-control" runat="server" ID="ddDesempeno" AutoPostBack="true" OnSelectedIndexChanged="ddDesempeno_SelectedIndexChanged">
                     </asp:DropDownList>
                     <br />
                 </div>
@@ -69,11 +67,12 @@
 
                 <div class="col-sm-6">
                     <label>Enunciado</label>
-                    <textarea class="form-control" id="txtAPregunta" runat="server" rows="8"></textarea>
+                    <textarea class="form-control" id="txtAPregunta" runat="server" rows="8" required></textarea>
                     <br />
                 </div>
 
                 <div runat="server" id="AltOCas">
+                    <br />
                     <label>Respuestas</label>
                     <label class="col-sm-offset-4">Correcta</label>
                     <br />
@@ -102,8 +101,8 @@
                     <br />
                 </div>
                 <div class="col-sm-2">
-                    <asp:Button class="btn btn-primary btn-block" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click1" />
-                <br />
+                    <asp:Button class="btn btn-success btn-block" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click1" />
+                    <br />
                 </div>
             </div>
             <asp:Image ID="iEndSM122" runat="server" ImageUrl="ImagenesEvaluador/iEndSM12.PNG" />

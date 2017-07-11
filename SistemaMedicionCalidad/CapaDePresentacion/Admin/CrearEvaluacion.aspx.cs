@@ -42,7 +42,7 @@ namespace CapaDePresentacion.Admin
             string s = "";
 
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;" + "filename="+txtNombre.Text+".pdf");
+            Response.AddHeader("content-disposition", "attachment;" + "filename=" + txtNombre.Text + ".pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             // Creamos el documento con el tamaño de página tradicional
@@ -67,7 +67,7 @@ namespace CapaDePresentacion.Admin
             Paragraph p2 = new Paragraph(this.txtNombre.Text + " - " + this.ddAsignatura.SelectedItem.Text + "\n");     //Agrega el nombre de la prueba y el de la asignatura
             p2.Alignment = Element.ALIGN_CENTER;
             pdfDoc.Add(p2);
-            Paragraph p = new Paragraph("Nombre Alumno:  "+ "\n");
+            Paragraph p = new Paragraph("Nombre Alumno:  " + "\n");
             p.Add("Rut Alumno: " + "\n");
             p.Add("Fecha de Evaluación" + "\n");
             pdfDoc.Add(p);
@@ -183,6 +183,7 @@ namespace CapaDePresentacion.Admin
                         ev.Fecha_evaluacion = DateTime.Parse(DateTime.Today.ToString("d"));
                         ev.Nombre_evaluacion = this.txtNombre.Text.ToUpper();
                         ev.Preguntas_evaluacion = ids_preguntas;
+                        ev.Porcentaje_exigencia_evaluacion = int.Parse(ddExigencia.SelectedValue);
 
                         cEvaluacion.insertarEvaluacion(ev);
                         //this.pdf(ids_preguntas);
@@ -201,7 +202,7 @@ namespace CapaDePresentacion.Admin
             }
             else
             {
-                Response.Write("<script>alert('Seleccione Asignatura, y Tipo de Evaluación');</script>");
+                Response.Write("<script>alert('Seleccione Asignatura y Tipo de Evaluación antes de crear la Evaluación');</script>");
             }
         }
 

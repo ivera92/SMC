@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
-using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using Project;
 using System.IO;
@@ -131,6 +130,33 @@ namespace CapaDePresentacion.Admin
             panelGrafico.Controls.Add(chartColumna);
         }
 
+        public void graficoPuntos()
+        {
+            chartPuntos.Visible = true;
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            panelGrafico.Visible = true;
+            DataTable dtPromedio = cEvaluacion.promedio(cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue)));
+            string rut = "";
+            double promedio = 0;
+            int i = 0;
+            foreach (DataRow row in dtPromedio.Rows)
+            {
+                i += 1;
+                rut = row[0].ToString();
+                promedio = double.Parse(row[3].ToString());
+                this.chartPuntos.Series["Rut"].Points.AddXY("A"+i, promedio);
+            }
+            chartPuntos.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            System.Web.UI.DataVisualization.Charting.Title title = chartPuntos.Titles.Add(ddEvaluacion.SelectedItem.ToString());
+            title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
+            title.ForeColor = Color.White;
+
+            panelGrafico.Controls.Add(chartPuntos);
+        }
+
+
+
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
@@ -141,9 +167,11 @@ namespace CapaDePresentacion.Admin
             else
             {
                 this.graficoColumna();
+                this.graficoPuntos();
                 CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
                 DataTable dt = cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue));
-                this.gvResumen.DataSource = dt;
+                DataTable promedio = cEvaluacion.promedio(dt);
+                this.gvResumen.DataSource = promedio;
                 CatalogDesempeno cDesempeno = new CatalogDesempeno();
                 List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
                 this.gvDesempenos.DataSource = lDesempenos;
@@ -151,7 +179,7 @@ namespace CapaDePresentacion.Admin
                 gvDesempenos.Visible = true;
                 gvResumen.Visible = true;
                 panelGrafico.Visible = true;
-                btnExportar.Visible = true;                
+                btnExportar.Visible = true;
             }
         }
 

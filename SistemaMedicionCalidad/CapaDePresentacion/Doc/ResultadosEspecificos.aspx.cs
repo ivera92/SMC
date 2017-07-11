@@ -148,7 +148,10 @@ namespace CapaDePresentacion.Doc
                             this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                        this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
+                    }
 
                 }
                 try

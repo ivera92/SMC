@@ -22,6 +22,7 @@ namespace Project
             bd.createParameter("@nombre_evaluacion", DbType.String, e.Nombre_evaluacion);
             bd.createParameter("@fecha_evaluacion", DbType.Date, e.Fecha_evaluacion);
             bd.createParameter("@preguntas_evaluacion", DbType.String, e.Preguntas_evaluacion);
+            bd.createParameter("@porcentaje_exigencia_evaluacion", DbType.Int32, e.Porcentaje_exigencia_evaluacion);
             bd.execute();
             bd.Close();
         }
@@ -51,7 +52,7 @@ namespace Project
                 {
                     activo_evaluacion = "Deshabilitada";
                 }
-                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4), activo_evaluacion);
+                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4), activo_evaluacion, result.GetInt32(6));
                 lEvaluaciones.Add(e);
             }
             result.Close();
@@ -88,7 +89,7 @@ namespace Project
                     activo_evaluacion = "Deshabilitada";
                 }
 
-                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4), activo_evaluacion);
+                Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4), activo_evaluacion, result.GetInt32(6));
                 lEvaluaciones.Add(e);
             }
             result.Close();
@@ -148,7 +149,7 @@ namespace Project
                 {
                     activo_evaluacion = "Deshabilitada";
                 }
-                Evaluacion e = new Evaluacion(cAsignatura.buscarAsignatura(result.GetString(0)), result.GetString(1), result.GetDateTime(2), result.GetString(3), activo_evaluacion);
+                Evaluacion e = new Evaluacion(cAsignatura.buscarAsignatura(result.GetString(0)), result.GetString(1), result.GetDateTime(2), result.GetString(3), activo_evaluacion, result.GetInt32(5));
                 lEvaluaciones.Add(e);
             }
             result.Close();
@@ -581,7 +582,7 @@ namespace Project
             {
                 activo_evaluacion = "Deshabilitada";
             }
-            Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4), activo_evaluacion);
+            Evaluacion e = new Evaluacion(result.GetInt32(0), cAsignatura.buscarAsignatura(result.GetString(1)), result.GetString(2), result.GetDateTime(3), result.GetString(4), activo_evaluacion, result.GetInt32(6));
 
             result.Close();
             bd.Close();
@@ -843,6 +844,48 @@ namespace Project
             result.Close();
             bd.Close();
             return lResultados;
+        }
+
+        //Devuelve una tabla resumen con los promedios
+        public DataTable promedio(DataTable d)
+        {
+            string rut, correctas, incorretas;
+            int puntaje_ideal;
+            double puntaje_exigencia, porcentaje;
+            double promedio = 0;
+            DataTable d2 = new DataTable();
+            d2.Columns.Add("Rut");
+            d2.Columns.Add("Correctas");
+            d2.Columns.Add("Incorrectas");
+            d2.Columns.Add("Promedio");
+            foreach (DataRow row in d.Rows)
+            {
+                rut = row[0].ToString();
+                correctas = row[1].ToString();
+                incorretas = row[2].ToString();
+                porcentaje = int.Parse(row[3].ToString()) / 100d;
+                puntaje_ideal = int.Parse(correctas) + int.Parse(incorretas);
+                puntaje_exigencia = puntaje_ideal * porcentaje;
+                double a = puntaje_ideal - puntaje_exigencia;
+                double b = int.Parse(correctas) - puntaje_exigencia;
+
+                //MidpointRounding.AwayFromZero si el numero se encunetra en la mitad, es decir .5 aproxima al numero mas alejado del 0
+                if (int.Parse(correctas) <= puntaje_exigencia)
+                {
+                    promedio = Math.Round(3f * (double.Parse(correctas)) / puntaje_exigencia + 1, 1, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+                    promedio = Math.Round(3f * (double.Parse(correctas) - puntaje_exigencia) / (puntaje_ideal - puntaje_exigencia) + 4, 1, MidpointRounding.AwayFromZero);
+                }
+                DataRow row2 = d2.NewRow();
+                row2["Rut"] = rut;
+                row2["Correctas"] = correctas;
+                row2["Incorrectas"] = incorretas;
+                row2["Promedio"] = promedio;
+                d2.Rows.Add(row2);
+            }
+            return d2;
         }
     }
 }

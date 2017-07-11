@@ -78,17 +78,18 @@
 
                 <div>
                     <label>Nombre</label>
-                    <asp:TextBox ID="txtNombre" runat="server" pattern="^([A-ZÁÉÍÓÚa-záéíóú]{3,16}*)+$" placeHolder="Ingrese su nombre y apellido" class="form-control"
-                        oninvalid="setCustomValidity('Ingrese un nombre de minimo 3 caracteres y maximo 16, solo letras')"
+                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" pattern="^([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{3,}([\s][a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{3,})+)$" placeHolder="Ingrese su nombre y apellido"
+                        oninvalid="setCustomValidity('Ingrese nombre y apellido separados por un espacio, ambos de 3 letras a lo menos, solo letras')"
                         oninput="setCustomValidity('')" required>
                     </asp:TextBox>
                     <br />
                 </div>
 
-
                 <div>
                     <label>Correo</label>
-                    <asp:TextBox ID="txtCorreo" class="form-control" runat="server" type="email" placeHolder="Ejemplo: ejemplo@live.cl" required></asp:TextBox>
+                    <asp:TextBox ID="txtCorreo" class="form-control" runat="server" pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" 
+                        placeHolder="Ejemplo: ejemplo@live.cl" oninvalid="setCustomValidity('Correo ingresado no cumple con el formato')"
+                        oninput="setCustomValidity('')" required></asp:TextBox>
                     <br />
                 </div>
                 <div>

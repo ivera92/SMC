@@ -33,6 +33,7 @@
                             <asp:BoundField DataField="Asignatura_evaluacion.Nombre_asignatura" HeaderText="Asignatura" />
                             <asp:BoundField DataField="activo_evaluacion" HeaderText="Estado" />
                             <asp:BoundField DataField="Fecha_evaluacion" HeaderText="Fecha" DataFormatString="{0:d}" />
+                            <asp:BoundField DataField="porcentaje_exigencia_evaluacion" HeaderText="Exigencia(%)" />
                             <asp:ButtonField ButtonType="Image" ImageUrl="~/imagenes/pdf.png" CommandName="imgBtnPDF" ControlStyle-CssClass="BotonDeImagen" HeaderText="PDF">
                                 <ControlStyle CssClass="BotonDeImagen" Width="40" Height="40" />
                             </asp:ButtonField>

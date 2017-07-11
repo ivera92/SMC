@@ -30,7 +30,7 @@ namespace CapaDePresentacion
 
             try
             {
-                string[] autentificacion = cUsuario.Autenticar(rut.Text.ToUpper().Trim(), txtclave.Text.ToUpper().Trim());
+                string[] autentificacion = cUsuario.Autenticar(rut.Text.ToUpper(), txtclave.Text.ToUpper());
 
 
                 //Se verifica si existe el usuario y es valido, despues de eso se ven los roles 
@@ -48,7 +48,7 @@ namespace CapaDePresentacion
                     else if (int.Parse(autentificacion[1]) == 2)
                     {
                         Session["rutDocente"] = rut.Text.ToUpper();
-                        Response.Redirect("~/Doc/AdministrarEvaluaciones.aspx");
+                        Response.Redirect("~/Doc/Inicio.aspx");
                     }
                     else if (int.Parse(autentificacion[1]) == 3)
                     {
@@ -58,7 +58,7 @@ namespace CapaDePresentacion
                     else 
                     {
                         Session["rutEvaluador"] = rut.Text.ToUpper();
-                        Response.Redirect("~/Evaluador/CrearPregunta.aspx");
+                        Response.Redirect("~/Evaluador/Inicio.aspx");
                     }
                 }
                 else

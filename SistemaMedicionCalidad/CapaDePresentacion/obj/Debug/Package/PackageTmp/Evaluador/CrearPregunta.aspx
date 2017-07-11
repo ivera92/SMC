@@ -1,9 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Evaluador/SiteEvaluador.Master" AutoEventWireup="true" CodeBehind="CrearPregunta.aspx.cs" Inherits="CapaDePresentacion.Evaluador.CrearPregunta" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="HeadContent">
+    <script src="../Scripts/imagen.js"></script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
+
+<asp:Content runat="server" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1">
+
+    <div id="divCrear" runat="server" class="row">
         <div class="col-sm-12">
             <asp:Image ID="cPregunta" runat="server" ImageUrl="ImagenesEvaluador/cPregunta.PNG" />
             <div class="col-sm-12" style="border: solid 1px #ccc">
@@ -11,14 +14,14 @@
                     <br />
                     <label>Desempeño</label>
                     <asp:DropDownList class="form-control" runat="server" ID="ddDesempeno" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddDesempeno_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione un desempeño</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione un Desempeño</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                 <div class="col-sm-4">
                     <br />
                     <label>Tipo de Pregunta</label>
                     <asp:DropDownList class="form-control" AutoPostBack="true" AppendDataBoundItems="true" runat="server" ID="ddTipoPregunta" OnSelectedIndexChanged="ddTipoPregunta_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione el tipo de pregunta</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione el Tipo de Pregunta</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>
@@ -32,11 +35,11 @@
 
                 <div class="col-sm-6">
                     <label>Enunciado</label>
-                    <textarea class="form-control" id="txtAPregunta" runat="server" rows="3"></textarea>
+                    <textarea class="form-control" id="txtAPregunta" runat="server" rows="3" required></textarea>
                     <br />
                     <asp:FileUpload ID="fileImagen" runat="server" onchange="readURL(this);" />
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
-                        ErrorMessage="Tipo de archivo no permitido" oninvalid="setCustomValidity('Solo se permiten imagenes')" ControlToValidate="fileImagen"
+                        ErrorMessage="Tipo de archivo no permitido" ForeColor="Red" oninvalid="setCustomValidity('Solo se permiten imagenes')" ControlToValidate="fileImagen"
                         ValidationExpression="(.*).(.jpg|.JPG|.gif|.GIF|.jpeg|.JPEG|.bmp|.BMP|.png|.PNG)$">
                     </asp:RegularExpressionValidator>
                     <br />
@@ -44,12 +47,11 @@
                     <img id="blah" src="#" alt="" class="img-responsive" />
                 </div>
 
-                <div runat="server" id="AltOCas">
-                    <br />
-                    <label>Respuestas</label>
-                    <label class="col-sm-offset-4">Correcta</label>
-                    <br />
-                    <asp:Panel ID="Panel1" runat="server"></asp:Panel>
+                <div runat="server" id="AltOCas" class="col-sm-6">
+                    <asp:Panel ID="Panel1" runat="server">
+                        <label>Respuestas</label>
+                        <label class="col-sm-offset-8">Correcta</label>
+                    </asp:Panel>
                     <br />
                 </div>
 
@@ -74,11 +76,13 @@
                     <br />
                 </div>
                 <div class="col-sm-2">
-                    <asp:Button class="btn btn-primary btn-block" runat="server" ID="btnCrear" Text="Crear" OnClick="btnCrear_Click" />
+                    <asp:Button class="form-control btn-block btn-primary" runat="server" ID="btnCrear" Text="Crear" OnClick="btnCrear_Click" />
                     <br />
                 </div>
             </div>
-            <asp:Image ID="iEndSM12" runat="server" ImageUrl="ImagenesEvaluador/iEndSM12.PNG" />    
+            <asp:Image ID="iEndSM12" runat="server" ImageUrl="ImagenesEvaluador/iEndSM12.PNG" />
         </div>
     </div>
+
 </asp:Content>
+

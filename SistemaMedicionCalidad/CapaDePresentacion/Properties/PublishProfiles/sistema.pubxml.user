@@ -10,244 +10,244 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="Account/ChangePassword.aspx">
-      <publishTime>10/05/2016 21:54:03</publishTime>
+      <publishTime>05/10/2016 21:54:03</publishTime>
     </File>
     <File Include="Account/ChangePasswordSuccess.aspx">
-      <publishTime>10/05/2016 21:54:04</publishTime>
+      <publishTime>05/10/2016 21:54:04</publishTime>
     </File>
     <File Include="Account/Login.aspx">
-      <publishTime>10/05/2016 21:54:04</publishTime>
+      <publishTime>05/10/2016 21:54:04</publishTime>
     </File>
     <File Include="Account/Register.aspx">
       <publishTime>05/31/2017 13:42:53</publishTime>
     </File>
     <File Include="Account/Web.config">
-      <publishTime>10/05/2016 21:54:04</publishTime>
+      <publishTime>05/10/2016 21:54:04</publishTime>
     </File>
     <File Include="Admin/AdministrarAD.aspx">
-      <publishTime>07/03/2017 14:39:44</publishTime>
+      <publishTime>03/07/2017 14:39:44</publishTime>
     </File>
     <File Include="Admin/AdministrarAlumnos.aspx">
-      <publishTime>07/04/2017 01:55:46</publishTime>
+      <publishTime>04/07/2017 01:55:46</publishTime>
     </File>
     <File Include="Admin/AdministrarAsignaturas.aspx">
-      <publishTime>07/03/2017 14:28:10</publishTime>
+      <publishTime>03/07/2017 14:28:10</publishTime>
     </File>
     <File Include="Admin/AdministrarAsignaturasAsociadas.aspx">
-      <publishTime>07/01/2017 18:06:14</publishTime>
+      <publishTime>01/07/2017 18:06:14</publishTime>
     </File>
     <File Include="Admin/AdministrarAsignaturasInscritas.aspx">
-      <publishTime>07/01/2017 19:00:57</publishTime>
+      <publishTime>01/07/2017 19:00:57</publishTime>
     </File>
     <File Include="Admin/AdministrarAsignatura_Competencia.aspx">
       <publishTime>05/17/2017 02:02:04</publishTime>
     </File>
     <File Include="Admin/AdministrarCD.aspx">
-      <publishTime>07/01/2017 17:43:18</publishTime>
+      <publishTime>01/07/2017 17:43:18</publishTime>
     </File>
     <File Include="Admin/AdministrarCompetencias.aspx">
-      <publishTime>07/04/2017 01:20:58</publishTime>
+      <publishTime>04/07/2017 01:20:58</publishTime>
     </File>
     <File Include="Admin/AdministrarDesempeno.aspx">
-      <publishTime>07/04/2017 01:24:12</publishTime>
+      <publishTime>04/07/2017 01:24:12</publishTime>
     </File>
     <File Include="Admin/AdministrarDocentes.aspx">
-      <publishTime>07/04/2017 01:47:44</publishTime>
+      <publishTime>04/07/2017 01:47:44</publishTime>
     </File>
     <File Include="Admin/AdministrarEscuelas.aspx">
-      <publishTime>07/03/2017 13:04:05</publishTime>
+      <publishTime>03/07/2017 13:04:05</publishTime>
     </File>
     <File Include="Admin/AdministrarEvaluaciones.aspx">
-      <publishTime>04/07/2017 20:01:16</publishTime>
+      <publishTime>07/04/2017 20:01:16</publishTime>
     </File>
     <File Include="Admin/AdministrarHPA.aspx">
-      <publishTime>07/02/2017 01:26:24</publishTime>
+      <publishTime>02/07/2017 01:26:24</publishTime>
     </File>
     <File Include="Admin/AdministrarPreguntas.aspx">
-      <publishTime>05/07/2017 11:18:17</publishTime>
+      <publishTime>07/05/2017 11:18:17</publishTime>
     </File>
     <File Include="Admin/AdministrarProfesiones.aspx">
       <publishTime>05/06/2017 14:40:01</publishTime>
     </File>
     <File Include="Admin/AdministrarUsuarios.aspx">
-      <publishTime>07/02/2017 02:37:37</publishTime>
+      <publishTime>02/07/2017 02:37:37</publishTime>
     </File>
     <File Include="Admin/AsociarAC.aspx">
       <publishTime>05/28/2017 01:16:31</publishTime>
     </File>
     <File Include="Admin/AsociarAsignaturaDocente.aspx">
-      <publishTime>07/04/2017 01:50:28</publishTime>
+      <publishTime>04/07/2017 01:50:28</publishTime>
     </File>
     <File Include="Admin/AsociarDesempenoAsignatura.aspx">
-      <publishTime>07/01/2017 12:34:26</publishTime>
+      <publishTime>01/07/2017 12:34:26</publishTime>
     </File>
     <File Include="Admin/CambiarClave.aspx">
-      <publishTime>07/06/2017 02:06:45</publishTime>
+      <publishTime>06/07/2017 02:06:45</publishTime>
     </File>
     <File Include="Admin/CrearAlumno.aspx">
-      <publishTime>07/04/2017 01:53:25</publishTime>
+      <publishTime>04/07/2017 01:53:25</publishTime>
     </File>
     <File Include="Admin/CrearAsignatura.aspx">
-      <publishTime>07/03/2017 13:56:19</publishTime>
+      <publishTime>03/07/2017 13:56:19</publishTime>
     </File>
     <File Include="Admin/CrearCompetencia.aspx">
-      <publishTime>07/04/2017 01:13:34</publishTime>
+      <publishTime>04/07/2017 01:13:34</publishTime>
     </File>
     <File Include="Admin/CrearDesempeno.aspx">
-      <publishTime>07/04/2017 01:12:56</publishTime>
+      <publishTime>04/07/2017 01:12:56</publishTime>
     </File>
     <File Include="Admin/CrearDocente.aspx">
-      <publishTime>07/04/2017 01:45:28</publishTime>
+      <publishTime>04/07/2017 01:45:28</publishTime>
     </File>
     <File Include="Admin/CrearEscuela.aspx">
-      <publishTime>07/03/2017 13:04:15</publishTime>
+      <publishTime>03/07/2017 13:04:15</publishTime>
     </File>
     <File Include="Admin/CrearEvaluacion.aspx">
-      <publishTime>05/07/2017 10:52:59</publishTime>
+      <publishTime>07/05/2017 10:52:59</publishTime>
     </File>
     <File Include="Admin/CrearPregunta.aspx">
-      <publishTime>05/07/2017 11:15:27</publishTime>
+      <publishTime>07/05/2017 11:15:27</publishTime>
     </File>
     <File Include="Admin/CrearProfesion.aspx">
       <publishTime>05/06/2017 14:39:40</publishTime>
     </File>
     <File Include="Admin/CrearUsuario.aspx">
-      <publishTime>07/06/2017 01:35:52</publishTime>
+      <publishTime>06/07/2017 01:35:52</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aAIA.png">
-      <publishTime>07/01/2017 18:55:22</publishTime>
+      <publishTime>01/07/2017 18:55:22</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aAlumnos.png">
-      <publishTime>07/01/2017 18:51:58</publishTime>
+      <publishTime>01/07/2017 18:51:58</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aAsignaturas.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/acAlumno.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/acAsignatura.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/acCompetencia.png">
-      <publishTime>07/01/2017 13:42:38</publishTime>
+      <publishTime>01/07/2017 13:42:38</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/acDesempeño.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/acDocente.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/acEscuela.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/acEscuelas.png">
       <publishTime>06/29/2017 02:54:57</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aCompetencias.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/acPregunta.png">
-      <publishTime>07/01/2017 21:13:16</publishTime>
+      <publishTime>01/07/2017 21:13:16</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aDA.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aDAA.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aDAC.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aDesempeños.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aDocentes.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aEscuelas.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aEvaluaciones.png">
-      <publishTime>07/01/2017 20:51:21</publishTime>
+      <publishTime>01/07/2017 20:51:21</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aPreguntas.png">
-      <publishTime>07/01/2017 21:03:00</publishTime>
+      <publishTime>01/07/2017 21:03:00</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aRA.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/aUsuarios.png">
-      <publishTime>07/02/2017 01:40:32</publishTime>
+      <publishTime>02/07/2017 01:40:32</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cAlumno.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cAlumno12.png">
-      <publishTime>07/01/2017 18:27:08</publishTime>
+      <publishTime>01/07/2017 18:27:08</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cAlumno6.png">
-      <publishTime>07/01/2017 18:14:19</publishTime>
+      <publishTime>01/07/2017 18:14:19</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cAsignatura.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cClave.png">
-      <publishTime>07/03/2017 23:21:54</publishTime>
+      <publishTime>03/07/2017 23:21:54</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cCompetencia.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cDesempeño.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cDocente.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cEscuela.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cEvaluacion.png">
-      <publishTime>07/01/2017 19:20:31</publishTime>
+      <publishTime>01/07/2017 19:20:31</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cPregunta.png">
-      <publishTime>07/01/2017 20:17:58</publishTime>
+      <publishTime>01/07/2017 20:17:58</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/cUsuario.png">
-      <publishTime>07/02/2017 01:30:44</publishTime>
+      <publishTime>02/07/2017 01:30:44</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/dRA.png">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/formatoSM12.PNG">
-      <publishTime>07/01/2017 18:14:19</publishTime>
+      <publishTime>01/07/2017 18:14:19</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/formatoSM4.PNG">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/formatoSM6.PNG">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/formatoSM8.PNG">
-      <publishTime>07/01/2017 03:58:51</publishTime>
+      <publishTime>01/07/2017 03:58:51</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/hRA.png">
-      <publishTime>07/02/2017 01:25:25</publishTime>
+      <publishTime>02/07/2017 01:25:25</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/iAA.png">
-      <publishTime>07/01/2017 03:58:52</publishTime>
+      <publishTime>01/07/2017 03:58:52</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/iEndSM12.PNG">
-      <publishTime>07/01/2017 03:58:52</publishTime>
+      <publishTime>01/07/2017 03:58:52</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/iEndSM4.png">
-      <publishTime>07/01/2017 03:58:52</publishTime>
+      <publishTime>01/07/2017 03:58:52</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/iEndSM6.png">
-      <publishTime>07/01/2017 03:58:52</publishTime>
+      <publishTime>01/07/2017 03:58:52</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/iEndSM8.png">
-      <publishTime>07/01/2017 03:58:52</publishTime>
+      <publishTime>01/07/2017 03:58:52</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/imgAlumno.jpeg">
       <publishTime>03/26/2017 22:45:42</publishTime>
@@ -319,52 +319,67 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/31/2017 01:49:32</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/rEE.png">
-      <publishTime>07/01/2017 21:08:31</publishTime>
+      <publishTime>01/07/2017 21:08:31</publishTime>
     </File>
     <File Include="Admin/ImagenesAdmin/rEG.png">
-      <publishTime>07/01/2017 21:08:32</publishTime>
+      <publishTime>01/07/2017 21:08:32</publishTime>
     </File>
     <File Include="Admin/InicioAdmin.aspx">
-      <publishTime>07/02/2017 02:08:19</publishTime>
+      <publishTime>02/07/2017 02:08:19</publishTime>
     </File>
     <File Include="Admin/InscribirRamo.aspx">
-      <publishTime>07/01/2017 02:38:20</publishTime>
+      <publishTime>01/07/2017 02:38:20</publishTime>
     </File>
     <File Include="Admin/Logout.aspx">
       <publishTime>05/10/2017 01:01:37</publishTime>
     </File>
     <File Include="Admin/ResultadosEspecificos.aspx">
-      <publishTime>05/07/2017 17:36:35</publishTime>
+      <publishTime>07/09/2017 00:39:57</publishTime>
     </File>
     <File Include="Admin/ResultadosEvaluaciones.aspx">
-      <publishTime>07/06/2017 00:26:51</publishTime>
+      <publishTime>07/08/2017 22:53:02</publishTime>
     </File>
     <File Include="Admin/Site.Master">
       <publishTime>05/10/2017 01:01:57</publishTime>
     </File>
     <File Include="Admin/SiteAdmin.Master">
-      <publishTime>07/04/2017 00:13:39</publishTime>
+      <publishTime>04/07/2017 00:13:39</publishTime>
     </File>
     <File Include="Alum/CambiarClave.aspx">
-      <publishTime>07/03/2017 20:08:35</publishTime>
+      <publishTime>07/09/2017 02:06:36</publishTime>
     </File>
     <File Include="Alum/EvaluacionA.aspx">
-      <publishTime>07/03/2017 20:30:10</publishTime>
+      <publishTime>07/09/2017 14:43:13</publishTime>
     </File>
     <File Include="Alum/ImagenesAlumno/cClave.png">
-      <publishTime>07/03/2017 19:46:41</publishTime>
+      <publishTime>03/07/2017 19:46:41</publishTime>
     </File>
     <File Include="Alum/ImagenesAlumno/iEndSM12.PNG">
-      <publishTime>07/03/2017 19:46:41</publishTime>
+      <publishTime>03/07/2017 19:46:41</publishTime>
     </File>
     <File Include="Alum/ImagenesAlumno/iEndSM4.png">
-      <publishTime>07/03/2017 19:46:41</publishTime>
+      <publishTime>03/07/2017 19:46:41</publishTime>
+    </File>
+    <File Include="Alum/ImagenesAlumno/imgContrasena.png">
+      <publishTime>07/09/2017 01:35:01</publishTime>
+    </File>
+    <File Include="Alum/ImagenesAlumno/imgEvaluacion.png">
+      <publishTime>07/09/2017 01:35:02</publishTime>
+    </File>
+    <File Include="Alum/ImagenesAlumno/imgResultados.png">
+      <publishTime>07/09/2017 01:35:02</publishTime>
+    </File>
+    <File Include="Alum/ImagenesAlumno/rEE.png">
+      <publishTime>07/09/2017 01:35:02</publishTime>
     </File>
     <File Include="Alum/ImagenesAlumno/respEvaluacion.png">
-      <publishTime>07/03/2017 19:46:41</publishTime>
+      <publishTime>03/07/2017 19:46:41</publishTime>
     </File>
     <File Include="Alum/ImagenesAlumno/rEvaluacion.png">
-      <publishTime>07/03/2017 19:46:41</publishTime>
+      <publishTime>03/07/2017 19:46:41</publishTime>
+    </File>
+    <File Include="Alum/Inicio.aspx">
+      <publishTime>07/09/2017 14:32:50</publishTime>
     </File>
     <File Include="Alum/Logout.aspx">
       <publishTime>05/10/2017 01:02:24</publishTime>
@@ -373,10 +388,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/13/2017 17:15:42</publishTime>
     </File>
     <File Include="Alum/Resultados.aspx">
-      <publishTime>04/07/2017 22:09:59</publishTime>
+      <publishTime>07/09/2017 00:39:28</publishTime>
     </File>
     <File Include="Alum/SiteAlumno.Master">
-      <publishTime>07/04/2017 00:14:14</publishTime>
+      <publishTime>07/09/2017 14:31:30</publishTime>
     </File>
     <File Include="bin/CapaDeDatos.dll">
       <publishTime>06/27/2017 15:36:45</publishTime>
@@ -385,25 +400,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2017 15:36:45</publishTime>
     </File>
     <File Include="bin/CapaDePresentacion.dll">
-      <publishTime>07/06/2017 01:32:36</publishTime>
+      <publishTime>07/10/2017 01:29:17</publishTime>
     </File>
     <File Include="bin/CapaDePresentacion.pdb">
-      <publishTime>07/06/2017 01:32:36</publishTime>
+      <publishTime>07/10/2017 01:29:17</publishTime>
     </File>
     <File Include="bin/CapaLogica.dll">
-      <publishTime>07/06/2017 01:16:36</publishTime>
+      <publishTime>07/09/2017 00:34:27</publishTime>
     </File>
     <File Include="bin/CapaLogica.pdb">
-      <publishTime>07/06/2017 01:16:36</publishTime>
+      <publishTime>07/09/2017 00:34:27</publishTime>
     </File>
     <File Include="bin/ClosedXML.dll">
-      <publishTime>04/03/2017 11:10:06</publishTime>
+      <publishTime>03/04/2017 11:10:06</publishTime>
     </File>
     <File Include="bin/ClosedXML.pdb">
-      <publishTime>04/03/2017 11:10:06</publishTime>
+      <publishTime>03/04/2017 11:10:06</publishTime>
     </File>
     <File Include="bin/DocumentFormat.OpenXml.dll">
-      <publishTime>08/04/2013 13:21:24</publishTime>
+      <publishTime>04/08/2013 13:21:24</publishTime>
     </File>
     <File Include="bin/EPPlus.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -415,25 +430,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/10/2016 06:51:26</publishTime>
     </File>
     <File Include="bin/itextsharp.xmlworker.dll">
-      <publishTime>10/07/2016 09:33:43</publishTime>
+      <publishTime>07/10/2016 09:33:43</publishTime>
     </File>
     <File Include="CheqLogin.aspx">
       <publishTime>06/11/2017 22:10:25</publishTime>
     </File>
     <File Include="Doc/AdministrarAsignaturasInscritas.aspx">
-      <publishTime>07/03/2017 21:22:13</publishTime>
+      <publishTime>03/07/2017 21:22:13</publishTime>
     </File>
     <File Include="Doc/AdministrarEvaluaciones.aspx">
-      <publishTime>04/07/2017 20:14:26</publishTime>
+      <publishTime>07/04/2017 20:14:26</publishTime>
     </File>
     <File Include="Doc/AdministrarPreguntasD.aspx">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Doc/CambiarClave.aspx">
-      <publishTime>05/06/2017 15:20:55</publishTime>
+      <publishTime>07/09/2017 19:27:27</publishTime>
     </File>
     <File Include="Doc/CrearAlumnoD.aspx">
-      <publishTime>04/07/2017 20:22:43</publishTime>
+      <publishTime>07/09/2017 00:10:35</publishTime>
     </File>
     <File Include="Doc/CrearEvaluacion.aspx">
       <publishTime>06/02/2017 15:10:56</publishTime>
@@ -442,49 +457,64 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/28/2017 00:26:52</publishTime>
     </File>
     <File Include="Doc/EvaluacionAlumno.aspx">
-      <publishTime>07/03/2017 22:32:30</publishTime>
+      <publishTime>03/07/2017 22:32:30</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/aAIA.png">
-      <publishTime>07/03/2017 21:20:13</publishTime>
+      <publishTime>03/07/2017 21:20:13</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/cAlumno.png">
-      <publishTime>07/03/2017 21:20:15</publishTime>
+      <publishTime>03/07/2017 21:20:15</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/cAlumno12.png">
-      <publishTime>07/03/2017 21:36:24</publishTime>
+      <publishTime>03/07/2017 21:36:24</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/cAlumno6.png">
-      <publishTime>07/03/2017 21:29:29</publishTime>
+      <publishTime>03/07/2017 21:29:29</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/cClave.png">
-      <publishTime>07/03/2017 21:20:15</publishTime>
+      <publishTime>03/07/2017 21:20:15</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/cRA.png">
-      <publishTime>07/03/2017 21:20:15</publishTime>
+      <publishTime>03/07/2017 21:20:15</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/iEndSM12.PNG">
-      <publishTime>07/03/2017 21:20:13</publishTime>
+      <publishTime>03/07/2017 21:20:13</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/iEndSM4.png">
-      <publishTime>07/03/2017 21:20:15</publishTime>
+      <publishTime>03/07/2017 21:20:15</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/iEndSM6.png">
-      <publishTime>07/03/2017 21:31:31</publishTime>
+      <publishTime>03/07/2017 21:31:31</publishTime>
+    </File>
+    <File Include="Doc/ImagenesDoc/imgAlumno.png">
+      <publishTime>07/09/2017 15:32:07</publishTime>
+    </File>
+    <File Include="Doc/ImagenesDoc/imgContrasena.png">
+      <publishTime>07/09/2017 15:32:08</publishTime>
+    </File>
+    <File Include="Doc/ImagenesDoc/imgEvaluacion.png">
+      <publishTime>07/09/2017 15:32:08</publishTime>
+    </File>
+    <File Include="Doc/ImagenesDoc/imgResultados.png">
+      <publishTime>07/09/2017 15:32:08</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/rEE.png">
-      <publishTime>07/03/2017 23:12:38</publishTime>
+      <publishTime>03/07/2017 23:12:38</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/rEG.png">
-      <publishTime>07/03/2017 22:45:56</publishTime>
+      <publishTime>03/07/2017 22:45:56</publishTime>
     </File>
     <File Include="Doc/ImagenesDoc/vEvaluaciones.png">
-      <publishTime>07/03/2017 21:20:13</publishTime>
+      <publishTime>03/07/2017 21:20:13</publishTime>
     </File>
     <File Include="Doc/ImagenesPreguntas/ejercicio5Mate1.PNG.PNG">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Doc/ImagenesPreguntas/ejercicio7Mate1.PNG.PNG">
       <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Doc/Inicio.aspx">
+      <publishTime>07/09/2017 19:21:25</publishTime>
     </File>
     <File Include="Doc/InicioDocente.aspx">
       <publishTime>05/17/2017 00:28:48</publishTime>
@@ -493,124 +523,139 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/10/2017 01:03:00</publishTime>
     </File>
     <File Include="Doc/ResultadosEspecificos.aspx">
-      <publishTime>04/07/2017 20:32:27</publishTime>
+      <publishTime>07/09/2017 00:43:47</publishTime>
     </File>
     <File Include="Doc/ResultadosEvaluaciones.aspx">
-      <publishTime>07/03/2017 23:09:38</publishTime>
+      <publishTime>07/08/2017 23:00:40</publishTime>
     </File>
     <File Include="Doc/ResultadosEvaluacionesD.aspx">
       <publishTime>06/19/2017 17:47:22</publishTime>
     </File>
     <File Include="Doc/SiteDocente.Master">
-      <publishTime>07/04/2017 00:14:28</publishTime>
+      <publishTime>07/09/2017 19:20:05</publishTime>
     </File>
     <File Include="Evaluador/AdministrarEvaluaciones.aspx">
-      <publishTime>04/07/2017 20:19:33</publishTime>
+      <publishTime>07/04/2017 20:19:33</publishTime>
     </File>
     <File Include="Evaluador/AdministrarPreguntas.aspx">
-      <publishTime>07/02/2017 02:55:48</publishTime>
+      <publishTime>07/10/2017 01:18:51</publishTime>
     </File>
     <File Include="Evaluador/CambiarClave.aspx">
-      <publishTime>07/03/2017 20:06:39</publishTime>
+      <publishTime>07/10/2017 01:28:08</publishTime>
     </File>
     <File Include="Evaluador/CrearEvaluacion.aspx">
-      <publishTime>07/02/2017 11:31:12</publishTime>
+      <publishTime>07/10/2017 01:23:05</publishTime>
     </File>
     <File Include="Evaluador/CrearPregunta.aspx">
-      <publishTime>07/02/2017 11:40:29</publishTime>
+      <publishTime>07/10/2017 01:17:26</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/acPregunta.png">
-      <publishTime>07/02/2017 02:57:40</publishTime>
+      <publishTime>02/07/2017 02:57:40</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/aEvaluaciones.png">
-      <publishTime>07/02/2017 02:39:26</publishTime>
+      <publishTime>02/07/2017 02:39:26</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/aPreguntas.png">
-      <publishTime>07/02/2017 02:41:14</publishTime>
+      <publishTime>02/07/2017 02:41:14</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/cClave.png">
-      <publishTime>07/02/2017 03:07:13</publishTime>
+      <publishTime>02/07/2017 03:07:13</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/cEvaluacion.png">
-      <publishTime>07/02/2017 11:25:59</publishTime>
+      <publishTime>02/07/2017 11:25:59</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/cPregunta.png">
-      <publishTime>07/02/2017 11:39:30</publishTime>
+      <publishTime>02/07/2017 11:39:30</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/iEndSM12.PNG">
-      <publishTime>07/02/2017 02:39:26</publishTime>
+      <publishTime>02/07/2017 02:39:26</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/iEndSM4.png">
-      <publishTime>07/02/2017 03:07:14</publishTime>
+      <publishTime>02/07/2017 03:07:14</publishTime>
+    </File>
+    <File Include="Evaluador/ImagenesEvaluador/imgContrasena.png">
+      <publishTime>07/09/2017 19:40:53</publishTime>
+    </File>
+    <File Include="Evaluador/ImagenesEvaluador/imgEvaluacion.png">
+      <publishTime>07/09/2017 19:40:53</publishTime>
+    </File>
+    <File Include="Evaluador/ImagenesEvaluador/imgPregunta.png">
+      <publishTime>07/09/2017 19:40:29</publishTime>
+    </File>
+    <File Include="Evaluador/ImagenesEvaluador/imgResultados.png">
+      <publishTime>07/09/2017 19:40:53</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/rEE.png">
-      <publishTime>07/02/2017 11:43:20</publishTime>
+      <publishTime>02/07/2017 11:43:20</publishTime>
     </File>
     <File Include="Evaluador/ImagenesEvaluador/rEG.png">
-      <publishTime>07/02/2017 11:43:20</publishTime>
+      <publishTime>02/07/2017 11:43:20</publishTime>
+    </File>
+    <File Include="Evaluador/Inicio.aspx">
+      <publishTime>07/09/2017 20:36:50</publishTime>
     </File>
     <File Include="Evaluador/Logout.aspx">
       <publishTime>06/19/2017 17:38:16</publishTime>
     </File>
     <File Include="Evaluador/ResultadosEspecificos.aspx">
-      <publishTime>07/03/2017 22:50:51</publishTime>
+      <publishTime>07/09/2017 00:44:59</publishTime>
     </File>
     <File Include="Evaluador/ResultadosEvaluaciones.aspx">
-      <publishTime>07/04/2017 02:16:16</publishTime>
+      <publishTime>07/08/2017 23:16:54</publishTime>
     </File>
     <File Include="Evaluador/SiteEvaluador.Master">
-      <publishTime>07/04/2017 00:14:40</publishTime>
+      <publishTime>07/10/2017 01:20:59</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>12/07/2016 16:48:26</publishTime>
+      <publishTime>07/12/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>12/07/2016 16:48:26</publishTime>
+      <publishTime>07/12/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>12/07/2016 16:48:26</publishTime>
+      <publishTime>07/12/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>12/07/2016 16:48:26</publishTime>
+      <publishTime>07/12/2016 16:48:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>12/07/2016 16:48:25</publishTime>
+      <publishTime>07/12/2016 16:48:25</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>10/05/2016 21:54:04</publishTime>
+      <publishTime>05/10/2016 21:54:04</publishTime>
     </File>
     <File Include="imagenes/alumno.jpg">
-      <publishTime>11/03/2016 15:35:23</publishTime>
+      <publishTime>03/11/2016 15:35:23</publishTime>
     </File>
     <File Include="imagenes/bannerEvaluador.jpg">
       <publishTime>06/16/2017 05:12:46</publishTime>
     </File>
     <File Include="imagenes/escuela.jpg">
-      <publishTime>11/03/2016 16:25:39</publishTime>
+      <publishTime>03/11/2016 16:25:39</publishTime>
     </File>
     <File Include="imagenes/imagen.png">
-      <publishTime>11/05/2016 15:25:57</publishTime>
+      <publishTime>05/11/2016 15:25:57</publishTime>
     </File>
     <File Include="imagenes/imagen2.jpg">
-      <publishTime>12/09/2016 21:49:49</publishTime>
+      <publishTime>09/12/2016 21:49:49</publishTime>
     </File>
     <File Include="imagenes/login.jpg">
-      <publishTime>11/09/2016 14:09:22</publishTime>
+      <publishTime>09/11/2016 14:09:22</publishTime>
     </File>
     <File Include="imagenes/login.png">
-      <publishTime>11/09/2016 14:06:23</publishTime>
+      <publishTime>09/11/2016 14:06:23</publishTime>
     </File>
     <File Include="imagenes/logo.jpg">
-      <publishTime>12/09/2016 21:49:49</publishTime>
+      <publishTime>09/12/2016 21:49:49</publishTime>
     </File>
     <File Include="imagenes/pdf.png">
       <publishTime>06/08/2017 00:38:53</publishTime>
     </File>
     <File Include="imagenes/profesion.jpg">
-      <publishTime>11/03/2016 16:43:09</publishTime>
+      <publishTime>03/11/2016 16:43:09</publishTime>
     </File>
     <File Include="imagenes/profesor.jpg">
-      <publishTime>11/03/2016 15:40:31</publishTime>
+      <publishTime>03/11/2016 15:40:31</publishTime>
     </File>
     <File Include="ImagenesPreguntas/ejercicio5Mate1.PNG.PNG">
       <publishTime>05/25/2017 15:33:51</publishTime>
@@ -625,10 +670,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2017 00:53:05</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>12/07/2016 16:48:25</publishTime>
+      <publishTime>07/12/2016 16:48:25</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>12/07/2016 16:48:25</publishTime>
+      <publishTime>07/12/2016 16:48:25</publishTime>
     </File>
     <File Include="Scripts/imagen.js">
       <publishTime>04/08/2017 20:24:11</publishTime>
@@ -637,13 +682,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/23/2017 13:54:31</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1.js">
-      <publishTime>10/05/2016 21:54:04</publishTime>
+      <publishTime>05/10/2016 21:54:04</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1.min.js">
-      <publishTime>10/05/2016 21:54:04</publishTime>
+      <publishTime>05/10/2016 21:54:04</publishTime>
     </File>
     <File Include="Scripts/jquery-1.9.1.js">
-      <publishTime>12/07/2016 16:47:52</publishTime>
+      <publishTime>07/12/2016 16:47:52</publishTime>
     </File>
     <File Include="Scripts/jquery-1.9.1.min.js">
       <publishTime>02/23/2017 15:43:13</publishTime>
@@ -670,10 +715,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/25/2016 18:14:12</publishTime>
     </File>
     <File Include="Styles/bootstrap.min.css">
-      <publishTime>11/08/2016 01:26:22</publishTime>
+      <publishTime>08/11/2016 01:26:22</publishTime>
     </File>
     <File Include="Styles/Site.css">
-      <publishTime>10/05/2016 21:54:04</publishTime>
+      <publishTime>05/10/2016 21:54:04</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>06/27/2017 15:40:22</publishTime>
