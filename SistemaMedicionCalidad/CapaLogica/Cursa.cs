@@ -9,6 +9,10 @@
 
         public Cursa() { }
 
+        public Cursa(string ano_asignatura)
+        {
+            this.ano_asignatura = ano_asignatura;
+        }
         public Cursa(Alumno rut_alumno_aa, Asignatura cod_asignatura_aa, string ano_asignatura)
         {
             this.rut_alumno_aa = rut_alumno_aa;

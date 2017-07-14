@@ -45,7 +45,7 @@
                                 </asp:ChartArea>
                             </ChartAreas>
                             <Legends>
-                                <asp:Legend Name="Legend1" Alignment="Center" Docking="Bottom">
+                                <asp:Legend Name="Legend1" Alignment="Center" Docking="Bottom" ItemColumnSpacing="350">
                                 </asp:Legend>
                             </Legends>
                             <Titles>
@@ -57,6 +57,37 @@
                         <br />
                     </asp:Panel>
                     <br />
+                </div>
+                <div class="col-sm-12">
+                    <asp:Panel ID="panelGrafico" runat="server">
+
+
+                        <asp:Chart ID="chartPuntos" runat="server" CssClass="center-block" Width="970px" Height="505px">
+                            <Series>
+                                <asp:Series ChartArea="ChartArea1" Color="Green" Name="Tu Nota" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point">
+                                </asp:Series>
+                                <asp:Series ChartArea="ChartArea1" Name="Aprobado" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point"></asp:Series>
+                                <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Reprobado" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point">
+                                </asp:Series>
+                                <asp:Series ChartArea="ChartArea1" Color="Orange" Name="Promedio Curso" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point">
+                                </asp:Series>
+                            </Series>
+                            <ChartAreas>
+                                <asp:ChartArea Name="ChartArea1">
+                                </asp:ChartArea>
+                            </ChartAreas>
+                            <Legends>
+                                <asp:Legend Docking="Bottom" Name="Legend1" Font="Segoe UI, 12pt" IsTextAutoFit="False" Alignment="Center">
+                                </asp:Legend>
+                            </Legends>
+                            <Titles>
+                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Nota Alumno">
+                                </asp:Title>
+                            </Titles>
+                            <BorderSkin BackColor="Orange" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
+                        </asp:Chart>
+                        <br />
+                    </asp:Panel>
                 </div>
                 <div class="col-sm-12">
                     <asp:GridView ID="gvDesempenos" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">

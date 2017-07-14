@@ -65,8 +65,15 @@ namespace CapaDePresentacion.Doc
         protected void ImportExcel()
         {
             //Save the uploaded Excel file.
-            string filePath = Server.MapPath("~/Excel") + Path.GetFileName(FileUpload1.PostedFile.FileName);
-            FileUpload1.SaveAs(filePath);
+            string filePath = Server.MapPath("~/Excel/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
+
+
+            //Save the uploaded Excel file.
+            string path = Server.MapPath("~/Excel/");
+            FileUpload1.PostedFile.SaveAs(path + FileUpload1.FileName);
+
+            string extension = Path.GetExtension(FileUpload1.FileName).ToLower();
+
 
             //Open the Excel file using ClosedXML.
             using (XLWorkbook workBook = new XLWorkbook(filePath))

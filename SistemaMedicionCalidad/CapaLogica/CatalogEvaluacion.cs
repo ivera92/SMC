@@ -887,6 +887,139 @@ namespace Project
             }
             return d2;
         }
+
+        public DataTable mostrarResumenEvaluacionesA(string rut_alumno)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "mostrarResumenEvaluacionesA";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@rut_alumno", DbType.String, rut_alumno);
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+
+
+            string rut, correctas, incorretas, evaluacion;
+            int puntaje_ideal;
+            double puntaje_exigencia, porcentaje;
+            double promedio = 0;
+            DataTable d2 = new DataTable();
+            d2.Columns.Add("Rut");
+            d2.Columns.Add("Correctas");
+            d2.Columns.Add("Incorrectas");
+            d2.Columns.Add("Promedio");
+            d2.Columns.Add("Evaluacion");
+            foreach (DataRow row in dt.Rows)
+            {
+                evaluacion = row[3].ToString();
+                rut = row[0].ToString();
+                correctas = row[1].ToString();
+                incorretas = row[2].ToString();
+                porcentaje = int.Parse(row[4].ToString()) / 100d;
+                puntaje_ideal = int.Parse(correctas) + int.Parse(incorretas);
+                puntaje_exigencia = puntaje_ideal * porcentaje;
+                double a = puntaje_ideal - puntaje_exigencia;
+                double b = int.Parse(correctas) - puntaje_exigencia;
+
+                //MidpointRounding.AwayFromZero si el numero se encunetra en la mitad, es decir .5 aproxima al numero mas alejado del 0
+                if (int.Parse(correctas) <= puntaje_exigencia)
+                {
+                    promedio = Math.Round(3f * (double.Parse(correctas)) / puntaje_exigencia + 1, 1, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+                    promedio = Math.Round(3f * (double.Parse(correctas) - puntaje_exigencia) / (puntaje_ideal - puntaje_exigencia) + 4, 1, MidpointRounding.AwayFromZero);
+                }
+                DataRow row2 = d2.NewRow();
+                row2["Rut"] = rut;
+                row2["Correctas"] = correctas;
+                row2["Incorrectas"] = incorretas;
+                row2["Promedio"] = promedio;
+                row2["Evaluacion"] = evaluacion;
+                d2.Rows.Add(row2);
+            }
+
+            result.Close();
+            bd.Close();
+            return d2;
+        }
+
+        public DataTable mostrarResumenDEvaluacion(int id_evaluacion, int ano_cursa)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "mostrarResumenDEvaluacion";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            bd.createParameter("@ano_cursa", DbType.Int32, ano_cursa);
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+
+
+            string desempeño, correctas, incorretas;
+            int puntaje_ideal;
+            double puntaje_exigencia, porcentaje;
+            double promedio = 0;
+            DataTable d2 = new DataTable();
+            d2.Columns.Add("Desempeño");
+            d2.Columns.Add("Correctas");
+            d2.Columns.Add("Incorrectas");
+            d2.Columns.Add("Promedio");
+            foreach (DataRow row in dt.Rows)
+            {
+                desempeño = row[0].ToString();
+                correctas = row[1].ToString();
+                incorretas = row[2].ToString();
+                porcentaje = int.Parse(row[3].ToString()) / 100d;
+                puntaje_ideal = int.Parse(correctas) + int.Parse(incorretas);
+                puntaje_exigencia = puntaje_ideal * porcentaje;
+                double a = puntaje_ideal - puntaje_exigencia;
+                double b = int.Parse(correctas) - puntaje_exigencia;
+
+                //MidpointRounding.AwayFromZero si el numero se encunetra en la mitad, es decir .5 aproxima al numero mas alejado del 0
+                if (int.Parse(correctas) <= puntaje_exigencia)
+                {
+                    promedio = Math.Round(3f * (double.Parse(correctas)) / puntaje_exigencia + 1, 1, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+                    promedio = Math.Round(3f * (double.Parse(correctas) - puntaje_exigencia) / (puntaje_ideal - puntaje_exigencia) + 4, 1, MidpointRounding.AwayFromZero);
+                }
+                DataRow row2 = d2.NewRow();
+                row2["Desempeño"] = desempeño;
+                row2["Correctas"] = correctas;
+                row2["Incorrectas"] = incorretas;
+                row2["Promedio"] = promedio;
+                d2.Rows.Add(row2);
+            }
+            result.Close();
+            bd.Close();
+            return d2;
+        }
+
+        public List<Cursa> listarGeneracionesEvaluacion(int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "mostrarGeneracionesEvaluacion";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            DbDataReader result = bd.Query();
+            List<Cursa> lGeneraciones = new List<Cursa>();
+            while (result.Read())
+            {
+                Cursa c = new Cursa(result.GetString(0));
+                lGeneraciones.Add(c);
+            }
+            result.Close();
+            bd.Close();
+
+            return lGeneraciones;
+        }
     }
 }
 

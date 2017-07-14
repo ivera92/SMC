@@ -15,7 +15,7 @@
         <div class="col-sm-12">
             <asp:Image ID="cEvaluacion" runat="server" ImageUrl="ImagenesEvaluador/cEvaluacion.PNG" />
             <div style="border: solid 1px #ccc">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <br />
                     <label>Asignatura</label>
                     <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
@@ -23,11 +23,11 @@
                     </asp:DropDownList>
                     <br />
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <br />
                     <label>Tipo de Evaluación</label>
                     <asp:DropDownList runat="server" ID="ddTipoEvaluacion" class="form-control" AutoPostBack="true" AutoGenerateColumns="False" AppendDataBoundItems="true" OnSelectedIndexChanged="ddTipoEvaluacion_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione un Tipo de Evaluación</asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione un Tipo</asp:ListItem>
                         <asp:ListItem Value="1">Todas las preguntas</asp:ListItem>
                         <asp:ListItem Value="2">15 Aleatorias</asp:ListItem>
                         <asp:ListItem Value="3">30 Aleatorias</asp:ListItem>
@@ -42,7 +42,18 @@
                         oninvalid="setCustomValidity('Ingrese al menos una palabra seguida de un espacio, un numero o otra palabra')" oninput="setCustomValidity('')" required></asp:TextBox>
                     <br />
                 </div>
-
+                <div class="col-sm-2">
+                <br />
+                <label>Exigencia</label>
+                <asp:DropDownList runat="server" ID="ddExigencia" class="form-control" AutoPostBack="true" AutoGenerateColumns="False" AppendDataBoundItems="true" OnSelectedIndexChanged="ddTipoEvaluacion_SelectedIndexChanged">
+                    <asp:ListItem Value="50">50%</asp:ListItem>
+                    <asp:ListItem Value="60">60%</asp:ListItem>
+                    <asp:ListItem Value="70">70%</asp:ListItem>
+                    <asp:ListItem Value="80">80%</asp:ListItem>
+                    <asp:ListItem Value="90">90%</asp:ListItem>
+                    <asp:ListItem Value="100">100%</asp:ListItem>
+                </asp:DropDownList>
+            </div>
                 <div class="col-sm-1">
                     <br />
                     <br />

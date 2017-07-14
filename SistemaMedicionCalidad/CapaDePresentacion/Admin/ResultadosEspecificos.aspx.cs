@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace CapaDePresentacion.Admin
 {
@@ -24,11 +25,7 @@ namespace CapaDePresentacion.Admin
             List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturas();
             if (!Page.IsPostBack) //para ver si cargo por primera vez
             {
-                gvDesempenos.Visible = false;
-                divAlumno.Visible = false;
-                divOtrosResultados.Visible = false;
-                divRut.Visible = false;
-                divPreguntas.Visible = false;
+                this.ocultar();                
                 this.ddAsignatura.DataTextField = "Nombre_asignatura";
                 this.ddAsignatura.DataValueField = "Cod_asignatura";
                 this.ddAsignatura.DataSource = lAsignaturas;
@@ -39,13 +36,14 @@ namespace CapaDePresentacion.Admin
 
         protected void btnVer_Click(object sender, EventArgs e)
         {
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             if (ddAsignatura.SelectedValue == "0" || ddEvaluacion.SelectedValue == "0" || ddOpcion.SelectedValue == "0")
             {
                 Response.Write("<script>alert('Seleccione una Asignatura, Evaluación, y el resultado que desea obtener');</script>");
             }
             else
             {
-                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+
                 if (ddOpcion.SelectedValue == "1")
                 {
                     List<string> lResultados1 = cEvaluacion.resultadosEspecificos(int.Parse(ddEvaluacion.SelectedValue), 1);
@@ -79,6 +77,25 @@ namespace CapaDePresentacion.Admin
                     lblIncorrectas.Attributes.Add("style", "Color: Red; font-weight:bold");
                     crearControles(txtRut.Text);
                     divPreguntas.Visible = true;
+                }
+                else if (ddOpcion.SelectedValue == "3")
+                {
+                    if (ddAno1.SelectedValue != ddAno2.SelectedValue && ddAsignatura.SelectedValue!="0" && ddEvaluacion.SelectedValue!="0")
+                    {
+                        try
+                        {
+                            DataTable g1 = cEvaluacion.mostrarResumenDEvaluacion(int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddAno1.SelectedItem.ToString()));
+                            DataTable g2 = cEvaluacion.mostrarResumenDEvaluacion(int.Parse(ddEvaluacion.SelectedValue), int.Parse(ddAno2.SelectedItem.ToString()));
+                            this.graficoPuntos(ddAno1.SelectedValue, ddAno2.SelectedValue, g1, g2);
+                            panelGrafico.Visible = true;
+                            gvDesempenos.Visible = true;
+                        }
+                        catch { }
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Seleccione Generaciones distintas');</script>");
+                    }
                 }
             }
         }
@@ -169,6 +186,7 @@ namespace CapaDePresentacion.Admin
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             List<Evaluacion> lEvaluaciones = cEvaluacion.listarEvaluacionesAsignatura(ddAsignatura.SelectedValue);
 
@@ -180,23 +198,43 @@ namespace CapaDePresentacion.Admin
             this.ddEvaluacion.DataValueField = "Id_evaluacion";
             this.ddEvaluacion.DataSource = lEvaluaciones;
             this.DataBind();//enlaza los datos a un dropdownlist  
+            this.ocultar();                
+        }
+        public void ocultar()
+        {
             gvDesempenos.Visible = false;
             divAlumno.Visible = false;
             divOtrosResultados.Visible = false;
+            divRut.Visible = false;
             divPreguntas.Visible = false;
+            divAno1.Visible = false;
+            divAno2.Visible = false;
+            panelGrafico.Visible = false;
+            chartColumna.Visible = false;
         }
-
         protected void ddOpcion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            chartColumna.Visible = false;
-            divAlumno.Visible = false;
-            gvDesempenos.Visible = false;
-            divOtrosResultados.Visible = false;
-            divPreguntas.Visible = false;
+            this.ocultar();
             if (ddOpcion.SelectedValue == "2")
             {
                 txtRut.Text = "";
                 divRut.Visible = true;
+            }
+            else if (ddOpcion.SelectedValue == "3")
+            {
+                divAno1.Visible = true;
+                divAno2.Visible = true;
+                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                List<Cursa> lGeneraciones = cEvaluacion.listarGeneracionesEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
+                this.ddAno1.Items.Clear();
+                this.ddAno1.DataTextField = "ano_asignatura";
+                this.ddAno1.DataValueField = "ano_asignatura";
+                this.ddAno1.DataSource = lGeneraciones;
+                this.ddAno2.Items.Clear();
+                this.ddAno2.DataTextField = "ano_asignatura";
+                this.ddAno2.DataValueField = "ano_asignatura";
+                this.ddAno2.DataSource = lGeneraciones;
+                this.DataBind();//enlaza los datos a un dropdownlist  
             }
             else
             {
@@ -350,6 +388,63 @@ namespace CapaDePresentacion.Admin
                 this.Panel1.Controls.Add(rblVF);
                 this.Panel1.Controls.Add(new LiteralControl("<br/>"));
             }
+        }
+
+        public void graficoPuntos(string serie1, string serie2, DataTable g1, DataTable g2)
+        {
+            chartPuntos.Series.Add(serie1);
+            chartPuntos.Series.Add(serie2);
+            chartPuntos.Series[serie1].IsValueShownAsLabel = true;
+            chartPuntos.Series[serie1].IsXValueIndexed = true;
+            chartPuntos.Series[serie2].IsValueShownAsLabel = true;
+            chartPuntos.Series[serie2].IsXValueIndexed = true;
+            this.chartPuntos.Series[serie1].MarkerSize = 10;
+            this.chartPuntos.Series[serie2].MarkerSize = 10;
+            chartPuntos.Visible = true;
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            panelGrafico.Visible = true;
+            string rut = "";
+            double promedio = 0;
+            int i = 0;
+            int j = 0;
+            
+            foreach (DataRow row in g1.Rows)
+            {
+                i += 1;
+                rut = row[0].ToString();
+                promedio = double.Parse(row[3].ToString());
+                this.chartPuntos.Series[serie1].Points.AddXY("D" + i, promedio);
+            }
+            foreach (DataRow row in g2.Rows)
+            {
+                j += 1;
+                rut = row[0].ToString();
+                promedio = double.Parse(row[3].ToString());
+                this.chartPuntos.Series[serie2].Points.AddXY("D" + j, promedio);
+            }
+
+            StripLine stripLine1 = new StripLine();
+            stripLine1.StripWidth = 0;
+            stripLine1.BorderColor = Color.Green;
+            stripLine1.BorderWidth = 2;
+            stripLine1.IntervalOffset = 4;
+            stripLine1.Text = "Limite de aprobacion nota 4,0";
+            Font font = new Font("Segoe UI", 10.0f);
+            stripLine1.Font = font;
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.StripLines.Add(stripLine1);
+
+            //Definir minimo y maximo de escala
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.Minimum = 1;
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.Maximum = 7;
+
+            //Sacar cuadricula
+            chartPuntos.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            System.Web.UI.DataVisualization.Charting.Title title = chartPuntos.Titles.Add(ddEvaluacion.SelectedItem.ToString()+"-COMPARANDO 2 GENERACIONES");
+            title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
+            title.ForeColor = Color.White;
+
+            panelGrafico.Controls.Add(chartPuntos);
         }
     }
 }

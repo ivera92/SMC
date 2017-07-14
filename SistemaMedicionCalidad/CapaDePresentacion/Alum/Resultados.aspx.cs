@@ -133,6 +133,7 @@ namespace CapaDePresentacion.Alum
                 lblIncorrectas.Attributes.Add("style", "Color: Red; font-weight:bold");
                 this.crearControles();
                 divPreguntas.Visible = true;
+                graficoPuntos();
                 /*this.graficoColumna();
                 CatalogDesempeno cDesempeno = new CatalogDesempeno();
                 List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
@@ -225,8 +226,6 @@ namespace CapaDePresentacion.Alum
                     if (result[3].ToString() != "" && result[3].ToString() != null)
                     {
                         System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
-                        //string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ImagenesPreguntas\" + result.GetString(5));
-                        //ruta = Path.GetFullPath(ruta);
                         img.ImageUrl = "../ImagenesPreguntas/" + result[3].ToString();
                         Panel1.Controls.Add(img);
                     }
@@ -303,6 +302,83 @@ namespace CapaDePresentacion.Alum
                 this.Panel1.Controls.Add(rblVF);
                 this.Panel1.Controls.Add(new LiteralControl("<br/>"));
             }
+        }
+
+        public void graficoPuntos()
+        {
+            chartPuntos.Series["Aprobado"].IsXValueIndexed = false;
+            chartPuntos.Series["Reprobado"].IsXValueIndexed = false;
+            chartPuntos.Series["Tu Nota"].IsXValueIndexed = false;
+            chartPuntos.Series["Promedio Curso"].IsXValueIndexed = false;
+
+            this.chartPuntos.Series["Reprobado"].MarkerSize = 10;
+            this.chartPuntos.Series["Aprobado"].MarkerSize = 10;
+            this.chartPuntos.Series["Tu Nota"].MarkerSize = 10;
+            this.chartPuntos.Series["Promedio Curso"].MarkerSize = 10;
+
+            string rut_alumno = Session["rutAlumno"].ToString();
+            chartPuntos.Visible = true;
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            panelGrafico.Visible = true;
+            DataTable dtPromedio = cEvaluacion.promedio(cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue)));
+            string rut = "";
+            double promedio = 0;
+            double promedio_curso = 0;
+            int i = 0;
+            double tu_nota = 0;
+            foreach (DataRow row in dtPromedio.Rows)
+            {
+                i += 1;
+                rut = row[0].ToString();
+                promedio = double.Parse(row[3].ToString());
+                if (rut == rut_alumno)
+                {
+                    this.chartPuntos.Series["Tu Nota"].Points.AddXY("", promedio);
+                    tu_nota = promedio;
+                }
+                else if (promedio >= 4.0)
+                {
+                    this.chartPuntos.Series["Aprobado"].Points.AddXY("", promedio);
+                }
+                else
+                {
+                    this.chartPuntos.Series["Reprobado"].Points.AddXY("", promedio);
+                }
+                promedio_curso += promedio;
+            }
+            promedio_curso = Math.Round(promedio_curso/i, 1, MidpointRounding.AwayFromZero);
+            this.chartPuntos.Series["Promedio Curso"].Points.AddXY("", promedio_curso);
+
+            StripLine stripLine1 = new StripLine();
+            stripLine1.StripWidth = 0;
+            stripLine1.BorderColor = Color.Green;
+            stripLine1.BorderWidth = 2;
+            stripLine1.IntervalOffset = 4;
+            stripLine1.Text = "Limite de aprobacion nota 4,0";
+            Font font = new Font("Segoe UI", 10.0f);
+            stripLine1.Font = font;
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.StripLines.Add(stripLine1);
+
+            //Definicr minimo y maximo de escala
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.Minimum = 1;
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.Maximum = 7;
+
+            //Sacar cuadricula
+            chartPuntos.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            System.Web.UI.DataVisualization.Charting.Title title = chartPuntos.Titles.Add(ddEvaluacion.SelectedItem.ToString()+"-NOTAS DEL CURSO");
+            title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
+            title.ForeColor = Color.White;
+
+
+            // Create a new legend called "Legend2".
+            chartPuntos.Legends.Add(new Legend("Legend2"));
+
+            // Set Docking of the Legend chart to the Default Chart Area.
+            chartPuntos.Legends["Legend1"].Title = "Tu Nota: " + tu_nota;
+            
+
+            panelGrafico.Controls.Add(chartPuntos);
         }
     }
 }

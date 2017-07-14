@@ -8,6 +8,7 @@ using System.IO;
 using ClosedXML.Excel;
 using System.Web;
 using System.Drawing;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace CapaDePresentacion.Admin
 {
@@ -22,17 +23,13 @@ namespace CapaDePresentacion.Admin
                 panelGrafico.Visible = false;
                 if (!Page.IsPostBack)
                 {
+                    chartPuntos.Visible = false;
                     this.listarAsignaturas();
                 }
             }
             catch
             {
                 Response.Redirect("../CheqLogin.aspx");
-            }
-
-            if (!Page.IsPostBack)
-            {
-                this.listarAsignaturas();
             }
         }
         public void listarAsignaturas()
@@ -48,7 +45,7 @@ namespace CapaDePresentacion.Admin
         }
 
         public void graficoColumna()
-        {
+        {          
             gvDesempenos.Visible = true;
             gvResumen.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
@@ -127,30 +124,68 @@ namespace CapaDePresentacion.Admin
             title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
             title.ForeColor = Color.White;
 
+            //Sacar cuadricula
+            chartColumna.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            chartColumna.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+
             panelGrafico.Controls.Add(chartColumna);
         }
 
         public void graficoPuntos()
         {
+            chartPuntos.Series["Aprobado"].IsXValueIndexed = false;
+            chartPuntos.Series["Reprobado"].IsXValueIndexed = false;
+            chartPuntos.Series["Promedio Curso"].IsXValueIndexed = false;
+            this.chartPuntos.Series["Reprobado"].MarkerSize = 10;
+            this.chartPuntos.Series["Aprobado"].MarkerSize = 10;
+            this.chartPuntos.Series["Promedio Curso"].MarkerSize = 10;
             chartPuntos.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             panelGrafico.Visible = true;
             DataTable dtPromedio = cEvaluacion.promedio(cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue)));
             string rut = "";
             double promedio = 0;
+            double promedio_curso = 0;
             int i = 0;
             foreach (DataRow row in dtPromedio.Rows)
             {
                 i += 1;
                 rut = row[0].ToString();
                 promedio = double.Parse(row[3].ToString());
-                this.chartPuntos.Series["Rut"].Points.AddXY("A"+i, promedio);
+                
+                if (promedio >= 4.0)
+                {
+                    this.chartPuntos.Series["Aprobado"].Points.AddXY("A" + i, promedio);
+                }
+                else
+                {
+                    this.chartPuntos.Series["Reprobado"].Points.AddXY("A" + i, promedio);
+                }
+                promedio_curso += promedio;
             }
+            promedio_curso = Math.Round(promedio_curso / i, 1, MidpointRounding.AwayFromZero);
+            this.chartPuntos.Series["Promedio Curso"].Points.AddXY("Promedio", promedio_curso);
+
+            StripLine stripLine1 = new StripLine();
+            stripLine1.StripWidth = 0;
+            stripLine1.BorderColor = Color.Green;
+            stripLine1.BorderWidth = 2;
+            stripLine1.IntervalOffset = 4;
+            stripLine1.Text = "Limite de aprobacion nota 4,0";
+            Font font = new Font("Segoe UI", 10.0f);
+            stripLine1.Font = font;
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.StripLines.Add(stripLine1);
+
+            //Definir minimo y maximo de escala
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.Minimum = 1;
+            chartPuntos.ChartAreas["ChartArea1"].AxisY.Maximum = 7;
+
+            //Sacar cuadricula
             chartPuntos.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
             chartPuntos.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
             System.Web.UI.DataVisualization.Charting.Title title = chartPuntos.Titles.Add(ddEvaluacion.SelectedItem.ToString());
             title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
-            title.ForeColor = Color.White;
+            title.ForeColor = Color.White;  
 
             panelGrafico.Controls.Add(chartPuntos);
         }
@@ -160,26 +195,37 @@ namespace CapaDePresentacion.Admin
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
-            if (ddAsignatura.SelectedValue == "0" || ddEvaluacion.SelectedValue == "0" || ddEvaluacion.SelectedValue == "")
+            if (ddAsignatura.SelectedValue == "0" || ddEvaluacion.SelectedValue == "0" || ddEvaluacion.SelectedValue == "" || ddTipo.SelectedValue == "0")
             {
                 Response.Write("<script>alert('Seleccione una Asignatura y Evaluación para poder graficar');</script>");
             }
             else
             {
-                this.graficoColumna();
-                this.graficoPuntos();
+                if (ddTipo.SelectedValue == "1")
+                {
+                    this.graficoColumna();
+
+                    CatalogDesempeno cDesempeno = new CatalogDesempeno();
+                    List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
+                    this.gvDesempenos.DataSource = lDesempenos;
+                    this.DataBind();
+                    gvDesempenos.Visible = true;
+                    chartPuntos.Visible = false;
+                    panelGrafico.Visible = true;
+                    btnExportar.Visible = true;
+                }
+                else
+                {
+                    this.graficoPuntos();
+                    chartPuntos.Visible = true;
+                    chartColumna.Visible = false;
+                    gvDesempenos.Visible = false;
+                }
                 CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
                 DataTable dt = cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue));
                 DataTable promedio = cEvaluacion.promedio(dt);
                 this.gvResumen.DataSource = promedio;
-                CatalogDesempeno cDesempeno = new CatalogDesempeno();
-                List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
-                this.gvDesempenos.DataSource = lDesempenos;
-                this.DataBind();
-                gvDesempenos.Visible = true;
                 gvResumen.Visible = true;
-                panelGrafico.Visible = true;
-                btnExportar.Visible = true;
             }
         }
 
@@ -208,7 +254,8 @@ namespace CapaDePresentacion.Admin
             this.mostrar();
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             DataTable dtResumen = cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue));
-            dtResumen.TableName = "Resumen Respuestas Alumnos";
+            DataTable promedio = cEvaluacion.promedio(dtResumen);
+            promedio.TableName = "Resumen Respuestas Alumnos";
             DataTable dt3 = new DataTable("Resultados Generales Desempeño");
             foreach (TableCell cell in gvResultadosGenerales.HeaderRow.Cells)
             {
@@ -255,7 +302,7 @@ namespace CapaDePresentacion.Admin
                 wb.Worksheets.Add(dt3);
                 wb.Worksheets.Add(dt);
                 wb.Worksheets.Add(dtDesempenos);
-                wb.Worksheets.Add(dtResumen);
+                wb.Worksheets.Add(promedio);
 
                 Response.Clear();
                 Response.Buffer = true;
@@ -276,6 +323,7 @@ namespace CapaDePresentacion.Admin
 
         protected void ddAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chartPuntos.Visible = false;
             divEvaluacion.Visible = true;
             gvDesempenos.Visible = false;
             gvResultados.Visible = false;

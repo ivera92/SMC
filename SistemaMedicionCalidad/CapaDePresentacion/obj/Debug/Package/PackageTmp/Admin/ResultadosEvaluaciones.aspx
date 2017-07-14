@@ -8,18 +8,27 @@
         <div class="col-sm-12">
             <asp:Image ID="rEG" runat="server" ImageUrl="ImagenesAdmin/rEG.PNG" />
             <div style="border: solid 1px #ccc">
-                <div runat="server" id="divAsignatura" class="col-sm-4">
+                <div runat="server" id="divAsignatura" class="col-sm-3">
                     <br />
                     <label>Asignatura</label>
                     <asp:DropDownList ID="ddAsignatura" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
 
-                <div runat="server" id="divEvaluacion" class="col-sm-4">
+                <div runat="server" id="divEvaluacion" class="col-sm-3">
                     <br />
                     <label>Evaluación</label>
                     <asp:DropDownList ID="ddEvaluacion" runat="server" AppendDataBoundItems="true" CssClass="form-control">
-                        <asp:ListItem Text="Seleccione una Evaluación" Value="0"></asp:ListItem>
+                        <asp:ListItem Text="Seleccione Evaluación" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div runat="server" id="divTipoGrafico" class="col-sm-2">
+                    <br />
+                    <label>Tipo Grafico</label>
+                    <asp:DropDownList ID="ddTipo" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                        <asp:ListItem Text="Seleccione Tipo" Value="0"></asp:ListItem>
+                        <asp:ListItem Text="Por Desempeño" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Notas" Value="2"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
 
@@ -50,7 +59,7 @@
                                 </asp:ChartArea>
                             </ChartAreas>
                             <Legends>
-                                <asp:Legend Name="Legend1" Alignment="Center" Docking="Bottom">
+                                <asp:Legend Name="Legend1" Alignment="Center" Docking="Bottom" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False">
                                 </asp:Legend>
                             </Legends>
                             <Titles>
@@ -62,6 +71,36 @@
                         <br />
                     </asp:Panel>
                 </div>
+
+                <div class="col-sm-12">
+                    <asp:Panel ID="panel1" runat="server">
+                        <br />
+                        <asp:Chart ID="chartPuntos" runat="server" CssClass="center-block" Width="970px" Height="505px">
+                            <Series>
+                                <asp:Series ChartArea="ChartArea1" Name="Aprobado" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point"></asp:Series>
+                                <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Reprobado" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point">
+                                </asp:Series>
+                                <asp:Series ChartArea="ChartArea1" Color="Orange" Name="Promedio Curso" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point">
+                                </asp:Series>
+                            </Series>
+                            <ChartAreas>
+                                <asp:ChartArea Name="ChartArea1">
+                                </asp:ChartArea>
+                            </ChartAreas>
+                            <Legends>
+                                <asp:Legend Docking="Bottom" Name="Legend1" Font="Segoe UI, 12pt" IsTextAutoFit="False" Alignment="Center">
+                                </asp:Legend>
+                            </Legends>
+                            <Titles>
+                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Nota Alumno">
+                                </asp:Title>
+                            </Titles>
+                            <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
+                        </asp:Chart>
+                        <br />
+                    </asp:Panel>
+                </div>
+
                 <div class="col-sm-12">
                     <asp:GridView ID="gvResultados" runat="server" AutoGenerateColumns="false" class="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
@@ -107,6 +146,7 @@
                             <asp:BoundField DataField="Rut" HeaderText="Rut" />
                             <asp:BoundField DataField="Correctas" HeaderText="Correctas" />
                             <asp:BoundField DataField="Incorrectas" HeaderText="Incorrectas" />
+                            <asp:BoundField DataField="Promedio" HeaderText="Promedio" />
                         </Columns>
                     </asp:GridView>
                 </div>

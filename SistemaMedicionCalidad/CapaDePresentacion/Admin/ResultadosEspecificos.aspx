@@ -8,7 +8,7 @@
         <div class="col-sm-12">
             <asp:Image ID="rEE" runat="server" ImageUrl="ImagenesAdmin/rEE.PNG" />
             <div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <br />
                     <label>Asignatura</label>
                     <asp:DropDownList ID="ddAsignatura" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
@@ -17,27 +17,39 @@
                     <br />
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <br />
                     <label>Evaluación</label>
                     <asp:DropDownList ID="ddEvaluacion" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control">
-                        <asp:ListItem Value="0">Seleccione una Evaluación</asp:ListItem>
+                        <asp:ListItem Value="0">Evaluación</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <br />
                     <label>Resultados</label>
                     <asp:DropDownList ID="ddOpcion" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddOpcion_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione una Opción</asp:ListItem>
+                        <asp:ListItem Value="0">Opción</asp:ListItem>
                         <asp:ListItem Value="1">Otros Resultados</asp:ListItem>
                         <asp:ListItem Value="2">Un alumno en específico</asp:ListItem>
+                        <asp:ListItem Value="3">Comparar 2 generaciones</asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                </div>
+                <div class="col-sm-2" id="divAno1" runat="server">
+                    <label>Año 1</label>
+                    <asp:DropDownList ID="ddAno1" runat="server" CssClass="form-control">
+                    </asp:DropDownList>
+                    <br />
+                </div>
+                <div class="col-sm-2" id="divAno2" runat="server">
+                    <label>Año 2</label>
+                    <asp:DropDownList ID="ddAno2"  runat="server" CssClass="form-control">
                     </asp:DropDownList>
                     <br />
                 </div>
                 <div class="col-sm-2" id="divRut" runat="server">
-                    <br />
                     <label>Rut alumno</label>
                     <asp:TextBox ID="txtRut" CssClass="form-control" AutoPostBack="true" runat="server"></asp:TextBox>
                     <asp:CustomValidator ID="CustomValidator1" runat="server"
@@ -45,8 +57,7 @@
                         Display="Dynamic" ErrorMessage="RUT incorrecto" ForeColor="Red" SetFocusOnError="True">
                     </asp:CustomValidator>
                 </div>
-                <div class="col-sm-1">
-                    <br />
+                <div class="col-sm-2">
                     <br />
                     <asp:Button ID="btnVer" runat="server" Text="Ver" CssClass="form-control btn-block btn-success" OnClick="btnVer_Click" />
                 </div>
@@ -124,6 +135,28 @@
                         </asp:Panel>
                         <br />
                     </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <asp:Panel ID="panelGrafico" runat="server">
+                        <br />
+                        <asp:Chart ID="chartPuntos" runat="server" CssClass="center-block" Width="970px" Height="505px">
+                            <ChartAreas>
+                                <asp:ChartArea Name="ChartArea1">
+                                </asp:ChartArea>
+                            </ChartAreas>
+                            <Legends>
+                                <asp:Legend Docking="Bottom" Name="Legend1" Font="Segoe UI, 12pt" IsTextAutoFit="False" Alignment="Center">
+                                </asp:Legend>
+                            </Legends>
+                            <Titles>
+                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Promedio por Desempeño de Generacion">
+                                </asp:Title>
+                            </Titles>
+                            <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
+                        </asp:Chart>
+                        <br />
+                    </asp:Panel>
                 </div>
 
                 <div class="col-sm-12">
