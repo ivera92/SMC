@@ -58,6 +58,24 @@ namespace CapaDePresentacion.Evaluador {
         protected global::System.Web.UI.WebControls.DropDownList ddEvaluacion;
         
         /// <summary>
+        /// divTipoGrafico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTipoGrafico;
+        
+        /// <summary>
+        /// ddTipo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddTipo;
+        
+        /// <summary>
         /// divBtnGraficar control.
         /// </summary>
         /// <remarks>
@@ -85,13 +103,13 @@ namespace CapaDePresentacion.Evaluador {
         protected global::System.Web.UI.WebControls.Button btnExportar;
         
         /// <summary>
-        /// panelGrafico control.
+        /// divCC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelGrafico;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCC;
         
         /// <summary>
         /// chartColumna control.
@@ -128,6 +146,24 @@ namespace CapaDePresentacion.Evaluador {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvDesempenos;
+        
+        /// <summary>
+        /// divCP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCP;
+        
+        /// <summary>
+        /// chartPuntos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chartPuntos;
         
         /// <summary>
         /// gvResumen control.

@@ -120,14 +120,14 @@ namespace CapaDePresentacion.Doc
         {
             divCrearExcel.Visible = true;
             btnImportar.Visible = true;
-            //try
-            //{
+            try
+            {
                 this.ImportExcel();
-            //}
-            //catch
-            //{
+            }
+            catch
+            {
 
-            //}
+            }
         }
 
         protected void btnImportar_Click(object sender, EventArgs e)

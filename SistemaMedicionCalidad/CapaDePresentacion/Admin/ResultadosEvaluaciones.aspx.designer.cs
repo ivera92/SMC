@@ -103,13 +103,13 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.WebControls.Button btnExportar;
         
         /// <summary>
-        /// panelGrafico control.
+        /// divCC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelGrafico;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCC;
         
         /// <summary>
         /// chartColumna control.
@@ -121,13 +121,13 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartColumna;
         
         /// <summary>
-        /// panel1 control.
+        /// divCP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panel1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCP;
         
         /// <summary>
         /// chartPuntos control.
@@ -137,6 +137,15 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartPuntos;
+        
+        /// <summary>
+        /// gvResumen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvResumen;
         
         /// <summary>
         /// gvResultados control.
@@ -164,15 +173,6 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvDesempenos;
-        
-        /// <summary>
-        /// gvResumen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvResumen;
         
         /// <summary>
         /// iEndSM12 control.

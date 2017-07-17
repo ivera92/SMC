@@ -145,6 +145,9 @@
                     </div>
                     <br />
                     <div class="text-center">
+                        <label id="lblNota" runat="server"></label>
+                    </div>
+                    <div class="text-center">
                         <label id="lblCorrectas" runat="server"></label>
                     </div>
                     <div class="text-center">

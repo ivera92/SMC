@@ -20,10 +20,10 @@ namespace CapaDePresentacion.Admin
             {
                 string rut = Session["rutAdmin"].ToString();
                 btnExportar.Visible = false;
-                panelGrafico.Visible = false;
+                
                 if (!Page.IsPostBack)
                 {
-                    chartPuntos.Visible = false;
+                    this.ocultar();
                     this.listarAsignaturas();
                 }
             }
@@ -32,6 +32,17 @@ namespace CapaDePresentacion.Admin
                 Response.Redirect("../CheqLogin.aspx");
             }
         }
+
+        public void ocultar()
+        {
+            gvDesempenos.Visible = false;
+            gvResultados.Visible = false;
+            gvResultadosGenerales.Visible = false;
+            gvResumen.Visible = false;
+            divCC.Visible = false;
+            divCP.Visible = false;
+        }
+
         public void listarAsignaturas()
         {
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
@@ -45,80 +56,16 @@ namespace CapaDePresentacion.Admin
         }
 
         public void graficoColumna()
-        {          
-            gvDesempenos.Visible = true;
-            gvResumen.Visible = true;
+        {
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            panelGrafico.Visible = true;
             List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneral(int.Parse(ddEvaluacion.SelectedValue));
 
             int i = 0;
-            bool primera_vez = true;
-            bool estado_anterior = false; ;
             while (i < result.Count)
             {
-                if (Boolean.Parse(result[i]) == true && primera_vez)
-                {
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
-                }
-                else if (Boolean.Parse(result[i]) == true && estado_anterior == true)
-                {
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
-                }
-                else if (Boolean.Parse(result[i]) == true)
-                {
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
-                    try
-                    {
-                        if (Boolean.Parse(result[i]) == false)
-                        {
-                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                            i = i + 3;
-                        }
-                        else
-                        {
-                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
-                        }
-                    }
-                    catch { }
-                }
-                else if (Boolean.Parse(result[i]) == false)
-                {
-                    string s = result[i + 2];
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
-                    try
-                    {
-                        if (Boolean.Parse(result[i]) == false)
-                        {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
-                        }
-                        else if (Boolean.Parse(result[i]) == true && s == result[i + 2])
-                        {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(s, int.Parse(result[i + 1]));
-                            i = i + 3;
-                        }
-                        else
-                        {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
-                        }
-                    }
-                    catch { }
-
-                }
-                try
-                {
-                    estado_anterior = Boolean.Parse(result[i]);
-                }
-                catch
-                {
-                }
-                primera_vez = false;
+                this.chartColumna.Series["Correctas"].Points.AddXY(result[i], int.Parse(result[i + 1]));
+                this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i], int.Parse(result[i + 2]));
+                i = i + 3;
             }
             System.Web.UI.DataVisualization.Charting.Title title = chartColumna.Titles.Add(ddEvaluacion.SelectedItem.ToString());
             title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
@@ -127,8 +74,6 @@ namespace CapaDePresentacion.Admin
             //Sacar cuadricula
             chartColumna.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
             chartColumna.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
-
-            panelGrafico.Controls.Add(chartColumna);
         }
 
         public void graficoPuntos()
@@ -139,9 +84,7 @@ namespace CapaDePresentacion.Admin
             this.chartPuntos.Series["Reprobado"].MarkerSize = 10;
             this.chartPuntos.Series["Aprobado"].MarkerSize = 10;
             this.chartPuntos.Series["Promedio Curso"].MarkerSize = 10;
-            chartPuntos.Visible = true;
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            panelGrafico.Visible = true;
             DataTable dtPromedio = cEvaluacion.promedio(cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue)));
             string rut = "";
             double promedio = 0;
@@ -152,7 +95,7 @@ namespace CapaDePresentacion.Admin
                 i += 1;
                 rut = row[0].ToString();
                 promedio = double.Parse(row[3].ToString());
-                
+
                 if (promedio >= 4.0)
                 {
                     this.chartPuntos.Series["Aprobado"].Points.AddXY("A" + i, promedio);
@@ -183,18 +126,15 @@ namespace CapaDePresentacion.Admin
             //Sacar cuadricula
             chartPuntos.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
             chartPuntos.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
-            System.Web.UI.DataVisualization.Charting.Title title = chartPuntos.Titles.Add(ddEvaluacion.SelectedItem.ToString());
+            System.Web.UI.DataVisualization.Charting.Title title = chartPuntos.Titles.Add(ddEvaluacion.SelectedItem.ToString() + "-NOTAS DEL CURSO");
             title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
-            title.ForeColor = Color.White;  
-
-            panelGrafico.Controls.Add(chartPuntos);
+            title.ForeColor = Color.White;
         }
-
-
-
 
         protected void btnGraficar_Click(object sender, EventArgs e)
         {
+            this.ocultar();
+            btnExportar.Visible = true;
             if (ddAsignatura.SelectedValue == "0" || ddEvaluacion.SelectedValue == "0" || ddEvaluacion.SelectedValue == "" || ddTipo.SelectedValue == "0")
             {
                 Response.Write("<script>alert('Seleccione una Asignatura y Evaluación para poder graficar');</script>");
@@ -204,28 +144,24 @@ namespace CapaDePresentacion.Admin
                 if (ddTipo.SelectedValue == "1")
                 {
                     this.graficoColumna();
-
                     CatalogDesempeno cDesempeno = new CatalogDesempeno();
                     List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
                     this.gvDesempenos.DataSource = lDesempenos;
                     this.DataBind();
                     gvDesempenos.Visible = true;
-                    chartPuntos.Visible = false;
-                    panelGrafico.Visible = true;
-                    btnExportar.Visible = true;
+                    divCC.Visible = true;                    
                 }
                 else
                 {
                     this.graficoPuntos();
-                    chartPuntos.Visible = true;
-                    chartColumna.Visible = false;
-                    gvDesempenos.Visible = false;
-                }
-                CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-                DataTable dt = cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue));
-                DataTable promedio = cEvaluacion.promedio(dt);
-                this.gvResumen.DataSource = promedio;
-                gvResumen.Visible = true;
+                    CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+                    DataTable dt = cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue));
+                    DataTable promedio = cEvaluacion.promedio(dt);
+                    this.gvResumen.DataSource = promedio;
+                    this.DataBind();              
+                    gvResumen.Visible = true;
+                    divCP.Visible = true;
+                }                
             }
         }
 
@@ -239,10 +175,10 @@ namespace CapaDePresentacion.Admin
             this.gvDesempenos.Visible = true;
             CatalogDesempeno cDesempeno = new CatalogDesempeno();
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            List<Resultados> lResultados = cEvaluacion.obtenerResultadosEvaluacionGeneralPorAlumnoGV(int.Parse(ddEvaluacion.SelectedValue));
+            DataTable dtRPA= cEvaluacion.obtenerResultadosEvaluacionGeneralPorAlumnoGV(int.Parse(ddEvaluacion.SelectedValue));
             List<Desempeno> lDesempenos = cDesempeno.listarDesempenosEvaluacion(int.Parse(ddEvaluacion.SelectedValue));
             List<Resultados> lResultadosGenerales = cEvaluacion.obtenerResultadosEvaluacionGeneralesGV(int.Parse(ddEvaluacion.SelectedValue));
-            this.gvResultados.DataSource = lResultados;
+            this.gvResultados.DataSource = dtRPA;
             this.gvDesempenos.DataSource = lDesempenos;
             this.gvResultadosGenerales.DataSource = lResultadosGenerales;
             this.DataBind();

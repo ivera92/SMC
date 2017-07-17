@@ -66,19 +66,50 @@ namespace CapaDePresentacion.Evaluador
                 }
                 else if (ddOpcion.SelectedValue == "2")
                 {
-                    lblnEvaluacion.InnerText = ddEvaluacion.SelectedItem.Text;
-                    divRut.Visible = true;
-                    graficoColumna(txtRut.Text);
-                    divAlumno.Visible = true;
-                    divOtrosResultados.Visible = false;
-                    gvDesempenos.Visible = true;
-                    List<string> lResultados = cEvaluacion.mostrarResumenA(int.Parse(ddEvaluacion.SelectedValue), txtRut.Text);
-                    lblCorrectas.InnerText = "Respuestas Correctas: " + lResultados[1].ToString();
-                    lblIncorrectas.InnerText = "Respuestas Incorrectas: " + lResultados[2].ToString();
-                    lblCorrectas.Attributes.Add("style", "Color: Green; font-weight:bold");
-                    lblIncorrectas.Attributes.Add("style", "Color: Red; font-weight:bold");
-                    crearControles(txtRut.Text);
-                    divPreguntas.Visible = true;
+                    try
+                    {                        
+                        List<string> lResultados = cEvaluacion.mostrarResumenA(int.Parse(ddEvaluacion.SelectedValue), txtRut.Text);
+                        lblCorrectas.InnerText = "Respuestas Correctas: " + lResultados[1].ToString();
+                        lblIncorrectas.InnerText = "Respuestas Incorrectas: " + lResultados[2].ToString();
+                        lblCorrectas.Attributes.Add("style", "Color: Green; font-weight:bold");
+                        lblIncorrectas.Attributes.Add("style", "Color: Red; font-weight:bold");
+                        crearControles(txtRut.Text);
+                        divPreguntas.Visible = true;
+                        lblnEvaluacion.InnerText = ddEvaluacion.SelectedItem.Text;
+                        divRut.Visible = true;
+                        graficoColumna(txtRut.Text);
+                        divAlumno.Visible = true;
+                        divOtrosResultados.Visible = false;
+                        gvDesempenos.Visible = true;
+
+                        string correctas, incorretas;
+                        int puntaje_ideal;
+                        double puntaje_exigencia, porcentaje;
+                        double promedio = 0;
+                        correctas = lResultados[1].ToString();
+                        incorretas = lResultados[2].ToString();
+                        porcentaje = int.Parse(lResultados[3].ToString()) / 100d;
+                        puntaje_ideal = int.Parse(lResultados[1].ToString()) + int.Parse(incorretas);
+                        puntaje_exigencia = puntaje_ideal * porcentaje;
+                        double a = puntaje_ideal - puntaje_exigencia;
+                        double b = int.Parse(lResultados[1].ToString()) - puntaje_exigencia;
+
+                        //MidpointRounding.AwayFromZero si el numero se encunetra en la mitad, es decir .5 aproxima al numero mas alejado del 0
+                        if (int.Parse(correctas) <= puntaje_exigencia)
+                        {
+                            promedio = Math.Round(3f * (double.Parse(lResultados[1].ToString())) / puntaje_exigencia + 1, 1, MidpointRounding.AwayFromZero);
+                        }
+                        else
+                        {
+                            promedio = Math.Round(3f * (double.Parse(lResultados[1].ToString()) - puntaje_exigencia) / (puntaje_ideal - puntaje_exigencia) + 4, 1, MidpointRounding.AwayFromZero);
+                        }
+                        lblNota.Attributes.Add("style", "font-weight:bold");
+                        lblNota.InnerText = "Tu Nota: " + promedio;
+                    }
+                    catch
+                    {
+                        Response.Write("<script>alert('Rut no registra respuestas para esta Evaluación');</script>");
+                    }
                 }
             }
         }
@@ -92,74 +123,11 @@ namespace CapaDePresentacion.Evaluador
             List<string> result = cEvaluacion.obtenerResultadosEvaluacionGeneralAlumno(int.Parse(ddEvaluacion.SelectedValue), rut_alumno);
 
             int i = 0;
-            bool primera_vez = true;
-            bool estado_anterior = false; ;
             while (i < result.Count)
             {
-                if (Boolean.Parse(result[i]) == true && primera_vez)
-                {
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
-                }
-                else if (Boolean.Parse(result[i]) == true && estado_anterior == true)
-                {
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
-                }
-                else if (Boolean.Parse(result[i]) == true)
-                {
-                    this.chartColumna.Series["Correctas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
-                    try
-                    {
-                        if (Boolean.Parse(result[i]) == false)
-                        {
-                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                            i = i + 3;
-                        }
-                        else
-                        {
-                            this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], 0);
-                        }
-                    }
-                    catch { }
-                }
-                else if (Boolean.Parse(result[i]) == false)
-                {
-                    string s = result[i + 2];
-                    this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i + 2], int.Parse(result[i + 1]));
-                    i = i + 3;
-                    try
-                    {
-                        if (Boolean.Parse(result[i]) == false)
-                        {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
-                        }
-                        else if (Boolean.Parse(result[i]) == true && s==result[i+2])
-                        {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(s, int.Parse(result[i + 1]));
-                            i = i + 3;
-                        }
-                        else
-                        {
-                            this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
-                        }
-                    }
-                    catch
-                    {
-                        this.chartColumna.Series["Correctas"].Points.AddXY(s, 0);
-                    }
-                }
-                try
-                {
-                    estado_anterior = Boolean.Parse(result[i]);
-                }
-                catch
-                {
-                }
-                primera_vez = false;
+                this.chartColumna.Series["Correctas"].Points.AddXY(result[i], int.Parse(result[i + 1]));
+                this.chartColumna.Series["Incorrectas"].Points.AddXY(result[i], int.Parse(result[i + 2]));
+                i = i + 3;
             }
             System.Web.UI.DataVisualization.Charting.Title title = chartColumna.Titles.Add(ddEvaluacion.SelectedItem.ToString());
             title.Font = new Font("Segoe UI", 16, FontStyle.Regular);

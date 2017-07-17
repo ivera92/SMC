@@ -8,7 +8,7 @@
         <div class="col-sm-12">
             <asp:Image ID="rEE" runat="server" ImageUrl="ImagenesAdmin/rEE.PNG" />
             <div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <br />
                     <label>Asignatura</label>
                     <asp:DropDownList ID="ddAsignatura" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
@@ -17,7 +17,7 @@
                     <br />
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <br />
                     <label>Evaluación</label>
                     <asp:DropDownList ID="ddEvaluacion" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control">
@@ -26,7 +26,7 @@
                     <br />
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <br />
                     <label>Resultados</label>
                     <asp:DropDownList ID="ddOpcion" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddOpcion_SelectedIndexChanged">
@@ -38,35 +38,39 @@
                     <br />
                 </div>
                 <div class="col-sm-2" id="divAno1" runat="server">
+                    <br />
                     <label>Año 1</label>
                     <asp:DropDownList ID="ddAno1" runat="server" CssClass="form-control">
                     </asp:DropDownList>
                     <br />
                 </div>
                 <div class="col-sm-2" id="divAno2" runat="server">
+                    <br />
                     <label>Año 2</label>
                     <asp:DropDownList ID="ddAno2"  runat="server" CssClass="form-control">
                     </asp:DropDownList>
                     <br />
                 </div>
                 <div class="col-sm-2" id="divRut" runat="server">
+                    <br />
                     <label>Rut alumno</label>
                     <asp:TextBox ID="txtRut" CssClass="form-control" AutoPostBack="true" runat="server"></asp:TextBox>
                     <asp:CustomValidator ID="CustomValidator1" runat="server"
                         ClientValidationFunction="validar_rut" ControlToValidate="txtRut"
                         Display="Dynamic" ErrorMessage="RUT incorrecto" ForeColor="Red" SetFocusOnError="True">
                     </asp:CustomValidator>
+                    <br />
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-1">
+                    <br />
                     <br />
                     <asp:Button ID="btnVer" runat="server" Text="Ver" CssClass="form-control btn-block btn-success" OnClick="btnVer_Click" />
+                    <br />
                 </div>
 
                 <div class="row" id="divOtrosResultados" runat="server">
                     <div class="col-sm-10 col-sm-offset-1" style="border: solid 2px #ccc; background-color: white">
                         <div>
-                            <br />
-                            <br />
                             <label class="col-sm-3">Puntaje mas alto</label>
                             <label class="col-sm-2">Correctas </label>
                             <label id="lblCorrectasMAC" runat="server" class="col-sm-2"></label>
@@ -139,7 +143,6 @@
 
                 <div class="col-sm-12">
                     <asp:Panel ID="panelGrafico" runat="server">
-                        <br />
                         <asp:Chart ID="chartPuntos" runat="server" CssClass="center-block" Width="970px" Height="505px">
                             <ChartAreas>
                                 <asp:ChartArea Name="ChartArea1">
@@ -160,7 +163,6 @@
                 </div>
 
                 <div class="col-sm-12">
-                    <br />
                     <asp:GridView ID="gvDesempenos" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
                         <Columns>
@@ -172,11 +174,13 @@
                 </div>
 
                 <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
-                    <br />
                     <div class="text-center">
                         <label id="lblnEvaluacion" runat="server"></label>
                     </div>
                     <br />
+                    <div class="text-center">
+                        <label id="lblNota" runat="server"></label>
+                    </div>
                     <div class="text-center">
                         <label id="lblCorrectas" runat="server"></label>
                     </div>
