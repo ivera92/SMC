@@ -76,6 +76,24 @@ namespace CapaDePresentacion.Doc {
         protected global::System.Web.UI.WebControls.Image cAlumno12;
         
         /// <summary>
+        /// imgExcelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgExcelBtn;
+        
+        /// <summary>
+        /// ddAsignaturaC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddAsignaturaC;
+        
+        /// <summary>
         /// FileUpload1 control.
         /// </summary>
         /// <remarks>

@@ -58,11 +58,13 @@
                             </asp:ChartArea>
                         </ChartAreas>
                         <Legends>
-                            <asp:Legend Name="Legend1" Alignment="Center" Docking="Bottom">
+                            <asp:Legend Docking="Right" Name="Legend1" Font="Segoe UI, 10pt" IsTextAutoFit="False" Alignment="Near" BorderColor="Black">
                             </asp:Legend>
                         </Legends>
                         <Titles>
                             <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de respuestas">
+                            </asp:Title>
+                            <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Desempeños">
                             </asp:Title>
                         </Titles>
                         <BorderSkin BackColor="RoyalBlue" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
@@ -119,11 +121,13 @@
                             </asp:ChartArea>
                         </ChartAreas>
                         <Legends>
-                            <asp:Legend Docking="Bottom" Name="Legend1" Font="Segoe UI, 12pt" IsTextAutoFit="False" Alignment="Center">
+                            <asp:Legend Docking="Right" Name="Legend1" Font="Segoe UI, 10pt" IsTextAutoFit="False" Alignment="Near" BorderColor="Black">
                             </asp:Legend>
                         </Legends>
                         <Titles>
                             <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Nota Alumno">
+                            </asp:Title>
+                            <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Alumnos" BackImageAlignment="Center">
                             </asp:Title>
                         </Titles>
                         <BorderSkin BackColor="RoyalBlue" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
@@ -131,15 +135,17 @@
                     <br />
                 </div>
 
-                <div class="col-sm-6 col-sm-offset-3">
+                <div class="col-sm-12">
                     <br />
                     <asp:GridView ID="gvResumen" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="Rut" HeaderText="Rut" />
-                            <asp:BoundField DataField="Correctas" HeaderText="Correctas" />
-                            <asp:BoundField DataField="Incorrectas" HeaderText="Incorrectas" />
-                            <asp:BoundField DataField="Promedio" HeaderText="Promedio" />
+                            <asp:BoundField DataField="Nombre" HeaderText="Nombre"/>
+                            <asp:BoundField DataField="Rut" HeaderText="Rut"/>
+                            <asp:BoundField DataField="Correo" HeaderText="Correo"/>
+                            <asp:BoundField DataField="Correctas" HeaderText="Correctas" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Incorrectas" HeaderText="Incorrectas" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Nota" HeaderText="Nota" ItemStyle-HorizontalAlign="Center" />
                         </Columns>
                     </asp:GridView>
                 </div>

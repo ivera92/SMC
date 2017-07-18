@@ -209,7 +209,7 @@ namespace Project
             string s = "";
             while (result.Read())
             {
-                s = "Desempeño " + i;
+                s = "D" + i;
                 Desempeno d = new Desempeno(s, result.GetString(1), result.GetString(2));
                 lDesempenos.Add(d);
                 i += 1;

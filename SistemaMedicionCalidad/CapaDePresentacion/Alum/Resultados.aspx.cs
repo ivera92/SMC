@@ -284,7 +284,7 @@ namespace CapaDePresentacion.Alum
             {
                 i += 1;
                 rut = row[0].ToString();
-                promedio = double.Parse(row[3].ToString());
+                promedio = double.Parse(row[5].ToString());
                 if (rut == rut_alumno)
                 {
                     this.chartPuntos.Series["Tu Nota"].Points.AddXY("", promedio);

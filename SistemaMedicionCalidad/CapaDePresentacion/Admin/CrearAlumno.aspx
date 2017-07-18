@@ -29,6 +29,24 @@
         <div class="col-sm-12">
             <asp:Image ID="cAlumno12" runat="server" ImageUrl="ImagenesAdmin/cAlumno12.PNG" />
             <div style="border: solid 1px #ccc">
+                <div class="col-sm-5 col-sm-offset-3" style="text-align: justify">
+                    <br />
+                    Para poder importar alumnos desde una plantilla excel, esta debera tener el formato que se descarga al hacer click en el icono de excel, en la Hoja1 es donde debera ingresar los datos de los alumnos a importar, ademas debera seleccionar la asignatura que cursaran estos.
+                </div>
+                <div class="col-sm-1">
+                    <br />
+                    <br />
+                    <asp:ImageButton ID="imgExcelBtn" runat="server" ImageUrl="ImagenesAdmin/imgExcel.PNG" Width="50" Height="50" OnClick="imgExcelBtn_Click" />
+                </div>
+                <div class="col-sm-offset-3 col-sm-6">
+                    <br />
+                    <label>Asignatura</label>
+                    <asp:DropDownList runat="server" ID="ddAsignaturaC" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
+                        <asp:ListItem Value="0">Seleccione una Asignatura</asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                </div>
+
                 <div class="col-sm-offset-3 col-sm-4">
                     <br />
                     <asp:FileUpload ID="FileUpload1" runat="server" />
@@ -38,7 +56,7 @@
                     <asp:Button ID="btnMostrar" Text="Mostrar" CssClass="form-control btn-success" runat="server" OnClick="btnMostrar_Click1" />
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-10 col-sm-offset-1">
                     <br />
                     <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
@@ -47,7 +65,6 @@
                             <asp:BoundField DataField="Rut" HeaderText="Rut" />
                             <asp:BoundField DataField="Nombre Estudiante" HeaderText="Nombre" />
                             <asp:BoundField DataField="Email" HeaderText="Email" />
-                            <asp:BoundField DataField="Asignatura" HeaderText="Asignatura" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -89,7 +106,7 @@
 
                 <div>
                     <label>Correo</label>
-                    <asp:TextBox ID="txtCorreo" class="form-control" runat="server" pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" 
+                    <asp:TextBox ID="txtCorreo" class="form-control" runat="server" pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$"
                         placeHolder="Ejemplo: ejemplo@live.cl" oninvalid="setCustomValidity('Correo ingresado no cumple con el formato')"
                         oninput="setCustomValidity('')" required></asp:TextBox>
                     <br />

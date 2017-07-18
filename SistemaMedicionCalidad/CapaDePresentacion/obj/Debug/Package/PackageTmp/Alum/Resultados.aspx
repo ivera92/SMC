@@ -8,7 +8,7 @@
         <div class="col-sm-12">
             <div style="border: solid 1px #ccc">
                 <asp:Image ID="rEvaluacion" runat="server" ImageUrl="ImagenesAlumno/rEvaluacion.PNG" />
-                <div class="col-sm-5">
+                <div class="col-sm-4">
                     <br />
                     <label>Asignatura</label>
                     <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="ddAsignatura" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
@@ -16,11 +16,22 @@
                     </asp:DropDownList>
                 </div>
 
-                <div class="col-sm-5">
+                <div class="col-sm-3">
                     <br />
                     <label>Evaluación</label>
                     <asp:DropDownList CssClass="form-control" AutoPostBack="true" AppendDataBoundItems="true" ID="ddEvaluacion" runat="server">
                         <asp:ListItem Value="0">Seleccione una Evaluación</asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                </div>
+
+                <div class="col-sm-3">
+                    <br />
+                    <label>Resultados</label>
+                    <asp:DropDownList CssClass="form-control"  AppendDataBoundItems="true" ID="ddOpcion" runat="server">
+                        <asp:ListItem Value="0">Seleccione Resultado</asp:ListItem>
+                        <asp:ListItem Value="1">Revisar Evaluación</asp:ListItem>
+                        <asp:ListItem Value="2">Ver Notas del Curso</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>
@@ -77,11 +88,13 @@
                                 </asp:ChartArea>
                             </ChartAreas>
                             <Legends>
-                                <asp:Legend Docking="Bottom" Name="Legend1" Font="Segoe UI, 12pt" IsTextAutoFit="False" Alignment="Center">
-                                </asp:Legend>
+                                <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False" BorderColor="Black">
+                            </asp:Legend>
                             </Legends>
                             <Titles>
                                 <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Nota Alumno">
+                                </asp:Title>
+                                <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Alumnos">
                                 </asp:Title>
                             </Titles>
                             <BorderSkin BackColor="Orange" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
@@ -102,10 +115,14 @@
 
                 <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
                     <br />
+                    
                     <div class="text-center">
                         <label id="lblnEvaluacion" runat="server"></label>
                     </div>
                     <br />
+                    <div class="text-center">
+                        <label id="lblNota" runat="server"></label>
+                    </div>
                     <div class="text-center">
                         <label id="lblCorrectas" runat="server"></label>
                     </div>

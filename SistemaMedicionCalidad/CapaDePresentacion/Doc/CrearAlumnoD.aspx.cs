@@ -24,6 +24,9 @@ namespace CapaDePresentacion.Doc
                     this.ddAsignatura.DataTextField = "Nombre_asignatura";
                     this.ddAsignatura.DataValueField = "Cod_asignatura";
                     this.ddAsignatura.DataSource = lAsignatura;
+                    this.ddAsignaturaC.DataTextField = "Nombre_asignatura";
+                    this.ddAsignaturaC.DataValueField = "Cod_asignatura";
+                    this.ddAsignaturaC.DataSource = lAsignatura;
                     this.DataBind();//enlaza los datos a un dropdownlist  
                 }
             }
@@ -126,7 +129,7 @@ namespace CapaDePresentacion.Doc
             }
             catch
             {
-
+                Response.Write("<script>alert('Formato de archivo no coincide, o plantilla no tiene las columnas solicitadas');</script>");
             }
         }
 
@@ -143,15 +146,13 @@ namespace CapaDePresentacion.Doc
                     string rut = "";
                     string nombre = "";
                     string email = "";
-                    string asignatura = "";
                     Alumno a = new Alumno();
                     Cursa c = new Cursa();
                     try
                     {
-                        rut = HttpUtility.HtmlDecode(row.Cells[0].Text).Substring(2, 10).ToUpper();
+                        rut = HttpUtility.HtmlDecode(row.Cells[0].Text).ToUpper().TrimStart('0');
                         nombre = HttpUtility.HtmlDecode(row.Cells[1].Text);
                         email = HttpUtility.HtmlDecode(row.Cells[2].Text);
-                        asignatura = HttpUtility.HtmlDecode(row.Cells[3].Text);
                         a.Rut_persona = rut;
                         a.Nombre_persona = nombre;
                         a.Correo_persona = email;
@@ -167,7 +168,7 @@ namespace CapaDePresentacion.Doc
                     try
                     {
                         c.Rut_alumno_aa = cAlumno.buscarAlumnoPorRut(rut);
-                        c.Cod_asignatura_aa = cAsignatura.buscarAsignaturaNombre(asignatura);
+                        c.Cod_asignatura_aa = cAsignatura.buscarAsignatura(ddAsignaturaC.SelectedValue);
                         c.Ano_asignatura = fechaHoy.Year + "";
                         if (cCursa.verificarExistenciaCursa(c) == 0)
                         {
@@ -196,6 +197,14 @@ namespace CapaDePresentacion.Doc
             divOpcion.Visible = false;
             divCrearExcel.Visible = true;
             btnImportar.Visible = false;
+        }
+
+        protected void imgExcelBtn_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.ContentType = "Application/pdf";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=Formato.xlsx");
+            Response.TransmitFile(Server.MapPath("/Doc/ImagenesDoc/Formato.xlsx"));
+            Response.End();
         }
     }
 }

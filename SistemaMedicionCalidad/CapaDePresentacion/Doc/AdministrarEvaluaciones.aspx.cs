@@ -149,8 +149,17 @@ namespace CapaDePresentacion.Doc
                 //Si cambio la pregunta
                 if (s != l.Text)
                 {
+                    string ss = numPregunta + ").- ";
+                    Font fontNormal = new Font(FontFactory.GetFont("Arial", 12, Font.BOLD));
                     PdfPCell pc1 = new PdfPCell(new Paragraph(" "));
-                    PdfPCell pc2 = new PdfPCell(new Phrase(numPregunta + ") " + l.Text + "\n"));
+                    Chunk c = new Chunk(ss, fontNormal);
+                    Chunk cc = new Chunk(l.Text + "\n");
+                    Paragraph pregunta = new Paragraph();
+                    pregunta.Add(c);
+                    pregunta.Add(cc);
+
+                    PdfPCell pc2 = new PdfPCell(pregunta);
+                    pc2.HorizontalAlignment = Element.ALIGN_JUSTIFIED;
                     PdfPCell pc3 = new PdfPCell(new Paragraph(" "));
 
                     //De dejan los bordes en blanco para que no se vean, la tabla es solo para dar orden

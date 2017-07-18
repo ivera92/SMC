@@ -1,0 +1,10 @@
+Pasos
+
+Seleccionamos todo haciendo click entre la columna A y la fila 1 (izquierda superior) y desseleccionamos combinar y centrar
+boton derecho sobre A2 y cortamos, boton derecho y pegar sobre H6
+seleccionar desde la 1-4 en las filas boton derecho, eliminar
+boton derecho sobre columna A, B, E, boton derecho eliminar(referencian a Mov., Gr.Par., Estado)
+en columna E1 escribir Asignatura
+seleccionar E2 y arrastrar desde el punto verde que aparece a la derecha hasta llegar al ultimo alumno
+eliminar mensaje de generado por y numero de pagina( es decir eliminar lo que aparezca despues del ultimo alumno)
+Guardar y ya esta listo el excel para ser exportado

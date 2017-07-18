@@ -88,11 +88,13 @@
                                 </asp:ChartArea>
                             </ChartAreas>
                             <Legends>
-                                <asp:Legend Docking="Bottom" Name="Legend1" Font="Segoe UI, 12pt" IsTextAutoFit="False" Alignment="Center">
-                                </asp:Legend>
+                                <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False" BorderColor="Black">
+                            </asp:Legend>
                             </Legends>
                             <Titles>
                                 <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Nota Alumno">
+                                </asp:Title>
+                                <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Alumnos">
                                 </asp:Title>
                             </Titles>
                             <BorderSkin BackColor="Orange" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />

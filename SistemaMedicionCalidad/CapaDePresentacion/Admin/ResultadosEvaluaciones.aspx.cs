@@ -78,12 +78,16 @@ namespace CapaDePresentacion.Admin
 
         public void graficoPuntos()
         {
+            //Se define que no necesariamnente las series van a tener la misma cantidad de valores
             chartPuntos.Series["Aprobado"].IsXValueIndexed = false;
             chartPuntos.Series["Reprobado"].IsXValueIndexed = false;
             chartPuntos.Series["Promedio Curso"].IsXValueIndexed = false;
+            
+            //Se define el tamaño de la marca en el grafico
             this.chartPuntos.Series["Reprobado"].MarkerSize = 10;
             this.chartPuntos.Series["Aprobado"].MarkerSize = 10;
             this.chartPuntos.Series["Promedio Curso"].MarkerSize = 10;
+
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             DataTable dtPromedio = cEvaluacion.promedio(cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue)));
             string rut = "";
@@ -94,20 +98,20 @@ namespace CapaDePresentacion.Admin
             {
                 i += 1;
                 rut = row[0].ToString();
-                promedio = double.Parse(row[3].ToString());
+                promedio = double.Parse(row[5].ToString());
 
                 if (promedio >= 4.0)
                 {
-                    this.chartPuntos.Series["Aprobado"].Points.AddXY("A" + i, promedio);
+                    this.chartPuntos.Series["Aprobado"].Points.AddXY("" , promedio);
                 }
                 else
                 {
-                    this.chartPuntos.Series["Reprobado"].Points.AddXY("A" + i, promedio);
+                    this.chartPuntos.Series["Reprobado"].Points.AddXY("" , promedio);
                 }
                 promedio_curso += promedio;
             }
             promedio_curso = Math.Round(promedio_curso / i, 1, MidpointRounding.AwayFromZero);
-            this.chartPuntos.Series["Promedio Curso"].Points.AddXY("Promedio", promedio_curso);
+            this.chartPuntos.Series["Promedio Curso"].Points.AddXY("", promedio_curso);
 
             StripLine stripLine1 = new StripLine();
             stripLine1.StripWidth = 0;
@@ -191,7 +195,7 @@ namespace CapaDePresentacion.Admin
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             DataTable dtResumen = cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue));
             DataTable promedio = cEvaluacion.promedio(dtResumen);
-            promedio.TableName = "Resumen Respuestas Alumnos";
+            promedio.TableName = "Resumen Notas Alumnos";
             DataTable dt3 = new DataTable("Resultados Generales Desempeño");
             foreach (TableCell cell in gvResultadosGenerales.HeaderRow.Cells)
             {

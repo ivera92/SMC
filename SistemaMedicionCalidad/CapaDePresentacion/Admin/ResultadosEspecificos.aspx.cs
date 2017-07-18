@@ -39,6 +39,7 @@ namespace CapaDePresentacion.Admin
 
         protected void btnVer_Click(object sender, EventArgs e)
         {
+            this.ocultar();
             CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
             if (ddAsignatura.SelectedValue == "0" || ddEvaluacion.SelectedValue == "0" || ddOpcion.SelectedValue == "0")
             {

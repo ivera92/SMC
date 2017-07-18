@@ -781,16 +781,18 @@ namespace Project
             double puntaje_exigencia, porcentaje;
             double promedio = 0;
             DataTable d2 = new DataTable();
+            d2.Columns.Add("Nombre");
             d2.Columns.Add("Rut");
+            d2.Columns.Add("Correo");
             d2.Columns.Add("Correctas");
             d2.Columns.Add("Incorrectas");
-            d2.Columns.Add("Promedio");
+            d2.Columns.Add("Nota");
             foreach (DataRow row in d.Rows)
             {
-                rut = row[0].ToString();
-                correctas = row[1].ToString();
-                incorretas = row[2].ToString();
-                porcentaje = int.Parse(row[3].ToString()) / 100d;
+                rut = row[1].ToString();
+                correctas = row[3].ToString();
+                incorretas = row[4].ToString();
+                porcentaje = int.Parse(row[5].ToString()) / 100d;
                 puntaje_ideal = int.Parse(correctas) + int.Parse(incorretas);
                 puntaje_exigencia = puntaje_ideal * porcentaje;
                 double a = puntaje_ideal - puntaje_exigencia;
@@ -806,10 +808,12 @@ namespace Project
                     promedio = Math.Round(3f * (double.Parse(correctas) - puntaje_exigencia) / (puntaje_ideal - puntaje_exigencia) + 4, 1, MidpointRounding.AwayFromZero);
                 }
                 DataRow row2 = d2.NewRow();
+                row2["Nombre"] = row[0].ToString();
                 row2["Rut"] = rut;
+                row2["Correo"]= row[2].ToString();
                 row2["Correctas"] = correctas;
                 row2["Incorrectas"] = incorretas;
-                row2["Promedio"] = promedio;
+                row2["Nota"] = promedio;
                 d2.Rows.Add(row2);
             }
             return d2;

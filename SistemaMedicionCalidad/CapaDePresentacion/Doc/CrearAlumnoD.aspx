@@ -11,7 +11,7 @@
             <div class="col-sm-12" style="border: solid 1px #ccc">
                 <div class="col-sm-offset-2 col-sm-4">
                     <br />
-                    <asp:Button ID="btnManual" runat="server" Text="Crear Manual" CssClass="form-control btn-info" OnClick="btnManual_Click" />
+                    <asp:Button ID="btnManual" runat="server" Text="Crear Manual" CssClass="form-control"  BackColor="#7F1734" ForeColor="White" OnClick="btnManual_Click" />
                     <br />
                 </div>
                 <div class="col-sm-4">
@@ -28,16 +28,34 @@
         <div class="col-sm-12">
             <asp:Image ID="cAlumno12" runat="server" ImageUrl="ImagenesDoc/cAlumno12.PNG" />
             <div style="border: solid 1px #ccc">
+                <div class="col-sm-5 col-sm-offset-3" style="text-align: justify">
+                    <br />
+                    Para poder importar alumnos desde una plantilla excel, esta debera tener el formato que se descarga al hacer click en el icono de excel, en la Hoja1 es donde debera ingresar los datos de los alumnos a importar, ademas debera seleccionar la asignatura que cursaran estos.
+                </div>
+                <div class="col-sm-1">
+                    <br />
+                    <br />
+                    <asp:ImageButton ID="imgExcelBtn" runat="server" ImageUrl="ImagenesDoc/imgExcel.PNG" Width="50" Height="50" OnClick="imgExcelBtn_Click" />
+                </div>
+                <div class="col-sm-offset-3 col-sm-6">
+                    <br />
+                    <label>Asignatura</label>
+                    <asp:DropDownList runat="server" ID="ddAsignaturaC" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
+                        <asp:ListItem Value="0">Seleccione una Asignatura</asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                </div>
+
                 <div class="col-sm-offset-3 col-sm-4">
                     <br />
                     <asp:FileUpload ID="FileUpload1" runat="server" />
                 </div>
                 <div class="col-sm-2">
                     <br />
-                    <asp:Button ID="btnMostrar" Text="Mostrar" CssClass="form-control" ForeColor="White" BackColor="#7F1734" BorderColor="White" runat="server" OnClick="btnMostrar_Click1" />
+                    <asp:Button ID="btnMostrar" Text="Mostrar" CssClass="form-control" BackColor="#7F1734" ForeColor="White" runat="server" OnClick="btnMostrar_Click1" />
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-10 col-sm-offset-1">
                     <br />
                     <asp:GridView class="table table-striped" ID="gvAlumnos" runat="server" AutoGenerateColumns="false">
                         <HeaderStyle BackColor="#7F1734" Font-Bold="True" ForeColor="White" />
@@ -46,13 +64,12 @@
                             <asp:BoundField DataField="Rut" HeaderText="Rut" />
                             <asp:BoundField DataField="Nombre Estudiante" HeaderText="Nombre" />
                             <asp:BoundField DataField="Email" HeaderText="Email" />
-                            <asp:BoundField DataField="Asignatura" HeaderText="Asignatura" />
                         </Columns>
                     </asp:GridView>
                 </div>
             </div>
             <div class="col-sm-offset-5 col-sm-2">
-                <asp:Button ID="btnImportar" Text="Importar" CssClass="form-control" ForeColor="White" BackColor="#7F1734" BorderColor="White" runat="server" OnClick="btnImportar_Click" />
+                <asp:Button ID="btnImportar" Text="Importar" CssClass="form-control" BackColor="#7F1734" ForeColor="White" runat="server" OnClick="btnImportar_Click" /> 
                 <br />
             </div>
             <asp:Image ID="iEndSM12" runat="server" ImageUrl="ImagenesDoc/iEndSM12.PNG" />
@@ -85,9 +102,10 @@
                     <br />
                 </div>
 
+
                 <div>
                     <label>Correo</label>
-                    <asp:TextBox ID="txtCorreo" class="form-control" runat="server" pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" 
+                    <asp:TextBox ID="txtCorreo" class="form-control" runat="server" pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$"
                         placeHolder="Ejemplo: ejemplo@live.cl" oninvalid="setCustomValidity('Correo ingresado no cumple con el formato')"
                         oninput="setCustomValidity('')" required></asp:TextBox>
                     <br />
@@ -95,13 +113,13 @@
                 <div>
                     <label>Asignatura (Opcional)</label>
                     <asp:DropDownList runat="server" ID="ddAsignatura" class="form-control" AutoGenerateColumns="False" AppendDataBoundItems="true">
-                        <asp:ListItem Value="0"><--Seleccione una asignatura--></asp:ListItem>
+                        <asp:ListItem Value="0">Seleccione una Asignatura</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>
 
                 <div class="col-sm-offset-3 col-sm-6">
-                    <asp:Button ID="btnCrear" class="btn-block form-control" ForeColor="White" BackColor="#7F1734" BorderColor="White" runat="server" OnClick="btnCrear_Click" Text="Crear" />
+                    <asp:Button ID="btnCrear" class="btn-block form-control" BackColor="#7F1734" ForeColor="White" runat="server" OnClick="btnCrear_Click" Text="Crear" />
                     <br />
                 </div>
             </div>

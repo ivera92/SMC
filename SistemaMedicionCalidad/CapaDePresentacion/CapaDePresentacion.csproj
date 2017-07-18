@@ -151,6 +151,7 @@
     <Content Include="Admin\ImagenesAdmin\imgDocente.png" />
     <Content Include="Admin\ImagenesAdmin\imgEscuela.png" />
     <Content Include="Admin\ImagenesAdmin\imgEvaluacion.png" />
+    <Content Include="Admin\ImagenesAdmin\imgExcel.png" />
     <Content Include="Admin\ImagenesAdmin\imgPregunta.png" />
     <Content Include="Admin\ImagenesAdmin\imgResultados.png" />
     <Content Include="Admin\ImagenesAdmin\rEE.png" />
@@ -207,6 +208,7 @@
     <Content Include="Doc\ImagenesDoc\imgAlumno.png" />
     <Content Include="Doc\ImagenesDoc\imgContrasena.png" />
     <Content Include="Doc\ImagenesDoc\imgEvaluacion.png" />
+    <Content Include="Doc\ImagenesDoc\imgExcel.png" />
     <Content Include="Doc\ImagenesDoc\imgResultados.png" />
     <Content Include="Doc\ImagenesDoc\rEE.png" />
     <Content Include="Doc\ImagenesDoc\rEG.png" />
@@ -261,6 +263,8 @@
     <Content Include="Alum\SiteAlumno.Master" />
     <Content Include="Admin\SiteAdmin.Master" />
     <Content Include="Evaluador\SiteEvaluador.Master" />
+    <Content Include="Admin\ImagenesAdmin\Formato.xlsx" />
+    <Content Include="Doc\ImagenesDoc\Formato.xlsx" />
     <None Include="Properties\PublishProfiles\sistema.pubxml" />
     <None Include="Properties\PublishProfiles\smc.pubxml" />
     <None Include="Properties\PublishProfiles\SMCFE.pubxml" />

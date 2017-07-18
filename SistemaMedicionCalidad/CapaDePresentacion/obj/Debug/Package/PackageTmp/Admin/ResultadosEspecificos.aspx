@@ -17,22 +17,37 @@
                     <br />
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <br />
                     <label>Evaluación</label>
                     <asp:DropDownList ID="ddEvaluacion" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control">
-                        <asp:ListItem Value="0">Seleccione una Evaluación</asp:ListItem>
+                        <asp:ListItem Value="0">Evaluación</asp:ListItem>
                     </asp:DropDownList>
                     <br />
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <br />
                     <label>Resultados</label>
                     <asp:DropDownList ID="ddOpcion" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddOpcion_SelectedIndexChanged">
-                        <asp:ListItem Value="0">Seleccione una Opción</asp:ListItem>
+                        <asp:ListItem Value="0">Opción</asp:ListItem>
                         <asp:ListItem Value="1">Otros Resultados</asp:ListItem>
                         <asp:ListItem Value="2">Un alumno en específico</asp:ListItem>
+                        <asp:ListItem Value="3">Comparar 2 generaciones</asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                </div>
+                <div class="col-sm-2" id="divAno1" runat="server">
+                    <br />
+                    <label>Año 1</label>
+                    <asp:DropDownList ID="ddAno1" runat="server" CssClass="form-control">
+                    </asp:DropDownList>
+                    <br />
+                </div>
+                <div class="col-sm-2" id="divAno2" runat="server">
+                    <br />
+                    <label>Año 2</label>
+                    <asp:DropDownList ID="ddAno2" runat="server" CssClass="form-control">
                     </asp:DropDownList>
                     <br />
                 </div>
@@ -44,18 +59,18 @@
                         ClientValidationFunction="validar_rut" ControlToValidate="txtRut"
                         Display="Dynamic" ErrorMessage="RUT incorrecto" ForeColor="Red" SetFocusOnError="True">
                     </asp:CustomValidator>
+                    <br />
                 </div>
                 <div class="col-sm-1">
                     <br />
                     <br />
                     <asp:Button ID="btnVer" runat="server" Text="Ver" CssClass="form-control btn-block btn-success" OnClick="btnVer_Click" />
+                    <br />
                 </div>
 
                 <div class="row" id="divOtrosResultados" runat="server">
                     <div class="col-sm-10 col-sm-offset-1" style="border: solid 2px #ccc; background-color: white">
                         <div>
-                            <br />
-                            <br />
                             <label class="col-sm-3">Puntaje mas alto</label>
                             <label class="col-sm-2">Correctas </label>
                             <label id="lblCorrectasMAC" runat="server" class="col-sm-2"></label>
@@ -92,46 +107,70 @@
                                 <textarea class="form-control col-sm-3" id="txtAPreguntaPC" runat="server" rows="4" readonly="readonly"></textarea>
                             </div>
                             <label class="col-sm-2">Veces Correcta</label>
-                            <label id="lblCorrectasPPC" runat="server" class="col-sm-1"></label>                            
+                            <label id="lblCorrectasPPC" runat="server" class="col-sm-1"></label>
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="divAlumno" runat="server">
                     <div class="col-sm-12">
                         <asp:Panel ID="panelGraficoColumna" runat="server">
-                            <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="970px" Height="505px">
-                            <Series>
-                                <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1"></asp:Series>
-                                <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1">
-                                </asp:Series>
-                            </Series>
-                            <ChartAreas>
-                                <asp:ChartArea Name="ChartArea1">
-                                </asp:ChartArea>
-                            </ChartAreas>
-                            <Legends>
-                                <asp:Legend Name="Legend1" Alignment="Center" Docking="Bottom">
-                                </asp:Legend>
-                            </Legends>
-                            <Titles>
-                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de respuestas">
-                                </asp:Title>
-                            </Titles>
-                            <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
-                        </asp:Chart>
-                        <br />
+                            <asp:Chart ID="chartColumna" runat="server" CanResize="true" CssClass="table  table-bordered table-condensed table-responsive" Width="970px" Height="505px">
+                                <Series>
+                                    <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1"></asp:Series>
+                                    <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1">
+                                    </asp:Series>
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="ChartArea1">
+                                    </asp:ChartArea>
+                                </ChartAreas>
+                                <Legends>
+                                    <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 10pt" IsTextAutoFit="False" BorderColor="Black" Title="Respuestas" TitleFont="Segoe UI, 10pt">
+                                    </asp:Legend>
+                                </Legends>
+                                <Titles>
+                                    <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de respuestas">
+                                    </asp:Title>
+                                    <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Desempeños">
+                                    </asp:Title>
+                                </Titles>
+                                <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
+                            </asp:Chart>
+                            <br />
                         </asp:Panel>
                         <br />
                     </div>
                 </div>
 
                 <div class="col-sm-12">
-                    <br />
+                    <asp:Panel ID="panelGrafico" runat="server">
+                        <asp:Chart ID="chartPuntos" runat="server" CssClass="center-block" Width="970px" Height="505px">
+                            <ChartAreas>
+                                <asp:ChartArea Name="ChartArea1">
+                                </asp:ChartArea>
+                            </ChartAreas>
+                            <Legends>
+                                <asp:Legend Docking="Right" Name="Legend1" Font="Segoe UI, 10pt" IsTextAutoFit="False" Alignment="Near" BorderColor="Black" Title="Generaciones" TitleFont="Segoe UI, 10pt">
+                                </asp:Legend>
+                            </Legends>
+                            <Titles>
+                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Promedio por Desempeño de Generacion">
+                                </asp:Title>
+                                <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Desempeños" BackImageAlignment="Center">
+                                </asp:Title>
+                            </Titles>
+                            <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
+                        </asp:Chart>
+                        <br />
+                    </asp:Panel>
+                </div>
+
+                <div class="col-sm-12">
                     <asp:GridView ID="gvDesempenos" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="nombre_desempeno" HeaderText="Desempeño" />
+                            <asp:BoundField DataField="nombre_desempeno" HeaderText="Desempeño" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="indicador_desempeno" HeaderText="Indicador de Desempeño" />
                             <asp:BoundField DataField="nombre_nivel" HeaderText="Nivel" />
                         </Columns>
@@ -139,11 +178,13 @@
                 </div>
 
                 <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
-                    <br />
                     <div class="text-center">
                         <label id="lblnEvaluacion" runat="server"></label>
                     </div>
                     <br />
+                    <div class="text-center">
+                        <label id="lblNota" runat="server"></label>
+                    </div>
                     <div class="text-center">
                         <label id="lblCorrectas" runat="server"></label>
                     </div>

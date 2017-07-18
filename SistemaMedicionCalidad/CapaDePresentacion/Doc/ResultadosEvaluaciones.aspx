@@ -131,15 +131,17 @@
                     <br />
                 </div>
 
-                <div class="col-sm-6 col-sm-offset-3">
+                <div class="col-sm-12">
                     <br />
                     <asp:GridView ID="gvResumen" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" BackColor="White">
                         <HeaderStyle BackColor="#7F1734" Font-Bold="True" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="Rut" HeaderText="Rut" />
-                            <asp:BoundField DataField="Correctas" HeaderText="Correctas" />
-                            <asp:BoundField DataField="Incorrectas" HeaderText="Incorrectas" />
-                            <asp:BoundField DataField="Promedio" HeaderText="Promedio" />
+                            <asp:BoundField DataField="Nombre" HeaderText="Nombre"/>
+                            <asp:BoundField DataField="Rut" HeaderText="Rut"/>
+                            <asp:BoundField DataField="Correo" HeaderText="Correo"/>
+                            <asp:BoundField DataField="Correctas" HeaderText="Correctas" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Incorrectas" HeaderText="Incorrectas" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Nota" HeaderText="Nota" ItemStyle-HorizontalAlign="Center" />
                         </Columns>
                     </asp:GridView>
                 </div>
