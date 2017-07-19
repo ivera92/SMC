@@ -209,7 +209,7 @@ namespace Project
 
             string sqlSearch = "mostrarResumenCompetenciasAsignatura";
             bd.CreateCommandSP(sqlSearch);
-            bd.createParameter("@cod_asignatura", DbType.Int32, cod_asignatura);
+            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura);
 
             DbDataReader result = bd.Query();
             DataTable dt = new DataTable();
@@ -267,6 +267,25 @@ namespace Project
             string sqlSearch = "mostrarCompetenciasEvaluacion";
             bd.CreateCommandSP(sqlSearch);
             bd.createParameter("id_evaluacion", DbType.Int32, id_evaluacion);
+            List<Desempeno> lDesempenos = new List<Desempeno>();
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+
+            result.Close();
+            bd.Close();
+            return dt;
+        }
+
+        //Lista todos las competencias de una evaluacion
+        public DataTable mostrarCompetenciasAsignatura(string cod_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarCompetenciasDeAsignatura";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("cod_asignatura", DbType.String, cod_asignatura);
             List<Desempeno> lDesempenos = new List<Desempeno>();
             DbDataReader result = bd.Query();
             DataTable dt = new DataTable();

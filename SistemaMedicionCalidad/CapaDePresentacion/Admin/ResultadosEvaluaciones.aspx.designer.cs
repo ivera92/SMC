@@ -31,15 +31,6 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBotones;
         
         /// <summary>
-        /// btnEscuela control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEscuela;
-        
-        /// <summary>
         /// btnAsignatura control.
         /// </summary>
         /// <remarks>
@@ -229,13 +220,13 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDDA;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// ddAsignatura2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddAsignatura2;
         
         /// <summary>
         /// divResultado control.
@@ -283,6 +274,24 @@ namespace CapaDePresentacion.Admin {
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartColumna;
         
         /// <summary>
+        /// divDesempeñosAsignatura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDesempeñosAsignatura;
+        
+        /// <summary>
+        /// chartDesempeñosAsignatura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chartDesempeñosAsignatura;
+        
+        /// <summary>
         /// divCCompe control.
         /// </summary>
         /// <remarks>
@@ -299,6 +308,24 @@ namespace CapaDePresentacion.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartCompe;
+        
+        /// <summary>
+        /// divCompetenciasAsignatura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCompetenciasAsignatura;
+        
+        /// <summary>
+        /// chartCompetenciasAsignatura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chartCompetenciasAsignatura;
         
         /// <summary>
         /// divCP control.

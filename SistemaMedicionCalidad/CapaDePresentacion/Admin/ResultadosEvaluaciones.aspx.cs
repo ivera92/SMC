@@ -25,6 +25,9 @@ namespace CapaDePresentacion.Admin
                 {
                     divRut.Visible = false;
                     divRAsignatura.Visible = false;
+                    divDDA.Visible = false;
+                    divResultado.Visible = false;
+                    btnVerR.Visible = false;
                     this.ocultar();
                     this.listarAsignaturas();
                 }
@@ -49,10 +52,9 @@ namespace CapaDePresentacion.Admin
             divOtrosResultados.Visible = false;
             div2Generaciones.Visible = false;
             divPreguntas.Visible = false;
-            divAlumno.Visible = false;
-            divDDA.Visible = false;
-            divResultado.Visible = false;
-            btnVerR.Visible = false;
+            divAlumno.Visible = false;            
+            divCompetenciasAsignatura.Visible = false;
+            divDesempeñosAsignatura.Visible = false;
         }
 
         public void listarAsignaturas()
@@ -60,10 +62,16 @@ namespace CapaDePresentacion.Admin
             CatalogAsignatura cAsignatura = new CatalogAsignatura();
             List<Asignatura> lAsignaturas = cAsignatura.listarAsignaturas();
             this.ddAsignatura.Items.Clear();
+            this.ddAsignatura2.Items.Clear();
+            ddAsignatura2.Items.Add(new ListItem("Seleccione una Asignatura", "0"));
             ddAsignatura.Items.Add(new ListItem("Seleccione una Asignatura", "0"));
             this.ddAsignatura.DataTextField = "Nombre_asignatura";
             this.ddAsignatura.DataValueField = "Cod_asignatura";
             this.ddAsignatura.DataSource = lAsignaturas;
+            this.ddAsignatura2.DataTextField = "Nombre_asignatura";
+            this.ddAsignatura2.DataValueField = "Cod_asignatura";
+            this.ddAsignatura2.DataSource = lAsignaturas;
+            this.ddAsignatura2.DataBind();
             this.ddAsignatura.DataBind();
         }
 
@@ -87,6 +95,27 @@ namespace CapaDePresentacion.Admin
             chartColumna.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
             chartColumna.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
         }
+
+        public void graficoColumnaDesempeñoAsignatura()
+        {
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            DataTable result = cEvaluacion.mostrarResumenDAsignatura(ddAsignatura2.SelectedValue);
+            int i = 1;
+            foreach (DataRow row in result.Rows)
+            {
+                this.chartDesempeñosAsignatura.Series["Correctas"].Points.AddXY("D"+i, int.Parse(row[1].ToString()));
+                this.chartDesempeñosAsignatura.Series["Incorrectas"].Points.AddXY("D" + i, int.Parse(row[1].ToString()));
+                i += 1;
+            }
+            System.Web.UI.DataVisualization.Charting.Title title = chartDesempeñosAsignatura.Titles.Add(ddAsignatura2.SelectedItem.ToString()+"-DESEMPEÑOS");
+            title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
+            title.ForeColor = Color.White;
+
+            //Sacar cuadricula
+            chartDesempeñosAsignatura.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            chartDesempeñosAsignatura.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+
+        }
         public void graficoColumnaCompe()
         {
             CatalogCompetencia cCompetencia = new CatalogCompetencia();
@@ -106,6 +135,27 @@ namespace CapaDePresentacion.Admin
             //Sacar cuadricula
             chartCompe.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
             chartCompe.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+        }
+
+        public void graficoColumnaCompeAsignatura()
+        {
+            CatalogCompetencia cCompetencia = new CatalogCompetencia();
+            DataTable dtCompetencias = cCompetencia.mostrarResumenCompetenciasAsignatura(ddAsignatura2.SelectedValue);
+
+            int i = 1;
+            foreach (DataRow row in dtCompetencias.Rows)
+            {
+                this.chartCompetenciasAsignatura.Series["Correctas"].Points.AddXY("C" + i, int.Parse(row[1].ToString()));
+                this.chartCompetenciasAsignatura.Series["Incorrectas"].Points.AddXY("C" + i, int.Parse(row[2].ToString()));
+                i += 1;
+            }
+            System.Web.UI.DataVisualization.Charting.Title title = chartCompetenciasAsignatura.Titles.Add(ddAsignatura2.SelectedItem.ToString() + "-COMPETENCIAS");
+            title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
+            title.ForeColor = Color.White;
+
+            //Sacar cuadricula
+            chartCompetenciasAsignatura.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            chartCompetenciasAsignatura.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
         }
 
         public void grafico2Generaciones(string serie1, string serie2, DataTable g1, DataTable g2)
@@ -472,18 +522,14 @@ namespace CapaDePresentacion.Admin
             this.ddEvaluacion.DataSource = lEvaluaciones;
             this.DataBind();//enlaza los datos a un dropdownlist  
         }
-
-        protected void btnEscuela_Click(object sender, EventArgs e)
-        {
-            divBotones.Visible = false;
-        }
+        
 
         protected void btnAsignatura_Click(object sender, EventArgs e)
         {
             divRA.Visible = true;
-            divDDA.Visible = false;
-            divResultado.Visible = false;
-            btnVerR.Visible = false;
+            divDDA.Visible = true;
+            divResultado.Visible = true;
+            btnVerR.Visible = true;
             divBotones.Visible = false;
         }
 
@@ -685,6 +731,52 @@ namespace CapaDePresentacion.Admin
                 this.Panel1.Controls.Add(rblVF);
                 this.Panel1.Controls.Add(new LiteralControl("<br/>"));
             }
+        }
+
+        protected void btnVerR_Click(object sender, EventArgs e)
+        {
+            if (ddAsignatura2.SelectedValue != "0")
+            {
+                if (ddResultado.SelectedValue == "1")
+                {
+                    divDDA.Visible = true;
+                    divResultado.Visible = true;
+                    btnVerR.Visible = true;
+                    graficoColumnaCompeAsignatura();
+                    CatalogCompetencia cCompetencia = new CatalogCompetencia();
+                    DataTable dtCompetencias = cCompetencia.mostrarCompetenciasAsignatura(ddAsignatura2.SelectedValue);
+                    this.gvCompetencias.DataSource = dtCompetencias;
+                    this.DataBind();
+                    gvCompetencias.Visible = true;
+                    divCompetenciasAsignatura.Visible = true;
+                }
+                else
+                {
+                    divDDA.Visible = true;
+                    divResultado.Visible = true;
+                    btnVerR.Visible = true;
+
+                    graficoColumnaDesempeñoAsignatura();
+                    CatalogDesempeno cDesempeno = new CatalogDesempeno();
+                    List<Desempeno> lDesempenos = cDesempeno.listarDesempenosAsignatura(ddAsignatura2.SelectedValue);
+                    this.gvDesempenos.DataSource = lDesempenos;
+                    this.DataBind();
+                    gvDesempenos.Visible = true;
+                    divDesempeñosAsignatura.Visible = true;
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+        protected void ddResultado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            gvDesempenos.Visible = false;
+            gvCompetencias.Visible = false;
+            divCompetenciasAsignatura.Visible = false;
+            divDesempeñosAsignatura.Visible = false;
         }
     }
 }

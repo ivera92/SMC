@@ -11,10 +11,7 @@
             <div style="border: solid 1px #ccc">
                 <div id="divBotones" runat="server">
                     <br />
-                    <div class="col-sm-4">
-                        <asp:Button ID="btnEscuela" runat="server" Text="Resultados por Escuela" CssClass="form-control btn-default" OnClick="btnEscuela_Click" />
-                    </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-sm-offset-2">
                         <asp:Button ID="btnAsignatura" runat="server" Text="Resultados por Asignatura" CssClass="form-control btn-info" OnClick="btnAsignatura_Click" />
                     </div>
                     <div class="col-sm-4">
@@ -86,15 +83,18 @@
                 <div id="divRA" runat="server" class="col-sm-4">
                     <div runat="server" id="divDDA" class="col-sm-12">
                         <br />
+                        <br />
+                        <br />
+                        <br />
                         <label>Asignatura</label>
-                        <asp:DropDownList ID="DropDownList1" AutoPostBack="true" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddAsignatura2" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddAsignatura_SelectedIndexChanged">
                         </asp:DropDownList>
                     </div>
 
                     <div runat="server" id="divResultado" class="col-sm-12">
                         <br />
                         <label>Resultados</label>
-                        <asp:DropDownList ID="ddResultado" runat="server" AutoPostBack="true" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddTipo_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddResultado" runat="server" AppendDataBoundItems="true" CssClass="form-control" OnSelectedIndexChanged="ddResultado_SelectedIndexChanged">
                             <asp:ListItem Text="Seleccione Resultados" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Competencias" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Desempeños" Value="2"></asp:ListItem>
@@ -102,15 +102,15 @@
                     </div>
                     <div class="col-sm-12">
                         <br />
-                        <asp:Button runat="server" ID="btnVerR" CssClass="form-control btn-success btn-block" Text="Ver Resultados"/>
+                        <asp:Button runat="server" ID="btnVerR" CssClass="form-control btn-success btn-block" Text="Ver Resultados" OnClick="btnVerR_Click"/>
                     </div>
                 </div>
                 <div class="col-sm-8" id="divCC" runat="server">
                     <br />
                     <asp:Chart ID="chartColumna" runat="server" CssClass="center-block" Width="650px" Height="405px">
                         <Series>
-                            <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1"></asp:Series>
-                            <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1">
+                            <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn"></asp:Series>
+                            <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -118,7 +118,33 @@
                             </asp:ChartArea>
                         </ChartAreas>
                         <Legends>
-                            <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False" BorderColor="Black">
+                            <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False" BorderColor="Black" Title="Respuestas" TitleFont="Segoe UI, 10pt">
+                            </asp:Legend>
+                        </Legends>
+                        <Titles>
+                            <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de respuestas">
+                            </asp:Title>
+                            <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Desempeños">
+                            </asp:Title>
+                        </Titles>
+                        <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
+                    </asp:Chart>
+                </div>
+
+                <div class="col-sm-8" id="divDesempeñosAsignatura" runat="server">
+                    <br />
+                    <asp:Chart ID="chartDesempeñosAsignatura" runat="server" CssClass="center-block" Width="650px" Height="405px">
+                        <Series>
+                            <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn"></asp:Series>
+                            <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1">
+                            </asp:ChartArea>
+                        </ChartAreas>
+                        <Legends>
+                            <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False" BorderColor="Black" Title="Respuestas" TitleFont="Segoe UI, 10pt">
                             </asp:Legend>
                         </Legends>
                         <Titles>
@@ -135,8 +161,8 @@
                     <br />
                     <asp:Chart ID="chartCompe" runat="server" CssClass="center-block" Width="650px" Height="405px">
                         <Series>
-                            <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1"></asp:Series>
-                            <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1">
+                            <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn"></asp:Series>
+                            <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -144,7 +170,33 @@
                             </asp:ChartArea>
                         </ChartAreas>
                         <Legends>
-                            <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False" BorderColor="Black">
+                            <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False" BorderColor="Black" Title="Respuestas" TitleFont="Segoe UI, 10pt">
+                            </asp:Legend>
+                        </Legends>
+                        <Titles>
+                            <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Cantidad de respuestas">
+                            </asp:Title>
+                            <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Competencias">
+                            </asp:Title>
+                        </Titles>
+                        <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
+                    </asp:Chart>
+                </div>
+
+                <div class="col-sm-8" id="divCompetenciasAsignatura" runat="server">
+                    <br />
+                    <asp:Chart ID="chartCompetenciasAsignatura" runat="server" CssClass="center-block" Width="650px" Height="405px">
+                        <Series>
+                            <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn"></asp:Series>
+                            <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1">
+                            </asp:ChartArea>
+                        </ChartAreas>
+                        <Legends>
+                            <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False" BorderColor="Black" Title="Respuestas" TitleFont="Segoe UI, 10pt">
                             </asp:Legend>
                         </Legends>
                         <Titles>
@@ -176,9 +228,9 @@
                             </asp:Legend>
                         </Legends>
                         <Titles>
-                            <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Nota Alumno">
+                            <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Nota Alumnos">
                             </asp:Title>
-                            <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Alumnos" BackImageAlignment="Center">
+                            <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Cantidad de Alumnos" BackImageAlignment="Center">
                             </asp:Title>
                         </Titles>
                         <BorderSkin BackColor="ForestGreen" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
@@ -215,8 +267,8 @@
                         <asp:Panel ID="panelGraficoColumna" runat="server">
                             <asp:Chart ID="chartColumnaAE" runat="server" CanResize="true" CssClass="table  table-bordered table-condensed table-responsive" Width="650px" Height="405px">
                                 <Series>
-                                    <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1"></asp:Series>
-                                    <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1">
+                                    <asp:Series Name="Correctas" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn"></asp:Series>
+                                    <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Incorrectas" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="StackedColumn">
                                     </asp:Series>
                                 </Series>
                                 <ChartAreas>

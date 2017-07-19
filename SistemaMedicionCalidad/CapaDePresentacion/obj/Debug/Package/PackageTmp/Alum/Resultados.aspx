@@ -28,7 +28,7 @@
                 <div class="col-sm-3">
                     <br />
                     <label>Resultados</label>
-                    <asp:DropDownList CssClass="form-control"  AppendDataBoundItems="true" ID="ddOpcion" runat="server">
+                    <asp:DropDownList CssClass="form-control" AppendDataBoundItems="true" ID="ddOpcion" runat="server">
                         <asp:ListItem Value="0">Seleccione Resultado</asp:ListItem>
                         <asp:ListItem Value="1">Revisar Evaluación</asp:ListItem>
                         <asp:ListItem Value="2">Ver Notas del Curso</asp:ListItem>
@@ -77,10 +77,10 @@
                             <Series>
                                 <asp:Series ChartArea="ChartArea1" Color="Green" Name="Tu Nota" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" Name="Aprobado" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point"></asp:Series>
-                                <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Reprobado" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point">
+                                <asp:Series ChartArea="ChartArea1" Name="Aprobado" Color="#4F81BC" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point" YValuesPerPoint="4"></asp:Series>
+                                <asp:Series ChartArea="ChartArea1" Color="#C0504E" Name="Reprobado" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point" XValueType="Double" YValuesPerPoint="4">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" Color="Orange" Name="Promedio Curso" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point">
+                                <asp:Series ChartArea="ChartArea1" Color="Orange" Name="Promedio Curso" IsValueShownAsLabel="True" IsXValueIndexed="True" Legend="Legend1" ChartType="Point" XValueType="Double" YValuesPerPoint="4">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
@@ -88,13 +88,13 @@
                                 </asp:ChartArea>
                             </ChartAreas>
                             <Legends>
-                                <asp:Legend Name="Legend1" Alignment="Near" Docking="Right" AutoFitMinFontSize="10" Font="Segoe UI, 9.75pt" IsTextAutoFit="False" BorderColor="Black">
-                            </asp:Legend>
+                                <asp:Legend Docking="Right" Name="Legend1" Font="Segoe UI, 10pt" IsTextAutoFit="False" Alignment="Near" BorderColor="Black">
+                                </asp:Legend>
                             </Legends>
                             <Titles>
-                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Nota Alumno">
+                                <asp:Title Docking="Left" Font="Segoe UI, 12pt" Name="Title1" Text="Nota Alumnos">
                                 </asp:Title>
-                                <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Alumnos">
+                                <asp:Title Docking="Bottom" Font="Segoe UI, 12pt" Name="Title2" Text="Cantidad de Alumnos" BackImageAlignment="Center">
                                 </asp:Title>
                             </Titles>
                             <BorderSkin BackColor="Orange" BorderDashStyle="Dash" SkinStyle="FrameTitle6" />
@@ -115,7 +115,7 @@
 
                 <div runat="server" id="divPreguntas" style="border: solid 2px #ccc; background-color: white" class="col-sm-offset-1 col-sm-10">
                     <br />
-                    
+
                     <div class="text-center">
                         <label id="lblnEvaluacion" runat="server"></label>
                     </div>

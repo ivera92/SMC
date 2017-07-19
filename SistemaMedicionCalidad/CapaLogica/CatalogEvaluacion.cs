@@ -1008,6 +1008,22 @@ namespace Project
             bd.Close();
             return dt;
         }
+
+        public DataTable mostrarResumenDAsignatura(string cod_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "mostrarResumenDAsignatura";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@cod_asignatura", DbType.String, cod_asignatura);
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+            
+            result.Close();
+            bd.Close();
+            return dt;
+        }
     }
 }
 
