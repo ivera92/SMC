@@ -14,7 +14,6 @@ namespace CapaDePresentacion.Evaluador
         private static List<CheckBox> lCbRespuestas;
         private static TextBox txt;
         private static CheckBox cb;
-        private static int contadorControles;
         private static string ruta;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,7 +36,6 @@ namespace CapaDePresentacion.Evaluador
                 this.VoF.Visible = false;
                 this.AltOCas.Visible = false;
                 this.btnCrear.Visible = false;
-                contadorControles = 0;
 
                 this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
                 this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";
@@ -48,16 +46,6 @@ namespace CapaDePresentacion.Evaluador
                 this.ddDesempeno.DataSource = lDesempenos;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
-            }
-            try
-            {
-                for (int i = 0; i < contadorControles; i++)
-                {
-                    agregarControles(lTxbRespuestas[i], lCbRespuestas[i]);
-                }
-            }
-            catch
-            {
             }
         }
 

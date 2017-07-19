@@ -67,44 +67,42 @@ namespace CapaDePresentacion.Doc
         }
         protected void ImportExcel()
         {
-            //Save the uploaded Excel file.
+            //Se guarda la ruta y el nombre del arcivo.
             string filePath = Server.MapPath("~/Excel/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
 
 
-            //Save the uploaded Excel file.
+            //Se guarda la carpeta en donde se guardara y se guarda el Excel.
             string path = Server.MapPath("~/Excel/");
             FileUpload1.PostedFile.SaveAs(path + FileUpload1.FileName);
 
             string extension = Path.GetExtension(FileUpload1.FileName).ToLower();
 
 
-            //Open the Excel file using ClosedXML.
+            //Se abre el archivo Excel.
             using (XLWorkbook workBook = new XLWorkbook(filePath))
             {
-                //Read the first Sheet from Excel file.
+                //Se lee la primera hoja del archivo Excel.
                 IXLWorksheet workSheet = workBook.Worksheet(1);
 
-                //Create a new DataTable.
+                //Se crea un DataTable.
                 DataTable dt = new DataTable();
 
-                //Loop through the Worksheet rows.
+                //Se recorren las filas de la hoja de calculo
                 bool firstRow = true;
                 foreach (IXLRow row in workSheet.Rows())
                 {
-
-                    //Use the first row to add columns to DataTable.
+                    //Al ser la primera fila se asume que seran los titulos de las columnas, por tanto se agregan al DataTable.
                     if (firstRow)
                     {
                         foreach (IXLCell cell in row.Cells())
                         {
-
                             dt.Columns.Add(cell.Value.ToString());
                         }
                         firstRow = false;
                     }
                     else
                     {
-                        //Add rows to DataTable.
+                        //Se agregan las filas al DataTable.
                         dt.Rows.Add();
                         int i = 0;
                         foreach (IXLCell cell in row.Cells())
@@ -149,6 +147,8 @@ namespace CapaDePresentacion.Doc
                     Cursa c = new Cursa();
                     try
                     {
+                        //HttpUtility.HtmlDecode Convierte una cadena que ha sido codificada en HTML para la transmisión HTTP en una cadena decodificada.
+                        //TrimStart('0') elimina los 0 al inicio del rut, puesto que los rut vienen del sistema con 0's al principio
                         rut = HttpUtility.HtmlDecode(row.Cells[0].Text).ToUpper().TrimStart('0');
                         nombre = HttpUtility.HtmlDecode(row.Cells[1].Text.Trim());
                         email = HttpUtility.HtmlDecode(row.Cells[2].Text.Trim());

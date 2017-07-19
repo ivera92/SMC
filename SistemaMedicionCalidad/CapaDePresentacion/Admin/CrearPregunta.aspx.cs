@@ -14,7 +14,6 @@ namespace CapaDePresentacion.Doc
         private static List<CheckBox> lCbRespuestas;
         private static TextBox txt;
         private static CheckBox cb;
-        private static int contadorControles;
         private static string ruta;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,7 +36,6 @@ namespace CapaDePresentacion.Doc
                 this.VoF.Visible = false;
                 this.AltOCas.Visible = false;
                 this.btnCrear.Visible = false;
-                contadorControles = 0;
 
                 this.ddTipoPregunta.DataTextField = "Nombre_tipo_pregunta";
                 this.ddTipoPregunta.DataValueField = "Id_tipo_pregunta";
@@ -48,16 +46,6 @@ namespace CapaDePresentacion.Doc
                 this.ddDesempeno.DataSource = lDesempenos;
 
                 this.DataBind();//enlaza los datos a un dropdownlist                
-            }
-            try
-            {
-                for (int i = 0; i < contadorControles; i++)
-                {
-                    agregarControles(lTxbRespuestas[i], lCbRespuestas[i]);
-                }
-            }
-            catch
-            {
             }
         }
 
@@ -75,11 +63,10 @@ namespace CapaDePresentacion.Doc
             int id = 0;
             try
             {
-                try
+                if (fileImagen.HasFile)
                 {
                     this.subirImagen();//Guarda la imagen en la carpeta ImagenesPreguntas ubicada en la carpeta Doc
                 }
-                catch { }
                 p.Id_desempeno = cDesempeno.buscarUnDesempeno(int.Parse(ddDesempeno.SelectedValue));
                 p.Tipo_pregunta_pregunta = cTP.buscarUnTipoPregunta(int.Parse(this.ddTipoPregunta.SelectedValue));
                 p.Enunciado_pregunta = this.txtAPregunta.InnerText;
@@ -184,54 +171,35 @@ namespace CapaDePresentacion.Doc
         }
         public void subirImagen()
         {
-            if (fileImagen.HasFile)
-            {
-                bool fileOK = false;
-                string path = Server.MapPath("~/ImagenesPreguntas/");
-                if (fileImagen.HasFile)
-                {
-                    string extension = Path.GetExtension(fileImagen.FileName).ToLower();
-                    string[] posiblesExtensiones = { ".gif", ".png", ".jpeg", ".jpg", ".GIF", ".PNG", ".JPEG", ".JPG" };
-                    for (int i = 0; i < posiblesExtensiones.Length; i++)
-                    {
-                        if (extension == posiblesExtensiones[i])
-                        {
-                            fileOK = true;
-                        }
-                    }
-                    
-                    if (fileOK)
-                    {
-                        System.Drawing.Image imagen = System.Drawing.Image.FromStream(fileImagen.PostedFile.InputStream);
-                        int width = Convert.ToInt32(imagen.Width);
-                        int height = Convert.ToInt32(imagen.Height);
-                        while (width > 1100)
-                        {
-                            width = width * (80 / 100);
-                            height = height * (80 / 100);
-                            fileImagen.Width = width;
-                            fileImagen.Height = height;
-                        }
-                    }
-                }
+            bool fileOK = false;
+            string path = Server.MapPath("~/ImagenesPreguntas/");
 
-                if (fileOK)
+            string extension = Path.GetExtension(fileImagen.FileName).ToLower();
+            string[] posiblesExtensiones = { ".gif", ".png", ".jpeg", ".jpg", ".GIF", ".PNG", ".JPEG", ".JPG" };
+            for (int i = 0; i < posiblesExtensiones.Length; i++)
+            {
+                if (extension == posiblesExtensiones[i])
                 {
-                    try
-                    {
-                        fileImagen.PostedFile.SaveAs(path + fileImagen.FileName);
-                        Response.Write("<script>window.alert('La imagen fue grabada en el servidor');</script>");
-                        ruta = fileImagen.FileName;
-                    }
-                    catch
-                    {
-                        Response.Write("<script>window.alert('La imagen no pudo ser grabada en el servidor');</script>");
-                    }
+                    fileOK = true;
                 }
-                else
+            }
+
+            if (fileOK)
+            {
+                try
                 {
-                    Response.Write("<script>window.alert('El formato de archivo no es soportado');</script>");
+                    fileImagen.PostedFile.SaveAs(path + fileImagen.FileName);
+                    Response.Write("<script>window.alert('La imagen fue grabada en el servidor');</script>");
+                    ruta = fileImagen.FileName;
                 }
+                catch
+                {
+                    Response.Write("<script>window.alert('La imagen no pudo ser grabada en el servidor');</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>window.alert('El Tamaño del archivo no es soportado');</script>");
             }
         }
 

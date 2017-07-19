@@ -200,5 +200,81 @@ namespace Project
             bd.Close();
             return existe;
         }
+
+        //Obtiene las competencias y las correctas e incorrectas de una asignatura
+        public DataTable mostrarResumenCompetenciasAsignatura(string cod_asignatura)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarResumenCompetenciasAsignatura";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@cod_asignatura", DbType.Int32, cod_asignatura);
+
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+
+            result.Close();
+            bd.Close();
+            return dt;
+        }
+
+        //Obtiene las competencias y las correctas e incorrectas de una escuela
+        public DataTable mostrarResumenCompetenciasEscuela(int id_escuela)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarResumenCompetenciasEscuela";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_escuela", DbType.Int32, id_escuela);
+
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+
+            result.Close();
+            bd.Close();
+            return dt;
+        }
+
+        //Obtiene las competencias y las correctas e incorrectas de una evaluacion
+        public DataTable mostrarResumenCompetenciasEvaluacion(int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarResumenCompetenciasEvaluacion";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+
+            result.Close();
+            bd.Close();
+            return dt;
+        }
+
+        //Lista todos las competencias de una evaluacion
+        public DataTable mostrarCompetenciasEvaluacion(int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect(); //método conectar
+
+            string sqlSearch = "mostrarCompetenciasEvaluacion";
+            bd.CreateCommandSP(sqlSearch);
+            bd.createParameter("id_evaluacion", DbType.Int32, id_evaluacion);
+            List<Desempeno> lDesempenos = new List<Desempeno>();
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+
+            result.Close();
+            bd.Close();
+            return dt;
+        }
     }
 }

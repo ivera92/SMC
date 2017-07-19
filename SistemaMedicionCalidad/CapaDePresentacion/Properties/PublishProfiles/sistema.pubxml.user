@@ -343,7 +343,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/17/2017 12:55:22</publishTime>
     </File>
     <File Include="Admin/ResultadosEvaluaciones.aspx">
-      <publishTime>07/17/2017 15:27:04</publishTime>
+      <publishTime>07/18/2017 17:40:47</publishTime>
     </File>
     <File Include="Admin/Site.Master">
       <publishTime>05/10/2017 01:01:57</publishTime>
@@ -406,16 +406,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2017 15:36:45</publishTime>
     </File>
     <File Include="bin/CapaDePresentacion.dll">
-      <publishTime>07/18/2017 00:33:35</publishTime>
+      <publishTime>07/18/2017 17:10:22</publishTime>
     </File>
     <File Include="bin/CapaDePresentacion.pdb">
-      <publishTime>07/18/2017 00:33:35</publishTime>
+      <publishTime>07/18/2017 17:10:22</publishTime>
     </File>
     <File Include="bin/CapaLogica.dll">
-      <publishTime>07/17/2017 15:27:09</publishTime>
+      <publishTime>07/18/2017 16:10:55</publishTime>
     </File>
     <File Include="bin/CapaLogica.pdb">
-      <publishTime>07/17/2017 15:27:09</publishTime>
+      <publishTime>07/18/2017 16:10:55</publishTime>
     </File>
     <File Include="bin/ClosedXML.dll">
       <publishTime>04/03/2017 11:10:06</publishTime>

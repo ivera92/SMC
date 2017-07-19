@@ -818,6 +818,46 @@ namespace Project
             }
             return d2;
         }
+        public DataTable nota(DataTable d)
+        {
+            string correctas, incorretas, cantidad;
+            int puntaje_ideal;
+            double puntaje_exigencia, porcentaje;
+            double promedio = 0;
+            DataTable d2 = new DataTable();
+            d2.Columns.Add("Cantidad");
+            d2.Columns.Add("Correctas");
+            d2.Columns.Add("Incorrectas");
+            d2.Columns.Add("Nota");
+            foreach (DataRow row in d.Rows)
+            {
+                cantidad = row[0].ToString();
+                correctas = row[1].ToString();
+                incorretas = row[2].ToString();
+                porcentaje = int.Parse(row[3].ToString()) / 100d;
+                puntaje_ideal = int.Parse(correctas) + int.Parse(incorretas);
+                puntaje_exigencia = puntaje_ideal * porcentaje;
+                double a = puntaje_ideal - puntaje_exigencia;
+                double b = int.Parse(correctas) - puntaje_exigencia;
+
+                //MidpointRounding.AwayFromZero si el numero se encunetra en la mitad, es decir .5 aproxima al numero mas alejado del 0
+                if (int.Parse(correctas) <= puntaje_exigencia)
+                {
+                    promedio = Math.Round(3f * (double.Parse(correctas)) / puntaje_exigencia + 1, 1, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+                    promedio = Math.Round(3f * (double.Parse(correctas) - puntaje_exigencia) / (puntaje_ideal - puntaje_exigencia) + 4, 1, MidpointRounding.AwayFromZero);
+                }
+                DataRow row2 = d2.NewRow();
+                row2["Cantidad"] = cantidad;
+                row2["Correctas"] = correctas;
+                row2["Incorrectas"] = incorretas;
+                row2["Nota"] = promedio;
+                d2.Rows.Add(row2);
+            }
+            return d2;
+        }
 
         public DataTable mostrarResumenEvaluacionesA(string rut_alumno)
         {
@@ -950,6 +990,23 @@ namespace Project
             bd.Close();
 
             return lGeneraciones;
+        }
+
+        //Resumen de puntajes de una evaluacion
+        public DataTable mostrarResumenNotasE(int id_evaluacion)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+            string sql = "mostrarResumenNotasEvaluacion";
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_evaluacion", DbType.Int32, id_evaluacion);
+            DbDataReader result = bd.Query();
+            DataTable dt = new DataTable();
+            dt.Load(result);
+
+            result.Close();
+            bd.Close();
+            return dt;
         }
     }
 }

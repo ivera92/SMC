@@ -258,53 +258,70 @@ namespace CapaDePresentacion.Alum
 
         public void graficoPuntos(string rut_alumno)
         {
+            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
+            List<string> lResultados = cEvaluacion.mostrarResumenA(int.Parse(ddEvaluacion.SelectedValue), rut_alumno);
+
+            string correctas, incorretas;
+            int puntaje_ideal;
+            double puntaje_exigencia, porcentaje;
+            double nota = 0;
+            correctas = lResultados[1].ToString();
+            incorretas = lResultados[2].ToString();
+            porcentaje = int.Parse(lResultados[3].ToString()) / 100d;
+            puntaje_ideal = int.Parse(lResultados[1].ToString()) + int.Parse(incorretas);
+            puntaje_exigencia = puntaje_ideal * porcentaje;
+            double a = puntaje_ideal - puntaje_exigencia;
+            double b = int.Parse(lResultados[1].ToString()) - puntaje_exigencia;
+
+            //MidpointRounding.AwayFromZero si el numero se encunetra en la mitad, es decir .5 aproxima al numero mas alejado del 0
+            if (int.Parse(correctas) <= puntaje_exigencia)
+            {
+                nota = Math.Round(3f * (double.Parse(lResultados[1].ToString())) / puntaje_exigencia + 1, 1, MidpointRounding.AwayFromZero);
+            }
+            else
+            {
+                nota = Math.Round(3f * (double.Parse(lResultados[1].ToString()) - puntaje_exigencia) / (puntaje_ideal - puntaje_exigencia) + 4, 1, MidpointRounding.AwayFromZero);
+            }
+
             //Se define que no necesariamnente las series van a tener la misma cantidad de valores
+            chartPuntos.Series["Tu Nota"].IsXValueIndexed = false;
             chartPuntos.Series["Aprobado"].IsXValueIndexed = false;
             chartPuntos.Series["Reprobado"].IsXValueIndexed = false;
-            chartPuntos.Series["Tu Nota"].IsXValueIndexed = false;
             chartPuntos.Series["Promedio Curso"].IsXValueIndexed = false;
 
             //Se define el tamaño de la marca en el grafico
+            this.chartPuntos.Series["Tu Nota"].MarkerSize = 10;
             this.chartPuntos.Series["Reprobado"].MarkerSize = 10;
             this.chartPuntos.Series["Aprobado"].MarkerSize = 10;
-            this.chartPuntos.Series["Tu Nota"].MarkerSize = 10;
             this.chartPuntos.Series["Promedio Curso"].MarkerSize = 10;
 
-            chartPuntos.Visible = true;
-            CatalogEvaluacion cEvaluacion = new CatalogEvaluacion();
-            panelGrafico.Visible = true;
-            DataTable dtPromedio = cEvaluacion.promedio(cEvaluacion.mostrarResumen(int.Parse(ddEvaluacion.SelectedValue)));
-
-            string rut = "";
+            DataTable dtNota = cEvaluacion.nota(cEvaluacion.mostrarResumenNotasE(int.Parse(ddEvaluacion.SelectedValue)));
             double promedio = 0;
             double promedio_curso = 0;
+            int cantidad = 0;
             int i = 0;
-            double tu_nota = 0;
-            foreach (DataRow row in dtPromedio.Rows)
+            foreach (DataRow row in dtNota.Rows)
             {
-                i += 1;
-                rut = row[0].ToString();
-                promedio = double.Parse(row[5].ToString());
-                if (rut == rut_alumno)
+                cantidad = int.Parse(row[0].ToString());
+                i += cantidad;
+                promedio = double.Parse(row[3].ToString());
+                promedio_curso += promedio * cantidad;
+                if (promedio == nota)
                 {
-                    this.chartPuntos.Series["Tu Nota"].Points.AddXY("", promedio);
-                    tu_nota = promedio;
+                    this.chartPuntos.Series["Tu Nota"].Points.AddXY(cantidad, promedio);
                 }
                 else if (promedio >= 4.0)
                 {
-                    this.chartPuntos.Series["Aprobado"].Points.AddXY("", promedio);
+                    this.chartPuntos.Series["Aprobado"].Points.AddXY(cantidad, promedio);
                 }
                 else
                 {
-                    this.chartPuntos.Series["Reprobado"].Points.AddXY("", promedio);
+                    this.chartPuntos.Series["Reprobado"].Points.AddXY(cantidad, promedio);
                 }
-                promedio_curso += promedio;
             }
-            promedio_curso = Math.Round(promedio_curso/i, 1, MidpointRounding.AwayFromZero);
-            this.chartPuntos.Series["Promedio Curso"].Points.AddXY("", promedio_curso);
+            promedio_curso = Math.Round(promedio_curso / i, 1, MidpointRounding.AwayFromZero);
+            this.chartPuntos.Series["Promedio Curso"].Points.AddXY(1, promedio_curso);
 
-
-            //Se define una linea para marcar el limite entre aprobado y reprobado
             StripLine stripLine1 = new StripLine();
             stripLine1.StripWidth = 0;
             stripLine1.BorderColor = Color.Green;
@@ -322,16 +339,9 @@ namespace CapaDePresentacion.Alum
             //Sacar cuadricula
             chartPuntos.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
             chartPuntos.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
-            System.Web.UI.DataVisualization.Charting.Title title = chartPuntos.Titles.Add(ddEvaluacion.SelectedItem.ToString()+"-NOTAS DEL CURSO");
+            System.Web.UI.DataVisualization.Charting.Title title = chartPuntos.Titles.Add(ddEvaluacion.SelectedItem.ToString() + "-NOTAS DEL CURSO");
             title.Font = new Font("Segoe UI", 16, FontStyle.Regular);
-            title.ForeColor = Color.White;
-
-
-            // Create a new legend called "Legend2".
-            chartPuntos.Legends.Add(new Legend("Legend2"));
-
-            // Set Docking of the Legend chart to the Default Chart Area.
-            chartPuntos.Legends["Legend2"].Title = "Tu Nota: " + tu_nota;            
+            title.ForeColor = Color.White;        
 
             panelGrafico.Controls.Add(chartPuntos);
         }

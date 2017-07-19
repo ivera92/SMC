@@ -70,7 +70,10 @@ namespace CapaDePresentacion.Admin
             Paragraph p = new Paragraph("Nombre Alumno:  " + "\n");
             p.Add("Rut Alumno: " + "\n");
             p.Add("Fecha de Evaluación" + "\n");
-            pdfDoc.Add(p);
+            PdfPTable ptabla = new PdfPTable(1);
+            PdfPCell pcell = new PdfPCell(p);
+            ptabla.AddCell(p);
+            pdfDoc.Add(ptabla); 
 
             int numPregunta = 1;
             foreach (DataRow result in dt.Rows)

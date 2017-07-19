@@ -133,10 +133,19 @@ namespace CapaDePresentacion.Doc
             Paragraph p2 = new Paragraph(nombre_evaluacion + " - " + nombre_asignatura + "\n");     //Agrega el nombre de la prueba y el de la asignatura
             p2.Alignment = Element.ALIGN_CENTER;
             pdfDoc.Add(p2);
-            Paragraph p = new Paragraph("Nombre alumno:\n");
-            p.Add("Rut:\n");
-            p.Add("Fecha:\n");
-            pdfDoc.Add(p);
+            Paragraph espacio = new Paragraph(" ");
+            pdfDoc.Add(espacio);
+            PdfPTable ptabla = new PdfPTable(1);
+            PdfPCell pcell = new PdfPCell(new Paragraph("Nombre alumno:\n"));
+            PdfPCell pcell2 = new PdfPCell(new Paragraph("Rut:\n"));
+            PdfPCell pcell3 = new PdfPCell(new Paragraph("Fecha:\n"));
+            pcell.BorderColor = BaseColor.WHITE;
+            pcell2.BorderColor = BaseColor.WHITE;
+            pcell3.BorderColor = BaseColor.WHITE;
+            ptabla.AddCell(pcell);
+            ptabla.AddCell(pcell2);
+            ptabla.AddCell(pcell3);
+            pdfDoc.Add(ptabla);
 
             int numPregunta = 1;
             foreach (DataRow result in dt.Rows)
