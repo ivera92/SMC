@@ -167,6 +167,7 @@ namespace Project
         {
             CatalogUsuario cUsuario = new CatalogUsuario();
             int pw = cUsuario.reestablecerClave(usuario);
+            //Representa un mensaje de correo electrónico que puede enviarse mediante el SmtpClient clase.
             MailMessage msg = new MailMessage();
             msg.To.Add(correo);
             msg.From = new MailAddress("soporte.smcfe@gmail.com", "Administrador", Encoding.UTF8);
@@ -177,6 +178,7 @@ namespace Project
             msg.IsBodyHtml = false;
 
             //Aquí es donde se hace lo especial
+            //Permite a las aplicaciones enviar correo electrónico mediante el protocolo Simple de transferencia de correo (SMTP).
             SmtpClient client = new SmtpClient();
             client.Credentials = new System.Net.NetworkCredential("soporte.smcfe@gmail.com", "soporte_smcfe");
             client.Port = 587;

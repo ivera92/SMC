@@ -131,21 +131,6 @@
 
 <body onload="$(&quot;#agente&quot;).trigger(&quot;click&quot;);">
 
-    <div id="top">
-        <div id="buscar">
-            <form id="filterForm" name="filterForm" method="get" action="http://www.uach.cl/uach/inicio-uach/resultados" accept-charset="UTF-8" onsubmit="return validarFormulario ()">
-                <input style="float: left;" type="text" id="q" name="q" class="search" placeholder="Buscar" onkeypress="pulsarr(event)">
-                <button style="margin: 0; padding: 0; border: 0; float: right;">
-                    <img src="http://www.uach.cl/uach/_imag/buscar.jpg"></button>
-            </form>
-        </div>
-        <div id="menu_1">
-            <p>
-                <a href="/inicio-uach/contacto">Contacto</a>&nbsp;| <a href="/inicio-uach/mapa">Mapa del Sitio</a> |&nbsp;<a href="http://intranet.uach.cl">Intranet</a>
-            </p>
-        </div>
-    </div>
-
     <div id="barra_top"></div>
     <div id="banner_top">
         <img src="http://www.uach.cl/uach/_file/5151be071d10c.jpg" width="1010" height="105" alt="" border="0">
@@ -154,7 +139,8 @@
 
         <div id="contenedor">
             <div id="logo">
-                <img src="http://www.uach.cl/uach/_imag/logo.jpg" border="0" alt="" style="margin-top: 21px;"></div>
+                <img src="http://www.uach.cl/uach/_imag/logo.jpg" border="0" alt="" style="margin-top: 21px;">
+            </div>
             <div id="menu_2">
 
                 <ul>
@@ -214,81 +200,88 @@
             </div>
             <div id="banner_center">
                 <form runat="server">
-                    <div id="divLogin" class="col-sm-offset-4 col-sm-4" runat="server" style="border: solid 2px #ccc">
-                        <div>
-                            <br />
-                            <h2 class="text-center">Inicio Sesión</h2>
-                            <br />
-                        </div>
 
-                        <label class="col-sm-offset-1">Usuario</label>
-                        <div class="row">
-                            <div class="col-sm-offset-1 col-sm-10">
-                                <asp:TextBox class="form-control text-center" ID="rut" runat="server" placeHolder="Ingrese usuario"></asp:TextBox>
-                            </div>
-                        </div>
-                        <br />
-
-                        <label class="col-sm-offset-1">Contraseña</label>
-                        <div class="row">
-                            <div class="col-sm-offset-1 col-sm-10">
-                                <asp:TextBox class="form-control text-center" ID="txtclave" runat="server" TextMode="Password" placeHolder="Contraseña"></asp:TextBox>
-                            </div>
-                        </div>
-                        <br />
-
-                        <div>
-                            <div class="row">
-                                <div class="col-sm-offset-1 col-sm-5">
-                                    <asp:Button ID="btnIngresar" runat="server" class="btn btn-default btn-block" OnClick="btnIngresar_Click" Text="Ingresar" />
+                    <div id="divLogin" runat="server" class="row">
+                        <div class="col-sm-offset-4 col-sm-4">
+                            <asp:Image ID="imgInicioSesion" runat="server" ImageUrl="imagenes/inicioSesion.PNG" />
+                            <div class="col-sm-12" style="border: solid 1px #ccc">
+                                <br />
+                                <div>
+                                    <asp:TextBox class="form-control text-center" ID="rut" runat="server" placeHolder="Ingrese usuario"></asp:TextBox>
+                                    <br />
                                 </div>
-                                <asp:LinkButton ID="recuperar" runat="server" OnClick="recuperar_Click">¿Olvidaste tu contraseña?</asp:LinkButton>
 
+                                <div>
+                                    <asp:TextBox class="form-control text-center" ID="txtclave" runat="server" TextMode="Password" placeHolder="Contraseña"></asp:TextBox>
+                                    <br />
+                                </div>
+
+                                <div>
+                                    <div class="row">
+                                        <div class="col-sm-offset-1 col-sm-5">
+                                            <asp:Button ID="btnIngresar" runat="server" class="btn btn-success btn-block" OnClick="btnIngresar_Click" Text="Ingresar" />
+                                        </div>
+                                        <asp:LinkButton ID="recuperar" runat="server" OnClick="recuperar_Click" ForeColor="Green">¿Olvidaste tu contraseña?</asp:LinkButton>
+
+                                    </div>
+                                    <br />
+                                </div>
                             </div>
-                            <br />
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-offset-4 col-sm-4" id="divRut" runat="server" style="border: solid 2px #ccc">
-                        <br />
-                        <br />
-                        <h2 class="text-center">Recuperar tu contraseña</h2>
-                        <br />
-                        
-                        <div class="row">
-                            <div class="col-sm-offset-1 col-sm-10">
-                                <asp:TextBox class="form-control" ID="rutRC" runat="server" placeHolder="Ingrese usuario"></asp:TextBox>
-                            </div>
-                        </div>
-                        <br />
-
-                        <div class="row">
-                            <div class="col-sm-offset-4 col-sm-4">
-                                <asp:Button ID="btnVerificarRut" Text="Verificar" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnVerificarRut_Click" />
-                            </div>
+                            <asp:Image ID="cEscuelaEnd" runat="server" ImageUrl="Admin/ImagenesAdmin/iEndSM4.PNG" />
                         </div>
                         <br />
                     </div>
 
-                    <div class="text-center col-sm-offset-3 col-sm-6" id="divCorreo" runat="server" style="border: solid 2px #ccc">
-                        <br />
-                        <h2 class="text-center">Recuperar tu contraseña</h2>
-                        <br />
+                    <div id="divRut" runat="server" class="row">
+                        <div class="col-sm-offset-4 col-sm-4">
+                            <asp:Image ID="Image2" runat="server" ImageUrl="imagenes/recuperarClave.PNG" />
+                            <div class="col-sm-12" style="border: solid 1px #ccc">
+                                <br />
+                                <div>
+                                    <asp:TextBox class="form-control text-center" ID="rutRC" runat="server" placeHolder="Ingrese usuario"></asp:TextBox><br />
+                                </div>
 
-                        <label>La cuenta asociada al rut es la siguiente:</label>
-                        <br />
-                        <label id="lblCorreo" runat="server"></label>
-                        <br />
-                        <label>¿Desea enviar un correo para verificar su clave?</label>
-                        <br />
-                        <div class="row">
-                            <div class="col-sm-offset-4 col-sm-2">
-                                <asp:Button ID="btnEnviarC" runat="server" CssClass="btn btn-success btn-block" OnClick="btnEnviarC_Click" Text="Si" />
+                                <div>
+                                    <div class="row">
+                                        <div class="col-sm-offset-3 col-sm-6">
+                                            <asp:Button ID="btnVerificarRut" Text="Verificar" runat="server" CssClass="btn btn-success btn-block" OnClick="btnVerificarRut_Click" />
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                </div>
                             </div>
-                            <div class="col-sm-2">
-                                <asp:Button ID="btnNoEnviar" runat="server" CssClass="btn btn-danger btn-block" Text="No" OnClick="btnNoEnviar_Click" />
+                            <asp:Image ID="Image3" runat="server" ImageUrl="Admin/ImagenesAdmin/iEndSM4.PNG" />
+                        </div>
+                        <br />
+                    </div>
+
+                    <div id="divCorreo" runat="server" class="row">
+                        <div class="col-sm-offset-4 col-sm-4">
+                            <asp:Image ID="Image1" runat="server" ImageUrl="imagenes/recuperarClave.PNG" />
+                            <div class="col-sm-12" style="border: solid 1px #ccc">
+                                <br />
+                                <label>La cuenta asociada al rut es la siguiente:</label>
+                                <br />
+                                <br />
+                                <label id="lblCorreo" runat="server" class="text-center"></label>
+                                <br />
+                                <label>¿Desea enviar un correo para verificar su clave?</label>
+                                <br />
+
+                                <div>
+                                    <div class="row">
+                                        <div class="col-sm-offset-3 col-sm-3">
+                                            <asp:Button ID="btnEnviarC" runat="server" CssClass="btn btn-success btn-block" OnClick="btnEnviarC_Click" Text="Si" />
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <asp:Button ID="btnNoEnviar" runat="server" CssClass="btn btn-danger btn-block" Text="No" OnClick="btnNoEnviar_Click" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
                             </div>
+                            <asp:Image ID="Image4" runat="server" ImageUrl="Admin/ImagenesAdmin/iEndSM4.PNG" />
                         </div>
                         <br />
                     </div>

@@ -90,7 +90,7 @@ namespace CapaDePresentacion
             }
             catch
             {
-                Response.Write("<script>window.alert('Rut no existe en los registros');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Success", "<script type='text/javascript'>alert('Rut no existe en los registros');window.location='CheqLogin.aspx';</script>'");
             }
         }
         //Se envia un correo al email asociado al rut

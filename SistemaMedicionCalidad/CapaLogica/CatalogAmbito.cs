@@ -22,7 +22,6 @@ namespace Project
             {
                 Ambito a = new Ambito(result.GetInt32(0), result.GetString(1));
                 lAmbitos.Add(a);
-
             }
             return lAmbitos;
         }
@@ -44,6 +43,48 @@ namespace Project
             result.Close();
             bd.Close();
             return a;
+        }
+
+        public void insertarAmbito(Ambito a)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "insAmbito";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@nombre_ambito", DbType.String, a.Nombre_ambito);
+            bd.execute();
+            bd.Close();
+        }
+
+        //Actualiza un ambito existente en la base de datos
+        public void actualizarAmbito(Ambito a)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "editarAmbito";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_ambito", DbType.Int32, a.Id_ambito);
+            bd.createParameter("@nombre_ambito", DbType.String, a.Nombre_ambito);
+            bd.execute();
+            bd.Close();
+        }
+
+        //Elimina un Ambito existente en la base de datos acorde a su ID
+        public void eliminarAmbito(int id_ambito)
+        {
+            DataBase bd = new DataBase();
+            bd.connect();
+
+            string sql = "eliminarAmbito";
+
+            bd.CreateCommandSP(sql);
+            bd.createParameter("@id_ambito", DbType.Int32, id_ambito);
+            bd.execute();
+            bd.Close();
         }
     }
 }

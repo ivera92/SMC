@@ -5,7 +5,6 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1">
-
     <div id="divCrear" runat="server" class="row">
         <div class="col-sm-12">
             <asp:Image ID="cPregunta" runat="server" ImageUrl="ImagenesAdmin/cPregunta.PNG" />
@@ -37,14 +36,9 @@
                     <label>Enunciado</label>
                     <textarea class="form-control" id="txtAPregunta" runat="server" rows="3" required></textarea>
                     <br />
-                    <asp:FileUpload ID="fileImagen" runat="server" onchange="readURL(this);" />
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
-                        ErrorMessage="Tipo de archivo no permitido" ForeColor="Red" oninvalid="setCustomValidity('Solo se permiten imagenes')" ControlToValidate="fileImagen"
-                        ValidationExpression="(.*).(.jpg|.JPG|.gif|.GIF|.jpeg|.JPEG|.bmp|.BMP|.png|.PNG)$">
-                    </asp:RegularExpressionValidator>
+                    <input type="file" name="file" onchange="ValidarImagen(this);">
                     <br />
-
-                    <img id="blah" src="#" alt="" class="img-responsive" />
+                    <img id="blah" src="#" alt="" class="img-responsive" onsubmit="return validarImagen();" />
                 </div>
 
                 <div runat="server" id="AltOCas" class="col-sm-6">
@@ -83,6 +77,34 @@
             <asp:Image ID="iEndSM12" runat="server" ImageUrl="ImagenesAdmin/iEndSM12.PNG" />
         </div>
     </div>
+    <script>
+        function ValidarImagen(obj) {
+            var uploadFile = obj.files[0];
+            if (!window.FileReader) {
+                alert('El navegador no soporta la lectura de archivos');
+                return;
+            }
 
+            if (!(/\.(jpg|png|gif|JPG|PNG|GIF)$/i).test(uploadFile.name)) {
+                alert('El archivo a adjuntar no es una imagen');
+            }
+            else {
+                var img = new Image();
+                img.onload = function () {
+                    if (this.width.toFixed(0) >= 600 || this.height.toFixed(0) >= 600) {
+                        alert('Las medidas deben ser como maximo: 600 * 600');
+                    }
+                    else if (uploadFile.size > 1000000) {
+                        alert('El peso de la imagen no puede exceder los 1MB')
+                    }
+                    else {
+                        blah.src = URL.createObjectURL(uploadFile);
+                        alert('Imagen correcta')
+                    }
+                };
+                img.src = URL.createObjectURL(uploadFile);
+            }
+        }
+    </script>
 </asp:Content>
 

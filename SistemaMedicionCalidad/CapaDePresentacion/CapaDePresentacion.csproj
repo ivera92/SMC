@@ -89,6 +89,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Admin\AdministrarAD.aspx" />
+    <Content Include="Admin\AdministrarAmbitos.aspx" />
     <Content Include="Admin\AdministrarAsignaturasAsociadas.aspx" />
     <Content Include="Admin\AdministrarAsignaturasInscritas.aspx" />
     <Content Include="Admin\AdministrarCD.aspx" />
@@ -97,12 +98,15 @@
     <Content Include="Admin\AdministrarUsuarios.aspx" />
     <Content Include="Admin\AsociarAsignaturaDocente.aspx" />
     <Content Include="Admin\AsociarDesempenoAsignatura.aspx" />
+    <Content Include="Admin\CrearAmbito.aspx" />
     <Content Include="Admin\CrearDesempeno.aspx" />
     <Content Include="Admin\CrearUsuario.aspx" />
     <Content Include="Admin\ImagenesAdmin\aAIA.png" />
     <Content Include="Admin\ImagenesAdmin\aAlumnos.png" />
+    <Content Include="Admin\ImagenesAdmin\aAmbitos.png" />
     <Content Include="Admin\ImagenesAdmin\aAsignaturas.png" />
     <Content Include="Admin\ImagenesAdmin\acAlumno.png" />
+    <Content Include="Admin\ImagenesAdmin\acAmbito.png" />
     <Content Include="Admin\ImagenesAdmin\acAsignatura.png" />
     <Content Include="Admin\ImagenesAdmin\acCompetencia.png" />
     <Content Include="Admin\ImagenesAdmin\acDesempeño.png" />
@@ -124,6 +128,7 @@
     <Content Include="Admin\ImagenesAdmin\cAlumno.png" />
     <Content Include="Admin\ImagenesAdmin\cAlumno12.png" />
     <Content Include="Admin\ImagenesAdmin\cAlumno6.png" />
+    <Content Include="Admin\ImagenesAdmin\cAmbito.png" />
     <Content Include="Admin\ImagenesAdmin\cAsignatura.png" />
     <Content Include="Admin\ImagenesAdmin\cClave.png" />
     <Content Include="Admin\ImagenesAdmin\cCompetencia.png" />
@@ -154,6 +159,7 @@
     <Content Include="Admin\ImagenesAdmin\imgExcel.png" />
     <Content Include="Admin\ImagenesAdmin\imgPregunta.png" />
     <Content Include="Admin\ImagenesAdmin\imgResultados.png" />
+    <Content Include="imagenes\inicioSesion.png" />
     <Content Include="Admin\ImagenesAdmin\rEE.png" />
     <Content Include="Admin\ImagenesAdmin\rEG.png" />
     <Content Include="Admin\InicioAdmin.aspx" />
@@ -254,6 +260,7 @@
     <Content Include="imagenes\pdf.png" />
     <Content Include="imagenes\profesion.jpg" />
     <Content Include="imagenes\profesor.jpg" />
+    <Content Include="imagenes\recuperarClave.png" />
     <Content Include="Inicio.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -332,6 +339,13 @@
     <Compile Include="Admin\AdministrarAD.aspx.designer.cs">
       <DependentUpon>AdministrarAD.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AdministrarAmbitos.aspx.cs">
+      <DependentUpon>AdministrarAmbitos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdministrarAmbitos.aspx.designer.cs">
+      <DependentUpon>AdministrarAmbitos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AdministrarAsignaturasAsociadas.aspx.cs">
       <DependentUpon>AdministrarAsignaturasAsociadas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -387,6 +401,13 @@
     </Compile>
     <Compile Include="Admin\AsociarDesempenoAsignatura.aspx.designer.cs">
       <DependentUpon>AsociarDesempenoAsignatura.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CrearAmbito.aspx.cs">
+      <DependentUpon>CrearAmbito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CrearAmbito.aspx.designer.cs">
+      <DependentUpon>CrearAmbito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrearDesempeno.aspx.cs">
       <DependentUpon>CrearDesempeno.aspx</DependentUpon>

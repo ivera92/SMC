@@ -42,7 +42,7 @@ namespace CapaDePresentacion.Evaluador
             string s = "";
 
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;" + "filename="+txtNombre.Text+".pdf");
+            Response.AddHeader("content-disposition", "attachment;" + "filename=" + txtNombre.Text + ".pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             // Creamos el documento con el tamaño de página tradicional
@@ -67,10 +67,13 @@ namespace CapaDePresentacion.Evaluador
             Paragraph p2 = new Paragraph(this.txtNombre.Text + " - " + this.ddAsignatura.SelectedItem.Text + "\n");     //Agrega el nombre de la prueba y el de la asignatura
             p2.Alignment = Element.ALIGN_CENTER;
             pdfDoc.Add(p2);
-            Paragraph p = new Paragraph("Nombre Alumno: " + "\n");
+            Paragraph p = new Paragraph("Nombre Alumno:  " + "\n");
             p.Add("Rut Alumno: " + "\n");
-            p.Add("Fecha Evaluación" + "\n");
-            pdfDoc.Add(p);
+            p.Add("Fecha de Evaluación" + "\n");
+            PdfPTable ptabla = new PdfPTable(1);
+            PdfPCell pcell = new PdfPCell(p);
+            ptabla.AddCell(p);
+            pdfDoc.Add(ptabla);
 
             int numPregunta = 1;
             foreach (DataRow result in dt.Rows)

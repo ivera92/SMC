@@ -67,24 +67,6 @@ namespace CapaDePresentacion.Evaluador {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtAPregunta;
         
         /// <summary>
-        /// fileImagen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileImagen;
-        
-        /// <summary>
-        /// RegularExpressionValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
-        
-        /// <summary>
         /// AltOCas control.
         /// </summary>
         /// <remarks>

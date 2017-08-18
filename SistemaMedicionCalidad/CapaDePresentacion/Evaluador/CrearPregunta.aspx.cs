@@ -5,6 +5,7 @@ using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Project;
+using System.Web;
 
 namespace CapaDePresentacion.Evaluador
 {
@@ -65,13 +66,30 @@ namespace CapaDePresentacion.Evaluador
             {
                 try
                 {
-                    this.subirImagen();//Guarda la imagen en la carpeta ImagenesPreguntas ubicada en la carpeta Doc
+                    HttpPostedFile filePosted = Request.Files["file"];
+                    if (filePosted != null && filePosted.ContentLength > 0)
+                    {
+                        string path = Server.MapPath("~/ImagenesPreguntas/");
+                        string fileNameApplication = Path.GetFileName(filePosted.FileName);
+                        string fileExtensionApplication = Path.GetExtension(fileNameApplication);
+
+                        // getting a valid server path to save
+                        string filePath = Path.Combine(Server.MapPath("~/ImagenesPreguntas/"), fileNameApplication);
+
+                        if (fileNameApplication != String.Empty)
+                        {
+                            filePosted.SaveAs(filePath);
+                            p.Imagen_pregunta = fileNameApplication;
+                        }
+                    }
                 }
-                catch { }
+                catch
+                {
+                    p.Imagen_pregunta = "";
+                }
                 p.Id_desempeno = cDesempeno.buscarUnDesempeno(int.Parse(ddDesempeno.SelectedValue));
                 p.Tipo_pregunta_pregunta = cTP.buscarUnTipoPregunta(int.Parse(this.ddTipoPregunta.SelectedValue));
                 p.Enunciado_pregunta = this.txtAPregunta.InnerText;
-                p.Imagen_pregunta = ruta;
                 p.Nivel_pregunta = cNivel.buscarNivel(int.Parse(ddNivel.SelectedValue));
                 cp.insertarPregunta(p);
                 id = cp.ultimaPregunta();
@@ -170,58 +188,39 @@ namespace CapaDePresentacion.Evaluador
                 this.VoF.Visible = true;
             }
         }
-        public void subirImagen()
-        {
-            if (fileImagen.HasFile)
-            {
-                bool fileOK = false;
-                string path = Server.MapPath("~/ImagenesPreguntas/");
-                if (fileImagen.HasFile)
-                {
-                    string extension = Path.GetExtension(fileImagen.FileName).ToLower();
-                    string[] posiblesExtensiones = { ".gif", ".png", ".jpeg", ".jpg", ".GIF", ".PNG", ".JPEG", ".JPG" };
-                    for (int i = 0; i < posiblesExtensiones.Length; i++)
-                    {
-                        if (extension == posiblesExtensiones[i])
-                        {
-                            fileOK = true;
-                        }
-                    }
-                    
-                    if (fileOK)
-                    {
-                        System.Drawing.Image imagen = System.Drawing.Image.FromStream(fileImagen.PostedFile.InputStream);
-                        int width = Convert.ToInt32(imagen.Width);
-                        int height = Convert.ToInt32(imagen.Height);
-                        while (width > 1100)
-                        {
-                            width = width * (80 / 100);
-                            height = height * (80 / 100);
-                            fileImagen.Width = width;
-                            fileImagen.Height = height;
-                        }
-                    }
-                }
+        //public void subirImagen()
+        //{
+        //    bool fileOK = false;
+        //    string path = Server.MapPath("~/ImagenesPreguntas/");
 
-                if (fileOK)
-                {
-                    try
-                    {
-                        fileImagen.PostedFile.SaveAs(path + fileImagen.FileName);
-                        Response.Write("<script>window.alert('La imagen fue grabada en el servidor');</script>");
-                        ruta = fileImagen.FileName;
-                    }
-                    catch
-                    {
-                        Response.Write("<script>window.alert('La imagen no pudo ser grabada en el servidor');</script>");
-                    }
-                }
-                else
-                {
-                    Response.Write("<script>window.alert('El formato de archivo no es soportado');</script>");
-                }
-            }
-        }
+        //    string extension = Path.GetExtension(fileImagen.FileName).ToLower();
+        //    string[] posiblesExtensiones = { ".gif", ".png", ".jpeg", ".jpg", ".GIF", ".PNG", ".JPEG", ".JPG" };
+        //    for (int i = 0; i < posiblesExtensiones.Length; i++)
+        //    {
+        //        if (extension == posiblesExtensiones[i])
+        //        {
+        //            fileOK = true;
+        //        }
+        //    }
+
+        //    if (fileOK)
+        //    {
+        //        try
+        //        {
+        //            fileImagen.PostedFile.SaveAs(path + fileImagen.FileName);
+        //            Response.Write("<script>window.alert('La imagen fue grabada en el servidor');</script>");
+        //            ruta = fileImagen.FileName;
+        //        }
+        //        catch
+        //        {
+        //            Response.Write("<script>window.alert('La imagen no pudo ser grabada en el servidor');</script>");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Response.Write("<script>window.alert('El Tamaño del archivo no es soportado');</script>");
+        //    }
+        //}
 
         protected void ddDesempeno_SelectedIndexChanged(object sender, EventArgs e)
         {

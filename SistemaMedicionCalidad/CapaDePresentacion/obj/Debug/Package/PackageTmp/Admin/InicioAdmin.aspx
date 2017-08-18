@@ -116,7 +116,6 @@
                         <br />
                         <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Admin/ResultadosEvaluaciones.aspx">Resultados Generales</asp:HyperLink>
                         <br />
-                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Admin/ResultadosEspecificos.aspx">Resultados Específicos</asp:HyperLink>
                     </div>
                 </td>
                 <td>

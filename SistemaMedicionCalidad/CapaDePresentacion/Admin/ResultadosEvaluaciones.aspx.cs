@@ -491,7 +491,7 @@ namespace CapaDePresentacion.Admin
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 Response.AddHeader("content-disposition", "attachment;filename=Resultados.xlsx");
 
-
+                //Crea una secuencia cuya memoria auxiliar es la memoria.
                 using (MemoryStream MyMemoryStream = new MemoryStream())
                 {
                     wb.SaveAs(MyMemoryStream);

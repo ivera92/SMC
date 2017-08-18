@@ -11,7 +11,7 @@
             <div class="col-sm-12" style="border: solid 1px #ccc">                
                 <div>
                     <asp:GridView class="table table-striped" ID="gvEscuelas" runat="server" AutoGenerateColumns="false"
-                        OnRowDeleting="rowDeleting" OnRowEditing="rowEditing" Font-Names="Sengoe-UI" Font-Size="12">
+                        OnRowDeleting="rowDeleting" OnRowEditing="rowEditing">
                         <HeaderStyle BackColor="#4ed34e" Font-Bold="True" ForeColor="White" />
                         <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                         <EmptyDataTemplate>

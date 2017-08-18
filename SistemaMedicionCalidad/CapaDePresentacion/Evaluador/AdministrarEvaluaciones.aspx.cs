@@ -33,7 +33,6 @@ namespace CapaDePresentacion.Evaluador
             this.gvEvaluaciones.DataSource = lEvaluacion;
             this.DataBind();
         }
-
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             this.gvEvaluaciones.Visible = true;
@@ -153,7 +152,7 @@ namespace CapaDePresentacion.Evaluador
             p2.Alignment = Element.ALIGN_CENTER;
             pdfDoc.Add(p2);
             Paragraph espacio = new Paragraph(" ");
-            pdfDoc.Add(espacio);            
+            pdfDoc.Add(espacio);
             PdfPTable ptabla = new PdfPTable(1);
             PdfPCell pcell = new PdfPCell(new Paragraph("Nombre alumno:\n"));
             PdfPCell pcell2 = new PdfPCell(new Paragraph("Rut:\n"));

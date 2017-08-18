@@ -220,7 +220,9 @@
                         <a href="#" style="color: #333; float: left;">Escuela</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
                             <li><a href="CrearEscuela.aspx" style="width: 243px;">Crear Escuela</a></li>
+                            <li><a href="CrearAmbito.aspx" style="width: 243px;">Crear Ambito</a></li>
                             <li><a href="AdministrarEscuelas.aspx" style="width: 243px;">Administrar Escuelas</a></li>
+                            <li><a href="AdministrarAmbitos.aspx" style="width: 243px;">Administrar Ambitos</a></li>
                         </ul>
                     </li>
                     <li class="nivel1">
@@ -274,7 +276,6 @@
                         <a href="#" style="color: #333; float: left;">Resultados</a><img src="http://www.uach.cl/uach/_imag/pix_menu3.jpg" border="0" alt="" style="margin: 10px 13px 0 13px; float: left;">
                         <ul>
                             <li><a href="ResultadosEvaluaciones.aspx" style="width: 243px;">Resultados de Evaluación Generales</a></li>
-                            <li><a href="ResultadosEspecificos.aspx" style="width: 243px;">Resultados de Evaluación Específicos</a></li>
                             <li><a href="AdministrarHPA.aspx" style="width: 243px;">Ver Historial de Respuestas Alumnos</a></li>
                         </ul>
                     </li>
@@ -297,7 +298,7 @@
 
                 </ul>
             </div>
-            <form runat="server" style="border: solid 2px #ccc">
+            <form runat="server" style="border: solid 2px #ccc" method="post" action="" enctype="multipart/form-data" >
                 <br />
                 <div>
                     <div class="text-right">
